@@ -1,0 +1,13 @@
+[gd_scene load_steps=3 format=3 uid="uid://bloeamr51ecuu"]
+
+[ext_resource type="PackedScene" uid="uid://bvgopkml6anvf" path="res://Scenes/Character.tscn" id="1_4in15"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_sfs4e"]
+
+[node name="TestMovement" type="Node2D"]
+
+[node name="Character" parent="." node_paths=PackedStringArray("_animated_sprite") instance=ExtResource("1_4in15")]
+_animated_sprite = NodePath("AnimatedSprite2D")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Character"]
+sprite_frames = SubResource("SpriteFrames_sfs4e")
