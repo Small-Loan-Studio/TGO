@@ -53,3 +53,7 @@ right={
 
 2d_physics/layer_1="Collisions"
 2d_physics/layer_2="Interactions"
+
+[physics]
+
+2d/default_gravity_vector=Vector2(0, 0)

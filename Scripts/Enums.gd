@@ -1,6 +1,6 @@
-extends RefCounted
-
 class_name Enums
+
+extends RefCounted
 
 enum Direction {
   North,
