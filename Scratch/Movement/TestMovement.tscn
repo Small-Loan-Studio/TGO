@@ -1,13 +1,14 @@
 [gd_scene load_steps=3 format=3 uid="uid://bloeamr51ecuu"]
 
-[ext_resource type="PackedScene" uid="uid://bvgopkml6anvf" path="res://Scenes/Character.tscn" id="1_4in15"]
-
-[sub_resource type="SpriteFrames" id="SpriteFrames_sfs4e"]
+[ext_resource type="PackedScene" uid="uid://cx703e8t27grh" path="res://Scenes/Character.tscn" id="1_4in15"]
+[ext_resource type="SpriteFrames" uid="uid://602xb41y0tak" path="res://Art/stub_animated_sprite.tres" id="2_x3y7f"]
 
 [node name="TestMovement" type="Node2D"]
 
-[node name="Character" parent="." node_paths=PackedStringArray("_animated_sprite") instance=ExtResource("1_4in15")]
-_animated_sprite = NodePath("AnimatedSprite2D")
+[node name="Character" parent="." instance=ExtResource("1_4in15")]
+position = Vector2(268, 169)
+player_controled = true
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Character"]
-sprite_frames = SubResource("SpriteFrames_sfs4e")
+sprite_frames = ExtResource("2_x3y7f")
+animation = &"northeast"

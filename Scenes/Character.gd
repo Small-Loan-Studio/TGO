@@ -1,38 +1,75 @@
 @tool
 
-extends Node2D
+extends CharacterBody2D
 
-var _editor_sprite: Sprite2D = null
+@export var player_controled: bool = false
+@export var move_speed: int = 250
 
-@export var _animated_sprite: AnimatedSprite2D:
-	get:
-		return _animated_sprite
-	set(new_value):
-		_animated_sprite = new_value
-		if Engine.is_editor_hint():
-			if (new_value == null):
-				var names := new_value.sprite_frames.get_animation_names()
-				var tex := new_value.sprite_frames.get_frame_texture(names[0], 0)
-				if tex != null:
-					if _editor_sprite != null:
-						remove_child(_editor_sprite)
-					_editor_sprite = Sprite2D.new()
-					_editor_sprite.texture = tex
-					add_child(_editor_sprite)
+var _impulse: Vector2 = Vector2.ZERO
+var _direction: Enums.Direction
+
+var _sprite: AnimatedSprite2D
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	if Engine.is_editor_hint():
-		print('running in-editor')
-	pass # Replace with function body.
+	for c in get_children():
+		if c is AnimatedSprite2D:
+			_sprite = c
+			return
 
+func _unhandled_input(_event: InputEvent) -> void:
+	if !player_controled:
+		return
 
+	_impulse = Input.get_vector(
+		Enums.InputActionName(Enums.InputAction.Left),
+		Enums.InputActionName(Enums.InputAction.Right),
+		Enums.InputActionName(Enums.InputAction.Up),
+		Enums.InputActionName(Enums.InputAction.Down),
+	).normalized()
+	if _impulse != Vector2.ZERO:
+		_direction = Utils.angle_to_direction(Vector2.UP.angle_to(_impulse))
+
+func _physics_process(_delta: float) -> void:
+	if _sprite == null:
+		# there will be a moment where we haven't fonud the sprite child yet
+		return
+
+	if _impulse == Vector2.ZERO:
+		_sprite.stop()
+		return
+
+	var want_anim := Enums.DirectionName(_direction)
+	var animation_correct := _sprite.animation == want_anim
+
+	if !animation_correct || !_sprite.is_playing:
+		_sprite.play(want_anim)
+	velocity = _impulse * move_speed
+	move_and_slide()
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	pass
 
 func _get_configuration_warnings() -> PackedStringArray:
-	if _animated_sprite == null:
-		return ["Characters require animated sprites to function correctly."]
+	var found_sprite: AnimatedSprite2D = null
+	for c in get_children():
+		if c is AnimatedSprite2D:
+			found_sprite = c
+			break
+
+	if !found_sprite:
+		return ["Character needs an animated sprite child."]
+
+	var animations := found_sprite.sprite_frames.get_animation_names()
+	var missing_anims: Array[String] = []
+
+	for da: Enums.Direction in Enums.Direction.values():
+		var want_name := Enums.DirectionName(da)
+		if not want_name in animations:
+			missing_anims.append(want_name)
+
+	if missing_anims.size() > 0:
+		return ["Missing expected animations in child sprite: " + str(missing_anims)]
+
 	return []
