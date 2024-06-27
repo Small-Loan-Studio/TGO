@@ -4,7 +4,7 @@
 [ext_resource type="SpriteFrames" uid="uid://602xb41y0tak" path="res://Art/stub_animated_sprite.tres" id="2_x3y7f"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_jitay"]
-radius = 16.0
+radius = 18.0
 height = 40.0
 
 [node name="TestMovement" type="Node2D"]
@@ -15,6 +15,6 @@ player_controled = true
 _override_default_sprite_frames = ExtResource("2_x3y7f")
 
 [node name="PhysicsCollider" type="CollisionShape2D" parent="Character"]
-position = Vector2(0, -4)
+position = Vector2(0, -5)
 rotation = -1.57079
 shape = SubResource("CapsuleShape2D_jitay")

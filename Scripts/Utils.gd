@@ -3,9 +3,10 @@ extends RefCounted
 class_name Utils
 
 # converts an angle relative to Vector2.UP into a direction;
-# the angle is expected to
-static func angle_to_direction(angle: float) -> Enums.Direction:
-  var normalized: float = angle / TAU * 360
+# the angle is expected to be radians between [-TAU, TAU]
+static func angle_to_direction(angle_rad: float) -> Enums.Direction:
+  # convert to degrees for my trig-lazy brain
+  var normalized: float = angle_rad / TAU * 360
   var abs_normalized: float = abs(normalized)
   var side: int = 1 if normalized >= 0 else 0
 

@@ -4,6 +4,9 @@ extends CharacterBody2D
 
 @export var player_controled: bool = false
 @export var move_speed: int = 250
+
+# set this to customize the AnimatedSprite, should only be accessed during
+# scene editing
 @export var _override_default_sprite_frames: SpriteFrames:
 	get:
 		return _override_default_sprite_frames
@@ -16,8 +19,10 @@ extends CharacterBody2D
 
 # direction force will be applied for movement
 var _impulse: Vector2 = Vector2.ZERO
+
 # _impulse represented as [-TAU, TAU] off Vector2.UP
 var _facing: float = 0
+
 # _facing reified into a direction
 var _direction: Enums.Direction
 
@@ -68,8 +73,7 @@ func _physics_process(_delta: float) -> void:
 	move_and_slide()
 
 func _get_configuration_warnings() -> PackedStringArray:
-	var found_sprite: AnimatedSprite2D = null
-	var animations := found_sprite.sprite_frames.get_animation_names()
+	var animations := _sprite.sprite_frames.get_animation_names()
 	var missing_anims: Array[String] = []
 
 	for da: Enums.Direction in Enums.Direction.values():
