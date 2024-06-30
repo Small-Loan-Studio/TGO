@@ -1,11 +1,13 @@
-[gd_scene load_steps=4 format=3 uid="uid://bloeamr51ecuu"]
+[gd_scene load_steps=5 format=3 uid="uid://bloeamr51ecuu"]
 
+[ext_resource type="Script" path="res://Scratch/Movement/TestMovement.gd" id="1_ve0b0"]
 [ext_resource type="Texture2D" uid="uid://c5pogm6rpt7wo" path="res://Art/ground.png" id="2_l7wsh"]
 [ext_resource type="PackedScene" uid="uid://bqt4tgvypxvop" path="res://Scratch/Movement/Tree.tscn" id="4_diq26"]
 [ext_resource type="PackedScene" uid="uid://mqvl5162rawb" path="res://Scenes/Devin.tscn" id="6_4inpa"]
 
 [node name="TestMovement" type="Node2D"]
 y_sort_enabled = true
+script = ExtResource("1_ve0b0")
 
 [node name="Bg" type="Sprite2D" parent="."]
 z_index = -100
@@ -23,10 +25,10 @@ position = Vector2(0, -1)
 color = Color(0.0784314, 0.0784314, 0.156863, 1)
 
 [node name="Tree" parent="." instance=ExtResource("4_diq26")]
-position = Vector2(-407, -307)
+position = Vector2(45, 147)
 
 [node name="Tree2" parent="." instance=ExtResource("4_diq26")]
-position = Vector2(-384, 143)
+position = Vector2(370, -81)
 
 [node name="Tree3" parent="." instance=ExtResource("4_diq26")]
 position = Vector2(286, -134)
