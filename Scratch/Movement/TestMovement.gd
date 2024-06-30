@@ -4,6 +4,10 @@ extends Node2D
 
 var _state: int = 0
 
+func _ready() -> void:
+	if !_modulate.visible:
+		_modulate.visible = true
+
 func _unhandled_input(_event: InputEvent) -> void:
 	if _event.is_action_pressed('ui_accept'):
 		_state = (_state + 1) % 4

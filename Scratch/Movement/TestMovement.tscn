@@ -21,6 +21,7 @@ position = Vector2(271, 159)
 [node name="Camera2D" type="Camera2D" parent="Player"]
 
 [node name="CanvasModulate" type="CanvasModulate" parent="."]
+visible = false
 position = Vector2(0, -1)
 color = Color(0.0784314, 0.0784314, 0.156863, 1)
 
@@ -32,3 +33,13 @@ position = Vector2(370, -81)
 
 [node name="Tree3" parent="." instance=ExtResource("4_diq26")]
 position = Vector2(286, -134)
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+layer = 100
+
+[node name="Label" type="Label" parent="CanvasLayer"]
+offset_left = 844.0
+offset_top = 676.0
+offset_right = 1258.0
+offset_bottom = 699.0
+text = "Enter to change move between Night -> Dusk -> Day"
