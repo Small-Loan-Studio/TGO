@@ -1,5 +1,6 @@
 @tool
 
+class_name Character
 extends CharacterBody2D
 
 @export var player_controled: bool = false
@@ -14,7 +15,7 @@ extends CharacterBody2D
 		if new_value == null:
 			new_value = preload("res://Art/character_placeholder.tres")
 		_override_default_sprite_frames = new_value
-		if Engine.is_editor_hint():
+		if Engine.is_editor_hint() && _sprite != null:
 			_sprite.sprite_frames = new_value
 
 # direction force will be applied for movement

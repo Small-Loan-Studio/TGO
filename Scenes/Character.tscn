@@ -8,7 +8,7 @@ size = Vector2(41.689, 42.1865)
 
 [node name="Character" type="CharacterBody2D"]
 script = ExtResource("1_avct7")
-_override_default_sprite_frames = null
+_override_default_sprite_frames = ExtResource("2_ibgba")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 position = Vector2(0, -42)
