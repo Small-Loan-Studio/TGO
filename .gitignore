@@ -14,5 +14,8 @@ export_presets.cfg
 data_*/
 mono_crash.*.json
 
+# temp files, often from godot failed saves
+*.tmp
+
 # personal configs
 .vscode/
