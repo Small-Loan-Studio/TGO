@@ -1,20 +1,32 @@
 [gd_scene load_steps=4 format=3 uid="uid://bloeamr51ecuu"]
 
-[ext_resource type="PackedScene" uid="uid://cx703e8t27grh" path="res://Scenes/Character.tscn" id="1_4in15"]
-[ext_resource type="SpriteFrames" uid="uid://602xb41y0tak" path="res://Art/stub_animated_sprite.tres" id="2_x3y7f"]
-
-[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_jitay"]
-radius = 18.0
-height = 40.0
+[ext_resource type="Texture2D" uid="uid://c5pogm6rpt7wo" path="res://Art/ground.png" id="2_l7wsh"]
+[ext_resource type="PackedScene" uid="uid://bqt4tgvypxvop" path="res://Scratch/Movement/Tree.tscn" id="4_diq26"]
+[ext_resource type="PackedScene" uid="uid://mqvl5162rawb" path="res://Scenes/Devin.tscn" id="6_4inpa"]
 
 [node name="TestMovement" type="Node2D"]
+y_sort_enabled = true
 
-[node name="Character" parent="." instance=ExtResource("1_4in15")]
-position = Vector2(167, 158)
-player_controled = true
-_override_default_sprite_frames = ExtResource("2_x3y7f")
+[node name="Bg" type="Sprite2D" parent="."]
+z_index = -100
+texture_filter = 1
+scale = Vector2(5, 5)
+texture = ExtResource("2_l7wsh")
 
-[node name="PhysicsCollider" type="CollisionShape2D" parent="Character"]
-position = Vector2(0, -5)
-rotation = -1.57079
-shape = SubResource("CapsuleShape2D_jitay")
+[node name="Player" parent="." instance=ExtResource("6_4inpa")]
+position = Vector2(271, 159)
+
+[node name="Camera2D" type="Camera2D" parent="Player"]
+
+[node name="CanvasModulate" type="CanvasModulate" parent="."]
+position = Vector2(0, -1)
+color = Color(0.0784314, 0.0784314, 0.156863, 1)
+
+[node name="Tree" parent="." instance=ExtResource("4_diq26")]
+position = Vector2(-407, -307)
+
+[node name="Tree2" parent="." instance=ExtResource("4_diq26")]
+position = Vector2(-384, 143)
+
+[node name="Tree3" parent="." instance=ExtResource("4_diq26")]
+position = Vector2(286, -134)

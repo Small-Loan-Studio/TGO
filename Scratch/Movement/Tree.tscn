@@ -1,0 +1,36 @@
+[gd_scene load_steps=5 format=3 uid="uid://bqt4tgvypxvop"]
+
+[ext_resource type="Texture2D" uid="uid://dm1ksd1nk3x81" path="res://Art/trunk.png" id="1_gjh0w"]
+[ext_resource type="Texture2D" uid="uid://baj1ubx7ahwuv" path="res://Art/canopy.png" id="2_uekdx"]
+
+[sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_bnjci"]
+cull_mode = 1
+polygon = PackedVector2Array(-10, 48, 15, 49, 22, 42, 15, 31, 14, -15, -13, -15, -11, 30, -15, 44)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_iw13s"]
+radius = 18.0
+
+[node name="Tree" type="Node2D"]
+position = Vector2(0, -75)
+
+[node name="Trunk" type="Sprite2D" parent="."]
+z_index = -1
+position = Vector2(0, 40)
+texture = ExtResource("1_gjh0w")
+
+[node name="LightOccluder2D" type="LightOccluder2D" parent="Trunk"]
+show_behind_parent = true
+occluder = SubResource("OccluderPolygon2D_bnjci")
+occluder_light_mask = 2
+
+[node name="RigidBody2D" type="RigidBody2D" parent="Trunk"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Trunk/RigidBody2D"]
+position = Vector2(3, 36)
+shape = SubResource("CircleShape2D_iw13s")
+
+[node name="Canopy" type="Sprite2D" parent="."]
+light_mask = 0
+z_index = 1
+position = Vector2(0, -24)
+texture = ExtResource("2_uekdx")

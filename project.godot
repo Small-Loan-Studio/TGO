@@ -18,6 +18,11 @@ config/icon="res://icon.svg"
 
 gdscript/warnings/untyped_declaration=2
 
+[display]
+
+window/size/viewport_width=1280
+window/size/viewport_height=720
+
 [dotnet]
 
 project/assembly_name="TGO"
@@ -51,6 +56,10 @@ right={
 
 [layer_names]
 
+2d_render/layer_1="Ground"
+2d_render/layer_2="ShadowCasting"
+2d_render/layer_11="Canopy"
+2d_render/layer_20="Devin"
 2d_physics/layer_1="Collisions"
 2d_physics/layer_2="Interactions"
 

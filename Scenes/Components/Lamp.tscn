@@ -1,0 +1,34 @@
+[gd_scene load_steps=5 format=3 uid="uid://skr46k6x628f"]
+
+[ext_resource type="Texture2D" uid="uid://d31hn0w3ipo6r" path="res://Art/lamp_stub.png" id="1_nrjcp"]
+[ext_resource type="Script" path="res://Scenes/Components/Lamp.gd" id="1_q4dyi"]
+[ext_resource type="Texture2D" uid="uid://yov0h2kg54t0" path="res://Art/spotlight_1.png" id="2_pf72o"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_0qdc1"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_nrjcp")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[node name="Lamp" type="Node2D"]
+script = ExtResource("1_q4dyi")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+texture_filter = 1
+sprite_frames = SubResource("SpriteFrames_0qdc1")
+
+[node name="Beam" type="PointLight2D" parent="."]
+show_behind_parent = true
+light_mask = 3
+visibility_layer = 3
+rotation = 1.5708
+energy = 0.9
+shadow_enabled = true
+shadow_item_cull_mask = 2
+texture = ExtResource("2_pf72o")
+offset = Vector2(-130, 0)
