@@ -10,7 +10,7 @@ static func angle_to_direction(angle_rad: float) -> Enums.Direction:
   var abs_normalized: float = abs(normalized)
   var side: int = 1 if normalized >= 0 else 0
 
-  var segments: int = (int)(abs_normalized / 22.5)
+  var segments: int = (abs_normalized / 22.5) as int
 
   if segments < 1:
     return Enums.Direction.North
