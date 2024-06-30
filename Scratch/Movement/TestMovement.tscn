@@ -1,0 +1,20 @@
+[gd_scene load_steps=4 format=3 uid="uid://bloeamr51ecuu"]
+
+[ext_resource type="PackedScene" uid="uid://cx703e8t27grh" path="res://Scenes/Character.tscn" id="1_4in15"]
+[ext_resource type="SpriteFrames" uid="uid://602xb41y0tak" path="res://Art/stub_animated_sprite.tres" id="2_x3y7f"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_jitay"]
+radius = 18.0
+height = 40.0
+
+[node name="TestMovement" type="Node2D"]
+
+[node name="Character" parent="." instance=ExtResource("1_4in15")]
+position = Vector2(167, 158)
+player_controled = true
+_override_default_sprite_frames = ExtResource("2_x3y7f")
+
+[node name="PhysicsCollider" type="CollisionShape2D" parent="Character"]
+position = Vector2(0, -5)
+rotation = -1.57079
+shape = SubResource("CapsuleShape2D_jitay")
