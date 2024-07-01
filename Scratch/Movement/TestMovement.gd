@@ -1,8 +1,8 @@
 extends Node2D
 
-@onready var _modulate: CanvasModulate = $CanvasModulate
-
 var _state: int = 0
+
+@onready var _modulate: CanvasModulate = $CanvasModulate
 
 func _ready() -> void:
 	if !_modulate.visible:
@@ -21,7 +21,6 @@ func _unhandled_input(_event: InputEvent) -> void:
 			'energy',
 			get_energy_target(_state),
 			2)
-
 
 func get_target(state: int) -> Color:
 	match state:
