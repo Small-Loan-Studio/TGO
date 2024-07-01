@@ -1,0 +1,28 @@
+[gd_scene load_steps=4 format=3 uid="uid://ibnwktw1xdvu"]
+
+[ext_resource type="Texture2D" uid="uid://ceo0a1wjutqct" path="res://Art/box.png" id="1_8wuxv"]
+
+[sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_bnjci"]
+cull_mode = 1
+polygon = PackedVector2Array(32, -64, -32, -64, -32, 64, 32, 64)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_6c3cx"]
+size = Vector2(64, 128)
+
+[node name="GrayBox" type="Node2D"]
+position = Vector2(0, -75)
+
+[node name="Box" type="Sprite2D" parent="."]
+z_index = -1
+position = Vector2(0, 40)
+texture = ExtResource("1_8wuxv")
+
+[node name="LightOccluder2D" type="LightOccluder2D" parent="Box"]
+show_behind_parent = true
+occluder = SubResource("OccluderPolygon2D_bnjci")
+occluder_light_mask = 2
+
+[node name="RigidBody2D" type="RigidBody2D" parent="Box"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Box/RigidBody2D"]
+shape = SubResource("RectangleShape2D_6c3cx")
