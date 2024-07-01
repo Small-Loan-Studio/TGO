@@ -12,11 +12,11 @@ static func angle_to_direction(angle_rad: float) -> Enums.Direction:
   var segments: int = (abs_normalized / 22.5) as int
 
   if segments < 1:
-    return Enums.Direction.North
+    return Enums.Direction.NORTH
   if segments < 3:
-    return [Enums.Direction.NorthWest, Enums.Direction.NorthEast][side]
+    return [Enums.Direction.NORTH_WEST, Enums.Direction.NORTH_EAST][side]
   if segments < 5:
-    return [Enums.Direction.West, Enums.Direction.East][side]
+    return [Enums.Direction.WEST, Enums.Direction.EAST][side]
   if segments < 7:
-    return [Enums.Direction.SouthWest, Enums.Direction.SouthEast][side]
-  return Enums.Direction.South
+    return [Enums.Direction.SOUTH_WEST, Enums.Direction.SOUTH_EAST][side]
+  return Enums.Direction.SOUTH

@@ -3,53 +3,53 @@ class_name Enums
 extends RefCounted
 
 enum Direction {
-  North,
-  South,
-  East,
-  West,
-  NorthEast,
-  NorthWest,
-  SouthEast,
-  SouthWest,
+  NORTH,
+  SOUTH,
+  EAST,
+  WEST,
+  NORTH_EAST,
+  NORTH_WEST,
+  SOUTH_EAST,
+  SOUTH_WEST,
 }
 
 static func direction_name(da: Direction) -> String:
   match da:
-    Direction.North:
+    Direction.NORTH:
       return "north"
-    Direction.South:
+    Direction.SOUTH:
       return "south"
-    Direction.East:
+    Direction.EAST:
       return "east"
-    Direction.West:
+    Direction.WEST:
       return "west"
-    Direction.NorthEast:
+    Direction.NORTH_EAST:
       return "northeast"
-    Direction.NorthWest:
+    Direction.NORTH_WEST:
       return "northwest"
-    Direction.SouthEast:
+    Direction.SOUTH_EAST:
       return "southeast"
-    Direction.SouthWest:
+    Direction.SOUTH_WEST:
       return "southwest"
   printerr("Unexpected Direction value: " + str(da))
   return "north"
 
 enum InputAction {
-  Up,
-  Down,
-  Left,
-  Right
+  UP,
+  DOWN,
+  LEFT,
+  RIGHT
 }
 
 static func input_action_name(ia: InputAction) -> String:
   match ia:
-    InputAction.Up:
+    InputAction.UP:
       return "up"
-    InputAction.Down:
+    InputAction.DOWN:
       return "down"
-    InputAction.Left:
+    InputAction.LEFT:
       return "left"
-    InputAction.Right:
+    InputAction.RIGHT:
       return "right"
   assert(false, "Invalid Input action")
   return ""

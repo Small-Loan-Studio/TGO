@@ -44,10 +44,10 @@ func _unhandled_input(_event: InputEvent) -> void:
 	# handling input won't prevent movement in the face of non-propagating
 	# input events
 	_impulse = Input.get_vector(
-		Enums.input_action_name(Enums.InputAction.Left),
-		Enums.input_action_name(Enums.InputAction.Right),
-		Enums.input_action_name(Enums.InputAction.Up),
-		Enums.input_action_name(Enums.InputAction.Down),
+		Enums.input_action_name(Enums.InputAction.LEFT),
+		Enums.input_action_name(Enums.InputAction.RIGHT),
+		Enums.input_action_name(Enums.InputAction.UP),
+		Enums.input_action_name(Enums.InputAction.DOWN),
 	).normalized()
 
 	if _impulse != Vector2.ZERO:
