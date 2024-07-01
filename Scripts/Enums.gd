@@ -13,6 +13,13 @@ enum Direction {
   SOUTH_WEST,
 }
 
+enum InputAction {
+  UP,
+  DOWN,
+  LEFT,
+  RIGHT
+}
+
 static func direction_name(da: Direction) -> String:
   match da:
     Direction.NORTH:
@@ -33,13 +40,6 @@ static func direction_name(da: Direction) -> String:
       return "southwest"
   printerr("Unexpected Direction value: " + str(da))
   return "north"
-
-enum InputAction {
-  UP,
-  DOWN,
-  LEFT,
-  RIGHT
-}
 
 static func input_action_name(ia: InputAction) -> String:
   match ia:
