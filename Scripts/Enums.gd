@@ -13,7 +13,7 @@ enum Direction {
   SouthWest,
 }
 
-static func DirectionName(da: Direction) -> String:
+static func direction_name(da: Direction) -> String:
   match da:
     Direction.North:
       return "north"

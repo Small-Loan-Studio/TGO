@@ -65,7 +65,7 @@ func _physics_process(_delta: float) -> void:
 		_sprite.stop()
 		return
 
-	var want_anim := Enums.DirectionName(_direction)
+	var want_anim := Enums.direction_name(_direction)
 	var animation_correct := _sprite.animation == want_anim
 
 	if !animation_correct || !_sprite.is_playing:
@@ -78,7 +78,7 @@ func _get_configuration_warnings() -> PackedStringArray:
 	var missing_anims: Array[String] = []
 
 	for da: Enums.Direction in Enums.Direction.values():
-		var want_name := Enums.DirectionName(da)
+		var want_name := Enums.direction_name(da)
 		if not want_name in animations:
 			missing_anims.append(want_name)
 
