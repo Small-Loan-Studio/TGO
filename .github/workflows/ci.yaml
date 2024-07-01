@@ -7,7 +7,7 @@ on:
   pull_request:
     types:
       - opened
-      - edit
+      - edited
       - reopened
 
 jobs:

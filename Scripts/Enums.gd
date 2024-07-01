@@ -41,7 +41,7 @@ enum InputAction {
   Right
 }
 
-static func InputActionName(ia: InputAction) -> String:
+static func input_action_name(ia: InputAction) -> String:
   match ia:
     InputAction.Up:
       return "up"
