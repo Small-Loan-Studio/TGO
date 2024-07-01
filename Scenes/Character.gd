@@ -1,5 +1,6 @@
 @tool
 
+class_name Character
 extends CharacterBody2D
 
 @export var player_controled: bool = false
@@ -14,7 +15,7 @@ extends CharacterBody2D
 		if new_value == null:
 			new_value = preload("res://Art/character_placeholder.tres")
 		_override_default_sprite_frames = new_value
-		if Engine.is_editor_hint():
+		if Engine.is_editor_hint() && _sprite != null:
 			_sprite.sprite_frames = new_value
 
 # direction force will be applied for movement
@@ -43,10 +44,10 @@ func _unhandled_input(_event: InputEvent) -> void:
 	# handling input won't prevent movement in the face of non-propagating
 	# input events
 	_impulse = Input.get_vector(
-		Enums.InputActionName(Enums.InputAction.Left),
-		Enums.InputActionName(Enums.InputAction.Right),
-		Enums.InputActionName(Enums.InputAction.Up),
-		Enums.InputActionName(Enums.InputAction.Down),
+		Enums.input_action_name(Enums.InputAction.LEFT),
+		Enums.input_action_name(Enums.InputAction.RIGHT),
+		Enums.input_action_name(Enums.InputAction.UP),
+		Enums.input_action_name(Enums.InputAction.DOWN),
 	).normalized()
 
 	if _impulse != Vector2.ZERO:
@@ -64,7 +65,7 @@ func _physics_process(_delta: float) -> void:
 		_sprite.stop()
 		return
 
-	var want_anim := Enums.DirectionName(_direction)
+	var want_anim := Enums.direction_name(_direction)
 	var animation_correct := _sprite.animation == want_anim
 
 	if !animation_correct || !_sprite.is_playing:
@@ -77,7 +78,7 @@ func _get_configuration_warnings() -> PackedStringArray:
 	var missing_anims: Array[String] = []
 
 	for da: Enums.Direction in Enums.Direction.values():
-		var want_name := Enums.DirectionName(da)
+		var want_name := Enums.direction_name(da)
 		if not want_name in animations:
 			missing_anims.append(want_name)
 

@@ -1,0 +1,42 @@
+name: CI
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    types:
+      - opened
+      - synchronize
+      - reopened
+
+jobs:
+  lint:
+    runs-on: ubuntu-latest
+    name: "Lint"
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4.1.1
+        with:
+          fetch-depth: 0
+
+      - name: Setup gdtoolkit
+        uses: Scony/godot-gdscript-toolkit@master
+
+      - name: Lint
+        run: gdlint .
+
+  # formatting:
+  #   runs-on: ubuntu-latest
+  #   name: "Formatting"
+  #   steps:
+  #     - name: Checkout
+  #       uses: actions/checkout@v4.1.1
+  #       with:
+  #         fetch-depth: 0
+
+  #     - name: Setup gdtoolkit
+  #       uses: Scony/godot-gdscript-toolkit@master
+
+  #     - name: Check formatting
+  #       run: gdformat --check .
