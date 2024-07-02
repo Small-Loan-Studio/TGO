@@ -41,8 +41,16 @@ position = Vector2(286, -134)
 position = Vector2(-526, -429)
 
 [node name="GrayBox" parent="." instance=ExtResource("6_dua0r")]
-position = Vector2(-228, -459)
-scale = Vector2(2.425, 2.425)
+position = Vector2(-155, -500)
+scale = Vector2(5.00503, 3.1322)
+
+[node name="GrayBox2" parent="." instance=ExtResource("6_dua0r")]
+position = Vector2(454, -438)
+scale = Vector2(4.16, 2.04)
+
+[node name="GrayBox3" parent="." instance=ExtResource("6_dua0r")]
+position = Vector2(256, -706)
+scale = Vector2(3.97256, 2.15733)
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 layer = 100
