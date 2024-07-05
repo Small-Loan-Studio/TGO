@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://baj1ubx7ahwuv"
-path="res://.godot/imported/canopy.png-4991f4ffc2a096ec3c464d425fa73a70.ctex"
+uid="uid://dm1ksd1nk3x81"
+path="res://.godot/imported/trunk.png-073ff6b41162c3627dd852a93ca5f920.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Art/canopy.png"
-dest_files=["res://.godot/imported/canopy.png-4991f4ffc2a096ec3c464d425fa73a70.ctex"]
+source_file="res://Art/Environment/Placeables/trunk.png"
+dest_files=["res://.godot/imported/trunk.png-073ff6b41162c3627dd852a93ca5f920.ctex"]
 
 [params]
 

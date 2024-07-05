@@ -21,6 +21,10 @@ func _unhandled_input(_event: InputEvent) -> void:
 			'energy',
 			get_energy_target(_state),
 			2)
+	if _event.is_action_pressed("ui_text_completion_replace"):
+		var lamp: Lamp = $Player/Lamp
+		var cur_level := lamp.light_level
+		lamp.light_level = ((lamp.light_level) + 1) % Enums.LightLevel.size()
 
 func get_target(state: int) -> Color:
 	match state:

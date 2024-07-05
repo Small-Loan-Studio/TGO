@@ -1,7 +1,7 @@
 [gd_scene load_steps=5 format=3 uid="uid://bqt4tgvypxvop"]
 
-[ext_resource type="Texture2D" uid="uid://dm1ksd1nk3x81" path="res://Art/trunk.png" id="1_gjh0w"]
-[ext_resource type="Texture2D" uid="uid://baj1ubx7ahwuv" path="res://Art/canopy.png" id="2_uekdx"]
+[ext_resource type="Texture2D" uid="uid://dm1ksd1nk3x81" path="res://Art/Environment/Placeables/trunk.png" id="1_gjh0w"]
+[ext_resource type="Texture2D" uid="uid://baj1ubx7ahwuv" path="res://Art/Environment/Placeables/canopy.png" id="2_uekdx"]
 
 [sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_bnjci"]
 cull_mode = 1
