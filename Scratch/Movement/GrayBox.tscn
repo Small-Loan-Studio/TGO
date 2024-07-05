@@ -1,6 +1,7 @@
-[gd_scene load_steps=4 format=3 uid="uid://ibnwktw1xdvu"]
+[gd_scene load_steps=5 format=3 uid="uid://ibnwktw1xdvu"]
 
 [ext_resource type="Texture2D" uid="uid://ceo0a1wjutqct" path="res://Art/box.png" id="1_8wuxv"]
+[ext_resource type="Script" path="res://Scratch/Movement/GrayBox.gd" id="1_bocbp"]
 
 [sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_55kx7"]
 polygon = PackedVector2Array(-32, 64, 32, 64, 32, -64, -32, -64)
@@ -9,17 +10,36 @@ polygon = PackedVector2Array(-32, 64, 32, 64, 32, -64, -32, -64)
 size = Vector2(64, 128)
 
 [node name="GrayBox" type="Node2D"]
-position = Vector2(0, -75)
+script = ExtResource("1_bocbp")
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
+[node name="BoxSprite" type="Sprite2D" parent="."]
+z_index = -5
+position = Vector2(32, 64)
 texture = ExtResource("1_8wuxv")
 
-[node name="LightOccluder2D" type="LightOccluder2D" parent="Sprite2D"]
+[node name="LightOccluder2D" type="LightOccluder2D" parent="BoxSprite"]
 show_behind_parent = true
 occluder = SubResource("OccluderPolygon2D_55kx7")
 occluder_light_mask = 2
 
-[node name="StaticBody2D" type="StaticBody2D" parent="Sprite2D"]
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+position = Vector2(32, 64)
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Sprite2D/StaticBody2D"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
 shape = SubResource("RectangleShape2D_tmfnm")
+
+[node name="BoxLabel" type="Label" parent="."]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -0.5
+offset_top = -11.5
+offset_right = 0.5
+offset_bottom = 11.5
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+metadata/_edit_use_anchors_ = true

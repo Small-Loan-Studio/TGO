@@ -14,7 +14,7 @@ script = ExtResource("1_ve0b0")
 [node name="Bg" type="Sprite2D" parent="."]
 z_index = -100
 texture_filter = 1
-scale = Vector2(5, 5)
+scale = Vector2(10, 10)
 texture = ExtResource("2_l7wsh")
 
 [node name="Player" parent="." instance=ExtResource("6_4inpa")]
@@ -28,6 +28,12 @@ visible = false
 position = Vector2(0, -1)
 color = Color(0.0784314, 0.0784314, 0.156863, 1)
 
+[node name="Tavern" parent="." instance=ExtResource("6_dua0r")]
+top_level = true
+position = Vector2(-380, -1003)
+scale = Vector2(7.414, 1.83076)
+box_label_text = "Tavern"
+
 [node name="Tree" parent="." instance=ExtResource("4_diq26")]
 position = Vector2(45, 147)
 
@@ -40,17 +46,21 @@ position = Vector2(286, -134)
 [node name="Tree4" parent="." instance=ExtResource("4_diq26")]
 position = Vector2(-526, -429)
 
-[node name="GrayBox" parent="." instance=ExtResource("6_dua0r")]
-position = Vector2(-155, -500)
-scale = Vector2(5.00503, 3.1322)
-
 [node name="GrayBox2" parent="." instance=ExtResource("6_dua0r")]
-position = Vector2(454, -438)
+position = Vector2(239, -501)
 scale = Vector2(4.16, 2.04)
 
 [node name="GrayBox3" parent="." instance=ExtResource("6_dua0r")]
-position = Vector2(256, -706)
+position = Vector2(239, -838)
 scale = Vector2(3.97256, 2.15733)
+
+[node name="GrayBox4" parent="." instance=ExtResource("6_dua0r")]
+position = Vector2(-978, -878)
+scale = Vector2(4.72456, 4.64)
+
+[node name="GrayBox5" parent="." instance=ExtResource("6_dua0r")]
+position = Vector2(-601, -238)
+scale = Vector2(3.05709, 3.23135)
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 layer = 100
