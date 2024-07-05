@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://bloeamr51ecuu"]
+[gd_scene load_steps=8 format=3 uid="uid://bloeamr51ecuu"]
 
 [ext_resource type="Script" path="res://Scratch/Movement/TestMovement.gd" id="1_ve0b0"]
 [ext_resource type="Texture2D" uid="uid://c5pogm6rpt7wo" path="res://Art/ground.png" id="2_l7wsh"]
@@ -6,6 +6,7 @@
 [ext_resource type="Script" path="res://Scratch/Movement/CameraZoom2D.gd" id="4_y1wm5"]
 [ext_resource type="PackedScene" uid="uid://mqvl5162rawb" path="res://Scenes/Devin.tscn" id="6_4inpa"]
 [ext_resource type="PackedScene" uid="uid://ibnwktw1xdvu" path="res://Scratch/Movement/GrayBox.tscn" id="6_dua0r"]
+[ext_resource type="Texture2D" uid="uid://cmi4arryakvx0" path="res://Art/BrickTan.png" id="7_3dqnm"]
 
 [node name="TestMovement" type="Node2D"]
 y_sort_enabled = true
@@ -16,6 +17,12 @@ z_index = -100
 texture_filter = 1
 scale = Vector2(10, 10)
 texture = ExtResource("2_l7wsh")
+
+[node name="WalkingPathPolygon" type="Polygon2D" parent="."]
+z_index = -90
+texture_repeat = 2
+texture = ExtResource("7_3dqnm")
+polygon = PackedVector2Array(-615, 840, -508, 552, -401, 189, -385, -255, -631, -295, -647, -764, 186, -730, 223, -567, 587, -551, 597, -497, 504, -516, 231, -500, 221, -263, 165, 82, 66, 384, -268, 757)
 
 [node name="Player" parent="." instance=ExtResource("6_4inpa")]
 position = Vector2(271, 159)
