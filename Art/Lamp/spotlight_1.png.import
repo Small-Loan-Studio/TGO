@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dm1ksd1nk3x81"
-path="res://.godot/imported/trunk.png-19e6eec60e26a34d2fbaecff8a2b18c3.ctex"
+uid="uid://yov0h2kg54t0"
+path="res://.godot/imported/spotlight_1.png-76369d91426f6a8e13ac323d27ed20af.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Art/trunk.png"
-dest_files=["res://.godot/imported/trunk.png-19e6eec60e26a34d2fbaecff8a2b18c3.ctex"]
+source_file="res://Art/Lamp/spotlight_1.png"
+dest_files=["res://.godot/imported/spotlight_1.png-76369d91426f6a8e13ac323d27ed20af.ctex"]
 
 [params]
 

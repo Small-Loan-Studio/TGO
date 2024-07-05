@@ -13,7 +13,7 @@ extends CharacterBody2D
 		return _override_default_sprite_frames
 	set(new_value):
 		if new_value == null:
-			new_value = preload("res://Art/character_placeholder.tres")
+			new_value = preload("res://Art/Characters/character_placeholder.tres")
 		_override_default_sprite_frames = new_value
 		if Engine.is_editor_hint() && _sprite != null:
 			_sprite.sprite_frames = new_value
