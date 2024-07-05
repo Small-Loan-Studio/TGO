@@ -1,18 +1,10 @@
 class_name Lamp
-
 extends Node2D
 
 # this exists because i drew the stub lighting pattern to the left and couldn't
 # be assed to rotate it to Vector2.UP so we have to factor in an addition +90deg
 # to get the angle we actually want for it
 const BASE_OFFSET = PI/2
-
-var _light: PointLight2D
-var _facing: float
-
-@onready var _beam1: PointLight2D = $Beam
-@onready var _beam2: PointLight2D = $Beam2
-@onready var _beam3: PointLight2D = $Beam3
 
 var light_level: Enums.LightLevel:
 	set(ll):
@@ -32,6 +24,13 @@ var light_level: Enums.LightLevel:
 		light_level = ll
 	get:
 		return light_level
+
+@onready var _beam1: PointLight2D = $Beam
+@onready var _beam2: PointLight2D = $Beam2
+@onready var _beam3: PointLight2D = $Beam3
+
+var _light: PointLight2D
+var _facing: float
 
 func _replace_beam(new_light: PointLight2D) -> void:
 		if _light != null:
