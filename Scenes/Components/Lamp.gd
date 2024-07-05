@@ -25,12 +25,12 @@ var light_level: Enums.LightLevel:
 	get:
 		return light_level
 
+var _light: PointLight2D
+var _facing: float
+
 @onready var _beam1: PointLight2D = $Beam
 @onready var _beam2: PointLight2D = $Beam2
 @onready var _beam3: PointLight2D = $Beam3
-
-var _light: PointLight2D
-var _facing: float
 
 func _replace_beam(new_light: PointLight2D) -> void:
 		if _light != null:
