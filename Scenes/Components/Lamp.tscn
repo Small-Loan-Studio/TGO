@@ -24,11 +24,11 @@ texture_filter = 1
 sprite_frames = SubResource("SpriteFrames_0qdc1")
 
 [node name="Beam" type="PointLight2D" parent="."]
-visible = false
 show_behind_parent = true
 light_mask = 3
 visibility_layer = 3
 rotation = 1.5708
+enabled = false
 energy = 0.9
 shadow_enabled = true
 shadow_item_cull_mask = 2
@@ -36,25 +36,46 @@ texture = ExtResource("2_pf72o")
 offset = Vector2(-130, 0)
 
 [node name="Beam2" type="PointLight2D" parent="."]
-visible = false
 show_behind_parent = true
 light_mask = 3
 visibility_layer = 3
 rotation = 1.5708
+enabled = false
 energy = 0.9
 shadow_enabled = true
 shadow_item_cull_mask = 2
 texture = ExtResource("4_ul04f")
 offset = Vector2(-130, 0)
 
+[node name="Area2D" type="Area2D" parent="Beam2"]
+collision_layer = 0
+collision_mask = 8
+monitoring = false
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Beam2/Area2D"]
+polygon = PackedVector2Array(40, 0, 30, -48, 0, -80, -301, -191, -301, 191, 0, 80, 30, 48)
+
 [node name="Beam3" type="PointLight2D" parent="."]
-visible = false
 show_behind_parent = true
 light_mask = 3
 visibility_layer = 3
 rotation = 1.5708
+enabled = false
 energy = 0.9
 shadow_enabled = true
 shadow_item_cull_mask = 2
 texture = ExtResource("2_pf72o")
 offset = Vector2(-130, 0)
+
+[node name="Area2D" type="Area2D" parent="Beam3"]
+collision_layer = 0
+collision_mask = 24
+monitoring = false
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Beam3/Area2D"]
+polygon = PackedVector2Array(42, -0.00015204, 26.9999, -29.0001, -20.9998, -55.9999, -47.0002, -63.9998, -300, -63.9989, -300, 64.0011, -47.0002, 64.0002, -20.9998, 57.0001, 26.9999, 29.9999)
+
+[connection signal="area_entered" from="Beam2/Area2D" to="." method="_on_lamp2_enter"]
+[connection signal="area_exited" from="Beam2/Area2D" to="." method="_on_lamp2_exit"]
+[connection signal="area_entered" from="Beam3/Area2D" to="." method="_on_lamp3_entered"]
+[connection signal="area_exited" from="Beam3/Area2D" to="." method="_on_lamp3_exited"]

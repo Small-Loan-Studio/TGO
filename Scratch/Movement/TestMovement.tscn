@@ -1,9 +1,18 @@
-[gd_scene load_steps=5 format=3 uid="uid://bloeamr51ecuu"]
+[gd_scene load_steps=8 format=3 uid="uid://bloeamr51ecuu"]
 
 [ext_resource type="Script" path="res://Scratch/Movement/TestMovement.gd" id="1_ve0b0"]
 [ext_resource type="Texture2D" uid="uid://c5pogm6rpt7wo" path="res://Art/Environment/ground.png" id="2_l7wsh"]
 [ext_resource type="PackedScene" uid="uid://bqt4tgvypxvop" path="res://Scratch/Movement/Tree.tscn" id="4_diq26"]
+[ext_resource type="PackedScene" uid="uid://br40hkaamyscb" path="res://Scenes/Components/Detectable.tscn" id="5_bu4le"]
 [ext_resource type="PackedScene" uid="uid://mqvl5162rawb" path="res://Scenes/Devin.tscn" id="6_4inpa"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_vk0vj"]
+radius = 43.0
+height = 180.0
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_4q70d"]
+radius = 33.0
+height = 176.0
 
 [node name="TestMovement" type="Node2D"]
 y_sort_enabled = true
@@ -27,6 +36,28 @@ color = Color(0.0784314, 0.0784314, 0.156863, 1)
 
 [node name="Tree" parent="." instance=ExtResource("4_diq26")]
 position = Vector2(45, 147)
+
+[node name="Detect2Tree" parent="." instance=ExtResource("4_diq26")]
+visible = false
+position = Vector2(791, 101)
+
+[node name="Detectable" parent="Detect2Tree" node_paths=PackedStringArray("_parent") instance=ExtResource("5_bu4le")]
+collision_layer = 24
+_parent = NodePath("..")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Detect2Tree/Detectable"]
+position = Vector2(3, 4)
+shape = SubResource("CapsuleShape2D_vk0vj")
+
+[node name="Detect3Tree" parent="." instance=ExtResource("4_diq26")]
+visible = false
+position = Vector2(556, 343)
+
+[node name="Detectable" parent="Detect3Tree" instance=ExtResource("5_bu4le")]
+collision_layer = 16
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Detect3Tree/Detectable"]
+shape = SubResource("CapsuleShape2D_4q70d")
 
 [node name="Tree2" parent="." instance=ExtResource("4_diq26")]
 position = Vector2(370, -81)
