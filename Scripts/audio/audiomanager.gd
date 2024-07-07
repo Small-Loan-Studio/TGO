@@ -1,5 +1,5 @@
 extends Node2D
-class_name AudioManager
+
 var next : int = 0
 var audioStreamPlayers : Array = []
 
