@@ -18,7 +18,6 @@ any confusion that might arise during the devoplment process.
     - [Release Candidate branches / bug fixes](#release-candidate-branches--bug-fixes)
     - [Feature / Personal branches](#feature--personal-branches)
 - [What next?](#what-next)
-  - [structural decisions. Start here.](#structural-decisions-start-here)
 
 # I'm not on the engineering team, does this matter to me?
 Kind of!
@@ -188,8 +187,9 @@ There are essentially no rules on what you can do on your own branch.
 # What next?
 
 The `./docs` directory has a deep dive on various systems as well as broader
-structural decisions. Start [here](./docs/tgo-overview.md).
-- 
+structural decisions.
+
+Start [here](./docs/tgo-overview.md).
 
 [orgchart]: https://miro.com/app/board/uXjVK-8EE4Y=/
 [team-standup]: https://www.notion.so/najmetender/38e72706e6ce4bdeb977e9f4e70bfae0?v=0f1a78091b19463baf1c21d8987063bd&pvs=4
