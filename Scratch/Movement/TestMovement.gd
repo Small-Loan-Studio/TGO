@@ -3,6 +3,7 @@ extends Node2D
 var _state: int = 0
 
 @onready var _modulate: CanvasModulate = $CanvasModulate
+@onready var _light_level_label: Label = $CanvasLayer/Label2
 
 func _ready() -> void:
 	if !_modulate.visible:
@@ -17,7 +18,7 @@ func _unhandled_input(_event: InputEvent) -> void:
 		# This is hideous and for demo purposes only kill it with fire and refactor
 		# something if you're inclined to use it.
 		t.tween_property(
-			$Player.get_node('Lamp').get_node('Beam'),
+			$Player.get_node('Lamp'),
 			'energy',
 			get_energy_target(_state),
 			2)
@@ -25,6 +26,8 @@ func _unhandled_input(_event: InputEvent) -> void:
 		var lamp: Lamp = $Player/Lamp
 		var cur_level := lamp.light_level
 		lamp.light_level = ((lamp.light_level) + 1) % Enums.LightLevel.size()
+		lamp.energy = get_energy_target(_state)
+		_light_level_label.text = 'Light Lever: ' + Enums.light_level_name(lamp.light_level)
 
 func get_target(state: int) -> Color:
 	match state:

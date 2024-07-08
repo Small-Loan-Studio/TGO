@@ -74,4 +74,15 @@ offset_top = 635.0
 offset_right = 1258.0
 offset_bottom = 684.0
 text = "Enter to change move between Night -> Dusk -> Day
-Tab to toggle light modesw"
+Tab to toggle light modes"
+
+[node name="Label2" type="Label" parent="CanvasLayer"]
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -46.0
+offset_top = 49.0
+offset_right = 46.0
+offset_bottom = 72.0
+grow_horizontal = 2
+text = "Light Level: off"
