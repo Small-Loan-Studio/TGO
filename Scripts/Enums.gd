@@ -17,7 +17,14 @@ enum InputAction {
   UP,
   DOWN,
   LEFT,
-  RIGHT
+  RIGHT,
+}
+
+enum LightLevel {
+	OFF,
+	NORMAL,
+	BRIGHT,
+	SPECIAL,
 }
 
 static func direction_name(da: Direction) -> String:
@@ -38,7 +45,7 @@ static func direction_name(da: Direction) -> String:
       return "southeast"
     Direction.SOUTH_WEST:
       return "southwest"
-  printerr("Unexpected Direction value: " + str(da))
+  assert(false, "Unexpected Direction value: " + str(da))
   return "north"
 
 static func input_action_name(ia: InputAction) -> String:
@@ -51,5 +58,18 @@ static func input_action_name(ia: InputAction) -> String:
       return "left"
     InputAction.RIGHT:
       return "right"
-  assert(false, "Invalid Input action")
+  assert(false, "Invalid Input action: " + str(ia))
+  return ""
+
+static func light_level_name(ll: LightLevel) -> String:
+  match ll:
+    LightLevel.OFF:
+      return "off"
+    LightLevel.NORMAL:
+      return "normal"
+    LightLevel.BRIGHT:
+      return "bright"
+    LightLevel.SPECIAL:
+      return "special"
+  assert(false, "Invalid light level: " + str(ll))
   return ""

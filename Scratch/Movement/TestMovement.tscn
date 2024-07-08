@@ -1,7 +1,7 @@
 [gd_scene load_steps=8 format=3 uid="uid://bloeamr51ecuu"]
 
 [ext_resource type="Script" path="res://Scratch/Movement/TestMovement.gd" id="1_ve0b0"]
-[ext_resource type="Texture2D" uid="uid://c5pogm6rpt7wo" path="res://Art/ground.png" id="2_l7wsh"]
+[ext_resource type="Texture2D" uid="uid://c5pogm6rpt7wo" path="res://Art/Environment/ground.png" id="2_l7wsh"]
 [ext_resource type="PackedScene" uid="uid://bqt4tgvypxvop" path="res://Scratch/Movement/Tree.tscn" id="4_diq26"]
 [ext_resource type="Script" path="res://Scratch/Movement/CameraZoom2D.gd" id="4_y1wm5"]
 [ext_resource type="PackedScene" uid="uid://mqvl5162rawb" path="res://Scenes/Devin.tscn" id="6_4inpa"]
@@ -74,7 +74,8 @@ layer = 100
 
 [node name="Label" type="Label" parent="CanvasLayer"]
 offset_left = 844.0
-offset_top = 676.0
+offset_top = 635.0
 offset_right = 1258.0
-offset_bottom = 699.0
-text = "Enter to change move between Night -> Dusk -> Day"
+offset_bottom = 684.0
+text = "Enter to change move between Night -> Dusk -> Day
+Tab to toggle light modesw"
