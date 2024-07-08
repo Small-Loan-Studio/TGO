@@ -5,21 +5,21 @@ contributing to the codebase and should help you figure out how work through
 any confusion that might arise during the devoplment process.
 
 - [The Tūn-Gāst of Oakshaw](#the-tūn-gāst-of-oakshaw)
-- [I'm not on the engineering team, does this matter to me?](#im-not-on-the-engineering-team-does-this-matter-to-me)
-- [People](#people)
-  - [Questions?](#questions)
-- [Process](#process)
-  - [Coventions: Code](#coventions-code)
-  - [Conventions: Git](#conventions-git)
-    - [`main`](#main)
-    - [`staging`](#staging)
+  - [I'm not on the engineering team, does this matter to me?](#im-not-on-the-engineering-team-does-this-matter-to-me)
+  - [People](#people)
+    - [Questions?](#questions)
+  - [Process](#process)
+    - [Coventions: Code](#coventions-code)
+    - [Conventions: Git](#conventions-git)
+      - [`main`](#main)
+      - [`staging`](#staging)
       - [Code Review](#code-review)
-      - [For non-engineering submissions](#for-non-engineering-submissions)
-    - [Release Candidate branches / bug fixes](#release-candidate-branches--bug-fixes)
-    - [Feature / Personal branches](#feature--personal-branches)
-- [What next?](#what-next)
+        - [For non-engineering submissions](#for-non-engineering-submissions)
+      - [Release Candidate branches / bug fixes](#release-candidate-branches--bug-fixes)
+      - [Feature / Personal branches](#feature--personal-branches)
+  - [What next?](#what-next)
 
-# I'm not on the engineering team, does this matter to me?
+## I'm not on the engineering team, does this matter to me?
 Kind of!
 
 You should definitely understand the golden rules:
@@ -35,7 +35,7 @@ would love to help.
 > TODO: Does it make sense to break stuff&mdash;including all the eng-focused
 > commentary&mdash;into pillar specific onboarding docs at this point?
  
-# People
+## People
 This is a large project! a full org chart is [available here][orgchart] but some
 the relevant leads:
   - Ahria (discord: `katamahri`) &mdash; Engineering (that's us!)
@@ -44,12 +44,12 @@ the relevant leads:
   - Keumars &mdash; Creative Directory
   - Marlo &mdash; Technical Producer
 
-## Questions?
+### Questions?
 If something is unclear at any point in time feel free to ask around
 #tgo-programming or contact a lead to help guide you to the correct person/place
 for more info.
 
-# Process
+## Process
 While the whole TGO team is large our engineering team is small and it's likely
 we'll each end up owning major parts of the game _and_ working in each other's
 domains if we want to make good time.
@@ -59,7 +59,7 @@ In order to maintain awareness of what's going on outside our eng focus we:
 - track active work on a [kanban board in Notion][kanban]
 - communicate openly in the #tgo-programming channel
 
-## Coventions: Code
+### Coventions: Code
 - GDScript should pass lint before merge. We have the repo set up to run a CI job
   and check validity using `gdlint`. More info can be found about the errors it
   reports and how to set up exclusions on [the wiki][gdlint-wiki]. Pre-commit hooks
@@ -92,7 +92,7 @@ In order to maintain awareness of what's going on outside our eng focus we:
       than dynamically typed code. And it can get better as VM optimizations are done
       by the Godot team.
 
-## Conventions: Git
+### Conventions: Git
 
 At the moment all these are guidelines and will be enforced via honor system.
 Locking the repo down would be a lot of headache and require paying to upgrade
@@ -103,12 +103,12 @@ The most important rule, everything else we can mostly fix after the fact:
 
 **Do not force push changes to `main` or `staging`.**
 
-### `main`
+#### `main`
 Generally we will not be merging into the `main` branch going forward. It is
 reserved for near release quality code that has passed basic testing and will
 be going through a QA process for approval.
 
-### `staging`
+#### `staging`
 Sprint / feature work will be merged into this branch and it's where most active
 development will happen. A merge to staging should:
 
@@ -142,7 +142,7 @@ got merged and why
 - For particularly complicated / expansive changes please do not merge without review. If
 you need attention on the PR tag Ahria or envy in #tgo-programming.
 
-#### For non-engineering submissions
+##### For non-engineering submissions
 Most of above process is focused on **GDScript and technical changes** but
 at least initially the repository contains work including assets, dialogue,
 etc.
@@ -151,7 +151,7 @@ Those changes should be considered out of scope for this document and should
 follow a process appropriate for that discipline and defined by the corresponding
 lead.
 
-### Release Candidate branches / bug fixes
+#### Release Candidate branches / bug fixes
 This is not super well defined but when we merge a release candidate to `main`
 any bugs found will be fixed in a RC branch cut off main.
 
@@ -159,7 +159,7 @@ As changes are made in that RC branch they should be back ported to staging.
 RC branches **should not** be merged back into main or subsequent staging->main
 merges will be problematic.
 
-### Feature / Personal branches
+#### Feature / Personal branches
 
 When doing development on a specific feature you should start your branch off the
 most recent `staging` commit. As time passes your branch will fall "behind" the
@@ -184,7 +184,7 @@ name that accurately reflects what I'm working on.
 
 There are essentially no rules on what you can do on your own branch.
 
-# What next?
+## What next?
 
 The `./docs` directory has a deep dive on various systems as well as broader
 structural decisions.
