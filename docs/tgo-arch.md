@@ -4,6 +4,7 @@
   - [Goal](#goal)
   - [Changelong](#changelong)
   - [TGO Structure](#tgo-structure)
+    - [Save/load behavior](#saveload-behavior)
 
 
 ## Goal
@@ -24,11 +25,19 @@ it's hiding dragons.
 ```
 Driver
 ├─ OverlayMgr
-│ ├─ HUD
-│ ├─ Journal
-│ ├─ Dialogue
-│ └─ Menus
+│  ├─ HUD
+│  ├─ Journal
+│  ├─ Dialogue
+│  └─ Menus
 ├─ MusicMgr
 └─ GameWorld
-  └─ Level
+   ├─ Clock
+   ├─ Inventory
+   └─ Level
+      ├─ Player
+      │  ├─ Lamp
+      │  └─ <OtherItems>
+      └─ Placeables
 ```
+
+### Save/load behavior

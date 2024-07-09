@@ -41,7 +41,7 @@ the relevant leads:
   - Ahria (discord: `katamahri`) &mdash; Engineering (that's us!)
   - Stephen &mdash; Technical Narrative
   - Mario &mdash; Game Design
-  - Keumars &mdash; Creative Directory
+  - Keumars &mdash; Creative Director
   - Marlo &mdash; Technical Producer
 
 ### Questions?
@@ -57,7 +57,7 @@ domains if we want to make good time.
 In order to maintain awareness of what's going on outside our eng focus we:
 - have a weekly sync meeting. Notes are kept [here][team-standup]
 - track active work on a [kanban board in Notion][kanban]
-- communicate openly in the #tgo-programming channel
+- communicate regularly in the #tgo-programming channel
 
 ### Coventions: Code
 - GDScript should pass lint before merge. We have the repo set up to run a CI job
