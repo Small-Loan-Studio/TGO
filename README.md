@@ -63,7 +63,7 @@ In order to maintain awareness of what's going on outside our eng focus we:
 ### Conventions: Ownership
 
 We hint at this above but it is likely each one of us will end up being the single
-biggest voice in the room for a given feature. Currently it's shaping up to look
+biggest voice in the room for a one or more section of the code. Currently it looks
 like that will be:
 
 - Den: UI
