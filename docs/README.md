@@ -5,4 +5,6 @@ or design decisions.
 
 ### [Game state management / general architecture](./tgo-arch.md)
 ### [Dialogic](./tgo-dialogic.md)
-### [Game Save/load](./tgo-save-load.md)
+### [Audio](./tgo-audio.md)
+### [Game State Persistence](./tgo-save-load.md)
+### [Maps, Levels, and Objects. Oh My!](./tgo-levels.md)
