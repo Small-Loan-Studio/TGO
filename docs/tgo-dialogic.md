@@ -1,8 +1,21 @@
 # Dialogic2
 
 - [Dialogic2](#dialogic2)
-  - [Questions](#questions)
-      - [1. we need an opinion for how to structure dialogue -- Dialogic2 (henceforth DL2) uses a thing called timelines to represent the flow of a conversation. do we write one timeline per conversation, one per character, one per character/per act](#1-we-need-an-opinion-for-how-to-structure-dialogue----dialogic2-henceforth-dl2-uses-a-thing-called-timelines-to-represent-the-flow-of-a-conversation-do-we-write-one-timeline-per-conversation-one-per-character-one-per-characterper-act)
+  - [Demo code](#demo-code)
+  - [Q\&A](#qa)
+    - [1. How to structure dialogue](#1-how-to-structure-dialogue)
+    - [2. Triggering conversations](#2-triggering-conversations)
+    - [3. Interacting with state](#3-interacting-with-state)
+    - [4. How to test](#4-how-to-test)
+    - [5. Custom UI](#5-custom-ui)
+      - [TODO](#todo)
+    - [6. Input: Masking Input](#6-input-masking-input)
+    - [7. Input: Choices](#7-input-choices)
+      - [TODO](#todo-1)
+    - [8. Translation](#8-translation)
+      - [TODO](#todo-2)
+    - [9. Engine-External Dialogue?](#9-engine-external-dialogue)
+      - [TODO](#todo-3)
 
 
 The following are the results of an initial survey into Dialogic 2.
