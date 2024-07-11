@@ -2,7 +2,7 @@
 
 - [Building TGO](#building-tgo)
   - [Goal](#goal)
-  - [Changelong](#changelong)
+  - [Changelog](#changelog)
   - [Dataflow / Signals / Interfaces.](#dataflow--signals--interfaces)
   - [**Prospective** Scene Tree](#prospective-scene-tree)
   - [Scene Tree Details](#scene-tree-details)
@@ -30,7 +30,7 @@ To the degree that is possible we should strive to keep it updated but make
 sure to check the changelog and the farther in the past it is the more likely
 it's hiding dragons.
 
-## Changelong
+## Changelog
 - 2024-07-09: Initial draft. Wish us luck.
 
 ## Dataflow / Signals / Interfaces.
