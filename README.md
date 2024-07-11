@@ -9,6 +9,7 @@ any confusion that might arise during the devoplment process.
   - [People](#people)
     - [Questions?](#questions)
   - [Process](#process)
+    - [Conventions: Ownership](#conventions-ownership)
     - [Coventions: Code](#coventions-code)
     - [Conventions: Git](#conventions-git)
       - [`main`](#main)
@@ -58,6 +59,31 @@ In order to maintain awareness of what's going on outside our eng focus we:
 - have a weekly sync meeting. Notes are kept [here][team-standup]
 - track active work on a [kanban board in Notion][kanban]
 - communicate regularly in the #tgo-programming channel
+
+### Conventions: Ownership
+
+We hint at this above but it is likely each one of us will end up being the single
+biggest voice in the room for a given feature. Currently it's shaping up to look
+like that will be:
+
+- Den: UI
+- Lent: Dialogic integration
+- Luke: Level loading / implementation & grayboxing
+- Envy: Player interaction mechanics
+
+This list is neither exhaustive nor final. You will always have an opportunity to
+change this and it explicitly **does not** mean that you will have to do all the
+related work on your own.
+
+It only means you are the person most likely to have a full understanding of the
+related systems and when we need more hands on a specific system it may fall to
+you to help understand how to decompose the problem or debug a particularly tricky
+issue.
+
+As a team we should aim to:
+1. Never let somebody own something by accident or implicitly;
+2. Not silently abandon something that we own;
+3. Understand when something doesn't have an owner.
 
 ### Coventions: Code
 - GDScript should pass lint before merge. We have the repo set up to run a CI job
