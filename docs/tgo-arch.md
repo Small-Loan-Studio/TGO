@@ -3,6 +3,7 @@
 - [Building TGO](#building-tgo)
   - [Goal](#goal)
   - [Changelong](#changelong)
+  - [Dataflow / Signals / Interfaces.](#dataflow--signals--interfaces)
   - [**Prospective** Scene Tree](#prospective-scene-tree)
   - [Scene Tree Details](#scene-tree-details)
     - [Driver](#driver)
@@ -31,6 +32,20 @@ it's hiding dragons.
 
 ## Changelong
 - 2024-07-09: Initial draft. Wish us luck.
+
+## Dataflow / Signals / Interfaces.
+
+Some very general rules:
+
+1. A parent may call into their children
+2. A child should signal up to the parent and should _not_ call methods via `get_parent()`
+3. A node should avoid direct access to its sibling (e.g. another child of their parent)
+4. Nodes that require initialization should expose a `setup` function that takes the
+   required objects and have those objects provided by the parent if it is added to
+   the scene tree via code.
+5. Driver should strive to be the only true singleton.
+
+We'll expand/revise these as we research/discover best practices.
 
 ## **Prospective** Scene Tree
 
@@ -170,4 +185,3 @@ Placeable. Instead this is representative of a class of Nodes that will
 likely exist.
 
 Probably.
-
