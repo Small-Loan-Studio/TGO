@@ -64,7 +64,8 @@ func _process(_delta: float) -> void:
 		face(rotation)
 		rotation = 0
 	if _light != null:
-		_light.rotation = _facing
+		# disabled since we don't have directional lighting
+		# _light.rotation = _facing
 		_light.energy = energy
 
 func _on_lamp2_exit(area:Area2D) -> void:

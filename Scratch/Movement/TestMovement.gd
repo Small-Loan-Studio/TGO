@@ -27,7 +27,7 @@ func _unhandled_input(_event: InputEvent) -> void:
 		var cur_level := lamp.light_level
 		lamp.light_level = ((lamp.light_level) + 1) % Enums.LightLevel.size()
 		lamp.energy = get_energy_target(_state)
-		_light_level_label.text = 'Light Lever: ' + Enums.light_level_name(lamp.light_level)
+		_light_level_label.text = 'Light Level: ' + Enums.light_level_name(lamp.light_level)
 
 func get_target(state: int) -> Color:
 	match state:
