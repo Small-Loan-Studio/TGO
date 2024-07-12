@@ -42,9 +42,8 @@ position = Vector2(45, 147)
 visible = false
 position = Vector2(791, 101)
 
-[node name="Detectable" parent="Detect2Tree" node_paths=PackedStringArray("_parent") instance=ExtResource("5_bu4le")]
+[node name="Detectable" parent="Detect2Tree" instance=ExtResource("5_bu4le")]
 collision_layer = 24
-_parent = NodePath("..")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Detect2Tree/Detectable"]
 position = Vector2(3, 4)
@@ -88,3 +87,5 @@ offset_right = 46.0
 offset_bottom = 72.0
 grow_horizontal = 2
 text = "Light Level: off"
+
+[connection signal="detected" from="Detect3Tree/Detectable" to="Detect3Tree" method="set_detected"]
