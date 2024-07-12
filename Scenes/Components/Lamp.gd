@@ -68,18 +68,22 @@ func _process(_delta: float) -> void:
 		# _light.rotation = _facing
 		_light.energy = energy
 
-func _on_lamp2_exit(area:Area2D) -> void:
-	# print('_on_lamp2_exit - ' + area.name + ' / ' + area.get_parent().name)
-	area.set_detected(false)
+func _on_lamp2_exit(area: Area2D) -> void:
+	if area is Detectable:
+		# print('_on_lamp2_exit - ' + area.name + ' / ' + area.get_parent().name)
+		(area as Detectable).set_detected(false)
 
-func _on_lamp2_enter(area:Area2D) -> void:
-	# print('_on_lamp2_enter - ' + area.name + ' / ' + area.get_parent().name)
-	area.set_detected(true)
+func _on_lamp2_enter(area: Area2D) -> void:
+	if area is Detectable:
+		# print('_on_lamp2_enter - ' + area.name + ' / ' + area.get_parent().name)
+		(area as Detectable).set_detected(true)
 
-func _on_lamp3_exited(area:Area2D) -> void:
-	# print('_on_lamp3_exit - ' + area.name + ' / ' + area.get_parent().name)
-	area.set_detected(false)
+func _on_lamp3_exited(area: Area2D) -> void:
+	if area is Detectable:
+		# print('_on_lamp3_exit - ' + area.name + ' / ' + area.get_parent().name)
+		(area as Detectable).set_detected(false)
 
-func _on_lamp3_entered(area:Area2D) -> void:
-	# print('_on_lamp3_enter - ' + area.name + ' / ' + area.get_parent().name)
-	area.set_detected(true)
+func _on_lamp3_entered(area: Area2D) -> void:
+	if area is Detectable:
+		# print('_on_lamp3_enter - ' + area.name + ' / ' + area.get_parent().name)
+		(area as Detectable).set_detected(true)
