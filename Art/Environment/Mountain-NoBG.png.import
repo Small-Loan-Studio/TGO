@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://ceo0a1wjutqct"
-path="res://.godot/imported/box.png-02310badb7b69d96071081f846830b6a.ctex"
+uid="uid://c8yb8h5whr058"
+path="res://.godot/imported/Mountain-NoBG.png-5359fd736b238e79a0361a6c0543b3a8.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Art/box.png"
-dest_files=["res://.godot/imported/box.png-02310badb7b69d96071081f846830b6a.ctex"]
+source_file="res://Art/Environment/Mountain-NoBG.png"
+dest_files=["res://.godot/imported/Mountain-NoBG.png-5359fd736b238e79a0361a6c0543b3a8.ctex"]
 
 [params]
 

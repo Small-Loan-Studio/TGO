@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://du825vt61j1m4"
-path="res://.godot/imported/WoodFloor.png-e23ec74874ede057ea93e50b1ef028b0.ctex"
+uid="uid://cmi4arryakvx0"
+path="res://.godot/imported/BrickTan.png-0a2fcaac41f328d18ceffb55bb2ab08b.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Art/WoodFloor.png"
-dest_files=["res://.godot/imported/WoodFloor.png-e23ec74874ede057ea93e50b1ef028b0.ctex"]
+source_file="res://Art/Environment/BrickTan.png"
+dest_files=["res://.godot/imported/BrickTan.png-0a2fcaac41f328d18ceffb55bb2ab08b.ctex"]
 
 [params]
 

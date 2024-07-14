@@ -1,6 +1,6 @@
 [gd_scene load_steps=5 format=3 uid="uid://ibnwktw1xdvu"]
 
-[ext_resource type="Texture2D" uid="uid://ceo0a1wjutqct" path="res://Art/box.png" id="1_8wuxv"]
+[ext_resource type="Texture2D" uid="uid://ceo0a1wjutqct" path="res://Art/Environment/Placeables/box.png" id="1_8wuxv"]
 [ext_resource type="Script" path="res://Scratch/Movement/GrayBox.gd" id="1_bocbp"]
 
 [sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_55kx7"]

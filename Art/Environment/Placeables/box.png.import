@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cmi4arryakvx0"
-path="res://.godot/imported/BrickTan.png-201265b72c5a49f30911044d9ba0db2a.ctex"
+uid="uid://ceo0a1wjutqct"
+path="res://.godot/imported/box.png-7646e591db8cbdb0d8be7cd7e6f2d3de.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Art/BrickTan.png"
-dest_files=["res://.godot/imported/BrickTan.png-201265b72c5a49f30911044d9ba0db2a.ctex"]
+source_file="res://Art/Environment/Placeables/box.png"
+dest_files=["res://.godot/imported/box.png-7646e591db8cbdb0d8be7cd7e6f2d3de.ctex"]
 
 [params]
 

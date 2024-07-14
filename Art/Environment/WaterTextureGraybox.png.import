@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://ilg2mwwgxku1"
-path="res://.godot/imported/TombstoneGraybox-nobg.png-895753e56d661b41327365a6df7486bb.ctex"
+uid="uid://ch47u4q5avtvw"
+path="res://.godot/imported/WaterTextureGraybox.png-23b57f13f7a9cc05183348c739337078.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Art/TombstoneGraybox-nobg.png"
-dest_files=["res://.godot/imported/TombstoneGraybox-nobg.png-895753e56d661b41327365a6df7486bb.ctex"]
+source_file="res://Art/Environment/WaterTextureGraybox.png"
+dest_files=["res://.godot/imported/WaterTextureGraybox.png-23b57f13f7a9cc05183348c739337078.ctex"]
 
 [params]
 
