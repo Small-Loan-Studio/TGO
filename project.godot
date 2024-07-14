@@ -67,6 +67,8 @@ right={
 2d_render/layer_20="Devin"
 2d_physics/layer_1="Collisions"
 2d_physics/layer_2="Interactions"
+2d_physics/layer_4="LightLevel2"
+2d_physics/layer_5="LightLevel3"
 
 [physics]
 
