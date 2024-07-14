@@ -12,8 +12,8 @@ any confusion that might arise during the devoplment process.
     - [Conventions: Ownership](#conventions-ownership)
     - [Coventions: Code](#coventions-code)
     - [Conventions: Git](#conventions-git)
-      - [`main`](#main)
-      - [`staging`](#staging)
+      - [`release`](#release)
+      - [`tgo_dev`](#tgo_dev)
       - [Code Review](#code-review)
         - [For non-engineering submissions](#for-non-engineering-submissions)
       - [Release Candidate branches / bug fixes](#release-candidate-branches--bug-fixes)
@@ -24,8 +24,8 @@ any confusion that might arise during the devoplment process.
 Kind of!
 
 You should definitely understand the golden rules:
-1. Don't commit to `main` branch
-2. Don't force push to `main` or `staging`
+1. Don't commit to `release` branch
+2. Don't force push to `release` or `tgo_dev`
 
 Otherwise mostly check out [this section](#for-non-engineering-submissions) and chat
 with your lead to understand any discipline specific guidance.
@@ -127,27 +127,27 @@ management. So let's be honorable and save that effort :heart:.
 
 The most important rule, everything else we can mostly fix after the fact:
 
-**Do not force push changes to `main` or `staging`.**
+**Do not force push changes to `release` or `tgo_dev`.**
 
-#### `main`
-Generally we will not be merging into the `main` branch going forward. It is
+#### `release`
+Generally we will not be merging into the `release` branch going forward. It is
 reserved for near release quality code that has passed basic testing and will
 be going through a QA process for approval.
 
-#### `staging`
+#### `tgo_dev`
 Sprint / feature work will be merged into this branch and it's where most active
-development will happen. A merge to staging should:
+development will happen. A merge to tgo_dev should:
 
 - first be presented as a PR with a meaningful description that will help reviewers
   understand the changes being made and provide meaningful commentary
 - pass any CI tests that have been configured
 - once approved the **PR should be squashed** instead of standard merge. This helps keep
-  the `staging` branch clean and orderly
+  the `tgo_dev` branch clean and orderly
 
 #### Code Review
 We understand this is a volunteer project and it may not always be possible for
 a PR to receive a full and thorough review in a timely manner. The suggested
-process when trying to merge new code to staging will be:
+process when trying to merge new code to tgo_dev will be:
 
 1. Initiate the PR and do a self-review: re-read the code with an eye for things that
    may be done better, ensure CI passes, and provide a write-up for the changes being
@@ -155,7 +155,7 @@ process when trying to merge new code to staging will be:
 2. Post a link to your PR in #tgo-programming and give folks ~48 hours to get a chance
    to read through it and provide feedback.
 3. If you haven't seen anybody indicate they've started looking at your review within 48h
-   feel free to post a note in channel and squash-merge it into `staging`.
+   feel free to post a note in channel and squash-merge it into `tgo_dev`.
 
 **Notes / exceptions:**  
 - For PRs that need an expedited review tag Ahria or envy in #tgo-programming when you
@@ -178,31 +178,31 @@ follow a process appropriate for that discipline and defined by the correspondin
 lead.
 
 #### Release Candidate branches / bug fixes
-This is not super well defined but when we merge a release candidate to `main`
-any bugs found will be fixed in a RC branch cut off main.
+This is not super well defined but when we merge a release candidate to `release`
+any bugs found will be fixed in a RC branch cut off release.
 
-As changes are made in that RC branch they should be back ported to staging.
-RC branches **should not** be merged back into main or subsequent staging->main
+As changes are made in that RC branch they should be back ported to tgo_dev.
+RC branches **should not** be merged back into release or subsequent tgo_dev->release
 merges will be problematic.
 
 #### Feature / Personal branches
 
 When doing development on a specific feature you should start your branch off the
-most recent `staging` commit. As time passes your branch will fall "behind" the
-`staging` branch off which it was based. As that happens it's suggested you
-pull `staging` and then merge that into your branch. This helps reduce conflict
-when it's time for your feature to be submitted to `staging`.
+most recent `tgo_dev` commit. As time passes your branch will fall "behind" the
+`tgo_dev` branch off which it was based. As that happens it's suggested you
+pull `tgo_dev` and then merge that into your branch. This helps reduce conflict
+when it's time for your feature to be submitted to `tgo_dev`.
 
 Generally speaking you should cut a new branch for each new feature and retire that
 branch when you have completed the work you were doing. For example if I wanted to
 implement a new feature for a level I would:
 
-1. branch off `staging` and give my branch the name `envy-feature-name`
+1. branch off `tgo_dev` and give my branch the name `envy-feature-name`
 2. do the work making commits as needed
-3. occasionally update my local view of `staging` and merge that into `envy-feature-name`
-4. When I'm done I would create a new PR to merge `envy-feature-name` into `staging`
+3. occasionally update my local view of `tgo_dev` and merge that into `envy-feature-name`
+4. When I'm done I would create a new PR to merge `envy-feature-name` into `tgo_dev`
 5. Once I have completed any PR feedback and gotten an approval to merge I would
-   squash-merge that back into staging
+   squash-merge that back into tgo_dev
 6. I would then delete the branch `envy-feature-name` because it's all been submitted
 
 If I wanted to do a new bit of development I would repeat the process but use a new branch
