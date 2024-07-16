@@ -1,6 +1,6 @@
 [gd_scene load_steps=6 format=3 uid="uid://mqvl5162rawb"]
 
-[ext_resource type="Script" path="res://Scenes/Devin.gd" id="1_coq4s"]
+[ext_resource type="Script" path="res://Scripts/Devin.gd" id="1_coq4s"]
 [ext_resource type="PackedScene" uid="uid://cx703e8t27grh" path="res://Scenes/Components/Character.tscn" id="1_kp6oq"]
 [ext_resource type="SpriteFrames" uid="uid://602xb41y0tak" path="res://Art/Characters/stub_animated_sprite.tres" id="2_0c1b0"]
 [ext_resource type="PackedScene" uid="uid://skr46k6x628f" path="res://Scenes/Components/Lamp.tscn" id="3_h1iub"]
