@@ -31,6 +31,8 @@ var _facing: float = 0
 # _facing reified into a direction
 var _direction: Enums.Direction
 
+var _focused_interactable: Interactable = null
+
 # component cache
 @onready var _sprite: AnimatedSprite2D = $AnimatedSprite2D
 @onready var _interaction_sensor: Area2D = $InteractionSensor
@@ -76,6 +78,17 @@ func _physics_process(_delta: float) -> void:
 		_sprite.play(want_anim)
 	velocity = _impulse * move_speed
 	move_and_slide()
+
+func _on_interaction_sensor_entered(area: Area2D) -> void:
+	if area is Interactable:
+		print('found interactable ' + area.name + ' / ' + area.get_parent().name)
+		_focused_interactable = area
+
+func _on_interaction_sensor_exited(area: Area2D) -> void:
+	if area is Interactable:
+		print('lost interactable ' + area.name + ' / ' + area.get_parent().name)
+		if _focused_interactable == area:
+			_focused_interactable = null
 
 func _get_configuration_warnings() -> PackedStringArray:
 	var animations := _sprite.sprite_frames.get_animation_names()
