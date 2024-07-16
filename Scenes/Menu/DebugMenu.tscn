@@ -22,7 +22,7 @@ grow_vertical = 2
 [node name="RichTextLabel" type="RichTextLabel" parent="VBoxContainer"]
 layout_mode = 2
 bbcode_enabled = true
-text = "Debug Scenes: [color=\"red\"]Scratch/[/color]"
+text = "Debug Scenes: [color=\"red\"]ZZ_Scratch/[/color]"
 fit_content = true
 
 [node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer"]

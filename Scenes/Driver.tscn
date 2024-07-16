@@ -23,6 +23,14 @@ grow_vertical = 2
 color = Color(0, 0, 0, 1)
 script = ExtResource("2_gom2g")
 
+[node name="HUD" type="Control" parent="OverlayManager"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
 [node name="MenuManager" type="Control" parent="OverlayManager"]
 layout_mode = 3
 anchors_preset = 15
@@ -40,12 +48,6 @@ anchor_bottom = 0.5
 offset_left = 300.0
 offset_right = -300.0
 size_flags_horizontal = 4
-
-[node name="HUD" type="Control" parent="OverlayManager"]
-layout_mode = 3
-anchors_preset = 0
-offset_right = 40.0
-offset_bottom = 40.0
 
 [node name="GameWorld" type="Node" parent="."]
 

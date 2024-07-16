@@ -7,12 +7,13 @@ extends Node2D
 
 func _ready() -> void:
 	_curtain.visible = true
+	# call via deferred so we don't have await in the _ready path. I'm not
+	# sure that's a bad thing to do but it felt weird so here we are.
 	call_deferred('_post_ready')
 
 func _post_ready() -> void:
 	_menu_mgr.show_menu(Enums.MenuType.DEBUG)
 	await _curtain.fade_out(1)
-
 
 func request_debug_load(path:String) -> void:
 	await _curtain.fade_in(1)
