@@ -20,5 +20,6 @@ position = Vector2(515, -1536)
 
 [node name="Devin" parent="." instance=ExtResource("2_0v5xc")]
 position = Vector2(110, 44)
+editor_hide_lamp_sensors = true
 
 [node name="Camera2D" type="Camera2D" parent="Devin"]
