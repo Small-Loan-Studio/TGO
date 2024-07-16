@@ -3,11 +3,15 @@
 class_name Character
 extends CharacterBody2D
 
+## Set this to make the character be controlled by player input
 @export var player_controled: bool = false
+
+## This controls player movement speed in pixels/sec
 @export var move_speed: int = 250
 
-# set this to customize the AnimatedSprite, should only be accessed during
-# scene editing
+## set this to customize the AnimatedSprite, should only be accessed during
+## scene editing. Should have an animation for every direction defined in
+## Enums.Direction
 @export var _override_default_sprite_frames: SpriteFrames:
 	get:
 		return _override_default_sprite_frames

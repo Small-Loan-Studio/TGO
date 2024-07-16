@@ -1,0 +1,46 @@
+[gd_scene load_steps=5 format=3 uid="uid://cobsc7v0oqc8l"]
+
+[ext_resource type="Script" path="res://Scripts/Driver.gd" id="1_agcjs"]
+[ext_resource type="Script" path="res://Scripts/UI/Curtain.gd" id="2_gom2g"]
+[ext_resource type="Script" path="res://Scripts/Menu/MenuManager.gd" id="3_h1ccd"]
+[ext_resource type="PackedScene" uid="uid://ci7ksomi5hsr5" path="res://Scenes/Menu/DebugMenu.tscn" id="3_i7nbg"]
+
+[node name="Driver" type="Node2D"]
+script = ExtResource("1_agcjs")
+
+[node name="AudioManager" type="Node" parent="."]
+
+[node name="OverlayManager" type="CanvasLayer" parent="."]
+
+[node name="Curtain" type="ColorRect" parent="OverlayManager"]
+visible = false
+z_index = 1000
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 1)
+script = ExtResource("2_gom2g")
+
+[node name="MenuManager" type="Control" parent="OverlayManager"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("3_h1ccd")
+
+[node name="DebugMenu" parent="OverlayManager/MenuManager" instance=ExtResource("3_i7nbg")]
+layout_mode = 1
+anchors_preset = -1
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_left = 300.0
+offset_right = -300.0
+size_flags_horizontal = 4
+
+[node name="GameWorld" type="Node" parent="."]
+
+[connection signal="request_load" from="OverlayManager/MenuManager/DebugMenu" to="." method="request_debug_load"]

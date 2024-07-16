@@ -1,0 +1,79 @@
+[gd_scene load_steps=6 format=3 uid="uid://k5l5ypr21vvu"]
+
+[ext_resource type="Texture2D" uid="uid://ceo0a1wjutqct" path="res://Art/Environment/Placeables/box.png" id="1_7wf5d"]
+[ext_resource type="Texture2D" uid="uid://bofqkhu4kq8j4" path="res://Art/Environment/Farmland.png" id="1_hdnvx"]
+[ext_resource type="Script" path="res://ZZ_Scratch/PeerPhysics/TestInteractable.gd" id="3_nbbpq"]
+[ext_resource type="PackedScene" uid="uid://c2040l84asu8j" path="res://Scenes/Components/Interactable.tscn" id="4_622we"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_lvcve"]
+size = Vector2(64, 128)
+
+[node name="ScnA" type="Node2D"]
+
+[node name="Farmland" type="Sprite2D" parent="."]
+position = Vector2(188, 177)
+scale = Vector2(4.80259, 6.52907)
+texture = ExtResource("1_hdnvx")
+
+[node name="RigidBody2D" type="RigidBody2D" parent="."]
+
+[node name="Sprite2D2" type="Sprite2D" parent="RigidBody2D"]
+position = Vector2(353, 283)
+texture = ExtResource("1_7wf5d")
+metadata/_edit_group_ = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="RigidBody2D"]
+position = Vector2(353, 283)
+shape = SubResource("RectangleShape2D_lvcve")
+
+[node name="TestInteractable" type="RigidBody2D" parent="."]
+position = Vector2(148, 141)
+rotation = -1.56093
+script = ExtResource("3_nbbpq")
+
+[node name="Sprite2D2" type="Sprite2D" parent="TestInteractable"]
+texture = ExtResource("1_7wf5d")
+metadata/_edit_group_ = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="TestInteractable"]
+shape = SubResource("RectangleShape2D_lvcve")
+
+[node name="Interactable" parent="TestInteractable" instance=ExtResource("4_622we")]
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="TestInteractable/Interactable"]
+shape = SubResource("RectangleShape2D_lvcve")
+
+[node name="RigidBody2D2" type="RigidBody2D" parent="."]
+
+[node name="Sprite2D4" type="Sprite2D" parent="RigidBody2D2"]
+position = Vector2(-29, -15)
+texture = ExtResource("1_7wf5d")
+metadata/_edit_group_ = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="RigidBody2D2"]
+position = Vector2(-29, -15)
+shape = SubResource("RectangleShape2D_lvcve")
+
+[node name="RigidBody2D3" type="RigidBody2D" parent="."]
+
+[node name="Sprite2D3" type="Sprite2D" parent="RigidBody2D3"]
+position = Vector2(305, -25)
+texture = ExtResource("1_7wf5d")
+metadata/_edit_group_ = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="RigidBody2D3"]
+position = Vector2(305, -25)
+shape = SubResource("RectangleShape2D_lvcve")
+
+[node name="RigidBody2D4" type="RigidBody2D" parent="."]
+
+[node name="Sprite2D2" type="Sprite2D" parent="RigidBody2D4"]
+position = Vector2(5, 328)
+texture = ExtResource("1_7wf5d")
+metadata/_edit_group_ = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="RigidBody2D4"]
+position = Vector2(5, 328)
+shape = SubResource("RectangleShape2D_lvcve")
+
+[connection signal="triggered" from="TestInteractable/Interactable" to="TestInteractable" method="on_trigger"]

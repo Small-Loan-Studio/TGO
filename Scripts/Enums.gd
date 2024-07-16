@@ -27,6 +27,11 @@ enum LightLevel {
 	SPECIAL,
 }
 
+enum MenuType {
+  NONE,
+  DEBUG
+}
+
 static func direction_name(da: Direction) -> String:
   match da:
     Direction.NORTH:
