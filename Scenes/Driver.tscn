@@ -41,6 +41,12 @@ offset_left = 300.0
 offset_right = -300.0
 size_flags_horizontal = 4
 
+[node name="HUD" type="Control" parent="OverlayManager"]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
 [node name="GameWorld" type="Node" parent="."]
 
 [connection signal="request_load" from="OverlayManager/MenuManager/DebugMenu" to="." method="request_debug_load"]

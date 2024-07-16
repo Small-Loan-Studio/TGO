@@ -39,6 +39,7 @@ metadata/_edit_group_ = true
 shape = SubResource("RectangleShape2D_lvcve")
 
 [node name="Interactable" parent="TestInteractable" instance=ExtResource("4_622we")]
+automatic = true
 
 [node name="CollisionShape2D2" type="CollisionShape2D" parent="TestInteractable/Interactable"]
 shape = SubResource("RectangleShape2D_lvcve")
