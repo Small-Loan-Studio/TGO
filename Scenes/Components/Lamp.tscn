@@ -1,7 +1,7 @@
 [gd_scene load_steps=8 format=3 uid="uid://skr46k6x628f"]
 
 [ext_resource type="Texture2D" uid="uid://d31hn0w3ipo6r" path="res://Art/Lamp/lamp_stub.png" id="1_nrjcp"]
-[ext_resource type="Script" path="res://Scenes/Components/Lamp.gd" id="1_q4dyi"]
+[ext_resource type="Script" path="res://Scripts/Components/Lamp.gd" id="1_q4dyi"]
 [ext_resource type="Texture2D" uid="uid://c5pogm6rpt7wo" path="res://Art/Environment/ground.png" id="2_05qxh"]
 [ext_resource type="Texture2D" uid="uid://bscia2jifnte5" path="res://Art/Lamp/spot_radius1.png" id="4_e3mrh"]
 
