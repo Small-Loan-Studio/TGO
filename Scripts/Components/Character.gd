@@ -64,7 +64,7 @@ func _unhandled_input(_event: InputEvent) -> void:
 
 	if _focused_interactable != null:
 		if _event.is_action_pressed(Enums.input_action_name(Enums.InputAction.INTERACT)):
-			_focused_interactable.triggered.emit(self)
+			_focused_interactable.trigger(self)
 
 func _physics_process(_delta: float) -> void:
 	if Engine.is_editor_hint():
@@ -90,7 +90,7 @@ func _on_interaction_sensor_entered(area: Area2D) -> void:
 		print('found interactable ' + area.name + ' / ' + area.get_parent().name)
 		if i.automatic:
 			print('automatic trigger, not tracking for manual engagement')
-			i.triggered.emit(self)
+			i.trigger(self)
 		else:
 			_focused_interactable = area
 

@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://b8g1eglnsrxfg"]
+[gd_scene load_steps=11 format=3 uid="uid://b8g1eglnsrxfg"]
 
 [ext_resource type="Script" path="res://ZZ_Scratch/PeerPhysics/PeerPhysics.gd" id="1_ib6qi"]
 [ext_resource type="PackedScene" uid="uid://k5l5ypr21vvu" path="res://ZZ_Scratch/PeerPhysics/ScnA.tscn" id="1_ol6na"]
@@ -7,9 +7,14 @@
 [ext_resource type="Texture2D" uid="uid://ceo0a1wjutqct" path="res://Art/Environment/Placeables/box.png" id="4_duv3l"]
 [ext_resource type="PackedScene" uid="uid://c2040l84asu8j" path="res://Scenes/Components/Interactable.tscn" id="5_mxhsj"]
 [ext_resource type="Script" path="res://ZZ_Scratch/PeerPhysics/TestInteractable2.gd" id="6_1nmi2"]
+[ext_resource type="Script" path="res://Scripts/Resources/InteractableTeleport.gd" id="7_we84b"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ihh3v"]
 size = Vector2(64, 128)
+
+[sub_resource type="Resource" id="Resource_eyry3"]
+script = ExtResource("7_we84b")
+dest_path = NodePath("../../../TeleportDestination")
 
 [node name="PeerPhysics" type="Node2D"]
 script = ExtResource("1_ib6qi")
@@ -35,7 +40,6 @@ metadata/_edit_group_ = true
 shape = SubResource("RectangleShape2D_ihh3v")
 
 [node name="Interactable" parent="World/ScnA/TestInteractable" instance=ExtResource("5_mxhsj")]
-automatic = true
 
 [node name="CollisionShape2D2" type="CollisionShape2D" parent="World/ScnA/TestInteractable/Interactable"]
 shape = SubResource("RectangleShape2D_ihh3v")
@@ -62,6 +66,8 @@ metadata/_edit_group_ = true
 shape = SubResource("RectangleShape2D_ihh3v")
 
 [node name="Interactable" parent="World/ScnA/TestInteractable2" instance=ExtResource("5_mxhsj")]
+automatic = true
+actions = Array[Resource("res://Scripts/Resources/InteractableAction.gd")]([SubResource("Resource_eyry3")])
 
 [node name="CollisionShape2D2" type="CollisionShape2D" parent="World/ScnA/TestInteractable2/Interactable"]
 shape = SubResource("RectangleShape2D_ihh3v")
@@ -78,7 +84,7 @@ text = "Manual"
 position = Vector2(515, -1536)
 
 [node name="TeleportDestination" type="Node2D" parent="World"]
-position = Vector2(1306, -241)
+position = Vector2(1331, -255)
 
 [node name="Devin" parent="." instance=ExtResource("2_0v5xc")]
 position = Vector2(110, 44)
@@ -87,4 +93,3 @@ editor_hide_lamp_sensors = true
 [node name="Camera2D" type="Camera2D" parent="Devin"]
 
 [connection signal="triggered" from="World/ScnA/TestInteractable/Interactable" to="World/ScnA/TestInteractable" method="on_trigger"]
-[connection signal="triggered" from="World/ScnA/TestInteractable2/Interactable" to="World/ScnA/TestInteractable2" method="on_trigger"]
