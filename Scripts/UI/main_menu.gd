@@ -17,10 +17,7 @@ func _on_newgame_pressed() -> void:
 
 
 
-func _on_close_pressed() -> void:
-	var load_window : Control = $canvas/load_window
-	load_window.hide()
-	pass # Replace with function body.
+
 
 
 func _on_loadgame_pressed() ->void:

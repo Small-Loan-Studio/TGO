@@ -16,8 +16,8 @@ config/icon="res://icon.svg"
 
 [autoload]
 
-Global="*res://Scripts/global.gd"
-Signalbus="*res://Scripts/signalbus.gd"
+Global="*res://Scripts/Global.gd"
+Signalbus="*res://Scripts/Signalbus.gd"
 
 [debug]
 

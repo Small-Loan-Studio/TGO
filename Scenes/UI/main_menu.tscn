@@ -1,0 +1,67 @@
+[gd_scene load_steps=5 format=3 uid="uid://b3a1udt2uo74m"]
+
+[ext_resource type="Script" path="res://Scripts/UI/main_menu.gd" id="1_53bgh"]
+[ext_resource type="Script" path="res://scripts/audio/audiomanager.gd" id="2_agiq5"]
+[ext_resource type="PackedScene" uid="uid://qof5covdgvhl" path="res://Scenes/UI/load_window.tscn" id="3_hymea"]
+[ext_resource type="PackedScene" uid="uid://cf3wu47yx3r0c" path="res://Scenes/UI/options_window.tscn" id="5_j8mtv"]
+
+[node name="main_menu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_53bgh")
+
+[node name="audio_manager" type="Node2D" parent="."]
+script = ExtResource("2_agiq5")
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="audio_manager"]
+
+[node name="AudioStreamPlayer2D2" type="AudioStreamPlayer2D" parent="audio_manager"]
+
+[node name="canvas" type="CanvasLayer" parent="."]
+
+[node name="VBoxContainer" type="VBoxContainer" parent="canvas"]
+anchors_preset = -1
+anchor_left = 0.434
+anchor_top = 0.365
+anchor_right = 0.566
+anchor_bottom = 0.781
+offset_left = -0.280029
+offset_top = -0.200012
+offset_right = 0.279907
+offset_bottom = -0.480042
+pivot_offset = Vector2(127, 225)
+theme_override_constants/separation = 3
+alignment = 1
+
+[node name="newgame" type="Button" parent="canvas/VBoxContainer"]
+custom_minimum_size = Vector2(0, 100)
+layout_mode = 2
+text = "NEW GAME"
+
+[node name="loadgame" type="Button" parent="canvas/VBoxContainer"]
+custom_minimum_size = Vector2(0, 100)
+layout_mode = 2
+text = "LOAD"
+
+[node name="options" type="Button" parent="canvas/VBoxContainer"]
+custom_minimum_size = Vector2(0, 100)
+layout_mode = 2
+text = "OPTIONS"
+
+[node name="exit" type="Button" parent="canvas/VBoxContainer"]
+custom_minimum_size = Vector2(0, 100)
+layout_mode = 2
+text = "QUIT"
+
+[node name="load_window" parent="canvas" instance=ExtResource("3_hymea")]
+
+[node name="options_window" parent="canvas" instance=ExtResource("5_j8mtv")]
+
+[connection signal="pressed" from="canvas/VBoxContainer/newgame" to="." method="_on_newgame_pressed"]
+[connection signal="pressed" from="canvas/VBoxContainer/loadgame" to="." method="_on_loadgame_pressed"]
+[connection signal="pressed" from="canvas/VBoxContainer/options" to="." method="_on_options_pressed"]
+[connection signal="pressed" from="canvas/VBoxContainer/exit" to="." method="_on_exit_pressed"]
