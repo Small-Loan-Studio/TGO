@@ -8,5 +8,5 @@ extends Resource
 ## relative node paths and the like.
 var parent: Node2D
 
-func act(actor: Character) -> void:
+func act(_actor: Character) -> void:
   pass
