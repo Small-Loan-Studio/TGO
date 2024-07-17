@@ -1,6 +1,6 @@
 [gd_scene load_steps=4 format=3 uid="uid://cx703e8t27grh"]
 
-[ext_resource type="Script" path="res://Scenes/Components/Character.gd" id="1_tt4fa"]
+[ext_resource type="Script" path="res://Scripts/Components/Character.gd" id="1_tt4fa"]
 [ext_resource type="SpriteFrames" uid="uid://b3igo1ygiyl0b" path="res://Art/Characters/character_placeholder.tres" id="2_3xe5u"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_jvita"]
