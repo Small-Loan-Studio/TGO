@@ -1,9 +1,9 @@
 class_name DebugMenu
 extends Control
 
-@onready var _button_container := %ButtonContainer
-
 signal request_load(path: String)
+
+@onready var _button_container := %ButtonContainer
 
 func _ready() -> void:
 	var scene_dict := ScratchScenes.get_scenes()
