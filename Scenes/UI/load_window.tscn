@@ -1,7 +1,7 @@
 [gd_scene load_steps=4 format=3 uid="uid://qof5covdgvhl"]
 
 [ext_resource type="Script" path="res://Scripts/UI/load_window.gd" id="1_70mh3"]
-[ext_resource type="Texture2D" uid="uid://byukwe2phwqtk" path="res://Scratch/GAHtHGRWkAA2Lyd.jpg" id="2_u0cgi"]
+[ext_resource type="Texture2D" uid="uid://byukwe2phwqtk" path="res://ZZ_Scratch/GAHtHGRWkAA2Lyd.jpg" id="2_u0cgi"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_caj4t"]
 font_size = 50
