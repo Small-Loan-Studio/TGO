@@ -2,27 +2,19 @@ extends PanelContainer
 
 func _ready()->void:
 	Signalbus.resolution_changed.connect(_on_resolution_changed)
-	pass
 
 func _on_close_pressed() -> void:
 	self.hide()
-	pass # Replace with function body.
-
 
 func _on_h_slider_2_value_changed(value:float) -> void:
 	Global.music_volume = value
 	var audio_manager : Node2D = get_node("../../audio_manager")
 	audio_manager.change_music_volume()
-	pass # Replace with function body.
-
-
 
 func _on_h_slider_value_changed(value:float)->void:
 	Global.sound_volume = value
 	var audio_manager : Node2D = get_node("../../audio_manager")
 	audio_manager.change_sound_volume()
-	pass # Replace with function body.
-
 
 func _on_option_button_item_selected(index:int)->void:
 	match index:
@@ -37,7 +29,7 @@ func _on_option_button_item_selected(index:int)->void:
 		_:
 			pass
 	print("item selected")
-	pass # Replace with function body.
+
 func _on_resolution_changed()->void:
 	match Global.resolution:
 		"1920x1080":
@@ -49,4 +41,3 @@ func _on_resolution_changed()->void:
 			DisplayServer.window_set_size(Vector2i(1280,720))
 			print(Global.resolution + "selected")
 	print("signal connected")
-	pass

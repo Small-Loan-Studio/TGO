@@ -1,9 +1,10 @@
 extends Node2D
 
-var next : int = 0
-var audioStreamPlayers : Array = []
-
 @export var count : int = 1
+
+var next : int = 0
+var audio_stream_players : Array = []
+
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	if get_child_count() == 0:
@@ -11,33 +12,32 @@ func _ready() -> void:
 		return
 	var child : AudioStreamPlayer2D= get_child(0)
 	if child is AudioStreamPlayer2D:
-		audioStreamPlayers.append(child)
+		audio_stream_players.append(child)
 		for i in range(count):
 			var dup : AudioStreamPlayer2D = child.duplicate()
 			add_child(dup)
-			audioStreamPlayers.append(dup)
-		pass
+			audio_stream_players.append(dup)
+
 	change_music_volume()
-	pass # Replace with function body.
-	
+
 
 func play_music(musicname : String,mode : String = "")-> void:
 	if musicname == null or musicname == "":
 		print("No music selected")
-		return 
-	else:
-		var player : AudioStreamPlayer2D = get_child(0)
-		if player is AudioStreamPlayer2D:
+		return
 
-			var getmusic : AudioStream = ResourceLoader.load("res://Audio/BGM/temp/"+musicname+".mp3")
-			Global.active_music = musicname
-			player.stream = getmusic
-			if player.playing == true:
-				player.stop()
-				transition_music(player,mode)
-			else:
-				transition_music(player,mode)
-	pass
+	var player : AudioStreamPlayer2D = get_child(0)
+	if player is AudioStreamPlayer2D:
+
+		var getmusic : AudioStream = ResourceLoader.load("res://Audio/BGM/temp/"+musicname+".mp3")
+		Global.active_music = musicname
+		player.stream = getmusic
+		if player.playing == true:
+			player.stop()
+			transition_music(player,mode)
+		else:
+			transition_music(player,mode)
+
 func transition_music(player_node : AudioStreamPlayer2D,mode :String) -> void:
 	match mode:
 		"fade_out":
@@ -55,18 +55,17 @@ func transition_music(player_node : AudioStreamPlayer2D,mode :String) -> void:
 			tween.kill()
 		_:
 			player_node.play()
-			pass
-	pass
+
 func change_music_volume() -> void:
 	var player :AudioStreamPlayer2D = get_child(0)
 	if player is AudioStreamPlayer2D:
 		player.volume_db = Global.music_volume
-	pass
+
 func change_sound_volume() -> void:
 	var player :AudioStreamPlayer2D = get_child(1)
 	if player is AudioStreamPlayer2D:
 		player.volume_db = Global.sound_volume
-	pass
+
 func stop_music(fade : int = 0) -> void:
 	var player :AudioStreamPlayer2D = get_child(0)
 	if player is AudioStreamPlayer2D:
@@ -82,7 +81,7 @@ func stop_music(fade : int = 0) -> void:
 				player.stop()
 		else:
 			pass
-	pass
+
 func play_soundeffect(soundname : String) -> void:
 	var player : AudioStreamPlayer2D = get_child(1)
 	if player is AudioStreamPlayer2D:
@@ -93,4 +92,3 @@ func play_soundeffect(soundname : String) -> void:
 			player.play()
 		else:
 			player.play()
-	pass
