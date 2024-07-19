@@ -3,11 +3,15 @@
 class_name Character
 extends CharacterBody2D
 
+## Set this to make the character be controlled by player input
 @export var player_controled: bool = false
+
+## This controls player movement speed in pixels/sec
 @export var move_speed: int = 250
 
-# set this to customize the AnimatedSprite, should only be accessed during
-# scene editing
+## set this to customize the AnimatedSprite, should only be accessed during
+## scene editing. Should have an animation for every direction defined in
+## Enums.Direction
 @export var _override_default_sprite_frames: SpriteFrames:
 	get:
 		return _override_default_sprite_frames
@@ -26,6 +30,8 @@ var _facing: float = 0
 
 # _facing reified into a direction
 var _direction: Enums.Direction
+
+var _focused_interactable: Interactable = null
 
 # component cache
 @onready var _sprite: AnimatedSprite2D = $AnimatedSprite2D
@@ -53,7 +59,12 @@ func _unhandled_input(_event: InputEvent) -> void:
 	if _impulse != Vector2.ZERO:
 		_facing = Vector2.UP.angle_to(_impulse)
 		_direction = Utils.angle_to_direction(_facing)
+
 	_interaction_sensor.rotation = _facing
+
+	if _focused_interactable != null:
+		if _event.is_action_pressed(Enums.input_action_name(Enums.InputAction.INTERACT)):
+			_focused_interactable.trigger(self)
 
 func _physics_process(_delta: float) -> void:
 	if Engine.is_editor_hint():
@@ -72,6 +83,22 @@ func _physics_process(_delta: float) -> void:
 		_sprite.play(want_anim)
 	velocity = _impulse * move_speed
 	move_and_slide()
+
+func _on_interaction_sensor_entered(area: Area2D) -> void:
+	if area is Interactable:
+		var i := area as Interactable
+		print('found interactable ' + area.name + ' / ' + area.get_parent().name)
+		if i.automatic:
+			print('automatic trigger, not tracking for manual engagement')
+			i.trigger(self)
+		else:
+			_focused_interactable = area
+
+func _on_interaction_sensor_exited(area: Area2D) -> void:
+	if area is Interactable:
+		print('lost interactable ' + area.name + ' / ' + area.get_parent().name)
+		if _focused_interactable == area:
+			_focused_interactable = null
 
 func _get_configuration_warnings() -> PackedStringArray:
 	var animations := _sprite.sprite_frames.get_animation_names()
