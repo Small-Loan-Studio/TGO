@@ -43,12 +43,13 @@ the relevant leads:
   - Stephen &mdash; Technical Narrative
   - Mario &mdash; Game Design
   - Keumars &mdash; Creative Director
+  - Andrea &mdash; Lead Producer
   - Marlo &mdash; Technical Producer
 
 ### Questions?
 If something is unclear at any point in time feel free to ask around
-#tgo-programming or contact a lead to help guide you to the correct person/place
-for more info.
+#tgo-programming or contact someone from the production team / or a relevant team
+lead to help guide you to the correct person/place for more info.
 
 ## Process
 While the whole TGO team is large our engineering team is small and it's likely
