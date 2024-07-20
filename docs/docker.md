@@ -1,18 +1,21 @@
 # Docker
 
 - [Docker](#docker)
-  - [TL;DR](#tldr)
+  - [Docker? A TL;DR](#docker-a-tldr)
   - [Setup](#setup)
   - [Usage](#usage)
     - [gdlint](#gdlint)
     - [gdformat](#gdformat)
     - [Command explanation](#command-explanation)
 
-## TL;DR
+## Docker? A TL;DR
 
-Docker is a system that lets you configure a small virtual computer through
-a file ([`Dockerfile`](../support/Dockerfile)) that can be used to run programs
-in a deterministic environment on every machine.
+Docker is a system that lets you configure a small virtual computer (called a container)
+through a file ([`Dockerfile`](../support/Dockerfile)) that can be used to run programs
+in a deterministic environment on any machine.
+
+This helps solve the problem of "How do I write something that works an MacOS, Windows,
+and all the flavors of Linux?!"
 
 ## Setup
 
