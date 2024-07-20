@@ -1,23 +1,23 @@
 class_name Enums
-
 extends RefCounted
 
 enum Direction {
-  NORTH,
-  SOUTH,
-  EAST,
-  WEST,
-  NORTH_EAST,
-  NORTH_WEST,
-  SOUTH_EAST,
-  SOUTH_WEST,
+	NORTH,
+	SOUTH,
+	EAST,
+	WEST,
+	NORTH_EAST,
+	NORTH_WEST,
+	SOUTH_EAST,
+	SOUTH_WEST,
 }
 
 enum InputAction {
-  UP,
-  DOWN,
-  LEFT,
-  RIGHT,
+	UP,
+	DOWN,
+	LEFT,
+	RIGHT,
+	INTERACT,
 }
 
 enum LightLevel {
@@ -25,6 +25,11 @@ enum LightLevel {
 	NORMAL,
 	BRIGHT,
 	SPECIAL,
+}
+
+enum MenuType {
+	NONE,
+	DEBUG
 }
 
 static func direction_name(da: Direction) -> String:
