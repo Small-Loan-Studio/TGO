@@ -88,15 +88,16 @@ As a team we should aim to:
 ### Coventions: Code
 - GDScript should pass lint before merge. We have the repo set up to run a CI job
   and check validity using `gdlint`. More info can be found about the errors it
-  reports and how to set up exclusions on [the wiki][gdlint-wiki]. Pre-commit hooks
-  to run locally on merge or a docker file to run locally should be coming "soon"
-  but are not in place yet
+  reports and how to set up exclusions on [the wiki][gdlint-wiki]. To manually run
+  the linter see [docs/docker.md](./docs/docker.md).  
+  _Pre-commit hooks to run locally on merge or a docker file to run locally should be
+  coming "soon" but are not in place yet._
 - GDScript should format tests cleanly before merge. In order to reduce merge issues
   we use an automated tool `gdformat` to ensure our code conforms to a consistent
-  formatting spec. Details on this are available on [the wiki][gdformat-wiki].
-  Pre-commit / docker jobs to run thees locally should be available "soon" but are
-  not in place yet.  
-  **_TODO:_ We also do not have this CI job configured yet so this is an optimistic plan**
+  formatting spec. Details on this are available on [the wiki][gdformat-wiki]. To
+  manually run the linter see [docs/docker.md](./docs/docker.md).  
+  _Pre-commit / docker jobs to run these locally should be available "soon" but are
+  not in place yet._
 - We currently require [static typing][static-typing-docs] and non-typed variable
   declarations will be reported as an error. There are several benefits of this
     - Code maintainability &mdash; static typing is a compiler-enforced contract of

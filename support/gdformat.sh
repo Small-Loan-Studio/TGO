@@ -5,5 +5,8 @@ args=$@
 if [ -z "$args" ]; then
   args="--check"
 fi
+if [ "$args" = "--apply" ]; then
+  args=""
+fi
 
 find . -iname *.gd | xargs ./venv/bin/gdformat $args
