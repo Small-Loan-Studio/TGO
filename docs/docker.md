@@ -55,6 +55,26 @@ would reformat ./repo/ZZ_Scratch/Movement/TestMovement.gd
 10 files would be reformatted, 0 files would be left unchanged.
 ```
 
+If you'd like to apply the changes you can run it with `--apply`.
+
+> :warning: Note that you should always commit your work before reformatting in the event the
+> changes break something.
+
+```
+$ docker run -v .:/TGO/repo -ti tgo:check ./gdformat.sh --apply
+reformatted ./repo/Scripts/Components/Character.gd
+reformatted ./repo/Scripts/Components/Detectable.gd
+reformatted ./repo/Scripts/Components/Lamp.gd
+reformatted ./repo/Scripts/Devin.gd
+reformatted ./repo/Scripts/Enums.gd
+reformatted ./repo/Scripts/Utils.gd
+reformatted ./repo/ZZ_Scratch/Movement/CameraZoom2D.gd
+reformatted ./repo/ZZ_Scratch/Movement/GrayBox.gd
+reformatted ./repo/ZZ_Scratch/Movement/SpecialTree.gd
+reformatted ./repo/ZZ_Scratch/Movement/TestMovement.gd
+10 files reformatted, 0 files left unchanged.
+```
+
 ### Command explanation
 If you want we can take a second to understand what's being run:
 
