@@ -1,3 +1,5 @@
 #!/bin/bash
 
-find . -iname *.gd | xargs ./venv/bin/gdlint
+args="$@"
+
+find . -iname *.gd | xargs ./venv/bin/gdlint $args
