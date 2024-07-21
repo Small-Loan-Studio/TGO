@@ -7,17 +7,7 @@ var audio_stream_players : Array = []
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	if get_child_count() == 0:
-		print("No AudioStreamPlayer Found")
-		return
-	var child : AudioStreamPlayer2D= get_child(0)
-	if child is AudioStreamPlayer2D:
-		audio_stream_players.append(child)
-		for i in range(count):
-			var dup : AudioStreamPlayer2D = child.duplicate()
-			add_child(dup)
-			audio_stream_players.append(dup)
-
+	play_music("mirage")
 	change_music_volume()
 
 

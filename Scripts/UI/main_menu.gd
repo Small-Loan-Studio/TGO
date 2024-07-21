@@ -2,9 +2,12 @@ extends Control
 
 
 var audio : Node2D
+const audiomanager = preload("res://Scenes/UI/audio_manager.tscn")
+
 func _ready() -> void:
-	audio = $audio_manager
-	audio.play_music("mirage")
+	var audio_manager := audiomanager.instantiate()
+	get_tree().root.add_child.call_deferred(audio_manager)
+	pass
 
 func _on_exit_pressed() -> void:
 	get_tree().quit()
