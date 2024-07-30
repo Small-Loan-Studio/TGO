@@ -26,17 +26,17 @@ jobs:
       - name: Lint
         run: gdlint .
 
-  # formatting:
-  #   runs-on: ubuntu-latest
-  #   name: "Formatting"
-  #   steps:
-  #     - name: Checkout
-  #       uses: actions/checkout@v4.1.1
-  #       with:
-  #         fetch-depth: 0
+  formatting:
+    runs-on: ubuntu-latest
+    name: "Formatting"
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4.1.1
+        with:
+          fetch-depth: 0
 
-  #     - name: Setup gdtoolkit
-  #       uses: Scony/godot-gdscript-toolkit@master
+      - name: Setup gdtoolkit
+        uses: Scony/godot-gdscript-toolkit@master
 
-  #     - name: Check formatting
-  #       run: gdformat --check .
+      - name: Check formatting
+        run: gdformat --check .
