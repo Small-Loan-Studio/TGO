@@ -1,6 +1,7 @@
-[gd_scene load_steps=5 format=3 uid="uid://cobsc7v0oqc8l"]
+[gd_scene load_steps=6 format=3 uid="uid://cobsc7v0oqc8l"]
 
 [ext_resource type="Script" path="res://Scripts/Driver.gd" id="1_agcjs"]
+[ext_resource type="Script" path="res://Scripts/AudioManager.gd" id="2_4seev"]
 [ext_resource type="Script" path="res://Scripts/UI/Curtain.gd" id="2_gom2g"]
 [ext_resource type="Script" path="res://Scripts/Menu/MenuManager.gd" id="3_h1ccd"]
 [ext_resource type="PackedScene" uid="uid://ci7ksomi5hsr5" path="res://Scenes/Menu/DebugMenu.tscn" id="3_i7nbg"]
@@ -9,6 +10,11 @@
 script = ExtResource("1_agcjs")
 
 [node name="AudioManager" type="Node" parent="."]
+script = ExtResource("2_4seev")
+
+[node name="BGPlayer" type="AudioStreamPlayer2D" parent="AudioManager"]
+unique_name_in_owner = true
+bus = &"BGM"
 
 [node name="OverlayManager" type="CanvasLayer" parent="."]
 

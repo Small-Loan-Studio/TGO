@@ -32,6 +32,12 @@ enum MenuType {
 	DEBUG
 }
 
+enum AudioTrack {
+	NONE,
+	SKETCH_1,
+	SKETCH_2,
+}
+
 static func direction_name(da: Direction) -> String:
 	match da:
 		Direction.NORTH:
@@ -80,3 +86,15 @@ static func light_level_name(ll: LightLevel) -> String:
 			return "special"
 	assert(false, "Invalid light level: " + str(ll))
 	return ""
+
+static func audio_track_path(track: AudioTrack) -> String:
+	match track:
+		AudioTrack.NONE:
+			return ""
+		AudioTrack.SKETCH_1:
+			return "res://Audio/TSO Sketch 1.mp3"
+		AudioTrack.SKETCH_2:
+			return "res://Audio/TSO Sketch 2.mp3"
+		_:
+			printerr("Passed an unknown audio track id: ", track)
+			return ""
