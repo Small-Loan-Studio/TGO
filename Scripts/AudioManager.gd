@@ -70,6 +70,20 @@ func crossfade_to(tgt_track: Enums.AudioTrack, fade_time: float) -> Signal:
 	return tween.finished
 
 
+## stops the current track with an optional fade out
+## returns the tween responsible for handling the fade or null if no fade is requested
+func stop(fade_time: float = 0) -> Tween:
+	if fade_time == 0:
+		bgm_player.stop()
+		return null
+
+	var tween := get_tree().create_tween()
+	tween.tween_property(bgm_player, "volume_db", 1.5 * DB_MIN, fade_time)
+	tween.tween_callback(bgm_player.stop)
+	tween.tween_callback(func() -> void: bgm_player.volume_db = 0)
+	return tween
+
+
 func _set_stream(player: AudioStreamPlayer2D, stream: AudioStream, should_play: bool) -> void:
 	player.stream = stream
 	if should_play:
@@ -136,11 +150,8 @@ func _db_to_volume(db_level: float) -> float:
 ## handles converting into db internally
 func set_level(bus: Enums.AudioBus, volume_pct: float) -> void:
 	var idx := Enums.audio_bus_index(bus)
-	var new_level := _volume_to_db(volume_pct)
-	if new_level <= DB_MIN:
-		new_level = -80
-	if new_level >= DB_MAX:
-		new_level = DB_MAX
+	var new_level := clampf(_volume_to_db(volume_pct), DB_MIN, DB_MAX)
+	AudioServer.set_bus_mute(idx, new_level <= DB_MIN)
 	AudioServer.set_bus_volume_db(idx, new_level)
 
 
