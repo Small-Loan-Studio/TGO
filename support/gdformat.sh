@@ -3,10 +3,7 @@
 args=$@
 
 if [ -z "$args" ]; then
-  args="--check"
+  find . -iname *.gd | xargs ./venv/bin/gdformat --check
+else
+  ./venv/bin/gdformat $args
 fi
-if [ "$args" = "--apply" ]; then
-  args=""
-fi
-
-find . -iname *.gd | xargs ./venv/bin/gdformat $args
