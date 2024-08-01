@@ -38,6 +38,23 @@ enum AudioTrack {
 	SKETCH_2,
 }
 
+enum AudioBus {
+	MASTER,
+	BACKGROUND_MUSIC,
+	SOUND_EFFECTS,
+	AMBIENT,
+	MENU_EFFECTS,
+}
+
+const AUDIO_BUS_INFO = {
+	AudioBus.MASTER: [0, "Global"],
+	AudioBus.BACKGROUND_MUSIC: [1, "Background Music"],
+	AudioBus.SOUND_EFFECTS: [2, "Sound Effects"],
+	AudioBus.AMBIENT: [3, "Environmental Sounds"],
+	AudioBus.MENU_EFFECTS: [4, "Menu"],
+}
+
+
 static func direction_name(da: Direction) -> String:
 	match da:
 		Direction.NORTH:
@@ -98,3 +115,11 @@ static func audio_track_path(track: AudioTrack) -> String:
 		_:
 			printerr("Passed an unknown audio track id: ", track)
 			return ""
+
+
+static func audio_bus_index(bus: AudioBus) -> int:
+	return AUDIO_BUS_INFO[bus][0]
+
+
+static func audio_bus_description(bus: AudioBus) -> String:
+	return AUDIO_BUS_INFO[bus][1]

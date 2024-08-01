@@ -81,9 +81,7 @@ func save_levels() -> void:
 		var value := AudioServer.get_bus_volume_db(i)
 		data[i] = value
 
-	print("data: ", data)
 	var json_str := JSON.stringify(data)
-	print("json_str: ", json_str)
 	var file := FileAccess.open(AUDIO_PREFS_PATH, FileAccess.WRITE)
 	if file == null:
 		print(FileAccess.get_open_error())
@@ -110,4 +108,33 @@ func load_levels() -> void:
 
 	var data: Dictionary = json.data
 	for k: String in data.keys():
-		AudioServer.set_bus_volume_db(k.to_int(), data[k])
+		var vol: float = data[k]
+		AudioServer.set_bus_volume_db(k.to_int(), vol)
+
+
+func _volume_to_db(level: float) -> float:
+	level = clampf(level, 0, 1)
+	return -80 + (level * 86)
+
+
+func _db_to_volume(db_level: float) -> float:
+	var vol := db_level + 80
+	return clampf(vol / 86, 0, 1)
+
+
+# TODO: Open question if disconnecting levels and db is a good idea. Originally
+# I did it because I thought it'd be easier to build options UIs around [0, 1]
+# than [-80, 6] but maybe that's dumb. TBD we can roll it back if needed
+
+
+## Sets the volume level as a value 0->1 for a specific audio bus
+## handles converting into db internall
+func set_level(bus: Enums.AudioBus, volume_pct: float) -> void:
+	var idx := Enums.audio_bus_index(bus)
+	var new_level := _volume_to_db(volume_pct)
+	AudioServer.set_bus_volume_db(idx, new_level)
+
+
+## returns the level of a requested audio bus in a 0->1 range.
+func get_level(bus: Enums.AudioBus) -> float:
+	return _db_to_volume(AudioServer.get_bus_volume_db(Enums.audio_bus_index(bus)))
