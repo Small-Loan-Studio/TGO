@@ -7,9 +7,11 @@ var cur_track: Enums.AudioTrack
 
 @onready var bgm_player: AudioStreamPlayer2D = %BGPlayer
 
+
 func _ready() -> void:
 	cur_track = Enums.AudioTrack.NONE
 	load_levels()
+
 
 ## starts playing a given track with some caveats:
 ##  1. if the same as the current track no change is made
@@ -34,7 +36,7 @@ func play(tgt_track: Enums.AudioTrack, fade_in: float = 0) -> Signal:
 
 	if bgm_player.playing:
 		# playing the current track
-		tween.tween_property(bgm_player, 'volume_db', tgt_vol, 0)
+		tween.tween_property(bgm_player, "volume_db", tgt_vol, 0)
 		return tween.finished
 
 	# default to no volume
@@ -44,8 +46,9 @@ func play(tgt_track: Enums.AudioTrack, fade_in: float = 0) -> Signal:
 
 	bgm_player.volume_db = start_vol
 	bgm_player.play()
-	tween.tween_property(bgm_player, 'volume_db', tgt_vol, fade_in)
+	tween.tween_property(bgm_player, "volume_db", tgt_vol, fade_in)
 	return tween.finished
+
 
 ## fades the current track out and a second track in, does not check if the
 ## current track is the same as the target so it's possible to fade out & in
@@ -59,15 +62,17 @@ func crossfade_to(tgt_track: Enums.AudioTrack, fade_time: float) -> Signal:
 	var tgt_vol := bgm_player.volume_db
 	var tween := get_tree().create_tween()
 	var stream: AudioStream = ResourceLoader.load(Enums.audio_track_path(tgt_track))
-	tween.tween_property(bgm_player, 'volume_db', -80, fade_time / 2)
+	tween.tween_property(bgm_player, "volume_db", -80, fade_time / 2)
 	tween.tween_callback(_set_stream.bind(bgm_player, stream, true))
-	tween.tween_property(bgm_player, 'volume_db', tgt_vol, fade_time / 2)
+	tween.tween_property(bgm_player, "volume_db", tgt_vol, fade_time / 2)
 	return tween.finished
+
 
 func _set_stream(player: AudioStreamPlayer2D, stream: AudioStream, should_play: bool) -> void:
 	player.stream = stream
 	if should_play:
 		player.play()
+
 
 ## Saves the bus volume levels to disk
 func save_levels() -> void:
@@ -76,15 +81,16 @@ func save_levels() -> void:
 		var value := AudioServer.get_bus_volume_db(i)
 		data[i] = value
 
-	print('data: ' , data)
+	print("data: ", data)
 	var json_str := JSON.stringify(data)
-	print('json_str: ' , json_str)
+	print("json_str: ", json_str)
 	var file := FileAccess.open(AUDIO_PREFS_PATH, FileAccess.WRITE)
 	if file == null:
 		print(FileAccess.get_open_error())
 		return
 	file.store_string(json_str)
 	file.close()
+
 
 ## Loads bus volume levels from disk; if not previous values exist make no
 ## changes and use game defaults.
