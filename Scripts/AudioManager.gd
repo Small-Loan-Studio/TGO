@@ -3,8 +3,9 @@ extends Node
 
 const AUDIO_PREFS_PATH = "user://audio_prefs.dat"
 
-@onready var bgm_player: AudioStreamPlayer2D = %BGPlayer
 var cur_track: Enums.AudioTrack
+
+@onready var bgm_player: AudioStreamPlayer2D = %BGPlayer
 
 func _ready() -> void:
 	cur_track = Enums.AudioTrack.NONE
@@ -22,10 +23,10 @@ func play(tgt_track: Enums.AudioTrack, fade_in: float = 0) -> Signal:
 	if cur_track != tgt_track:
 		if bgm_player.playing:
 			return crossfade_to(tgt_track, fade_in)
-		else:
-			var stream: AudioStream = ResourceLoader.load(Enums.audio_track_path(tgt_track))
-			bgm_player.stream = stream
-	
+
+		var stream: AudioStream = ResourceLoader.load(Enums.audio_track_path(tgt_track))
+		bgm_player.stream = stream
+
 	# either playing the current track on not playing
 	var tween := get_tree().create_tween()
 
@@ -91,7 +92,7 @@ func load_levels() -> void:
 	if !FileAccess.file_exists(AUDIO_PREFS_PATH):
 		printerr("No data at prefs path, using defaults")
 		return
-	
+
 	var file := FileAccess.open(AUDIO_PREFS_PATH, FileAccess.READ)
 	var json_prefs_data := file.get_as_text()
 
