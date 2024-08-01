@@ -2,6 +2,8 @@ class_name AudioManager
 extends Node
 
 const AUDIO_PREFS_PATH = "user://audio_prefs.dat"
+const DB_MIN: float = -25
+const DB_MAX: float = 8
 
 var cur_track: Enums.AudioTrack
 
@@ -114,24 +116,31 @@ func load_levels() -> void:
 
 func _volume_to_db(level: float) -> float:
 	level = clampf(level, 0, 1)
-	return -80 + (level * 86)
+	var x := DB_MIN + (level * (DB_MAX - DB_MIN))
+	return x
 
 
 func _db_to_volume(db_level: float) -> float:
-	var vol := db_level + 80
-	return clampf(vol / 86, 0, 1)
+	var vol := clampf(db_level, DB_MIN, DB_MAX) - DB_MIN
+	return clampf(vol / (DB_MAX - DB_MIN), 0, 1)
 
 
 # TODO: Open question if disconnecting levels and db is a good idea. Originally
 # I did it because I thought it'd be easier to build options UIs around [0, 1]
-# than [-80, 6] but maybe that's dumb. TBD we can roll it back if needed
+# than [-80, 6] but maybe that's dumb. TBD we can roll it back if needed.
+# On the other hand I find this to be a better way to make our low-end correspond
+# to more useful levels than -80, -75, etc.
 
 
 ## Sets the volume level as a value 0->1 for a specific audio bus
-## handles converting into db internall
+## handles converting into db internally
 func set_level(bus: Enums.AudioBus, volume_pct: float) -> void:
 	var idx := Enums.audio_bus_index(bus)
 	var new_level := _volume_to_db(volume_pct)
+	if new_level <= DB_MIN:
+		new_level = -80
+	if new_level >= DB_MAX:
+		new_level = DB_MAX
 	AudioServer.set_bus_volume_db(idx, new_level)
 
 

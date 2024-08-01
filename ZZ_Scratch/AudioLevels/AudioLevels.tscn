@@ -1,0 +1,96 @@
+[gd_scene load_steps=2 format=3 uid="uid://b46wx1tghu64y"]
+
+[ext_resource type="Script" path="res://ZZ_Scratch/AudioLevels/AudioLevels.gd" id="1_gv0fl"]
+
+[node name="AudioLevels" type="Node2D"]
+position = Vector2(0, 1)
+script = ExtResource("1_gv0fl")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="Master" type="VBoxContainer" parent="CanvasLayer"]
+offset_left = 499.0
+offset_top = 191.0
+offset_right = 623.0
+offset_bottom = 311.0
+metadata/_edit_group_ = true
+
+[node name="Label" type="Label" parent="CanvasLayer/Master"]
+layout_mode = 2
+text = "Master"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Value" type="Label" parent="CanvasLayer/Master"]
+layout_mode = 2
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="ValueDB" type="Label" parent="CanvasLayer/Master"]
+layout_mode = 2
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Up" type="Button" parent="CanvasLayer/Master"]
+layout_mode = 2
+text = "Vol Up"
+
+[node name="Down" type="Button" parent="CanvasLayer/Master"]
+layout_mode = 2
+text = "Vol Down"
+
+[node name="Background" type="VBoxContainer" parent="CanvasLayer"]
+offset_left = 667.0
+offset_top = 191.0
+offset_right = 791.0
+offset_bottom = 311.0
+metadata/_edit_group_ = true
+
+[node name="Label" type="Label" parent="CanvasLayer/Background"]
+layout_mode = 2
+text = "Background"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Value" type="Label" parent="CanvasLayer/Background"]
+layout_mode = 2
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="ValueDB" type="Label" parent="CanvasLayer/Background"]
+layout_mode = 2
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Up" type="Button" parent="CanvasLayer/Background"]
+layout_mode = 2
+text = "Vol Up"
+
+[node name="Down" type="Button" parent="CanvasLayer/Background"]
+layout_mode = 2
+text = "Vol Down"
+
+[node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer"]
+offset_left = 521.0
+offset_top = 346.0
+offset_right = 775.0
+offset_bottom = 386.0
+theme_override_constants/separation = 60
+metadata/_edit_group_ = true
+
+[node name="LoadLevels" type="Button" parent="CanvasLayer/HBoxContainer"]
+layout_mode = 2
+text = "Load Levels
+"
+
+[node name="SaveLevels" type="Button" parent="CanvasLayer/HBoxContainer"]
+layout_mode = 2
+text = "Save Levels
+"
+
+[connection signal="pressed" from="CanvasLayer/Master/Up" to="." method="_master_up"]
+[connection signal="pressed" from="CanvasLayer/Master/Down" to="." method="_master_down"]
+[connection signal="pressed" from="CanvasLayer/Background/Up" to="." method="_bgm_up"]
+[connection signal="pressed" from="CanvasLayer/Background/Down" to="." method="_bgm_down"]
+[connection signal="pressed" from="CanvasLayer/HBoxContainer/LoadLevels" to="." method="_levels_load"]
+[connection signal="pressed" from="CanvasLayer/HBoxContainer/SaveLevels" to="." method="_level_save"]
