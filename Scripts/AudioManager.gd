@@ -28,7 +28,6 @@ func play(tgt_track: Enums.AudioTrack, fade_in: float = 0) -> Tween:
 		return stop(fade_in)
 
 	if cur_track != tgt_track:
-		print('cur_track %s != tgt_track %s' % [cur_track, tgt_track])
 		if bgm_player.playing:
 			return crossfade_to(tgt_track, fade_in)
 
