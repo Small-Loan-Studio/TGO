@@ -17,6 +17,7 @@ extends Area2D
 ## the
 signal detected(is_detected: bool)
 
+
 func set_detected(is_detected: bool) -> void:
 	if detected.get_connections().size() > 0:
 		detected.emit(is_detected)

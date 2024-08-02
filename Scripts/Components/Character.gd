@@ -38,9 +38,11 @@ var _focused_interactable: Interactable = null
 @onready var _interaction_sensor: Area2D = $InteractionSensor
 @onready var _interaction_shape: CollisionShape2D = $InteractionSensor/InteractionShape
 
+
 func _ready() -> void:
 	if _override_default_sprite_frames != null:
 		_sprite.sprite_frames = _override_default_sprite_frames
+
 
 func _unhandled_input(_event: InputEvent) -> void:
 	if !player_controled:
@@ -49,12 +51,16 @@ func _unhandled_input(_event: InputEvent) -> void:
 	# TODO: may need to guard under Input.is_action_pressed for these or
 	# handling input won't prevent movement in the face of non-propagating
 	# input events
-	_impulse = Input.get_vector(
-		Enums.input_action_name(Enums.InputAction.LEFT),
-		Enums.input_action_name(Enums.InputAction.RIGHT),
-		Enums.input_action_name(Enums.InputAction.UP),
-		Enums.input_action_name(Enums.InputAction.DOWN),
-	).normalized()
+	_impulse = (
+		Input
+		. get_vector(
+			Enums.input_action_name(Enums.InputAction.LEFT),
+			Enums.input_action_name(Enums.InputAction.RIGHT),
+			Enums.input_action_name(Enums.InputAction.UP),
+			Enums.input_action_name(Enums.InputAction.DOWN),
+		)
+		. normalized()
+	)
 
 	if _impulse != Vector2.ZERO:
 		_facing = Vector2.UP.angle_to(_impulse)
@@ -65,6 +71,7 @@ func _unhandled_input(_event: InputEvent) -> void:
 	if _focused_interactable != null:
 		if _event.is_action_pressed(Enums.input_action_name(Enums.InputAction.INTERACT)):
 			_focused_interactable.trigger(self)
+
 
 func _physics_process(_delta: float) -> void:
 	if Engine.is_editor_hint():
@@ -84,21 +91,24 @@ func _physics_process(_delta: float) -> void:
 	velocity = _impulse * move_speed
 	move_and_slide()
 
+
 func _on_interaction_sensor_entered(area: Area2D) -> void:
 	if area is Interactable:
 		var i := area as Interactable
-		print('found interactable ' + area.name + ' / ' + area.get_parent().name)
+		print("found interactable " + area.name + " / " + area.get_parent().name)
 		if i.automatic:
-			print('automatic trigger, not tracking for manual engagement')
+			print("automatic trigger, not tracking for manual engagement")
 			i.trigger(self)
 		else:
 			_focused_interactable = area
 
+
 func _on_interaction_sensor_exited(area: Area2D) -> void:
 	if area is Interactable:
-		print('lost interactable ' + area.name + ' / ' + area.get_parent().name)
+		print("lost interactable " + area.name + " / " + area.get_parent().name)
 		if _focused_interactable == area:
 			_focused_interactable = null
+
 
 func _get_configuration_warnings() -> PackedStringArray:
 	var animations := _sprite.sprite_frames.get_animation_names()

@@ -9,12 +9,14 @@ var zoom_max: float = 4.0
 var zoompos: Vector2 = Vector2()
 var zoomfactor: float = 1.0
 
+
 func _process(_delta: float) -> void:
 	zoom.x = lerp(zoom.x, zoom.x * zoomfactor, zoomspeed)
 	zoom.y = lerp(zoom.y, zoom.y * zoomfactor, zoomspeed)
 
 	zoom.x = clamp(zoom.x, zoom_min, zoom_max)
 	zoom.y = clamp(zoom.y, zoom_min, zoom_max)
+
 
 func _input(event: InputEvent) -> void:
 	if abs(zoompos.x - get_global_mouse_position().x) > zoommargin:
