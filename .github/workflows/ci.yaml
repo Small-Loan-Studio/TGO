@@ -24,7 +24,7 @@ jobs:
         uses: Scony/godot-gdscript-toolkit@master
 
       - name: Lint
-        run: gdlint .
+        run: find . -iname *.gd -not -ipath './addons/*' | gdlint
 
   formatting:
     runs-on: ubuntu-latest
@@ -39,4 +39,4 @@ jobs:
         uses: Scony/godot-gdscript-toolkit@master
 
       - name: Check formatting
-        run: gdformat --check .
+        run: find . -iname *.gd -not -ipath './addons/*' | xargs gdformat --check
