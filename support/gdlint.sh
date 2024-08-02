@@ -2,4 +2,4 @@
 
 args="$@"
 
-find . -iname *.gd -not -ipath './addons/*' | xargs ./venv/bin/gdlint $args
+find . -iname *.gd -not -ipath './repo/addons/*' | xargs ./venv/bin/gdlint $args

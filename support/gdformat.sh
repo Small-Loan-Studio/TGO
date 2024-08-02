@@ -9,4 +9,4 @@ if [ "$args" = "--apply" ]; then
   args=""
 fi
 
-find . -iname *.gd -not -ipath './addons/*' | xargs ./venv/bin/gdformat $args
+find . -iname *.gd -not -ipath './repo/addons/*' | xargs ./venv/bin/gdformat $args
