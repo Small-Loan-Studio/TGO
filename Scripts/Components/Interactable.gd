@@ -17,8 +17,9 @@ signal triggered(actor: Character)
 ## evaluated before the signal is emitted.
 @export var actions: Array[InteractableAction]
 
+
 func trigger(actor: Character) -> void:
-  for a in actions:
-    a.parent = self
-    a.act(actor)
-  triggered.emit(actor)
+	for a in actions:
+		a.parent = self
+		a.act(actor)
+	triggered.emit(actor)

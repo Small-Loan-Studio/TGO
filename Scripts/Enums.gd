@@ -27,10 +27,8 @@ enum LightLevel {
 	SPECIAL,
 }
 
-enum MenuType {
-	NONE,
-	DEBUG
-}
+enum MenuType { NONE, DEBUG }
+
 
 enum AudioTrack {
 	NONE,
@@ -76,6 +74,7 @@ static func direction_name(da: Direction) -> String:
 	assert(false, "Unexpected Direction value: " + str(da))
 	return "north"
 
+
 static func input_action_name(ia: InputAction) -> String:
 	match ia:
 		InputAction.UP:
@@ -90,6 +89,7 @@ static func input_action_name(ia: InputAction) -> String:
 			return "interact"
 	assert(false, "Invalid Input action: " + str(ia))
 	return ""
+
 
 static func light_level_name(ll: LightLevel) -> String:
 	match ll:
