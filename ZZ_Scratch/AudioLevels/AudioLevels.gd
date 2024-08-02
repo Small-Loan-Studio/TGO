@@ -16,15 +16,23 @@ func _process(_delta: float) -> void:
 	if _audio_mgr != null:
 		var n: int = (_audio_mgr.get_level(Enums.AudioBus.MASTER) * 100) as int
 		master_val.text = str(n) + "%"
-		master_val_db.text = "%.2f db" % [
-			AudioServer.get_bus_volume_db(Enums.audio_bus_index(Enums.AudioBus.MASTER)),
-		]
+		master_val_db.text = (
+			"%.2f db"
+			% [
+				AudioServer.get_bus_volume_db(Enums.audio_bus_index(Enums.AudioBus.MASTER)),
+			]
+		)
 
 		var bg_n: int = (_audio_mgr.get_level(Enums.AudioBus.BACKGROUND_MUSIC) * 100) as int
 		bgm_val.text = str(bg_n) + "%"
-		bgm_val_db.text = "%.2f db" % [
-			AudioServer.get_bus_volume_db(Enums.audio_bus_index(Enums.AudioBus.BACKGROUND_MUSIC)),
-		]
+		bgm_val_db.text = (
+			"%.2f db"
+			% [
+				AudioServer.get_bus_volume_db(
+					Enums.audio_bus_index(Enums.AudioBus.BACKGROUND_MUSIC)
+				),
+			]
+		)
 	else:
 		master_val.text = "!"
 		master_val_db.text = "!"

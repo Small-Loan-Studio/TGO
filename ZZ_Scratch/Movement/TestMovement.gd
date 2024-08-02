@@ -32,7 +32,6 @@ func _unhandled_input(_event: InputEvent) -> void:
 		_light_level_label.text = "Light Level: " + Enums.light_level_name(lamp.light_level)
 
 
-
 func get_target(state: int) -> Color:
 	match state:
 		0:

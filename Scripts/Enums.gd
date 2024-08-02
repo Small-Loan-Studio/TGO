@@ -29,7 +29,6 @@ enum LightLevel {
 
 enum MenuType { NONE, DEBUG }
 
-
 enum AudioTrack {
 	NONE,
 	SKETCH_1,
@@ -103,6 +102,7 @@ static func light_level_name(ll: LightLevel) -> String:
 			return "special"
 	assert(false, "Invalid light level: " + str(ll))
 	return ""
+
 
 static func audio_track_path(track: AudioTrack) -> String:
 	match track:
