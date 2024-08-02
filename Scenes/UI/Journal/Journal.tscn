@@ -69,11 +69,11 @@ size_flags_stretch_ratio = 3.0
 layout_mode = 2
 size_flags_vertical = 3
 
-[node name="VBoxContainer" type="VBoxContainer" parent="JournalMainFrame/MarginContainer/VBoxContainer/Codex/main/ScrollContainer"]
+[node name="codex_holder" type="VBoxContainer" parent="JournalMainFrame/MarginContainer/VBoxContainer/Codex/main/ScrollContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
-[node name="card" parent="JournalMainFrame/MarginContainer/VBoxContainer/Codex/main/ScrollContainer/VBoxContainer" instance=ExtResource("3_82c4r")]
+[node name="card" parent="JournalMainFrame/MarginContainer/VBoxContainer/Codex/main/ScrollContainer/codex_holder" instance=ExtResource("3_82c4r")]
 layout_mode = 2
 size_flags_vertical = 1
