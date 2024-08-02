@@ -22,9 +22,13 @@ func _ready() -> void:
 ##  3. if no track is playing and fade_in > 0 we set volume to -80 then fade
 ##     to the previous volume in fade_in
 ##
-## Returns a signal that can be awaited indicating this is all completed
-func play(tgt_track: Enums.AudioTrack, fade_in: float = 0) -> Signal:
+## Returns a Tween that can be awaited indicating this is all completed
+func play(tgt_track: Enums.AudioTrack, fade_in: float = 0) -> Tween:
+	if tgt_track == Enums.AudioTrack.NONE:
+		return stop(fade_in)
+
 	if cur_track != tgt_track:
+		print('cur_track %s != tgt_track %s' % [cur_track, tgt_track])
 		if bgm_player.playing:
 			return crossfade_to(tgt_track, fade_in)
 
@@ -39,7 +43,7 @@ func play(tgt_track: Enums.AudioTrack, fade_in: float = 0) -> Signal:
 	if bgm_player.playing:
 		# playing the current track
 		tween.tween_property(bgm_player, "volume_db", tgt_vol, 0)
-		return tween.finished
+		return tween
 
 	# default to no volume
 	var start_vol := -80
@@ -47,9 +51,10 @@ func play(tgt_track: Enums.AudioTrack, fade_in: float = 0) -> Signal:
 		start_vol = tgt_vol
 
 	bgm_player.volume_db = start_vol
+	cur_track = tgt_track
 	bgm_player.play()
 	tween.tween_property(bgm_player, "volume_db", tgt_vol, fade_in)
-	return tween.finished
+	return tween
 
 
 ## fades the current track out and a second track in, does not check if the
@@ -59,15 +64,16 @@ func play(tgt_track: Enums.AudioTrack, fade_in: float = 0) -> Signal:
 ## the fade out happens in fade_time / 2
 ## the fade in happens in fade_time / 2
 ##
-## returns a signal than can be used to await the transition's completion
-func crossfade_to(tgt_track: Enums.AudioTrack, fade_time: float) -> Signal:
+## returns a Tween than can be used to await the transition's completion
+func crossfade_to(tgt_track: Enums.AudioTrack, fade_time: float) -> Tween:
 	var tgt_vol := bgm_player.volume_db
 	var tween := get_tree().create_tween()
 	var stream: AudioStream = ResourceLoader.load(Enums.audio_track_path(tgt_track))
 	tween.tween_property(bgm_player, "volume_db", -80, fade_time / 2)
+	tween.tween_callback(func() -> void: cur_track = tgt_track)
 	tween.tween_callback(_set_stream.bind(bgm_player, stream, true))
 	tween.tween_property(bgm_player, "volume_db", tgt_vol, fade_time / 2)
-	return tween.finished
+	return tween
 
 
 ## stops the current track with an optional fade out
@@ -75,6 +81,7 @@ func crossfade_to(tgt_track: Enums.AudioTrack, fade_time: float) -> Signal:
 func stop(fade_time: float = 0) -> Tween:
 	if fade_time == 0:
 		bgm_player.stop()
+		cur_track = Enums.AudioTrack.NONE
 		return null
 
 	var tween := get_tree().create_tween()

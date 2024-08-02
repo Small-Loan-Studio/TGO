@@ -31,5 +31,5 @@ func request_debug_load(path: String) -> void:
 	new_scene.setup(self)
 	_menu_mgr.hide_menu(Enums.MenuType.DEBUG)
 
-	await music_ready
+	await music_ready.finished
 	await _curtain.fade_out(1)
