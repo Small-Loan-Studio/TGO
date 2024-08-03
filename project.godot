@@ -29,6 +29,7 @@ gdscript/warnings/untyped_declaration=2
 
 directories/dch_directory={}
 directories/dtl_directory={
+"npc_test_dialogue": "res://ZZ_Scratch/NPCDialogue/npc_test_dialogue.dtl",
 "test_timeline": "res://ZZ_Scratch/DialogicValidation/test_timeline.dtl"
 }
 text/letter_speed=0.01
@@ -47,6 +48,7 @@ choices/reveal_delay=0
 choices/reveal_by_input=false
 save/autosave_delay=60.0
 save/encryption_on_exports_only=true
+text/autopauses={}
 
 [display]
 
