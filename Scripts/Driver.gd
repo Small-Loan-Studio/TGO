@@ -5,17 +5,20 @@ extends Node2D
 @onready var _curtain := $OverlayManager/Curtain
 @onready var _world := $GameWorld
 
+
 func _ready() -> void:
 	_curtain.visible = true
 	# call via deferred so we don't have await in the _ready path. I'm not
 	# sure that's a bad thing to do but it felt weird so here we are.
-	call_deferred('_post_ready')
+	call_deferred("_post_ready")
+
 
 func _post_ready() -> void:
 	_menu_mgr.show_menu(Enums.MenuType.DEBUG)
 	await _curtain.fade_out(1)
 
-func request_debug_load(path:String) -> void:
+
+func request_debug_load(path: String) -> void:
 	await _curtain.fade_in(1)
 
 	var new_scene_resource := load(path) as PackedScene
