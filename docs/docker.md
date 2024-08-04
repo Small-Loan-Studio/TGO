@@ -45,6 +45,8 @@ Success: no problems found
 
 ```
 $ docker run -v .:/TGO/repo -ti tgo:check ./gdformat.sh
+# the above works in windows powershell, for mac os / linux you may need:
+# docker run -v "$(pwd)":/TGO/repo -ti tgo:check ./gdformat.sh
 would reformat ./repo/Scripts/Components/Character.gd
 would reformat ./repo/Scripts/Components/Detectable.gd
 would reformat ./repo/Scripts/Components/Lamp.gd
@@ -65,6 +67,8 @@ If you'd like to apply the changes you can run it with `--apply`.
 
 ```
 $ docker run -v .:/TGO/repo -ti tgo:check ./gdformat.sh --apply
+# the above works in windows powershell, for mac os / linux you may need:
+# docker run -v "$(pwd)":/TGO/repo -ti tgo:check ./gdlint.sh
 reformatted ./repo/Scripts/Components/Character.gd
 reformatted ./repo/Scripts/Components/Detectable.gd
 reformatted ./repo/Scripts/Components/Lamp.gd
