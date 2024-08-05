@@ -1,11 +1,19 @@
-[gd_scene load_steps=4 format=3 uid="uid://crrvo58x81lxn"]
+[gd_scene load_steps=5 format=3 uid="uid://crrvo58x81lxn"]
 
 [ext_resource type="Script" path="res://ZZ_Scratch/QuestPrototype/QuestPrototype.gd" id="1_h4v6k"]
 [ext_resource type="PackedScene" uid="uid://bcqslh1vhjn2m" path="res://Scenes/UI/Journal/Journal.tscn" id="2_ohowe"]
 [ext_resource type="Script" path="res://Scripts/UI/Pop-up.gd" id="3_3wudy"]
+[ext_resource type="PackedScene" uid="uid://mqvl5162rawb" path="res://Scenes/Devin.tscn" id="4_y2igs"]
 
 [node name="QuestPrototype" type="Node2D"]
 script = ExtResource("1_h4v6k")
+
+[node name="Character" parent="." instance=ExtResource("4_y2igs")]
+position = Vector2(937, 638)
+editor_hide_lamp_sensors = false
+
+[node name="Camera2D" type="Camera2D" parent="Character"]
+position = Vector2(22, -102)
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
@@ -17,6 +25,7 @@ offset_right = -192.0
 offset_bottom = -108.0
 
 [node name="QuestUI" type="Control" parent="CanvasLayer"]
+visible = false
 layout_mode = 3
 anchor_left = 0.034
 anchor_top = 0.2
@@ -51,6 +60,7 @@ fit_content = true
 layout_mode = 2
 
 [node name="Pop-up" type="Control" parent="CanvasLayer"]
+visible = false
 layout_mode = 3
 anchor_left = 0.39
 anchor_top = 0.381
