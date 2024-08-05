@@ -10,3 +10,7 @@ func _ready() -> void:
 	_devin.visible = true
 	print(_marker.position)
 	print(_marker.global_position)
+
+
+func setup(_driver: Driver) -> void:
+	pass
