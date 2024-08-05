@@ -11,6 +11,10 @@ func _ready() -> void:
 		_modulate.visible = true
 
 
+func setup(_driver: Driver) -> void:
+	pass
+
+
 func _unhandled_input(_event: InputEvent) -> void:
 	if _event.is_action_pressed("ui_accept"):
 		_state = (_state + 1) % 4

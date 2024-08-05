@@ -29,6 +29,28 @@ enum LightLevel {
 
 enum MenuType { NONE, DEBUG }
 
+enum AudioTrack {
+	NONE,
+	SKETCH_1,
+	SKETCH_2,
+}
+
+enum AudioBus {
+	MASTER,
+	BACKGROUND_MUSIC,
+	SOUND_EFFECTS,
+	AMBIENT,
+	MENU_EFFECTS,
+}
+
+const AUDIO_BUS_INFO = {
+	AudioBus.MASTER: [0, "Global"],
+	AudioBus.BACKGROUND_MUSIC: [1, "Background Music"],
+	AudioBus.SOUND_EFFECTS: [2, "Sound Effects"],
+	AudioBus.AMBIENT: [3, "Environmental Sounds"],
+	AudioBus.MENU_EFFECTS: [4, "Menu"],
+}
+
 
 static func direction_name(da: Direction) -> String:
 	match da:
@@ -78,3 +100,24 @@ static func light_level_name(ll: LightLevel) -> String:
 			return "special"
 	assert(false, "Invalid light level: " + str(ll))
 	return ""
+
+
+static func audio_track_path(track: AudioTrack) -> String:
+	match track:
+		AudioTrack.NONE:
+			return ""
+		AudioTrack.SKETCH_1:
+			return "res://Audio/TSO Sketch 1.mp3"
+		AudioTrack.SKETCH_2:
+			return "res://Audio/TSO Sketch 2.mp3"
+		_:
+			printerr("Passed an unknown audio track id: ", track)
+			return ""
+
+
+static func audio_bus_index(bus: AudioBus) -> int:
+	return AUDIO_BUS_INFO[bus][0]
+
+
+static func audio_bus_description(bus: AudioBus) -> String:
+	return AUDIO_BUS_INFO[bus][1]
