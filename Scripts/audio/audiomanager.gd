@@ -20,7 +20,6 @@ func play_music(musicname : String,mode : String = "")-> void:
 	if player is AudioStreamPlayer2D:
 
 		var getmusic : AudioStream = ResourceLoader.load("res://Audio/BGM/temp/"+musicname+".mp3")
-		Global.active_music = musicname
 		player.stream = getmusic
 		if player.playing == true:
 			player.stop()
@@ -40,7 +39,6 @@ func transition_music(player_node : AudioStreamPlayer2D,mode :String) -> void:
 			var tween : Tween= get_tree().create_tween()
 			player_node.play()
 			player_node.volume_db = -70
-			tween.tween_property(player_node,"volume_db",Global.music_volume,2)
 			await get_tree().create_timer(2).timeout
 			tween.kill()
 		_:
@@ -48,19 +46,13 @@ func transition_music(player_node : AudioStreamPlayer2D,mode :String) -> void:
 
 func change_music_volume() -> void:
 	var player :AudioStreamPlayer2D = get_child(0)
-	if player is AudioStreamPlayer2D:
-		player.volume_db = Global.music_volume
 
 func change_sound_volume() -> void:
 	var player :AudioStreamPlayer2D = get_child(1)
-	if player is AudioStreamPlayer2D:
-		player.volume_db = Global.sound_volume
-
 func stop_music(fade : int = 0) -> void:
 	var player :AudioStreamPlayer2D = get_child(0)
 	if player is AudioStreamPlayer2D:
 		if player.playing == true:
-			Global.active_music = ""
 			if fade == 0 :
 				player.stop()
 			else:

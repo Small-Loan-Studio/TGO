@@ -17,9 +17,24 @@ size_flags_vertical = 3
 theme = ExtResource("1_s3mq2")
 script = ExtResource("2_eyc3n")
 
+[node name="TabBar" type="TabBar" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 0.181
+anchor_bottom = 0.061
+offset_left = 2.0
+offset_top = 3.0
+offset_right = -0.0160217
+offset_bottom = 0.295998
+tab_count = 3
+tab_0/title = "Beastiary"
+tab_1/title = "Recap"
+tab_2/title = "Quests"
+
 [node name="JournalMainFrame" type="PanelContainer" parent="."]
 layout_mode = 1
-anchors_preset = 15
+anchors_preset = -1
+anchor_top = 0.055
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2

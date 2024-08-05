@@ -1,0 +1,99 @@
+[gd_scene load_steps=4 format=3 uid="uid://crrvo58x81lxn"]
+
+[ext_resource type="Script" path="res://ZZ_Scratch/QuestPrototype/QuestPrototype.gd" id="1_h4v6k"]
+[ext_resource type="PackedScene" uid="uid://bcqslh1vhjn2m" path="res://Scenes/UI/Journal/Journal.tscn" id="2_ohowe"]
+[ext_resource type="Script" path="res://Scripts/UI/Pop-up.gd" id="3_3wudy"]
+
+[node name="QuestPrototype" type="Node2D"]
+script = ExtResource("1_h4v6k")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="Journal" parent="CanvasLayer" instance=ExtResource("2_ohowe")]
+visible = false
+offset_left = -192.0
+offset_top = -108.0
+offset_right = -192.0
+offset_bottom = -108.0
+
+[node name="QuestUI" type="Control" parent="CanvasLayer"]
+layout_mode = 3
+anchor_left = 0.034
+anchor_top = 0.2
+anchor_right = 0.41
+anchor_bottom = 0.46
+offset_right = 0.0799561
+offset_bottom = 0.519958
+
+[node name="PanelContainer" type="PanelContainer" parent="CanvasLayer/QuestUI"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/QuestUI/PanelContainer"]
+layout_mode = 2
+
+[node name="QuestName" type="Label" parent="CanvasLayer/QuestUI/PanelContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 26
+text = "Find Exit"
+horizontal_alignment = 1
+
+[node name="Description" type="RichTextLabel" parent="CanvasLayer/QuestUI/PanelContainer/VBoxContainer"]
+layout_mode = 2
+text = "example text"
+fit_content = true
+
+[node name="Requirements" type="VBoxContainer" parent="CanvasLayer/QuestUI/PanelContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="Pop-up" type="Control" parent="CanvasLayer"]
+layout_mode = 3
+anchor_left = 0.39
+anchor_top = 0.381
+anchor_right = 0.61
+anchor_bottom = 0.619
+offset_left = -0.800049
+offset_top = 0.519989
+offset_right = 0.799927
+offset_bottom = -0.52002
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("3_3wudy")
+
+[node name="PanelContainer" type="PanelContainer" parent="CanvasLayer/Pop-up"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/Pop-up/PanelContainer"]
+layout_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/Pop-up/PanelContainer/VBoxContainer"]
+layout_mode = 2
+alignment = 2
+
+[node name="Label" type="Label" parent="CanvasLayer/Pop-up/PanelContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Pop up"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="close" type="Button" parent="CanvasLayer/Pop-up/PanelContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+text = "X"
+
+[node name="ok" type="Button" parent="CanvasLayer/Pop-up/PanelContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+text = "Ok"
+
+[connection signal="pressed" from="CanvasLayer/Pop-up/PanelContainer/VBoxContainer/HBoxContainer/close" to="CanvasLayer/Pop-up" method="_on_close_pressed"]
+[connection signal="pressed" from="CanvasLayer/Pop-up/PanelContainer/VBoxContainer/ok" to="CanvasLayer/Pop-up" method="_on_ok_pressed"]
