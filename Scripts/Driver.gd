@@ -6,6 +6,7 @@ extends Node2D
 @onready var _menu_mgr: MenuManager = $OverlayManager/MenuManager
 @onready var _curtain := $OverlayManager/Curtain
 @onready var _world := $GameWorld
+@onready var _devin: Devin = %Devin
 
 
 func _ready() -> void:
@@ -20,6 +21,9 @@ func _post_ready() -> void:
 	_menu_mgr.show_menu(Enums.MenuType.DEBUG)
 	await _curtain.fade_out(1)
 
+
+func load_level(tgt: PackedScene) -> void:
+	print("Driver.load_level")
 
 func request_debug_load(path: String) -> void:
 	var music_ready := audio_mgr.play(Enums.AudioTrack.SKETCH_2, 2)

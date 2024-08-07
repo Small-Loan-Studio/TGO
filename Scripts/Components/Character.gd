@@ -46,6 +46,7 @@ func _ready() -> void:
 
 func _unhandled_input(_event: InputEvent) -> void:
 	if !player_controled:
+		_impulse = Vector2.ZERO
 		return
 
 	# TODO: may need to guard under Input.is_action_pressed for these or

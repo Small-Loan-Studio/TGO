@@ -1,10 +1,9 @@
-[gd_scene load_steps=7 format=3 uid="uid://d4mrsiv1l8m35"]
+[gd_scene load_steps=6 format=3 uid="uid://d4mrsiv1l8m35"]
 
 [ext_resource type="PackedScene" uid="uid://dyq8mcdsutnsa" path="res://Scenes/Components/LevelBase.tscn" id="1_iejup"]
 [ext_resource type="Script" path="res://ZZ_Scratch/GreyboxingTools/BadLevelA.gd" id="2_22a2t"]
 [ext_resource type="TileSet" uid="uid://c5vrjt6pkv26m" path="res://ZZ_Scratch/GreyboxingTools/test_tileset.tres" id="2_nrxue"]
 [ext_resource type="Texture2D" uid="uid://v8wedauptprb" path="res://ZZ_Scratch/GreyboxingTools/template_tileset.png" id="3_uhn0b"]
-[ext_resource type="PackedScene" uid="uid://mqvl5162rawb" path="res://Scenes/Devin.tscn" id="4_4wpp4"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_ptcao"]
 atlas = ExtResource("3_uhn0b")
@@ -27,6 +26,5 @@ layer_4/tile_data = PackedInt32Array(131085, 589824, 3, 196622, 589824, 3, 19662
 position = Vector2(220, 246)
 texture = SubResource("AtlasTexture_ptcao")
 
-[node name="Character" parent="." index="2" instance=ExtResource("4_4wpp4")]
-position = Vector2(158, 226)
-editor_hide_lamp_sensors = true
+[node name="PlayerStart" type="Node2D" parent="." index="2"]
+position = Vector2(483, 175)

@@ -11,5 +11,10 @@ func setup(driver_in: Driver) -> void:
 	# 	level_setup.call()
 	level_setup()
 
+
 func level_setup() -> void:
 	print('LevelBase.level_setup()')
+
+
+func load_into_level(tgt: PackedScene) -> void:
+	driver.load_level(tgt)
