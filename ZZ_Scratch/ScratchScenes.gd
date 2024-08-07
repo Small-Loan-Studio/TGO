@@ -5,6 +5,7 @@ const SCENES = {
 	"Test Movement & Graybox": "res://ZZ_Scratch/Movement/TestMovement.tscn",
 	"Peer Physics & Interactables": "res://ZZ_Scratch/PeerPhysics/PeerPhysics.tscn",
 	"Dialogic Validation": "res://ZZ_Scratch/DialogicValidation/Dialogic.tscn",
+	"Greyboxing": "res://ZZ_Scratch/GreyboxingTools/BadLevelA.tscn",
 }
 
 
