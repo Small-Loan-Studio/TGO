@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://xkcmymq84ufc"]
+[gd_scene load_steps=11 format=3 uid="uid://xkcmymq84ufc"]
 
 [ext_resource type="PackedScene" uid="uid://k5l5ypr21vvu" path="res://ZZ_Scratch/PeerPhysics/ScnA.tscn" id="1_tca8v"]
 [ext_resource type="Script" path="res://ZZ_Scratch/NPCDialogue/NPCDialogue.gd" id="1_we2v1"]
@@ -7,7 +7,6 @@
 [ext_resource type="PackedScene" uid="uid://c2040l84asu8j" path="res://Scenes/Components/Interactable.tscn" id="4_n5uxa"]
 [ext_resource type="Script" path="res://Scripts/Resources/InteractableDialogue.gd" id="5_8ojll"]
 [ext_resource type="Resource" path="res://ZZ_Scratch/NPCDialogue/npc_test_dialogue.dtl" id="6_bg5gt"]
-[ext_resource type="PackedScene" uid="uid://mqvl5162rawb" path="res://Scenes/Devin.tscn" id="8_yv56y"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_57ixx"]
 radius = 19.0
@@ -44,8 +43,7 @@ actions = Array[Resource("res://Scripts/Resources/InteractableAction.gd")]([SubR
 position = Vector2(0, -31.6667)
 shape = SubResource("CircleShape2D_ipmyu")
 
-[node name="Devin" parent="." instance=ExtResource("8_yv56y")]
-position = Vector2(-517, 667)
-editor_hide_lamp_sensors = false
+[node name="Marker" type="Node" parent="."]
 
-[node name="Camera2D" type="Camera2D" parent="Devin"]
+[node name="PlayerStart" type="Node2D" parent="Marker"]
+position = Vector2(310, 613)

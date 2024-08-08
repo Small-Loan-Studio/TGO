@@ -7,7 +7,7 @@ var _last_loaded_level: LevelBase = null
 @onready var _menu_mgr: MenuManager = $OverlayManager/MenuManager
 @onready var _curtain := $OverlayManager/Curtain
 @onready var _world := $GameWorld
-@onready var _devin: Devin = %Devin
+@onready var player: Devin = %Devin
 
 
 func _ready() -> void:
@@ -31,12 +31,12 @@ func load_level(tgt: LevelBase, target_name: String) -> void:
 		_last_loaded_level.save_level_state()
 		_last_loaded_level.queue_free()
 	tgt.setup(self)
-	_devin.visible = true
-	_devin.player_controled = true
+	player.visible = true
+	player.player_controled = true
 	if target_name == null || target_name == "":
 		target_name = LevelBase.DEFAULT_MARKER
 	var location := tgt.get_named_location(target_name)
-	_devin.global_position = location
+	player.global_position = location
 
 	_last_loaded_level = tgt
 
