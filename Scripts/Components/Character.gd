@@ -49,6 +49,9 @@ func _unhandled_input(_event: InputEvent) -> void:
 		_impulse = Vector2.ZERO
 		return
 
+	if Dialogic.current_timeline != null:
+		return
+
 	# TODO: may need to guard under Input.is_action_pressed for these or
 	# handling input won't prevent movement in the face of non-propagating
 	# input events
@@ -71,6 +74,9 @@ func _unhandled_input(_event: InputEvent) -> void:
 
 	if _focused_interactable != null:
 		if _event.is_action_pressed(Enums.input_action_name(Enums.InputAction.INTERACT)):
+			var actions := _focused_interactable.actions
+			for a in actions:
+				print('Action: ' + str(a))
 			_focused_interactable.trigger(self)
 
 
@@ -87,7 +93,9 @@ func _physics_process(_delta: float) -> void:
 	var want_anim := Enums.direction_name(_direction)
 	var animation_correct := _sprite.animation == want_anim
 
-	if !animation_correct || !_sprite.is_playing:
+	print('want_anim: %s / animation_correct: %s / is_playing: %s' % [want_anim, animation_correct, _sprite.is_playing()])
+
+	if !animation_correct || !_sprite.is_playing():
 		_sprite.play(want_anim)
 	velocity = _impulse * move_speed
 	move_and_slide()

@@ -1,0 +1,51 @@
+[gd_scene load_steps=12 format=3 uid="uid://xkcmymq84ufc"]
+
+[ext_resource type="PackedScene" uid="uid://k5l5ypr21vvu" path="res://ZZ_Scratch/PeerPhysics/ScnA.tscn" id="1_tca8v"]
+[ext_resource type="Script" path="res://ZZ_Scratch/NPCDialogue/NPCDialogue.gd" id="1_we2v1"]
+[ext_resource type="PackedScene" uid="uid://cx703e8t27grh" path="res://Scenes/Components/Character.tscn" id="2_hxwcb"]
+[ext_resource type="SpriteFrames" uid="uid://c2xt2ljsuogw" path="res://ZZ_Scratch/NPCDialogue/lidia.tres" id="3_sk32y"]
+[ext_resource type="PackedScene" uid="uid://c2040l84asu8j" path="res://Scenes/Components/Interactable.tscn" id="4_n5uxa"]
+[ext_resource type="Script" path="res://Scripts/Resources/InteractableDialogue.gd" id="5_8ojll"]
+[ext_resource type="Resource" path="res://ZZ_Scratch/NPCDialogue/npc_test_dialogue.dtl" id="6_bg5gt"]
+[ext_resource type="PackedScene" uid="uid://mqvl5162rawb" path="res://Scenes/Devin.tscn" id="8_yv56y"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_57ixx"]
+radius = 19.0
+
+[sub_resource type="Resource" id="Resource_2xq8y"]
+script = ExtResource("5_8ojll")
+timeline = ExtResource("6_bg5gt")
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_ipmyu"]
+radius = 21.6827
+
+[node name="NpcDialogue" type="Node2D"]
+script = ExtResource("1_we2v1")
+
+[node name="ScnA" parent="." instance=ExtResource("1_tca8v")]
+
+[node name="TeleportTarget" type="Node2D" parent="ScnA"]
+position = Vector2(402, 105)
+
+[node name="TestNPC" parent="." instance=ExtResource("2_hxwcb")]
+position = Vector2(155, 145)
+scale = Vector2(1.2, 1.2)
+_override_default_sprite_frames = ExtResource("3_sk32y")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="TestNPC"]
+position = Vector2(0, -38)
+shape = SubResource("CircleShape2D_57ixx")
+
+[node name="Interactable" parent="TestNPC" instance=ExtResource("4_n5uxa")]
+position = Vector2(0, 0.833336)
+actions = Array[Resource("res://Scripts/Resources/InteractableAction.gd")]([SubResource("Resource_2xq8y")])
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="TestNPC/Interactable"]
+position = Vector2(0, -31.6667)
+shape = SubResource("CircleShape2D_ipmyu")
+
+[node name="Devin" parent="." instance=ExtResource("8_yv56y")]
+position = Vector2(-517, 667)
+editor_hide_lamp_sensors = false
+
+[node name="Camera2D" type="Camera2D" parent="Devin"]
