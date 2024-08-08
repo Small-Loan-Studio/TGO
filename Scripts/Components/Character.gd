@@ -76,7 +76,7 @@ func _unhandled_input(_event: InputEvent) -> void:
 		if _event.is_action_pressed(Enums.input_action_name(Enums.InputAction.INTERACT)):
 			var actions := _focused_interactable.actions
 			for a in actions:
-				print('Action: ' + str(a))
+				print("Action: " + str(a))
 			_focused_interactable.trigger(self)
 
 
@@ -93,7 +93,12 @@ func _physics_process(_delta: float) -> void:
 	var want_anim := Enums.direction_name(_direction)
 	var animation_correct := _sprite.animation == want_anim
 
-	print('want_anim: %s / animation_correct: %s / is_playing: %s' % [want_anim, animation_correct, _sprite.is_playing()])
+	print(
+		(
+			"want_anim: %s / animation_correct: %s / is_playing: %s"
+			% [want_anim, animation_correct, _sprite.is_playing()]
+		)
+	)
 
 	if !animation_correct || !_sprite.is_playing():
 		_sprite.play(want_anim)

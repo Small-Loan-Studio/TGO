@@ -3,5 +3,6 @@ extends InteractableAction
 
 @export var timeline: DialogicTimeline
 
+
 func act(_actor: Character, _cur_level: LevelBase) -> void:
-  Dialogic.start(timeline)
+	Dialogic.start(timeline)

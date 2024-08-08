@@ -1,6 +1,5 @@
 extends LevelBase
 
-
 @onready var npc: Character = $TestNPC
 
 
