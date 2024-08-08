@@ -6,7 +6,6 @@
 class_name Interactable
 extends Area2D
 
-
 ## Fires when an actor indicates they wish to interact with this object.
 ## Passed the triggering Character
 signal triggered(actor: Character)
