@@ -9,5 +9,10 @@ extends Resource
 var parent: Node2D
 
 
-func act(_actor: Character) -> void:
+## Stores the level currently active in which this action is being triggered.
+## May be null.
+var cur_level: LevelBase
+
+
+func act(_actor: Character, _cur_level: LevelBase) -> void:
 	pass

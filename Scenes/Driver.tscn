@@ -58,12 +58,16 @@ offset_right = -300.0
 offset_bottom = -1.0
 size_flags_horizontal = 4
 
-[node name="GameWorld" type="Node" parent="."]
+[node name="GameWorld" type="Node2D" parent="."]
+y_sort_enabled = true
 
 [node name="Devin" parent="GameWorld" instance=ExtResource("6_gmy4s")]
 unique_name_in_owner = true
 visible = false
+y_sort_enabled = true
 editor_hide_lamp_sensors = true
 player_controled = false
+
+[node name="Camera2D" type="Camera2D" parent="GameWorld/Devin"]
 
 [connection signal="request_load" from="OverlayManager/MenuManager/DebugMenu" to="." method="request_debug_load"]

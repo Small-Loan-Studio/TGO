@@ -1,8 +1,24 @@
 ## Node that can be attached to make something an interactable object.
 ## When interaction is triggered (manual or automatic) the list of attached
 ## actions will be run and then the triggered signal will be emitted.
+##
+## Must be attached to scenes that contain a LevelBase as a ancestor.
 class_name Interactable
 extends Area2D
+
+
+## Tracks the level that the action is taking place in
+var _cur_level: LevelBase
+
+func _ready() -> void:
+	var ref: Node = self
+	while not (ref is LevelBase):
+		ref = ref.get_parent()
+		if ref == null:
+			printerr("did not find a LevelBase parent for %s" % [name])
+			break
+	if ref != null:
+		_cur_level = ref
 
 ## Fires when an actor indicates they wish to interact with this object.
 ## Passed the triggering Character
@@ -20,6 +36,8 @@ signal triggered(actor: Character)
 
 func trigger(actor: Character) -> void:
 	for a in actions:
+		if a == null:
+			continue
 		a.parent = self
-		a.act(actor)
+		a.act(actor, _cur_level)
 	triggered.emit(actor)
