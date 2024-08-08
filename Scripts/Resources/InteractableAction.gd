@@ -9,11 +9,6 @@ extends Resource
 var parent: Node2D
 
 
-## Stores the level currently active in which this action is being triggered.
-## May be null.
-var cur_level: LevelBase
-
-
 ## Called with the actor triggering this action and the LevelBase context in
 ## which this action is getting triggered.
 ##

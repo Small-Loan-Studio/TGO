@@ -13,7 +13,7 @@ extends InteractableAction
 func act(_actor: Character, cur_level: LevelBase) -> void:
 	if cur_level == null:
 		return
-	
+
 	var load_level := load(load_level_path) as PackedScene
 	var new_level := load_level.instantiate() as LevelBase
 	# TODO: should this be cur_level.driver.load_level(new_level) instead

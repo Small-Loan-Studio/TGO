@@ -1,13 +1,13 @@
 class_name Driver
 extends Node2D
 
+var _last_loaded_level: LevelBase = null
+
 @onready var audio_mgr: AudioManager = $AudioManager
 @onready var _menu_mgr: MenuManager = $OverlayManager/MenuManager
 @onready var _curtain := $OverlayManager/Curtain
 @onready var _world := $GameWorld
 @onready var _devin: Devin = %Devin
-
-var _last_loaded_level: LevelBase = null
 
 
 func _ready() -> void:

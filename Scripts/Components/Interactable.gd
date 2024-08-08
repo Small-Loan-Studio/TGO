@@ -7,19 +7,6 @@ class_name Interactable
 extends Area2D
 
 
-## Tracks the level that the action is taking place in
-var _cur_level: LevelBase
-
-func _ready() -> void:
-	var ref: Node = self
-	while not (ref is LevelBase):
-		ref = ref.get_parent()
-		if ref == null:
-			printerr("did not find a LevelBase parent for %s" % [name])
-			break
-	if ref != null:
-		_cur_level = ref
-
 ## Fires when an actor indicates they wish to interact with this object.
 ## Passed the triggering Character
 signal triggered(actor: Character)
@@ -32,6 +19,20 @@ signal triggered(actor: Character)
 ## A set of actions to be taken when this interactable gets triggered. Will be
 ## evaluated before the signal is emitted.
 @export var actions: Array[InteractableAction]
+
+## Tracks the level that the action is taking place in
+var _cur_level: LevelBase
+
+
+func _ready() -> void:
+	var ref: Node = self
+	while not (ref is LevelBase):
+		ref = ref.get_parent()
+		if ref == null:
+			printerr("did not find a LevelBase parent for %s" % [name])
+			break
+	if ref != null:
+		_cur_level = ref
 
 
 func trigger(actor: Character) -> void:

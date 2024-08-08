@@ -1,12 +1,11 @@
 class_name LevelBase
 extends Node2D
 
-@onready var _marker_root := $Marker
+const DEFAULT_MARKER: String = "PlayerStart"
 
 var driver: Driver
 
-static var DEFAULT_MARKER: String = "PlayerStart"
-
+@onready var _marker_root := $Marker
 
 func setup(driver_in: Driver) -> void:
 	driver = driver_in
