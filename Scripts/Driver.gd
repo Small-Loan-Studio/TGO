@@ -23,6 +23,7 @@ func _post_ready() -> void:
 	await _curtain.fade_out(1)
 
 
+## Loads a new level into the game world
 func load_level(tgt: LevelBase, target_name: String) -> void:
 	_world.add_child(tgt)
 	if _last_loaded_level != null:
@@ -40,15 +41,14 @@ func load_level(tgt: LevelBase, target_name: String) -> void:
 	_last_loaded_level = tgt
 
 
+## TODO: We'll need to switch away  from debug load path soon
 func request_debug_load(path: String) -> void:
 	var music_ready := audio_mgr.play(Enums.AudioTrack.SKETCH_2, 2)
 	await _curtain.fade_in(1)
 	_menu_mgr.hide_menu(Enums.MenuType.DEBUG)
 
-	print("Loading path: %s" % [path])
 	var new_scene_resource := load(path) as PackedScene
 	var new_scene := new_scene_resource.instantiate()
-	print(new_scene)
 	if new_scene is LevelBase:
 		load_level(new_scene as LevelBase, LevelBase.DEFAULT_MARKER)
 	else:
