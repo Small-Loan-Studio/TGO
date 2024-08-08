@@ -5,28 +5,41 @@ extends Node2D
 
 var driver: Driver
 
-# @export var level_setup: Callable
+static var DEFAULT_MARKER: String = "PlayerStart"
+
 
 func setup(driver_in: Driver) -> void:
-	print("LevelBase.setup - " + str(driver_in))
 	driver = driver_in
-	# if level_setup != null:
-	# 	level_setup.call()
 	level_setup()
 
 
+## Called when the level has been added to the game world scene tree
+## and driver has been set. Intended to be overridden by subclasses; any
+## level specific setup that impacts all levels should happen in setup.
 func level_setup() -> void:
-	print('LevelBase.level_setup()')
+	pass
 
 
+## Called before a level gets freed and unloaded, can be used to save
+## locations of objects etc that we may want to repopulate to their original
+## state when returning to this level.
 func save_level_state() -> void:
 	pass
 
 
-func swap_to_level(tgt: LevelBase) -> void:
-	driver.load_level(tgt)
+## Switches the current level out for some new target level.
+##
+## TODO: Currently this is just plumbing between the level and driver that
+## may be unnecessary. Think about the wiring and what this should look like.
+func swap_to_level(tgt: LevelBase, marker_target: String) -> void:
+	driver.load_level(tgt, marker_target)
 
 
+## Finds a named position under the market root. Used in conjuction with
+## InteractableLevelLoad to place characters when they enter the scene.
+##
+## If no marker can be found we use the first child of the marker root.
+## If there are none defined this will throw an error.
 func get_named_location(named_pos: String) -> Vector2:
 	var marker: Node2D = _marker_root.get_node(named_pos)
 

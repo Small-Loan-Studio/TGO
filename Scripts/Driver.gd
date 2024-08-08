@@ -23,8 +23,7 @@ func _post_ready() -> void:
 	await _curtain.fade_out(1)
 
 
-func load_level(tgt: LevelBase) -> void:
-	print("Driver.load_level: %s" % [tgt])
+func load_level(tgt: LevelBase, target_name: String) -> void:
 	_world.add_child(tgt)
 	if _last_loaded_level != null:
 		_world.remove_child(_last_loaded_level)
@@ -33,7 +32,9 @@ func load_level(tgt: LevelBase) -> void:
 	tgt.setup(self)
 	_devin.visible = true
 	_devin.player_controled = true
-	var location := tgt.get_named_location("PlayerStart")
+	if target_name == null || target_name == "":
+		target_name = LevelBase.DEFAULT_MARKER
+	var location := tgt.get_named_location(target_name)
 	_devin.global_position = location
 
 	_last_loaded_level = tgt
@@ -49,7 +50,7 @@ func request_debug_load(path: String) -> void:
 	var new_scene := new_scene_resource.instantiate()
 	print(new_scene)
 	if new_scene is LevelBase:
-		load_level(new_scene as LevelBase)
+		load_level(new_scene as LevelBase, LevelBase.DEFAULT_MARKER)
 	else:
 		_world.add_child(new_scene)
 		new_scene.setup(self)

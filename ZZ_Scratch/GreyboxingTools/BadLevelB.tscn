@@ -14,6 +14,7 @@ region = Rect2(64, 200, 59, 56)
 [sub_resource type="Resource" id="Resource_uvdr6"]
 script = ExtResource("7_pejyo")
 load_level_path = "res://ZZ_Scratch/GreyboxingTools/BadLevelA.tscn"
+marker_name = ""
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_lwweu"]
 
@@ -43,4 +44,4 @@ position = Vector2(-1, 14)
 shape = SubResource("RectangleShape2D_lwweu")
 
 [node name="PlayerStart" type="Node2D" parent="Marker" index="0"]
-position = Vector2(483, 175)
+position = Vector2(490, 207)

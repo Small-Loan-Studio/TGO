@@ -14,5 +14,11 @@ var parent: Node2D
 var cur_level: LevelBase
 
 
+## Called with the actor triggering this action and the LevelBase context in
+## which this action is getting triggered.
+##
+## TODO: Potentially we could return some enum that lets actions control execution,
+## e.g., maybe an action returns HALT or CONTINUE and we can add predicate checking
+## to guard trigger actions
 func act(_actor: Character, _cur_level: LevelBase) -> void:
 	pass
