@@ -2,12 +2,19 @@
 
 - [Levels / Placeables](#levels--placeables)
   - [Changelog](#changelog)
-  - [Presentation Style](#presentation-style)
+  - [Structure: Levels within the Game](#structure-levels-within-the-game)
+  - [Structure: Level-Internal](#structure-level-internal)
+    - [TileMap Layers](#tilemap-layers)
+  - [Style](#style)
+  - [Design / Implementation Details](#design--implementation-details)
+    - [New levels](#new-levels)
+    - [Objects](#objects)
+    - [Markers](#markers)
     - [An argument against premature optimization](#an-argument-against-premature-optimization)
-  - [Art style](#art-style)
-    - [Workflow](#workflow)
-    - [Our role](#our-role)
-  - [Open Questions](#open-questions)
+  - [TODO: These things need more thinking / writing](#todo-these-things-need-more-thinking--writing)
+    - [Interactable nodes](#interactable-nodes)
+    - [Lighting](#lighting)
+    - [Hooks to various other systems (journal, quests, dialogue)](#hooks-to-various-other-systems-journal-quests-dialogue)
 
 
 ## Changelog
