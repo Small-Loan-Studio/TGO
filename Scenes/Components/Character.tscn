@@ -7,6 +7,7 @@
 size = Vector2(41.689, 42.1865)
 
 [node name="Character" type="CharacterBody2D"]
+motion_mode = 1
 script = ExtResource("1_tt4fa")
 _override_default_sprite_frames = ExtResource("2_3xe5u")
 
