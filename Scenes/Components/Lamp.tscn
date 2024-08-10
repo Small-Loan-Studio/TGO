@@ -35,14 +35,14 @@ texture = ExtResource("2_05qxh")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 texture_filter = 1
-position = Vector2(0, -71)
+position = Vector2(0, -70.9988)
 sprite_frames = SubResource("SpriteFrames_0qdc1")
 
 [node name="Beam" type="PointLight2D" parent="."]
 show_behind_parent = true
 light_mask = 3
 visibility_layer = 3
-position = Vector2(0, -71)
+position = Vector2(0, -70.9988)
 rotation = 1.5708
 enabled = false
 energy = 0.9
@@ -54,7 +54,7 @@ texture = ExtResource("4_e3mrh")
 show_behind_parent = true
 light_mask = 3
 visibility_layer = 3
-position = Vector2(0, -71)
+position = Vector2(0, -70.9988)
 rotation = 1.5708
 scale = Vector2(2, 2)
 enabled = false
@@ -75,7 +75,7 @@ shape = SubResource("CircleShape2D_h6o6t")
 show_behind_parent = true
 light_mask = 3
 visibility_layer = 3
-position = Vector2(0, -71)
+position = Vector2(0, -70.9988)
 rotation = 1.5708
 scale = Vector2(2, 2)
 enabled = false
