@@ -1,16 +1,237 @@
-[gd_scene load_steps=5 format=3 uid="uid://crrvo58x81lxn"]
+[gd_scene load_steps=28 format=3 uid="uid://crrvo58x81lxn"]
 
 [ext_resource type="Script" path="res://ZZ_Scratch/QuestPrototype/QuestPrototype.gd" id="1_h4v6k"]
+[ext_resource type="Texture2D" uid="uid://ds0x2hyas8fpv" path="res://Art/Environment/Underground.png" id="2_h17xi"]
+[ext_resource type="Script" path="res://ZZ_Scratch/QuestPrototype/QuestManager.gd" id="2_o8hp2"]
 [ext_resource type="PackedScene" uid="uid://bcqslh1vhjn2m" path="res://Scenes/UI/Journal/Journal.tscn" id="2_ohowe"]
 [ext_resource type="Script" path="res://Scripts/UI/Pop-up.gd" id="3_3wudy"]
+[ext_resource type="Texture2D" uid="uid://b5aoo3ejx38qf" path="res://Art/Environment/Placeables/questprototype/Lamp.png" id="3_koxfr"]
+[ext_resource type="Texture2D" uid="uid://ddusy2p3rpksq" path="res://Art/Environment/Placeables/questprototype/coffin.png" id="3_y843k"]
+[ext_resource type="PackedScene" uid="uid://c2040l84asu8j" path="res://Scenes/Components/Interactable.tscn" id="4_0fujw"]
 [ext_resource type="PackedScene" uid="uid://mqvl5162rawb" path="res://Scenes/Devin.tscn" id="4_y2igs"]
+[ext_resource type="Script" path="res://Scripts/Resources/InteractableDialogue.gd" id="5_84uud"]
+[ext_resource type="Resource" path="res://ZZ_Scratch/QuestPrototype/Timelines/coffin_0.dtl" id="6_3nuoq"]
+[ext_resource type="Texture2D" uid="uid://78tt4w14itxl" path="res://Art/Environment/Placeables/questprototype/door.png" id="7_u0hep"]
+[ext_resource type="Texture2D" uid="uid://bh5e6rcackjqc" path="res://Art/Environment/Placeables/questprototype/coffin_1.png" id="9_r3new"]
+[ext_resource type="Texture2D" uid="uid://b76ovoal2nqik" path="res://Art/Environment/Placeables/questprototype/coffin_2.png" id="10_r2r5j"]
+[ext_resource type="Texture2D" uid="uid://c4wx4r0twrp7c" path="res://Art/Environment/Placeables/questprototype/coffin_3.png" id="11_dg8wo"]
+[ext_resource type="Texture2D" uid="uid://bhtwy6f678hsq" path="res://Art/Environment/Placeables/questprototype/coffin_4.png" id="12_3llf7"]
+[ext_resource type="Texture2D" uid="uid://cq6f72qrlahar" path="res://Art/Environment/Placeables/questprototype/coffin_5.png" id="13_vklik"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_vwyhd"]
+size = Vector2(46, 84)
+
+[sub_resource type="Resource" id="Resource_vnfje"]
+script = ExtResource("5_84uud")
+timeline = ExtResource("6_3nuoq")
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_0dmca"]
+size = Vector2(84, 142)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_1m8ye"]
+size = Vector2(56.3334, 63.3333)
+
+[sub_resource type="Resource" id="Resource_xa0d0"]
+script = ExtResource("5_84uud")
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_w7ldh"]
+size = Vector2(73, 101.666)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_yfmoi"]
+size = Vector2(44.1009, 102.345)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_jgi7y"]
+size = Vector2(85.2122, 146.09)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_plv6x"]
+size = Vector2(133, 57.5)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_qrghi"]
+size = Vector2(163.5, 87.5)
 
 [node name="QuestPrototype" type="Node2D"]
 script = ExtResource("1_h4v6k")
 
+[node name="QuestManager" type="Node" parent="."]
+script = ExtResource("2_o8hp2")
+
+[node name="Background" type="Node2D" parent="."]
+
+[node name="Underground" type="Sprite2D" parent="Background"]
+position = Vector2(2253, -1231)
+scale = Vector2(2, 2)
+texture = ExtResource("2_h17xi")
+
+[node name="Lamp" type="Sprite2D" parent="Background"]
+position = Vector2(199, 196)
+texture = ExtResource("3_koxfr")
+
+[node name="StaticBody2D" type="StaticBody2D" parent="Background/Lamp"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Background/Lamp/StaticBody2D"]
+position = Vector2(-2, 2)
+shape = SubResource("RectangleShape2D_vwyhd")
+
+[node name="Interactable" parent="Background/Lamp" instance=ExtResource("4_0fujw")]
+position = Vector2(-436.338, -812.728)
+actions = Array[Resource("res://Scripts/Resources/InteractableAction.gd")]([SubResource("Resource_vnfje")])
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Background/Lamp/Interactable"]
+position = Vector2(433.338, 808.728)
+shape = SubResource("RectangleShape2D_0dmca")
+
+[node name="Door" type="Sprite2D" parent="Background"]
+position = Vector2(667, -1123)
+scale = Vector2(3, 3)
+texture = ExtResource("7_u0hep")
+
+[node name="StaticBody2D" type="StaticBody2D" parent="Background/Door"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Background/Door/StaticBody2D"]
+position = Vector2(0.833359, -0.666656)
+shape = SubResource("RectangleShape2D_1m8ye")
+
+[node name="Interactable" parent="Background/Door" instance=ExtResource("4_0fujw")]
+position = Vector2(-436.338, -812.728)
+actions = Array[Resource("res://Scripts/Resources/InteractableAction.gd")]([SubResource("Resource_xa0d0")])
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Background/Door/Interactable"]
+position = Vector2(435.838, 816.228)
+shape = SubResource("RectangleShape2D_w7ldh")
+
+[node name="Door2" type="Sprite2D" parent="Background"]
+position = Vector2(2808, -1084)
+scale = Vector2(2, 2)
+texture = ExtResource("7_u0hep")
+
+[node name="StaticBody2D" type="StaticBody2D" parent="Background/Door2"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Background/Door2/StaticBody2D"]
+position = Vector2(0.833359, -0.666656)
+shape = SubResource("RectangleShape2D_1m8ye")
+
+[node name="Interactable" parent="Background/Door2" instance=ExtResource("4_0fujw")]
+position = Vector2(-436.338, -812.728)
+actions = Array[Resource("res://Scripts/Resources/InteractableAction.gd")]([SubResource("Resource_xa0d0")])
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Background/Door2/Interactable"]
+position = Vector2(435.838, 816.228)
+shape = SubResource("RectangleShape2D_w7ldh")
+
+[node name="Coffin" type="Sprite2D" parent="Background"]
+position = Vector2(1164.75, 926.75)
+scale = Vector2(1.33784, 1.36792)
+texture = ExtResource("3_y843k")
+
+[node name="StaticBody2D" type="StaticBody2D" parent="Background/Coffin"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Background/Coffin/StaticBody2D"]
+position = Vector2(12.5202, 8.22412)
+shape = SubResource("RectangleShape2D_yfmoi")
+
+[node name="Interactable" parent="Background/Coffin" instance=ExtResource("4_0fujw")]
+position = Vector2(-436.338, -812.728)
+actions = Array[Resource("res://Scripts/Resources/InteractableAction.gd")]([SubResource("Resource_vnfje")])
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Background/Coffin/Interactable"]
+position = Vector2(446.99, 820.893)
+shape = SubResource("RectangleShape2D_jgi7y")
+
+[node name="coffins" type="Node2D" parent="Background"]
+position = Vector2(2799, 590)
+
+[node name="Coffin1" type="Sprite2D" parent="Background/coffins"]
+position = Vector2(-344, 13)
+scale = Vector2(2, 2)
+texture = ExtResource("9_r3new")
+
+[node name="StaticBody2D" type="StaticBody2D" parent="Background/coffins/Coffin1"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Background/coffins/Coffin1/StaticBody2D"]
+position = Vector2(0, -1.25)
+shape = SubResource("RectangleShape2D_plv6x")
+
+[node name="Interactable" parent="Background/coffins/Coffin1" instance=ExtResource("4_0fujw")]
+position = Vector2(-436.338, -812.728)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Background/coffins/Coffin1/Interactable"]
+position = Vector2(435.588, 809.978)
+shape = SubResource("RectangleShape2D_qrghi")
+
+[node name="Coffin2" type="Sprite2D" parent="Background/coffins"]
+position = Vector2(-345, 250)
+scale = Vector2(2, 2)
+texture = ExtResource("10_r2r5j")
+
+[node name="StaticBody2D" type="StaticBody2D" parent="Background/coffins/Coffin2"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Background/coffins/Coffin2/StaticBody2D"]
+position = Vector2(0, -1.25)
+shape = SubResource("RectangleShape2D_plv6x")
+
+[node name="Interactable" parent="Background/coffins/Coffin2" instance=ExtResource("4_0fujw")]
+position = Vector2(-436.338, -812.728)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Background/coffins/Coffin2/Interactable"]
+position = Vector2(435.588, 809.978)
+shape = SubResource("RectangleShape2D_qrghi")
+
+[node name="Coffin3" type="Sprite2D" parent="Background/coffins"]
+position = Vector2(364, -84)
+scale = Vector2(2, 2)
+texture = ExtResource("11_dg8wo")
+
+[node name="StaticBody2D" type="StaticBody2D" parent="Background/coffins/Coffin3"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Background/coffins/Coffin3/StaticBody2D"]
+position = Vector2(0, -1.25)
+shape = SubResource("RectangleShape2D_plv6x")
+
+[node name="Interactable" parent="Background/coffins/Coffin3" instance=ExtResource("4_0fujw")]
+position = Vector2(-436.338, -812.728)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Background/coffins/Coffin3/Interactable"]
+position = Vector2(435.588, 809.978)
+shape = SubResource("RectangleShape2D_qrghi")
+
+[node name="Coffin4" type="Sprite2D" parent="Background/coffins"]
+position = Vector2(357, 140)
+scale = Vector2(2, 2)
+texture = ExtResource("12_3llf7")
+
+[node name="StaticBody2D" type="StaticBody2D" parent="Background/coffins/Coffin4"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Background/coffins/Coffin4/StaticBody2D"]
+position = Vector2(0, -1.25)
+shape = SubResource("RectangleShape2D_plv6x")
+
+[node name="Interactable" parent="Background/coffins/Coffin4" instance=ExtResource("4_0fujw")]
+position = Vector2(-436.338, -812.728)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Background/coffins/Coffin4/Interactable"]
+position = Vector2(435.588, 809.978)
+shape = SubResource("RectangleShape2D_qrghi")
+
+[node name="Coffin5" type="Sprite2D" parent="Background/coffins"]
+position = Vector2(363, 350)
+scale = Vector2(2, 2)
+texture = ExtResource("13_vklik")
+
+[node name="StaticBody2D" type="StaticBody2D" parent="Background/coffins/Coffin5"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Background/coffins/Coffin5/StaticBody2D"]
+position = Vector2(0, -1.25)
+shape = SubResource("RectangleShape2D_plv6x")
+
+[node name="Interactable" parent="Background/coffins/Coffin5" instance=ExtResource("4_0fujw")]
+position = Vector2(-436.338, -812.728)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Background/coffins/Coffin5/Interactable"]
+position = Vector2(435.588, 809.978)
+shape = SubResource("RectangleShape2D_qrghi")
+
 [node name="Character" parent="." instance=ExtResource("4_y2igs")]
 position = Vector2(937, 638)
-editor_hide_lamp_sensors = false
 
 [node name="Camera2D" type="Camera2D" parent="Character"]
 position = Vector2(22, -102)

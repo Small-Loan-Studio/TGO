@@ -84,6 +84,8 @@ static func input_action_name(ia: InputAction) -> String:
 			return "left"
 		InputAction.RIGHT:
 			return "right"
+		InputAction.INTERACT:
+			return "interact"
 	assert(false, "Invalid Input action: " + str(ia))
 	return ""
 

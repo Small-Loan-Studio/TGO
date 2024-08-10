@@ -10,6 +10,7 @@ radius = 19.0
 
 [node name="Character" instance=ExtResource("1_kp6oq")]
 script = ExtResource("1_coq4s")
+editor_hide_lamp_sensors = false
 player_controled = true
 _override_default_sprite_frames = ExtResource("2_0c1b0")
 
