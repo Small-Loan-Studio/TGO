@@ -1,7 +1,10 @@
 class_name InteractableLevelLoad
 extends InteractableAction
 
-## Path to a scene that should be loaded as the next level
+## Path to a scene that should be loaded as the next level.
+## TODO: Unclear why using PackedScene didn't work here -- that's very much
+## the ideal approach :shrug: Try again in the future when we have time to
+## debug
 @export var load_level_path: String
 
 ## What marker should we use to locate the player when placing
