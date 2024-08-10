@@ -18,6 +18,8 @@ _display_collision_shapes = null
 position = Vector2(1, 0)
 
 [node name="Interactable" type="Area2D" parent="."]
+collision_layer = 2
+collision_mask = 0
 script = ExtResource("3_ju5ag")
 
 [node name="Shape" type="CollisionShape2D" parent="Interactable"]

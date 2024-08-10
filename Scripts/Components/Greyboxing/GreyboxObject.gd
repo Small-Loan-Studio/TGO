@@ -103,6 +103,8 @@ func _process_can_block_movement_update() -> void:
 			add_child(_physics)
 			_physics.owner = self
 			_physics.name = "Physics"
+			_physics.collision_layer = 1
+			_physics.collision_mask = 0
 			var _phys_shape := CollisionShape2D.new()
 			_physics.add_child(_phys_shape)
 			_phys_shape.owner = self
@@ -132,6 +134,8 @@ func _process_can_interact_update() -> void:
 			add_child(_interactable)
 			_interactable.owner = self
 			_interactable.name = "Interactable"
+			_interactable.collision_layer = 2
+			_interactable.collision_mask = 0
 			var _int_shape := CollisionShape2D.new()
 			_interactable.add_child(_int_shape)
 			_int_shape.owner = self
