@@ -19,7 +19,6 @@ marker_name = ""
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_lwweu"]
 
 [node name="LevelBase" instance=ExtResource("1_iejup")]
-y_sort_enabled = true
 script = ExtResource("2_22a2t")
 
 [node name="TileMap" parent="." index="0"]
