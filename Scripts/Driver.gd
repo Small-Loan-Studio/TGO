@@ -25,12 +25,17 @@ func _post_ready() -> void:
 
 ## Loads a new level into the game world
 func load_level(tgt: LevelBase, target_name: String) -> void:
+	# first add the new level
 	_world.add_child(tgt)
 	if _last_loaded_level != null:
+		# if we had a previous level clean it up.
 		_world.remove_child(_last_loaded_level)
 		_last_loaded_level.save_level_state()
 		_last_loaded_level.queue_free()
+	# run any setup the level needs to do to work
 	tgt.setup(self)
+	# TODO: get the player ready and move them to the appropriate location
+	# we'll probably want to parameterize this more eventually.
 	player.visible = true
 	player.player_controled = true
 	if target_name == null || target_name == "":
@@ -38,6 +43,7 @@ func load_level(tgt: LevelBase, target_name: String) -> void:
 	var location := tgt.get_named_location(target_name)
 	player.global_position = location
 
+	# update level ref
 	_last_loaded_level = tgt
 
 
@@ -53,6 +59,8 @@ func request_debug_load(path: String) -> void:
 		load_level(new_scene as LevelBase, LevelBase.DEFAULT_MARKER)
 	else:
 		_world.add_child(new_scene)
+		_world.remove_child(player)
+		player.queue_free()
 		new_scene.setup(self)
 
 	await music_ready.finished

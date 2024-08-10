@@ -32,7 +32,7 @@ scale = Vector2(1.2, 1.2)
 _override_default_sprite_frames = ExtResource("3_sk32y")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="TestNPC"]
-position = Vector2(0, -38)
+position = Vector2(0.833333, 20.8333)
 shape = SubResource("CircleShape2D_57ixx")
 
 [node name="Interactable" parent="TestNPC" instance=ExtResource("4_n5uxa")]
@@ -40,7 +40,7 @@ position = Vector2(0, 0.833336)
 actions = Array[Resource("res://Scripts/Resources/InteractableAction.gd")]([SubResource("Resource_2xq8y")])
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="TestNPC/Interactable"]
-position = Vector2(0, -31.6667)
+position = Vector2(-0.833333, 20.8333)
 shape = SubResource("CircleShape2D_ipmyu")
 
 [node name="Marker" type="Node" parent="."]

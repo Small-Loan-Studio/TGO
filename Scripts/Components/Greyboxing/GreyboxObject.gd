@@ -88,9 +88,6 @@ func _update_collider_display() -> void:
 		_interactable.visible = always_display || _display_interaction_shapes
 
 
-## TODO: update mask / layer shit for rigid body and interactable below
-
-
 func _process_can_block_movement_update() -> void:
 	if !Engine.is_editor_hint():
 		printerr("May not change movement blocking at runtime")
