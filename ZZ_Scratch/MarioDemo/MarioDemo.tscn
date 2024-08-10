@@ -1,0 +1,9 @@
+[gd_scene load_steps=3 format=3 uid="uid://cawrjwmnfw0j7"]
+
+[ext_resource type="PackedScene" uid="uid://dyq8mcdsutnsa" path="res://Scenes/Components/LevelBase.tscn" id="1_lqbtu"]
+[ext_resource type="TileSet" uid="uid://c5vrjt6pkv26m" path="res://ZZ_Scratch/GreyboxingTools/test_tileset.tres" id="2_ac6i5"]
+
+[node name="LevelBase" instance=ExtResource("1_lqbtu")]
+
+[node name="TileMap" parent="." index="0"]
+tile_set = ExtResource("2_ac6i5")

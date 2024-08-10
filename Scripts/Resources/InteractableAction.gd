@@ -4,9 +4,9 @@
 class_name InteractableAction
 extends Resource
 
-## Stores the parent that this action is attached to. Can be used to resolve
-## relative node paths and the like.
-var parent: Node2D
+## Stores the parent that this action is attached to. Note that this is
+## the Interactable scene
+var parent: Interactable
 
 
 ## Called with the actor triggering this action and the LevelBase context in

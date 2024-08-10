@@ -7,15 +7,17 @@
 size = Vector2(41.689, 42.1865)
 
 [node name="Character" type="CharacterBody2D"]
+y_sort_enabled = true
 motion_mode = 1
 script = ExtResource("1_tt4fa")
 _override_default_sprite_frames = ExtResource("2_3xe5u")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
-position = Vector2(0, -42)
+position = Vector2(0, 20)
 sprite_frames = ExtResource("2_3xe5u")
 
 [node name="InteractionSensor" type="Area2D" parent="."]
+position = Vector2(0, 62)
 collision_layer = 0
 collision_mask = 2
 

@@ -64,7 +64,6 @@ y_sort_enabled = true
 [node name="Devin" parent="GameWorld" instance=ExtResource("6_gmy4s")]
 unique_name_in_owner = true
 visible = false
-y_sort_enabled = true
 editor_hide_lamp_sensors = true
 player_controled = false
 
