@@ -3,6 +3,7 @@
 [ext_resource type="Script" path="res://Scripts/Components/LevelBase.gd" id="1_p7ajo"]
 
 [node name="LevelBase" type="Node2D"]
+y_sort_enabled = true
 script = ExtResource("1_p7ajo")
 
 [node name="TileMap" type="TileMap" parent="."]
