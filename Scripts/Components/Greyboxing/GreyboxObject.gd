@@ -33,7 +33,6 @@ extends Node2D
 		_display_interaction_shapes = value
 		_update_collider_display()
 
-
 @export_subgroup("Y Sort info")
 @export var y_sort_width: int = 100:
 	get:
@@ -66,6 +65,7 @@ extends Node2D
 @onready var _physics: RigidBody2D = $Physics
 @onready var _interactable: Interactable = $Interactable
 
+
 func _ready() -> void:
 	if Engine.is_editor_hint():
 		get_parent().set_editable_instance(self, true)
@@ -75,13 +75,10 @@ func _ready() -> void:
 func _draw() -> void:
 	if Engine.is_editor_hint():
 		if show_y_sort_line:
-			draw_line(
-				Vector2(-y_sort_width / 2, 0),
-				Vector2(y_sort_width / 2, 0),
-				debug_color,
-				2)
+			draw_line(Vector2(-y_sort_width / 2, 0), Vector2(y_sort_width / 2, 0), debug_color, 2)
 		if show_object_center:
 			draw_circle(Vector2.ZERO, 4, debug_color)
+
 
 func _update_collider_display() -> void:
 	var always_display := !Engine.is_editor_hint()
@@ -90,7 +87,9 @@ func _update_collider_display() -> void:
 	if _interactable != null:
 		_interactable.visible = always_display || _display_interaction_shapes
 
+
 ## TODO: update mask / layer shit for rigid body and interactable below
+
 
 func _process_can_block_movement_update() -> void:
 	if !Engine.is_editor_hint():
@@ -120,6 +119,7 @@ func _process_can_block_movement_update() -> void:
 		remove_child(_physics)
 		_physics.queue_free()
 		_physics = null
+
 
 func _process_can_interact_update() -> void:
 	if !Engine.is_editor_hint():
