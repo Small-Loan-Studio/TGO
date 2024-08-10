@@ -9,8 +9,9 @@
 radius = 19.0
 
 [node name="Character" instance=ExtResource("1_kp6oq")]
+position = Vector2(0, -70)
 script = ExtResource("1_coq4s")
-editor_hide_lamp_sensors = false
+editor_hide_lamp_sensors = true
 player_controled = true
 _override_default_sprite_frames = ExtResource("2_0c1b0")
 
@@ -19,8 +20,8 @@ sprite_frames = ExtResource("2_0c1b0")
 animation = &"east"
 
 [node name="Lamp" parent="." index="2" instance=ExtResource("3_h1iub")]
-position = Vector2(27, -57)
+position = Vector2(26, 62)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." index="3"]
-position = Vector2(2, 0)
+position = Vector2(2, 61)
 shape = SubResource("CircleShape2D_tccbb")

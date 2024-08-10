@@ -64,7 +64,7 @@ y_sort_enabled = true
 [node name="Devin" parent="GameWorld" instance=ExtResource("6_gmy4s")]
 unique_name_in_owner = true
 visible = false
-editor_hide_lamp_sensors = true
+position = Vector2(0, 0)
 player_controled = false
 
 [node name="Camera2D" type="Camera2D" parent="GameWorld/Devin"]
