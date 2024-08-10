@@ -90,35 +90,36 @@ func _update_collider_display() -> void:
 	if _interactable != null:
 		_interactable.visible = always_display || _display_interaction_shapes
 
+## TODO: update mask / layer shit for rigid body and interactable below
+
 func _process_can_block_movement_update() -> void:
 	if !Engine.is_editor_hint():
 		printerr("May not change movement blocking at runtime")
 		return
+
 	if can_block_movement:
 		if _physics != null:
 			# already has a physics body
 			return
-		else:
-			_physics = RigidBody2D.new()
-			add_child(_physics)
-			_physics.owner = self
-			_physics.name = "Physics"
-			_physics.collision_layer = 1
-			_physics.collision_mask = 0
-			var _phys_shape := CollisionShape2D.new()
-			_physics.add_child(_phys_shape)
-			_phys_shape.owner = self
-			_phys_shape.name = "Shape"
-			# reset collision shape display just to make sure things stay in sync
-			_display_collision_shapes = true
+		_physics = RigidBody2D.new()
+		add_child(_physics)
+		_physics.owner = self
+		_physics.name = "Physics"
+		_physics.collision_layer = 1
+		_physics.collision_mask = 0
+		var shape := CollisionShape2D.new()
+		_physics.add_child(shape)
+		shape.owner = self
+		shape.name = "Shape"
+		# reset collision shape display just to make sure things stay in sync
+		_display_collision_shapes = true
 	else:
 		if _physics == null:
 			# already doesn't have a physics body
 			return
-		else:
-			remove_child(_physics)
-			_physics.queue_free()
-			_physics = null
+		remove_child(_physics)
+		_physics.queue_free()
+		_physics = null
 
 func _process_can_interact_update() -> void:
 	if !Engine.is_editor_hint():
@@ -128,25 +129,23 @@ func _process_can_interact_update() -> void:
 		if _interactable != null:
 			# already has an interactable object
 			return
-		else:
-			# var res: Resource = load("res://Scripts/Components/Interactable.gd")
-			_interactable = Interactable.new()
-			add_child(_interactable)
-			_interactable.owner = self
-			_interactable.name = "Interactable"
-			_interactable.collision_layer = 2
-			_interactable.collision_mask = 0
-			var _int_shape := CollisionShape2D.new()
-			_interactable.add_child(_int_shape)
-			_int_shape.owner = self
-			_int_shape.name = "Shape"
-			# reset collision shape display just to make sure things stay in sync
-			_display_interaction_shapes = true
+
+		_interactable = Interactable.new()
+		add_child(_interactable)
+		_interactable.owner = self
+		_interactable.name = "Interactable"
+		_interactable.collision_layer = 2
+		_interactable.collision_mask = 0
+		var shape := CollisionShape2D.new()
+		_interactable.add_child(shape)
+		shape.owner = self
+		shape.name = "Shape"
+		# reset collision shape display just to make sure things stay in sync
+		_display_interaction_shapes = true
 	else:
 		if _interactable == null:
 			# already doesn't have an interactioble object
 			return
-		else:
-			remove_child(_interactable)
-			_interactable.queue_free()
-			_interactable = null
+		remove_child(_interactable)
+		_interactable.queue_free()
+		_interactable = null
