@@ -1,13 +1,11 @@
-[gd_scene load_steps=13 format=3 uid="uid://c3pgmxm78klqy"]
+[gd_scene load_steps=11 format=3 uid="uid://c3pgmxm78klqy"]
 
 [ext_resource type="PackedScene" uid="uid://dyq8mcdsutnsa" path="res://Scenes/Components/LevelBase.tscn" id="1_qb1mu"]
 [ext_resource type="Script" path="res://ZZ_Scratch/GreyboxingTools/BadLevelA.gd" id="2_fvydm"]
 [ext_resource type="TileSet" uid="uid://c5vrjt6pkv26m" path="res://ZZ_Scratch/GreyboxingTools/test_tileset.tres" id="3_mn72j"]
 [ext_resource type="Texture2D" uid="uid://v8wedauptprb" path="res://ZZ_Scratch/GreyboxingTools/template_tileset.png" id="4_eh4ix"]
 [ext_resource type="PackedScene" uid="uid://c2040l84asu8j" path="res://Scenes/Components/Interactable.tscn" id="5_io1ts"]
-[ext_resource type="Texture2D" uid="uid://ceo0a1wjutqct" path="res://Art/Environment/Placeables/box.png" id="5_px3m7"]
 [ext_resource type="Script" path="res://Scripts/Resources/InteractableLevelLoad.gd" id="7_pejyo"]
-[ext_resource type="PackedScene" uid="uid://bx2qjlw58ci20" path="res://Scenes/Components/Greyboxing/GreyboxObject.tscn" id="7_y0y3y"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_72abb"]
 radius = 23.0868
@@ -56,17 +54,5 @@ shape = SubResource("RectangleShape2D_lwweu")
 y_sort_enabled = true
 texture = SubResource("AtlasTexture_ptcao")
 
-[node name="Object" parent="Objects" index="1" instance=ExtResource("7_y0y3y")]
-position = Vector2(73, 63)
-can_block_movement = false
-can_interact = false
-_display_collision_shapes = true
-
-[node name="Display" parent="Objects/Object" index="0"]
-position = Vector2(0, -63)
-texture = ExtResource("5_px3m7")
-
 [node name="PlayerStart" type="Node2D" parent="Marker" index="0"]
 position = Vector2(490, 207)
-
-[editable path="Objects/Object"]
