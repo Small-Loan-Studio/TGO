@@ -42,7 +42,7 @@ var quests : Dictionary = {
 	}
 
 func _ready()->void:
-	Signalbus.update_quest.connect(_on_update_quest)
+	Signalbus.quest_update.connect(_on_update_quest)
 	pass
 @export var all_quests: Array[Quest] = []
 var active_quests: Array[Quest] = []
@@ -60,11 +60,11 @@ func complete_quest(quest: Quest) -> void:
 	quest.is_completed = true
 	completed_quests.append(quest)
 	distribute_rewards(quest.rewards)
-func update_objectives(quest: Quest,effected_objective :String) -> void:
+func update_objectives(quest: Quest,effected_objective :String,_value:int) -> void:
 	for objective in quest.objectives:
 		if not objective.is_complete:
 			check_objective_status(objective)
-			
+			update_quest_ui(quest)
 func distribute_rewards(rewards: Array) -> void :
 	if rewards.is_empty():
 		return
@@ -76,22 +76,29 @@ func check_objective_status(objective:QuestObjective)->void:
 	objective.is_complete = true
 	return
 func update_quest_ui(quest:Quest)->void:
-	
+	quest_ui.update_quest_ui(quest)
 	pass
 #TODO: Update UI when one quest is affected.
-func _on_update_quest(quest_id:int,effected_objective :String = "" )-> void:
+func _on_update_quest(quest_id:int,effected_objective :String,value:int)-> void:
 	var does_quest_exist :bool = false
+	
 	for quest in active_quests:
 		if quest.quest_id == quest_id:
-			update_objectives(quest,effected_objective)
+			update_objectives(quest,effected_objective,value)
 			does_quest_exist = true
 	if not does_quest_exist:
 		for quest in all_quests:
 			if quest.quest_id == quest_id:
-				for pq in completed_quests:
-					if pq.quest_id == quest_id:
-						return
-					else:
-						add_quest(quest)
+				if completed_quests.is_empty():
+					print("completed quests are empty adding quest")
+					add_quest(quest)
+					update_objectives(quest,effected_objective,value)
+				else:
+					for pq in completed_quests:
+						if pq.quest_id == quest_id:
+							return
+						else:
+							add_quest(quest)
+							update_objectives(quest,effected_objective,value)
 	pass
 

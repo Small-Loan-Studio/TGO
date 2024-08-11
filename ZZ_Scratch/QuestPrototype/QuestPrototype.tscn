@@ -1,4 +1,4 @@
-[gd_scene load_steps=34 format=3 uid="uid://crrvo58x81lxn"]
+[gd_scene load_steps=36 format=3 uid="uid://crrvo58x81lxn"]
 
 [ext_resource type="Script" path="res://ZZ_Scratch/QuestPrototype/QuestPrototype.gd" id="1_h4v6k"]
 [ext_resource type="Texture2D" uid="uid://ds0x2hyas8fpv" path="res://Art/Environment/Underground.png" id="2_h17xi"]
@@ -18,12 +18,14 @@
 [ext_resource type="Texture2D" uid="uid://c4wx4r0twrp7c" path="res://Art/Environment/Placeables/questprototype/coffin_3.png" id="11_dg8wo"]
 [ext_resource type="Texture2D" uid="uid://bhtwy6f678hsq" path="res://Art/Environment/Placeables/questprototype/coffin_4.png" id="12_3llf7"]
 [ext_resource type="Texture2D" uid="uid://cq6f72qrlahar" path="res://Art/Environment/Placeables/questprototype/coffin_5.png" id="13_vklik"]
+[ext_resource type="Script" path="res://Scripts/Resources/InteractableQuest.gd" id="17_65bcs"]
 [ext_resource type="PackedScene" uid="uid://8l767ndoo0ch" path="res://Scenes/UI/Quest/QuestUI.tscn" id="19_jl20o"]
 [ext_resource type="PackedScene" uid="uid://c5ysorqfbhowc" path="res://Scenes/UI/pop_up.tscn" id="20_cry6j"]
 
 [sub_resource type="Resource" id="Resource_jebke"]
 script = ExtResource("3_tlatb")
 description = "Find light source."
+status = ""
 is_complete = false
 
 [sub_resource type="Resource" id="Resource_xo6x6"]
@@ -35,11 +37,17 @@ is_completed = false
 objectives = Array[ExtResource("3_tlatb")]([SubResource("Resource_jebke")])
 rewards = Array[Resource("res://ZZ_Scratch/QuestPrototype/QuestReward.gd")]([])
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_42d0q"]
-radius = 671.001
-
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_vwyhd"]
 size = Vector2(46, 84)
+
+[sub_resource type="Resource" id="Resource_j2eyr"]
+script = ExtResource("17_65bcs")
+questid = 0
+update_objective = "Find light source."
+value = 0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_42d0q"]
+radius = 117.516
 
 [sub_resource type="Resource" id="Resource_vnfje"]
 script = ExtResource("5_84uud")
@@ -76,14 +84,6 @@ script = ExtResource("1_h4v6k")
 script = ExtResource("2_o8hp2")
 all_quests = Array[ExtResource("4_t3u61")]([SubResource("Resource_xo6x6")])
 
-[node name="Interactable" parent="QuestManager" instance=ExtResource("4_0fujw")]
-position = Vector2(646, 528)
-automatic = true
-actions = Array[Resource("res://Scripts/Resources/InteractableAction.gd")]([null])
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="QuestManager/Interactable"]
-shape = SubResource("CircleShape2D_42d0q")
-
 [node name="Background" type="Node2D" parent="."]
 
 [node name="Underground" type="Sprite2D" parent="Background"]
@@ -100,6 +100,15 @@ texture = ExtResource("3_koxfr")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Background/Lamp/StaticBody2D"]
 position = Vector2(-2, 2)
 shape = SubResource("RectangleShape2D_vwyhd")
+
+[node name="Interactable2" parent="Background/Lamp" instance=ExtResource("4_0fujw")]
+position = Vector2(447, 332)
+automatic = true
+actions = Array[Resource("res://Scripts/Resources/InteractableAction.gd")]([SubResource("Resource_j2eyr")])
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Background/Lamp/Interactable2"]
+position = Vector2(-442, -336)
+shape = SubResource("CircleShape2D_42d0q")
 
 [node name="Interactable" parent="Background/Lamp" instance=ExtResource("4_0fujw")]
 position = Vector2(-436.338, -812.728)
@@ -260,10 +269,9 @@ position = Vector2(435.588, 809.978)
 shape = SubResource("RectangleShape2D_qrghi")
 
 [node name="Character" parent="." instance=ExtResource("4_y2igs")]
-position = Vector2(945, 638)
+position = Vector2(818, 487)
 
 [node name="Camera2D" type="Camera2D" parent="Character"]
-position = Vector2(22, -102)
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 

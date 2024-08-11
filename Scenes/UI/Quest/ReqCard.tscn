@@ -10,7 +10,7 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_aexfi")
 
-[node name="text" type="RichTextLabel" parent="."]
+[node name="description" type="RichTextLabel" parent="."]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_stretch_ratio = 8.8
