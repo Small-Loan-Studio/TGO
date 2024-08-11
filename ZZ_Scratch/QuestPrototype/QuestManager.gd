@@ -75,7 +75,7 @@ func distribute_rewards(rewards: Array) -> void :
 func check_objective_status(objective:QuestObjective)->void:
 	objective.is_complete = true
 	return
-func update_quest_ui()->void:
+func update_quest_ui(quest:Quest)->void:
 	
 	pass
 #TODO: Update UI when one quest is affected.
