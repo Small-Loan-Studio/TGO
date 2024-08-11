@@ -23,7 +23,6 @@ atlas = ExtResource("4_eh4ix")
 region = Rect2(64, 200, 59, 56)
 
 [node name="LevelBase" instance=ExtResource("1_qb1mu")]
-y_sort_enabled = true
 script = ExtResource("2_fvydm")
 
 [node name="TileMap" parent="." index="0"]
