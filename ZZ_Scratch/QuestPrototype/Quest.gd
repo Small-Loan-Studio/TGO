@@ -2,7 +2,7 @@
 extends Resource
 class_name Quest
 
-@export var quest_id: String
+@export var quest_id: int
 @export var title: String
 @export var description: String
 @export var is_completed: bool = false
