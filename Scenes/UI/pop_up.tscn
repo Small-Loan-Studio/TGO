@@ -1,0 +1,52 @@
+[gd_scene load_steps=2 format=3 uid="uid://c5ysorqfbhowc"]
+
+[ext_resource type="Script" path="res://Scripts/UI/Pop-up.gd" id="1_5gjhm"]
+
+[node name="Pop-up" type="Control"]
+visible = false
+layout_mode = 3
+anchor_left = 0.39
+anchor_top = 0.381
+anchor_right = 0.61
+anchor_bottom = 0.619
+offset_left = -0.800049
+offset_top = 0.519989
+offset_right = 0.799927
+offset_bottom = -0.52002
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_5gjhm")
+
+[node name="PanelContainer" type="PanelContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer"]
+layout_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="PanelContainer/VBoxContainer"]
+layout_mode = 2
+alignment = 2
+
+[node name="Label" type="Label" parent="PanelContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Pop up"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="close" type="Button" parent="PanelContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+text = "X"
+
+[node name="ok" type="Button" parent="PanelContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+text = "Ok"
+
+[connection signal="pressed" from="PanelContainer/VBoxContainer/HBoxContainer/close" to="." method="_on_close_pressed"]
+[connection signal="pressed" from="PanelContainer/VBoxContainer/ok" to="." method="_on_ok_pressed"]

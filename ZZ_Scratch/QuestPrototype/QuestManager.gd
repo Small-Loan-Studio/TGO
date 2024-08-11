@@ -76,6 +76,7 @@ func check_objective_status(objective:QuestObjective)->void:
 	objective.is_complete = true
 	return
 func update_quest_ui()->void:
+	
 	pass
 #TODO: Update UI when one quest is affected.
 func _on_update_quest(quest_id:int,effected_objective :String = "" )-> void:
