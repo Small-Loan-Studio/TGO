@@ -24,6 +24,11 @@ grow_vertical = 2
 [node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer"]
 layout_mode = 2
 
+[node name="close" type="Button" parent="PanelContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 8
+text = "x"
+
 [node name="QuestName" type="Label" parent="PanelContainer/VBoxContainer"]
 layout_mode = 2
 theme_override_font_sizes/font_size = 26
@@ -40,3 +45,5 @@ layout_mode = 2
 
 [node name="ReqCard" parent="PanelContainer/VBoxContainer/Requirements" instance=ExtResource("2_gla0r")]
 layout_mode = 2
+
+[connection signal="pressed" from="PanelContainer/VBoxContainer/close" to="." method="_on_close_pressed"]

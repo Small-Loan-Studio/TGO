@@ -60,11 +60,16 @@ func complete_quest(quest: Quest) -> void:
 	quest.is_completed = true
 	completed_quests.append(quest)
 	distribute_rewards(quest.rewards)
+
 func update_objectives(quest: Quest,effected_objective :String,_value:int) -> void:
 	for objective in quest.objectives:
 		if not objective.is_complete:
-			check_objective_status(objective)
+			check_objective_status(objective,_value)
 			update_quest_ui(quest)
+
+#TODO:Distribute rewards after quest is complete.
+#It will be implemented after we have other systems in place.
+
 func distribute_rewards(rewards: Array) -> void :
 	if rewards.is_empty():
 		return
@@ -72,10 +77,25 @@ func distribute_rewards(rewards: Array) -> void :
 		pass
 	
 	return
-func check_objective_status(objective:QuestObjective)->void:
-	objective.is_complete = true
+func check_objective_status(objective:QuestObjective,_value:int)->void:
+	match objective.type:
+		"Text":
+			if _value == 0:
+				objective.is_complete = false
+				objective.status = "-"
+			elif _value == 1:
+				objective.is_complete = true
+				objective.status = "Done"
+		"Number":
+			if objective.amount == _value:
+				objective.is_complete = true
+				objective.status = "Done"
+			elif objective.amount > _value:
+				objective.status = str(_value) + "/" + str(objective.amount)
+	
 	return
 func update_quest_ui(quest:Quest)->void:
+	quest_ui.show()
 	quest_ui.update_quest_ui(quest)
 	pass
 #TODO: Update UI when one quest is affected.

@@ -30,7 +30,9 @@ gdscript/warnings/untyped_declaration=2
 
 directories/dch_directory={}
 directories/dtl_directory={
+"Devin_wakeup": "res://ZZ_Scratch/QuestPrototype/Timelines/Devin_wakeup.dtl",
 "coffin_0": "res://ZZ_Scratch/QuestPrototype/Timelines/coffin_0.dtl",
+"found_lamp": "res://ZZ_Scratch/QuestPrototype/Timelines/found_lamp.dtl",
 "test_timeline": "res://ZZ_Scratch/DialogicValidation/test_timeline.dtl"
 }
 text/letter_speed=0.01

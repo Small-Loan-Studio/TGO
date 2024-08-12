@@ -17,3 +17,8 @@ func update_quest_ui(quest: Quest)->void:
 		reqcard.set_status(requirement.status)
 		
 	return
+
+
+func _on_close_pressed()->void:
+	self.hide()
+	pass # Replace with function body.
