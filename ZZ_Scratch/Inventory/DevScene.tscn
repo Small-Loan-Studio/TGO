@@ -1,0 +1,35 @@
+[gd_scene load_steps=9 format=3 uid="uid://3y4hwdyikuu0"]
+
+[ext_resource type="PackedScene" uid="uid://mqvl5162rawb" path="res://Scenes/Devin.tscn" id="1_ht83a"]
+[ext_resource type="PackedScene" uid="uid://0f5f4jsd2tpc" path="res://ZZ_Scratch/Inventory/Items/Item.tscn" id="1_k0lug"]
+[ext_resource type="Script" path="res://Scripts/Components/Interactable.gd" id="2_iacgj"]
+[ext_resource type="Script" path="res://ZZ_Scratch/Inventory/Inventory.gd" id="2_wmdc6"]
+[ext_resource type="Resource" uid="uid://dk4x6kbx6kn8d" path="res://ZZ_Scratch/Inventory/Items/Potion.tres" id="5_r5la7"]
+[ext_resource type="Script" path="res://Scripts/Resources/InteractablePickup.gd" id="6_p8kxk"]
+
+[sub_resource type="Resource" id="Resource_0jij2"]
+script = ExtResource("6_p8kxk")
+dest_path = NodePath("..")
+item = ExtResource("5_r5la7")
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_5arg3"]
+size = Vector2(28, 32)
+
+[node name="DevScene" type="Node2D"]
+
+[node name="Item" parent="." instance=ExtResource("1_k0lug")]
+position = Vector2(151, 155)
+
+[node name="Interactable" type="Area2D" parent="Item"]
+script = ExtResource("2_iacgj")
+automatic = true
+actions = Array[Resource("res://Scripts/Resources/InteractableAction.gd")]([SubResource("Resource_0jij2")])
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Item/Interactable"]
+shape = SubResource("RectangleShape2D_5arg3")
+
+[node name="Character" parent="." instance=ExtResource("1_ht83a")]
+position = Vector2(580, 414)
+
+[node name="Inventory" type="Node" parent="Character"]
+script = ExtResource("2_wmdc6")

@@ -43,6 +43,12 @@ enum AudioBus {
 	MENU_EFFECTS,
 }
 
+enum ItemType {
+	KEY,        # Key or Quest items, essentials to story progression. Do not allow discarding of these
+	CONSUMABLE, # Things we can use or consume
+	EQUIPPABLE, # This might be stubbed out further in the future Items.Helmet, Items.Gloves, if we have those
+}
+
 const AUDIO_BUS_INFO = {
 	AudioBus.MASTER: [0, "Global"],
 	AudioBus.BACKGROUND_MUSIC: [1, "Background Music"],

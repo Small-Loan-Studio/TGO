@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="Item" load_steps=4 format=3 uid="uid://dk4x6kbx6kn8d"]
+
+[ext_resource type="Texture2D" uid="uid://bk5g3c50cvkuj" path="res://Art/Items/potion.png" id="1_255fm"]
+[ext_resource type="Script" path="res://ZZ_Scratch/Inventory/Item.gd" id="1_ln3g3"]
+[ext_resource type="PackedScene" uid="uid://dysklq65d7xeu" path="res://ZZ_Scratch/Inventory/Items/Potion.tscn" id="2_timfc"]
+
+[resource]
+script = ExtResource("1_ln3g3")
+name = "potion"
+type = 1
+scene = ExtResource("2_timfc")
+icon = ExtResource("1_255fm")
+stack_size = 2

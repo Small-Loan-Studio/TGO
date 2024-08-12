@@ -7,17 +7,17 @@ any confusion that might arise during the devoplment process.
 - [The Tūn-Gāst of Oakshaw](#the-tūn-gāst-of-oakshaw)
   - [I'm not on the engineering team, does this matter to me?](#im-not-on-the-engineering-team-does-this-matter-to-me)
   - [People](#people)
-    - [Questions?](#questions)
+	- [Questions?](#questions)
   - [Process](#process)
-    - [Conventions: Ownership](#conventions-ownership)
-    - [Coventions: Code](#coventions-code)
-    - [Conventions: Git](#conventions-git)
-      - [`release`](#release)
-      - [`tgo_dev`](#tgo_dev)
-      - [Code Review](#code-review)
-        - [For non-engineering submissions](#for-non-engineering-submissions)
-      - [Release Candidate branches / bug fixes](#release-candidate-branches--bug-fixes)
-      - [Feature / Personal branches](#feature--personal-branches)
+	- [Conventions: Ownership](#conventions-ownership)
+	- [Coventions: Code](#coventions-code)
+	- [Conventions: Git](#conventions-git)
+	  - [`release`](#release)
+	  - [`tgo_dev`](#tgo_dev)
+	  - [Code Review](#code-review)
+		- [For non-engineering submissions](#for-non-engineering-submissions)
+	  - [Release Candidate branches / bug fixes](#release-candidate-branches--bug-fixes)
+	  - [Feature / Personal branches](#feature--personal-branches)
   - [What next?](#what-next)
 
 ## I'm not on the engineering team, does this matter to me?
@@ -101,24 +101,24 @@ As a team we should aim to:
   not in place yet._
 - We currently require [static typing][static-typing-docs] and non-typed variable
   declarations will be reported as an error. There are several benefits of this
-    - Code maintainability &mdash; static typing is a compiler-enforced contract of
-      your intent. Its accuracy will never decay and it tells the future reader what
-      to expect without requiring them to fully understand function internals;
-    - Transferability &mdash; a secret power of staticly typed codebases is the reduced
-      cognitive load when trying to modify or contribute to code that you did not
-      write. This is highly related to maintainability but is not the same;
-    - Reduced reliance on tests &mdash; building with a dynamically typed codebase means
-      you can take many more liberties with your functions, how they're used, and how
-      they behave. This means that the surface area for bugs / mistakes is larger
-      and that the factors you need to consider when making changes is significantly
-      higher and (often) not obvious. This can be totally fine but in order to have
-      high confidence in behavior it requires an extremely solid test suite. Using
-      a statically typed language helps ameliorate the surface area and means we
-      can maintain high confidence on function behavior without as aggressive of a test
-      suite;
-    - Performance &mdash; using statically typed gdscript is between [5 and 150% faster][static-typed-perf]
-      than dynamically typed code. And it can get better as VM optimizations are done
-      by the Godot team.
+	- Code maintainability &mdash; static typing is a compiler-enforced contract of
+	  your intent. Its accuracy will never decay and it tells the future reader what
+	  to expect without requiring them to fully understand function internals;
+	- Transferability &mdash; a secret power of staticly typed codebases is the reduced
+	  cognitive load when trying to modify or contribute to code that you did not
+	  write. This is highly related to maintainability but is not the same;
+	- Reduced reliance on tests &mdash; building with a dynamically typed codebase means
+	  you can take many more liberties with your functions, how they're used, and how
+	  they behave. This means that the surface area for bugs / mistakes is larger
+	  and that the factors you need to consider when making changes is significantly
+	  higher and (often) not obvious. This can be totally fine but in order to have
+	  high confidence in behavior it requires an extremely solid test suite. Using
+	  a statically typed language helps ameliorate the surface area and means we
+	  can maintain high confidence on function behavior without as aggressive of a test
+	  suite;
+	- Performance &mdash; using statically typed gdscript is between [5 and 150% faster][static-typed-perf]
+	  than dynamically typed code. And it can get better as VM optimizations are done
+	  by the Godot team.
 
 ### Conventions: Git
 
