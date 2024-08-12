@@ -23,3 +23,7 @@ func trigger(actor: Character) -> void:
 		a.parent = self
 		a.act(actor)
 	triggered.emit(actor)
+
+# TODO: Check if Collision layer is set properly
+func _get_configuration_warnings() -> PackedStringArray:
+	return []

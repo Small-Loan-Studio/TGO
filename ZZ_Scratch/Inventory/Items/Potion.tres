@@ -5,9 +5,11 @@
 [ext_resource type="PackedScene" uid="uid://dysklq65d7xeu" path="res://ZZ_Scratch/Inventory/Items/Potion.tscn" id="2_timfc"]
 
 [resource]
+resource_local_to_scene = true
 script = ExtResource("1_ln3g3")
 name = "potion"
 type = 1
 scene = ExtResource("2_timfc")
 icon = ExtResource("1_255fm")
-stack_size = 2
+stack_size = 3
+count = 2

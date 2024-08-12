@@ -30,5 +30,10 @@ extends Resource
 		# Unsure if this is the best way to do this, might be changed or moved in the future
 		stack_size = max(1, value)
 
-## The amount of this specific item that is in the inventory
-var count: int = 0
+## TODO: Come back to this later. This is probably really bad way of doing this and we should brainstorm
+## a better way of doing it.
+
+## The amount of the item, or quantity. This can be edited on a per item basis to give more to a item world object
+## If you want to use this to change how many items should be added when picked up, right click the
+## resource in the Editor and click "Make Unique". Otherwise it will change it for every single instance of this file
+@export var count: int = 1
