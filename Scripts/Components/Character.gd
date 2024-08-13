@@ -71,6 +71,7 @@ func _unhandled_input(_event: InputEvent) -> void:
 	if _focused_interactable != null:
 		if _event.is_action_pressed(Enums.input_action_name(Enums.InputAction.INTERACT)):
 			_focused_interactable.trigger(self)
+		
 
 
 func _physics_process(_delta: float) -> void:

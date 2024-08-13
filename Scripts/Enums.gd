@@ -18,6 +18,8 @@ enum InputAction {
 	LEFT,
 	RIGHT,
 	INTERACT,
+	OPEN_JOURNAL,
+	PAUSE,
 }
 
 enum LightLevel {
@@ -86,6 +88,10 @@ static func input_action_name(ia: InputAction) -> String:
 			return "right"
 		InputAction.INTERACT:
 			return "interact"
+		InputAction.OPEN_JOURNAL:
+			return "openjournal"
+		InputAction.PAUSE:
+			return "pause"
 	assert(false, "Invalid Input action: " + str(ia))
 	return ""
 

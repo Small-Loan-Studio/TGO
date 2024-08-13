@@ -25,3 +25,8 @@ func _on_monster_encounter(id:int) ->void:
 	beastiary[id]["visible"] = true
 	monster_discovered.emit(id)
 	return
+
+
+func _on_close_pressed()->void:
+	self.hide()
+	pass # Replace with function body.

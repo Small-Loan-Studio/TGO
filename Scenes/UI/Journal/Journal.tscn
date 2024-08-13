@@ -20,12 +20,12 @@ script = ExtResource("2_eyc3n")
 [node name="TabBar" type="TabBar" parent="."]
 layout_mode = 1
 anchors_preset = -1
-anchor_right = 0.181
+anchor_right = 0.239
 anchor_bottom = 0.061
 offset_left = 2.0
 offset_top = 3.0
-offset_right = -0.0160217
-offset_bottom = 0.295998
+offset_right = 0.263992
+offset_bottom = -0.136002
 tab_count = 3
 tab_0/title = "Beastiary"
 tab_1/title = "Recap"
@@ -54,7 +54,7 @@ layout_mode = 2
 layout_mode = 2
 alignment = 1
 
-[node name="Label" type="Label" parent="JournalMainFrame/MarginContainer/VBoxContainer/HBoxContainer2"]
+[node name="JournalLabel" type="Label" parent="JournalMainFrame/MarginContainer/VBoxContainer/HBoxContainer2"]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_stretch_ratio = 24.65
@@ -62,7 +62,7 @@ theme = ExtResource("1_s3mq2")
 text = "Journal"
 horizontal_alignment = 1
 
-[node name="Button" type="Button" parent="JournalMainFrame/MarginContainer/VBoxContainer/HBoxContainer2"]
+[node name="close" type="Button" parent="JournalMainFrame/MarginContainer/VBoxContainer/HBoxContainer2"]
 layout_mode = 2
 size_flags_horizontal = 3
 text = "X"
@@ -92,3 +92,5 @@ size_flags_vertical = 3
 [node name="card" parent="JournalMainFrame/MarginContainer/VBoxContainer/Codex/main/ScrollContainer/codex_holder" instance=ExtResource("3_82c4r")]
 layout_mode = 2
 size_flags_vertical = 1
+
+[connection signal="pressed" from="JournalMainFrame/MarginContainer/VBoxContainer/HBoxContainer2/close" to="." method="_on_close_pressed"]

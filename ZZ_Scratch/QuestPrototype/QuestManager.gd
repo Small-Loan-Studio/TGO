@@ -43,6 +43,7 @@ var quests : Dictionary = {
 
 func _ready()->void:
 	Signalbus.quest_update.connect(_on_update_quest)
+	Dialogic.signal_event.connect(_on_dialogic_signal)
 	pass
 @export var all_quests: Array[Quest] = []
 var active_quests: Array[Quest] = []
@@ -122,3 +123,8 @@ func _on_update_quest(quest_id:int,effected_objective :String,value:int)-> void:
 							update_objectives(quest,effected_objective,value)
 	pass
 
+func _on_dialogic_signal(argument:String)->void:
+	match argument:
+		"item_taken":
+			return
+	pass

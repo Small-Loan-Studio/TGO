@@ -1,2 +1,3 @@
 There is a lamp lying down here.
 It's enough to light my way.
+[signal arg="item_taken"]

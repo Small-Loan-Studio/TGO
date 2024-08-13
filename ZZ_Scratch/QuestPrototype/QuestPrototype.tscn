@@ -1,4 +1,4 @@
-[gd_scene load_steps=41 format=3 uid="uid://crrvo58x81lxn"]
+[gd_scene load_steps=44 format=3 uid="uid://crrvo58x81lxn"]
 
 [ext_resource type="Script" path="res://ZZ_Scratch/QuestPrototype/QuestPrototype.gd" id="1_h4v6k"]
 [ext_resource type="Texture2D" uid="uid://ds0x2hyas8fpv" path="res://Art/Environment/Underground.png" id="2_h17xi"]
@@ -19,6 +19,7 @@
 [ext_resource type="Texture2D" uid="uid://c4wx4r0twrp7c" path="res://Art/Environment/Placeables/questprototype/coffin_3.png" id="11_dg8wo"]
 [ext_resource type="Texture2D" uid="uid://bhtwy6f678hsq" path="res://Art/Environment/Placeables/questprototype/coffin_4.png" id="12_3llf7"]
 [ext_resource type="Resource" path="res://ZZ_Scratch/QuestPrototype/Timelines/Devin_wakeup.dtl" id="12_siwvx"]
+[ext_resource type="Script" path="res://Scripts/Resources/InteractableDestroy.gd" id="13_5hkam"]
 [ext_resource type="Texture2D" uid="uid://cq6f72qrlahar" path="res://Art/Environment/Placeables/questprototype/coffin_5.png" id="13_vklik"]
 [ext_resource type="Script" path="res://Scripts/Resources/InteractableQuest.gd" id="17_65bcs"]
 [ext_resource type="PackedScene" uid="uid://8l767ndoo0ch" path="res://Scenes/UI/Quest/QuestUI.tscn" id="19_jl20o"]
@@ -55,6 +56,11 @@ questid = 0
 update_objective = "Find light source."
 value = 1
 
+[sub_resource type="Resource" id="Resource_yo7lf"]
+script = ExtResource("13_5hkam")
+destroy_in_timeline = true
+destroy_attached_object = true
+
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_0dmca"]
 size = Vector2(84, 142)
 
@@ -76,6 +82,11 @@ value = 0
 [sub_resource type="Resource" id="Resource_yw44r"]
 script = ExtResource("5_84uud")
 timeline = ExtResource("12_siwvx")
+
+[sub_resource type="Resource" id="Resource_jdwyi"]
+script = ExtResource("13_5hkam")
+destroy_in_timeline = false
+destroy_attached_object = false
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_42d0q"]
 radius = 571.99
@@ -122,7 +133,7 @@ shape = SubResource("RectangleShape2D_vwyhd")
 
 [node name="Interactable" parent="Background/Lamp" instance=ExtResource("4_0fujw")]
 position = Vector2(-436.338, -812.728)
-actions = Array[Resource("res://Scripts/Resources/InteractableAction.gd")]([SubResource("Resource_vnfje"), SubResource("Resource_0y5sh")])
+actions = Array[Resource("res://Scripts/Resources/InteractableAction.gd")]([SubResource("Resource_vnfje"), SubResource("Resource_0y5sh"), SubResource("Resource_yo7lf")])
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Background/Lamp/Interactable"]
 position = Vector2(433.338, 808.728)
@@ -148,13 +159,18 @@ position = Vector2(435.838, 816.228)
 shape = SubResource("RectangleShape2D_w7ldh")
 
 [node name="Interactable2" parent="Background" instance=ExtResource("4_0fujw")]
-position = Vector2(846, 766)
+position = Vector2(846, 766.001)
+scale = Vector2(0.999999, 0.999999)
 automatic = true
-actions = Array[Resource("res://Scripts/Resources/InteractableAction.gd")]([SubResource("Resource_j2eyr"), SubResource("Resource_yw44r")])
+actions = Array[Resource("res://Scripts/Resources/InteractableAction.gd")]([SubResource("Resource_j2eyr"), SubResource("Resource_yw44r"), SubResource("Resource_jdwyi")])
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Background/Interactable2"]
 position = Vector2(-63, -168)
 shape = SubResource("CircleShape2D_42d0q")
+
+[node name="entrance" type="Node2D" parent="Background"]
+position = Vector2(667, -1123)
+scale = Vector2(3, 3)
 
 [node name="Door2" type="Sprite2D" parent="Background"]
 position = Vector2(2808, -1084)
