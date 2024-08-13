@@ -26,9 +26,14 @@ func _set_editor_hide_lamp(new_v: bool) -> void:
 		# Reaching into the lamp here is bad practice. Letting it slide because this is
 		# only ever run in the editor so it didn't make a ton of sense to expose this
 		# as a configuration on the Lamp that could be more broadly used.
-		$Lamp/Beam.visible = !editor_hide_lamp_sensors
-		$Lamp/Beam2.visible = !editor_hide_lamp_sensors
-		$Lamp/Beam3.visible = !editor_hide_lamp_sensors
+		var lamp: Node2D = null
+		for c in get_children(true):
+			if c.name == "Lamp":
+				lamp = c
+		if lamp != null:
+			$Lamp/Beam.visible = !editor_hide_lamp_sensors
+			$Lamp/Beam2.visible = !editor_hide_lamp_sensors
+			$Lamp/Beam3.visible = !editor_hide_lamp_sensors
 
 
 func _get_editor_hide_lamp() -> bool:

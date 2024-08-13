@@ -1,10 +1,11 @@
-[gd_scene load_steps=6 format=3 uid="uid://cobsc7v0oqc8l"]
+[gd_scene load_steps=7 format=3 uid="uid://cobsc7v0oqc8l"]
 
 [ext_resource type="Script" path="res://Scripts/Driver.gd" id="1_agcjs"]
 [ext_resource type="Script" path="res://Scripts/AudioManager.gd" id="2_4seev"]
 [ext_resource type="Script" path="res://Scripts/UI/Curtain.gd" id="2_gom2g"]
 [ext_resource type="Script" path="res://Scripts/Menu/MenuManager.gd" id="3_h1ccd"]
 [ext_resource type="PackedScene" uid="uid://ci7ksomi5hsr5" path="res://Scenes/Menu/DebugMenu.tscn" id="3_i7nbg"]
+[ext_resource type="PackedScene" uid="uid://mqvl5162rawb" path="res://Scenes/Devin.tscn" id="6_gmy4s"]
 
 [node name="Driver" type="Node2D"]
 script = ExtResource("1_agcjs")
@@ -57,6 +58,15 @@ offset_right = -300.0
 offset_bottom = -1.0
 size_flags_horizontal = 4
 
-[node name="GameWorld" type="Node" parent="."]
+[node name="GameWorld" type="Node2D" parent="."]
+y_sort_enabled = true
+
+[node name="Devin" parent="GameWorld" instance=ExtResource("6_gmy4s")]
+unique_name_in_owner = true
+visible = false
+position = Vector2(0, 0)
+player_controled = false
+
+[node name="Camera2D" type="Camera2D" parent="GameWorld/Devin"]
 
 [connection signal="request_load" from="OverlayManager/MenuManager/DebugMenu" to="." method="request_debug_load"]
