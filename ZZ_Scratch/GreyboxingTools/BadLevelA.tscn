@@ -42,5 +42,5 @@ actions = Array[Resource("res://Scripts/Resources/InteractableAction.gd")]([SubR
 position = Vector2(-1, 14)
 shape = SubResource("RectangleShape2D_lwweu")
 
-[node name="PlayerStart" type="Node2D" parent="Marker" index="0"]
+[node name="PlayerStart" type="Node2D" parent="Markers" index="0"]
 position = Vector2(522, 183)

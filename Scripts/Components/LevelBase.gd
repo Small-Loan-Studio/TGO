@@ -5,7 +5,7 @@ const DEFAULT_MARKER: String = "PlayerStart"
 
 var driver: Driver
 
-@onready var _marker_root := $Marker
+@onready var _marker_root := $Markers
 
 
 func setup(driver_in: Driver) -> void:
