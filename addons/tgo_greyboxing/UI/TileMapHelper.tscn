@@ -1,0 +1,128 @@
+[gd_scene format=3 uid="uid://1j701pum1cgx"]
+
+[node name="TileMapHelper" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="GridContainer" type="GridContainer" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -74.5
+offset_top = -56.0
+offset_right = 74.5
+offset_bottom = 56.0
+grow_horizontal = 2
+grow_vertical = 2
+columns = 3
+
+[node name="Button" type="Button" parent="GridContainer"]
+layout_mode = 2
+text = "aoeu
+aoeu"
+
+[node name="Button2" type="Button" parent="GridContainer"]
+layout_mode = 2
+text = "aoeu
+aoeu"
+
+[node name="Button3" type="Button" parent="GridContainer"]
+layout_mode = 2
+text = "aoeu
+aoeu snth"
+
+[node name="Button4" type="Button" parent="GridContainer"]
+layout_mode = 2
+text = "aoeu
+aoeu
+aoeu"
+
+[node name="Button5" type="Button" parent="GridContainer"]
+layout_mode = 2
+text = "aoeu
+aoeu"
+
+[node name="Button6" type="Button" parent="GridContainer"]
+layout_mode = 2
+text = "aoeu
+aoeu"
+
+[node name="Button7" type="Button" parent="GridContainer"]
+layout_mode = 2
+text = "aoeu
+aoeu"
+
+[node name="Button8" type="Button" parent="GridContainer"]
+layout_mode = 2
+text = "aoeu
+aoeu snth"
+
+[node name="Button9" type="Button" parent="GridContainer"]
+layout_mode = 2
+text = "aoeu
+aoeu
+aoeu"
+
+[node name="Button10" type="Button" parent="GridContainer"]
+layout_mode = 2
+text = "aoeu
+aoeu"
+
+[node name="Button11" type="Button" parent="GridContainer"]
+layout_mode = 2
+text = "aoeu
+aoeu"
+
+[node name="Button12" type="Button" parent="GridContainer"]
+layout_mode = 2
+text = "aoeu
+aoeu"
+
+[node name="Button13" type="Button" parent="GridContainer"]
+layout_mode = 2
+text = "aoeu
+aoeu snth"
+
+[node name="Button14" type="Button" parent="GridContainer"]
+layout_mode = 2
+text = "aoeu
+aoeu
+aoeu"
+
+[node name="Button15" type="Button" parent="GridContainer"]
+layout_mode = 2
+text = "aoeu
+aoeu"
+
+[node name="Button16" type="Button" parent="GridContainer"]
+layout_mode = 2
+text = "aoeu
+aoeu"
+
+[node name="Button17" type="Button" parent="GridContainer"]
+layout_mode = 2
+text = "aoeu
+aoeu"
+
+[node name="Button18" type="Button" parent="GridContainer"]
+layout_mode = 2
+text = "aoeu
+aoeu snth"
+
+[node name="Button19" type="Button" parent="GridContainer"]
+layout_mode = 2
+text = "aoeu
+aoeu
+aoeu"
+
+[node name="Button20" type="Button" parent="GridContainer"]
+layout_mode = 2
+text = "aoeu
+aoeu"
