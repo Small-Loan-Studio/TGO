@@ -1,0 +1,36 @@
+[gd_scene load_steps=9 format=3 uid="uid://7hcgwq52nmdb"]
+
+[ext_resource type="Texture2D" uid="uid://3cvlh3bqqte5" path="res://Art/Items/Key.png" id="1_6wktr"]
+[ext_resource type="Script" path="res://Scripts/Components/Interactable.gd" id="2_sl8y8"]
+[ext_resource type="Resource" uid="uid://b7w2axnxl0fkt" path="res://ZZ_Scratch/Inventory/Items/Key.tres" id="3_swjgo"]
+[ext_resource type="Script" path="res://ZZ_Scratch/Inventory/Resources/ItemStack.gd" id="4_xlstf"]
+[ext_resource type="Script" path="res://Scripts/Resources/InteractablePickup.gd" id="5_lnfy6"]
+
+[sub_resource type="Resource" id="Resource_rua2w"]
+script = ExtResource("4_xlstf")
+item = ExtResource("3_swjgo")
+quantity = 1
+
+[sub_resource type="Resource" id="Resource_urhqj"]
+script = ExtResource("5_lnfy6")
+dest_path = NodePath("..")
+item = SubResource("Resource_rua2w")
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_3brjx"]
+radius = 9.0
+
+[node name="Key" type="Node2D"]
+scale = Vector2(2, 2)
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture_filter = 1
+texture = ExtResource("1_6wktr")
+
+[node name="Interactable" type="Area2D" parent="."]
+collision_layer = 2
+collision_mask = 0
+script = ExtResource("2_sl8y8")
+actions = Array[Resource("res://Scripts/Resources/InteractableAction.gd")]([SubResource("Resource_urhqj")])
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Interactable"]
+shape = SubResource("CircleShape2D_3brjx")

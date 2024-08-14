@@ -1,8 +1,0 @@
-[gd_scene load_steps=3 format=3 uid="uid://0f5f4jsd2tpc"]
-
-[ext_resource type="Script" path="res://ZZ_Scratch/Inventory/Items/Item.gd" id="1_fagmd"]
-[ext_resource type="Resource" uid="uid://dk4x6kbx6kn8d" path="res://ZZ_Scratch/Inventory/Items/Potion.tres" id="2_n4tdv"]
-
-[node name="Item" type="Node2D"]
-script = ExtResource("1_fagmd")
-item = ExtResource("2_n4tdv")

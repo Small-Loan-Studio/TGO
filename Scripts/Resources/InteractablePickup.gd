@@ -5,14 +5,18 @@ extends InteractableAction
 @export var dest_path: NodePath
 
 ## The item that will be added if picked up
-@export var item: Item
+@export var item: ItemStack
 
 func act(_actor: Character) -> void:
 	print("Actor InteractablePickup")
-	var dest_node := parent.get_node(dest_path) as Node2D
-	## NOTE: Unsure of how we are going to setup inventory to work, assuming a node at Base Devin for now
-	var inventory: Inventory = _actor.get_node("Inventory")
-	inventory.insert(item)
-	dest_node.queue_free()
+	# No idea how we are going to wire this up, but I will use this hack for now
+	var invManager: InventoryManager = parent.get_node("/root/Driver/InventoryManager")
+	var item_node := parent.get_node(dest_path) as Node2D
+
+	var inventory: Inventory = invManager.get_inventory(_actor)
+	if inventory.insert(item):
+		item_node.queue_free()
+		print(inventory.items)
+
 
 

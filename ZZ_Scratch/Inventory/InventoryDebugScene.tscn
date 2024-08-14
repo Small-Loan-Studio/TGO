@@ -1,0 +1,71 @@
+[gd_scene load_steps=13 format=3 uid="uid://3y4hwdyikuu0"]
+
+[ext_resource type="Script" path="res://ZZ_Scratch/Inventory/InventoryDebugScene.gd" id="1_55n3p"]
+[ext_resource type="PackedScene" uid="uid://mqvl5162rawb" path="res://Scenes/Devin.tscn" id="2_cpab8"]
+[ext_resource type="PackedScene" uid="uid://ce5gojvs1iva8" path="res://ZZ_Scratch/Inventory/Items/Potion.tscn" id="3_juk06"]
+[ext_resource type="Resource" uid="uid://but4ranqswen" path="res://ZZ_Scratch/Inventory/Items/Potion.tres" id="4_v6t61"]
+[ext_resource type="Script" path="res://ZZ_Scratch/Inventory/Resources/ItemStack.gd" id="5_gfway"]
+[ext_resource type="Script" path="res://Scripts/Resources/InteractablePickup.gd" id="6_78of0"]
+[ext_resource type="PackedScene" uid="uid://7hcgwq52nmdb" path="res://ZZ_Scratch/Inventory/Items/Key.tscn" id="7_oltc6"]
+[ext_resource type="PackedScene" uid="uid://dukcf64qxy46o" path="res://ZZ_Scratch/Inventory/UI/Inventory.tscn" id="7_wc1ti"]
+
+[sub_resource type="Resource" id="Resource_bd25s"]
+script = ExtResource("5_gfway")
+item = ExtResource("4_v6t61")
+quantity = 1
+
+[sub_resource type="Resource" id="Resource_3hyps"]
+script = ExtResource("6_78of0")
+dest_path = NodePath("..")
+item = SubResource("Resource_bd25s")
+
+[sub_resource type="Resource" id="Resource_5ytjq"]
+script = ExtResource("5_gfway")
+item = ExtResource("4_v6t61")
+quantity = 3
+
+[sub_resource type="Resource" id="Resource_lyu42"]
+script = ExtResource("6_78of0")
+dest_path = NodePath("..")
+item = SubResource("Resource_5ytjq")
+
+[node name="InventoryDebug" type="Node2D"]
+script = ExtResource("1_55n3p")
+
+[node name="Devin" parent="." instance=ExtResource("2_cpab8")]
+position = Vector2(580, 414)
+
+[node name="Items" type="Node" parent="."]
+
+[node name="Potion 1 Stack" parent="Items" instance=ExtResource("3_juk06")]
+position = Vector2(128, 107)
+
+[node name="Interactable" parent="Items/Potion 1 Stack" index="1"]
+actions = Array[Resource("res://Scripts/Resources/InteractableAction.gd")]([SubResource("Resource_3hyps")])
+
+[node name="Potion 2 Stack" parent="Items" instance=ExtResource("3_juk06")]
+position = Vector2(113, 210)
+
+[node name="Potion 3 Stack" parent="Items" instance=ExtResource("3_juk06")]
+position = Vector2(91, 315)
+
+[node name="Interactable" parent="Items/Potion 3 Stack" index="1"]
+actions = Array[Resource("res://Scripts/Resources/InteractableAction.gd")]([SubResource("Resource_lyu42")])
+
+[node name="Key" parent="Items" instance=ExtResource("7_oltc6")]
+position = Vector2(155, 501)
+
+[node name="Key2" parent="Items" instance=ExtResource("7_oltc6")]
+position = Vector2(258, 608)
+
+[node name="UI" type="CanvasLayer" parent="."]
+
+[node name="Inventory" parent="UI" instance=ExtResource("7_wc1ti")]
+custom_minimum_size = Vector2(64, 64)
+offset_left = 10.0
+offset_top = 10.0
+offset_right = 74.0
+offset_bottom = 74.0
+
+[editable path="Items/Potion 1 Stack"]
+[editable path="Items/Potion 3 Stack"]

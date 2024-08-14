@@ -6,6 +6,7 @@ extends Node2D
 @onready var _menu_mgr: MenuManager = $OverlayManager/MenuManager
 @onready var _curtain := $OverlayManager/Curtain
 @onready var _world := $GameWorld
+@onready var _inventory_mgr := $InventoryManager
 
 
 func _ready() -> void:

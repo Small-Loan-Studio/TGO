@@ -1,0 +1,12 @@
+[gd_resource type="Resource" script_class="Item" load_steps=3 format=3 uid="uid://b7w2axnxl0fkt"]
+
+[ext_resource type="Script" path="res://ZZ_Scratch/Inventory/Resources/Item.gd" id="1_eoh55"]
+[ext_resource type="Texture2D" uid="uid://3cvlh3bqqte5" path="res://Art/Items/Key.png" id="1_w5iq0"]
+
+[resource]
+script = ExtResource("1_eoh55")
+name = "Key"
+description = "A key! I wonder what it does..."
+stackable = false
+stack_size = 1
+icon = ExtResource("1_w5iq0")
