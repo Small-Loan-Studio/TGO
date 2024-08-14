@@ -41,7 +41,6 @@ func _get_root(node: Node) -> Node:
 	var parent := node.get_parent()
 	if parent == null:
 		return node
-	print(node.name)
 	return _get_root(parent)
 
 
@@ -74,14 +73,14 @@ func _get_section(selected: Node, root: Node) -> LevelSection:
 	return LevelSection.UNKNOWN
 
 
-var _c: Control = null
+var _c: ObjectsHelper = null
 
 func _update_section_control(section: LevelSection) -> void:
 	if _c != null:
 		_detail.remove_child(_c)
 		_c.queue_free()
-	if section == LevelSection.MAP:
-		_c = preload("res://addons/tgo_greyboxing/UI/TileMapHelper.tscn").instantiate()
+	if section == LevelSection.OBJECTS:
+		_c = (ResourceLoader.load("res://addons/tgo_greyboxing/UI/ObjectsHelper.tscn") as PackedScene).instantiate()
 		_detail.add_child(_c)
 
 enum LevelSection {

@@ -26,6 +26,7 @@ func _unload_scene() -> void:
 
 
 func reload() -> void:
+	print('TGOGreyboxingToolsPlugin.reload')
 	# https://www.reddit.com/r/godot/comments/hvqxco/comment/l3oj782/
 	# https://gist.github.com/stravant/7aec484bb5e34e3a6196faaa13159ac3
 	_editor.call_deferred("set_plugin_enabled", PLUGIN_NAME, false)

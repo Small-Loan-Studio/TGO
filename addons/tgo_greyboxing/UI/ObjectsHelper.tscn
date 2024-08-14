@@ -1,0 +1,82 @@
+[gd_scene load_steps=2 format=3 uid="uid://1j701pum1cgx"]
+
+[ext_resource type="Script" path="res://addons/tgo_greyboxing/UI/ObjectsHelper.gd" id="1_u6ws1"]
+
+[node name="ObjectsHelper" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+script = ExtResource("1_u6ws1")
+
+[node name="Container" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="AddItems" type="VBoxContainer" parent="Container"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="Generic" type="Button" parent="Container/AddItems"]
+layout_mode = 2
+text = "Generic Greybox"
+
+[node name="GenericDetails" type="VBoxContainer" parent="Container/AddItems"]
+layout_mode = 2
+
+[node name="BlockMovement" type="CheckBox" parent="Container/AddItems/GenericDetails"]
+layout_mode = 2
+text = "Blocks Movement"
+
+[node name="Occludes" type="CheckBox" parent="Container/AddItems/GenericDetails"]
+layout_mode = 2
+text = "Blocks Light
+"
+
+[node name="Interactable" type="CheckBox" parent="Container/AddItems/GenericDetails"]
+layout_mode = 2
+text = "Is Interactable
+"
+
+[node name="Pushable" type="Button" parent="Container/AddItems"]
+layout_mode = 2
+text = "Pushable Block"
+
+[node name="PushableDetails" type="VBoxContainer" parent="Container/AddItems"]
+layout_mode = 2
+
+[node name="NPC" type="Button" parent="Container/AddItems"]
+layout_mode = 2
+disabled = true
+text = "NPC"
+
+[node name="NPCDetails" type="VBoxContainer" parent="Container/AddItems"]
+layout_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Container"]
+layout_mode = 2
+
+[node name="Cancel" type="Button" parent="Container/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Cancel
+"
+
+[node name="Create" type="Button" parent="Container/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Create"
+
+[connection signal="pressed" from="Container/AddItems/Generic" to="." method="_select_section" binds= ["generic"]]
+[connection signal="pressed" from="Container/AddItems/Pushable" to="." method="_select_section" binds= ["pushable"]]
+[connection signal="pressed" from="Container/AddItems/NPC" to="." method="_select_section" binds= ["npc"]]
+[connection signal="pressed" from="Container/HBoxContainer/Cancel" to="." method="_reset"]
+[connection signal="pressed" from="Container/HBoxContainer/Create" to="." method="_apply"]
