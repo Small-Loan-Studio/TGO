@@ -134,6 +134,7 @@ func _process_can_block_movement_update() -> void:
 func _process(_delta: float) -> void:
 	if Engine.is_editor_hint():
 		_sync_occluder()
+		# TODO: if display's position != (0,0) convert to offset
 
 
 func _process_can_interact_update() -> void:

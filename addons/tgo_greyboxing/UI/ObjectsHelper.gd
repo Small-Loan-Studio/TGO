@@ -3,6 +3,7 @@
 class_name ObjectsHelper
 extends Control
 
+const GREYBOX_OBJECT_SCENE = "res://Scenes/Components/Greyboxing/GreyboxObject.tscn"
 
 var _sections: Dictionary = {}
 var _objects_parent: Node = null
@@ -14,12 +15,13 @@ var _focused_section: String = ""
 @onready var _pushable_detail := $Container/AddItems/PushableDetails
 @onready var _npc := $Container/AddItems/NPC
 @onready var _npc_detail := $Container/AddItems/NPCDetails
+@onready var _complete_buttons := $Container/CompleteButtons
 
 func _ready() -> void:
 	_sections = {
-		"generic": [_generic, _generic_detail],
-		"pushable": [_pushable, _pushable_detail],
-		"npc": [_npc, _npc_detail],
+		"generic": [_generic, _generic_detail, Callable(self, '_reset_generic_state')],
+		"pushable": [_pushable, _pushable_detail, Callable(self, '_reset_pushable_state')],
+		"npc": [_npc, _npc_detail, Callable(self, '_reset_npc_state')],
 	}
 	_reset()
 
@@ -28,12 +30,14 @@ func setup(parent_node: Node) -> void:
 
 func _reset() -> void:
 	_focused_section = ""
-	_objects_parent = null
 	for k: String in _sections.keys():
 		var main: Control = _sections[k][0]
 		var detail: Control = _sections[k][1]
+		var reset: Callable = _sections[k][2]
 		main.show()
 		detail.hide()
+		reset.call()
+	_complete_buttons.hide()
 
 func _select_section(name: String) -> void:
 	_reset()
@@ -44,6 +48,9 @@ func _select_section(name: String) -> void:
 		if k != name:
 			_sections[k][0].hide()
 			_sections[k][1].hide()
+
+	if name == "generic":
+		_complete_buttons.show()
 
 func _apply() -> void:
 	match _focused_section:
@@ -58,31 +65,45 @@ func _apply() -> void:
 
 
 func _apply_generic() -> void:
-	var cb_collides := _checkbox(_generic_detail, "BlockMovement")
-	var collides := cb_collides.button_pressed
-	cb_collides.button_pressed = false
+	var name := (_generic_detail.get_node("NameEdit") as LineEdit).text
+	var collides := _checkbox(_generic_detail, "BlockMovement").button_pressed
+	var occludes := _checkbox(_generic_detail, "Occludes").button_pressed
+	var interacts := _checkbox(_generic_detail, "Interactable").button_pressed
 
-	var cb_occludes := _checkbox(_generic_detail, "Occludes")
-	var occludes := cb_occludes.button_pressed
-	cb_occludes.button_pressed = false
-
-	var cb_interacts := _checkbox(_generic_detail, "Interactable")
-	var interacts := cb_interacts.button_pressed
-	cb_interacts.button_pressed = false
-
-	var obj: GreyboxObject = preload("res://Scenes/Components/Greyboxing/GreyboxObject.tscn").instantiate()
+	var obj: GreyboxObject = preload(GREYBOX_OBJECT_SCENE).instantiate()
+	obj.name = name
+	_objects_parent.add_child(obj)
+	# the parent of the new greybox object is the level (Object's parent's parent)
+	obj.owner = _objects_parent.get_parent()
 	obj.can_block_light = occludes
 	obj.can_block_movement = collides
 	obj.can_interact = interacts
-	obj.add_child(_objects_parent)
-	# the parent of the new greybox object is the level (Object's parent's parent)
-	obj.owner = _objects_parent.get_parent()
 
 func _apply_pushable() -> void:
 	pass
 
 
 func _apply_npc() -> void:
+	pass
+
+
+func _reset_generic_state() -> void:
+	var ne := (_generic_detail.get_node("NameEdit") as LineEdit)
+	ne.text = ne.placeholder_text
+
+	var cb_collides := _checkbox(_generic_detail, "BlockMovement")
+	cb_collides.button_pressed = false
+
+	var cb_occludes := _checkbox(_generic_detail, "Occludes")
+	cb_occludes.button_pressed = false
+
+	var cb_interacts := _checkbox(_generic_detail, "Interactable")
+	cb_interacts.button_pressed = false
+
+func _reset_pushable_state() -> void:
+	pass
+
+func _reset_npc_state() -> void:
 	pass
 
 

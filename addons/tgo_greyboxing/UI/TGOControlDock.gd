@@ -15,7 +15,12 @@ var _subsection_control: Control = null
 @onready var _selection_label: Label = %SelectedLabel
 @onready var _detail := %SectionDetails
 
-var _active_section: Node = null
+var _active_section: Node = null:
+	get:
+		return _active_section
+	set(value):
+		print('_active_section: %s' % [value.name])
+		_active_section = value
 
 func setup(plugin_ref: TGOGreyboxingToolsPlugin) -> void:
 	_plugin_ref = plugin_ref
@@ -64,15 +69,15 @@ func _get_section_node(selected: Node, root: Node, typ: LevelSection) -> Node:
 	if typ == LevelSection.ROOT:
 		return root
 
-	while selected.get_parent() != root:
-		selected = selected.get_parent()
-
+	while selected != root:
 		if typ == LevelSection.MAP && selected.name == "TileMap":
 			return selected
 		if typ == LevelSection.OBJECTS && selected.name == "Objects":
 			return selected
 		if typ == LevelSection.MARKERS && selected.name == "Markers":
 			return selected
+
+		selected = selected.get_parent()
 
 	return null
 
@@ -93,7 +98,6 @@ func _get_section(selected: Node, root: LevelBase) -> LevelSection:
 	return LevelSection.UNKNOWN
 
 func _update_section_control(section: LevelSection) -> void:
-	print('_update_section_control(%s)' % [_level_section_str(section)])
 	if _subsection_control != null:
 		_detail.remove_child(_subsection_control)
 		_subsection_control.queue_free()
