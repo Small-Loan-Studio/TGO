@@ -3,13 +3,17 @@ class_name TGOControlDock
 extends Control
 
 var _plugin_ref: TGOGreyboxingToolsPlugin = null
+
 var _selection: EditorSelection = null:
 	get:
 		return EditorInterface.get_selection()
 
+var _subsection_control: Control = null
 
 @onready var _selection_label: Label = %SelectedLabel
 @onready var _detail := %SectionDetails
+
+var _active_section: Node = null
 
 func setup(plugin_ref: TGOGreyboxingToolsPlugin) -> void:
 	_plugin_ref = plugin_ref
@@ -29,22 +33,18 @@ func _update_selection() -> void:
 		_update_section_control(LevelSection.UNKNOWN)
 		return
 
-	var selected_node := _update_selection_label(_selection.get_selected_nodes())
+	# ensure we're only dealing with a single selected node
+	var selected_node := _get_node(_selection.get_selected_nodes())
 	if selected_node == null:
+		_update_section_control(LevelSection.UNKNOWN)
 		return
 
 	var section := _get_section(selected_node, root)
+	_active_section = _get_section_node(selected_node, root, section)
 	_update_section_control(section)
 
 
-func _get_root(node: Node) -> Node:
-	var parent := node.get_parent()
-	if parent == null:
-		return node
-	return _get_root(parent)
-
-
-func _update_selection_label(nodes: Array[Node]) -> Node:
+func _get_node(nodes: Array[Node]) -> Node:
 	if nodes.size() == 0:
 		_selection_label.text = "Editing: None"
 		return null
@@ -55,33 +55,53 @@ func _update_selection_label(nodes: Array[Node]) -> Node:
 	return nodes[0]
 
 
-func _get_section(selected: Node, root: Node) -> LevelSection:
+func _get_section_node(selected: Node, root: Node, typ: LevelSection) -> Node:
+	if typ == LevelSection.UNKNOWN:
+		return null
+
+	if typ == LevelSection.ROOT:
+		return root
+
+	while selected.get_parent() != root:
+		selected = selected.get_parent()
+
+		if typ == LevelSection.MAP && selected.name == "TileMap":
+			return selected
+		if typ == LevelSection.OBJECTS && selected.name == "Objects":
+			return selected
+		if typ == LevelSection.MARKERS && selected.name == "Markers":
+			return selected
+
+	return null
+
+func _get_section(selected: Node, root: LevelBase) -> LevelSection:
 	if selected == root:
 		return LevelSection.ROOT
 
 	while selected.get_parent() != root:
 		selected = selected.get_parent()
 
-	match selected.name:
-		"TileMap":
-			return LevelSection.MAP
-		"Objects":
-			return LevelSection.OBJECTS
-		"Markers":
-			return LevelSection.MARKERS
+		match selected.name:
+			"TileMap":
+				return LevelSection.MAP
+			"Objects":
+				return LevelSection.OBJECTS
+			"Markers":
+				return LevelSection.MARKERS
 
 	return LevelSection.UNKNOWN
 
-
-var _c: ObjectsHelper = null
-
 func _update_section_control(section: LevelSection) -> void:
-	if _c != null:
-		_detail.remove_child(_c)
-		_c.queue_free()
+	if _subsection_control != null:
+		_detail.remove_child(_subsection_control)
+		_subsection_control.queue_free()
+		_subsection_control = null
+
 	if section == LevelSection.OBJECTS:
-		_c = (ResourceLoader.load("res://addons/tgo_greyboxing/UI/ObjectsHelper.tscn") as PackedScene).instantiate()
-		_detail.add_child(_c)
+		var oh: ObjectsHelper = (ResourceLoader.load("res://addons/tgo_greyboxing/UI/ObjectsHelper.tscn") as PackedScene).instantiate()
+		oh.setup(_active_section)
+		_subsection_control = oh
+		_detail.add_child(_subsection_control)
 
 enum LevelSection {
 	UNKNOWN,

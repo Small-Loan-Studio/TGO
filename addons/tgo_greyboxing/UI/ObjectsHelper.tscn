@@ -48,6 +48,7 @@ text = "Is Interactable
 
 [node name="Pushable" type="Button" parent="Container/AddItems"]
 layout_mode = 2
+disabled = true
 text = "Pushable Block"
 
 [node name="PushableDetails" type="VBoxContainer" parent="Container/AddItems"]

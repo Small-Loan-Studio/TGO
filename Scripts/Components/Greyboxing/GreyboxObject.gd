@@ -11,12 +11,20 @@ extends Node2D
 		can_block_movement = value
 		_process_can_block_movement_update()
 
+@export var can_block_light: bool = false:
+	get:
+		return can_block_light
+	set(value):
+		can_block_light = value
+		_process_light_update()
+
 @export var can_interact: bool = true:
 	get:
 		return can_interact
 	set(value):
 		can_interact = value
 		_process_can_interact_update()
+
 
 @export_category("Display Noise")
 @export var _display_collision_shapes: bool = true:
@@ -64,13 +72,16 @@ extends Node2D
 
 @onready var _physics: RigidBody2D = $Physics
 @onready var _interactable: Interactable = $Interactable
+@onready var _light: LightOccluder2D = $Light
 
 
 func _ready() -> void:
 	if Engine.is_editor_hint():
 		get_parent().set_editable_instance(self, true)
 	_update_collider_display()
-
+	can_block_movement = false
+	can_block_light = false
+	can_interact = false
 
 func _draw() -> void:
 	if Engine.is_editor_hint():
@@ -117,6 +128,13 @@ func _process_can_block_movement_update() -> void:
 		_physics.queue_free()
 		_physics = null
 
+	_sync_occluder()
+
+
+func _process(_delta: float) -> void:
+	if Engine.is_editor_hint():
+		_sync_occluder()
+
 
 func _process_can_interact_update() -> void:
 	if !Engine.is_editor_hint():
@@ -146,3 +164,47 @@ func _process_can_interact_update() -> void:
 		remove_child(_interactable)
 		_interactable.queue_free()
 		_interactable = null
+
+
+func _process_light_update() -> void:
+	if !Engine.is_editor_hint():
+		printerr("May not change light occlusion at runtime")
+		return
+
+	if !can_block_light:
+		if !_light == null:
+			remove_child(_light)
+			_light.queue_free()
+			_light = null
+	else:
+		if _light == null:
+			_light = LightOccluder2D.new()
+			_light.light_mask = 1
+			_light.occluder_light_mask = 2
+			_light.show_behind_parent = true
+			_light.name = "Light"
+			add_child(_light)
+			_light.owner = self
+		_sync_occluder()
+
+
+func _sync_occluder() -> void:
+	if _light == null:
+		return
+
+	if _physics == null:
+		return
+
+	var physics_shape: CollisionShape2D = _physics.get_node("Shape")
+	if physics_shape == null || physics_shape.shape == null:
+		return
+
+	var collider_shape: Shape2D = physics_shape.shape
+	print('ugh this will be a pain in the ass bc there are many different shape subclasses')
+	print(collider_shape)
+
+	_light.occluder = OccluderPolygon2D.new()
+	_light.occluder.polygon = PackedVector2Array()
+	_light.occluder.closed = true
+	_light.occluder.cull_mode = OccluderPolygon2D.CULL_CLOCKWISE
+
