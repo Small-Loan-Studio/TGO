@@ -1,8 +1,33 @@
-[gd_scene load_steps=4 format=3 uid="uid://bcqslh1vhjn2m"]
+[gd_scene load_steps=11 format=3 uid="uid://bcqslh1vhjn2m"]
 
 [ext_resource type="Theme" uid="uid://o6kgdamtgf5g" path="res://Scenes/UI/Journal/Journal.tres" id="1_s3mq2"]
 [ext_resource type="Script" path="res://Scripts/UI/Journal.gd" id="2_eyc3n"]
-[ext_resource type="PackedScene" uid="uid://oy4it2n2o0xh" path="res://Scenes/UI/Journal/Card.tscn" id="3_82c4r"]
+[ext_resource type="Script" path="res://Scripts/UI/Beastiary.gd" id="3_j8icn"]
+[ext_resource type="Texture2D" uid="uid://dsxjxmjexlgfd" path="res://Art/UI/Journal/Codex/temp1.png" id="4_1wch5"]
+[ext_resource type="Script" path="res://Scripts/UI/UI_Resources/BeastiaryEntry.gd" id="4_2k6mo"]
+[ext_resource type="Texture2D" uid="uid://dggr1vfpw543t" path="res://Art/UI/Journal/Codex/temp2.png" id="6_2ir41"]
+[ext_resource type="Texture2D" uid="uid://dgpxn4ip21ekv" path="res://Art/UI/Journal/Codex/Eva 100px.png" id="7_j84jf"]
+
+[sub_resource type="Resource" id="Resource_7w0q1"]
+script = ExtResource("4_2k6mo")
+beast_picture = ExtResource("4_1wch5")
+beast_name = "Ghost Dude"
+seen = true
+beast_description = "A dude with very interesting look"
+
+[sub_resource type="Resource" id="Resource_lwp2q"]
+script = ExtResource("4_2k6mo")
+beast_picture = ExtResource("6_2ir41")
+beast_name = "Wings"
+seen = true
+beast_description = "Super can fly he loves attraction."
+
+[sub_resource type="Resource" id="Resource_1ot4o"]
+script = ExtResource("4_2k6mo")
+beast_picture = ExtResource("7_j84jf")
+beast_name = "Eva Beatrice"
+seen = true
+beast_description = "Beatrice the golden witch bornt by Ushiromiya Eva's youth"
 
 [node name="Journal" type="Control"]
 layout_mode = 3
@@ -27,9 +52,9 @@ offset_top = 3.0
 offset_right = 0.263992
 offset_bottom = -0.136002
 tab_count = 3
-tab_0/title = "Beastiary"
-tab_1/title = "Recap"
-tab_2/title = "Quests"
+tab_0/title = "Recap"
+tab_1/title = "Quests"
+tab_2/title = "Beastiary"
 
 [node name="JournalMainFrame" type="PanelContainer" parent="."]
 layout_mode = 1
@@ -67,30 +92,37 @@ layout_mode = 2
 size_flags_horizontal = 3
 text = "X"
 
-[node name="Codex" type="HBoxContainer" parent="JournalMainFrame/MarginContainer/VBoxContainer"]
+[node name="Recap" type="Control" parent="JournalMainFrame/MarginContainer/VBoxContainer"]
+visible = false
+layout_mode = 2
+
+[node name="Quests" type="Control" parent="JournalMainFrame/MarginContainer/VBoxContainer"]
+visible = false
+layout_mode = 2
+
+[node name="Beastiary" type="HBoxContainer" parent="JournalMainFrame/MarginContainer/VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 3
+script = ExtResource("3_j8icn")
+monster_codex = Array[ExtResource("4_2k6mo")]([SubResource("Resource_7w0q1"), SubResource("Resource_lwp2q"), SubResource("Resource_1ot4o")])
 
-[node name="extra_options" type="VBoxContainer" parent="JournalMainFrame/MarginContainer/VBoxContainer/Codex"]
+[node name="extra_options" type="VBoxContainer" parent="JournalMainFrame/MarginContainer/VBoxContainer/Beastiary"]
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="main" type="VBoxContainer" parent="JournalMainFrame/MarginContainer/VBoxContainer/Codex"]
+[node name="main" type="VBoxContainer" parent="JournalMainFrame/MarginContainer/VBoxContainer/Beastiary"]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_stretch_ratio = 3.0
 
-[node name="ScrollContainer" type="ScrollContainer" parent="JournalMainFrame/MarginContainer/VBoxContainer/Codex/main"]
+[node name="ScrollContainer" type="ScrollContainer" parent="JournalMainFrame/MarginContainer/VBoxContainer/Beastiary/main"]
 layout_mode = 2
 size_flags_vertical = 3
 
-[node name="codex_holder" type="VBoxContainer" parent="JournalMainFrame/MarginContainer/VBoxContainer/Codex/main/ScrollContainer"]
+[node name="codex_holder" type="VBoxContainer" parent="JournalMainFrame/MarginContainer/VBoxContainer/Beastiary/main/ScrollContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
-[node name="card" parent="JournalMainFrame/MarginContainer/VBoxContainer/Codex/main/ScrollContainer/codex_holder" instance=ExtResource("3_82c4r")]
-layout_mode = 2
-size_flags_vertical = 1
-
+[connection signal="tab_changed" from="TabBar" to="." method="_on_tab_bar_tab_changed"]
 [connection signal="pressed" from="JournalMainFrame/MarginContainer/VBoxContainer/HBoxContainer2/close" to="." method="_on_close_pressed"]
