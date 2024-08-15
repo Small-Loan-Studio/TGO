@@ -70,18 +70,30 @@ extends Node2D
 		debug_color = value
 		queue_redraw()
 
-@onready var _physics: RigidBody2D = $Physics
-@onready var _interactable: Interactable = $Interactable
-@onready var _light: LightOccluder2D = $Light
+var _display: Sprite2D
+var _physics: RigidBody2D
+var _interactable: Interactable
+var _light: LightOccluder2D
 
 
 func _ready() -> void:
+	# Not done via @onready because the may not all exist given the configurable
+	# nature of the greybox object
+	if has_node("Display"):
+		_display = get_node("Display")
+	if has_node("Physics"):
+		_physics = get_node("Physics")
+	if has_node("Interactable"):
+		_interactable = get_node("Interactable")
+	if has_node("Light"):
+		_light = get_node("Light")
+
 	if Engine.is_editor_hint():
 		get_parent().set_editable_instance(self, true)
-	_update_collider_display()
-	can_block_movement = false
-	can_block_light = false
-	can_interact = false
+		can_block_movement = false
+		can_block_light = false
+		can_interact = false
+		_update_collider_display()
 
 func _draw() -> void:
 	if Engine.is_editor_hint():
@@ -134,7 +146,7 @@ func _process_can_block_movement_update() -> void:
 func _process(_delta: float) -> void:
 	if Engine.is_editor_hint():
 		_sync_occluder()
-		# TODO: if display's position != (0,0) convert to offset
+		_sync_display()
 
 
 func _process_can_interact_update() -> void:
@@ -209,3 +221,11 @@ func _sync_occluder() -> void:
 	_light.occluder.closed = true
 	_light.occluder.cull_mode = OccluderPolygon2D.CULL_CLOCKWISE
 
+
+func _sync_display() -> void:
+	if !Engine.is_editor_hint:
+		return
+
+	if _display.position != Vector2.ZERO:
+		_display.offset = _display.position
+		_display.position = Vector2.ZERO
