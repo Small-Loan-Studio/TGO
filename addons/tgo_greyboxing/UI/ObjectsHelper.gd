@@ -70,9 +70,13 @@ func _apply_generic() -> void:
 	var interacts := cb_interacts.button_pressed
 	cb_interacts.button_pressed = false
 
-	print(collides)
-	print(occludes)
-	print(interacts)
+	var obj: GreyboxObject = preload("res://Scenes/Components/Greyboxing/GreyboxObject.tscn").instantiate()
+	obj.can_block_light = occludes
+	obj.can_block_movement = collides
+	obj.can_interact = interacts
+	obj.add_child(_objects_parent)
+	# the parent of the new greybox object is the level (Object's parent's parent)
+	obj.owner = _objects_parent.get_parent()
 
 func _apply_pushable() -> void:
 	pass
@@ -84,7 +88,3 @@ func _apply_npc() -> void:
 
 func _checkbox(parent: Node, child: String) -> CheckBox:
 	return (parent.get_node(child) as CheckBox)
-	var obj := preload("res://Scenes/Components/Greyboxing/GreyboxObject.tscn").instantiate()
-	obj.add_child(_objects_parent)
-	# the parent of the new greybox object is the level (Object's parent's parent)
-	obj.owner = _objects_parent.get_parent()

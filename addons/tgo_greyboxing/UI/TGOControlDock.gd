@@ -2,6 +2,8 @@
 class_name TGOControlDock
 extends Control
 
+const OBJECTS_HELPER_SCENE := "res://addons/tgo_greyboxing/UI/ObjectsHelper.tscn"
+
 var _plugin_ref: TGOGreyboxingToolsPlugin = null
 
 var _selection: EditorSelection = null:
@@ -78,9 +80,7 @@ func _get_section(selected: Node, root: LevelBase) -> LevelSection:
 	if selected == root:
 		return LevelSection.ROOT
 
-	while selected.get_parent() != root:
-		selected = selected.get_parent()
-
+	while selected != root:
 		match selected.name:
 			"TileMap":
 				return LevelSection.MAP
@@ -88,17 +88,19 @@ func _get_section(selected: Node, root: LevelBase) -> LevelSection:
 				return LevelSection.OBJECTS
 			"Markers":
 				return LevelSection.MARKERS
+		selected = selected.get_parent()
 
 	return LevelSection.UNKNOWN
 
 func _update_section_control(section: LevelSection) -> void:
+	print('_update_section_control(%s)' % [_level_section_str(section)])
 	if _subsection_control != null:
 		_detail.remove_child(_subsection_control)
 		_subsection_control.queue_free()
 		_subsection_control = null
 
 	if section == LevelSection.OBJECTS:
-		var oh: ObjectsHelper = (ResourceLoader.load("res://addons/tgo_greyboxing/UI/ObjectsHelper.tscn") as PackedScene).instantiate()
+		var oh: ObjectsHelper = (ResourceLoader.load(OBJECTS_HELPER_SCENE) as PackedScene).instantiate()
 		oh.setup(_active_section)
 		_subsection_control = oh
 		_detail.add_child(_subsection_control)
