@@ -10,7 +10,10 @@ var STACKABLE_ERROR: String = "Item %s has a stack_size of %s but has not set st
 	set(value):
 		if stack_size > 1 && !stackable:
 			printerr(STACKABLE_ERROR % [name, stack_size])
-		stack_size = value
+			stack_size = 1
+		else:
+			stack_size = value
+
 
 @export var icon: Texture2D
 
