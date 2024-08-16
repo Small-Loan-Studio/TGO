@@ -30,11 +30,24 @@ layout_mode = 2
 text = "Generic Greybox"
 
 [node name="GenericDetails" type="VBoxContainer" parent="Container/AddItems"]
+visible = false
 layout_mode = 2
 
-[node name="NameEdit" type="LineEdit" parent="Container/AddItems/GenericDetails"]
+[node name="HBoxContainer" type="HBoxContainer" parent="Container/AddItems/GenericDetails"]
 layout_mode = 2
-placeholder_text = "Name"
+
+[node name="Label" type="Label" parent="Container/AddItems/GenericDetails/HBoxContainer"]
+layout_mode = 2
+text = "Name"
+
+[node name="MarginContainer" type="MarginContainer" parent="Container/AddItems/GenericDetails/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/margin_left = 15
+
+[node name="NameEdit" type="LineEdit" parent="Container/AddItems/GenericDetails/HBoxContainer/MarginContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
 
 [node name="BlockMovement" type="CheckBox" parent="Container/AddItems/GenericDetails"]
 layout_mode = 2
@@ -69,6 +82,7 @@ visible = false
 layout_mode = 2
 
 [node name="CompleteButtons" type="HBoxContainer" parent="Container"]
+visible = false
 layout_mode = 2
 
 [node name="Cancel" type="Button" parent="Container/CompleteButtons"]

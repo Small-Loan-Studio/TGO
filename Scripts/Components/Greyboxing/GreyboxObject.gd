@@ -3,11 +3,16 @@
 class_name GreyboxObject
 extends Node2D
 
+func _init() -> void:
+	print(self, '._init')
+
 @export_category("Functionality")
-@export var can_block_movement: bool = true:
+@export var can_block_movement: bool = false:
 	get:
 		return can_block_movement
 	set(value):
+		print('%s - can_block_movement %s -> %s' % [name, can_block_movement, value])
+		print_stack()
 		can_block_movement = value
 		_process_can_block_movement_update()
 
@@ -18,7 +23,7 @@ extends Node2D
 		can_block_light = value
 		_process_light_update()
 
-@export var can_interact: bool = true:
+@export var can_interact: bool = false:
 	get:
 		return can_interact
 	set(value):
@@ -76,24 +81,37 @@ var _interactable: Interactable
 var _light: LightOccluder2D
 
 
+func _dump_flags() -> void:
+	print("  blocks movement? %s" % [can_block_movement])
+	print("  interactable?    %s" % [can_interact])
+	print("  blocks light?    %s" % [can_block_light])
+
+func _enter_tree() -> void:
+	print("%s._enter_tree()" % [name])
+	_dump_flags()
+
 func _ready() -> void:
+	print("%s._ready()" % [name])
+	_dump_flags()
 	# Not done via @onready because the may not all exist given the configurable
 	# nature of the greybox object
+	print('%s - GreyboxObject._ready' % [name])
 	if has_node("Display"):
 		_display = get_node("Display")
+		print('  - found display')
 	if has_node("Physics"):
 		_physics = get_node("Physics")
+		print('  - found physics')
 	if has_node("Interactable"):
 		_interactable = get_node("Interactable")
+		print('  - found interactable')
 	if has_node("Light"):
 		_light = get_node("Light")
+		print('  - found light')
+	print('  - @onready done')
 
 	if Engine.is_editor_hint():
 		get_parent().set_editable_instance(self, true)
-		can_block_movement = false
-		can_block_light = false
-		can_interact = false
-		_update_collider_display()
 
 func _draw() -> void:
 	if Engine.is_editor_hint():
@@ -112,10 +130,6 @@ func _update_collider_display() -> void:
 
 
 func _process_can_block_movement_update() -> void:
-	if !Engine.is_editor_hint():
-		printerr("May not change movement blocking at runtime")
-		return
-
 	if can_block_movement:
 		if _physics != null:
 			# already has a physics body
@@ -136,6 +150,7 @@ func _process_can_block_movement_update() -> void:
 		if _physics == null:
 			# already doesn't have a physics body
 			return
+		print('%s - removing _physics' % [name])
 		remove_child(_physics)
 		_physics.queue_free()
 		_physics = null
@@ -150,9 +165,6 @@ func _process(_delta: float) -> void:
 
 
 func _process_can_interact_update() -> void:
-	if !Engine.is_editor_hint():
-		printerr("May not change movement blocking at runtime")
-		return
 	if can_interact:
 		if _interactable != null:
 			# already has an interactable object
@@ -180,10 +192,6 @@ func _process_can_interact_update() -> void:
 
 
 func _process_light_update() -> void:
-	if !Engine.is_editor_hint():
-		printerr("May not change light occlusion at runtime")
-		return
-
 	if !can_block_light:
 		if !_light == null:
 			remove_child(_light)
@@ -226,6 +234,6 @@ func _sync_display() -> void:
 	if !Engine.is_editor_hint:
 		return
 
-	if _display.position != Vector2.ZERO:
+	if _display != null && _display.position != Vector2.ZERO:
 		_display.offset = _display.position
 		_display.position = Vector2.ZERO

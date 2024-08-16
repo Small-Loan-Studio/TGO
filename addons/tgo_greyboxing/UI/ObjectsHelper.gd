@@ -65,7 +65,8 @@ func _apply() -> void:
 
 
 func _apply_generic() -> void:
-	var name := (_generic_detail.get_node("NameEdit") as LineEdit).text
+	var le: LineEdit = _generic_detail.get_node("HBoxContainer/MarginContainer/NameEdit")
+	var name := le.text
 	var collides := _checkbox(_generic_detail, "BlockMovement").button_pressed
 	var occludes := _checkbox(_generic_detail, "Occludes").button_pressed
 	var interacts := _checkbox(_generic_detail, "Interactable").button_pressed
@@ -73,11 +74,13 @@ func _apply_generic() -> void:
 	var obj: GreyboxObject = preload(GREYBOX_OBJECT_SCENE).instantiate()
 	obj.name = name
 	_objects_parent.add_child(obj)
-	# the parent of the new greybox object is the level (Object's parent's parent)
+	# the owner of the new greybox object is the level (Object's parent's parent)
 	obj.owner = _objects_parent.get_parent()
-	obj.can_block_light = occludes
+	obj.owner = EditorInterface.get_edited_scene_root()
 	obj.can_block_movement = collides
+	obj.can_block_light = occludes
 	obj.can_interact = interacts
+
 
 func _apply_pushable() -> void:
 	pass
@@ -88,8 +91,8 @@ func _apply_npc() -> void:
 
 
 func _reset_generic_state() -> void:
-	var ne := (_generic_detail.get_node("NameEdit") as LineEdit)
-	ne.text = ne.placeholder_text
+	var le: LineEdit = _generic_detail.get_node("HBoxContainer/MarginContainer/NameEdit")
+	le.text = le.placeholder_text
 
 	var cb_collides := _checkbox(_generic_detail, "BlockMovement")
 	cb_collides.button_pressed = false
