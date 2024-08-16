@@ -1,14 +1,13 @@
-[gd_scene load_steps=44 format=3 uid="uid://crrvo58x81lxn"]
+[gd_scene load_steps=41 format=3 uid="uid://crrvo58x81lxn"]
 
 [ext_resource type="Script" path="res://ZZ_Scratch/QuestPrototype/QuestPrototype.gd" id="1_h4v6k"]
 [ext_resource type="Texture2D" uid="uid://ds0x2hyas8fpv" path="res://Art/Environment/Underground.png" id="2_h17xi"]
 [ext_resource type="Script" path="res://ZZ_Scratch/QuestPrototype/QuestManager.gd" id="2_o8hp2"]
 [ext_resource type="PackedScene" uid="uid://bcqslh1vhjn2m" path="res://Scenes/UI/Journal/Journal.tscn" id="2_ohowe"]
+[ext_resource type="Resource" uid="uid://c8kwdib5g3qg3" path="res://ZZ_Scratch/QuestPrototype/Quests/findyourwayouy.tres" id="3_6k8t3"]
 [ext_resource type="Texture2D" uid="uid://b5aoo3ejx38qf" path="res://Art/Environment/Placeables/questprototype/Lamp.png" id="3_koxfr"]
-[ext_resource type="Script" path="res://ZZ_Scratch/QuestPrototype/QuestObjective.gd" id="3_tlatb"]
 [ext_resource type="Texture2D" uid="uid://ddusy2p3rpksq" path="res://Art/Environment/Placeables/questprototype/coffin.png" id="3_y843k"]
 [ext_resource type="PackedScene" uid="uid://c2040l84asu8j" path="res://Scenes/Components/Interactable.tscn" id="4_0fujw"]
-[ext_resource type="Script" path="res://ZZ_Scratch/QuestPrototype/Quest.gd" id="4_t3u61"]
 [ext_resource type="PackedScene" uid="uid://mqvl5162rawb" path="res://Scenes/Devin.tscn" id="4_y2igs"]
 [ext_resource type="Script" path="res://Scripts/Resources/InteractableDialogue.gd" id="5_84uud"]
 [ext_resource type="Resource" path="res://ZZ_Scratch/QuestPrototype/Timelines/coffin_0.dtl" id="6_3nuoq"]
@@ -24,23 +23,6 @@
 [ext_resource type="Script" path="res://Scripts/Resources/InteractableQuest.gd" id="17_65bcs"]
 [ext_resource type="PackedScene" uid="uid://8l767ndoo0ch" path="res://Scenes/UI/Quest/QuestUI.tscn" id="19_jl20o"]
 [ext_resource type="PackedScene" uid="uid://c5ysorqfbhowc" path="res://Scenes/UI/pop_up.tscn" id="20_cry6j"]
-
-[sub_resource type="Resource" id="Resource_jebke"]
-script = ExtResource("3_tlatb")
-description = "Find light source."
-type = "Text"
-status = ""
-amount = 0
-is_complete = false
-
-[sub_resource type="Resource" id="Resource_xo6x6"]
-script = ExtResource("4_t3u61")
-quest_id = 0
-title = "Find your way out"
-description = "It's so dark. I need to find some kind of light."
-is_completed = false
-objectives = Array[ExtResource("3_tlatb")]([SubResource("Resource_jebke")])
-rewards = Array[Resource("res://ZZ_Scratch/QuestPrototype/QuestReward.gd")]([])
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_vwyhd"]
 size = Vector2(46, 84)
@@ -111,8 +93,9 @@ size = Vector2(163.5, 87.5)
 script = ExtResource("1_h4v6k")
 
 [node name="QuestManager" type="Node" parent="."]
+unique_name_in_owner = true
 script = ExtResource("2_o8hp2")
-all_quests = Array[ExtResource("4_t3u61")]([SubResource("Resource_xo6x6")])
+all_quests = Array[Resource("res://ZZ_Scratch/QuestPrototype/Quest.gd")]([ExtResource("3_6k8t3")])
 
 [node name="Background" type="Node2D" parent="."]
 
@@ -310,14 +293,16 @@ position = Vector2(818, 487)
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
-[node name="Journal" parent="CanvasLayer" instance=ExtResource("2_ohowe")]
-visible = false
-offset_left = -192.0
-offset_top = -108.0
-offset_right = -192.0
-offset_bottom = -108.0
-
 [node name="QuestUI" parent="CanvasLayer" instance=ExtResource("19_jl20o")]
 visible = false
+
+[node name="Journal" parent="CanvasLayer" instance=ExtResource("2_ohowe")]
+visible = false
+anchor_left = 0.098
+anchor_bottom = 0.912
+offset_left = 0.559998
+offset_top = 3.0
+offset_right = 6.0
+offset_bottom = 0.359985
 
 [node name="Pop-up" parent="CanvasLayer" instance=ExtResource("20_cry6j")]

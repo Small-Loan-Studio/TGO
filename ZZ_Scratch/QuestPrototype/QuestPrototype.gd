@@ -8,4 +8,5 @@ func _unhandled_input(event:InputEvent)->void:
 			if journal.visible:
 				journal.hide()
 			else:
+				journal.update()
 				journal.show()

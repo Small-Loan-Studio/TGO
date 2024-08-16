@@ -2,56 +2,18 @@ extends Node
 
 class_name QuestManager
 
-var quests : Dictionary = {
-		1:{
-			"quest_name": "Find your way out",
-			"description" :"Escape the underground",
-			"segments":{
-				0:{
-					"name":"Find your way out.",
-					"description":"It's so dark. I need to find some kind of light.",
-					"requirements":{
-						0 : "Find light source."
-					},
-				},
-				1:{
-					"name":"Investigate your surroundings.",
-					"description":"I have found a light source, where the bloody hell I am.",
-					"requirements":{
-						0: "Find an exit"
-					}
-				},
-				2:{
-					"name":"Open the door.",
-					"description":"This door seems to be locked. Maybe I can open it with my lockpick",
-					"requirements":{
-						0:"Use your lockpick to open closed door."
-					}
-				},
-				3:{
-					"name":"Find the exit.",
-					"description":"I successfully opened the door now where is the exit.",
-					"requirements":{
-						0:"Find the exit."
-					}
-				}
-				
-			},
-			"reward" : "Something"
-		},
-	}
-
+@onready var quest_ui : Node = get_node("../CanvasLayer/QuestUI")
+@onready var journal : Node = get_node("../CanvasLayer/Journal")
+@onready var popup : Node = get_node("../CanvasLayer/Pop-up")
 func _ready()->void:
+	#await get_tree().process_frame
+	journal.update_quest_window.connect(_on_update_quest_window)
 	Signalbus.quest_update.connect(_on_update_quest)
 	Dialogic.signal_event.connect(_on_dialogic_signal)
 	pass
 @export var all_quests: Array[Quest] = []
 var active_quests: Array[Quest] = []
 var completed_quests: Array[Quest] = []
-
-@onready var quest_ui : Node = get_node("../CanvasLayer/QuestUI")
-@onready var journal : Node = get_node("../CanvasLayer/Journal")
-@onready var popup : Node = get_node("../CanvasLayer/Pop-up")
 
 func add_quest(quest: Quest) -> void:
 	active_quests.append(quest)
@@ -63,14 +25,18 @@ func complete_quest(quest: Quest) -> void:
 	distribute_rewards(quest.rewards)
 
 func update_objectives(quest: Quest,effected_objective :String,_value:int) -> void:
+	var is_quest_completed :bool = true
 	for objective in quest.objectives:
 		if not objective.is_complete:
 			check_objective_status(objective,_value)
 			update_quest_ui(quest)
-
+	for objective in quest.objectives:
+		if not objective.is_complete:
+			is_quest_completed = false
+	if is_quest_completed:
+		complete_quest(quest)
 #TODO:Distribute rewards after quest is complete.
 #It will be implemented after we have other systems in place.
-
 func distribute_rewards(rewards: Array) -> void :
 	if rewards.is_empty():
 		return
@@ -99,7 +65,16 @@ func update_quest_ui(quest:Quest)->void:
 	quest_ui.show()
 	quest_ui.update_quest_ui(quest)
 	pass
-#TODO: Update UI when one quest is affected.
+func _on_update_quest_window(tab:int)->void:
+	match tab:
+		0:
+			journal.update_quest_tab(active_quests)
+			pass
+		1:
+			journal.update_quest_tab(completed_quests)
+			pass
+	pass
+	#TODO: Update UI when one quest is affected.
 func _on_update_quest(quest_id:int,effected_objective :String,value:int)-> void:
 	var does_quest_exist :bool = false
 	

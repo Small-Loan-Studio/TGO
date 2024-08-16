@@ -1,10 +1,12 @@
-[gd_scene load_steps=11 format=3 uid="uid://bcqslh1vhjn2m"]
+[gd_scene load_steps=13 format=3 uid="uid://bcqslh1vhjn2m"]
 
 [ext_resource type="Theme" uid="uid://o6kgdamtgf5g" path="res://Scenes/UI/Journal/Journal.tres" id="1_s3mq2"]
 [ext_resource type="Script" path="res://Scripts/UI/Journal.gd" id="2_eyc3n"]
+[ext_resource type="Script" path="res://Scripts/UI/QuestsWindow.gd" id="3_eycyk"]
 [ext_resource type="Script" path="res://Scripts/UI/Beastiary.gd" id="3_j8icn"]
 [ext_resource type="Texture2D" uid="uid://dsxjxmjexlgfd" path="res://Art/UI/Journal/Codex/temp1.png" id="4_1wch5"]
 [ext_resource type="Script" path="res://Scripts/UI/UI_Resources/BeastiaryEntry.gd" id="4_2k6mo"]
+[ext_resource type="Script" path="res://Scripts/UI/QuestCard.gd" id="4_j203e"]
 [ext_resource type="Texture2D" uid="uid://dggr1vfpw543t" path="res://Art/UI/Journal/Codex/temp2.png" id="6_2ir41"]
 [ext_resource type="Texture2D" uid="uid://dgpxn4ip21ekv" path="res://Art/UI/Journal/Codex/Eva 100px.png" id="7_j84jf"]
 
@@ -92,15 +94,71 @@ layout_mode = 2
 size_flags_horizontal = 3
 text = "X"
 
-[node name="Recap" type="Control" parent="JournalMainFrame/MarginContainer/VBoxContainer"]
+[node name="RecapWindow" type="Control" parent="JournalMainFrame/MarginContainer/VBoxContainer"]
 visible = false
 layout_mode = 2
 
-[node name="Quests" type="Control" parent="JournalMainFrame/MarginContainer/VBoxContainer"]
-visible = false
+[node name="QuestsWindow" type="Control" parent="JournalMainFrame/MarginContainer/VBoxContainer"]
 layout_mode = 2
+size_flags_vertical = 3
+script = ExtResource("3_eycyk")
+
+[node name="QuestTabBar" type="TabBar" parent="JournalMainFrame/MarginContainer/VBoxContainer/QuestsWindow"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.021
+anchor_top = -0.103
+anchor_right = 0.331
+anchor_bottom = -0.009
+offset_left = 0.335999
+offset_top = 0.0410042
+offset_right = 2.29596
+offset_bottom = 0.0230002
+tab_count = 2
+tab_0/title = "Active Quests"
+tab_1/title = "Completed Quests"
+
+[node name="HBoxContainer" type="HBoxContainer" parent="JournalMainFrame/MarginContainer/VBoxContainer/QuestsWindow"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ScrollContainer" type="ScrollContainer" parent="JournalMainFrame/MarginContainer/VBoxContainer/QuestsWindow/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="JournalQuests" type="VBoxContainer" parent="JournalMainFrame/MarginContainer/VBoxContainer/QuestsWindow/HBoxContainer/ScrollContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="QuestCard" type="VSplitContainer" parent="JournalMainFrame/MarginContainer/VBoxContainer/QuestsWindow/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+script = ExtResource("4_j203e")
+
+[node name="Title" type="Label" parent="JournalMainFrame/MarginContainer/VBoxContainer/QuestsWindow/HBoxContainer/QuestCard"]
+layout_mode = 2
+size_flags_vertical = 1
+
+[node name="VBoxContainer" type="VBoxContainer" parent="JournalMainFrame/MarginContainer/VBoxContainer/QuestsWindow/HBoxContainer/QuestCard"]
+layout_mode = 2
+
+[node name="QuestDescription" type="RichTextLabel" parent="JournalMainFrame/MarginContainer/VBoxContainer/QuestsWindow/HBoxContainer/QuestCard/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+size_flags_stretch_ratio = 4.0
+
+[node name="Status" type="Label" parent="JournalMainFrame/MarginContainer/VBoxContainer/QuestsWindow/HBoxContainer/QuestCard/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
 
 [node name="Beastiary" type="HBoxContainer" parent="JournalMainFrame/MarginContainer/VBoxContainer"]
+visible = false
 layout_mode = 2
 size_flags_vertical = 3
 script = ExtResource("3_j8icn")
@@ -126,3 +184,5 @@ size_flags_vertical = 3
 
 [connection signal="tab_changed" from="TabBar" to="." method="_on_tab_bar_tab_changed"]
 [connection signal="pressed" from="JournalMainFrame/MarginContainer/VBoxContainer/HBoxContainer2/close" to="." method="_on_close_pressed"]
+[connection signal="tab_changed" from="JournalMainFrame/MarginContainer/VBoxContainer/QuestsWindow/QuestTabBar" to="." method="_on_quest_tab_bar_tab_changed"]
+[connection signal="child_entered_tree" from="JournalMainFrame/MarginContainer/VBoxContainer/QuestsWindow/HBoxContainer/ScrollContainer/JournalQuests" to="JournalMainFrame/MarginContainer/VBoxContainer/QuestsWindow" method="_on_journal_quests_child_entered_tree"]
