@@ -10,7 +10,7 @@ enum LevelSection {
 	MARKERS,
 }
 
-const OBJECTS_HELPER_SCENE := "res://Scripts/Addons/tgo_greyboxing/UI/ObjectsHelper.tscn"
+const OBJECTS_HELPER_SCENE := "res://addons_tgo/greyboxing/UI/ObjectsHelper.tscn"
 
 var _plugin_ref: TGOGreyboxingToolsPlugin = null
 
@@ -45,7 +45,7 @@ func _reload() -> void:
 func _update_selection() -> void:
 	var root := EditorInterface.get_edited_scene_root()
 	if !(root is LevelBase):
-		_selection_label.text = "Plugin only works active while editing LevelBase"
+		_selection_label.text = "Only active while editing LevelBase"
 		_update_section_control(LevelSection.UNKNOWN)
 		return
 

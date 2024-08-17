@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://1j701pum1cgx"]
 
-[ext_resource type="Script" path="res://Scripts/Addons/tgo_greyboxing/UI/ObjectsHelper.gd" id="1_u6ws1"]
+[ext_resource type="Script" path="res://addons_tgo/greyboxing/UI/ObjectsHelper.gd" id="1_u6ws1"]
 
 [node name="ObjectsHelper" type="Control"]
 layout_mode = 3
@@ -30,6 +30,7 @@ layout_mode = 2
 text = "Generic Greybox"
 
 [node name="GenericDetails" type="VBoxContainer" parent="Container/AddItems"]
+visible = false
 layout_mode = 2
 
 [node name="HBoxContainer" type="HBoxContainer" parent="Container/AddItems/GenericDetails"]
