@@ -1,9 +1,20 @@
 @tool
 extends Node2D
 
-@export var item: Item
-@export var quantity: int
-@export var interactable_radius: int = 1
+@export var item: Item:
+	set(value):
+		item = value
+		update_configuration_warnings()
+		
+@export var quantity: int:
+	set(value):
+		quantity = value
+		update_configuration_warnings()
+		
+@export var interactable_radius: int = 1:
+	set(value):
+		interactable_radius = value
+		update_configuration_warnings()
 
 var _sprite: Sprite2D
 var _circle: CircleShape2D
@@ -36,7 +47,20 @@ func _ready() -> void:
 	interactable.actions.append(action)
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	if Engine.is_editor_hint():
 		_sprite.texture = item.icon
 		_circle.radius = interactable_radius
+
+func _get_configuration_warnings() -> PackedStringArray:
+	var errors: Array[String] = []
+	if !item:
+		errors.append("Item Scene requires an Item resource to be attached in the Editor")
+	if item && quantity > item.stack_size:
+		errors.append("Item quantity cannot be higher than the max stack size of the Item")
+	elif quantity < 1:
+		errors.append("Item quantity cannot be lower than 1")
+	if interactable_radius < 0:
+		errors.append("Interactable radius is set to 0. This is probably unattended")
+	return errors
+	
