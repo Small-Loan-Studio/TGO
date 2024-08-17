@@ -2,7 +2,15 @@
 class_name TGOControlDock
 extends Control
 
-const OBJECTS_HELPER_SCENE := "res://addons/tgo_greyboxing/UI/ObjectsHelper.tscn"
+enum LevelSection {
+	UNKNOWN,
+	ROOT,
+	MAP,
+	OBJECTS,
+	MARKERS,
+}
+
+const OBJECTS_HELPER_SCENE := "res://Scripts/Addons/tgo_greyboxing/UI/ObjectsHelper.tscn"
 
 var _plugin_ref: TGOGreyboxingToolsPlugin = null
 
@@ -12,15 +20,16 @@ var _selection: EditorSelection = null:
 
 var _subsection_control: Control = null
 
-@onready var _selection_label: Label = %SelectedLabel
-@onready var _detail := %SectionDetails
-
 var _active_section: Node = null:
 	get:
 		return _active_section
 	set(value):
 		print('_active_section: %s' % [value.name])
 		_active_section = value
+
+@onready var _selection_label: Label = %SelectedLabel
+@onready var _detail := %SectionDetails
+
 
 func setup(plugin_ref: TGOGreyboxingToolsPlugin) -> void:
 	_plugin_ref = plugin_ref
@@ -105,17 +114,9 @@ func _update_section_control(section: LevelSection) -> void:
 
 	if section == LevelSection.OBJECTS:
 		var oh: ObjectsHelper = (ResourceLoader.load(OBJECTS_HELPER_SCENE) as PackedScene).instantiate()
-		oh.setup(_active_section)
+		oh.setup(_plugin_ref, _active_section)
 		_subsection_control = oh
 		_detail.add_child(_subsection_control)
-
-enum LevelSection {
-	UNKNOWN,
-	ROOT,
-	MAP,
-	OBJECTS,
-	MARKERS,
-}
 
 func _level_section_str(ls: LevelSection) -> String:
 	return {

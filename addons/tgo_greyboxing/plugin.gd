@@ -13,7 +13,7 @@ func _enter_tree() -> void:
 
 
 func _load_scene() -> void:
-	var control_scene_res := preload("res://addons/tgo_greyboxing/UI/TGOControlDock.tscn")
+	var control_scene_res := preload("res://Scripts/Addons/tgo_greyboxing/UI/TGOControlDock.tscn")
 	_control_scene = control_scene_res.instantiate() as TGOControlDock
 	add_control_to_dock(DOCK_SLOT_RIGHT_BL, _control_scene)
 	_control_scene.setup(self)
