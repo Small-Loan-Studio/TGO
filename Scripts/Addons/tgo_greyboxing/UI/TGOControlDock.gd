@@ -24,7 +24,7 @@ var _active_section: Node = null:
 	get:
 		return _active_section
 	set(value):
-		print('_active_section: %s' % [value.name])
+		print("_active_section: %s" % [value.name])
 		_active_section = value
 
 @onready var _selection_label: Label = %SelectedLabel
@@ -90,6 +90,7 @@ func _get_section_node(selected: Node, root: Node, typ: LevelSection) -> Node:
 
 	return null
 
+
 func _get_section(selected: Node, root: LevelBase) -> LevelSection:
 	if selected == root:
 		return LevelSection.ROOT
@@ -106,6 +107,7 @@ func _get_section(selected: Node, root: LevelBase) -> LevelSection:
 
 	return LevelSection.UNKNOWN
 
+
 func _update_section_control(section: LevelSection) -> void:
 	if _subsection_control != null:
 		_detail.remove_child(_subsection_control)
@@ -113,10 +115,13 @@ func _update_section_control(section: LevelSection) -> void:
 		_subsection_control = null
 
 	if section == LevelSection.OBJECTS:
-		var oh: ObjectsHelper = (ResourceLoader.load(OBJECTS_HELPER_SCENE) as PackedScene).instantiate()
+		var oh: ObjectsHelper = (
+			(ResourceLoader.load(OBJECTS_HELPER_SCENE) as PackedScene).instantiate()
+		)
 		oh.setup(_plugin_ref, _active_section)
 		_subsection_control = oh
 		_detail.add_child(_subsection_control)
+
 
 func _level_section_str(ls: LevelSection) -> String:
 	return {

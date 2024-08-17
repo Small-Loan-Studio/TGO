@@ -10,15 +10,17 @@ var _last_loaded_level: LevelBase = null
 @onready var _world := $GameWorld
 @onready var _hud: HUD = $OverlayManager/HUD
 
+
 static func instance() -> Driver:
-	return Engine.get_singleton('DriverInstance')
+	return Engine.get_singleton("DriverInstance")
+
 
 func _ready() -> void:
 	_curtain.visible = true
-	if !Engine.has_singleton('DriverInstance'):
-		Engine.register_singleton('DriverInstance', self)
+	if !Engine.has_singleton("DriverInstance"):
+		Engine.register_singleton("DriverInstance", self)
 	else:
-		printerr('Attempting to register a second singleton')
+		printerr("Attempting to register a second singleton")
 
 	audio_mgr.play(Enums.AudioTrack.SKETCH_1, .75)
 	# call via deferred so we don't have await in the _ready path. I'm not
@@ -33,6 +35,7 @@ func _post_ready() -> void:
 
 func get_hud() -> HUD:
 	return _hud
+
 
 ## Loads a new level into the game world
 func load_level(tgt: LevelBase, target_name: String) -> void:

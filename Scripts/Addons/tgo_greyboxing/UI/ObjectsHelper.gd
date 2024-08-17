@@ -18,17 +18,20 @@ var _focused_section: String = ""
 @onready var _npc_detail := $Container/AddItems/NPCDetails
 @onready var _complete_buttons := $Container/CompleteButtons
 
+
 func _ready() -> void:
 	_sections = {
-		"generic": [_generic, _generic_detail, Callable(self, '_reset_generic_state')],
-		"pushable": [_pushable, _pushable_detail, Callable(self, '_reset_pushable_state')],
-		"npc": [_npc, _npc_detail, Callable(self, '_reset_npc_state')],
+		"generic": [_generic, _generic_detail, Callable(self, "_reset_generic_state")],
+		"pushable": [_pushable, _pushable_detail, Callable(self, "_reset_pushable_state")],
+		"npc": [_npc, _npc_detail, Callable(self, "_reset_npc_state")],
 	}
 	_reset()
+
 
 func setup(plugin: EditorPlugin, parent_node: Node) -> void:
 	_objects_parent = parent_node
 	_plugin_ref = plugin
+
 
 func _reset() -> void:
 	_focused_section = ""
@@ -40,6 +43,7 @@ func _reset() -> void:
 		detail.hide()
 		reset.call()
 	_complete_buttons.hide()
+
 
 func _select_section(name: String) -> void:
 	_reset()
@@ -53,6 +57,7 @@ func _select_section(name: String) -> void:
 
 	if name == "generic":
 		_complete_buttons.show()
+
 
 func _apply() -> void:
 	match _focused_section:
@@ -89,9 +94,12 @@ func _apply_generic() -> void:
 	obj.name = new_obj_name
 	_objects_parent.add_child(obj)
 	urm.create_action(
-		"Add generic greybox object (%s, %s, %s)" % [collides, occludes, interacts], 0, _objects_parent)
+		"Add generic greybox object (%s, %s, %s)" % [collides, occludes, interacts],
+		0,
+		_objects_parent
+	)
 	# the owner of the new greybox object is the level (Object's parent's parent)
-	urm.add_undo_method(self, '_undo_add', _objects_parent, obj)
+	urm.add_undo_method(self, "_undo_add", _objects_parent, obj)
 	urm.commit_action()
 	# _objects_parent.add_child(obj)
 	obj.owner = _objects_parent.get_parent()
@@ -127,12 +135,14 @@ func _reset_generic_state() -> void:
 	var cb_interacts := _checkbox(_generic_detail, "Interactable")
 	cb_interacts.button_pressed = false
 
+
 func _reset_pushable_state() -> void:
 	pass
+
 
 func _reset_npc_state() -> void:
 	pass
 
 
 func _checkbox(parent: Node, child: String) -> CheckBox:
-	return (parent.get_node(child) as CheckBox)
+	return parent.get_node(child) as CheckBox

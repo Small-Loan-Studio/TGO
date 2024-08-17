@@ -25,7 +25,6 @@ extends Node2D
 		can_interact = value
 		_process_can_interact_update()
 
-
 @export_category("Display Noise")
 @export var _display_collision_shapes: bool = true:
 	get:
@@ -90,6 +89,7 @@ func _ready() -> void:
 
 	if Engine.is_editor_hint():
 		get_parent().set_editable_instance(self, true)
+
 
 func _draw() -> void:
 	if Engine.is_editor_hint():
