@@ -17,7 +17,6 @@ const TILEMAP_SECTION_NAME := "TileMap"
 const OBJECTS_SECTION_NAME := "Objects"
 const MARKERS_SECTION_NAME := "Markers"
 
-
 var _plugin_ref: TGOGreyboxingToolsPlugin = null
 
 var _selection: EditorSelection = null:
@@ -108,6 +107,7 @@ func _get_section_node(selected: Node, root: LevelBase, typ: LevelSection) -> No
 		selected = selected.get_parent()
 
 	return null
+
 
 ## Returns which section a selected node is in within a LevelBase.
 func _get_section(selected: Node, root: LevelBase) -> LevelSection:
