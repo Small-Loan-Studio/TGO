@@ -9,7 +9,7 @@ var _inventory: Inventory
 func setup(driver: Driver) -> void:
 	var limited_inventory := Inventory.new()
 	limited_inventory.size = 2
-	var inv: Inventory = driver._inventory_mgr.register(player, limited_inventory)
+	var inv: Inventory = driver._inventory_mgr.register("Devin", limited_inventory)
 	_inventory = inv
 	# Test/Debug wiring for the time being
 	

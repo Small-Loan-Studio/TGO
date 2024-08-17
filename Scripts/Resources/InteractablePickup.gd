@@ -13,7 +13,7 @@ func act(_actor: Character) -> void:
 	var invManager: InventoryManager = parent.get_node("/root/Driver/InventoryManager")
 	var item_node := parent.get_node(dest_path) as Node2D
 
-	var inventory: Inventory = invManager.get_inventory(_actor)
+	var inventory: Inventory = invManager.get_inventory("Devin")
 	if inventory.insert(item):
 		item_node.queue_free()
 		print(inventory.items)
