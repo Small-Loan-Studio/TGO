@@ -4,14 +4,33 @@ class_name ObjectsHelper
 extends Control
 
 const GREYBOX_OBJECT_SCENE = "res://Scenes/Components/Greyboxing/GreyboxObject.tscn"
+const GENERIC_KEY = "generic"
+const PUSHABLE_KEY = "pushable"
+const NPC_KEY = "npc"
+const BUTTON_IDX = 0
+const DETAIL_IDX = 1
+const RESET_IDX = 2
 
 var _plugin_ref: EditorPlugin
+## Stores a collection of data for each helper section.
+##   Map[String, [Control, Control, Callable]].
+##
+## Key: section id
+## Value[0]: The button that activates a section
+## Value[1]: A container with any configuration necessary for the section
+## Value[2]: Callable that resets the configuration back to a default state
 var _sections: Dictionary = {}
 var _objects_parent: Node = null
 var _focused_section: String = ""
+var _valid_keys: Array[String] = []
 
 @onready var _generic := $Container/AddItems/Generic
 @onready var _generic_detail := $Container/AddItems/GenericDetails
+@onready var _generic_name: LineEdit = \
+	$Container/AddItems/GenericDetails/HBoxContainer/MarginContainer/NameEdit
+@onready var _generic_block_movement: CheckBox = $Container/AddItems/GenericDetails/BlockMovement
+@onready var _generic_occludes: CheckBox = $Container/AddItems/GenericDetails/Occludes
+@onready var _generic_interacts: CheckBox = $Container/AddItems/GenericDetails/Interactable
 @onready var _pushable := $Container/AddItems/Pushable
 @onready var _pushable_detail := $Container/AddItems/PushableDetails
 @onready var _npc := $Container/AddItems/NPC
@@ -21,13 +40,19 @@ var _focused_section: String = ""
 
 func _ready() -> void:
 	_sections = {
-		"generic": [_generic, _generic_detail, Callable(self, "_reset_generic_state")],
-		"pushable": [_pushable, _pushable_detail, Callable(self, "_reset_pushable_state")],
-		"npc": [_npc, _npc_detail, Callable(self, "_reset_npc_state")],
+		GENERIC_KEY: [_generic, _generic_detail, Callable(self, "_reset_generic_state")],
+		PUSHABLE_KEY: [_pushable, _pushable_detail, Callable(self, "_reset_pushable_state")],
+		NPC_KEY: [_npc, _npc_detail, Callable(self, "_reset_npc_state")],
 	}
+	for k: String in _sections.keys():
+		_valid_keys.append(k)
+
 	_reset()
 
-
+## Called after _ready to provide any necessary external objects.
+## - plugin is a reference to the outtermost plugin host
+## - parent_node is the first-level Levelbase node that will contain any
+##   constructed objects
 func setup(plugin: EditorPlugin, parent_node: Node) -> void:
 	_objects_parent = parent_node
 	_plugin_ref = plugin
@@ -36,41 +61,50 @@ func setup(plugin: EditorPlugin, parent_node: Node) -> void:
 func _reset() -> void:
 	_focused_section = ""
 	for k: String in _sections.keys():
-		var main: Control = _sections[k][0]
-		var detail: Control = _sections[k][1]
-		var reset: Callable = _sections[k][2]
+		var main: Control = _sections[k][BUTTON_IDX]
+		var detail: Control = _sections[k][DETAIL_IDX]
+		var reset: Callable = _sections[k][RESET_IDX]
 		main.show()
 		detail.hide()
 		reset.call()
 	_complete_buttons.hide()
 
 
+## Hides section selection buttons and focuses on the configuratino details for
+## the section referenced via name.
 func _select_section(name: String) -> void:
 	_reset()
+	if !(name in _valid_keys):
+		assert(false, "Invalid section key provided: %s vs %s" % [name, _valid_keys])
+
 	_focused_section = name
-	var detail: Control = _sections[name][1]
+	var detail: Control = _sections[name][DETAIL_IDX]
 	detail.show()
 	for k: String in _sections.keys():
 		if k != name:
-			_sections[k][0].hide()
-			_sections[k][1].hide()
+			_sections[k][BUTTON_IDX].hide()
+			_sections[k][DETAIL_IDX].hide()
 
-	if name == "generic":
+	if name == GENERIC_KEY:
 		_complete_buttons.show()
 
 
+## Apply whatever section + configuration is in process
 func _apply() -> void:
 	match _focused_section:
-		"generic":
+		GENERIC_KEY:
 			_apply_generic()
-		"pushable":
+		PUSHABLE_KEY:
 			_apply_pushable()
-		"npc":
+		NPC_KEY:
 			_apply_npc()
-
+		_:
+			assert(false, "Invalid focused section: " + _focused_section)
 	_reset()
 
 
+## When adding a child node examine existing children and find a unique
+## name based in in_str
 func _mk_unique(parent: Node, in_str: String) -> String:
 	if !parent.has_node(in_str):
 		return in_str
@@ -82,39 +116,45 @@ func _mk_unique(parent: Node, in_str: String) -> String:
 	return "%s_%d" % [in_str, i]
 
 
+## Create a generic greybox and add it to the scene
 func _apply_generic() -> void:
-	var le: LineEdit = _generic_detail.get_node("HBoxContainer/MarginContainer/NameEdit")
-	var new_obj_name := _mk_unique(_objects_parent, le.text.strip_edges())
-	var collides := _checkbox(_generic_detail, "BlockMovement").button_pressed
-	var occludes := _checkbox(_generic_detail, "Occludes").button_pressed
-	var interacts := _checkbox(_generic_detail, "Interactable").button_pressed
+	var name := _generic_name.text.strip_edges()
+	if name == "":
+		name = "GreyboxObj"
+	var new_obj_name := _mk_unique(_objects_parent, name)
+	var collides := _generic_block_movement.button_pressed
+	var occludes := _generic_occludes.button_pressed
+	var interacts := _generic_interacts.button_pressed
 
 	var obj: GreyboxObject = preload(GREYBOX_OBJECT_SCENE).instantiate()
-	var urm := _plugin_ref.get_undo_redo()
 	obj.name = new_obj_name
-	_objects_parent.add_child(obj)
-	urm.create_action(
-		"Add generic greybox object (%s, %s, %s)" % [collides, occludes, interacts],
-		0,
-		_objects_parent
-	)
-	# the owner of the new greybox object is the level (Object's parent's parent)
-	urm.add_undo_method(self, "_undo_add", _objects_parent, obj)
-	urm.commit_action()
+	# var urm := _plugin_ref.get_undo_redo()
 	# _objects_parent.add_child(obj)
+	# urm.create_action(
+	# 	"Add generic greybox object (%s, %s, %s)" % [collides, occludes, interacts],
+	# 	0,
+	# 	_objects_parent
+	# )
+	_objects_parent.add_child(obj)
+	# the owner of the new greybox object is the level (Object's parent's parent)
 	obj.owner = _objects_parent.get_parent()
-	# obj.owner = EditorInterface.get_edited_scene_root()
 	obj.can_block_movement = collides
 	obj.can_block_light = occludes
 	obj.can_interact = interacts
 
 
-func _undo_add(parent: Node, obj: Node) -> void:
-	parent.remove_child(obj)
-	obj.queue_free()
+func _reset_generic_state() -> void:
+	_generic_name.text = _generic_name.placeholder_text
+	_generic_block_movement.button_pressed = false
+	_generic_occludes.button_pressed = false
+	_generic_interacts.button_pressed = false
 
 
 func _apply_pushable() -> void:
+	pass
+
+
+func _reset_pushable_state() -> void:
 	pass
 
 
@@ -122,27 +162,5 @@ func _apply_npc() -> void:
 	pass
 
 
-func _reset_generic_state() -> void:
-	var le: LineEdit = _generic_detail.get_node("HBoxContainer/MarginContainer/NameEdit")
-	le.text = le.placeholder_text
-
-	var cb_collides := _checkbox(_generic_detail, "BlockMovement")
-	cb_collides.button_pressed = false
-
-	var cb_occludes := _checkbox(_generic_detail, "Occludes")
-	cb_occludes.button_pressed = false
-
-	var cb_interacts := _checkbox(_generic_detail, "Interactable")
-	cb_interacts.button_pressed = false
-
-
-func _reset_pushable_state() -> void:
-	pass
-
-
 func _reset_npc_state() -> void:
 	pass
-
-
-func _checkbox(parent: Node, child: String) -> CheckBox:
-	return parent.get_node(child) as CheckBox

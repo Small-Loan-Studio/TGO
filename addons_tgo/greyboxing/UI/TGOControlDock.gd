@@ -55,12 +55,14 @@ func _update_selection() -> void:
 	var root := EditorInterface.get_edited_scene_root()
 	if !(root is LevelBase):
 		_selection_label.text = "Only active while editing LevelBase"
+		_active_section = null
 		_update_section_control(LevelSection.UNKNOWN)
 		return
 
 	# ensure we're only dealing with a single selected node
 	var selected_node := _get_node(_selection.get_selected_nodes())
 	if selected_node == null:
+		_active_section = null
 		_update_section_control(LevelSection.UNKNOWN)
 		return
 
