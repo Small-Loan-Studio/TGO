@@ -5,6 +5,7 @@
 
 [resource]
 script = ExtResource("1_eoh55")
+id = 0
 name = "Key"
 description = "A key! I wonder what it does..."
 stackable = false

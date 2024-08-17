@@ -3,6 +3,7 @@ extends Resource
 
 var STACKABLE_ERROR: String = "Item %s has a stack_size of %s but has not set stackable to true"
 
+@export var id: int = -1
 @export var name: String = ""
 @export_multiline var description: String = ""
 @export var stackable: bool = false

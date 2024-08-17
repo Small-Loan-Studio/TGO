@@ -19,5 +19,4 @@ func setup(driver: Driver) -> void:
 
 
 func _inventory_updated(inv: Inventory) -> void:
-	print(inv.items.size())
 	inventory.set_inventory(inv)
