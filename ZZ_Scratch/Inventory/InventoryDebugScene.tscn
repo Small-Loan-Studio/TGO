@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://3y4hwdyikuu0"]
+[gd_scene load_steps=14 format=3 uid="uid://3y4hwdyikuu0"]
 
 [ext_resource type="Script" path="res://ZZ_Scratch/Inventory/InventoryDebugScene.gd" id="1_55n3p"]
 [ext_resource type="PackedScene" uid="uid://mqvl5162rawb" path="res://Scenes/Devin.tscn" id="2_cpab8"]
@@ -8,6 +8,7 @@
 [ext_resource type="Script" path="res://Scripts/Resources/InteractablePickup.gd" id="6_78of0"]
 [ext_resource type="PackedScene" uid="uid://7hcgwq52nmdb" path="res://ZZ_Scratch/Inventory/Items/Key.tscn" id="7_oltc6"]
 [ext_resource type="PackedScene" uid="uid://dukcf64qxy46o" path="res://ZZ_Scratch/Inventory/UI/Inventory.tscn" id="7_wc1ti"]
+[ext_resource type="PackedScene" uid="uid://rgvfsx60t2ap" path="res://ZZ_Scratch/Inventory/Items/Item.tscn" id="9_wti2o"]
 
 [sub_resource type="Resource" id="Resource_bd25s"]
 script = ExtResource("5_gfway")
@@ -66,6 +67,13 @@ offset_left = 10.0
 offset_top = 10.0
 offset_right = 74.0
 offset_bottom = 74.0
+
+[node name="Item" parent="." instance=ExtResource("9_wti2o")]
+position = Vector2(241, 147)
+scale = Vector2(2, 2)
+item = ExtResource("4_v6t61")
+quantity = 1
+interactable_radius = 10
 
 [editable path="Items/Potion 1 Stack"]
 [editable path="Items/Potion 3 Stack"]
