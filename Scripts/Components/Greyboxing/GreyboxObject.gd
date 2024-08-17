@@ -3,16 +3,11 @@
 class_name GreyboxObject
 extends Node2D
 
-func _init() -> void:
-	print(self, '._init')
-
 @export_category("Functionality")
 @export var can_block_movement: bool = false:
 	get:
 		return can_block_movement
 	set(value):
-		print('%s - can_block_movement %s -> %s' % [name, can_block_movement, value])
-		print_stack()
 		can_block_movement = value
 		_process_can_block_movement_update()
 
@@ -81,34 +76,17 @@ var _interactable: Interactable
 var _light: LightOccluder2D
 
 
-func _dump_flags() -> void:
-	print("  blocks movement? %s" % [can_block_movement])
-	print("  interactable?    %s" % [can_interact])
-	print("  blocks light?    %s" % [can_block_light])
-
-func _enter_tree() -> void:
-	print("%s._enter_tree()" % [name])
-	_dump_flags()
-
 func _ready() -> void:
-	print("%s._ready()" % [name])
-	_dump_flags()
 	# Not done via @onready because the may not all exist given the configurable
 	# nature of the greybox object
-	print('%s - GreyboxObject._ready' % [name])
 	if has_node("Display"):
 		_display = get_node("Display")
-		print('  - found display')
 	if has_node("Physics"):
 		_physics = get_node("Physics")
-		print('  - found physics')
 	if has_node("Interactable"):
 		_interactable = get_node("Interactable")
-		print('  - found interactable')
 	if has_node("Light"):
 		_light = get_node("Light")
-		print('  - found light')
-	print('  - @onready done')
 
 	if Engine.is_editor_hint():
 		get_parent().set_editable_instance(self, true)
@@ -150,7 +128,6 @@ func _process_can_block_movement_update() -> void:
 		if _physics == null:
 			# already doesn't have a physics body
 			return
-		print('%s - removing _physics' % [name])
 		remove_child(_physics)
 		_physics.queue_free()
 		_physics = null
@@ -220,9 +197,8 @@ func _sync_occluder() -> void:
 	if physics_shape == null || physics_shape.shape == null:
 		return
 
-	var collider_shape: Shape2D = physics_shape.shape
-	print('ugh this will be a pain in the ass bc there are many different shape subclasses')
-	print(collider_shape)
+	# var collider_shape: Shape2D = physics_shape.shape
+	print("TOOD: We don't yet sync the light collider shape to the physics shape")
 
 	_light.occluder = OccluderPolygon2D.new()
 	_light.occluder.polygon = PackedVector2Array()

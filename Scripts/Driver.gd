@@ -1,9 +1,6 @@
 class_name Driver
 extends Node2D
 
-static func instance() -> Driver:
-	return Engine.get_singleton('DriverInstance')
-
 var _last_loaded_level: LevelBase = null
 
 @onready var audio_mgr: AudioManager = $AudioManager
@@ -13,6 +10,8 @@ var _last_loaded_level: LevelBase = null
 @onready var _world := $GameWorld
 @onready var _hud: HUD = $OverlayManager/HUD
 
+static func instance() -> Driver:
+	return Engine.get_singleton('DriverInstance')
 
 func _ready() -> void:
 	_curtain.visible = true
