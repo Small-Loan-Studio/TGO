@@ -132,6 +132,7 @@ func _set_interactable(new_obj: Interactable) -> void:
 	if new_obj == null:
 		hud.clear_toast()
 	else:
+		# TODO: we'll obviously change this to something contextual later
 		hud.set_toast("interact")
 
 
