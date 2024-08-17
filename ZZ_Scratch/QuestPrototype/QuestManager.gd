@@ -11,6 +11,7 @@ func _ready()->void:
 	Signalbus.quest_update.connect(_on_update_quest)
 	Dialogic.signal_event.connect(_on_dialogic_signal)
 	pass
+@export var chain_quests: Array[ChainQuest] = []
 @export var all_quests: Array[Quest] = []
 var active_quests: Array[Quest] = []
 var completed_quests: Array[Quest] = []
@@ -21,15 +22,22 @@ func add_quest(quest: Quest) -> void:
 func complete_quest(quest: Quest) -> void:
 	active_quests.erase(quest)
 	quest.is_completed = true
+	for chain_quest in chain_quests:
+		for i in chain_quest.quests.size():
+			if chain_quest.quests[i].title == quest.title:
+				if i+1  < chain_quest.quests.size():
+					print(str(i) + " out" + str(chain_quest.quests.size()))
+					active_quests.append(chain_quest.quests[i+1])
+				else:
+					print("Chain quest completed.")
 	completed_quests.append(quest)
 	distribute_rewards(quest.rewards)
 
-func update_objectives(quest: Quest,effected_objective :String,_value:int) -> void:
+func update_objectives(quest: Quest,effected_objective_id :int,_value:int) -> void:
 	var is_quest_completed :bool = true
-	for objective in quest.objectives:
-		if not objective.is_complete:
-			check_objective_status(objective,_value)
-			update_quest_ui(quest)
+	if not quest.objectives[effected_objective_id].is_complete:
+		check_objective_status(quest.objectives[effected_objective_id],_value)
+		update_quest_ui(quest)
 	for objective in quest.objectives:
 		if not objective.is_complete:
 			is_quest_completed = false
@@ -75,12 +83,11 @@ func _on_update_quest_window(tab:int)->void:
 			pass
 	pass
 	#TODO: Update UI when one quest is affected.
-func _on_update_quest(quest_id:int,effected_objective :String,value:int)-> void:
+func _on_update_quest(quest_id:int,effected_objective_id :int,value:int)-> void:
 	var does_quest_exist :bool = false
-	
 	for quest in active_quests:
 		if quest.quest_id == quest_id:
-			update_objectives(quest,effected_objective,value)
+			update_objectives(quest,effected_objective_id,value)
 			does_quest_exist = true
 	if not does_quest_exist:
 		for quest in all_quests:
@@ -88,14 +95,14 @@ func _on_update_quest(quest_id:int,effected_objective :String,value:int)-> void:
 				if completed_quests.is_empty():
 					print("completed quests are empty adding quest")
 					add_quest(quest)
-					update_objectives(quest,effected_objective,value)
+					update_objectives(quest,effected_objective_id,value)
 				else:
 					for pq in completed_quests:
 						if pq.quest_id == quest_id:
 							return
 						else:
 							add_quest(quest)
-							update_objectives(quest,effected_objective,value)
+							update_objectives(quest,effected_objective_id,value)
 	pass
 
 func _on_dialogic_signal(argument:String)->void:

@@ -4,7 +4,7 @@ class_name Journal
 
 @onready var journal_label : Label = $JournalMainFrame/MarginContainer/VBoxContainer/HBoxContainer2/JournalLabel
 @onready var recap : Control = $JournalMainFrame/MarginContainer/VBoxContainer/RecapWindow
-@onready var quests : Control = $JournalMainFrame/MarginContainer/VBoxContainer/QuestsWindow
+@onready var quest_window : Control = $JournalMainFrame/MarginContainer/VBoxContainer/QuestsWindow
 @onready var beastiary : Control = $JournalMainFrame/MarginContainer/VBoxContainer/Beastiary
 signal monster_discovered(id:int)
 signal update_quest_window(tab:int)
@@ -19,7 +19,7 @@ func _on_close_pressed()->void:
 	pass # Replace with function body.
 
 func show_one_and_hide_others(tab:int)->void:
-	var array : Array = [recap,quests,beastiary]
+	var array : Array = [recap,quest_window,beastiary]
 	for item : Control in array:
 		item.hide()
 	array[tab].show()
@@ -29,7 +29,7 @@ func update()->void:
 	_on_tab_bar_tab_changed(0)
 	_on_quest_tab_bar_tab_changed(0)
 	$TabBar.current_tab = 0
-	quests.find_child("QuestTabBar").current_tab = 0
+	quest_window.find_child("QuestTabBar").current_tab = 0
 	return
 func _on_tab_bar_tab_changed(tab:int)->void:
 	match tab:

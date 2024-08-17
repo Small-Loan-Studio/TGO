@@ -1,4 +1,4 @@
-[gd_scene load_steps=41 format=3 uid="uid://crrvo58x81lxn"]
+[gd_scene load_steps=43 format=3 uid="uid://crrvo58x81lxn"]
 
 [ext_resource type="Script" path="res://ZZ_Scratch/QuestPrototype/QuestPrototype.gd" id="1_h4v6k"]
 [ext_resource type="Texture2D" uid="uid://ds0x2hyas8fpv" path="res://Art/Environment/Underground.png" id="2_h17xi"]
@@ -8,6 +8,7 @@
 [ext_resource type="Texture2D" uid="uid://b5aoo3ejx38qf" path="res://Art/Environment/Placeables/questprototype/Lamp.png" id="3_koxfr"]
 [ext_resource type="Texture2D" uid="uid://ddusy2p3rpksq" path="res://Art/Environment/Placeables/questprototype/coffin.png" id="3_y843k"]
 [ext_resource type="PackedScene" uid="uid://c2040l84asu8j" path="res://Scenes/Components/Interactable.tscn" id="4_0fujw"]
+[ext_resource type="Script" path="res://ZZ_Scratch/QuestPrototype/ChainQuest.gd" id="4_tmqev"]
 [ext_resource type="PackedScene" uid="uid://mqvl5162rawb" path="res://Scenes/Devin.tscn" id="4_y2igs"]
 [ext_resource type="Script" path="res://Scripts/Resources/InteractableDialogue.gd" id="5_84uud"]
 [ext_resource type="Resource" path="res://ZZ_Scratch/QuestPrototype/Timelines/coffin_0.dtl" id="6_3nuoq"]
@@ -24,6 +25,11 @@
 [ext_resource type="PackedScene" uid="uid://8l767ndoo0ch" path="res://Scenes/UI/Quest/QuestUI.tscn" id="19_jl20o"]
 [ext_resource type="PackedScene" uid="uid://c5ysorqfbhowc" path="res://Scenes/UI/pop_up.tscn" id="20_cry6j"]
 
+[sub_resource type="Resource" id="Resource_x0xox"]
+script = ExtResource("4_tmqev")
+chain_quest_title = "Escape the Cript"
+quests = Array[Resource("res://ZZ_Scratch/QuestPrototype/Quest.gd")]([ExtResource("3_6k8t3")])
+
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_vwyhd"]
 size = Vector2(46, 84)
 
@@ -35,7 +41,7 @@ timeline = ExtResource("9_myhv0")
 [sub_resource type="Resource" id="Resource_0y5sh"]
 script = ExtResource("17_65bcs")
 questid = 0
-update_objective = "Find light source."
+objective_id = 0
 value = 1
 
 [sub_resource type="Resource" id="Resource_yo7lf"]
@@ -58,7 +64,7 @@ size = Vector2(73, 101.666)
 [sub_resource type="Resource" id="Resource_j2eyr"]
 script = ExtResource("17_65bcs")
 questid = 0
-update_objective = "Find light source."
+objective_id = 0
 value = 0
 
 [sub_resource type="Resource" id="Resource_yw44r"]
@@ -95,6 +101,7 @@ script = ExtResource("1_h4v6k")
 [node name="QuestManager" type="Node" parent="."]
 unique_name_in_owner = true
 script = ExtResource("2_o8hp2")
+chain_quests = Array[ExtResource("4_tmqev")]([SubResource("Resource_x0xox")])
 all_quests = Array[Resource("res://ZZ_Scratch/QuestPrototype/Quest.gd")]([ExtResource("3_6k8t3")])
 
 [node name="Background" type="Node2D" parent="."]

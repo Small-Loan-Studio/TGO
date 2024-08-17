@@ -6,6 +6,5 @@ class_name Quest
 @export var title: String
 @export_multiline var description: String
 @export var is_completed: bool = false
-@export var subquests: Array[Subquest] 
 @export var objectives: Array[QuestObjective] = []
 @export var rewards: Array[QuestReward] = []
