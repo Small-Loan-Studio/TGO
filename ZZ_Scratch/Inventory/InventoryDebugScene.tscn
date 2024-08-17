@@ -71,9 +71,8 @@ offset_bottom = 74.0
 [node name="Item" parent="." instance=ExtResource("9_wti2o")]
 position = Vector2(241, 147)
 scale = Vector2(2, 2)
-item = ExtResource("4_v6t61")
 quantity = 2
-interactable_radius = 10
+interactable_radius = 9
 
 [editable path="Items/Potion 1 Stack"]
 [editable path="Items/Potion 3 Stack"]

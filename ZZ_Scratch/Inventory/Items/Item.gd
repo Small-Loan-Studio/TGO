@@ -4,6 +4,9 @@ extends Node2D
 @export var item: Item:
 	set(value):
 		item = value
+		# Update Sprite Icon if our Item Resource is changed in the Editor
+		if _sprite:
+			_sprite.texture = item.icon
 		update_configuration_warnings()
 		
 @export var quantity: int:
@@ -14,6 +17,8 @@ extends Node2D
 @export var interactable_radius: int = 1:
 	set(value):
 		interactable_radius = value
+		if _circle:
+			_circle.radius = interactable_radius
 		update_configuration_warnings()
 
 var _sprite: Sprite2D
@@ -45,12 +50,6 @@ func _ready() -> void:
 	action.dest_path = self.get_path()
 	action.item = _stack
 	interactable.actions.append(action)
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(_delta: float) -> void:
-	if Engine.is_editor_hint():
-		_sprite.texture = item.icon
-		_circle.radius = interactable_radius
 
 func _get_configuration_warnings() -> PackedStringArray:
 	var errors: Array[String] = []
