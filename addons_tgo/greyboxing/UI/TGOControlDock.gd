@@ -126,7 +126,8 @@ func _get_section(selected: Node, root: LevelBase) -> LevelSection:
 	return LevelSection.UNKNOWN
 
 
-## Updates state tracking
+## switches the control to be the one appropriate for the selected section
+## cleans up/removes a previous control if one was set
 func _update_section_control(section: LevelSection) -> void:
 	_selection_label.text = "Editing: %s" % [_level_section_str(section)]
 

@@ -70,7 +70,7 @@ func _reset() -> void:
 	_complete_buttons.hide()
 
 
-## Hides section selection buttons and focuses on the configuratino details for
+## Hides section selection buttons and focuses on the configuration details for
 ## the section referenced via name.
 func _select_section(name: String) -> void:
 	_reset()
