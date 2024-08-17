@@ -26,8 +26,7 @@ var _valid_keys: Array[String] = []
 
 @onready var _generic := $Container/AddItems/Generic
 @onready var _generic_detail := $Container/AddItems/GenericDetails
-@onready var _generic_name: LineEdit = \
-	$Container/AddItems/GenericDetails/HBoxContainer/MarginContainer/NameEdit
+@onready var _generic_name: LineEdit = $Container/AddItems/GenericDetails/HBox/Margin/Name
 @onready var _generic_block_movement: CheckBox = $Container/AddItems/GenericDetails/BlockMovement
 @onready var _generic_occludes: CheckBox = $Container/AddItems/GenericDetails/Occludes
 @onready var _generic_interacts: CheckBox = $Container/AddItems/GenericDetails/Interactable
@@ -48,6 +47,7 @@ func _ready() -> void:
 		_valid_keys.append(k)
 
 	_reset()
+
 
 ## Called after _ready to provide any necessary external objects.
 ## - plugin is a reference to the outtermost plugin host
@@ -100,7 +100,9 @@ func _apply() -> void:
 			_apply_npc()
 		_:
 			assert(false, "Invalid focused section: " + _focused_section)
+	var prev := _focused_section
 	_reset()
+	_select_section(prev)
 
 
 ## When adding a child node examine existing children and find a unique

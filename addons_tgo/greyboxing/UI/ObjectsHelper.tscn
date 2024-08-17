@@ -33,19 +33,19 @@ text = "Generic Greybox"
 visible = false
 layout_mode = 2
 
-[node name="HBoxContainer" type="HBoxContainer" parent="Container/AddItems/GenericDetails"]
+[node name="HBox" type="HBoxContainer" parent="Container/AddItems/GenericDetails"]
 layout_mode = 2
 
-[node name="Label" type="Label" parent="Container/AddItems/GenericDetails/HBoxContainer"]
+[node name="Label" type="Label" parent="Container/AddItems/GenericDetails/HBox"]
 layout_mode = 2
 text = "Name"
 
-[node name="MarginContainer" type="MarginContainer" parent="Container/AddItems/GenericDetails/HBoxContainer"]
+[node name="Margin" type="MarginContainer" parent="Container/AddItems/GenericDetails/HBox"]
 layout_mode = 2
 size_flags_horizontal = 3
 theme_override_constants/margin_left = 8
 
-[node name="NameEdit" type="LineEdit" parent="Container/AddItems/GenericDetails/HBoxContainer/MarginContainer"]
+[node name="Name" type="LineEdit" parent="Container/AddItems/GenericDetails/HBox/Margin"]
 layout_mode = 2
 size_flags_horizontal = 3
 

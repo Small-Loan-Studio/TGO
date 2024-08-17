@@ -80,12 +80,9 @@ func _update_selection() -> void:
 ## nodes, are selected then it returns null.
 func _get_node(nodes: Array[Node]) -> Node:
 	if nodes.size() == 0:
-		_selection_label.text = "Editing: None"
 		return null
 	if nodes.size() > 1:
-		_selection_label.text = "Editing: Multiple"
 		return null
-	_selection_label.text = "Editing: %s" % [nodes[0].name]
 	return nodes[0]
 
 
@@ -131,6 +128,8 @@ func _get_section(selected: Node, root: LevelBase) -> LevelSection:
 
 ## Updates state tracking
 func _update_section_control(section: LevelSection) -> void:
+	_selection_label.text = "Editing: %s" % [_level_section_str(section)]
+
 	if _subsection_control != null:
 		_detail.remove_child(_subsection_control)
 		_subsection_control.queue_free()
