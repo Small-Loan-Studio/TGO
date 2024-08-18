@@ -1,7 +1,12 @@
 class_name Driver
 extends Node2D
 
+## This will bypass the normal menu and automatically swap to the provided
+## scene. It [b]must[/b] be a child of LevelBase.
+@export var autoload_scene: PackedScene
+
 var _last_loaded_level: LevelBase = null
+
 
 @onready var audio_mgr: AudioManager = $AudioManager
 @onready var player: Devin = %Devin
@@ -19,8 +24,15 @@ func _ready() -> void:
 
 
 func _post_ready() -> void:
-	_menu_mgr.show_menu(Enums.MenuType.DEBUG)
-	await _curtain.fade_out(1)
+	if autoload_scene != null:
+		var level_instance := autoload_scene.instantiate() as LevelBase
+		await _curtain.fade_in(1)
+		load_level(level_instance, "")
+		await _curtain.fade_out(1)
+	else:
+		_menu_mgr.show_menu(Enums.MenuType.DEBUG)
+		await _curtain.fade_out(1)
+
 
 
 ## Loads a new level into the game world
