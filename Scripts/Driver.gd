@@ -7,7 +7,6 @@ extends Node2D
 
 var _last_loaded_level: LevelBase = null
 
-
 @onready var audio_mgr: AudioManager = $AudioManager
 @onready var player: Devin = %Devin
 @onready var _menu_mgr: MenuManager = $OverlayManager/MenuManager
@@ -32,7 +31,6 @@ func _post_ready() -> void:
 	else:
 		_menu_mgr.show_menu(Enums.MenuType.DEBUG)
 		await _curtain.fade_out(1)
-
 
 
 ## Loads a new level into the game world
