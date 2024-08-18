@@ -101,6 +101,9 @@ func _physics_process(_delta: float) -> void:
 		_sprite.play(want_anim)
 	velocity = _impulse * move_speed
 	move_and_slide()
+	var collision_count := get_slide_collision_count()
+	for c in range(0, collision_count):
+		print("%d : %s" % [c, get_slide_collision(c)])
 
 
 func _on_interaction_sensor_entered(area: Area2D) -> void:
