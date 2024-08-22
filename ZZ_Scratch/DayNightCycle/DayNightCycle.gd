@@ -2,18 +2,20 @@ extends Node2D
 
 #I had trouble connecting to the clock in driver, so I just copied it over
 #So that it is in the same scene tree and can be setup this way
+
+const DAY_START: int = 0
+const DUSK_START: int = 8
+const NIGHT_START: int = 14
+const DAWN_START: int = 20
+
+var current_time: int = 0
+
 @onready var clock: Node = $Clock
 @onready var _modulate: CanvasModulate = $CanvasModulate
 
-var current_time: int = 0
-const day_start: int = 0
-const dusk_start: int = 8
-const night_start: int = 14
-const dawn_start: int = 20
-
 func _ready() -> void:
 	clock.start_clock()
-	
+
 
 func setup(_driver: Driver) -> void:
 	pass
@@ -22,22 +24,22 @@ func setup(_driver: Driver) -> void:
 func _on_clock_hour_passed() -> void:
 	current_time = clock.get_current_time()
 	#print("Time is ", current_time)
-	
-	if(current_time == day_start || current_time == dawn_start || current_time == dusk_start || current_time == night_start):
+	#The linter likes this if statement better, but it's kinda weird looking
+	if(current_time == DAY_START || current_time == DAWN_START || \
+		+ current_time == DUSK_START || current_time == NIGHT_START):
 		var tweener := get_tree().create_tween()
 		tweener.set_parallel(true)
 		tweener.tween_property(_modulate, "color", get_target(current_time), 2)
-		
+
 func get_target(time: int) -> Color:
-	if(time == day_start):
+	if(time == DAY_START):
 		#print("day start")
 		return Color.WHITE
-	elif(time == dusk_start || current_time == dawn_start):
+	if(time == DUSK_START || current_time == DAWN_START):
 		#print("twilight start")
 		return Color(.5, .5, .5)
-	elif(time == night_start):
+	if(time == NIGHT_START):
 		#print("night start")
 		return Color(.08, .08, .16)
-	else:
-		#print("Entered get_target but no valid target?")
-		return Color(.5, .5, .5)
+
+	return Color(.5, .5, .5)
