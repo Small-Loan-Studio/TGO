@@ -13,6 +13,7 @@ var current_time: int = 0
 @onready var clock: Node = $Clock
 @onready var _modulate: CanvasModulate = $CanvasModulate
 
+
 func _ready() -> void:
 	clock.start_clock()
 
@@ -24,21 +25,25 @@ func setup(_driver: Driver) -> void:
 func _on_clock_hour_passed() -> void:
 	current_time = clock.get_current_time()
 	#print("Time is ", current_time)
-	#The linter likes this if statement better, but it's kinda weird looking
-	if(current_time == DAY_START || current_time == DAWN_START || \
-		+ current_time == DUSK_START || current_time == NIGHT_START):
+	if (
+		current_time == DAY_START
+		|| current_time == DAWN_START
+		|| current_time == DUSK_START
+		|| current_time == NIGHT_START
+	):
 		var tweener := get_tree().create_tween()
 		tweener.set_parallel(true)
 		tweener.tween_property(_modulate, "color", get_target(current_time), 2)
 
+
 func get_target(time: int) -> Color:
-	if(time == DAY_START):
+	if time == DAY_START:
 		#print("day start")
 		return Color.WHITE
-	if(time == DUSK_START || current_time == DAWN_START):
+	if time == DUSK_START || current_time == DAWN_START:
 		#print("twilight start")
 		return Color(.5, .5, .5)
-	if(time == NIGHT_START):
+	if time == NIGHT_START:
 		#print("night start")
 		return Color(.08, .08, .16)
 
