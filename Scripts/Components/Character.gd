@@ -10,7 +10,7 @@ extends CharacterBody2D
 @export var move_speed: int = 250
 
 ## The amonut of force the character has to push objects
-@export var push_force: int = 125
+@export var push_force: int = 200
 
 ## set this to customize the AnimatedSprite, should only be accessed during
 ## scene editing. Should have an animation for every direction defined in
@@ -145,18 +145,16 @@ func _physics_process(_delta: float) -> void:
 	move_and_slide()
 
 	if _move_mode == Enums.MoveMode.PUSH_PULL:
-		print(get_position_delta())
-
 		var collision_count := get_slide_collision_count()
 		for c in range(0, collision_count):
 			var cdata := get_slide_collision(c)
 			var collider := cdata.get_collider()
 
-			if collider is MoveableBlock && !collider.freeze:
+			if collider == _target.get_moveable_block() && !collider.freeze:
 				var vec: Vector2 = (collider.global_position - global_position).normalized()
 				var ang := Vector2.UP.angle_to(vec)
 				var dir := Utils.angle_to_direction(ang, Enums.DirectionMode.FOUR)
-				collider.apply_central_force(Enums.direction_vector(dir) * scalar)
+				collider.apply_central_force(Enums.direction_vector(dir) * push_force)
 
 
 func _on_interaction_sensor_entered(area: Area2D) -> void:

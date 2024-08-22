@@ -8,7 +8,7 @@ size = Vector2(32.4777, 29.0933)
 
 [node name="Character" type="CharacterBody2D"]
 y_sort_enabled = true
-position = Vector2(0, 15)
+position = Vector2(0, 18)
 motion_mode = 1
 script = ExtResource("1_tt4fa")
 _override_default_sprite_frames = ExtResource("2_3xe5u")
