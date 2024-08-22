@@ -10,6 +10,8 @@ script = ExtResource("1_qvo0g")
 [node name="Display" type="Sprite2D" parent="."]
 
 [node name="Physics" type="RigidBody2D" parent="."]
+lock_rotation = true
+freeze = true
 
 [node name="Shape" type="CollisionShape2D" parent="Physics"]
 position = Vector2(1, 0)

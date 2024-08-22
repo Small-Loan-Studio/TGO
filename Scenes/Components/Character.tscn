@@ -27,6 +27,7 @@ position = Vector2(0, -30)
 shape = SubResource("RectangleShape2D_jvita")
 
 [node name="PinJoint2D" type="PinJoint2D" parent="."]
+position = Vector2(0, -8)
 node_a = NodePath("..")
 disable_collision = false
 

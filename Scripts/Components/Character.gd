@@ -50,7 +50,7 @@ var _target: CharacterTarget = CharacterTarget.none()
 # component cache
 @onready var _sprite: AnimatedSprite2D = $AnimatedSprite2D
 @onready var _interaction_sensor: Area2D = $InteractionSensor
-# @onready var _interaction_shape: CollisionShape2D = $InteractionSensor/InteractionShape
+@onready var _pinjoint: PinJoint2D = $PinJoint2D
 
 
 func _ready() -> void:
@@ -91,8 +91,10 @@ func _unhandled_input(_event: InputEvent) -> void:
 			var axis := Enums.direction_push_pull_axis(_push_direction)
 			_impulse = _impulse * axis
 
-			# the target should be frozen if we're not pushing
-			_target.get_moveable_block().freeze = _is_push(_impulse, _push_direction)
+			if _is_push(_impulse, _push_direction):
+				_pinjoint.node_b = ""
+			else:
+				_pinjoint.node_b = _target.get_moveable_block().get_path()
 
 		else:
 			_facing = Vector2.UP.angle_to(_impulse)
@@ -109,13 +111,13 @@ func _unhandled_input(_event: InputEvent) -> void:
 			if _move_mode == Enums.MoveMode.PUSH_PULL:
 				# currently push/pull, stop
 				_move_mode = Enums.MoveMode.WALK
-				# $PinJoint2D.node_b = ""
+				_pinjoint.node_b = ""
 				_target.get_moveable_block().freeze = true
 			else:
 				# start push/pull, set the push direction for subsequent logic
 				_move_mode = Enums.MoveMode.PUSH_PULL
 				_push_direction = Utils.angle_to_direction(_facing, Enums.DirectionMode.FOUR)
-				_target.get_moveable_block().freeze = true
+				_target.get_moveable_block().freeze = false
 
 
 func _physics_process(_delta: float) -> void:
@@ -136,33 +138,25 @@ func _physics_process(_delta: float) -> void:
 
 	var scalar := move_speed
 	if _move_mode == Enums.MoveMode.PUSH_PULL:
-		scalar = move_speed / 2
+		if !_is_push(_impulse, _push_direction):
+			scalar = move_speed / 2
 
 	velocity = _impulse * scalar
 	move_and_slide()
 
 	if _move_mode == Enums.MoveMode.PUSH_PULL:
-		if _target.get_moveable_block().freeze:
-			# we're pulling so directly fuck with positioning
-			_target.get_moveable_block().global_position += get_position_delta()
-		else:
-			# we're pushing so let the physics engine deal with it
-			_target.get_moveable_block().apply_central_force(_impulse.normalized() * push_force)
+		print(get_position_delta())
 
-		# refreze the block, may need to do this in deferred call?
-		call_deferred('_refreeze_target')
+		var collision_count := get_slide_collision_count()
+		for c in range(0, collision_count):
+			var cdata := get_slide_collision(c)
+			var collider := cdata.get_collider()
 
-
-	# var collision_count := get_slide_collision_count()
-	# for c in range(0, collision_count):
-	# 	var cdata := get_slide_collision(c)
-	# 	var collider := cdata.get_collider()
-
-	# 	if collider is MoveableBlock && !collider.freeze:
-	# 		var vec: Vector2 = (collider.global_position - global_position).normalized()
-	# 		var ang := Vector2.UP.angle_to(vec)
-	# 		var dir := Utils.angle_to_direction(ang, Enums.DirectionMode.FOUR)
-	# 		collider.apply_central_force(Enums.direction_vector(dir) * push_force)
+			if collider is MoveableBlock && !collider.freeze:
+				var vec: Vector2 = (collider.global_position - global_position).normalized()
+				var ang := Vector2.UP.angle_to(vec)
+				var dir := Utils.angle_to_direction(ang, Enums.DirectionMode.FOUR)
+				collider.apply_central_force(Enums.direction_vector(dir) * scalar)
 
 
 func _on_interaction_sensor_entered(area: Area2D) -> void:
@@ -222,9 +216,4 @@ func _is_push(v: Vector2, push_direction: Enums.Direction) -> bool:
 	var push_vec := Enums.direction_vector(push_direction)
 	# normalize direction to the axis
 	v = (v * axis).normalized()
-	var res := v == push_vec
-	print("axis: %s\npush_vec: %s\nv: %s\n_is_push: %s" % [axis, push_vec, v, res])
-	return res
-
-func _refreeze_target() -> void:
-	_target.get_moveable_block().freeze = true
+	return v == push_vec
