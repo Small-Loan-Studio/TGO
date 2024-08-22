@@ -26,5 +26,9 @@ collision_mask = 2
 position = Vector2(0, -30)
 shape = SubResource("RectangleShape2D_jvita")
 
+[node name="PinJoint2D" type="PinJoint2D" parent="."]
+node_a = NodePath("..")
+disable_collision = false
+
 [connection signal="area_entered" from="InteractionSensor" to="." method="_on_interaction_sensor_entered"]
 [connection signal="area_exited" from="InteractionSensor" to="." method="_on_interaction_sensor_exited"]

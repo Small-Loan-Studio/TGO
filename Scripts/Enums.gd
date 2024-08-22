@@ -12,6 +12,14 @@ enum Direction {
 	SOUTH_WEST,
 }
 
+enum DirectionMode { FOUR, EIGHT }
+
+enum MoveMode {
+	WALK,
+	SPRINT,
+	PUSH_PULL,
+}
+
 enum InputAction {
 	UP,
 	DOWN,
@@ -51,6 +59,24 @@ const AUDIO_BUS_INFO = {
 	AudioBus.MENU_EFFECTS: [4, "Menu"],
 }
 
+static var DIRECTION_PUSH_PULL_AXIS := {
+	Direction.NORTH: Vector2(0, 1),
+	Direction.SOUTH: Vector2(0, 1),
+	Direction.EAST: Vector2(1, 0),
+	Direction.WEST: Vector2(1, 0),
+}
+
+
+static var DIRECTION_VECTOR := {
+	Direction.NORTH: Vector2(0, -1),
+	Direction.SOUTH: Vector2(0, 1),
+	Direction.EAST: Vector2(1, 0),
+	Direction.WEST: Vector2(-1, 0),
+	Direction.NORTH_EAST: Vector2(1, -1).normalized(),
+	Direction.SOUTH_EAST: Vector2(1, 1).normalized(),
+	Direction.NORTH_WEST: Vector2(-11, -1).normalized(),
+	Direction.SOUTH_WEST: Vector2(-1, 1).normalized(),
+}
 
 static func direction_name(da: Direction) -> String:
 	match da:
@@ -72,6 +98,24 @@ static func direction_name(da: Direction) -> String:
 			return "southwest"
 	assert(false, "Unexpected Direction value: " + str(da))
 	return "north"
+
+
+static func direction_vector(da: Direction) -> Vector2:
+	return DIRECTION_VECTOR[da]
+
+
+static func direction_push_pull_axis(d: Direction) -> Vector2:
+	return DIRECTION_PUSH_PULL_AXIS[d]
+
+static func move_mode_name(mm: MoveMode) -> String:
+	match mm:
+		MoveMode.WALK:
+			return "walk"
+		MoveMode.SPRINT:
+			return "sprint"
+		MoveMode.PUSH_PULL:
+			return "push/pull"
+	return "unknown"
 
 
 static func input_action_name(ia: InputAction) -> String:

@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://d4mrsiv1l8m35"]
+[gd_scene load_steps=15 format=3 uid="uid://d4mrsiv1l8m35"]
 
 [ext_resource type="PackedScene" uid="uid://dyq8mcdsutnsa" path="res://Scenes/Components/LevelBase.tscn" id="1_iejup"]
 [ext_resource type="Script" path="res://ZZ_Scratch/GreyboxingTools/BadLevelA.gd" id="2_22a2t"]
@@ -6,6 +6,9 @@
 [ext_resource type="Texture2D" uid="uid://v8wedauptprb" path="res://ZZ_Scratch/GreyboxingTools/template_tileset.png" id="3_uhn0b"]
 [ext_resource type="PackedScene" uid="uid://c2040l84asu8j" path="res://Scenes/Components/Interactable.tscn" id="5_6ixdr"]
 [ext_resource type="Script" path="res://Scripts/Resources/InteractableLevelLoad.gd" id="7_7tyl1"]
+[ext_resource type="PackedScene" uid="uid://bx2qjlw58ci20" path="res://Scenes/Components/Greyboxing/GreyboxObject.tscn" id="7_ipcqk"]
+[ext_resource type="Texture2D" uid="uid://ceo0a1wjutqct" path="res://Art/Environment/Placeables/box.png" id="8_smen8"]
+[ext_resource type="PackedScene" uid="uid://d1y25semyqxkw" path="res://Scenes/Components/Greyboxing/MoveableBlock.tscn" id="9_78gjk"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_ptcao"]
 atlas = ExtResource("3_uhn0b")
@@ -17,6 +20,13 @@ load_level_path = "res://ZZ_Scratch/GreyboxingTools/BadLevelB.tscn"
 marker_name = ""
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_lwweu"]
+size = Vector2(46.75, 12)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_wpjqq"]
+size = Vector2(49, 30)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_uksq2"]
+size = Vector2(64, 128)
 
 [node name="LevelBase" instance=ExtResource("1_iejup")]
 script = ExtResource("2_22a2t")
@@ -39,8 +49,38 @@ y_sort_enabled = true
 actions = Array[Resource("res://Scripts/Resources/InteractableAction.gd")]([SubResource("Resource_8cdkq")])
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Objects/Sprite2D/Interactable" index="0"]
-position = Vector2(-1, 14)
+position = Vector2(0, 15)
 shape = SubResource("RectangleShape2D_lwweu")
+
+[node name="RigidBody2D" type="RigidBody2D" parent="Objects/Sprite2D" index="1"]
+mass = 0.5
+lock_rotation = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Objects/Sprite2D/RigidBody2D" index="0"]
+position = Vector2(0, 8)
+shape = SubResource("RectangleShape2D_wpjqq")
+
+[node name="testobj" parent="Objects" index="1" instance=ExtResource("7_ipcqk")]
+can_block_movement = false
+can_interact = false
+
+[node name="Display" parent="Objects/testobj" index="0"]
+texture = ExtResource("8_smen8")
+offset = Vector2(0, -65)
+
+[node name="StaticBody2D" type="StaticBody2D" parent="Objects/testobj" index="1"]
+
+[node name="Shape" type="CollisionShape2D" parent="Objects/testobj/StaticBody2D" index="0"]
+position = Vector2(0, -65)
+shape = SubResource("RectangleShape2D_uksq2")
+
+[node name="MoveableBlock" parent="Objects" index="2" instance=ExtResource("9_78gjk")]
+position = Vector2(138, 172)
+
+[node name="MoveableBlock2" parent="Objects" index="3" instance=ExtResource("9_78gjk")]
+position = Vector2(89, 172)
 
 [node name="PlayerStart" type="Node2D" parent="Marker" index="0"]
 position = Vector2(522, 183)
+
+[editable path="Objects/testobj"]

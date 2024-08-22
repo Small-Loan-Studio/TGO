@@ -6,9 +6,6 @@
 [node name="Object" type="Node2D"]
 y_sort_enabled = true
 script = ExtResource("1_qvo0g")
-can_block_movement = null
-can_interact = null
-_display_collision_shapes = null
 
 [node name="Display" type="Sprite2D" parent="."]
 

@@ -62,6 +62,8 @@ extends Node2D
 		debug_color = value
 		queue_redraw()
 
+var _physics_offset := Vector2.ZERO
+
 @onready var _physics: RigidBody2D = $Physics
 @onready var _interactable: Interactable = $Interactable
 
@@ -70,6 +72,8 @@ func _ready() -> void:
 	if Engine.is_editor_hint():
 		get_parent().set_editable_instance(self, true)
 	_update_collider_display()
+	if _physics != null:
+		_physics_offset = _physics.get_child(0).global_position - global_position
 
 
 func _draw() -> void:
@@ -90,13 +94,13 @@ func _update_collider_display() -> void:
 
 func _process_can_block_movement_update() -> void:
 	if !Engine.is_editor_hint():
-		printerr("May not change movement blocking at runtime")
-		return
+		printerr("May not want to change movement blocking at runtime")
 
 	if can_block_movement:
 		if _physics != null:
 			# already has a physics body
 			return
+		print('building new RigidBody2D')
 		_physics = RigidBody2D.new()
 		add_child(_physics)
 		_physics.owner = self
@@ -120,13 +124,14 @@ func _process_can_block_movement_update() -> void:
 
 func _process_can_interact_update() -> void:
 	if !Engine.is_editor_hint():
-		printerr("May not change movement blocking at runtime")
-		return
+		printerr("May not want to change interactable at runtime")
+
 	if can_interact:
 		if _interactable != null:
 			# already has an interactable object
 			return
 
+		print("Constructing new interactable")
 		_interactable = Interactable.new()
 		add_child(_interactable)
 		_interactable.owner = self

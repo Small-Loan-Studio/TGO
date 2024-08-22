@@ -24,13 +24,19 @@ func _ready() -> void:
 
 func _post_ready() -> void:
 	if autoload_scene != null:
-		var level_instance := autoload_scene.instantiate() as LevelBase
 		await _curtain.fade_in(1)
-		load_level(level_instance, "")
+		load_level(autoload_scene.instantiate() as LevelBase, "")
 		await _curtain.fade_out(1)
 	else:
 		_menu_mgr.show_menu(Enums.MenuType.DEBUG)
 		await _curtain.fade_out(1)
+
+
+func load_level_from_path(path: String, target_name: String) -> void:
+	var scene := load(path) as PackedScene
+	var new_level := scene.instantiate() as LevelBase
+	load_level(new_level, target_name)
+
 
 
 ## Loads a new level into the game world
