@@ -27,6 +27,7 @@ var _stack: ItemStack
 @onready var interactable := $Interactable
 @onready var collision_shape := $Interactable/CollisionShape2D
 
+
 func _ready() -> void:
 	sprite.texture = item.icon
 	collision_shape.radius = interactable_radius
