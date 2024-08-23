@@ -1,8 +1,9 @@
 extends Node2D
 
+var _inventory: Inventory
+
 @onready var player: Character = $Devin
 @onready var inventory: Control = $UI/Inventory
-var _inventory: Inventory
 
 
 # A lot of duplicated variable names here, just for the sake of wiring and debugging

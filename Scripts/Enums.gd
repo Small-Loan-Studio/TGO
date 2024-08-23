@@ -46,11 +46,11 @@ enum AudioBus {
 # Unused Currently
 enum ItemType {
 	# Key or Quest items, essentials to story progression. Do not allow discarding of these
-	KEY,        
+	KEY,
 	# Things we can use or consume
 	CONSUMABLE,
 	# This might be stubbed out further in the future Items.Helmet, Items.Gloves, if we have those
-	EQUIPPABLE, 
+	EQUIPPABLE,
 }
 
 const AUDIO_BUS_INFO = {
