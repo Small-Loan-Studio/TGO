@@ -23,12 +23,12 @@ func partially_stack(other: ItemStack) -> ItemStack:
 	stack.quantity = (quantity + other.quantity) % item.stack_size
 	quantity = item.stack_size
 	return stack
-	
+
 	## NOTE: Revisit this if we deem necessary. This code was used for
 	## determining how many stacks we needed to create if the ItemStack was more than stack_size
 	## In situations where that is a multiple ((1 + i) * stack_size), we need to
 	## create i stacks and insert them sequentially into the inventory
-	
+
 	#var stack_count := (quantity + oItemStack.quantity) / item.stack_size - 1
 	#if stack_count < 2:
 		#var stack := ItemStack.new()

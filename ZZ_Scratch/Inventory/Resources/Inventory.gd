@@ -32,11 +32,11 @@ func insert(item: ItemStack) -> bool:
 		return true
 	return false
 
-func remove(item: ItemStack) -> void:
+func remove(_item: ItemStack) -> void:
 	pass
 
 func _to_string() -> String:
-	var stringRep: Array[String] = []
+	var string_rep: Array[String] = []
 	for item in items:
-		stringRep.append(str(item))
-	return "[" + ",".join(stringRep) + "]"
+		string_rep.append(str(item))
+	return "[" + ",".join(string_rep) + "]"

@@ -12,7 +12,7 @@ func setup(driver: Driver) -> void:
 	var inv: Inventory = driver._inventory_mgr.register("Devin", limited_inventory)
 	_inventory = inv
 	# Test/Debug wiring for the time being
-	
+
 	inventory.set_inventory(inv)
 	inv.inventory_updated.connect(_inventory_updated)
 

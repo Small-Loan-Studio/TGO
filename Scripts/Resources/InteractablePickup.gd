@@ -7,7 +7,7 @@ extends InteractableAction
 ## The item that will be added if picked up
 @export var item: ItemStack
 
-func act(_actor: Character, level: LevelBase) -> void:
+func act(_actor: Character, _level: LevelBase) -> void:
 	print("Actor InteractablePickup")
 	# No idea how we are going to wire this up, but I will use this hack for now
 	var inv_manager: InventoryManager = parent.get_node("/root/Driver/InventoryManager")
