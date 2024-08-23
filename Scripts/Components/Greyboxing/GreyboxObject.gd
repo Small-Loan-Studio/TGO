@@ -62,8 +62,6 @@ extends Node2D
 		debug_color = value
 		queue_redraw()
 
-var _physics_offset := Vector2.ZERO
-
 @onready var _physics: RigidBody2D = $Physics
 @onready var _interactable: Interactable = $Interactable
 
@@ -72,8 +70,6 @@ func _ready() -> void:
 	if Engine.is_editor_hint():
 		get_parent().set_editable_instance(self, true)
 	_update_collider_display()
-	if _physics != null:
-		_physics_offset = _physics.get_child(0).global_position - global_position
 
 
 func _draw() -> void:
