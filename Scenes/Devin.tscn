@@ -14,7 +14,6 @@ script = ExtResource("1_coq4s")
 editor_hide_lamp_sensors = true
 player_controled = true
 move_speed = 175
-push_force = 200
 _override_default_sprite_frames = ExtResource("3_0y874")
 
 [node name="AnimatedSprite2D" parent="." index="0"]

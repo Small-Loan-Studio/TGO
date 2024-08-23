@@ -130,7 +130,6 @@ func _process_can_interact_update() -> void:
 			# already has an interactable object
 			return
 
-		print("Constructing new interactable")
 		_interactable = Interactable.new()
 		add_child(_interactable)
 		_interactable.owner = self
