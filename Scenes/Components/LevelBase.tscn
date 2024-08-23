@@ -1,0 +1,35 @@
+[gd_scene load_steps=2 format=3 uid="uid://dyq8mcdsutnsa"]
+
+[ext_resource type="Script" path="res://Scripts/Components/LevelBase.gd" id="1_p7ajo"]
+
+[node name="LevelBase" type="Node2D"]
+y_sort_enabled = true
+script = ExtResource("1_p7ajo")
+
+[node name="TileMap" type="TileMap" parent="."]
+y_sort_enabled = true
+format = 2
+layer_0/name = "Base Layer"
+layer_0/y_sort_enabled = true
+layer_0/z_index = -10
+layer_1/name = "Ground"
+layer_1/y_sort_enabled = true
+layer_1/z_index = -5
+layer_1/tile_data = PackedInt32Array()
+layer_2/name = "Ground Detail"
+layer_2/y_sort_enabled = true
+layer_2/z_index = -2
+layer_2/tile_data = PackedInt32Array()
+layer_3/name = "Placeables"
+layer_3/y_sort_enabled = true
+layer_3/tile_data = PackedInt32Array()
+layer_4/name = "Canopy"
+layer_4/y_sort_enabled = true
+layer_4/z_index = 10
+layer_4/navigation_enabled = false
+layer_4/tile_data = PackedInt32Array()
+
+[node name="Objects" type="Node2D" parent="."]
+y_sort_enabled = true
+
+[node name="Marker" type="Node" parent="."]

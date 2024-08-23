@@ -5,6 +5,6 @@ extends InteractableAction
 @export var dest_path: NodePath
 
 
-func act(actor: Character) -> void:
+func act(actor: Character, _cur_level: LevelBase) -> void:
 	var dest_node := parent.get_node(dest_path) as Node2D
 	actor.global_position = dest_node.global_position

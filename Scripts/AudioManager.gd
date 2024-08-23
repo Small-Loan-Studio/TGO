@@ -132,6 +132,7 @@ func load_levels() -> void:
 	for k: String in data.keys():
 		var vol: float = data[k]
 		AudioServer.set_bus_volume_db(k.to_int(), vol)
+		AudioServer.set_bus_mute(k.to_int(), vol <= DB_MIN)
 
 
 func _volume_to_db(level: float) -> float:

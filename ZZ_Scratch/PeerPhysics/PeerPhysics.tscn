@@ -50,7 +50,7 @@ offset_top = -36.1068
 offset_right = 91.6443
 offset_bottom = -13.1068
 rotation = 1.5708
-text = "Automatic"
+text = "Manual"
 
 [node name="TestInteractable2" type="RigidBody2D" parent="World/ScnA" node_paths=PackedStringArray("destination")]
 position = Vector2(574, -51)
@@ -78,7 +78,7 @@ offset_top = -39.3144
 offset_right = 86.2324
 offset_bottom = -16.3144
 rotation = 1.5708
-text = "Manual"
+text = "Automatic"
 
 [node name="ScnA2" parent="World" instance=ExtResource("1_ol6na")]
 position = Vector2(515, -1536)
