@@ -25,6 +25,7 @@ var _sprite: Sprite2D
 var _circle: CircleShape2D
 var _stack: ItemStack
 
+
 func _ready() -> void:
 	# Load our Sprite
 	_sprite = Sprite2D.new()
@@ -50,6 +51,7 @@ func _ready() -> void:
 	action.item = _stack
 	interactable.actions.append(action)
 
+
 func _get_configuration_warnings() -> PackedStringArray:
 	var errors: Array[String] = []
 	if !item:
@@ -61,4 +63,3 @@ func _get_configuration_warnings() -> PackedStringArray:
 	if interactable_radius < 0:
 		errors.append("Interactable radius is set to 0. This is probably unattended")
 	return errors
-

@@ -4,8 +4,10 @@ var item_slot: PackedScene = preload("res://ZZ_Scratch/Inventory/UI/ItemSlot.tsc
 
 @onready var items: GridContainer = $MarginContainer/Items
 
+
 func set_inventory(inv: Inventory) -> void:
 	build(inv.items)
+
 
 func build(data: Array[ItemStack]) -> void:
 	for child in items.get_children():

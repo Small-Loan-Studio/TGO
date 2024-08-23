@@ -18,6 +18,5 @@ func setup(driver: Driver) -> void:
 	inv.inventory_updated.connect(_inventory_updated)
 
 
-
 func _inventory_updated(inv: Inventory) -> void:
 	inventory.set_inventory(inv)

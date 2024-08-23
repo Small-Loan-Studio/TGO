@@ -9,6 +9,7 @@ signal inventory_item_inserted(item: ItemStack)
 # The biggest size this inventory can be
 @export var size: int = -1
 
+
 func insert(item: ItemStack) -> bool:
 	## Iterate over our inventory and stack items if available
 	for index in items.size():
@@ -32,8 +33,10 @@ func insert(item: ItemStack) -> bool:
 		return true
 	return false
 
+
 func remove(_item: ItemStack) -> void:
 	pass
+
 
 func _to_string() -> String:
 	var string_rep: Array[String] = []
