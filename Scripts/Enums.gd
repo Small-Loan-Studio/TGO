@@ -59,14 +59,14 @@ const AUDIO_BUS_INFO = {
 	AudioBus.MENU_EFFECTS: [4, "Menu"],
 }
 
-static var DIRECTION_PUSH_PULL_AXIS := {
+const DIRECTION_PUSH_PULL_AXIS := {
 	Direction.NORTH: Vector2(0, 1),
 	Direction.SOUTH: Vector2(0, 1),
 	Direction.EAST: Vector2(1, 0),
 	Direction.WEST: Vector2(1, 0),
 }
 
-
+# gdlint:ignore=class-variable-name
 static var DIRECTION_VECTOR := {
 	Direction.NORTH: Vector2(0, -1),
 	Direction.SOUTH: Vector2(0, 1),

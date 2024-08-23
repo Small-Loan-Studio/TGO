@@ -136,25 +136,29 @@ func _physics_process(_delta: float) -> void:
 	if !animation_correct || !_sprite.is_playing():
 		_sprite.play(want_anim)
 
-	var scalar := move_speed
+	var scale := move_speed
 	if _move_mode == Enums.MoveMode.PUSH_PULL:
 		if !_is_push(_impulse, _push_direction):
-			scalar = move_speed / 2
+			scale = move_speed / 2
 
-	velocity = _impulse * scalar
+	velocity = _impulse * scale
 	move_and_slide()
 
+	# janky push/pull logic
 	if _move_mode == Enums.MoveMode.PUSH_PULL:
 		var collision_count := get_slide_collision_count()
 		for c in range(0, collision_count):
 			var cdata := get_slide_collision(c)
 			var collider := cdata.get_collider()
 
+			# if we're handling collision with the target and it's not frozen then
+			# we should apply force. We unfreeze outside the physics loop when we
+			# determine movement direction because it worked better (or maybe at
+			# all, I don't recall at this point)
 			if collider == _target.get_moveable_block() && !collider.freeze:
-				var vec: Vector2 = (collider.global_position - global_position).normalized()
-				var ang := Vector2.UP.angle_to(vec)
-				var dir := Utils.angle_to_direction(ang, Enums.DirectionMode.FOUR)
-				collider.apply_central_force(Enums.direction_vector(dir) * push_force)
+				collider.apply_central_force(_impulse * push_force)
+				# we can only push one item so bail
+				break
 
 
 func _on_interaction_sensor_entered(area: Area2D) -> void:
