@@ -103,7 +103,6 @@ func _unhandled_input(_event: InputEvent) -> void:
 	_interaction_sensor.rotation = _facing
 
 	if _event.is_action_pressed(Enums.input_action_name(Enums.InputAction.INTERACT)):
-		print('pressed interact; target: ' + str(_target))
 		if _target.is_interactable():
 			_target.get_interactable().trigger(self)
 
@@ -164,10 +163,7 @@ func _physics_process(_delta: float) -> void:
 func _on_interaction_sensor_entered(area: Area2D) -> void:
 	# while we're pushing and pulling don't let our focus change
 	if _move_mode == Enums.MoveMode.PUSH_PULL:
-		print('ignoring focus changes during push/pull')
 		return
-
-	print('sensor entered: ' + str(area) + ' / ' + str(area.get_parent()))
 
 	if area is Interactable:
 		var i := area as Interactable
@@ -186,7 +182,6 @@ func _on_interaction_sensor_entered(area: Area2D) -> void:
 func _on_interaction_sensor_exited(area: Area2D) -> void:
 	# while we're pushing and pulling don't let our focus change
 	if _move_mode == Enums.MoveMode.PUSH_PULL:
-		print('ignoring focus changes during push/pull')
 		return
 
 	if area is Interactable:

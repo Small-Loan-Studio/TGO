@@ -16,6 +16,7 @@ static func angle_to_direction(
 	assert(false, "Bad direction mode: " + str(direction_count))
 	return _angle_to_direction_4(angle_rad)
 
+
 static func _angle_to_direction_8(angle_rad: float) -> Enums.Direction:
 	# convert to degrees for my trig-lazy brain
 	var normalized: float = angle_rad / TAU * 360

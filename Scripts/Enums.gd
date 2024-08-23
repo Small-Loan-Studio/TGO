@@ -78,6 +78,7 @@ static var DIRECTION_VECTOR := {
 	Direction.SOUTH_WEST: Vector2(-1, 1).normalized(),
 }
 
+
 static func direction_name(da: Direction) -> String:
 	match da:
 		Direction.NORTH:
@@ -106,6 +107,7 @@ static func direction_vector(da: Direction) -> Vector2:
 
 static func direction_push_pull_axis(d: Direction) -> Vector2:
 	return DIRECTION_PUSH_PULL_AXIS[d]
+
 
 static func move_mode_name(mm: MoveMode) -> String:
 	match mm:

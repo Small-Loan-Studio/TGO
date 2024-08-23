@@ -100,7 +100,6 @@ func _process_can_block_movement_update() -> void:
 		if _physics != null:
 			# already has a physics body
 			return
-		print('building new RigidBody2D')
 		_physics = RigidBody2D.new()
 		add_child(_physics)
 		_physics.owner = self

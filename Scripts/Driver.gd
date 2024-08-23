@@ -38,7 +38,6 @@ func load_level_from_path(path: String, target_name: String) -> void:
 	load_level(new_level, target_name)
 
 
-
 ## Loads a new level into the game world
 func load_level(tgt: LevelBase, target_name: String) -> void:
 	# first add the new level
