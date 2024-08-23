@@ -1,14 +1,8 @@
 class_name CharacterTarget
 extends RefCounted
 
-# TODO: move to Enums? for consistency ....
-enum Type {
-	NONE,
-	INTERACTABLE,
-	MOVEABLE_BLOCK,
-}
 
-var _typ: Type
+var _typ: Enums.TargetType
 
 var _interactable: Interactable = null
 var _block: MoveableBlock = null
@@ -16,42 +10,42 @@ var _block: MoveableBlock = null
 
 static func none() -> CharacterTarget:
 	var t := CharacterTarget.new()
-	t._typ = Type.NONE
+	t._typ = Enums.TargetType.NONE
 	return t
 
 
 func reset() -> void:
-	_typ = Type.NONE
+	_typ = Enums.TargetType.NONE
 	_interactable = null
 	_block = null
 
 
 func set_interactable(i: Interactable) -> void:
 	reset()
-	_typ = Type.INTERACTABLE
+	_typ = Enums.TargetType.INTERACTABLE
 	_interactable = i
 
 
 func set_moveable_block(m: MoveableBlock) -> void:
 	reset()
-	_typ = Type.MOVEABLE_BLOCK
+	_typ = Enums.TargetType.MOVEABLE_BLOCK
 	_block = m
 
 
-func get_type() -> Type:
+func get_type() -> Enums.TargetType:
 	return _typ
 
 
 func is_set() -> bool:
-	return _typ != Type.NONE
+	return _typ != Enums.TargetType.NONE
 
 
 func is_interactable() -> bool:
-	return _typ == Type.INTERACTABLE
+	return _typ == Enums.TargetType.INTERACTABLE
 
 
 func is_moveable_block() -> bool:
-	return _typ == Type.MOVEABLE_BLOCK
+	return _typ == Enums.TargetType.MOVEABLE_BLOCK
 
 
 func get_interactable() -> Interactable:

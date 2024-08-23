@@ -51,6 +51,12 @@ enum AudioBus {
 	MENU_EFFECTS,
 }
 
+enum TargetType {
+	NONE,
+	INTERACTABLE,
+	MOVEABLE_BLOCK,
+}
+
 const AUDIO_BUS_INFO = {
 	AudioBus.MASTER: [0, "Global"],
 	AudioBus.BACKGROUND_MUSIC: [1, "Background Music"],
