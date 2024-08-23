@@ -19,7 +19,7 @@ position = Vector2(580, 414)
 position = Vector2(241, 147)
 scale = Vector2(2, 2)
 item = ExtResource("4_v6t61")
-quantity = 9
+quantity = 1
 interactable_radius = 9
 
 [node name="Item2" parent="Items" instance=ExtResource("9_wti2o")]
@@ -27,7 +27,7 @@ position = Vector2(141, 164)
 scale = Vector2(2, 2)
 item = ExtResource("5_4m2qh")
 quantity = 1
-interactable_radius = 8
+interactable_radius = 9
 
 [node name="UI" type="CanvasLayer" parent="."]
 

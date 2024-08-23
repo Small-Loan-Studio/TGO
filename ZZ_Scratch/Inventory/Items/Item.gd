@@ -5,8 +5,8 @@ extends Node2D
 	set(value):
 		item = value
 		# Update Sprite Icon if our Item Resource is changed in the Editor
-		if _sprite:
-			_sprite.texture = item.icon
+		if sprite:
+			sprite.texture = item.icon
 		update_configuration_warnings()
 
 @export var quantity: int:
@@ -17,29 +17,19 @@ extends Node2D
 @export var interactable_radius: int = 1:
 	set(value):
 		interactable_radius = value
-		if _circle:
-			_circle.radius = interactable_radius
+		if collision_shape:
+			collision_shape.shape.radius = interactable_radius
 		update_configuration_warnings()
 
-var _sprite: Sprite2D
-var _circle: CircleShape2D
 var _stack: ItemStack
 
+@onready var sprite := $Sprite2D
+@onready var interactable := $Interactable
+@onready var collision_shape := $Interactable/CollisionShape2D
 
 func _ready() -> void:
-	# Load our Sprite
-	_sprite = Sprite2D.new()
-	add_child(_sprite)
-	_sprite.texture = item.icon
-
-	# Create our Interactable and Collision
-	var interactable := Interactable.new()
-	add_child(interactable)
-	var collision_shape := CollisionShape2D.new()
-	_circle = CircleShape2D.new()
-	_circle.radius = interactable_radius
-	collision_shape.shape = _circle
-	interactable.add_child(collision_shape)
+	sprite.texture = item.icon
+	collision_shape.radius = interactable_radius
 	interactable.set_collision_layer_value(2, true)
 
 	# Create our Action for the Interactable
