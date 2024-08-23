@@ -1,7 +1,6 @@
 class_name CharacterTarget
 extends RefCounted
 
-
 var _typ: Enums.TargetType
 
 var _interactable: Interactable = null
