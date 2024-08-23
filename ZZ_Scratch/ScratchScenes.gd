@@ -7,7 +7,7 @@ const SCENES = {
 	"Peer Physics & Interactables": "res://ZZ_Scratch/PeerPhysics/PeerPhysics.tscn",
 	"Audio Manager Volume Prefs": "res://ZZ_Scratch/AudioLevels/AudioLevels.tscn",
 	"Dialogic Validation": "res://ZZ_Scratch/DialogicValidation/Dialogic.tscn",
-	"Inventory Debug": "res://ZZ_Scratch/Inventory/InventoryDebugScene.tscn"
+	"Inventory Debug": "res://ZZ_Scratch/Inventory/InventoryDebugScene.tscn",
 	"Greyboxing": "res://ZZ_Scratch/GreyboxingTools/BadLevelA.tscn",
 	"NPC Dialogue": "res://ZZ_Scratch/NPCDialogue/NPCDialogue.tscn",
 }

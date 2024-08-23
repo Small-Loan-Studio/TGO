@@ -8,12 +8,12 @@ extends Node2D
 		if _sprite:
 			_sprite.texture = item.icon
 		update_configuration_warnings()
-		
+
 @export var quantity: int:
 	set(value):
 		quantity = value
 		update_configuration_warnings()
-		
+
 @export var interactable_radius: int = 1:
 	set(value):
 		interactable_radius = value
@@ -30,7 +30,7 @@ func _ready() -> void:
 	_sprite = Sprite2D.new()
 	add_child(_sprite)
 	_sprite.texture = item.icon
-	
+
 	# Create our Interactable and Collision
 	var interactable := Interactable.new()
 	add_child(interactable)
@@ -40,8 +40,7 @@ func _ready() -> void:
 	collision_shape.shape = _circle
 	interactable.add_child(collision_shape)
 	interactable.set_collision_layer_value(2, true)
-	
-	
+
 	# Create our Action for the Interactable
 	var action := InteractablePickup.new()
 	_stack = ItemStack.new()
@@ -62,4 +61,4 @@ func _get_configuration_warnings() -> PackedStringArray:
 	if interactable_radius < 0:
 		errors.append("Interactable radius is set to 0. This is probably unattended")
 	return errors
-	
+

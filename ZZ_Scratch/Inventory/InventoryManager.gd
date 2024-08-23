@@ -10,17 +10,15 @@ func register(id: String, data: Inventory = Inventory.new()) -> Inventory:
 	if inventories.has(id):
 		printerr(id + " already has an inventory associated with it!")
 		return data
-	else:
-		inventories[id] = data
-		print("Registered Inventory " + str(id))
-		return data
+	inventories[id] = data
+	print("Registered Inventory " + str(id))
+	return data
 
 func get_inventory(id: String) -> Inventory:
 	if inventories.has(id):
 		return inventories[id]
-	else:
-		printerr(id + " does not have an inventory associated with it!")
-		return Inventory.new()
+	printerr(id + " does not have an inventory associated with it!")
+	return Inventory.new()
 
 # Unsure if these will be used, placeholders
 func _load() -> void:

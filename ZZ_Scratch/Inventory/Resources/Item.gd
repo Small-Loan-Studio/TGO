@@ -5,6 +5,8 @@ var STACKABLE_ERROR: String = "Item %s has a stack_size of %s but has not set st
 
 @export var id: int = -1
 @export var name: String = ""
+## Unused property currently, will be necessary later on probably
+@export var type: Enums.ItemType
 @export_multiline var description: String = ""
 @export var stackable: bool = false
 @export var stack_size: int = 1:

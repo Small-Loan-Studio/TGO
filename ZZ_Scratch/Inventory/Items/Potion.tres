@@ -7,6 +7,7 @@
 script = ExtResource("3_dmdck")
 id = 1
 name = "Potion"
+type = 0
 description = "A lovely little red vial of liquid!"
 stackable = true
 stack_size = 3
