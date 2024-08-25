@@ -4,22 +4,26 @@
 [ext_resource type="SpriteFrames" uid="uid://b3igo1ygiyl0b" path="res://Art/Characters/character_placeholder.tres" id="2_3xe5u"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_jvita"]
-size = Vector2(41.689, 42.1865)
+size = Vector2(32.4777, 29.0933)
 
 [node name="Character" type="CharacterBody2D"]
+y_sort_enabled = true
+position = Vector2(0, 15)
+motion_mode = 1
 script = ExtResource("1_tt4fa")
 _override_default_sprite_frames = ExtResource("2_3xe5u")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
-position = Vector2(0, -42)
+position = Vector2(0, -30)
 sprite_frames = ExtResource("2_3xe5u")
 
 [node name="InteractionSensor" type="Area2D" parent="."]
+position = Vector2(0, -4)
 collision_layer = 0
 collision_mask = 2
 
 [node name="InteractionShape" type="CollisionShape2D" parent="InteractionSensor"]
-position = Vector2(0.366786, -41)
+position = Vector2(0, -30)
 shape = SubResource("RectangleShape2D_jvita")
 
 [connection signal="area_entered" from="InteractionSensor" to="." method="_on_interaction_sensor_entered"]

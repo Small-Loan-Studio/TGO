@@ -33,6 +33,7 @@ directories/dtl_directory={
 "Devin_wakeup": "res://ZZ_Scratch/QuestPrototype/Timelines/Devin_wakeup.dtl",
 "coffin_0": "res://ZZ_Scratch/QuestPrototype/Timelines/coffin_0.dtl",
 "found_lamp": "res://ZZ_Scratch/QuestPrototype/Timelines/found_lamp.dtl",
+"npc_test_dialogue": "res://ZZ_Scratch/NPCDialogue/npc_test_dialogue.dtl",
 "test_timeline": "res://ZZ_Scratch/DialogicValidation/test_timeline.dtl"
 }
 text/letter_speed=0.01
@@ -51,11 +52,15 @@ choices/reveal_delay=0
 choices/reveal_by_input=false
 save/autosave_delay=60.0
 save/encryption_on_exports_only=true
+text/autopauses={}
 
 [display]
 
 window/size/viewport_width=1280
 window/size/viewport_height=720
+window/size/resizable=false
+window/stretch/mode="viewport"
+window/stretch/scale_mode="integer"
 
 [dotnet]
 
@@ -131,3 +136,10 @@ openjournal={
 [physics]
 
 2d/default_gravity_vector=Vector2(0, 0)
+
+[rendering]
+
+textures/canvas_textures/default_texture_filter=0
+textures/decals/filter=0
+2d/snap/snap_2d_transforms_to_pixel=true
+2d/snap/snap_2d_vertices_to_pixel=true
