@@ -5,16 +5,18 @@ class_name QuestManager
 @onready var quest_ui : Node = get_node("../CanvasLayer/QuestUI")
 @onready var journal : Node = get_node("../CanvasLayer/Journal")
 @onready var popup : Node = get_node("../CanvasLayer/Pop-up")
+
+@export var chain_quests: Array[ChainQuest] = []
+@export var all_quests: Array[Quest] = []
+var active_quests: Array[Quest] = []
+var completed_quests: Array[Quest] = []
+
 func _ready()->void:
 	#await get_tree().process_frame
 	journal.update_quest_window.connect(_on_update_quest_window)
 	Signalbus.quest_update.connect(_on_update_quest)
 	Dialogic.signal_event.connect(_on_dialogic_signal)
 	pass
-@export var chain_quests: Array[ChainQuest] = []
-@export var all_quests: Array[Quest] = []
-var active_quests: Array[Quest] = []
-var completed_quests: Array[Quest] = []
 
 func add_quest(quest: Quest) -> void:
 	active_quests.append(quest)

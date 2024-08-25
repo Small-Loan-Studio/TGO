@@ -1,4 +1,4 @@
-[gd_scene load_steps=43 format=3 uid="uid://crrvo58x81lxn"]
+[gd_scene load_steps=46 format=3 uid="uid://crrvo58x81lxn"]
 
 [ext_resource type="Script" path="res://ZZ_Scratch/QuestPrototype/QuestPrototype.gd" id="1_h4v6k"]
 [ext_resource type="Texture2D" uid="uid://ds0x2hyas8fpv" path="res://Art/Environment/Underground.png" id="2_h17xi"]
@@ -12,6 +12,8 @@
 [ext_resource type="PackedScene" uid="uid://mqvl5162rawb" path="res://Scenes/Devin.tscn" id="4_y2igs"]
 [ext_resource type="Script" path="res://Scripts/Resources/InteractableDialogue.gd" id="5_84uud"]
 [ext_resource type="Resource" path="res://ZZ_Scratch/QuestPrototype/Timelines/coffin_0.dtl" id="6_3nuoq"]
+[ext_resource type="Texture2D" uid="uid://cjm7qoovs5vbg" path="res://Art/Environment/Placeables/questprototype/key.png" id="6_ngyy4"]
+[ext_resource type="Script" path="res://Scripts/Components/Interactable.gd" id="7_h81vt"]
 [ext_resource type="Texture2D" uid="uid://78tt4w14itxl" path="res://Art/Environment/Placeables/questprototype/door.png" id="7_u0hep"]
 [ext_resource type="Resource" path="res://ZZ_Scratch/QuestPrototype/Timelines/found_lamp.dtl" id="9_myhv0"]
 [ext_resource type="Texture2D" uid="uid://bh5e6rcackjqc" path="res://Art/Environment/Placeables/questprototype/coffin_1.png" id="9_r3new"]
@@ -29,6 +31,9 @@
 script = ExtResource("4_tmqev")
 chain_quest_title = "Escape the Cript"
 quests = Array[Resource("res://ZZ_Scratch/QuestPrototype/Quest.gd")]([ExtResource("3_6k8t3")])
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_pxnuc"]
+radius = 752.86
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_vwyhd"]
 size = Vector2(46, 84)
@@ -111,6 +116,18 @@ position = Vector2(2253, -1231)
 scale = Vector2(2, 2)
 texture = ExtResource("2_h17xi")
 
+[node name="Key" type="Sprite2D" parent="Background"]
+position = Vector2(1341, 918)
+scale = Vector2(0.168, 0.14)
+texture = ExtResource("6_ngyy4")
+
+[node name="Interactable" type="Area2D" parent="Background/Key"]
+script = ExtResource("7_h81vt")
+actions = Array[Resource("res://Scripts/Resources/InteractableAction.gd")]([null])
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Background/Key/Interactable"]
+shape = SubResource("CircleShape2D_pxnuc")
+
 [node name="Lamp" type="Sprite2D" parent="Background"]
 position = Vector2(199, 196)
 texture = ExtResource("3_koxfr")
@@ -122,11 +139,9 @@ position = Vector2(-2, 2)
 shape = SubResource("RectangleShape2D_vwyhd")
 
 [node name="Interactable" parent="Background/Lamp" instance=ExtResource("4_0fujw")]
-position = Vector2(-436.338, -812.728)
 actions = Array[Resource("res://Scripts/Resources/InteractableAction.gd")]([SubResource("Resource_vnfje"), SubResource("Resource_0y5sh"), SubResource("Resource_yo7lf")])
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Background/Lamp/Interactable"]
-position = Vector2(433.338, 808.728)
 shape = SubResource("RectangleShape2D_0dmca")
 
 [node name="Door" type="Sprite2D" parent="Background"]
@@ -141,21 +156,18 @@ position = Vector2(0.833359, -0.666656)
 shape = SubResource("RectangleShape2D_1m8ye")
 
 [node name="Interactable" parent="Background/Door" instance=ExtResource("4_0fujw")]
-position = Vector2(-436.338, -812.728)
 actions = Array[Resource("res://Scripts/Resources/InteractableAction.gd")]([SubResource("Resource_xa0d0")])
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Background/Door/Interactable"]
-position = Vector2(435.838, 816.228)
 shape = SubResource("RectangleShape2D_w7ldh")
 
 [node name="Interactable2" parent="Background" instance=ExtResource("4_0fujw")]
-position = Vector2(846, 766.001)
+position = Vector2(802, 614)
 scale = Vector2(0.999999, 0.999999)
 automatic = true
 actions = Array[Resource("res://Scripts/Resources/InteractableAction.gd")]([SubResource("Resource_j2eyr"), SubResource("Resource_yw44r"), SubResource("Resource_jdwyi")])
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Background/Interactable2"]
-position = Vector2(-63, -168)
 shape = SubResource("CircleShape2D_42d0q")
 
 [node name="entrance" type="Node2D" parent="Background"]
@@ -174,11 +186,9 @@ position = Vector2(0.833359, -0.666656)
 shape = SubResource("RectangleShape2D_1m8ye")
 
 [node name="Interactable" parent="Background/Door2" instance=ExtResource("4_0fujw")]
-position = Vector2(-436.338, -812.728)
 actions = Array[Resource("res://Scripts/Resources/InteractableAction.gd")]([SubResource("Resource_xa0d0")])
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Background/Door2/Interactable"]
-position = Vector2(435.838, 816.228)
 shape = SubResource("RectangleShape2D_w7ldh")
 
 [node name="Coffin" type="Sprite2D" parent="Background"]
@@ -193,11 +203,9 @@ position = Vector2(12.5202, 8.22412)
 shape = SubResource("RectangleShape2D_yfmoi")
 
 [node name="Interactable" parent="Background/Coffin" instance=ExtResource("4_0fujw")]
-position = Vector2(-436.338, -812.728)
 actions = Array[Resource("res://Scripts/Resources/InteractableAction.gd")]([SubResource("Resource_o7sk0")])
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Background/Coffin/Interactable"]
-position = Vector2(446.99, 820.893)
 shape = SubResource("RectangleShape2D_jgi7y")
 
 [node name="coffins" type="Node2D" parent="Background"]
@@ -215,10 +223,8 @@ position = Vector2(0, -1.25)
 shape = SubResource("RectangleShape2D_plv6x")
 
 [node name="Interactable" parent="Background/coffins/Coffin1" instance=ExtResource("4_0fujw")]
-position = Vector2(-436.338, -812.728)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Background/coffins/Coffin1/Interactable"]
-position = Vector2(435.588, 809.978)
 shape = SubResource("RectangleShape2D_qrghi")
 
 [node name="Coffin2" type="Sprite2D" parent="Background/coffins"]
@@ -233,10 +239,8 @@ position = Vector2(0, -1.25)
 shape = SubResource("RectangleShape2D_plv6x")
 
 [node name="Interactable" parent="Background/coffins/Coffin2" instance=ExtResource("4_0fujw")]
-position = Vector2(-436.338, -812.728)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Background/coffins/Coffin2/Interactable"]
-position = Vector2(435.588, 809.978)
 shape = SubResource("RectangleShape2D_qrghi")
 
 [node name="Coffin3" type="Sprite2D" parent="Background/coffins"]
@@ -251,10 +255,8 @@ position = Vector2(0, -1.25)
 shape = SubResource("RectangleShape2D_plv6x")
 
 [node name="Interactable" parent="Background/coffins/Coffin3" instance=ExtResource("4_0fujw")]
-position = Vector2(-436.338, -812.728)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Background/coffins/Coffin3/Interactable"]
-position = Vector2(435.588, 809.978)
 shape = SubResource("RectangleShape2D_qrghi")
 
 [node name="Coffin4" type="Sprite2D" parent="Background/coffins"]
@@ -269,10 +271,8 @@ position = Vector2(0, -1.25)
 shape = SubResource("RectangleShape2D_plv6x")
 
 [node name="Interactable" parent="Background/coffins/Coffin4" instance=ExtResource("4_0fujw")]
-position = Vector2(-436.338, -812.728)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Background/coffins/Coffin4/Interactable"]
-position = Vector2(435.588, 809.978)
 shape = SubResource("RectangleShape2D_qrghi")
 
 [node name="Coffin5" type="Sprite2D" parent="Background/coffins"]
@@ -287,10 +287,8 @@ position = Vector2(0, -1.25)
 shape = SubResource("RectangleShape2D_plv6x")
 
 [node name="Interactable" parent="Background/coffins/Coffin5" instance=ExtResource("4_0fujw")]
-position = Vector2(-436.338, -812.728)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Background/coffins/Coffin5/Interactable"]
-position = Vector2(435.588, 809.978)
 shape = SubResource("RectangleShape2D_qrghi")
 
 [node name="Character" parent="." instance=ExtResource("4_y2igs")]
