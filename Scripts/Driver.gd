@@ -15,7 +15,6 @@ var _last_loaded_level: LevelBase = null
 @onready var _world := $GameWorld
 
 
-
 func _ready() -> void:
 	_curtain.visible = true
 	audio_mgr.play(Enums.AudioTrack.SKETCH_1, .75)

@@ -14,6 +14,7 @@ var id: String = "Devin"
 
 @onready var _lamp: Lamp = $Lamp
 
+
 func _physics_process(delta: float) -> void:
 	# ignore private method call because we need Character's physics logic as well
 	# gdlint:ignore = private-method-call
