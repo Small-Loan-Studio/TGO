@@ -12,7 +12,7 @@ var _last_loaded_level: LevelBase = null
 @onready var _menu_mgr: MenuManager = $OverlayManager/MenuManager
 @onready var _curtain := $OverlayManager/Curtain
 @onready var _world := $GameWorld
-@onready var _inventory_mgr := $InventoryManager
+@onready var inventory_mgr := $InventoryManager
 
 
 func _ready() -> void:

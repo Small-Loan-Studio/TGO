@@ -5,8 +5,8 @@ extends Node2D
 	set(value):
 		item = value
 		# Update Sprite Icon if our Item Resource is changed in the Editor
-		if sprite:
-			sprite.texture = item.icon
+		if _sprite:
+			_sprite.texture = item.icon
 		update_configuration_warnings()
 
 @export var quantity: int:
@@ -17,30 +17,27 @@ extends Node2D
 @export var interactable_radius: int = 1:
 	set(value):
 		interactable_radius = value
-		if collision_shape:
-			collision_shape.shape.radius = interactable_radius
+		if _collision:
+			_collision.shape.radius = interactable_radius
 		update_configuration_warnings()
 
-var _stack: ItemStack
-
-@onready var sprite := $Sprite2D
-@onready var interactable := $Interactable
-@onready var collision_shape := $Interactable/CollisionShape2D
+@onready var _sprite := $Sprite2D
+@onready var _interactable := $Interactable
+@onready var _collision := $Interactable/CollisionShape2D
 
 
 func _ready() -> void:
-	sprite.texture = item.icon
-	collision_shape.radius = interactable_radius
-	interactable.set_collision_layer_value(2, true)
+	_sprite.texture = item.icon
+	_collision.shape.radius = interactable_radius
 
 	# Create our Action for the Interactable
 	var action := InteractablePickup.new()
-	_stack = ItemStack.new()
-	_stack.item = item
-	_stack.quantity = quantity
+	var stack := ItemStack.new()
+	stack.item = item
+	stack.quantity = quantity
 	action.dest_path = self.get_path()
-	action.item = _stack
-	interactable.actions.append(action)
+	action.item = stack
+	_interactable.actions.append(action)
 
 
 func _get_configuration_warnings() -> PackedStringArray:

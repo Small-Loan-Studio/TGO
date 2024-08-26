@@ -6,7 +6,7 @@ var item_slot: PackedScene = preload("res://ZZ_Scratch/Inventory/UI/ItemSlot.tsc
 
 
 func set_inventory(inv: Inventory) -> void:
-	build(inv.items)
+	build(inv.get_items())
 
 
 func build(data: Array[ItemStack]) -> void:

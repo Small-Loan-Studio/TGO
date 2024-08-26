@@ -1,7 +1,7 @@
 class_name Item
 extends Resource
 
-@export var id: int = -1
+@export var id: String = ""
 @export var name: String = ""
 ## Unused property currently, will be necessary later on probably
 @export var type: Enums.ItemType
@@ -11,10 +11,8 @@ extends Resource
 	set(value):
 		if stack_size > 1 && !stackable:
 			printerr(
-				(
 					"Item %s has a stack_size of %s but has not set stackable to true"
 					% [name, stack_size]
-				)
 			)
 			stack_size = 1
 		else:
