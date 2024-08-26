@@ -37,8 +37,10 @@ func insert(item: ItemStack) -> bool:
 func remove(_item: ItemStack) -> void:
 	pass
 
+
 func get_items() -> Array[ItemStack]:
 	return _items.duplicate(true)
+
 
 func _to_string() -> String:
 	var string_rep: Array[String] = []

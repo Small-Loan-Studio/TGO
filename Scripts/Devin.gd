@@ -3,17 +3,16 @@
 class_name Devin
 extends Character
 
-## Unique ID not shared by any other object for use in other systems (only Inventory atm)
-var id: String = "Devin"
-
 ## If set this will hide the lamp sensor radius while in editor. Has no effect
 ## during gameplay.
 @export var editor_hide_lamp_sensors: bool:
 	set = _set_editor_hide_lamp,
 	get = _get_editor_hide_lamp
 
-@onready var _lamp: Lamp = $Lamp
+## Unique ID not shared by any other object for use in other systems (only Inventory atm)
+var id: String = "Devin"
 
+@onready var _lamp: Lamp = $Lamp
 
 func _physics_process(delta: float) -> void:
 	# ignore private method call because we need Character's physics logic as well

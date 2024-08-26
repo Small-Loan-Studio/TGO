@@ -15,6 +15,7 @@ func register(id: String, data: Inventory = Inventory.new()) -> Inventory:
 	print("Registered Inventory " + str(id))
 	return data
 
+
 func get_inventory(id: String) -> Inventory:
 	if _inventories.has(id):
 		return _inventories[id]

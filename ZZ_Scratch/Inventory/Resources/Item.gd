@@ -11,8 +11,10 @@ extends Resource
 	set(value):
 		if stack_size > 1 && !stackable:
 			printerr(
+				(
 					"Item %s has a stack_size of %s but has not set stackable to true"
 					% [name, stack_size]
+				)
 			)
 			stack_size = 1
 		else:
