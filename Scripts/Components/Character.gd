@@ -206,7 +206,7 @@ func _handle_target_changed() -> void:
 		if _target.is_interactable():
 			hud.set_toast("interact")
 		if _target.is_moveable_block():
-				hud.set_toast("push/pull")
+			hud.set_toast("push/pull")
 	else:
 		hud.clear_toast()
 

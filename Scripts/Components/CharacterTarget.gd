@@ -1,7 +1,7 @@
 class_name CharacterTarget
 extends RefCounted
 
-signal target_changed()
+signal target_changed
 
 var _typ: Enums.TargetType
 
