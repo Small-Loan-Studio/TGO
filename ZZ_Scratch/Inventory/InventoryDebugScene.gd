@@ -8,9 +8,8 @@ var _inventory: Inventory
 
 # A lot of duplicated variable names here, just for the sake of wiring and debugging
 func setup(driver: Driver) -> void:
-	var limited_inventory := Inventory.new()
-	limited_inventory.size = 2
-	var inv: Inventory = driver.inventory_mgr.register("Devin", limited_inventory)
+	var inv: Inventory = driver.inventory_mgr.get_inventory("Devin")
+	inv.set_size(2)
 	_inventory = inv
 	# Test/Debug wiring for the time being
 

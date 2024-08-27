@@ -2,10 +2,10 @@
 
 [ext_resource type="Script" path="res://ZZ_Scratch/Inventory/InventoryDebugScene.gd" id="1_55n3p"]
 [ext_resource type="PackedScene" uid="uid://mqvl5162rawb" path="res://Scenes/Devin.tscn" id="2_cpab8"]
-[ext_resource type="Resource" uid="uid://but4ranqswen" path="res://ZZ_Scratch/Inventory/Items/Potion.tres" id="4_v6t61"]
-[ext_resource type="Resource" uid="uid://b7w2axnxl0fkt" path="res://ZZ_Scratch/Inventory/Items/Key.tres" id="5_4m2qh"]
-[ext_resource type="PackedScene" uid="uid://dukcf64qxy46o" path="res://ZZ_Scratch/Inventory/UI/Inventory.tscn" id="7_wc1ti"]
-[ext_resource type="PackedScene" uid="uid://rgvfsx60t2ap" path="res://ZZ_Scratch/Inventory/Items/Item.tscn" id="9_wti2o"]
+[ext_resource type="Resource" uid="uid://but4ranqswen" path="res://Scripts/Resources/Items/Potion.tres" id="4_v6t61"]
+[ext_resource type="Resource" uid="uid://b7w2axnxl0fkt" path="res://Scripts/Resources/Items/Key.tres" id="5_4m2qh"]
+[ext_resource type="PackedScene" uid="uid://dukcf64qxy46o" path="res://Scenes/UI/Debug/Inventory.tscn" id="7_wc1ti"]
+[ext_resource type="PackedScene" uid="uid://rgvfsx60t2ap" path="res://Scenes/Components/Inventory/Item.tscn" id="9_wti2o"]
 
 [node name="InventoryDebug" type="Node2D"]
 script = ExtResource("1_55n3p")

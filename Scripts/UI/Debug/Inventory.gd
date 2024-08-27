@@ -1,6 +1,6 @@
 extends PanelContainer
 
-var item_slot: PackedScene = preload("res://ZZ_Scratch/Inventory/UI/ItemSlot.tscn")
+@export var item_slot: PackedScene
 
 @onready var items: GridContainer = $MarginContainer/Items
 

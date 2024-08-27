@@ -1,9 +1,11 @@
-[gd_scene load_steps=2 format=3 uid="uid://dukcf64qxy46o"]
+[gd_scene load_steps=3 format=3 uid="uid://dukcf64qxy46o"]
 
-[ext_resource type="Script" path="res://ZZ_Scratch/Inventory/UI/Inventory.gd" id="1_8ykxy"]
+[ext_resource type="Script" path="res://Scripts/UI/Debug/Inventory.gd" id="1_8ykxy"]
+[ext_resource type="PackedScene" uid="uid://huhyqdltb7hr" path="res://Scenes/UI/Debug/ItemSlot.tscn" id="2_3exan"]
 
 [node name="Inventory" type="PanelContainer"]
 script = ExtResource("1_8ykxy")
+item_slot = ExtResource("2_3exan")
 
 [node name="MarginContainer" type="MarginContainer" parent="."]
 layout_mode = 2

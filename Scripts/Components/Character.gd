@@ -3,6 +3,9 @@
 class_name Character
 extends CharacterBody2D
 
+## Unique ID used in our design systems
+@export var id: String = ""
+
 ## Set this to make the character be controlled by player input
 @export var player_controled: bool = false
 

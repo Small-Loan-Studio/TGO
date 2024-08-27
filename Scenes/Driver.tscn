@@ -6,7 +6,7 @@
 [ext_resource type="Script" path="res://Scripts/Menu/MenuManager.gd" id="3_h1ccd"]
 [ext_resource type="PackedScene" uid="uid://ci7ksomi5hsr5" path="res://Scenes/Menu/DebugMenu.tscn" id="3_i7nbg"]
 [ext_resource type="PackedScene" uid="uid://mqvl5162rawb" path="res://Scenes/Devin.tscn" id="6_gmy4s"]
-[ext_resource type="Script" path="res://ZZ_Scratch/Inventory/InventoryManager.gd" id="6_na5am"]
+[ext_resource type="Script" path="res://Scripts/Components/Inventory/InventoryManager.gd" id="6_na5am"]
 
 [node name="Driver" type="Node2D"]
 script = ExtResource("1_agcjs")

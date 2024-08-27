@@ -20,6 +20,8 @@ func stack(other: ItemStack) -> void:
 func partially_stack(other: ItemStack) -> ItemStack:
 	var stack := ItemStack.new()
 	stack.item = item
+	if other.quantity > item.stack_size:
+		printerr("Found a stack size in the world that was more than the allowed max_stack size")
 	stack.quantity = (quantity + other.quantity) % item.stack_size
 	quantity = item.stack_size
 	return stack
