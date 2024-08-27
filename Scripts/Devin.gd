@@ -13,6 +13,11 @@ extends Character
 
 
 func _physics_process(delta: float) -> void:
+	if Engine.is_editor_hint():
+		# fucking godot. have to bail here because the super call spews errors in
+		# editor evidently? ...of course I have no idea what I'm doing so plausibly
+		# this is indicative of a problem and we should revisit
+		return
 	# ignore private method call because we need Character's physics logic as well
 	# gdlint:ignore = private-method-call
 	super._physics_process(delta)

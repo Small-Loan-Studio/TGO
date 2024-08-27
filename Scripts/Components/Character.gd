@@ -31,7 +31,9 @@ var _facing: float = 0
 # _facing reified into a direction
 var _direction: Enums.Direction
 
-var _focused_interactable: Interactable = null
+var _focused_interactable: Interactable = null:
+	get = _get_interactable,
+	set = _set_interactable
 
 # component cache
 @onready var _sprite: AnimatedSprite2D = $AnimatedSprite2D
@@ -119,6 +121,23 @@ func _on_interaction_sensor_exited(area: Area2D) -> void:
 		print("lost interactable " + area.name + " / " + area.get_parent().name)
 		if _focused_interactable == area:
 			_focused_interactable = null
+
+
+func _set_interactable(new_obj: Interactable) -> void:
+	_focused_interactable = new_obj
+	if !player_controled:
+		return
+
+	var hud := Driver.instance().get_hud()
+	if new_obj == null:
+		hud.clear_toast()
+	else:
+		# TODO: we'll obviously change this to something contextual later
+		hud.set_toast("interact")
+
+
+func _get_interactable() -> Interactable:
+	return _focused_interactable
 
 
 func _get_configuration_warnings() -> PackedStringArray:
