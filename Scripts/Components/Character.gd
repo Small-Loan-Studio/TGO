@@ -57,6 +57,8 @@ func _ready() -> void:
 	if _override_default_sprite_frames != null:
 		_sprite.sprite_frames = _override_default_sprite_frames
 
+	_target.target_changed.connect(Callable(self, "_handle_target_changed"))
+
 
 func _unhandled_input(_event: InputEvent) -> void:
 	if !player_controled:
@@ -112,11 +114,15 @@ func _unhandled_input(_event: InputEvent) -> void:
 				_move_mode = Enums.MoveMode.WALK
 				_pinjoint.node_b = ""
 				_target.get_moveable_block().freeze = true
+				# TODO(envy) - better toast management
+				Driver.instance().get_hud().clear_toast()
 			else:
 				# start push/pull, set the push direction for subsequent logic
 				_move_mode = Enums.MoveMode.PUSH_PULL
 				_push_direction = Utils.angle_to_direction(_facing, Enums.DirectionMode.FOUR)
 				_target.get_moveable_block().freeze = false
+				# TODO(envy) - better toast management
+				Driver.instance().get_hud().set_toast("release")
 
 
 func _physics_process(_delta: float) -> void:
@@ -167,15 +173,12 @@ func _on_interaction_sensor_entered(area: Area2D) -> void:
 
 	if area is Interactable:
 		var i := area as Interactable
-		print("found interactable " + area.name + " / " + area.get_parent().name)
 		if i.automatic:
-			print("automatic trigger, not tracking for manual engagement")
 			i.trigger(self)
 		else:
 			_target.update(area)
 
 	if area.get_parent() is MoveableBlock:
-		print("found a moveable block")
 		_target.update(area.get_parent())
 
 
@@ -185,12 +188,27 @@ func _on_interaction_sensor_exited(area: Area2D) -> void:
 		return
 
 	if area is Interactable:
-		print("lost interactable " + area.name + " / " + area.get_parent().name)
 		if _target.get_interactable() == area:
 			_target.reset()
 	if area.get_parent() is MoveableBlock:
 		if _target.get_moveable_block() == area.get_parent():
 			_target.reset()
+
+
+func _handle_target_changed() -> void:
+	if !player_controled:
+		return
+
+	print("%s - _handle_target_changed -> %s" % [name, _target])
+	# TODO(envy) - better toast management
+	var hud := Driver.instance().get_hud()
+	if _target.is_set():
+		if _target.is_interactable():
+			hud.set_toast("interact")
+		if _target.is_moveable_block():
+				hud.set_toast("push/pull")
+	else:
+		hud.clear_toast()
 
 
 func _get_configuration_warnings() -> PackedStringArray:
