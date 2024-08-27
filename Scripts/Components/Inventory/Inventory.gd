@@ -36,11 +36,13 @@ func insert(item: ItemStack) -> bool:
 
 func remove(_item: ItemStack) -> void:
 	pass
-	
+
 
 func set_size(new_size: int) -> void:
 	if _items.size() > new_size:
-		printerr("Setting the size of this inventory lower than the amount of items in the inventory is probably not intended")
+		printerr(
+			"The size of this inventory cannot be lower than the amount of items in the inventory"
+		)
 		size = _items.size()
 		return
 	size = new_size

@@ -3,6 +3,7 @@ extends Node
 
 var _inventories: Dictionary
 
+
 func get_inventory(id: String) -> Inventory:
 	if _inventories.has(id):
 		return _inventories[id]
