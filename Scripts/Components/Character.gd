@@ -49,7 +49,7 @@ var _target: CharacterTarget = CharacterTarget.none()
 
 # component cache
 @onready var _sprite: AnimatedSprite2D = $AnimatedSprite2D
-@onready var _interaction_sensor: Area2D = $InteractionSensor
+@onready var _sensor_group: Node2D = $SensorSet
 @onready var _pinjoint: PinJoint2D = $PinJoint2D
 
 
@@ -102,7 +102,7 @@ func _unhandled_input(_event: InputEvent) -> void:
 			_facing = Vector2.UP.angle_to(_impulse)
 			_direction = Utils.angle_to_direction(_facing)
 
-	_interaction_sensor.rotation = _facing
+	_sensor_group.rotation = _facing
 
 	if _event.is_action_pressed(Enums.input_action_name(Enums.InputAction.INTERACT)):
 		if _target.is_interactable():
@@ -167,6 +167,7 @@ func _physics_process(_delta: float) -> void:
 
 
 func _on_interaction_sensor_entered(area: Area2D) -> void:
+	print("interaction_sensor_entered / %s" % [_move_mode])
 	# while we're pushing and pulling don't let our focus change
 	if _move_mode == Enums.MoveMode.PUSH_PULL:
 		return
@@ -178,11 +179,9 @@ func _on_interaction_sensor_entered(area: Area2D) -> void:
 		else:
 			_target.update(area)
 
-	if area.get_parent() is MoveableBlock:
-		_target.update(area.get_parent())
-
 
 func _on_interaction_sensor_exited(area: Area2D) -> void:
+	print("interaction_sensor_exited / %s" % [_move_mode])
 	# while we're pushing and pulling don't let our focus change
 	if _move_mode == Enums.MoveMode.PUSH_PULL:
 		return
@@ -190,6 +189,21 @@ func _on_interaction_sensor_exited(area: Area2D) -> void:
 	if area is Interactable:
 		if _target.get_interactable() == area:
 			_target.reset()
+
+func _on_pushpull_sensor_entered(area: Area2D) -> void:
+	# while we're pushing and pulling don't let our focus change
+	if _move_mode == Enums.MoveMode.PUSH_PULL:
+		return
+
+	if area.get_parent() is MoveableBlock:
+		_target.update(area.get_parent())
+
+
+func _on_pushpull_sensor_exited(area: Area2D) -> void:
+	# while we're pushing and pulling don't let our focus change
+	if _move_mode == Enums.MoveMode.PUSH_PULL:
+		return
+
 	if area.get_parent() is MoveableBlock:
 		if _target.get_moveable_block() == area.get_parent():
 			_target.reset()
