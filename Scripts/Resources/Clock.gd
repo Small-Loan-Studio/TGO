@@ -3,7 +3,7 @@ extends Node
 signal hour_passed
 
 # time of a day, in seconds
-var length_of_day: int = 50
+@export var length_of_day: int = 50
 var length_of_hour: int = length_of_day / 24
 
 #keep track of current time
