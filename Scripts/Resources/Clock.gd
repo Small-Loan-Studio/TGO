@@ -27,7 +27,7 @@ func _on_timer_timeout() -> void:
 
 func get_current_time() -> int:
 	return current_time
-	
+
 func set_time(time: int) -> void:
 	current_time = time
 	hours_passed = time
@@ -35,7 +35,7 @@ func set_time(time: int) -> void:
 
 func start_clock() -> void:
 	timer.start()
-	
+
 func stop() -> void:
 	timer.stop()
 

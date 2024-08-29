@@ -1,23 +1,23 @@
 extends Node
 
-@export var DAY_START: int = 8
-@export var DUSK_START: int = 16
-@export var NIGHT_START: int = 20
-@export var DAWN_START: int = 6
+@export var day_start: int = 8
+@export var dusk_start: int = 16
+@export var night_start: int = 20
+@export var dawn_start: int = 6
 
-@export var DAY_COLOR: Color = Color.WHITE
-@export var DUSK_COLOR: Color = Color(.5, .5, .5)
-@export var NIGHT_COLOR: Color = Color(.08, .08, .16)
+@export var day_color: Color = Color.WHITE
+@export var dusk_color: Color = Color(.5, .5, .5)
+@export var night_color: Color = Color(.08, .08, .16)
 
 
-var current_time: int = DAY_START
+var current_time: int = day_start
 
 @onready var clock: Node = $Clock
 @onready var _modulate: CanvasModulate = $CanvasModulate
 
 
 func _ready() -> void:
-	clock.set_time(DAY_START)
+	clock.set_time(day_start)
 	clock.start_clock()
 
 
@@ -29,10 +29,10 @@ func _on_clock_hour_passed() -> void:
 	current_time = clock.get_current_time()
 	print("Time is ", current_time)
 	if (
-		current_time == DAY_START
-		|| current_time == DAWN_START
-		|| current_time == DUSK_START
-		|| current_time == NIGHT_START
+		current_time == day_start
+		|| current_time == dawn_start
+		|| current_time == dusk_start
+		|| current_time == night_start
 	):
 		var tweener := get_tree().create_tween()
 		tweener.set_parallel(true)
@@ -40,17 +40,17 @@ func _on_clock_hour_passed() -> void:
 
 
 func _get_target(time: int) -> Color:
-	if time == DAY_START:
+	if time == day_start:
 		print("day start")
-		return DAY_COLOR
-	if time == DUSK_START || current_time == DAWN_START:
+		return day_color
+	if time == dusk_start || current_time == dawn_start:
 		print("twilight start")
-		return DUSK_COLOR
-	if time == NIGHT_START:
+		return dusk_color
+	if time == night_start:
 		print("night start")
-		return NIGHT_COLOR
+		return night_color
 
-	return Color(.5, .5, .5) #this shouldn't be reached	
+	return Color(.5, .5, .5) #this shouldn't be reached
 
 
 func set_hour(time: int) -> void:
@@ -59,12 +59,12 @@ func set_hour(time: int) -> void:
 		return
 	var tweener := get_tree().create_tween()
 	tweener.set_parallel(true)
-	if(time >= DAY_START && time < DUSK_START):
-		tweener.tween_property(_modulate, "color", DAY_COLOR, 2)
-	elif((time >= DUSK_START && time<NIGHT_START) || (time >=DAWN_START && time<DAY_START)):
-		tweener.tween_property(_modulate, "color", DUSK_COLOR, 2)
-	elif(time>=NIGHT_START || time<DAWN_START):
-		tweener.tween_property(_modulate, "color", NIGHT_COLOR, 2)
+	if(time >= day_start && time < dusk_start):
+		tweener.tween_property(_modulate, "color", day_color, 2)
+	elif((time >= dusk_start && time<night_start) || (time >=dawn_start && time<day_start)):
+		tweener.tween_property(_modulate, "color", dusk_color, 2)
+	elif(time>=night_start || time<dawn_start):
+		tweener.tween_property(_modulate, "color", night_color, 2)
 	else:
 		return
 
@@ -82,9 +82,9 @@ func pause(pause: bool) -> void:
 
 func is_paused() -> bool:
 	return clock.is_stopped()
-	
+
 func get_day_start() -> int:
-	return DAY_START
+	return day_start
 
 
 func _unhandled_input(_event: InputEvent) -> void:
