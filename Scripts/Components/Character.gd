@@ -114,6 +114,7 @@ func _unhandled_input(_event: InputEvent) -> void:
 			else:
 				_start_pushpull()
 
+
 func _physics_process(_delta: float) -> void:
 	if Engine.is_editor_hint():
 		# gross. but here we are
@@ -176,6 +177,7 @@ func _on_interaction_sensor_exited(area: Area2D) -> void:
 	if area is Interactable:
 		if _target.get_interactable() == area:
 			_target.reset()
+
 
 func _on_pushpull_sensor_entered(area: Area2D) -> void:
 	# while we're pushing and pulling don't let our focus change
