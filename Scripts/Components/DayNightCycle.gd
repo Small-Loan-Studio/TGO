@@ -9,7 +9,6 @@ extends Node
 @export var dusk_color: Color = Color(.5, .5, .5)
 @export var night_color: Color = Color(.08, .08, .16)
 
-
 var current_time: int = day_start
 
 @onready var clock: Node = $Clock
@@ -50,26 +49,27 @@ func _get_target(time: int) -> Color:
 		print("night start")
 		return night_color
 
-	return Color(.5, .5, .5) #this shouldn't be reached
+	return Color(.5, .5, .5)  #this shouldn't be reached
 
 
 func set_hour(time: int) -> void:
 	#first check how dark it should be based on given time
-	if(time > 23):
+	if time > 23:
 		return
 	var tweener := get_tree().create_tween()
 	tweener.set_parallel(true)
-	if(time >= day_start && time < dusk_start):
+	if time >= day_start && time < dusk_start:
 		tweener.tween_property(_modulate, "color", day_color, 2)
-	elif((time >= dusk_start && time<night_start) || (time >=dawn_start && time<day_start)):
+	elif (time >= dusk_start && time < night_start) || (time >= dawn_start && time < day_start):
 		tweener.tween_property(_modulate, "color", dusk_color, 2)
-	elif(time>=night_start || time<dawn_start):
+	elif time >= night_start || time < dawn_start:
 		tweener.tween_property(_modulate, "color", night_color, 2)
 	else:
 		return
 
 	#change time in the clock
 	clock.set_time(time)
+
 
 func pause(pause: bool) -> void:
 	if pause:
@@ -82,6 +82,7 @@ func pause(pause: bool) -> void:
 
 func is_paused() -> bool:
 	return clock.is_stopped()
+
 
 func get_day_start() -> int:
 	return day_start
