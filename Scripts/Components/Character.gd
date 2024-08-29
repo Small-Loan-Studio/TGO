@@ -110,20 +110,9 @@ func _unhandled_input(_event: InputEvent) -> void:
 
 		if _target.is_moveable_block():
 			if _move_mode == Enums.MoveMode.PUSH_PULL:
-				# currently push/pull, stop
-				_move_mode = Enums.MoveMode.WALK
-				_pinjoint.node_b = ""
-				_target.get_moveable_block().freeze = true
-				# TODO(envy) - better toast management
-				Driver.instance().get_hud().clear_toast()
+				_stop_pushpull()
 			else:
-				# start push/pull, set the push direction for subsequent logic
-				_move_mode = Enums.MoveMode.PUSH_PULL
-				_push_direction = Utils.angle_to_direction(_facing, Enums.DirectionMode.FOUR)
-				_target.get_moveable_block().freeze = false
-				# TODO(envy) - better toast management
-				Driver.instance().get_hud().set_toast("release")
-
+				_start_pushpull()
 
 func _physics_process(_delta: float) -> void:
 	if Engine.is_editor_hint():
@@ -167,7 +156,6 @@ func _physics_process(_delta: float) -> void:
 
 
 func _on_interaction_sensor_entered(area: Area2D) -> void:
-	print("interaction_sensor_entered / %s" % [_move_mode])
 	# while we're pushing and pulling don't let our focus change
 	if _move_mode == Enums.MoveMode.PUSH_PULL:
 		return
@@ -181,7 +169,6 @@ func _on_interaction_sensor_entered(area: Area2D) -> void:
 
 
 func _on_interaction_sensor_exited(area: Area2D) -> void:
-	print("interaction_sensor_exited / %s" % [_move_mode])
 	# while we're pushing and pulling don't let our focus change
 	if _move_mode == Enums.MoveMode.PUSH_PULL:
 		return
@@ -200,12 +187,9 @@ func _on_pushpull_sensor_entered(area: Area2D) -> void:
 
 
 func _on_pushpull_sensor_exited(area: Area2D) -> void:
-	# while we're pushing and pulling don't let our focus change
-	if _move_mode == Enums.MoveMode.PUSH_PULL:
-		return
-
 	if area.get_parent() is MoveableBlock:
 		if _target.get_moveable_block() == area.get_parent():
+			_stop_pushpull()
 			_target.reset()
 
 
@@ -246,3 +230,26 @@ func _is_push(v: Vector2, push_direction: Enums.Direction) -> bool:
 	# normalize direction to the axis
 	v = (v * axis).normalized()
 	return v == push_vec
+
+
+func _start_pushpull() -> void:
+	if _move_mode == Enums.MoveMode.PUSH_PULL:
+		return
+
+	# start push/pull, set the push direction for subsequent logic
+	_move_mode = Enums.MoveMode.PUSH_PULL
+	_push_direction = Utils.angle_to_direction(_facing, Enums.DirectionMode.FOUR)
+	_target.get_moveable_block().freeze = false
+	# TODO(envy) - better toast management
+	Driver.instance().get_hud().set_toast("release")
+
+
+func _stop_pushpull() -> void:
+	if _move_mode != Enums.MoveMode.PUSH_PULL:
+		return
+
+	_move_mode = Enums.MoveMode.WALK
+	_pinjoint.node_b = ""
+	_target.get_moveable_block().freeze = true
+	# TODO(envy) - better toast management
+	Driver.instance().get_hud().clear_toast()
