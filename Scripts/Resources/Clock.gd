@@ -22,15 +22,25 @@ func _ready() -> void:
 func _on_timer_timeout() -> void:
 	hours_passed += 1
 	current_time = hours_passed % 24
-	#print("Time is ", current_time)
 	hour_passed.emit()
 
 
 func get_current_time() -> int:
 	return current_time
+	
+func set_time(time: int) -> void:
+	current_time = time
+	hours_passed = time
 
 
 func start_clock() -> void:
-	current_time = 0
-	hours_passed = 0  #might want to save total hours passed?
+	timer.start()
+	
+func stop() -> void:
+	timer.stop()
+
+func is_stopped() -> bool:
+	return timer.is_stopped()
+
+func start() -> void:
 	timer.start()
