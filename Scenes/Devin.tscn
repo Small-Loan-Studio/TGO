@@ -2,26 +2,26 @@
 
 [ext_resource type="Script" path="res://Scripts/Devin.gd" id="1_coq4s"]
 [ext_resource type="PackedScene" uid="uid://cx703e8t27grh" path="res://Scenes/Components/Character.tscn" id="1_kp6oq"]
-[ext_resource type="SpriteFrames" uid="uid://602xb41y0tak" path="res://Art/Characters/stub_animated_sprite.tres" id="2_0c1b0"]
+[ext_resource type="SpriteFrames" uid="uid://b750bqc5psnhh" path="res://Art/Characters/bart_sheet.tres" id="3_0y874"]
 [ext_resource type="PackedScene" uid="uid://skr46k6x628f" path="res://Scenes/Components/Lamp.tscn" id="3_h1iub"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_tccbb"]
-radius = 19.0
+radius = 13.0
 
 [node name="Character" instance=ExtResource("1_kp6oq")]
-position = Vector2(0, -70)
+position = Vector2(0, 19)
 script = ExtResource("1_coq4s")
 editor_hide_lamp_sensors = true
-player_controled = true
-_override_default_sprite_frames = ExtResource("2_0c1b0")
+_override_default_sprite_frames = ExtResource("3_0y874")
 
 [node name="AnimatedSprite2D" parent="." index="0"]
-sprite_frames = ExtResource("2_0c1b0")
+sprite_frames = ExtResource("3_0y874")
 animation = &"east"
 
 [node name="Lamp" parent="." index="2" instance=ExtResource("3_h1iub")]
-position = Vector2(26, 62)
+visible = false
+position = Vector2(26, 91)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." index="3"]
-position = Vector2(2, 61)
+position = Vector2(0, -6)
 shape = SubResource("CircleShape2D_tccbb")

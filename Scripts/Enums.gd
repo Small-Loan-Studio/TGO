@@ -12,6 +12,14 @@ enum Direction {
 	SOUTH_WEST,
 }
 
+enum DirectionMode { FOUR, EIGHT }
+
+enum MoveMode {
+	WALK,
+	SPRINT,
+	PUSH_PULL,
+}
+
 enum InputAction {
 	UP,
 	DOWN,
@@ -43,12 +51,37 @@ enum AudioBus {
 	MENU_EFFECTS,
 }
 
+enum TargetType {
+	NONE,
+	INTERACTABLE,
+	MOVEABLE_BLOCK,
+}
+
 const AUDIO_BUS_INFO = {
 	AudioBus.MASTER: [0, "Global"],
 	AudioBus.BACKGROUND_MUSIC: [1, "Background Music"],
 	AudioBus.SOUND_EFFECTS: [2, "Sound Effects"],
 	AudioBus.AMBIENT: [3, "Environmental Sounds"],
 	AudioBus.MENU_EFFECTS: [4, "Menu"],
+}
+
+const DIRECTION_PUSH_PULL_AXIS := {
+	Direction.NORTH: Vector2(0, 1),
+	Direction.SOUTH: Vector2(0, 1),
+	Direction.EAST: Vector2(1, 0),
+	Direction.WEST: Vector2(1, 0),
+}
+
+# gdlint:ignore=class-variable-name
+static var DIRECTION_VECTOR := {
+	Direction.NORTH: Vector2(0, -1),
+	Direction.SOUTH: Vector2(0, 1),
+	Direction.EAST: Vector2(1, 0),
+	Direction.WEST: Vector2(-1, 0),
+	Direction.NORTH_EAST: Vector2(1, -1).normalized(),
+	Direction.SOUTH_EAST: Vector2(1, 1).normalized(),
+	Direction.NORTH_WEST: Vector2(-11, -1).normalized(),
+	Direction.SOUTH_WEST: Vector2(-1, 1).normalized(),
 }
 
 
@@ -72,6 +105,25 @@ static func direction_name(da: Direction) -> String:
 			return "southwest"
 	assert(false, "Unexpected Direction value: " + str(da))
 	return "north"
+
+
+static func direction_vector(da: Direction) -> Vector2:
+	return DIRECTION_VECTOR[da]
+
+
+static func direction_push_pull_axis(d: Direction) -> Vector2:
+	return DIRECTION_PUSH_PULL_AXIS[d]
+
+
+static func move_mode_name(mm: MoveMode) -> String:
+	match mm:
+		MoveMode.WALK:
+			return "walk"
+		MoveMode.SPRINT:
+			return "sprint"
+		MoveMode.PUSH_PULL:
+			return "push/pull"
+	return "unknown"
 
 
 static func input_action_name(ia: InputAction) -> String:
