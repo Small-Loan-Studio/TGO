@@ -108,6 +108,9 @@ func _update_collider_display() -> void:
 
 
 func _process_can_block_movement_update() -> void:
+	if !Engine.is_editor_hint():
+		printerr("May not want to change movement blocking at runtime")
+
 	if can_block_movement:
 		if _physics != null:
 			# already has a physics body
@@ -142,6 +145,9 @@ func _process(_delta: float) -> void:
 
 
 func _process_can_interact_update() -> void:
+	if !Engine.is_editor_hint():
+		printerr("May not want to change interactable at runtime")
+
 	if can_interact:
 		if _interactable != null:
 			# already has an interactable object
