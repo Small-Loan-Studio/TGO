@@ -1,0 +1,9 @@
+[gd_scene load_steps=3 format=3 uid="uid://ck6l6e7b7qo1o"]
+
+[ext_resource type="PackedScene" uid="uid://cx703e8t27grh" path="res://Scenes/Components/Character.tscn" id="1_20i0n"]
+[ext_resource type="Script" path="res://Scripts/Components/NPC.gd" id="2_eb6uj"]
+
+[node name="NPC" instance=ExtResource("1_20i0n")]
+script = ExtResource("2_eb6uj")
+timeline = null
+_override_default_sprite_frames = null

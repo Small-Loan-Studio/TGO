@@ -47,8 +47,6 @@ texture = SubResource("AtlasTexture_ptcao")
 
 [node name="Interactable" parent="Objects/Sprite2D" index="0" instance=ExtResource("5_6ixdr")]
 y_sort_enabled = true
-collision_layer = 2
-collision_mask = 0
 actions = Array[Resource("res://Scripts/Resources/InteractableAction.gd")]([SubResource("Resource_8cdkq")])
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Objects/Sprite2D/Interactable" index="0"]
