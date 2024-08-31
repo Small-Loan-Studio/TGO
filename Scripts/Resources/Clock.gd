@@ -1,7 +1,6 @@
 class_name Clock
 extends Node
 
-
 signal hour_passed
 
 # time of a day, in seconds
