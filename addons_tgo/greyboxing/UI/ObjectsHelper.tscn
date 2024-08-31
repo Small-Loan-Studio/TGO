@@ -65,11 +65,25 @@ text = "Is Interactable
 
 [node name="Pushable" type="Button" parent="Container/AddItems"]
 layout_mode = 2
-disabled = true
 text = "Pushable Block"
 
 [node name="PushableDetails" type="VBoxContainer" parent="Container/AddItems"]
 visible = false
+layout_mode = 2
+
+[node name="HBox" type="HBoxContainer" parent="Container/AddItems/PushableDetails"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Container/AddItems/PushableDetails/HBox"]
+layout_mode = 2
+text = "Name"
+
+[node name="Margin" type="MarginContainer" parent="Container/AddItems/PushableDetails/HBox"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/margin_left = 8
+
+[node name="Name" type="LineEdit" parent="Container/AddItems/PushableDetails/HBox/Margin"]
 layout_mode = 2
 
 [node name="NPC" type="Button" parent="Container/AddItems"]
