@@ -3,10 +3,6 @@
 class_name MoveableBlock
 extends RigidBody2D
 
-@onready var _sprite := $Sprite2D
-@onready var _collider: CollisionShape2D = $Collider
-@onready var _sensor_collider: CollisionShape2D = $SensorTargetArea/Collider
-
 ## The pixel size of a single unit of tile
 @export var tile_size := 32
 
@@ -23,6 +19,11 @@ extends RigidBody2D
   set(value):
     height = value
     _set_size(width, height)
+
+@onready var _sprite := $Sprite2D
+@onready var _collider: CollisionShape2D = $Collider
+@onready var _sensor_collider: CollisionShape2D = $SensorTargetArea/Collider
+
 
 func _ready() -> void:
   _set_size(width, height)
