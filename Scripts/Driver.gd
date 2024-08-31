@@ -1,6 +1,10 @@
 class_name Driver
 extends Node2D
 
+## This will bypass the normal menu and automatically swap to the provided
+## scene. It [b]must[/b] be a child of LevelBase.
+@export var autoload_scene: PackedScene
+
 var _last_loaded_level: LevelBase = null
 
 @onready var audio_mgr: AudioManager = $AudioManager
@@ -8,10 +12,20 @@ var _last_loaded_level: LevelBase = null
 @onready var _menu_mgr: MenuManager = $OverlayManager/MenuManager
 @onready var _curtain := $OverlayManager/Curtain
 @onready var _world := $GameWorld
+@onready var _hud: HUD = $OverlayManager/HUD
+
+
+static func instance() -> Driver:
+	return Engine.get_singleton("DriverInstance")
 
 
 func _ready() -> void:
 	_curtain.visible = true
+	if !Engine.has_singleton("DriverInstance"):
+		Engine.register_singleton("DriverInstance", self)
+	else:
+		printerr("Attempting to register a second singleton")
+
 	audio_mgr.play(Enums.AudioTrack.SKETCH_1, .75)
 	# call via deferred so we don't have await in the _ready path. I'm not
 	# sure that's a bad thing to do but it felt weird so here we are.
@@ -19,8 +33,18 @@ func _ready() -> void:
 
 
 func _post_ready() -> void:
-	_menu_mgr.show_menu(Enums.MenuType.DEBUG)
-	await _curtain.fade_out(1)
+	if autoload_scene != null:
+		var level_instance := autoload_scene.instantiate() as LevelBase
+		await _curtain.fade_in(1)
+		load_level(level_instance, "")
+		await _curtain.fade_out(1)
+	else:
+		_menu_mgr.show_menu(Enums.MenuType.DEBUG)
+		await _curtain.fade_out(1)
+
+
+func get_hud() -> HUD:
+	return _hud
 
 
 ## Loads a new level into the game world

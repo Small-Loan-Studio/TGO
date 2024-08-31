@@ -23,7 +23,6 @@ atlas = ExtResource("4_eh4ix")
 region = Rect2(64, 200, 59, 56)
 
 [node name="LevelBase" instance=ExtResource("1_qb1mu")]
-y_sort_enabled = true
 script = ExtResource("2_fvydm")
 
 [node name="TileMap" parent="." index="0"]
@@ -54,5 +53,5 @@ shape = SubResource("RectangleShape2D_lwweu")
 y_sort_enabled = true
 texture = SubResource("AtlasTexture_ptcao")
 
-[node name="PlayerStart" type="Node2D" parent="Marker" index="0"]
+[node name="PlayerStart" type="Node2D" parent="Markers" index="0"]
 position = Vector2(490, 207)
