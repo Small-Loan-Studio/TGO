@@ -34,7 +34,6 @@ func _on_clock_hour_passed() -> void:
 		|| current_time == night_start
 	):
 		var tweener := get_tree().create_tween()
-		tweener.set_parallel(true)
 		tweener.tween_property(_modulate, "color", _get_target(current_time), 2)
 
 
@@ -57,7 +56,6 @@ func set_hour(time: int) -> void:
 	if time > 23:
 		return
 	var tweener := get_tree().create_tween()
-	tweener.set_parallel(true)
 	if time >= day_start && time < dusk_start:
 		tweener.tween_property(_modulate, "color", day_color, 2)
 	elif (time >= dusk_start && time < night_start) || (time >= dawn_start && time < day_start):
