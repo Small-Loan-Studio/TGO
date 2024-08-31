@@ -11,7 +11,7 @@ extends Node
 
 var current_time: int = day_start
 
-@onready var clock: Node = $Clock
+@onready var clock: Clock = $Clock
 @onready var _modulate: CanvasModulate = $CanvasModulate
 
 
