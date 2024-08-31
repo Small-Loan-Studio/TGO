@@ -93,7 +93,6 @@ func _select_section(section_name: String) -> void:
 			_sections[k][DETAIL_IDX].hide()
 
 
-
 ## Apply whatever section + configuration is in process
 func _apply() -> void:
 	match _focused_section:
@@ -176,6 +175,7 @@ func _reset_pushable_state() -> void:
 	_pushable_name.text = _pushable_name.placeholder_text
 	_pushable_size_x.value = 1
 	_pushable_size_y.value = 1
+
 
 func _apply_npc() -> void:
 	pass
