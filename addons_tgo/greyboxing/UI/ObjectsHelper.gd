@@ -4,6 +4,7 @@ class_name ObjectsHelper
 extends Control
 
 const GREYBOX_OBJECT_SCENE = "res://Scenes/Components/Greyboxing/GreyboxObject.tscn"
+const PUSHABLE_OBJECT_SCENE = "res://Scenes/Components/Greyboxing/MoveableBlock.tscn"
 const GENERIC_KEY = "generic"
 const PUSHABLE_KEY = "pushable"
 const NPC_KEY = "npc"
@@ -30,8 +31,13 @@ var _valid_keys: Array[String] = []
 @onready var _generic_block_movement: CheckBox = $Container/AddItems/GenericDetails/BlockMovement
 @onready var _generic_occludes: CheckBox = $Container/AddItems/GenericDetails/Occludes
 @onready var _generic_interacts: CheckBox = $Container/AddItems/GenericDetails/Interactable
+
 @onready var _pushable := $Container/AddItems/Pushable
 @onready var _pushable_detail := $Container/AddItems/PushableDetails
+@onready var _pushable_name: LineEdit = $Container/AddItems/PushableDetails/HBox/Margin/Name
+@onready var _pushable_size_x: SpinBox = %PushableSizeX
+@onready var _pushable_size_y: SpinBox = %PushableSizeY
+
 @onready var _npc := $Container/AddItems/NPC
 @onready var _npc_detail := $Container/AddItems/NPCDetails
 @onready var _complete_buttons := $Container/CompleteButtons
@@ -39,9 +45,9 @@ var _valid_keys: Array[String] = []
 
 func _ready() -> void:
 	_sections = {
-		GENERIC_KEY: [_generic, _generic_detail, Callable(self, "_reset_generic_state")],
-		PUSHABLE_KEY: [_pushable, _pushable_detail, Callable(self, "_reset_pushable_state")],
-		NPC_KEY: [_npc, _npc_detail, Callable(self, "_reset_npc_state")],
+		GENERIC_KEY: [_generic, _generic_detail, _reset_generic_state],
+		PUSHABLE_KEY: [_pushable, _pushable_detail, _reset_pushable_state],
+		NPC_KEY: [_npc, _npc_detail, _reset_npc_state],
 	}
 	for k: String in _sections.keys():
 		_valid_keys.append(k)
@@ -72,21 +78,19 @@ func _reset() -> void:
 
 ## Hides section selection buttons and focuses on the configuration details for
 ## the section referenced via name.
-func _select_section(name: String) -> void:
+func _select_section(section_name: String) -> void:
 	_reset()
-	if !(name in _valid_keys):
-		assert(false, "Invalid section key provided: %s vs %s" % [name, _valid_keys])
+	if !(section_name in _valid_keys):
+		assert(false, "Invalid section key provided: %s vs %s" % [section_name, _valid_keys])
 
-	_focused_section = name
-	var detail: Control = _sections[name][DETAIL_IDX]
+	_focused_section = section_name
+	var detail: Control = _sections[section_name][DETAIL_IDX]
 	detail.show()
+	_complete_buttons.show()
 	for k: String in _sections.keys():
-		if k != name:
+		if k != section_name:
 			_sections[k][BUTTON_IDX].hide()
 			_sections[k][DETAIL_IDX].hide()
-
-	if name == GENERIC_KEY:
-		_complete_buttons.show()
 
 
 ## Apply whatever section + configuration is in process
@@ -101,6 +105,7 @@ func _apply() -> void:
 		_:
 			assert(false, "Invalid focused section: " + _focused_section)
 	var prev := _focused_section
+
 	_reset()
 	_select_section(prev)
 
@@ -120,10 +125,10 @@ func _mk_unique(parent: Node, in_str: String) -> String:
 
 ## Create a generic greybox and add it to the scene
 func _apply_generic() -> void:
-	var name := _generic_name.text.strip_edges()
-	if name == "":
-		name = "GreyboxObj"
-	var new_obj_name := _mk_unique(_objects_parent, name)
+	var obj_name := _generic_name.text.strip_edges()
+	if obj_name == "":
+		obj_name = "GreyboxObj"
+	var new_obj_name := _mk_unique(_objects_parent, obj_name)
 	var collides := _generic_block_movement.button_pressed
 	var occludes := _generic_occludes.button_pressed
 	var interacts := _generic_interacts.button_pressed
@@ -153,11 +158,23 @@ func _reset_generic_state() -> void:
 
 
 func _apply_pushable() -> void:
-	pass
+	var obj_name := _pushable_name.text
+	if obj_name == "":
+		obj_name = "PushableBlock"
+	obj_name = _mk_unique(_objects_parent, obj_name)
+
+	var obj: MoveableBlock = preload(PUSHABLE_OBJECT_SCENE).instantiate()
+	obj.name = obj_name
+	_objects_parent.add_child(obj)
+	obj.owner = _objects_parent.get_parent()
+	obj.width = _pushable_size_x.value
+	obj.height = _pushable_size_y.value
 
 
 func _reset_pushable_state() -> void:
-	pass
+	_pushable_name.text = _pushable_name.placeholder_text
+	_pushable_size_x.value = 1
+	_pushable_size_y.value = 1
 
 
 func _apply_npc() -> void:
