@@ -153,5 +153,6 @@ text = "Create"
 
 [connection signal="pressed" from="Container/AddItems/Generic" to="." method="_select_section" binds= ["generic"]]
 [connection signal="pressed" from="Container/AddItems/Pushable" to="." method="_select_section" binds= ["pushable"]]
+[connection signal="pressed" from="Container/AddItems/NPC" to="." method="_select_section" binds= ["npc"]]
 [connection signal="pressed" from="Container/CompleteButtons/Cancel" to="." method="_reset"]
 [connection signal="pressed" from="Container/CompleteButtons/Create" to="." method="_apply"]
