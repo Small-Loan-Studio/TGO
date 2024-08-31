@@ -1,6 +1,6 @@
+class_name Clock
 extends Node
 
-class_name Clock
 
 signal hour_passed
 
