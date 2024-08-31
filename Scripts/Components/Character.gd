@@ -252,6 +252,6 @@ func _stop_pushpull() -> void:
 
 	_move_mode = Enums.MoveMode.WALK
 	_pinjoint.node_b = ""
-	_target.set_deferred('freeze', true)
+	_target.get_moveable_block().set_deferred('freeze', true)
 	# TODO(envy) - better toast management
 	Driver.instance().get_hud().clear_toast()

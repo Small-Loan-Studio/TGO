@@ -31,9 +31,13 @@ var _valid_keys: Array[String] = []
 @onready var _generic_block_movement: CheckBox = $Container/AddItems/GenericDetails/BlockMovement
 @onready var _generic_occludes: CheckBox = $Container/AddItems/GenericDetails/Occludes
 @onready var _generic_interacts: CheckBox = $Container/AddItems/GenericDetails/Interactable
+
 @onready var _pushable := $Container/AddItems/Pushable
 @onready var _pushable_detail := $Container/AddItems/PushableDetails
 @onready var _pushable_name: LineEdit = $Container/AddItems/PushableDetails/HBox/Margin/Name
+@onready var _pushable_size_x: SpinBox = %PushableSizeX
+@onready var _pushable_size_y: SpinBox = %PushableSizeY
+
 @onready var _npc := $Container/AddItems/NPC
 @onready var _npc_detail := $Container/AddItems/NPCDetails
 @onready var _complete_buttons := $Container/CompleteButtons
@@ -74,17 +78,17 @@ func _reset() -> void:
 
 ## Hides section selection buttons and focuses on the configuration details for
 ## the section referenced via name.
-func _select_section(name: String) -> void:
+func _select_section(section_name: String) -> void:
 	_reset()
-	if !(name in _valid_keys):
-		assert(false, "Invalid section key provided: %s vs %s" % [name, _valid_keys])
+	if !(section_name in _valid_keys):
+		assert(false, "Invalid section key provided: %s vs %s" % [section_name, _valid_keys])
 
-	_focused_section = name
-	var detail: Control = _sections[name][DETAIL_IDX]
+	_focused_section = section_name
+	var detail: Control = _sections[section_name][DETAIL_IDX]
 	detail.show()
 	_complete_buttons.show()
 	for k: String in _sections.keys():
-		if k != name:
+		if k != section_name:
 			_sections[k][BUTTON_IDX].hide()
 			_sections[k][DETAIL_IDX].hide()
 
@@ -164,11 +168,14 @@ func _apply_pushable() -> void:
 	obj.name = obj_name
 	_objects_parent.add_child(obj)
 	obj.owner = _objects_parent.get_parent()
+	obj.width = _pushable_size_x.value
+	obj.height = _pushable_size_y.value
 
 
 func _reset_pushable_state() -> void:
 	_pushable_name.text = _pushable_name.placeholder_text
-
+	_pushable_size_x.value = 1
+	_pushable_size_y.value = 1
 
 func _apply_npc() -> void:
 	pass

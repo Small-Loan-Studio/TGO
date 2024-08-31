@@ -86,6 +86,47 @@ theme_override_constants/margin_left = 8
 [node name="Name" type="LineEdit" parent="Container/AddItems/PushableDetails/HBox/Margin"]
 layout_mode = 2
 
+[node name="Size" type="HBoxContainer" parent="Container/AddItems/PushableDetails"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Container/AddItems/PushableDetails/Size"]
+layout_mode = 2
+text = "Size"
+
+[node name="Margin" type="MarginContainer" parent="Container/AddItems/PushableDetails/Size"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/margin_left = 8
+
+[node name="PushableSizeX" type="SpinBox" parent="Container/AddItems/PushableDetails/Size/Margin"]
+unique_name_in_owner = true
+layout_mode = 2
+min_value = 1.0
+max_value = 10.0
+value = 1.0
+alignment = 1
+
+[node name="Margin2" type="MarginContainer" parent="Container/AddItems/PushableDetails/Size"]
+layout_mode = 2
+theme_override_constants/margin_left = 8
+
+[node name="Label2" type="Label" parent="Container/AddItems/PushableDetails/Size/Margin2"]
+layout_mode = 2
+text = "x"
+
+[node name="Margin3" type="MarginContainer" parent="Container/AddItems/PushableDetails/Size"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/margin_left = 8
+
+[node name="PushableSizeY" type="SpinBox" parent="Container/AddItems/PushableDetails/Size/Margin3"]
+unique_name_in_owner = true
+layout_mode = 2
+min_value = 1.0
+max_value = 10.0
+value = 1.0
+alignment = 1
+
 [node name="NPC" type="Button" parent="Container/AddItems"]
 layout_mode = 2
 disabled = true
@@ -112,6 +153,5 @@ text = "Create"
 
 [connection signal="pressed" from="Container/AddItems/Generic" to="." method="_select_section" binds= ["generic"]]
 [connection signal="pressed" from="Container/AddItems/Pushable" to="." method="_select_section" binds= ["pushable"]]
-[connection signal="pressed" from="Container/AddItems/NPC" to="." method="_select_section" binds= ["npc"]]
 [connection signal="pressed" from="Container/CompleteButtons/Cancel" to="." method="_reset"]
 [connection signal="pressed" from="Container/CompleteButtons/Create" to="." method="_apply"]
