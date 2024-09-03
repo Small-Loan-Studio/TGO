@@ -1,4 +1,4 @@
-[gd_scene load_steps=46 format=3 uid="uid://crrvo58x81lxn"]
+[gd_scene load_steps=34 format=3 uid="uid://crrvo58x81lxn"]
 
 [ext_resource type="Script" path="res://ZZ_Scratch/QuestPrototype/QuestPrototype.gd" id="1_h4v6k"]
 [ext_resource type="Texture2D" uid="uid://ds0x2hyas8fpv" path="res://Art/Environment/Underground.png" id="2_h17xi"]
@@ -8,29 +8,25 @@
 [ext_resource type="Texture2D" uid="uid://b5aoo3ejx38qf" path="res://Art/Environment/Placeables/questprototype/Lamp.png" id="3_koxfr"]
 [ext_resource type="Texture2D" uid="uid://ddusy2p3rpksq" path="res://Art/Environment/Placeables/questprototype/coffin.png" id="3_y843k"]
 [ext_resource type="PackedScene" uid="uid://c2040l84asu8j" path="res://Scenes/Components/Interactable.tscn" id="4_0fujw"]
+[ext_resource type="Script" path="res://ZZ_Scratch/QuestPrototype/Quest.gd" id="4_7vn75"]
 [ext_resource type="Script" path="res://ZZ_Scratch/QuestPrototype/ChainQuest.gd" id="4_tmqev"]
 [ext_resource type="PackedScene" uid="uid://mqvl5162rawb" path="res://Scenes/Devin.tscn" id="4_y2igs"]
-[ext_resource type="Script" path="res://Scripts/Resources/InteractableDialogue.gd" id="5_84uud"]
-[ext_resource type="Resource" path="res://ZZ_Scratch/QuestPrototype/Timelines/coffin_0.dtl" id="6_3nuoq"]
 [ext_resource type="Texture2D" uid="uid://cjm7qoovs5vbg" path="res://Art/Environment/Placeables/questprototype/key.png" id="6_ngyy4"]
 [ext_resource type="Script" path="res://Scripts/Components/Interactable.gd" id="7_h81vt"]
 [ext_resource type="Texture2D" uid="uid://78tt4w14itxl" path="res://Art/Environment/Placeables/questprototype/door.png" id="7_u0hep"]
-[ext_resource type="Resource" path="res://ZZ_Scratch/QuestPrototype/Timelines/found_lamp.dtl" id="9_myhv0"]
 [ext_resource type="Texture2D" uid="uid://bh5e6rcackjqc" path="res://Art/Environment/Placeables/questprototype/coffin_1.png" id="9_r3new"]
+[ext_resource type="Script" path="res://Scripts/Resources/InteractableAction.gd" id="9_wsbxq"]
 [ext_resource type="Texture2D" uid="uid://b76ovoal2nqik" path="res://Art/Environment/Placeables/questprototype/coffin_2.png" id="10_r2r5j"]
 [ext_resource type="Texture2D" uid="uid://c4wx4r0twrp7c" path="res://Art/Environment/Placeables/questprototype/coffin_3.png" id="11_dg8wo"]
 [ext_resource type="Texture2D" uid="uid://bhtwy6f678hsq" path="res://Art/Environment/Placeables/questprototype/coffin_4.png" id="12_3llf7"]
-[ext_resource type="Resource" path="res://ZZ_Scratch/QuestPrototype/Timelines/Devin_wakeup.dtl" id="12_siwvx"]
-[ext_resource type="Script" path="res://Scripts/Resources/InteractableDestroy.gd" id="13_5hkam"]
 [ext_resource type="Texture2D" uid="uid://cq6f72qrlahar" path="res://Art/Environment/Placeables/questprototype/coffin_5.png" id="13_vklik"]
-[ext_resource type="Script" path="res://Scripts/Resources/InteractableQuest.gd" id="17_65bcs"]
 [ext_resource type="PackedScene" uid="uid://8l767ndoo0ch" path="res://Scenes/UI/Quest/QuestUI.tscn" id="19_jl20o"]
 [ext_resource type="PackedScene" uid="uid://c5ysorqfbhowc" path="res://Scenes/UI/pop_up.tscn" id="20_cry6j"]
 
 [sub_resource type="Resource" id="Resource_x0xox"]
 script = ExtResource("4_tmqev")
 chain_quest_title = "Escape the Cript"
-quests = Array[Resource("res://ZZ_Scratch/QuestPrototype/Quest.gd")]([ExtResource("3_6k8t3")])
+quests = Array[ExtResource("4_7vn75")]([ExtResource("3_6k8t3")])
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_pxnuc"]
 radius = 752.86
@@ -38,58 +34,20 @@ radius = 752.86
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_vwyhd"]
 size = Vector2(46, 84)
 
-[sub_resource type="Resource" id="Resource_vnfje"]
-resource_local_to_scene = true
-script = ExtResource("5_84uud")
-timeline = ExtResource("9_myhv0")
-
-[sub_resource type="Resource" id="Resource_0y5sh"]
-script = ExtResource("17_65bcs")
-questid = 0
-objective_id = 0
-value = 1
-
-[sub_resource type="Resource" id="Resource_yo7lf"]
-script = ExtResource("13_5hkam")
-destroy_in_timeline = true
-destroy_attached_object = true
-
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_0dmca"]
 size = Vector2(84, 142)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_1m8ye"]
 size = Vector2(56.3334, 63.3333)
 
-[sub_resource type="Resource" id="Resource_xa0d0"]
-script = ExtResource("5_84uud")
-
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_w7ldh"]
 size = Vector2(73, 101.666)
-
-[sub_resource type="Resource" id="Resource_j2eyr"]
-script = ExtResource("17_65bcs")
-questid = 0
-objective_id = 0
-value = 0
-
-[sub_resource type="Resource" id="Resource_yw44r"]
-script = ExtResource("5_84uud")
-timeline = ExtResource("12_siwvx")
-
-[sub_resource type="Resource" id="Resource_jdwyi"]
-script = ExtResource("13_5hkam")
-destroy_in_timeline = false
-destroy_attached_object = false
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_42d0q"]
 radius = 571.99
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_yfmoi"]
 size = Vector2(44.1009, 102.345)
-
-[sub_resource type="Resource" id="Resource_o7sk0"]
-script = ExtResource("5_84uud")
-timeline = ExtResource("6_3nuoq")
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_jgi7y"]
 size = Vector2(85.2122, 146.09)
@@ -107,7 +65,7 @@ script = ExtResource("1_h4v6k")
 unique_name_in_owner = true
 script = ExtResource("2_o8hp2")
 chain_quests = Array[ExtResource("4_tmqev")]([SubResource("Resource_x0xox")])
-all_quests = Array[Resource("res://ZZ_Scratch/QuestPrototype/Quest.gd")]([ExtResource("3_6k8t3")])
+all_quests = Array[ExtResource("4_7vn75")]([ExtResource("3_6k8t3")])
 
 [node name="Background" type="Node2D" parent="."]
 
@@ -123,7 +81,7 @@ texture = ExtResource("6_ngyy4")
 
 [node name="Interactable" type="Area2D" parent="Background/Key"]
 script = ExtResource("7_h81vt")
-actions = Array[Resource("res://Scripts/Resources/InteractableAction.gd")]([null])
+actions = Array[ExtResource("9_wsbxq")]([null])
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Background/Key/Interactable"]
 shape = SubResource("CircleShape2D_pxnuc")
@@ -139,7 +97,6 @@ position = Vector2(-2, 2)
 shape = SubResource("RectangleShape2D_vwyhd")
 
 [node name="Interactable" parent="Background/Lamp" instance=ExtResource("4_0fujw")]
-actions = Array[Resource("res://Scripts/Resources/InteractableAction.gd")]([SubResource("Resource_vnfje"), SubResource("Resource_0y5sh"), SubResource("Resource_yo7lf")])
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Background/Lamp/Interactable"]
 shape = SubResource("RectangleShape2D_0dmca")
@@ -156,7 +113,6 @@ position = Vector2(0.833359, -0.666656)
 shape = SubResource("RectangleShape2D_1m8ye")
 
 [node name="Interactable" parent="Background/Door" instance=ExtResource("4_0fujw")]
-actions = Array[Resource("res://Scripts/Resources/InteractableAction.gd")]([SubResource("Resource_xa0d0")])
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Background/Door/Interactable"]
 shape = SubResource("RectangleShape2D_w7ldh")
@@ -165,7 +121,6 @@ shape = SubResource("RectangleShape2D_w7ldh")
 position = Vector2(802, 614)
 scale = Vector2(0.999999, 0.999999)
 automatic = true
-actions = Array[Resource("res://Scripts/Resources/InteractableAction.gd")]([SubResource("Resource_j2eyr"), SubResource("Resource_yw44r"), SubResource("Resource_jdwyi")])
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Background/Interactable2"]
 shape = SubResource("CircleShape2D_42d0q")
@@ -186,7 +141,6 @@ position = Vector2(0.833359, -0.666656)
 shape = SubResource("RectangleShape2D_1m8ye")
 
 [node name="Interactable" parent="Background/Door2" instance=ExtResource("4_0fujw")]
-actions = Array[Resource("res://Scripts/Resources/InteractableAction.gd")]([SubResource("Resource_xa0d0")])
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Background/Door2/Interactable"]
 shape = SubResource("RectangleShape2D_w7ldh")
@@ -203,7 +157,6 @@ position = Vector2(12.5202, 8.22412)
 shape = SubResource("RectangleShape2D_yfmoi")
 
 [node name="Interactable" parent="Background/Coffin" instance=ExtResource("4_0fujw")]
-actions = Array[Resource("res://Scripts/Resources/InteractableAction.gd")]([SubResource("Resource_o7sk0")])
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Background/Coffin/Interactable"]
 shape = SubResource("RectangleShape2D_jgi7y")

@@ -9,4 +9,3 @@ class_name InteractableQuest
 
 func act(actor: Character) -> void:
 		Signalbus.quest_update.emit(questid,objective_id,value)
-
