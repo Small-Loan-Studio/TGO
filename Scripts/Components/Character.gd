@@ -14,19 +14,6 @@ extends CharacterBody2D
 ## The amonut of force the character has to push objects
 @export var push_force: int = 200
 
-## set this to customize the AnimatedSprite, should only be accessed during
-## scene editing. Should have an animation for every direction defined in
-## Enums.Direction
-@export var _override_default_sprite_frames: SpriteFrames:
-	get:
-		return _override_default_sprite_frames
-	set(new_value):
-		if new_value == null:
-			new_value = preload("res://Art/Characters/character_placeholder.tres")
-		_override_default_sprite_frames = new_value
-		if Engine.is_editor_hint() && _sprite != null:
-			_sprite.sprite_frames = new_value
-
 ## the most recent directional input as a vector
 var _raw_input: Vector2 = Vector2.ZERO
 
