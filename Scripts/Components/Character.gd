@@ -3,6 +3,8 @@
 class_name Character
 extends CharacterBody2D
 
+@export var _debug_draw_origin: bool = false
+
 ## Set this to make the character be controlled by player input
 @export var player_controled: bool = false
 
@@ -54,10 +56,13 @@ var _target: CharacterTarget = CharacterTarget.none()
 
 
 func _ready() -> void:
-	if _override_default_sprite_frames != null:
-		_sprite.sprite_frames = _override_default_sprite_frames
-
 	_target.target_changed.connect(Callable(self, "_handle_target_changed"))
+	if _debug_draw_origin:
+		queue_redraw()
+
+
+func _draw() -> void:
+	draw_circle(Vector2.ZERO, 3, Color.GREEN)
 
 
 func _unhandled_input(_event: InputEvent) -> void:

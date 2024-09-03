@@ -6,4 +6,16 @@
 [node name="NPC" instance=ExtResource("1_20i0n")]
 script = ExtResource("2_eb6uj")
 timeline = null
-_override_default_sprite_frames = null
+_debug_draw_origin = true
+
+[node name="AnimatedSprite2D" parent="." index="0"]
+position = Vector2(0, -33)
+
+[node name="SensorSet" parent="." index="1"]
+position = Vector2(0, -11)
+
+[node name="PinJoint2D" parent="." index="2"]
+position = Vector2(0, -11)
+
+[node name="CollisionShape2D" parent="." index="3"]
+position = Vector2(0, -9)

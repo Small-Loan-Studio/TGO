@@ -95,8 +95,8 @@ func _draw() -> void:
 	if Engine.is_editor_hint():
 		if show_y_sort_line:
 			draw_line(Vector2(-y_sort_width / 2, 0), Vector2(y_sort_width / 2, 0), debug_color, 2)
-		if show_object_center:
-			draw_circle(Vector2.ZERO, 4, debug_color)
+	if show_object_center:
+		draw_circle(Vector2.ZERO, 4, debug_color)
 
 
 func _update_collider_display() -> void:
