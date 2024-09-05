@@ -57,14 +57,7 @@ enum TargetType {
 	MOVEABLE_BLOCK,
 }
 
-enum ActionVerb {
-	DEFAULT,
-	PICK_UP,
-	TALK,
-	PUSH_PULL,
-	RELEASE,
-	USE
-}
+enum ActionVerb { DEFAULT, PICK_UP, TALK, PUSH_PULL, RELEASE, USE }
 
 const AUDIO_BUS_INFO = {
 	AudioBus.MASTER: [0, "Global"],
