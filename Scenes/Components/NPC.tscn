@@ -1,11 +1,15 @@
-[gd_scene load_steps=3 format=3 uid="uid://ck6l6e7b7qo1o"]
+[gd_scene load_steps=5 format=3 uid="uid://ck6l6e7b7qo1o"]
 
 [ext_resource type="PackedScene" uid="uid://cx703e8t27grh" path="res://Scenes/Components/Character.tscn" id="1_20i0n"]
 [ext_resource type="Script" path="res://Scripts/Components/NPC.gd" id="2_eb6uj"]
+[ext_resource type="PackedScene" uid="uid://c2040l84asu8j" path="res://Scenes/Components/Interactable.tscn" id="3_1etq5"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_bo3tg"]
+radius = 13.0
 
 [node name="NPC" instance=ExtResource("1_20i0n")]
 script = ExtResource("2_eb6uj")
-timeline = null
+dlg = null
 _debug_draw_origin = true
 
 [node name="AnimatedSprite2D" parent="." index="0"]
@@ -19,3 +23,10 @@ position = Vector2(0, -11)
 
 [node name="CollisionShape2D" parent="." index="3"]
 position = Vector2(0, -9)
+
+[node name="Interactable" parent="." index="4" instance=ExtResource("3_1etq5")]
+action_verb = 2
+
+[node name="InteractableShape2D" type="CollisionShape2D" parent="Interactable" index="0"]
+position = Vector2(0, -9)
+shape = SubResource("CircleShape2D_bo3tg")

@@ -44,12 +44,12 @@ var _target: CharacterTarget = CharacterTarget.none()
 
 func _ready() -> void:
 	_target.target_changed.connect(Callable(self, "_handle_target_changed"))
-	if _debug_draw_origin:
-		queue_redraw()
+	queue_redraw()
 
 
 func _draw() -> void:
-	draw_circle(Vector2.ZERO, 3, Color.GREEN)
+	if _debug_draw_origin:
+		draw_circle(Vector2.ZERO, 3, Color.GREEN)
 
 
 func _unhandled_input(_event: InputEvent) -> void:
@@ -196,9 +196,9 @@ func _handle_target_changed() -> void:
 	var hud := Driver.instance().get_hud()
 	if _target.is_set():
 		if _target.is_interactable():
-			hud.set_toast("interact")
+			hud.set_toast(_target.get_interactable().verb_name())
 		if _target.is_moveable_block():
-			hud.set_toast("push/pull")
+			hud.set_toast(Enums.action_verb_name(Enums.ActionVerb.PUSH_PULL))
 	else:
 		hud.clear_toast()
 
@@ -235,7 +235,7 @@ func _start_pushpull() -> void:
 	_push_direction = Utils.angle_to_direction(_facing, Enums.DirectionMode.FOUR)
 	_target.get_moveable_block().freeze = false
 	# TODO(envy) - better toast management
-	Driver.instance().get_hud().set_toast("release")
+	Driver.instance().get_hud().set_toast(Enums.action_verb_name(Enums.ActionVerb.RELEASE))
 
 
 func _stop_pushpull() -> void:
