@@ -1,3 +1,6 @@
+if {HasSpoken} == true:
+	I don't have anything more to say.
+	[end_timeline]
 Devin! Welcome to the bad place.
 My name is Buckley. I'm the mayor around these parts.
 - How are you doing?
@@ -10,3 +13,4 @@ Actually, have you seen the Moai head? They bear some investigation
 - What's a Moai?
 	Ah, those large stones! They appeared magically here from Easter Island. I don't know how it ended up in proto-Oakshaw!
 	I get a weird feeling when I stand around one of them.
+set {HasSpoken} = true

@@ -10,7 +10,6 @@ radius = 13.0
 [node name="NPC" instance=ExtResource("1_20i0n")]
 script = ExtResource("2_eb6uj")
 dlg = null
-_debug_draw_origin = true
 
 [node name="AnimatedSprite2D" parent="." index="0"]
 position = Vector2(0, -33)

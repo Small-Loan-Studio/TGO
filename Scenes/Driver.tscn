@@ -97,6 +97,7 @@ y_sort_enabled = true
 unique_name_in_owner = true
 visible = false
 position = Vector2(0, 0)
+_debug_draw_origin = false
 
 [node name="Camera2D" type="Camera2D" parent="GameWorld/Devin"]
 
