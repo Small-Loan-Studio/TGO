@@ -31,7 +31,7 @@ size = Vector2(49, 30)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_uksq2"]
 size = Vector2(64, 128)
 
-[sub_resource type="Resource" id="Resource_5dxfr"]
+[sub_resource type="Resource" id="Resource_mon8h"]
 script = ExtResource("11_03hvs")
 timeline = ExtResource("11_i8wpl")
 
@@ -93,9 +93,9 @@ position = Vector2(11, 255)
 width = 3
 height = 3
 
-[node name="Buckley" parent="Objects/Characters" index="0" instance=ExtResource("10_2hlxg")]
-position = Vector2(241, 364)
-dlg = SubResource("Resource_5dxfr")
+[node name="MayorBuckley" parent="Objects/Characters" index="0" instance=ExtResource("10_2hlxg")]
+position = Vector2(551, 350)
+dlg = SubResource("Resource_mon8h")
 
 [node name="PlayerStart" type="Node2D" parent="Markers" index="0"]
 position = Vector2(522, 183)

@@ -5,7 +5,8 @@ class_name InteractableAction
 extends Resource
 
 ## Stores the parent that this action is attached to. Note that this is
-## the Interactable scene
+## the Interactable scene. It's set by the Interactable before act is
+## called.
 var parent: Interactable
 
 

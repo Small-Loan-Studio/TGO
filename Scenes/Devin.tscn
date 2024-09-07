@@ -9,7 +9,6 @@
 position = Vector2(0, 19)
 script = ExtResource("1_coq4s")
 editor_hide_lamp_sensors = true
-_debug_draw_origin = null
 
 [node name="AnimatedSprite2D" parent="." index="0"]
 position = Vector2(0, -33)

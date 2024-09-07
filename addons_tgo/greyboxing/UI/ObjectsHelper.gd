@@ -185,24 +185,27 @@ func _reset_pushable_state() -> void:
 
 
 func _apply_npc() -> void:
-	var name: String = _npc_dropdown.get_item_text(_npc_dropdown.get_selected_id())
-	var path: String = _npc_dict[name]
+	var npc_name: String = _npc_dropdown.get_item_text(_npc_dropdown.get_selected_id())
+	var path: String = _npc_dict[npc_name]
 
 	var scene := ResourceLoader.load(path) as PackedScene
-	var obj := scene.instantiate() as NPC
-	
+	var new_npc := scene.instantiate() as NPC
+
 	var parent := _objects_parent.get_node(CHARACTERS_CHILD_NODE)
-	obj.name = _mk_unique(parent, name)
-	parent.add_child(obj)
-	obj.owner = _objects_parent.get_parent()	
+	new_npc.name = _mk_unique(parent, npc_name)
+	var timeline := _npc_get_timeline()
+	if timeline != null:
+		var dlg := InteractableDialogue.new()
+		dlg.timeline = timeline
+		new_npc.dlg = dlg
+	parent.add_child(new_npc)
+	new_npc.owner = _objects_parent.get_parent()
 
 func _reset_npc_state() -> void:
-	_npc_dropdown.clear()
-	_npc_dict.clear()
 	_npc_dlg_path.text = ""
 
 
-func _npc_get_target_dlg() -> DialogicTimeline:
+func _npc_get_timeline() -> DialogicTimeline:
 	var path := _npc_dlg_path.text
 	var resource := ResourceLoader.load(path)
 	if !(resource is DialogicTimeline):
@@ -215,7 +218,7 @@ func _npc_dialogue_text_changed(new_text:String) -> void:
 		_npc_dlg_path.add_theme_color_override("font_color", Color.RED)
 		return
 
-	if null == _npc_get_target_dlg():
+	if null == _npc_get_timeline():
 		_npc_dlg_path.add_theme_color_override("font_color", Color.RED)
 		return
 
@@ -225,10 +228,10 @@ func _npc_dialogue_text_changed(new_text:String) -> void:
 func _npc_detail_visibility_changed() -> void:
 	if _npc_detail == null:
 		return
-	
+
+	_npc_dropdown.clear()
+	_npc_dict.clear()
 	if !_npc_detail.visible:
-		_npc_dropdown.clear()
-		_npc_dict.clear()
 		return
 
 	var dir := DirAccess.open(NPC_PATH)
@@ -236,7 +239,7 @@ func _npc_detail_visibility_changed() -> void:
 		printerr("Failed to open npc resource path:")
 		printerr(DirAccess.get_open_error())
 		return
-	
+
 	dir.list_dir_begin()
 	var npc_file := dir.get_next()
 	while npc_file != "":

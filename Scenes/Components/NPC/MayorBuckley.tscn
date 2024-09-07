@@ -4,13 +4,8 @@
 [ext_resource type="SpriteFrames" uid="uid://602xb41y0tak" path="res://Art/Characters/stub_animated_sprite.tres" id="2_rilbr"]
 
 [node name="Buckley" instance=ExtResource("1_gf01s")]
-move_speed = 250
 
 [node name="AnimatedSprite2D" parent="." index="0"]
 scale = Vector2(0.5, 0.5)
 sprite_frames = ExtResource("2_rilbr")
 animation = &"east"
-
-[node name="Interactable" parent="." index="4"]
-automatic = false
-actions = Array[Resource("res://Scripts/Resources/InteractableAction.gd")]([])
