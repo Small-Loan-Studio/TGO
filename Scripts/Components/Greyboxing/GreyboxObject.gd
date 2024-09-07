@@ -4,14 +4,21 @@ class_name GreyboxObject
 extends Node2D
 
 @export_category("Functionality")
-@export var can_block_movement: bool = true:
+@export var can_block_movement: bool = false:
 	get:
 		return can_block_movement
 	set(value):
 		can_block_movement = value
 		_process_can_block_movement_update()
 
-@export var can_interact: bool = true:
+@export var can_block_light: bool = false:
+	get:
+		return can_block_light
+	set(value):
+		can_block_light = value
+		_process_light_update()
+
+@export var can_interact: bool = false:
 	get:
 		return can_interact
 	set(value):
@@ -62,14 +69,26 @@ extends Node2D
 		debug_color = value
 		queue_redraw()
 
-@onready var _physics: RigidBody2D = $Physics
-@onready var _interactable: Interactable = $Interactable
+var _display: Sprite2D
+var _physics: RigidBody2D
+var _interactable: Interactable
+var _light: LightOccluder2D
 
 
 func _ready() -> void:
+	# Not done via @onready because the may not all exist given the configurable
+	# nature of the greybox object
+	if has_node("Display"):
+		_display = get_node("Display")
+	if has_node("Physics"):
+		_physics = get_node("Physics")
+	if has_node("Interactable"):
+		_interactable = get_node("Interactable")
+	if has_node("Light"):
+		_light = get_node("Light")
+
 	if Engine.is_editor_hint():
 		get_parent().set_editable_instance(self, true)
-	_update_collider_display()
 
 
 func _draw() -> void:
@@ -90,8 +109,7 @@ func _update_collider_display() -> void:
 
 func _process_can_block_movement_update() -> void:
 	if !Engine.is_editor_hint():
-		printerr("May not change movement blocking at runtime")
-		return
+		printerr("May not want to change movement blocking at runtime")
 
 	if can_block_movement:
 		if _physics != null:
@@ -117,11 +135,19 @@ func _process_can_block_movement_update() -> void:
 		_physics.queue_free()
 		_physics = null
 
+	_sync_occluder()
+
+
+func _process(_delta: float) -> void:
+	if Engine.is_editor_hint():
+		_sync_occluder()
+		_sync_display()
+
 
 func _process_can_interact_update() -> void:
 	if !Engine.is_editor_hint():
-		printerr("May not change movement blocking at runtime")
-		return
+		printerr("May not want to change interactable at runtime")
+
 	if can_interact:
 		if _interactable != null:
 			# already has an interactable object
@@ -146,3 +172,50 @@ func _process_can_interact_update() -> void:
 		remove_child(_interactable)
 		_interactable.queue_free()
 		_interactable = null
+
+
+func _process_light_update() -> void:
+	if !can_block_light:
+		if !_light == null:
+			remove_child(_light)
+			_light.queue_free()
+			_light = null
+	else:
+		if _light == null:
+			_light = LightOccluder2D.new()
+			_light.light_mask = 1
+			_light.occluder_light_mask = 2
+			_light.show_behind_parent = true
+			_light.name = "Light"
+			add_child(_light)
+			_light.owner = self
+		_sync_occluder()
+
+
+func _sync_occluder() -> void:
+	if _light == null:
+		return
+
+	if _physics == null:
+		return
+
+	var physics_shape: CollisionShape2D = _physics.get_node("Shape")
+	if physics_shape == null || physics_shape.shape == null:
+		return
+
+	# var collider_shape: Shape2D = physics_shape.shape
+	print("TOOD: We don't yet sync the light collider shape to the physics shape")
+
+	_light.occluder = OccluderPolygon2D.new()
+	_light.occluder.polygon = PackedVector2Array()
+	_light.occluder.closed = true
+	_light.occluder.cull_mode = OccluderPolygon2D.CULL_CLOCKWISE
+
+
+func _sync_display() -> void:
+	if !Engine.is_editor_hint:
+		return
+
+	if _display != null && _display.position != Vector2.ZERO:
+		_display.offset = _display.position
+		_display.position = Vector2.ZERO

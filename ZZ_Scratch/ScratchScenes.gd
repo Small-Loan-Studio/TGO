@@ -10,6 +10,7 @@ const SCENES = {
 	"Inventory Debug": "res://ZZ_Scratch/Inventory/InventoryDebugScene.tscn",
 	"Greyboxing": "res://ZZ_Scratch/GreyboxingTools/BadLevelA.tscn",
 	"NPC Dialogue": "res://ZZ_Scratch/NPCDialogue/NPCDialogue.tscn",
+	"Test Day Night Cycle": "res://ZZ_Scratch/TestDayNightCycle/TestDayNightCycle.tscn",
 }
 
 

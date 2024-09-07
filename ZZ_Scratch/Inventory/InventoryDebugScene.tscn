@@ -12,6 +12,7 @@ script = ExtResource("1_55n3p")
 
 [node name="Devin" parent="." instance=ExtResource("2_cpab8")]
 position = Vector2(580, 414)
+player_controled = true
 
 [node name="Items" type="Node" parent="."]
 

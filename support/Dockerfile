@@ -1,4 +1,4 @@
-FROM ubuntu:latest
+FROM ubuntu:noble
 
 RUN apt-get update
 RUN apt-get install -y less python3-full python3-pip
