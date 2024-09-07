@@ -11,18 +11,6 @@ radius = 13.0
 script = ExtResource("2_eb6uj")
 dlg = null
 
-[node name="AnimatedSprite2D" parent="." index="0"]
-position = Vector2(0, -33)
-
-[node name="SensorSet" parent="." index="1"]
-position = Vector2(0, -11)
-
-[node name="PinJoint2D" parent="." index="2"]
-position = Vector2(0, -11)
-
-[node name="CollisionShape2D" parent="." index="3"]
-position = Vector2(0, -9)
-
 [node name="Interactable" parent="." index="4" instance=ExtResource("3_1etq5")]
 action_verb = 2
 

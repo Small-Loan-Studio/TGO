@@ -18,12 +18,12 @@ motion_mode = 1
 script = ExtResource("1_tt4fa")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
-position = Vector2(0, -41)
+position = Vector2(0, -33)
 sprite_frames = ExtResource("2_3xe5u")
 offset = Vector2(0, 5)
 
 [node name="SensorSet" type="Node2D" parent="."]
-position = Vector2(0, -19)
+position = Vector2(0, -11)
 
 [node name="InteractionSensor" type="Area2D" parent="SensorSet"]
 collision_layer = 0
@@ -42,12 +42,12 @@ position = Vector2(0, -19)
 shape = SubResource("CircleShape2D_vih0k")
 
 [node name="PinJoint2D" type="PinJoint2D" parent="."]
-position = Vector2(0, -19)
+position = Vector2(0, -11)
 node_a = NodePath("..")
 disable_collision = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(0, -17)
+position = Vector2(0, -9)
 shape = SubResource("CircleShape2D_bo3tg")
 
 [connection signal="area_entered" from="SensorSet/InteractionSensor" to="." method="_on_interaction_sensor_entered"]

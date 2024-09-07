@@ -191,6 +191,9 @@ func _apply_npc() -> void:
 	var scene := ResourceLoader.load(path) as PackedScene
 	var new_npc := scene.instantiate() as NPC
 
+	# This is fragile, messy, and runs counter one of my gdscript principles...
+	# And so while I'd rather not do it I also don't want to restructure the
+	# whole of the plugin setup bullshit so here we are.
 	var parent := _objects_parent.get_node(CHARACTERS_CHILD_NODE)
 	new_npc.name = _mk_unique(parent, npc_name)
 	var timeline := _npc_get_timeline()

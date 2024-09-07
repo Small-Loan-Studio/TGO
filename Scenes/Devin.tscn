@@ -6,24 +6,13 @@
 [ext_resource type="PackedScene" uid="uid://skr46k6x628f" path="res://Scenes/Components/Lamp.tscn" id="3_h1iub"]
 
 [node name="Devin" instance=ExtResource("1_kp6oq")]
-position = Vector2(0, 19)
 script = ExtResource("1_coq4s")
 editor_hide_lamp_sensors = true
 
 [node name="AnimatedSprite2D" parent="." index="0"]
-position = Vector2(0, -33)
 sprite_frames = ExtResource("3_0y874")
 animation = &"east"
-
-[node name="SensorSet" parent="." index="1"]
-position = Vector2(0, -11)
 
 [node name="Lamp" parent="." index="2" instance=ExtResource("3_h1iub")]
 visible = false
 position = Vector2(26, 91)
-
-[node name="PinJoint2D" parent="." index="3"]
-position = Vector2(0, -11)
-
-[node name="CollisionShape2D" parent="." index="4"]
-position = Vector2(0, -9)
