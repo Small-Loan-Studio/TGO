@@ -1,0 +1,18 @@
+[gd_scene load_steps=3 format=3 uid="uid://cqin6fb282fjf"]
+
+[ext_resource type="Script" path="res://Scripts/Components/DayNightCycle.gd" id="1_1mixg"]
+[ext_resource type="Script" path="res://Scripts/Resources/Clock.gd" id="2_xyfny"]
+
+[node name="DayNightCycle" type="Node"]
+script = ExtResource("1_1mixg")
+
+[node name="CanvasModulate" type="CanvasModulate" parent="."]
+
+[node name="Clock" type="Node" parent="."]
+script = ExtResource("2_xyfny")
+
+[node name="Timer" type="Timer" parent="Clock"]
+wait_time = 5.0
+
+[connection signal="hour_passed" from="Clock" to="." method="_on_clock_hour_passed"]
+[connection signal="timeout" from="Clock/Timer" to="Clock" method="_on_timer_timeout"]

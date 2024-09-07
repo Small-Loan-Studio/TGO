@@ -1,0 +1,28 @@
+[gd_scene load_steps=3 format=3 uid="uid://huhyqdltb7hr"]
+
+[ext_resource type="Script" path="res://Scripts/UI/Debug/ItemSlot.gd" id="1_qe0we"]
+[ext_resource type="Texture2D" uid="uid://cjk5g6hhq1f8v" path="res://icon.svg" id="2_qg1lc"]
+
+[node name="ItemSlot" type="PanelContainer"]
+custom_minimum_size = Vector2(64, 64)
+script = ExtResource("1_qe0we")
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 2
+theme_override_constants/margin_left = 4
+theme_override_constants/margin_top = 4
+theme_override_constants/margin_right = 4
+theme_override_constants/margin_bottom = 4
+
+[node name="Icon" type="TextureRect" parent="MarginContainer"]
+texture_filter = 1
+layout_mode = 2
+texture = ExtResource("2_qg1lc")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="Quantity" type="Label" parent="."]
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 8
+text = "x99"

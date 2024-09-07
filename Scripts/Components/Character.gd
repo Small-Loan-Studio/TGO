@@ -3,7 +3,11 @@
 class_name Character
 extends CharacterBody2D
 
+## When set to true the game will have a circle drawn at the character's origin
 @export var _debug_draw_origin: bool = false
+
+## Unique ID used in our design systems
+@export var id: String = ""
 
 ## Set this to make the character be controlled by player input
 @export var player_controled: bool = false

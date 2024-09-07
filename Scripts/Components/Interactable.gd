@@ -49,3 +49,9 @@ func trigger(actor: Character) -> void:
 
 func verb_name() -> String:
 	return Enums.action_verb_name(action_verb)
+
+
+# TODO: Check if Collision layer is set properly -- if we do this make sure to
+# add @tool annotation
+func _get_configuration_warnings() -> PackedStringArray:
+	return []
