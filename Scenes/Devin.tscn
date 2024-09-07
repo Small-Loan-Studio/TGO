@@ -12,6 +12,8 @@ radius = 13.0
 position = Vector2(0, 19)
 script = ExtResource("1_coq4s")
 editor_hide_lamp_sensors = true
+id = "Devin"
+move_speed = 175
 _override_default_sprite_frames = ExtResource("3_0y874")
 
 [node name="AnimatedSprite2D" parent="." index="0"]

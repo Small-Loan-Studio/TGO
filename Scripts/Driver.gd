@@ -9,6 +9,7 @@ var _last_loaded_level: LevelBase = null
 
 @onready var audio_mgr: AudioManager = $AudioManager
 @onready var player: Devin = %Devin
+@onready var inventory_mgr := $InventoryManager
 @onready var _menu_mgr: MenuManager = $OverlayManager/MenuManager
 @onready var _curtain := $OverlayManager/Curtain
 @onready var _world := $GameWorld

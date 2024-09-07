@@ -7,6 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://ci7ksomi5hsr5" path="res://Scenes/Menu/DebugMenu.tscn" id="3_i7nbg"]
 [ext_resource type="Script" path="res://Scripts/UI/HUD.gd" id="4_kq6n3"]
 [ext_resource type="PackedScene" uid="uid://mqvl5162rawb" path="res://Scenes/Devin.tscn" id="6_gmy4s"]
+[ext_resource type="Script" path="res://Scripts/Components/Inventory/InventoryManager.gd" id="6_na5am"]
 [ext_resource type="Script" path="res://Scripts/Resources/Clock.gd" id="6_t80u5"]
 
 [node name="Driver" type="Node2D"]
@@ -90,6 +91,9 @@ offset_top = -1.0
 offset_right = -300.0
 offset_bottom = -1.0
 size_flags_horizontal = 4
+
+[node name="InventoryManager" type="Node" parent="."]
+script = ExtResource("6_na5am")
 
 [node name="GameWorld" type="Node2D" parent="."]
 y_sort_enabled = true
