@@ -201,6 +201,7 @@ func _apply_npc() -> void:
 	parent.add_child(new_npc)
 	new_npc.owner = _objects_parent.get_parent()
 
+
 func _reset_npc_state() -> void:
 	_npc_dlg_path.text = ""
 
@@ -213,7 +214,7 @@ func _npc_get_timeline() -> DialogicTimeline:
 	return resource
 
 
-func _npc_dialogue_text_changed(new_text:String) -> void:
+func _npc_dialogue_text_changed(new_text: String) -> void:
 	if !new_text.ends_with(".dtl"):
 		_npc_dlg_path.add_theme_color_override("font_color", Color.RED)
 		return
