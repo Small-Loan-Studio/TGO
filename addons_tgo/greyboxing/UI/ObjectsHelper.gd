@@ -8,9 +8,13 @@ const PUSHABLE_OBJECT_SCENE = "res://Scenes/Components/Greyboxing/MoveableBlock.
 const GENERIC_KEY = "generic"
 const PUSHABLE_KEY = "pushable"
 const NPC_KEY = "npc"
+const CHARACTERS_CHILD_NODE = "Characters"
+const NPC_PATH = "res://Scenes/Components/NPC"
 const BUTTON_IDX = 0
 const DETAIL_IDX = 1
 const RESET_IDX = 2
+
+var _npc_dict: Dictionary = {}
 
 var _plugin_ref: EditorPlugin
 ## Stores a collection of data for each helper section.
@@ -40,6 +44,9 @@ var _valid_keys: Array[String] = []
 
 @onready var _npc := $Container/AddItems/NPC
 @onready var _npc_detail := $Container/AddItems/NPCDetails
+@onready var _npc_dropdown := %NPCDropdown
+@onready var _npc_dlg_path: LineEdit = %NPCDialoguePath
+
 @onready var _complete_buttons := $Container/CompleteButtons
 
 
@@ -178,8 +185,63 @@ func _reset_pushable_state() -> void:
 
 
 func _apply_npc() -> void:
-	pass
+	var name: String = _npc_dropdown.get_item_text(_npc_dropdown.get_selected_id())
+	var path: String = _npc_dict[name]
 
+	var scene := ResourceLoader.load(path) as PackedScene
+	var obj := scene.instantiate() as NPC
+	
+	var parent := _objects_parent.get_node(CHARACTERS_CHILD_NODE)
+	obj.name = _mk_unique(parent, name)
+	parent.add_child(obj)
+	obj.owner = _objects_parent.get_parent()	
 
 func _reset_npc_state() -> void:
-	pass
+	_npc_dropdown.clear()
+	_npc_dict.clear()
+	_npc_dlg_path.text = ""
+
+
+func _npc_get_target_dlg() -> DialogicTimeline:
+	var path := _npc_dlg_path.text
+	var resource := ResourceLoader.load(path)
+	if !(resource is DialogicTimeline):
+		return null
+	return resource
+
+
+func _npc_dialogue_text_changed(new_text:String) -> void:
+	if !new_text.ends_with(".dtl"):
+		_npc_dlg_path.add_theme_color_override("font_color", Color.RED)
+		return
+
+	if null == _npc_get_target_dlg():
+		_npc_dlg_path.add_theme_color_override("font_color", Color.RED)
+		return
+
+	_npc_dlg_path.remove_theme_color_override("font_color")
+
+
+func _npc_detail_visibility_changed() -> void:
+	if _npc_detail == null:
+		return
+	
+	if !_npc_detail.visible:
+		_npc_dropdown.clear()
+		_npc_dict.clear()
+		return
+
+	var dir := DirAccess.open(NPC_PATH)
+	if dir == null:
+		printerr("Failed to open npc resource path:")
+		printerr(DirAccess.get_open_error())
+		return
+	
+	dir.list_dir_begin()
+	var npc_file := dir.get_next()
+	while npc_file != "":
+		if npc_file.ends_with(".tscn"):
+			var key := npc_file.substr(0, npc_file.length() - 5)
+			_npc_dict[key] = "%s/%s" % [NPC_PATH, npc_file]
+			_npc_dropdown.add_item(key)
+		npc_file = dir.get_next()
