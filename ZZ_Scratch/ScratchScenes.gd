@@ -11,6 +11,7 @@ const SCENES = {
 	"Greyboxing": "res://ZZ_Scratch/GreyboxingTools/BadLevelA.tscn",
 	"NPC Dialogue": "res://ZZ_Scratch/NPCDialogue/NPCDialogue.tscn",
 	"Test Day Night Cycle": "res://ZZ_Scratch/TestDayNightCycle/TestDayNightCycle.tscn",
+	"Quest Prototype":"res://ZZ_Scratch/QuestPrototype/QuestPrototype.tscn",
 }
 
 

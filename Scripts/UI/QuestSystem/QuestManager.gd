@@ -2,18 +2,12 @@ extends Node
 
 class_name QuestManager
 
-@onready var quest_ui : Node = get_node("../CanvasLayer/QuestUI")
-@onready var journal : Node = get_node("../CanvasLayer/Journal")
-@onready var popup : Node = get_node("../CanvasLayer/Pop-up")
-
 @export var chain_quests: Array[ChainQuest] = []
 @export var all_quests: Array[Quest] = []
 var active_quests: Array[Quest] = []
 var completed_quests: Array[Quest] = []
 
 func _ready()->void:
-	#await get_tree().process_frame
-	journal.update_quest_window.connect(_on_update_quest_window)
 	Signalbus.quest_update.connect(_on_update_quest)
 	Dialogic.signal_event.connect(_on_dialogic_signal)
 	pass
@@ -39,7 +33,7 @@ func update_objectives(quest: Quest,effected_objective_id :int,_value:int) -> vo
 	var is_quest_completed :bool = true
 	if not quest.objectives[effected_objective_id].is_complete:
 		check_objective_status(quest.objectives[effected_objective_id],_value)
-		update_quest_ui(quest)
+		Signalbus.quest_updated.emit(quest)
 	for objective in quest.objectives:
 		if not objective.is_complete:
 			is_quest_completed = false
@@ -71,19 +65,6 @@ func check_objective_status(objective:QuestObjective,_value:int)->void:
 				objective.status = str(_value) + "/" + str(objective.amount)
 	
 	return
-func update_quest_ui(quest:Quest)->void:
-	quest_ui.show()
-	quest_ui.update_quest_ui(quest)
-	pass
-func _on_update_quest_window(tab:int)->void:
-	match tab:
-		0:
-			journal.update_quest_tab(active_quests)
-			pass
-		1:
-			journal.update_quest_tab(completed_quests)
-			pass
-	pass
 	#TODO: Update UI when one quest is affected.
 func _on_update_quest(quest_id:int,effected_objective_id :int,value:int)-> void:
 	var does_quest_exist :bool = false

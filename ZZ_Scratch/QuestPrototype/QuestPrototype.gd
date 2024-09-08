@@ -1,12 +1,17 @@
 extends Node2D
 
-@onready var journal : Control = $CanvasLayer/Journal
+var _inventory: Inventory
+@onready var player: Character = $Devin
+@onready var inventory: Control = $CanvasLayer/Inventory
 
-func _unhandled_input(event:InputEvent)->void:
-	if event is InputEventKey:
-		if event.is_action_pressed(Enums.input_action_name(Enums.InputAction.OPEN_JOURNAL)) :
-			if journal.visible:
-				journal.hide()
-			else:
-				journal.update()
-				journal.show()
+func setup(driver: Driver) -> void:
+	var inv: Inventory = driver.inventory_mgr.get_inventory("Devin")
+	inv.set_size(2)
+	_inventory = inv
+	# Test/Debug wiring for the time being
+
+	inventory.set_inventory(inv)
+	inv.inventory_updated.connect(_inventory_updated)
+	return
+func _inventory_updated(inv: Inventory) -> void:
+	inventory.set_inventory(inv)

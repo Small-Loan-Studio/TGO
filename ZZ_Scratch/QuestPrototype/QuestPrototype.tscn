@@ -1,33 +1,46 @@
-[gd_scene load_steps=32 format=3 uid="uid://crrvo58x81lxn"]
+[gd_scene load_steps=37 format=3 uid="uid://crrvo58x81lxn"]
 
 [ext_resource type="Script" path="res://ZZ_Scratch/QuestPrototype/QuestPrototype.gd" id="1_h4v6k"]
 [ext_resource type="Texture2D" uid="uid://ds0x2hyas8fpv" path="res://Art/Environment/Underground.png" id="2_h17xi"]
-[ext_resource type="Script" path="res://ZZ_Scratch/QuestPrototype/QuestManager.gd" id="2_o8hp2"]
-[ext_resource type="PackedScene" uid="uid://bcqslh1vhjn2m" path="res://Scenes/UI/Journal/Journal.tscn" id="2_ohowe"]
-[ext_resource type="Resource" uid="uid://c8kwdib5g3qg3" path="res://ZZ_Scratch/QuestPrototype/Quests/findyourwayouy.tres" id="3_6k8t3"]
 [ext_resource type="Texture2D" uid="uid://b5aoo3ejx38qf" path="res://Art/Environment/Placeables/questprototype/Lamp.png" id="3_koxfr"]
 [ext_resource type="Texture2D" uid="uid://ddusy2p3rpksq" path="res://Art/Environment/Placeables/questprototype/coffin.png" id="3_y843k"]
 [ext_resource type="PackedScene" uid="uid://c2040l84asu8j" path="res://Scenes/Components/Interactable.tscn" id="4_0fujw"]
-[ext_resource type="Script" path="res://ZZ_Scratch/QuestPrototype/ChainQuest.gd" id="4_tmqev"]
 [ext_resource type="PackedScene" uid="uid://mqvl5162rawb" path="res://Scenes/Devin.tscn" id="4_y2igs"]
+[ext_resource type="PackedScene" uid="uid://rgvfsx60t2ap" path="res://Scenes/Components/Inventory/Item.tscn" id="5_wrtgi"]
 [ext_resource type="Texture2D" uid="uid://cjm7qoovs5vbg" path="res://Art/Environment/Placeables/questprototype/key.png" id="6_ngyy4"]
+[ext_resource type="Script" path="res://Scripts/Components/Inventory/Item.gd" id="7_6n7c1"]
 [ext_resource type="Script" path="res://Scripts/Components/Interactable.gd" id="7_h81vt"]
 [ext_resource type="Texture2D" uid="uid://78tt4w14itxl" path="res://Art/Environment/Placeables/questprototype/door.png" id="7_u0hep"]
+[ext_resource type="Script" path="res://Scripts/Resources/InteractableQuest.gd" id="8_i0rt5"]
 [ext_resource type="Texture2D" uid="uid://bh5e6rcackjqc" path="res://Art/Environment/Placeables/questprototype/coffin_1.png" id="9_r3new"]
 [ext_resource type="Texture2D" uid="uid://b76ovoal2nqik" path="res://Art/Environment/Placeables/questprototype/coffin_2.png" id="10_r2r5j"]
 [ext_resource type="Texture2D" uid="uid://c4wx4r0twrp7c" path="res://Art/Environment/Placeables/questprototype/coffin_3.png" id="11_dg8wo"]
 [ext_resource type="Texture2D" uid="uid://bhtwy6f678hsq" path="res://Art/Environment/Placeables/questprototype/coffin_4.png" id="12_3llf7"]
+[ext_resource type="Script" path="res://Scripts/Resources/InteractableDialogue.gd" id="12_7qdli"]
+[ext_resource type="Resource" path="res://ZZ_Scratch/QuestPrototype/Timelines/coffin_0.dtl" id="13_usmno"]
 [ext_resource type="Texture2D" uid="uid://cq6f72qrlahar" path="res://Art/Environment/Placeables/questprototype/coffin_5.png" id="13_vklik"]
 [ext_resource type="PackedScene" uid="uid://8l767ndoo0ch" path="res://Scenes/UI/Quest/QuestUI.tscn" id="19_jl20o"]
 [ext_resource type="PackedScene" uid="uid://c5ysorqfbhowc" path="res://Scenes/UI/pop_up.tscn" id="20_cry6j"]
-
-[sub_resource type="Resource" id="Resource_x0xox"]
-script = ExtResource("4_tmqev")
-chain_quest_title = "Escape the Cript"
-quests = Array[Resource("res://ZZ_Scratch/QuestPrototype/Quest.gd")]([ExtResource("3_6k8t3")])
+[ext_resource type="PackedScene" uid="uid://dukcf64qxy46o" path="res://Scenes/UI/Debug/Inventory.tscn" id="20_qyd2f"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_pxnuc"]
 radius = 752.86
+
+[sub_resource type="Resource" id="Resource_jge75"]
+script = ExtResource("7_6n7c1")
+id = "lamp"
+name = "Lamp"
+type = 2
+description = "This is a lamp"
+stackable = false
+stack_size = 1
+icon = ExtResource("3_koxfr")
+
+[sub_resource type="Resource" id="Resource_i62jg"]
+script = ExtResource("8_i0rt5")
+questid = 0
+objective_id = 0
+value = 1
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_vwyhd"]
 size = Vector2(46, 84)
@@ -41,11 +54,21 @@ size = Vector2(56.3334, 63.3333)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_w7ldh"]
 size = Vector2(73, 101.666)
 
+[sub_resource type="Resource" id="Resource_hkauv"]
+script = ExtResource("8_i0rt5")
+questid = 0
+objective_id = 0
+value = 0
+
 [sub_resource type="CircleShape2D" id="CircleShape2D_42d0q"]
 radius = 571.99
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_yfmoi"]
 size = Vector2(44.1009, 102.345)
+
+[sub_resource type="Resource" id="Resource_o7saf"]
+script = ExtResource("12_7qdli")
+timeline = ExtResource("13_usmno")
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_jgi7y"]
 size = Vector2(85.2122, 146.09)
@@ -58,12 +81,6 @@ size = Vector2(163.5, 87.5)
 
 [node name="QuestPrototype" type="Node2D"]
 script = ExtResource("1_h4v6k")
-
-[node name="QuestManager" type="Node" parent="."]
-unique_name_in_owner = true
-script = ExtResource("2_o8hp2")
-chain_quests = Array[ExtResource("4_tmqev")]([SubResource("Resource_x0xox")])
-all_quests = Array[Resource("res://ZZ_Scratch/QuestPrototype/Quest.gd")]([ExtResource("3_6k8t3")])
 
 [node name="Background" type="Node2D" parent="."]
 
@@ -84,7 +101,15 @@ actions = Array[Resource("res://Scripts/Resources/InteractableAction.gd")]([null
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Background/Key/Interactable"]
 shape = SubResource("CircleShape2D_pxnuc")
 
+[node name="Item" parent="Background" instance=ExtResource("5_wrtgi")]
+position = Vector2(265, 191)
+item = SubResource("Resource_jge75")
+interactable_radius = 50
+pickable = false
+interactable_actions = Array[Resource("res://Scripts/Resources/InteractableAction.gd")]([SubResource("Resource_i62jg")])
+
 [node name="Lamp" type="Sprite2D" parent="Background"]
+visible = false
 position = Vector2(199, 196)
 texture = ExtResource("3_koxfr")
 
@@ -95,6 +120,7 @@ position = Vector2(-2, 2)
 shape = SubResource("RectangleShape2D_vwyhd")
 
 [node name="Interactable" parent="Background/Lamp" instance=ExtResource("4_0fujw")]
+actions = Array[Resource("res://Scripts/Resources/InteractableAction.gd")]([])
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Background/Lamp/Interactable"]
 shape = SubResource("RectangleShape2D_0dmca")
@@ -119,6 +145,7 @@ shape = SubResource("RectangleShape2D_w7ldh")
 position = Vector2(802, 614)
 scale = Vector2(0.999999, 0.999999)
 automatic = true
+actions = Array[Resource("res://Scripts/Resources/InteractableAction.gd")]([SubResource("Resource_hkauv")])
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Background/Interactable2"]
 shape = SubResource("CircleShape2D_42d0q")
@@ -155,6 +182,7 @@ position = Vector2(12.5202, 8.22412)
 shape = SubResource("RectangleShape2D_yfmoi")
 
 [node name="Interactable" parent="Background/Coffin" instance=ExtResource("4_0fujw")]
+actions = Array[Resource("res://Scripts/Resources/InteractableAction.gd")]([SubResource("Resource_o7saf")])
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Background/Coffin/Interactable"]
 shape = SubResource("RectangleShape2D_jgi7y")
@@ -242,23 +270,19 @@ shape = SubResource("RectangleShape2D_plv6x")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Background/coffins/Coffin5/Interactable"]
 shape = SubResource("RectangleShape2D_qrghi")
 
-[node name="Character" parent="." instance=ExtResource("4_y2igs")]
-position = Vector2(818, 487)
+[node name="Devin" parent="." instance=ExtResource("4_y2igs")]
+position = Vector2(809, 629)
+player_controled = true
 
-[node name="Camera2D" type="Camera2D" parent="Character"]
+[node name="Camera2D" type="Camera2D" parent="Devin"]
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
+[node name="Inventory" parent="CanvasLayer" instance=ExtResource("20_qyd2f")]
+offset_right = 16.0
+offset_bottom = 16.0
+
 [node name="QuestUI" parent="CanvasLayer" instance=ExtResource("19_jl20o")]
 visible = false
-
-[node name="Journal" parent="CanvasLayer" instance=ExtResource("2_ohowe")]
-visible = false
-anchor_left = 0.098
-anchor_bottom = 0.912
-offset_left = 0.559998
-offset_top = 3.0
-offset_right = 6.0
-offset_bottom = 0.359985
 
 [node name="Pop-up" parent="CanvasLayer" instance=ExtResource("20_cry6j")]

@@ -1,6 +1,7 @@
 @tool
 extends Node2D
 
+
 @export var item: Item:
 	set(value):
 		item = value
@@ -20,7 +21,13 @@ extends Node2D
 		if _collision:
 			_collision.shape.radius = interactable_radius
 		update_configuration_warnings()
+@export var pickable:bool = false:
+	set(value):
+		update_configuration_warnings()
 
+
+@export var interactable_actions : Array[InteractableAction]
+ 
 @onready var _sprite := $Sprite2D
 @onready var _interactable := $Interactable
 @onready var _collision := $Interactable/CollisionShape2D
@@ -38,6 +45,9 @@ func _ready() -> void:
 	action.dest_path = self.get_path()
 	action.item = stack
 	_interactable.actions.append(action)
+	if interactable_actions.size() > 0:
+		for a in interactable_actions:
+			_interactable.actions.append(a)
 
 
 func _get_configuration_warnings() -> PackedStringArray:

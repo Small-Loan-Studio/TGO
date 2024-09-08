@@ -7,5 +7,5 @@ class_name InteractableQuest
 @export var objective_id : int
 @export var value: int
 
-func act(actor: Character) -> void:
+func act(actor: Character,_level: LevelBase) -> void:
 		Signalbus.quest_update.emit(questid,objective_id,value)

@@ -5,6 +5,11 @@ extends Control
 @onready var requirements_node : VBoxContainer = $PanelContainer/VBoxContainer/Requirements
 @onready var req : PackedScene = preload("res://Scenes/UI/Quest/ReqCard.tscn")
 
+func _ready()->void:
+	Signalbus.quest_updated.connect(_on_update)
+	pass
+	
+	
 func update_quest_ui(quest: Quest)->void:
 	quest_name_node.text = quest.title
 	description_node.text = quest.description
@@ -22,3 +27,8 @@ func update_quest_ui(quest: Quest)->void:
 func _on_close_pressed()->void:
 	self.hide()
 	pass # Replace with function body.
+func _on_update(quest:Quest)->void:
+	self.show()
+	update_quest_ui(quest)
+	return
+	

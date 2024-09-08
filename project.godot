@@ -19,7 +19,7 @@ config/icon="res://icon.svg"
 
 [autoload]
 
-Signalbus="*res://ZZ_Scratch/QuestPrototype/Signalbus.gd"
+Signalbus="*res://Scripts/Signalbus.gd"
 Dialogic="*res://addons/dialogic/Core/DialogicGameHandler.gd"
 
 [debug]

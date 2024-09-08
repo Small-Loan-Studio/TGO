@@ -10,6 +10,8 @@ radius = 9.0
 [node name="Item" type="Node2D"]
 texture_filter = 1
 script = ExtResource("1_im3cl")
+pickable = null
+interactable_actions = null
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 
