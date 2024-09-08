@@ -28,9 +28,7 @@ y_sort_enabled = true
 script = ExtResource("1_ve0b0")
 
 [node name="CanvasModulate" type="CanvasModulate" parent="."]
-visible = false
 position = Vector2(0, -1)
-color = Color(0.0784314, 0.0784314, 0.156863, 1)
 
 [node name="Bg" type="Sprite2D" parent="."]
 z_index = -100

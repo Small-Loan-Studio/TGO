@@ -1,0 +1,14 @@
+[gd_resource type="Resource" script_class="Item" load_steps=3 format=3 uid="uid://but4ranqswen"]
+
+[ext_resource type="Texture2D" uid="uid://bk5g3c50cvkuj" path="res://Art/Items/potion.png" id="1_hx2b7"]
+[ext_resource type="Script" path="res://Scripts/Components/Inventory/Item.gd" id="2_t5glm"]
+
+[resource]
+script = ExtResource("2_t5glm")
+id = "HEALTH_POTION"
+name = "Potion"
+type = 0
+description = "A lovely little red vial of liquid!"
+stackable = true
+stack_size = 3
+icon = ExtResource("1_hx2b7")

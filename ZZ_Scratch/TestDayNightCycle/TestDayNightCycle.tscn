@@ -1,0 +1,877 @@
+[gd_scene load_steps=18 format=3 uid="uid://cwcewnivcuwea"]
+
+[ext_resource type="Script" path="res://ZZ_Scratch/TestDayNightCycle/TestDayNightCycle.gd" id="1_1hstx"]
+[ext_resource type="Texture2D" uid="uid://c5pogm6rpt7wo" path="res://Art/Environment/ground.png" id="1_fb5de"]
+[ext_resource type="Texture2D" uid="uid://cmi4arryakvx0" path="res://Art/Environment/BrickTan.png" id="2_7vtx8"]
+[ext_resource type="PackedScene" uid="uid://cqin6fb282fjf" path="res://Scenes/Components/DayNightCycle.tscn" id="2_hx1rp"]
+[ext_resource type="Texture2D" uid="uid://ch47u4q5avtvw" path="res://Art/Environment/WaterTextureGraybox.png" id="3_ydu3y"]
+[ext_resource type="Texture2D" uid="uid://du825vt61j1m4" path="res://Art/Environment/WoodFloor.png" id="4_aqwyw"]
+[ext_resource type="PackedScene" uid="uid://mqvl5162rawb" path="res://Scenes/Devin.tscn" id="5_m2buj"]
+[ext_resource type="Script" path="res://ZZ_Scratch/Movement/CameraZoom2D.gd" id="6_kugd4"]
+[ext_resource type="PackedScene" uid="uid://bqt4tgvypxvop" path="res://ZZ_Scratch/Movement/Tree.tscn" id="7_xrwqk"]
+[ext_resource type="PackedScene" uid="uid://br40hkaamyscb" path="res://Scenes/Components/Detectable.tscn" id="8_lq60f"]
+[ext_resource type="Script" path="res://ZZ_Scratch/Movement/SpecialTree.gd" id="9_ugd7m"]
+[ext_resource type="PackedScene" uid="uid://ibnwktw1xdvu" path="res://ZZ_Scratch/Movement/GrayBox.tscn" id="10_m4bq6"]
+[ext_resource type="Texture2D" uid="uid://ilg2mwwgxku1" path="res://Art/Environment/Placeables/TombstoneGraybox-nobg.png" id="11_7o1v6"]
+[ext_resource type="Texture2D" uid="uid://bofqkhu4kq8j4" path="res://Art/Environment/Farmland.png" id="12_uwvvw"]
+[ext_resource type="Texture2D" uid="uid://c8yb8h5whr058" path="res://Art/Environment/Mountain-NoBG.png" id="13_ttu8a"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_8hb4j"]
+radius = 43.0
+height = 180.0
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_qkaow"]
+radius = 33.0
+height = 176.0
+
+[node name="TestDayNightCycle" type="Node2D"]
+script = ExtResource("1_1hstx")
+
+[node name="DayNightCycle" parent="." instance=ExtResource("2_hx1rp")]
+
+[node name="Bg" type="Sprite2D" parent="."]
+z_index = -100
+texture_filter = 1
+position = Vector2(804, 121)
+scale = Vector2(13.8813, 26.6611)
+texture = ExtResource("1_fb5de")
+
+[node name="WalkingPathPolygon" type="Polygon2D" parent="."]
+z_index = -90
+texture_repeat = 2
+texture = ExtResource("2_7vtx8")
+polygon = PackedVector2Array(34, 2081, -179, 1898, -193, 1605, -491, 1914, -550, 2160, -558, 2192, -577.172, 2228.09, -895, 2632, -1056, 2866, -1205, 3201, -1224, 3255, -1228.53, 3300.01, -1226, 3588, -1230, 3657, -1249, 3722, -1363, 4077, -1453, 4443, -1592, 4921, -1802, 4921, -1651, 4437, -1555, 4083, -1441.2, 3693.75, -1427, 3640, -1427, 3583, -1433.86, 3278.73, -1424, 3223, -1413.84, 3186.38, -1244, 2786, -1099, 2567, -805.331, 2224.83, -769, 2176, -751.971, 2134.11, -661, 1843, -229, 1361, -226, 573, -400, 396, -406, -186, -1089, -184, -1091, -900, -641, -898, -637, -1290, -193, -1294, -188, -1556, -172, -1674, -121, -1801, 5, -2018, 40.3569, -2108.97, 51, -2191, 33, -2278, -56, -2447, -674, -3467, -725, -3544, -751.636, -3606.64, -882, -3924, -622, -3930, -533, -3664, -495, -3591, -453, -3502, 229, -2394, 280.734, -2300.39, 286, -2267, 285.484, -2228.8, 278, -2170, 251, -2080, 107, -1798, 41, -1665, 38, -1400, 991, -1397, 995, -705, 1087, -706, 1090, -467, 1246, -467, 1246, -372, 1089, -372, 1091, -178, 102, -181, 101, 408, -73, 576, -73, 1355, -53, 1817, 85, 1957)
+
+[node name="WalkingPathPolygon2" type="Polygon2D" parent="."]
+z_index = -90
+texture_repeat = 2
+position = Vector2(2162, 80)
+texture = ExtResource("2_7vtx8")
+polygon = PackedVector2Array(-552, 3456, -510, 3498, -428.44, 3557.52, -357, 3578, -267, 3580, -179, 3512, -105, 3438, 138, 3178, 272.151, 3029.53, 384, 2886, 508, 2694, 596, 2560, 663, 2489, 701, 2442, 925, 2278, 1417, 2016, 1753, 1895, 2133, 1744, 2731, 1523, 3087, 1416, 3087, 1597, 2808, 1687, 2301, 1885, 2036, 1997, 1849, 2059, 1501, 2195, 1221, 2326, 1009, 2465, 898, 2556, 791, 2657, 680, 2782, 545, 2993, 414, 3138, 269, 3300, 24, 3566, -128, 3714, -250.313, 3762.93, -331, 3782, -487, 3769, -659.715, 3674.86, -698, 3645, -731, 3594, -744, 3411, -722, 3210, -730, 3125, -758, 3039, -826, 2899, -884, 2828, -987, 2672, -1132.79, 2524.59, -1181, 2471, -1245.69, 2426.04, -1834, 2095, -1786, 1977, -1210.75, 2269.2, -1138, 2308, -951, 2485, -879.865, 2558.73, -833, 2603, -740, 2718, -618, 2929, -585, 3027, -564, 3087, -564, 3177, -570.779, 3377.93)
+
+[node name="RiverPolygon" type="Polygon2D" parent="."]
+z_index = -90
+texture_repeat = 2
+position = Vector2(806, 894)
+texture = ExtResource("3_ydu3y")
+polygon = PackedVector2Array(-525, 4021, -837, 4025, -878.554, 3263.21, -867.694, 3183.69, -761, 2781, -717, 2577, -757, 2397, -857, 2125, -936, 1631, -933, 1574, -919, 1538, -620, 866, -330.846, 409.779, -318, 351, -320.566, 296.406, -407.905, -110.92, -409, -144, -396.531, -187.534, -150.356, -526.187, 222.379, -800.808, 258, -851, 285.645, -886.034, 489.61, -1369.39, 496, -1471, 489.81, -1543.03, 307, -1961, 323.142, -2523.66, 450.767, -2896.24, 462, -3069, 342.444, -3514.39, 351, -3774, 464.254, -4101.84, 471, -4302, 414, -4497, 410.753, -4580.11, 423, -4656, 447, -4802, 448, -5573, 763, -5573, 749.011, -4819.1, 746, -4741, 759, -4618, 777, -4511, 749.344, -4307.89, 721.29, -4101.86, 613.12, -3705.77, 580, -3607, 607, -3464, 761, -3106, 754.239, -2944.77, 626.045, -2518.73, 612, -1882, 748, -1548, 759, -1466, 751.925, -1391.76, 463.161, -707.756, 451, -675, 402.063, -635.464, 131, -473, -129, -176, -137, -152, -150.968, -109.479, -38, 384, -36, 432, -46.558, 469.878, -324, 893, -603.909, 1557.14, -626, 1602, -630, 1652, -545, 2117, -429, 2445, -397, 2593, -425, 2769, -569.617, 3227.54, -578.941, 3297.51)
+
+[node name="StaticBody2D" type="StaticBody2D" parent="RiverPolygon"]
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="RiverPolygon/StaticBody2D"]
+visible = false
+polygon = PackedVector2Array(-4447, -4843, -865, -4820, 433, -4831, 411, -4645, 420, -4519, 429, -4468, 450, -4367, 475, -4240, 458, -4083, 395, -3913, 335, -3693, 340, -3549, 378, -3375, 412, -3235, 433, -3117, 471, -2981, 424, -2888, 378, -2680, 335, -2587, 319, -2498, 323, -2197, 314, -2074, 314, -1955, 440, -1666, 472, -1599, 499, -1503, 485, -1388, 440, -1242, 380, -1103, 300, -909, 240, -817, 104, -729, -40, -621, -164, -517, -244, -393, -344, -277, -404, -165, -404, -97, -371, 35, -347, 171, -325, 272, -312, 336, -328, 392, -357, 448, -429, 550, -480, 641, -584, 811, -643, 926, -686, 1001, -710, 1062, -435, 1167, -339, 924, -224, 737, -128, 593, -61, 494, -50, 454, -37, 406, -56, 334, -80, 240, -133, 0, -155, -94, -155, -142, -136, -192, -26, -286, 35, -387, 126, -489, 353, -609, 438, -678, 465, -732, 572, -961, 644, -1151, 732, -1351, 753, -1420, 761, -1498, 743, -1557, 692, -1679, 654, -1781, 622, -1861, 609, -1896, 620, -2024, 617, -2208, 620, -2389, 620, -2531, 662, -2632, 700, -2795, 737, -2926, 756, -3020, 743, -3142, 697, -3257, 630, -3420, 582, -3537, 572, -3602, 598, -3679, 649, -3860, 713, -4071, 732, -4202, 764, -4373, 769, -4491, 775, -4525, 764, -4827, 4438, -4819, 4441, -5577, -4446, -5581)
+
+[node name="StaticBody2D2" type="StaticBody2D" parent="RiverPolygon"]
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="RiverPolygon/StaticBody2D2"]
+visible = false
+polygon = PackedVector2Array(-769, 1196, -485, 1285, -619, 1593, -627, 1606, -629, 1644, -622, 1676, -552, 2086, -518, 2177, -442, 2428, -402, 2560, -389, 2590, -412, 2679, -427, 2775, -461, 2900, -531, 3104, -574, 3238, -572, 3281, -555, 3572, -525, 4018, -831, 4023, -837, 3936, -865, 3572, -878, 3308, -874, 3223, -861, 3138, -810, 2979, -752, 2751, -718, 2596, -716, 2564, -740, 2468, -784, 2315, -840, 2168, -861, 2113, -869, 2051, -901, 1832, -923, 1701, -933, 1641, -935, 1596, -922, 1537)
+
+[node name="WoodFloorBridge" type="Polygon2D" parent="."]
+z_index = -80
+texture_repeat = 2
+position = Vector2(1263, 2271)
+texture = ExtResource("4_aqwyw")
+polygon = PackedVector2Array(-937, -92, -1229, -179, -1168, -312, -883, -212)
+
+[node name="Lake" type="Polygon2D" parent="."]
+z_index = -90
+texture_repeat = 2
+position = Vector2(-1541, 1141)
+texture = ExtResource("3_ydu3y")
+polygon = PackedVector2Array(-748, 347, -803.834, 342.285, -1381, 238, -1675.99, -73.9425, -1709, -146, -1707, -220, -1662, -536, -1457, -906, -1212, -1078, -756, -1125, -674, -1111, -628, -1078, -493, -915, -482, -834, -510, -758, -759, -523, -813, -398, -742, -241, -395.676, -96.2916, -349, -47, -346.908, 15.0186, -424.891, 211.861, -444, 240, -485.332, 265.768, -686.534, 335.751)
+
+[node name="StaticBody2D" type="StaticBody2D" parent="Lake"]
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Lake/StaticBody2D"]
+visible = false
+position = Vector2(-1266, -672)
+polygon = PackedVector2Array(48, -405, -193, -243, -399, 128, -444, 462, -436, 535, -413, 600, -126, 912, 454, 1014, 520, 1019, 570, 1011, 777, 933, 823, 914, 853, 876, 911, 700, 920, 621, 849, 572, 522, 433, 459, 278, 517, 140, 757, -86, 778, -148, 764, -250, 669, -362, 607, -435, 552, -445, 448, -450)
+
+[node name="Player" parent="." instance=ExtResource("5_m2buj")]
+position = Vector2(271, 159)
+
+[node name="Camera2D" type="Camera2D" parent="Player"]
+script = ExtResource("6_kugd4")
+
+[node name="Detect2Tree" parent="." instance=ExtResource("7_xrwqk")]
+visible = false
+position = Vector2(791, 101)
+
+[node name="Detectable" parent="Detect2Tree" instance=ExtResource("8_lq60f")]
+collision_layer = 24
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Detect2Tree/Detectable"]
+position = Vector2(3, 4)
+shape = SubResource("CapsuleShape2D_8hb4j")
+
+[node name="Detect3Tree" parent="." instance=ExtResource("7_xrwqk")]
+visible = false
+position = Vector2(556, 343)
+script = ExtResource("9_ugd7m")
+
+[node name="Detectable" parent="Detect3Tree" instance=ExtResource("8_lq60f")]
+collision_layer = 16
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Detect3Tree/Detectable"]
+shape = SubResource("CapsuleShape2D_qkaow")
+
+[node name="Tree2" parent="." instance=ExtResource("7_xrwqk")]
+position = Vector2(370, -81)
+
+[node name="TownBuildings" type="Node" parent="."]
+
+[node name="Tavern" parent="TownBuildings" instance=ExtResource("10_m4bq6")]
+top_level = true
+position = Vector2(-567, -1077)
+scale = Vector2(9.054, 2.47076)
+box_label_text = "Tavern"
+
+[node name="GrayBox2" parent="TownBuildings" instance=ExtResource("10_m4bq6")]
+position = Vector2(239, -501)
+scale = Vector2(4.16, 2.04)
+
+[node name="Gallows" parent="TownBuildings" instance=ExtResource("10_m4bq6")]
+position = Vector2(39, -498)
+scale = Vector2(1.48, 2.04)
+box_label_text = "Gallows"
+
+[node name="GrayBox3" parent="TownBuildings" instance=ExtResource("10_m4bq6")]
+position = Vector2(239, -838)
+scale = Vector2(3.97256, 2.15733)
+
+[node name="GrayBox11" parent="TownBuildings" instance=ExtResource("10_m4bq6")]
+position = Vector2(239, -1171)
+scale = Vector2(3.97256, 2.15733)
+
+[node name="GrayBox12" parent="TownBuildings" instance=ExtResource("10_m4bq6")]
+position = Vector2(554, -1337)
+scale = Vector2(5.65256, 2.15733)
+
+[node name="GrayBox15" parent="TownBuildings" instance=ExtResource("10_m4bq6")]
+position = Vector2(37, -1455)
+scale = Vector2(5.65256, 1.71733)
+
+[node name="GrayBox13" parent="TownBuildings" instance=ExtResource("10_m4bq6")]
+position = Vector2(554, -1673)
+scale = Vector2(5.65256, 2.15733)
+
+[node name="GrayBox14" parent="TownBuildings" instance=ExtResource("10_m4bq6")]
+position = Vector2(39, -1673)
+scale = Vector2(7.02697, 1.35733)
+
+[node name="GrayBox16" parent="TownBuildings" instance=ExtResource("10_m4bq6")]
+position = Vector2(245, -2073)
+rotation = 0.462708
+scale = Vector2(2.95945, 2.09701)
+
+[node name="GrayBox17" parent="TownBuildings" instance=ExtResource("10_m4bq6")]
+position = Vector2(-126, -1781)
+rotation = -2.63662
+scale = Vector2(2.95945, 2.09701)
+
+[node name="GrayBox18" parent="TownBuildings" instance=ExtResource("10_m4bq6")]
+position = Vector2(-189, -1286)
+rotation = -3.13982
+scale = Vector2(1.41255, 2.1415)
+
+[node name="GrayBox19" parent="TownBuildings" instance=ExtResource("10_m4bq6")]
+position = Vector2(-644, -1291)
+rotation = -1.55738
+scale = Vector2(3.16927, 1.40134)
+
+[node name="GrayBox6" parent="TownBuildings" instance=ExtResource("10_m4bq6")]
+position = Vector2(554, -1002)
+scale = Vector2(3.97256, 2.15733)
+
+[node name="Water Mill" parent="TownBuildings" instance=ExtResource("10_m4bq6")]
+position = Vector2(1174, -711)
+scale = Vector2(2.15475, 2.67733)
+box_label_text = "Water Mill"
+
+[node name="GrayBox7" parent="TownBuildings" instance=ExtResource("10_m4bq6")]
+position = Vector2(554, -670)
+scale = Vector2(3.97256, 2.15733)
+
+[node name="GrayBox8" parent="TownBuildings" instance=ExtResource("10_m4bq6")]
+position = Vector2(877, -740)
+scale = Vector2(3.97256, 2.15733)
+
+[node name="GrayBox9" parent="TownBuildings" instance=ExtResource("10_m4bq6")]
+position = Vector2(873, -374)
+scale = Vector2(3.97256, 2.15733)
+
+[node name="GrayBox10" parent="TownBuildings" instance=ExtResource("10_m4bq6")]
+position = Vector2(554, -331)
+scale = Vector2(3.97256, 2.15733)
+
+[node name="GrayBox4" parent="TownBuildings" instance=ExtResource("10_m4bq6")]
+position = Vector2(-1018, -847)
+scale = Vector2(4.72456, 4.64)
+
+[node name="GrayBox5" parent="TownBuildings" instance=ExtResource("10_m4bq6")]
+position = Vector2(-601, -7)
+scale = Vector2(3.05709, 3.23135)
+
+[node name="ForestTrees" type="Node" parent="."]
+
+[node name="Tree5" parent="ForestTrees" instance=ExtResource("7_xrwqk")]
+position = Vector2(-3022, -1567)
+
+[node name="Tree6" parent="ForestTrees" instance=ExtResource("7_xrwqk")]
+position = Vector2(-2828, -1751)
+
+[node name="Tree7" parent="ForestTrees" instance=ExtResource("7_xrwqk")]
+position = Vector2(-2485, -1343)
+
+[node name="Tree8" parent="ForestTrees" instance=ExtResource("7_xrwqk")]
+position = Vector2(-2243, -1524)
+
+[node name="Tree11" parent="ForestTrees" instance=ExtResource("7_xrwqk")]
+position = Vector2(-2770, -1380)
+
+[node name="Tree12" parent="ForestTrees" instance=ExtResource("7_xrwqk")]
+position = Vector2(-2165, -1259)
+
+[node name="Tree13" parent="ForestTrees" instance=ExtResource("7_xrwqk")]
+position = Vector2(-2001, -1753)
+
+[node name="Tree14" parent="ForestTrees" instance=ExtResource("7_xrwqk")]
+position = Vector2(-1857, -1453)
+
+[node name="Tree15" parent="ForestTrees" instance=ExtResource("7_xrwqk")]
+position = Vector2(-2419, -1073)
+
+[node name="Tree16" parent="ForestTrees" instance=ExtResource("7_xrwqk")]
+position = Vector2(-2716, -1091)
+
+[node name="Tree17" parent="ForestTrees" instance=ExtResource("7_xrwqk")]
+position = Vector2(-3001, -1154)
+
+[node name="Tree18" parent="ForestTrees" instance=ExtResource("7_xrwqk")]
+position = Vector2(-3220, -1358)
+
+[node name="Tree19" parent="ForestTrees" instance=ExtResource("7_xrwqk")]
+position = Vector2(-3223, -938)
+
+[node name="Tree20" parent="ForestTrees" instance=ExtResource("7_xrwqk")]
+position = Vector2(-2980, -866)
+
+[node name="Tree21" parent="ForestTrees" instance=ExtResource("7_xrwqk")]
+position = Vector2(-2692, -755)
+
+[node name="Tree22" parent="ForestTrees" instance=ExtResource("7_xrwqk")]
+position = Vector2(-2512, -848)
+
+[node name="Tree23" parent="ForestTrees" instance=ExtResource("7_xrwqk")]
+position = Vector2(-2140, -872)
+
+[node name="Tree24" parent="ForestTrees" instance=ExtResource("7_xrwqk")]
+position = Vector2(-1990, -1049)
+
+[node name="Tree25" parent="ForestTrees" instance=ExtResource("7_xrwqk")]
+position = Vector2(-1750, -1211)
+
+[node name="Tree26" parent="ForestTrees" instance=ExtResource("7_xrwqk")]
+position = Vector2(-1621, -1643)
+
+[node name="Tree27" parent="ForestTrees" instance=ExtResource("7_xrwqk")]
+position = Vector2(-1561, -1394)
+
+[node name="Tree28" parent="ForestTrees" instance=ExtResource("7_xrwqk")]
+position = Vector2(-3205, -3241)
+
+[node name="Tree29" parent="ForestTrees" instance=ExtResource("7_xrwqk")]
+position = Vector2(-1708, -1873)
+
+[node name="Tree9" parent="ForestTrees" instance=ExtResource("7_xrwqk")]
+position = Vector2(-2598, -1625)
+
+[node name="Tree10" parent="ForestTrees" instance=ExtResource("7_xrwqk")]
+position = Vector2(-2454, -1771)
+
+[node name="Tree42" parent="ForestTrees" instance=ExtResource("7_xrwqk")]
+position = Vector2(-3112, -2483)
+
+[node name="Tree43" parent="ForestTrees" instance=ExtResource("7_xrwqk")]
+position = Vector2(-2918, -2667)
+
+[node name="Tree44" parent="ForestTrees" instance=ExtResource("7_xrwqk")]
+position = Vector2(-2575, -2259)
+
+[node name="Tree45" parent="ForestTrees" instance=ExtResource("7_xrwqk")]
+position = Vector2(-2333, -2440)
+
+[node name="Tree46" parent="ForestTrees" instance=ExtResource("7_xrwqk")]
+position = Vector2(-2860, -2296)
+
+[node name="Tree47" parent="ForestTrees" instance=ExtResource("7_xrwqk")]
+position = Vector2(-2255, -2175)
+
+[node name="Tree48" parent="ForestTrees" instance=ExtResource("7_xrwqk")]
+position = Vector2(-2124, -2612)
+
+[node name="Tree49" parent="ForestTrees" instance=ExtResource("7_xrwqk")]
+position = Vector2(-1947, -2369)
+
+[node name="Tree50" parent="ForestTrees" instance=ExtResource("7_xrwqk")]
+position = Vector2(-2509, -1989)
+
+[node name="Tree51" parent="ForestTrees" instance=ExtResource("7_xrwqk")]
+position = Vector2(-2806, -2007)
+
+[node name="Tree52" parent="ForestTrees" instance=ExtResource("7_xrwqk")]
+position = Vector2(-3091, -2070)
+
+[node name="Tree53" parent="ForestTrees" instance=ExtResource("7_xrwqk")]
+position = Vector2(-3310, -2274)
+
+[node name="Tree54" parent="ForestTrees" instance=ExtResource("7_xrwqk")]
+position = Vector2(-3313, -1854)
+
+[node name="Tree55" parent="ForestTrees" instance=ExtResource("7_xrwqk")]
+position = Vector2(-2230, -1788)
+
+[node name="Tree56" parent="ForestTrees" instance=ExtResource("7_xrwqk")]
+position = Vector2(-2080, -1965)
+
+[node name="Tree57" parent="ForestTrees" instance=ExtResource("7_xrwqk")]
+position = Vector2(-1840, -2127)
+
+[node name="Tree58" parent="ForestTrees" instance=ExtResource("7_xrwqk")]
+position = Vector2(-2705, -2973)
+
+[node name="Tree59" parent="ForestTrees" instance=ExtResource("7_xrwqk")]
+position = Vector2(-1651, -2310)
+
+[node name="Tree60" parent="ForestTrees" instance=ExtResource("7_xrwqk")]
+position = Vector2(-1812, -2727)
+
+[node name="Tree61" parent="ForestTrees" instance=ExtResource("7_xrwqk")]
+position = Vector2(-2688, -2541)
+
+[node name="Tree62" parent="ForestTrees" instance=ExtResource("7_xrwqk")]
+position = Vector2(-2544, -2687)
+
+[node name="Tree64" parent="ForestTrees" instance=ExtResource("7_xrwqk")]
+position = Vector2(-1767, -2433)
+
+[node name="Tree65" parent="ForestTrees" instance=ExtResource("7_xrwqk")]
+position = Vector2(-2876, -3198)
+
+[node name="Tree66" parent="ForestTrees" instance=ExtResource("7_xrwqk")]
+position = Vector2(-1474, -2553)
+
+[node name="Tree69" parent="ForestTrees" instance=ExtResource("7_xrwqk")]
+position = Vector2(-2684, -3347)
+
+[node name="Tree70" parent="ForestTrees" instance=ExtResource("7_xrwqk")]
+position = Vector2(-2341, -2939)
+
+[node name="Tree71" parent="ForestTrees" instance=ExtResource("7_xrwqk")]
+position = Vector2(-2099, -3120)
+
+[node name="Tree73" parent="ForestTrees" instance=ExtResource("7_xrwqk")]
+position = Vector2(-2097, -2855)
+
+[node name="Tree74" parent="ForestTrees" instance=ExtResource("7_xrwqk")]
+position = Vector2(-1857, -3349)
+
+[node name="Tree75" parent="ForestTrees" instance=ExtResource("7_xrwqk")]
+position = Vector2(-1713, -3049)
+
+[node name="Tree83" parent="ForestTrees" instance=ExtResource("7_xrwqk")]
+position = Vector2(-1606, -2807)
+
+[node name="Tree84" parent="ForestTrees" instance=ExtResource("7_xrwqk")]
+position = Vector2(-1477, -3239)
+
+[node name="Tree85" parent="ForestTrees" instance=ExtResource("7_xrwqk")]
+position = Vector2(-3248, -2766)
+
+[node name="Tree86" parent="ForestTrees" instance=ExtResource("7_xrwqk")]
+position = Vector2(-3039, -2941)
+
+[node name="Tree87" parent="ForestTrees" instance=ExtResource("7_xrwqk")]
+position = Vector2(-2454, -3221)
+
+[node name="Tree88" parent="ForestTrees" instance=ExtResource("7_xrwqk")]
+position = Vector2(-2310, -3367)
+
+[node name="NPC Houses" type="Node" parent="."]
+
+[node name="Farm House" parent="NPC Houses" instance=ExtResource("10_m4bq6")]
+position = Vector2(2987, -1761)
+rotation = 0.00328851
+scale = Vector2(14.8555, 4.41328)
+box_label_text = "Farm House"
+
+[node name="House" parent="NPC Houses" instance=ExtResource("10_m4bq6")]
+position = Vector2(1214, 2189)
+rotation = 0.753678
+scale = Vector2(3.97256, 2.15733)
+box_label_text = "House"
+
+[node name="House5" parent="NPC Houses" instance=ExtResource("10_m4bq6")]
+position = Vector2(-1295, 2404)
+rotation = 0.603281
+scale = Vector2(3.97256, 2.15733)
+box_label_text = "House"
+
+[node name="House6" parent="NPC Houses" instance=ExtResource("10_m4bq6")]
+position = Vector2(-1228, 3309)
+rotation = -0.023089
+scale = Vector2(3.97256, 2.15733)
+box_label_text = "House"
+
+[node name="House7" parent="NPC Houses" instance=ExtResource("10_m4bq6")]
+position = Vector2(-888, 1737)
+rotation = 0.335313
+scale = Vector2(3.97256, 2.15733)
+box_label_text = "House"
+
+[node name="House8" parent="NPC Houses" instance=ExtResource("10_m4bq6")]
+position = Vector2(1478, 867)
+rotation = 1.58851
+scale = Vector2(3.97256, 2.15733)
+box_label_text = "House"
+
+[node name="House9" parent="NPC Houses" instance=ExtResource("10_m4bq6")]
+position = Vector2(4686, -301)
+rotation = -1.05502
+scale = Vector2(3.97256, 2.15733)
+box_label_text = "House"
+
+[node name="House10" parent="NPC Houses" instance=ExtResource("10_m4bq6")]
+position = Vector2(2018, -221)
+rotation = 0.00127029
+scale = Vector2(3.97256, 2.15733)
+box_label_text = "House"
+
+[node name="House2" parent="NPC Houses" instance=ExtResource("10_m4bq6")]
+position = Vector2(1654, 2649)
+rotation = 1.02415
+scale = Vector2(3.97256, 2.15733)
+box_label_text = "House"
+
+[node name="House3" parent="NPC Houses" instance=ExtResource("10_m4bq6")]
+position = Vector2(2934, 2153)
+rotation = 0.911606
+scale = Vector2(3.97256, 2.15733)
+box_label_text = "House"
+
+[node name="House4" parent="NPC Houses" instance=ExtResource("10_m4bq6")]
+position = Vector2(4444, 1969)
+rotation = 1.176
+scale = Vector2(3.97256, 2.15733)
+box_label_text = "House"
+
+[node name="AbandonedChurch" parent="." instance=ExtResource("10_m4bq6")]
+position = Vector2(-3314, 2233)
+scale = Vector2(15.0651, 2.68558)
+box_label_text = "AbandonedChurch"
+
+[node name="Mine Entrance" parent="." instance=ExtResource("10_m4bq6")]
+position = Vector2(2166, 4349)
+rotation = -0.439404
+scale = Vector2(24.0152, 4.43135)
+box_label_text = "Mine Entrance"
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+layer = 100
+visible = false
+
+[node name="Label" type="Label" parent="CanvasLayer"]
+offset_left = 844.0
+offset_top = 635.0
+offset_right = 1258.0
+offset_bottom = 684.0
+text = "Enter to change move between Night -> Dusk -> Day
+Tab to toggle light modes"
+
+[node name="Label2" type="Label" parent="CanvasLayer"]
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -46.0
+offset_top = 49.0
+offset_right = 46.0
+offset_bottom = 72.0
+grow_horizontal = 2
+text = "Light Level: off"
+
+[node name="OtherTrees" type="Node" parent="."]
+
+[node name="Tree" parent="OtherTrees" instance=ExtResource("7_xrwqk")]
+position = Vector2(-31, 572)
+
+[node name="Tree34" parent="OtherTrees" instance=ExtResource("7_xrwqk")]
+position = Vector2(44, 887)
+
+[node name="Tree35" parent="OtherTrees" instance=ExtResource("7_xrwqk")]
+position = Vector2(8, 1235)
+
+[node name="Tree42" parent="OtherTrees" instance=ExtResource("7_xrwqk")]
+position = Vector2(2244, 1109)
+
+[node name="Tree43" parent="OtherTrees" instance=ExtResource("7_xrwqk")]
+position = Vector2(3268, 193)
+
+[node name="Tree44" parent="OtherTrees" instance=ExtResource("7_xrwqk")]
+position = Vector2(3843, 920)
+
+[node name="Tree45" parent="OtherTrees" instance=ExtResource("7_xrwqk")]
+position = Vector2(3089, 1270)
+
+[node name="Tree46" parent="OtherTrees" instance=ExtResource("7_xrwqk")]
+position = Vector2(3619, 1620)
+
+[node name="Tree47" parent="OtherTrees" instance=ExtResource("7_xrwqk")]
+position = Vector2(3978, 3353)
+
+[node name="Tree48" parent="OtherTrees" instance=ExtResource("7_xrwqk")]
+position = Vector2(4472, 2760)
+
+[node name="Tree49" parent="OtherTrees" instance=ExtResource("7_xrwqk")]
+position = Vector2(1823, 3433)
+
+[node name="Tree50" parent="OtherTrees" instance=ExtResource("7_xrwqk")]
+position = Vector2(1212, 3873)
+
+[node name="Tree51" parent="OtherTrees" instance=ExtResource("7_xrwqk")]
+position = Vector2(-1114, 4223)
+
+[node name="Tree52" parent="OtherTrees" instance=ExtResource("7_xrwqk")]
+position = Vector2(-1743, 3532)
+
+[node name="Tree53" parent="OtherTrees" instance=ExtResource("7_xrwqk")]
+position = Vector2(-1680, 2392)
+
+[node name="Tree54" parent="OtherTrees" instance=ExtResource("7_xrwqk")]
+position = Vector2(-1662, 2590)
+
+[node name="Tree55" parent="OtherTrees" instance=ExtResource("7_xrwqk")]
+position = Vector2(-1698, 2806)
+
+[node name="Tree56" parent="OtherTrees" instance=ExtResource("7_xrwqk")]
+position = Vector2(-1357, 2007)
+
+[node name="Tree57" parent="OtherTrees" instance=ExtResource("7_xrwqk")]
+position = Vector2(-1312, 1414)
+
+[node name="Tree58" parent="OtherTrees" instance=ExtResource("7_xrwqk")]
+position = Vector2(-1824, 1746)
+
+[node name="Tree59" parent="OtherTrees" instance=ExtResource("7_xrwqk")]
+position = Vector2(-1892, -223)
+
+[node name="Tree60" parent="OtherTrees" instance=ExtResource("7_xrwqk")]
+position = Vector2(-2605, -291)
+
+[node name="Tree61" parent="OtherTrees" instance=ExtResource("7_xrwqk")]
+position = Vector2(-3239, 150)
+
+[node name="Tree62" parent="OtherTrees" instance=ExtResource("7_xrwqk")]
+position = Vector2(-3420, 1564)
+
+[node name="Tree39" parent="OtherTrees" instance=ExtResource("7_xrwqk")]
+position = Vector2(-325, 1259)
+
+[node name="Tree40" parent="OtherTrees" instance=ExtResource("7_xrwqk")]
+position = Vector2(-586, 1484)
+
+[node name="Tree41" parent="OtherTrees" instance=ExtResource("7_xrwqk")]
+position = Vector2(-325, 678)
+
+[node name="Tree36" parent="OtherTrees" instance=ExtResource("7_xrwqk")]
+position = Vector2(254, 1085)
+
+[node name="Tree38" parent="OtherTrees" instance=ExtResource("7_xrwqk")]
+position = Vector2(107, 1690)
+
+[node name="Tree37" parent="OtherTrees" instance=ExtResource("7_xrwqk")]
+position = Vector2(233, 704)
+
+[node name="Tree2" parent="OtherTrees" instance=ExtResource("7_xrwqk")]
+position = Vector2(370, -81)
+
+[node name="Tree3" parent="OtherTrees" instance=ExtResource("7_xrwqk")]
+position = Vector2(286, -134)
+
+[node name="Tree4" parent="OtherTrees" instance=ExtResource("7_xrwqk")]
+position = Vector2(-772, -160)
+
+[node name="Tree30" parent="OtherTrees" instance=ExtResource("7_xrwqk")]
+position = Vector2(-338, 1928)
+
+[node name="Tree31" parent="OtherTrees" instance=ExtResource("7_xrwqk")]
+position = Vector2(-154, 2077)
+
+[node name="Tree32" parent="OtherTrees" instance=ExtResource("7_xrwqk")]
+position = Vector2(-609, 2518)
+
+[node name="Tree33" parent="OtherTrees" instance=ExtResource("7_xrwqk")]
+position = Vector2(452, 2749)
+
+[node name="Tombstones" type="Node" parent="."]
+
+[node name="TombstoneGraybox-nobg" type="Sprite2D" parent="Tombstones"]
+position = Vector2(-3206, 2724)
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("11_7o1v6")
+
+[node name="TombstoneGraybox-nobg2" type="Sprite2D" parent="Tombstones"]
+position = Vector2(-3100, 2724)
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("11_7o1v6")
+
+[node name="TombstoneGraybox-nobg3" type="Sprite2D" parent="Tombstones"]
+position = Vector2(-3203, 2965)
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("11_7o1v6")
+
+[node name="TombstoneGraybox-nobg4" type="Sprite2D" parent="Tombstones"]
+position = Vector2(-3097, 2965)
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("11_7o1v6")
+
+[node name="TombstoneGraybox-nobg5" type="Sprite2D" parent="Tombstones"]
+position = Vector2(-2981.25, 2728)
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("11_7o1v6")
+
+[node name="TombstoneGraybox-nobg6" type="Sprite2D" parent="Tombstones"]
+position = Vector2(-2875.25, 2728)
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("11_7o1v6")
+
+[node name="TombstoneGraybox-nobg7" type="Sprite2D" parent="Tombstones"]
+position = Vector2(-2978.25, 2969)
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("11_7o1v6")
+
+[node name="TombstoneGraybox-nobg8" type="Sprite2D" parent="Tombstones"]
+position = Vector2(-2872.25, 2969)
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("11_7o1v6")
+
+[node name="TombstoneGraybox-nobg9" type="Sprite2D" parent="Tombstones"]
+position = Vector2(-2769.25, 2724)
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("11_7o1v6")
+
+[node name="TombstoneGraybox-nobg10" type="Sprite2D" parent="Tombstones"]
+position = Vector2(-2663.25, 2724)
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("11_7o1v6")
+
+[node name="TombstoneGraybox-nobg11" type="Sprite2D" parent="Tombstones"]
+position = Vector2(-2766.25, 2965)
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("11_7o1v6")
+
+[node name="TombstoneGraybox-nobg12" type="Sprite2D" parent="Tombstones"]
+position = Vector2(-2660.25, 2965)
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("11_7o1v6")
+
+[node name="TombstoneGraybox-nobg13" type="Sprite2D" parent="Tombstones"]
+position = Vector2(-2544.5, 2728)
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("11_7o1v6")
+
+[node name="TombstoneGraybox-nobg14" type="Sprite2D" parent="Tombstones"]
+position = Vector2(-2438.5, 2728)
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("11_7o1v6")
+
+[node name="TombstoneGraybox-nobg15" type="Sprite2D" parent="Tombstones"]
+position = Vector2(-2541.5, 2969)
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("11_7o1v6")
+
+[node name="TombstoneGraybox-nobg16" type="Sprite2D" parent="Tombstones"]
+position = Vector2(-2435.5, 2969)
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("11_7o1v6")
+
+[node name="TombstoneGraybox-nobg17" type="Sprite2D" parent="Tombstones"]
+position = Vector2(-3198.25, 3223)
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("11_7o1v6")
+
+[node name="TombstoneGraybox-nobg18" type="Sprite2D" parent="Tombstones"]
+position = Vector2(-3092.25, 3223)
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("11_7o1v6")
+
+[node name="TombstoneGraybox-nobg19" type="Sprite2D" parent="Tombstones"]
+position = Vector2(-2973.5, 3227)
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("11_7o1v6")
+
+[node name="TombstoneGraybox-nobg20" type="Sprite2D" parent="Tombstones"]
+position = Vector2(-2867.5, 3227)
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("11_7o1v6")
+
+[node name="TombstoneGraybox-nobg21" type="Sprite2D" parent="Tombstones"]
+position = Vector2(-2761.5, 3223)
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("11_7o1v6")
+
+[node name="TombstoneGraybox-nobg22" type="Sprite2D" parent="Tombstones"]
+position = Vector2(-2655.5, 3223)
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("11_7o1v6")
+
+[node name="TombstoneGraybox-nobg23" type="Sprite2D" parent="Tombstones"]
+position = Vector2(-2536.75, 3227)
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("11_7o1v6")
+
+[node name="TombstoneGraybox-nobg24" type="Sprite2D" parent="Tombstones"]
+position = Vector2(-2430.75, 3227)
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("11_7o1v6")
+
+[node name="TombstoneGraybox-nobg25" type="Sprite2D" parent="Tombstones"]
+position = Vector2(-3199.25, 3476)
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("11_7o1v6")
+
+[node name="TombstoneGraybox-nobg26" type="Sprite2D" parent="Tombstones"]
+position = Vector2(-3093.25, 3476)
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("11_7o1v6")
+
+[node name="TombstoneGraybox-nobg27" type="Sprite2D" parent="Tombstones"]
+position = Vector2(-3196.25, 3717)
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("11_7o1v6")
+
+[node name="TombstoneGraybox-nobg28" type="Sprite2D" parent="Tombstones"]
+position = Vector2(-3090.25, 3717)
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("11_7o1v6")
+
+[node name="TombstoneGraybox-nobg29" type="Sprite2D" parent="Tombstones"]
+position = Vector2(-2974.5, 3480)
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("11_7o1v6")
+
+[node name="TombstoneGraybox-nobg30" type="Sprite2D" parent="Tombstones"]
+position = Vector2(-2868.5, 3480)
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("11_7o1v6")
+
+[node name="TombstoneGraybox-nobg31" type="Sprite2D" parent="Tombstones"]
+position = Vector2(-2971.5, 3721)
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("11_7o1v6")
+
+[node name="TombstoneGraybox-nobg32" type="Sprite2D" parent="Tombstones"]
+position = Vector2(-2865.5, 3721)
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("11_7o1v6")
+
+[node name="TombstoneGraybox-nobg33" type="Sprite2D" parent="Tombstones"]
+position = Vector2(-2762.5, 3476)
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("11_7o1v6")
+
+[node name="TombstoneGraybox-nobg34" type="Sprite2D" parent="Tombstones"]
+position = Vector2(-2656.5, 3476)
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("11_7o1v6")
+
+[node name="TombstoneGraybox-nobg35" type="Sprite2D" parent="Tombstones"]
+position = Vector2(-2759.5, 3717)
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("11_7o1v6")
+
+[node name="TombstoneGraybox-nobg36" type="Sprite2D" parent="Tombstones"]
+position = Vector2(-2653.5, 3717)
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("11_7o1v6")
+
+[node name="TombstoneGraybox-nobg37" type="Sprite2D" parent="Tombstones"]
+position = Vector2(-2537.75, 3480)
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("11_7o1v6")
+
+[node name="TombstoneGraybox-nobg38" type="Sprite2D" parent="Tombstones"]
+position = Vector2(-2431.75, 3480)
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("11_7o1v6")
+
+[node name="TombstoneGraybox-nobg39" type="Sprite2D" parent="Tombstones"]
+position = Vector2(-2534.75, 3721)
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("11_7o1v6")
+
+[node name="TombstoneGraybox-nobg40" type="Sprite2D" parent="Tombstones"]
+position = Vector2(-2428.75, 3721)
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("11_7o1v6")
+
+[node name="TombstoneGraybox-nobg41" type="Sprite2D" parent="Tombstones"]
+position = Vector2(-3191.5, 3975)
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("11_7o1v6")
+
+[node name="TombstoneGraybox-nobg42" type="Sprite2D" parent="Tombstones"]
+position = Vector2(-3085.5, 3975)
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("11_7o1v6")
+
+[node name="TombstoneGraybox-nobg43" type="Sprite2D" parent="Tombstones"]
+position = Vector2(-2966.75, 3979)
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("11_7o1v6")
+
+[node name="TombstoneGraybox-nobg44" type="Sprite2D" parent="Tombstones"]
+position = Vector2(-2860.75, 3979)
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("11_7o1v6")
+
+[node name="TombstoneGraybox-nobg45" type="Sprite2D" parent="Tombstones"]
+position = Vector2(-2754.75, 3975)
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("11_7o1v6")
+
+[node name="TombstoneGraybox-nobg46" type="Sprite2D" parent="Tombstones"]
+position = Vector2(-2648.75, 3975)
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("11_7o1v6")
+
+[node name="TombstoneGraybox-nobg47" type="Sprite2D" parent="Tombstones"]
+position = Vector2(-2530, 3979)
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("11_7o1v6")
+
+[node name="TombstoneGraybox-nobg48" type="Sprite2D" parent="Tombstones"]
+position = Vector2(-2424, 3979)
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("11_7o1v6")
+
+[node name="Farmland" type="Polygon2D" parent="."]
+texture_repeat = 2
+position = Vector2(271, -2338)
+texture = ExtResource("12_uwvvw")
+polygon = PackedVector2Array(1995, -1211, 4428, -1229, 4401, 423, 2011, 448)
+
+[node name="MountainRange" type="Polygon2D" parent="."]
+texture_repeat = 2
+position = Vector2(-5229, -3926)
+texture = ExtResource("13_ttu8a")
+texture_scale = Vector2(0.5, 0.5)
+polygon = PackedVector2Array(1610, -741, 6113, -752, 6454, -7, 1593, 28)
+
+[node name="MountainRange2" type="Polygon2D" parent="."]
+texture_repeat = 2
+position = Vector2(179, -3935)
+texture = ExtResource("13_ttu8a")
+texture_scale = Vector2(0.5, 0.5)
+polygon = PackedVector2Array(1610, -741, 5070, -761, 5069, 2, 1359, 20)

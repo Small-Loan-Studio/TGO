@@ -1,11 +1,14 @@
-[gd_scene load_steps=7 format=3 uid="uid://cobsc7v0oqc8l"]
+[gd_scene load_steps=9 format=3 uid="uid://cobsc7v0oqc8l"]
 
 [ext_resource type="Script" path="res://Scripts/Driver.gd" id="1_agcjs"]
 [ext_resource type="Script" path="res://Scripts/AudioManager.gd" id="2_4seev"]
 [ext_resource type="Script" path="res://Scripts/UI/Curtain.gd" id="2_gom2g"]
 [ext_resource type="Script" path="res://Scripts/Menu/MenuManager.gd" id="3_h1ccd"]
 [ext_resource type="PackedScene" uid="uid://ci7ksomi5hsr5" path="res://Scenes/Menu/DebugMenu.tscn" id="3_i7nbg"]
+[ext_resource type="Script" path="res://Scripts/UI/HUD.gd" id="4_kq6n3"]
 [ext_resource type="PackedScene" uid="uid://mqvl5162rawb" path="res://Scenes/Devin.tscn" id="6_gmy4s"]
+[ext_resource type="Script" path="res://Scripts/Components/Inventory/InventoryManager.gd" id="6_na5am"]
+[ext_resource type="Script" path="res://Scripts/Resources/Clock.gd" id="6_t80u5"]
 
 [node name="Driver" type="Node2D"]
 script = ExtResource("1_agcjs")
@@ -37,6 +40,37 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+script = ExtResource("4_kq6n3")
+
+[node name="Toast" type="ColorRect" parent="OverlayManager/HUD"]
+unique_name_in_owner = true
+visible = false
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -99.0
+offset_top = -79.0
+offset_right = 101.0
+offset_bottom = -39.0
+grow_horizontal = 2
+grow_vertical = 0
+color = Color(1, 1, 1, 0.733333)
+
+[node name="ToastLabel" type="Label" parent="OverlayManager/HUD/Toast"]
+clip_contents = true
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+text = "Toast Text"
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [node name="MenuManager" type="Control" parent="OverlayManager"]
 layout_mode = 3
@@ -58,15 +92,24 @@ offset_right = -300.0
 offset_bottom = -1.0
 size_flags_horizontal = 4
 
+[node name="InventoryManager" type="Node" parent="."]
+script = ExtResource("6_na5am")
+
 [node name="GameWorld" type="Node2D" parent="."]
 y_sort_enabled = true
+
+[node name="Clock" type="Node" parent="GameWorld"]
+script = ExtResource("6_t80u5")
+
+[node name="Timer" type="Timer" parent="GameWorld/Clock"]
+wait_time = 5.0
 
 [node name="Devin" parent="GameWorld" instance=ExtResource("6_gmy4s")]
 unique_name_in_owner = true
 visible = false
 position = Vector2(0, 0)
-player_controled = false
 
 [node name="Camera2D" type="Camera2D" parent="GameWorld/Devin"]
 
 [connection signal="request_load" from="OverlayManager/MenuManager/DebugMenu" to="." method="request_debug_load"]
+[connection signal="timeout" from="GameWorld/Clock/Timer" to="GameWorld/Clock" method="_on_timer_timeout"]

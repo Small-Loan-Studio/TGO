@@ -1,0 +1,19 @@
+[gd_scene load_steps=4 format=3 uid="uid://rgvfsx60t2ap"]
+
+[ext_resource type="Script" path="res://Scenes/Components/Inventory/Item.gd" id="1_im3cl"]
+[ext_resource type="PackedScene" uid="uid://c2040l84asu8j" path="res://Scenes/Components/Interactable.tscn" id="2_62nej"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_wnrpl"]
+resource_local_to_scene = true
+radius = 9.0
+
+[node name="Item" type="Node2D"]
+texture_filter = 1
+script = ExtResource("1_im3cl")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+
+[node name="Interactable" parent="." instance=ExtResource("2_62nej")]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Interactable"]
+shape = SubResource("CircleShape2D_wnrpl")
