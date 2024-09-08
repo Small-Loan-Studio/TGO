@@ -12,13 +12,12 @@
       - [Curtain/HUD/Journal/Dialogue/Menus](#curtainhudjournaldialoguemenus)
     - [GameWorld](#gameworld)
       - [Clock](#clock)
-      - [Inventory](#inventory)
-      - [LevelManager](#levelmanager)
+      - [InventoryManager](#inventorymanager)
       - [Player](#player)
-        - [Lamp](#lamp)
+        - [Camera2D](#camera2d)
         - [\<OtherItems\>](#otheritems)
-      - [LevelSegment](#levelsegment)
-        - [Placeables](#placeables)
+      - [LevelBase](#levelbase)
+        - [Objects / Characters / Markers](#objects--characters--markers)
 
 ## Goal
 In this document I want to lay out the very high level approach we will take to
@@ -31,6 +30,7 @@ sure to check the changelog and the farther in the past it is the more likely
 it's hiding dragons.
 
 ## Changelog
+- 2024-09-07: Minor update to match the state of the world.
 - 2024-07-09: Initial draft. Wish us luck.
 
 ## Dataflow / Signals / Interfaces.
@@ -63,13 +63,14 @@ Driver
 │  └─ Menus
 └─ GameWorld
    ├─ Clock
-   ├─ Inventory
-   └─ LevelManager
-      ├─ Player
-      │  ├─ Lamp
-      │  └─ <OtherItems>
-      └─ LevelSegment
-         └─ Placeables
+   ├─ InventoryManager
+   ├─ Player
+   │  ├─ Camera2D
+   │  └─ <OtherItems>
+   └─ LevelBase
+      ├─ Objects
+      │  └─ Characters
+      └─ Markers
 ```
 
 ## Scene Tree Details
@@ -136,48 +137,34 @@ In the event we run a day/night cycle this will handle the world clock's tick
 rate and contain signals indicating important times (day, dusk, night) as well
 as any global color grading/overlays associated with time of day.
 
-#### Inventory
+#### InventoryManager
 
 Data model for what the Player has available to them. De-coupled from the UI
 representation but can fire signals as state changes.
 
 Plausibly covers gear / equipment state.
 
-#### LevelManager
-
-Details currently unknown but this is a stand-in for something orchestrating
-a visual representation of the world that Devin is currently exploring. It's
-likely a loader for relevant maps, handles dispatch of events relevant to other
-systems, understands any necessary work to convey Devin's state between level
-scenes, etc.
-
-Likely a manager in its own right and an abstraction of a lot of logic.
-
-In a fixed-camera setup we may define boundaries here; in an openworld scenario we
-probably have signal handlers to load/unload scenes here.
-
 #### Player
 
 Player representation in a scene. Handles input intended to guide player actions
 (move, interact, use item, etc). Signals can be used to indicate state changes.
 
-Plausibly this exists as a peer node to specific map segments under a LevelManager
-to avoid needing to juggle the node as we move between map segments.
-
-##### Lamp
-
-Currently the only known player-attached item. Currently has visual representation
-but may not always.
+##### Camera2D
+Our current setup has the camera as a child of the player. That will eventually
+change to get more designed camera behavior but for now it works pretty well.
 
 ##### &lt;OtherItems&gt;
 
 TBD, do we have things that get player-attached? idk.
 
-#### LevelSegment
+#### LevelBase
 
-An explorable segment of the world. Extremely ambigious on details, TBD.
+When we load a level it gets added as a child of the GameWorld / a peer of
+the player. Currently level loading and dispatch lives in Driver which provides
+a reference it itself to all loaded levels. For more information on level
+loading see [tgo-levels.md](./tgo-levels.md) and [tgo-level-loading.md](./tgo-level-loading.md).
 
-##### Placeables
+##### Objects / Characters / Markers
 
 NPCs, objects, buildings. Things that Devin interacts with. We probably
 won't have a Node of type Placeable or even one that inherits from
