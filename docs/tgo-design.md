@@ -102,4 +102,19 @@ take a look at how can work in a real situation.
 We've mentioned a "box and arrows" diagram a couple of times here and even given
 and example. But what is it really?
 
-TODO
+Well, there's no formal definition that I know of but I use it to describe a
+low-overhead design document that helps you/your readers understand the major
+components of a system and how they work together / integrate with other aspects
+of the game. Roughly:
+- each major component of your design gets a "box"
+- interactions between components get an "arrow" indicating how they connect
+
+The Inventory example above is one form that's focused on a single system but
+it's not canonical in any way. You don't need APIs or attributes listed, often
+you'll include systems that you aren't directly modifying, etc. Even something
+as simple as the Scene tree breakdown we have in [tgo-arch.md](./tgo-arch.md#prospective-scene-tree)
+could be considered one.
+
+Some tools I find useful when building these are:
+- https://tree.nathanfriend.io/ &mdash; for the ASCII trees
+- [excalidraw](https://excalidraw.com/) or [draw.io](https://app.diagrams.net/) &mdash; for more complicated diagrams like the Inventory example
