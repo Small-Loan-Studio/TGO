@@ -115,6 +115,6 @@ you'll include systems that you aren't directly modifying, etc. Even something
 as simple as the Scene tree breakdown we have in [tgo-arch.md](./tgo-arch.md#prospective-scene-tree)
 could be considered one.
 
-Some tools I find useful when building these are:
+Some tools I find useful when making these are:
 - https://tree.nathanfriend.io/ &mdash; for the ASCII trees
 - [excalidraw](https://excalidraw.com/) or [draw.io](https://app.diagrams.net/) &mdash; for more complicated diagrams like the Inventory example
