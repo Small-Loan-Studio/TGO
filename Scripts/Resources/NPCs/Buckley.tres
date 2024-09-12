@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="NPCConfig" load_steps=3 format=3 uid="uid://0e6y5ablkqx"]
+
+[ext_resource type="Script" path="res://Scripts/Resources/NpcConfig.gd" id="1_cgkq4"]
+[ext_resource type="SpriteFrames" uid="uid://602xb41y0tak" path="res://Art/Characters/stub_animated_sprite.tres" id="2_5r5b6"]
+
+[resource]
+script = ExtResource("1_cgkq4")
+character_id = "mayor_buckley"
+sprite_sheet = ExtResource("2_5r5b6")
+valid_timelines = Array[String](["res://Dialogue/Buckley/BuckleyTestTimeline.dtl"])

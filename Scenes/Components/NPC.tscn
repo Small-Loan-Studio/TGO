@@ -1,0 +1,36 @@
+[gd_scene load_steps=5 format=3 uid="uid://c2kg6apj756dw"]
+
+[ext_resource type="PackedScene" uid="uid://cx703e8t27grh" path="res://Scenes/Components/Character.tscn" id="1_20i0n"]
+[ext_resource type="Script" path="res://Scripts/Components/NPC.gd" id="2_eb6uj"]
+[ext_resource type="PackedScene" uid="uid://c2040l84asu8j" path="res://Scenes/Components/Interactable.tscn" id="3_1etq5"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_bo3tg"]
+radius = 13.0
+
+[node name="NPC" instance=ExtResource("1_20i0n")]
+script = ExtResource("2_eb6uj")
+config = null
+dlg = null
+activate_external_sensors = false
+
+[node name="AnimatedSprite2D" parent="." index="0"]
+sprite_frames = null
+
+[node name="SensorSet" parent="." index="1"]
+visible = false
+
+[node name="InteractionSensor" parent="SensorSet" index="0"]
+monitoring = false
+monitorable = false
+
+[node name="PushPullSensor" parent="SensorSet" index="1"]
+monitoring = false
+monitorable = false
+
+[node name="TalkSensor" parent="." index="4" instance=ExtResource("3_1etq5")]
+actions = Array[Resource("res://Scripts/Resources/InteractableAction.gd")]([])
+action_verb = 2
+
+[node name="InteractableShape2D" type="CollisionShape2D" parent="TalkSensor" index="0"]
+position = Vector2(0, -9)
+shape = SubResource("CircleShape2D_bo3tg")

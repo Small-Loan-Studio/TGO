@@ -19,6 +19,10 @@ signal triggered(actor: Character)
 ## evaluated before the signal is emitted.
 @export var actions: Array[InteractableAction]
 
+## Changing this impacts what the game toast will be when the player
+## has a chance to interact with the interactable object.
+@export var action_verb: Enums.ActionVerb = Enums.ActionVerb.DEFAULT
+
 ## Tracks the level that the action is taking place in
 var _cur_level: LevelBase
 
@@ -43,6 +47,11 @@ func trigger(actor: Character) -> void:
 	triggered.emit(actor)
 
 
-# TODO: Check if Collision layer is set properly
+func verb_name() -> String:
+	return Enums.action_verb_name(action_verb)
+
+
+# TODO: Check if Collision layer is set properly -- if we do this make sure to
+# add @tool annotation
 func _get_configuration_warnings() -> PackedStringArray:
 	return []

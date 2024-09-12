@@ -44,6 +44,7 @@ shape = SubResource("CircleShape2D_72abb")
 [node name="Interactable" parent="Objects/RigidBody2D" index="1" instance=ExtResource("5_io1ts")]
 y_sort_enabled = true
 actions = Array[Resource("res://Scripts/Resources/InteractableAction.gd")]([SubResource("Resource_uvdr6")])
+action_verb = 5
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Objects/RigidBody2D/Interactable" index="0"]
 position = Vector2(-1.5, 10.5)

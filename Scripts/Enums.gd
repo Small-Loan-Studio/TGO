@@ -66,6 +66,8 @@ enum TargetType {
 	MOVEABLE_BLOCK,
 }
 
+enum ActionVerb { DEFAULT, PICK_UP, TALK, PUSH_PULL, RELEASE, USE }
+
 const AUDIO_BUS_INFO = {
 	AudioBus.MASTER: [0, "Global"],
 	AudioBus.BACKGROUND_MUSIC: [1, "Background Music"],
@@ -184,3 +186,21 @@ static func audio_bus_index(bus: AudioBus) -> int:
 
 static func audio_bus_description(bus: AudioBus) -> String:
 	return AUDIO_BUS_INFO[bus][1]
+
+
+static func action_verb_name(av: ActionVerb) -> String:
+	match av:
+		ActionVerb.PICK_UP:
+			return "Pick Up"
+		ActionVerb.TALK:
+			return "Talk"
+		ActionVerb.USE:
+			return "Use"
+		ActionVerb.PUSH_PULL:
+			return "Grab"
+		ActionVerb.RELEASE:
+			return "Release"
+		ActionVerb.DEFAULT:
+			return "Interact"
+	printerr("Unknown action verb name requested: ", av)
+	return "Interact"

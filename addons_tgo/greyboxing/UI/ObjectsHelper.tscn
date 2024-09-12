@@ -129,11 +129,48 @@ alignment = 1
 
 [node name="NPC" type="Button" parent="Container/AddItems"]
 layout_mode = 2
-disabled = true
 text = "NPC"
 
 [node name="NPCDetails" type="VBoxContainer" parent="Container/AddItems"]
 visible = false
+layout_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Container/AddItems/NPCDetails"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Container/AddItems/NPCDetails/HBoxContainer"]
+layout_mode = 2
+text = "NPC Config"
+
+[node name="MarginContainer" type="MarginContainer" parent="Container/AddItems/NPCDetails/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/margin_left = 8
+
+[node name="NPCDropdown" type="OptionButton" parent="Container/AddItems/NPCDetails/HBoxContainer/MarginContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="Container/AddItems/NPCDetails"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Container/AddItems/NPCDetails/HBoxContainer2"]
+layout_mode = 2
+text = "Dialogue Timeline"
+
+[node name="MarginContainer" type="MarginContainer" parent="Container/AddItems/NPCDetails/HBoxContainer2"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/margin_left = 8
+
+[node name="NPCDialoguePath" type="LineEdit" parent="Container/AddItems/NPCDetails/HBoxContainer2/MarginContainer"]
+unique_name_in_owner = true
+visible = false
+layout_mode = 2
+
+[node name="NPCDlgDropdown" type="OptionButton" parent="Container/AddItems/NPCDetails/HBoxContainer2/MarginContainer"]
+unique_name_in_owner = true
 layout_mode = 2
 
 [node name="CompleteButtons" type="HBoxContainer" parent="Container"]
@@ -151,8 +188,11 @@ layout_mode = 2
 size_flags_horizontal = 3
 text = "Create"
 
-[connection signal="pressed" from="Container/AddItems/Generic" to="." method="_select_section" binds= ["generic"]]
-[connection signal="pressed" from="Container/AddItems/Pushable" to="." method="_select_section" binds= ["pushable"]]
-[connection signal="pressed" from="Container/AddItems/NPC" to="." method="_select_section" binds= ["npc"]]
+[connection signal="pressed" from="Container/AddItems/Generic" to="." method="_select_object_type" binds= ["generic"]]
+[connection signal="pressed" from="Container/AddItems/Pushable" to="." method="_select_object_type" binds= ["pushable"]]
+[connection signal="pressed" from="Container/AddItems/NPC" to="." method="_select_object_type" binds= ["npc"]]
+[connection signal="visibility_changed" from="Container/AddItems/NPCDetails" to="." method="_npc_detail_visibility_changed"]
+[connection signal="item_selected" from="Container/AddItems/NPCDetails/HBoxContainer/MarginContainer/NPCDropdown" to="." method="_npc_config_selected"]
+[connection signal="text_changed" from="Container/AddItems/NPCDetails/HBoxContainer2/MarginContainer/NPCDialoguePath" to="." method="_npc_dialogue_text_changed"]
 [connection signal="pressed" from="Container/CompleteButtons/Cancel" to="." method="_reset"]
 [connection signal="pressed" from="Container/CompleteButtons/Create" to="." method="_apply"]

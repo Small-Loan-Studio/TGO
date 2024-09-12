@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://cobsc7v0oqc8l"]
+[gd_scene load_steps=10 format=3 uid="uid://cobsc7v0oqc8l"]
 
 [ext_resource type="Script" path="res://Scripts/Driver.gd" id="1_agcjs"]
 [ext_resource type="Script" path="res://Scripts/AudioManager.gd" id="2_4seev"]
@@ -108,6 +108,7 @@ wait_time = 5.0
 unique_name_in_owner = true
 visible = false
 position = Vector2(0, 0)
+activate_external_sensors = null
 
 [node name="Camera2D" type="Camera2D" parent="GameWorld/Devin"]
 

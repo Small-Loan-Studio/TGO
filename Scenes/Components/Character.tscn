@@ -1,4 +1,4 @@
-[gd_scene load_steps=5 format=3 uid="uid://cx703e8t27grh"]
+[gd_scene load_steps=6 format=3 uid="uid://cx703e8t27grh"]
 
 [ext_resource type="Script" path="res://Scripts/Components/Character.gd" id="1_tt4fa"]
 [ext_resource type="SpriteFrames" uid="uid://b3igo1ygiyl0b" path="res://Art/Characters/character_placeholder.tres" id="2_3xe5u"]
@@ -9,19 +9,21 @@ size = Vector2(32.4777, 29.0933)
 [sub_resource type="CircleShape2D" id="CircleShape2D_vih0k"]
 radius = 5.09902
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_bo3tg"]
+radius = 13.0
+
 [node name="Character" type="CharacterBody2D"]
-y_sort_enabled = true
 position = Vector2(0, 18)
 motion_mode = 1
 script = ExtResource("1_tt4fa")
-_override_default_sprite_frames = ExtResource("2_3xe5u")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
-position = Vector2(0, -30)
+position = Vector2(0, -33)
 sprite_frames = ExtResource("2_3xe5u")
+offset = Vector2(0, 5)
 
 [node name="SensorSet" type="Node2D" parent="."]
-position = Vector2(0, -8)
+position = Vector2(0, -11)
 
 [node name="InteractionSensor" type="Area2D" parent="SensorSet"]
 collision_layer = 0
@@ -40,9 +42,13 @@ position = Vector2(0, -19)
 shape = SubResource("CircleShape2D_vih0k")
 
 [node name="PinJoint2D" type="PinJoint2D" parent="."]
-position = Vector2(0, -8)
+position = Vector2(0, -11)
 node_a = NodePath("..")
 disable_collision = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, -9)
+shape = SubResource("CircleShape2D_bo3tg")
 
 [connection signal="area_entered" from="SensorSet/InteractionSensor" to="." method="_on_interaction_sensor_entered"]
 [connection signal="area_exited" from="SensorSet/InteractionSensor" to="." method="_on_interaction_sensor_exited"]

@@ -1,0 +1,11 @@
+[gd_scene load_steps=3 format=3 uid="uid://c7gburp74xsto"]
+
+[ext_resource type="PackedScene" uid="uid://ck6l6e7b7qo1o" path="res://Scenes/Components/NPC.tscn" id="1_gf01s"]
+[ext_resource type="SpriteFrames" uid="uid://602xb41y0tak" path="res://Art/Characters/stub_animated_sprite.tres" id="2_rilbr"]
+
+[node name="Buckley" instance=ExtResource("1_gf01s")]
+
+[node name="AnimatedSprite2D" parent="." index="0"]
+scale = Vector2(0.5, 0.5)
+sprite_frames = ExtResource("2_rilbr")
+animation = &"east"
