@@ -5,16 +5,20 @@ extends Control
 
 const GREYBOX_OBJECT_SCENE = "res://Scenes/Components/Greyboxing/GreyboxObject.tscn"
 const PUSHABLE_OBJECT_SCENE = "res://Scenes/Components/Greyboxing/MoveableBlock.tscn"
+const NPC_OBJECT_SCENE = "res://Scenes/Components/NPC.tscn"
 const GENERIC_KEY = "generic"
 const PUSHABLE_KEY = "pushable"
 const NPC_KEY = "npc"
 const CHARACTERS_CHILD_NODE = "Characters"
-const NPC_PATH = "res://Scenes/Components/NPC"
+const NPC_PATH = "res://Scripts/Resources/NPCs"
 const BUTTON_IDX = 0
 const DETAIL_IDX = 1
 const RESET_IDX = 2
 
+## character: String -> NPCConfig
 var _npc_dict: Dictionary = {}
+## timeline name: String -> String (path to DialogicTimeline)
+var _npc_timeline_dict: Dictionary = {}
 
 var _plugin_ref: EditorPlugin
 ## Stores a collection of data for each helper section.
@@ -46,6 +50,7 @@ var _valid_keys: Array[String] = []
 @onready var _npc_detail := $Container/AddItems/NPCDetails
 @onready var _npc_dropdown := %NPCDropdown
 @onready var _npc_dlg_path: LineEdit = %NPCDialoguePath
+@onready var _npc_dlg_dropdown := %NPCDlgDropdown
 
 @onready var _complete_buttons := $Container/CompleteButtons
 
@@ -186,10 +191,10 @@ func _reset_pushable_state() -> void:
 
 func _apply_npc() -> void:
 	var npc_name: String = _npc_dropdown.get_item_text(_npc_dropdown.get_selected_id())
-	var path: String = _npc_dict[npc_name]
+	var config: NPCConfig = _npc_dict[npc_name]
 
-	var scene := ResourceLoader.load(path) as PackedScene
-	var new_npc := scene.instantiate() as NPC
+	var new_npc := preload(NPC_OBJECT_SCENE).instantiate()
+	new_npc.config = config
 
 	# This is fragile, messy, and runs counter one of my gdscript principles...
 	# And so while I'd rather not do it I also don't want to restructure the
@@ -201,6 +206,7 @@ func _apply_npc() -> void:
 		var dlg := InteractableDialogue.new()
 		dlg.timeline = timeline
 		new_npc.dlg = dlg
+
 	parent.add_child(new_npc)
 	new_npc.owner = _objects_parent.get_parent()
 
@@ -210,11 +216,11 @@ func _reset_npc_state() -> void:
 
 
 func _npc_get_timeline() -> DialogicTimeline:
-	var path := _npc_dlg_path.text
-	var resource := ResourceLoader.load(path)
-	if !(resource is DialogicTimeline):
+	var dlg_index: int = _npc_dlg_dropdown.get_selected_id()
+	if dlg_index == 0:
 		return null
-	return resource
+	var key: String = _npc_dlg_dropdown.get_item_text(dlg_index)
+	return _npc_timeline_dict[key]
 
 
 func _npc_dialogue_text_changed(new_text: String) -> void:
@@ -247,8 +253,40 @@ func _npc_detail_visibility_changed() -> void:
 	dir.list_dir_begin()
 	var npc_file := dir.get_next()
 	while npc_file != "":
-		if npc_file.ends_with(".tscn"):
-			var key := npc_file.substr(0, npc_file.length() - 5)
-			_npc_dict[key] = "%s/%s" % [NPC_PATH, npc_file]
-			_npc_dropdown.add_item(key)
+		if npc_file.ends_with(".tres"):
+			var config := ResourceLoader.load(NPC_PATH + "/" + npc_file) as NPCConfig
+			if config != null:
+				var key := config.character_id
+				_npc_dict[key] = config
+				_npc_dropdown.add_item(key)
 		npc_file = dir.get_next()
+	_npc_dlg_refresh()
+
+func _npc_config_selected(index: int) -> void:
+	_npc_dlg_refresh()
+
+func _npc_dlg_refresh() -> void:
+	# clear existing state
+	_npc_dlg_dropdown.clear()
+	_npc_timeline_dict.clear()
+
+	# get current id
+	var index: int = _npc_dropdown.get_selected_id()
+	if index == -1:
+		return
+
+	# get config
+	var config: NPCConfig = _npc_dict[_npc_dropdown.get_item_text(index)]
+	print(config)
+
+	# populate with DTL options
+	_npc_dlg_dropdown.add_item("None")
+	for dtl_path in config.valid_timelines:
+		print("dtl_path: ", dtl_path)
+		if dtl_path.ends_with('.dtl'):
+			var dtl := load(dtl_path)
+			if dtl is DialogicTimeline:
+				var key := dtl.resource_path.split("/").slice(-1)[0]
+				key = key.substr(0, key.length() - 4)
+				_npc_timeline_dict[key] = dtl
+				_npc_dlg_dropdown.add_item(key)
