@@ -30,7 +30,7 @@ var _sections: Dictionary = {}
 var _objects_parent: Node = null
 
 ## Details which object type we're currently configuring, will be one of _valid_keys
-var _focused_section: String = ""
+var _focused_object_type: String = ""
 
 ## what kind of objects we can configure
 var _valid_keys: Array[String] = []
@@ -85,7 +85,7 @@ func setup(plugin: EditorPlugin, parent_node: Node) -> void:
 
 
 func _reset() -> void:
-	_focused_section = ""
+	_focused_object_type = ""
 	for k: String in _sections.keys():
 		var main: Control = _sections[k][BUTTON_IDX]
 		var detail: Control = _sections[k][DETAIL_IDX]
@@ -103,7 +103,7 @@ func _select_section(section_name: String) -> void:
 	if !(section_name in _valid_keys):
 		assert(false, "Invalid section key provided: %s vs %s" % [section_name, _valid_keys])
 
-	_focused_section = section_name
+	_focused_object_type = section_name
 	var detail: Control = _sections[section_name][DETAIL_IDX]
 	detail.show()
 	_complete_buttons.show()
@@ -115,7 +115,7 @@ func _select_section(section_name: String) -> void:
 
 ## Apply whatever section + configuration is in process
 func _apply() -> void:
-	match _focused_section:
+	match _focused_object_type:
 		GENERIC_KEY:
 			_apply_generic()
 		PUSHABLE_KEY:
@@ -123,8 +123,8 @@ func _apply() -> void:
 		NPC_KEY:
 			_apply_npc()
 		_:
-			assert(false, "Invalid focused section: " + _focused_section)
-	var prev := _focused_section
+			assert(false, "Invalid focused object Type: " + _focused_object_type)
+	var prev := _focused_object_type
 
 	_reset()
 	_select_section(prev)
@@ -132,7 +132,7 @@ func _apply() -> void:
 
 ## When adding a child node examine existing children and find a unique
 ## name based in in_str
-func _mk_unique(parent: Node, in_str: String) -> String:
+func _mk_name_unique(parent: Node, in_str: String) -> String:
 	if !parent.has_node(in_str):
 		return in_str
 
@@ -148,20 +148,13 @@ func _apply_generic() -> void:
 	var obj_name := _generic_name.text.strip_edges()
 	if obj_name == "":
 		obj_name = "GreyboxObj"
-	var new_obj_name := _mk_unique(_objects_parent, obj_name)
+	var new_obj_name := _mk_name_unique(_objects_parent, obj_name)
 	var collides := _generic_block_movement.button_pressed
 	var occludes := _generic_occludes.button_pressed
 	var interacts := _generic_interacts.button_pressed
 
 	var obj: GreyboxObject = preload(GREYBOX_OBJECT_SCENE).instantiate()
 	obj.name = new_obj_name
-	# var urm := _plugin_ref.get_undo_redo()
-	# _objects_parent.add_child(obj)
-	# urm.create_action(
-	# 	"Add generic greybox object (%s, %s, %s)" % [collides, occludes, interacts],
-	# 	0,
-	# 	_objects_parent
-	# )
 	_objects_parent.add_child(obj)
 	# the owner of the new greybox object is the level (Object's parent's parent)
 	obj.owner = _objects_parent.get_parent()
@@ -181,7 +174,7 @@ func _apply_pushable() -> void:
 	var obj_name := _pushable_name.text
 	if obj_name == "":
 		obj_name = "PushableBlock"
-	obj_name = _mk_unique(_objects_parent, obj_name)
+	obj_name = _mk_name_unique(_objects_parent, obj_name)
 
 	var obj: MoveableBlock = preload(PUSHABLE_OBJECT_SCENE).instantiate()
 	obj.name = obj_name
@@ -208,7 +201,7 @@ func _apply_npc() -> void:
 	# And so while I'd rather not do it I also don't want to restructure the
 	# whole of the plugin setup bullshit so here we are.
 	var parent := _objects_parent.get_node(CHARACTERS_CHILD_NODE)
-	new_npc.name = _mk_unique(parent, npc_name)
+	new_npc.name = _mk_name_unique(parent, npc_name)
 	var timeline := _npc_get_timeline()
 	if timeline != null:
 		var dlg := InteractableDialogue.new()
@@ -221,8 +214,13 @@ func _apply_npc() -> void:
 
 func _reset_npc_state() -> void:
 	_npc_dlg_path.text = ""
+	_npc_dlg_dropdown.selected = 0
 
 
+## returns a timeline from the selected path or null of element 0 is selected.
+## N.B. Entry 0 is, by convention, "None" in the event we want to have a
+## custom timeline that doesn't come from the "valid timeline" set in the
+## NPCConfig.
 func _npc_get_timeline() -> DialogicTimeline:
 	var dlg_index: int = _npc_dlg_dropdown.get_selected_id()
 	if dlg_index == 0:
@@ -231,18 +229,8 @@ func _npc_get_timeline() -> DialogicTimeline:
 	return _npc_timeline_dict[key]
 
 
-func _npc_dialogue_text_changed(new_text: String) -> void:
-	if !new_text.ends_with(".dtl"):
-		_npc_dlg_path.add_theme_color_override("font_color", Color.RED)
-		return
-
-	if null == _npc_get_timeline():
-		_npc_dlg_path.add_theme_color_override("font_color", Color.RED)
-		return
-
-	_npc_dlg_path.remove_theme_color_override("font_color")
-
-
+# is called when the detail visibility is chahnged; when made visible
+# we reload the viable NPC configs and populate the template dropdown
 func _npc_detail_visibility_changed() -> void:
 	if _npc_detail == null:
 		return
@@ -254,12 +242,13 @@ func _npc_detail_visibility_changed() -> void:
 
 	var dir := DirAccess.open(NPC_PATH)
 	if dir == null:
-		printerr("Failed to open npc resource path:")
-		printerr(DirAccess.get_open_error())
+		printerr("Failed to open npc resource path:", DirAccess.get_open_error())
 		return
 
 	dir.list_dir_begin()
 	var npc_file := dir.get_next()
+	# walks the NPC resource path and gets the configured resources
+	# TODO: doesn't traverse subdirs
 	while npc_file != "":
 		if npc_file.ends_with(".tres"):
 			var config := ResourceLoader.load(NPC_PATH + "/" + npc_file) as NPCConfig
@@ -275,6 +264,9 @@ func _npc_config_selected(_index: int) -> void:
 	_npc_dlg_refresh()
 
 
+## Populate the dialog selection dropdown based on the currently selected NPC
+## template. Will always include an element-0 "None/Custom" entry if you don't
+## want to use the blessed timelines for some reason.
 func _npc_dlg_refresh() -> void:
 	# clear existing state
 	_npc_dlg_dropdown.clear()
@@ -290,7 +282,7 @@ func _npc_dlg_refresh() -> void:
 	print(config)
 
 	# populate with DTL options
-	_npc_dlg_dropdown.add_item("None")
+	_npc_dlg_dropdown.add_item("None / Custom")
 	for dtl_path in config.valid_timelines:
 		print("dtl_path: ", dtl_path)
 		if dtl_path.ends_with(".dtl"):

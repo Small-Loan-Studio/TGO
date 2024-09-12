@@ -108,6 +108,7 @@ wait_time = 5.0
 unique_name_in_owner = true
 visible = false
 position = Vector2(0, 0)
+activate_external_sensors = null
 
 [node name="Camera2D" type="Camera2D" parent="GameWorld/Devin"]
 

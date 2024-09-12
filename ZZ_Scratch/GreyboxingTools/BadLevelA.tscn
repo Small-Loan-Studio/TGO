@@ -95,8 +95,8 @@ height = 3
 
 [node name="MayorBuckley" parent="Objects/Characters" index="0" instance=ExtResource("10_2hlxg")]
 position = Vector2(546, 308)
-config = null
 dlg = SubResource("Resource_lh8xy")
+id = "mayor_buckley"
 
 [node name="PlayerStart" type="Node2D" parent="Markers" index="0"]
 position = Vector2(522, 183)
