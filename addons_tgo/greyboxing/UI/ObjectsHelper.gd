@@ -270,8 +270,10 @@ func _npc_detail_visibility_changed() -> void:
 		npc_file = dir.get_next()
 	_npc_dlg_refresh()
 
+
 func _npc_config_selected(_index: int) -> void:
 	_npc_dlg_refresh()
+
 
 func _npc_dlg_refresh() -> void:
 	# clear existing state
@@ -291,7 +293,7 @@ func _npc_dlg_refresh() -> void:
 	_npc_dlg_dropdown.add_item("None")
 	for dtl_path in config.valid_timelines:
 		print("dtl_path: ", dtl_path)
-		if dtl_path.ends_with('.dtl'):
+		if dtl_path.ends_with(".dtl"):
 			var dtl := load(dtl_path)
 			if dtl is DialogicTimeline:
 				var key := dtl.resource_path.split("/").slice(-1)[0]

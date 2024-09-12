@@ -14,6 +14,7 @@ const SCENE_RES = preload("res://Scenes/Components/NPC.tscn")
 
 @onready var _talk_sensor := $TalkSensor
 
+
 func _ready() -> void:
 	if !Engine.is_editor_hint() && dlg != null:
 		_talk_sensor.actions.append(dlg)
