@@ -17,16 +17,16 @@ const RESET_IDX = 2
 
 var _plugin_ref: EditorPlugin
 
-## Stores a collection of data for each helper section.
+## Stores a collection of data for each helper.
 ##   Map[String, [Control, Control, Callable]].
 ##
-## Key: section id
-## Value[0]: The button that activates a section
-## Value[1]: A container with any configuration necessary for the section
+## Key: object type id
+## Value[0]: The button that activates an object detail config
+## Value[1]: A container with any configuration necessary for the object config
 ## Value[2]: Callable that resets the configuration back to a default state
-var _sections: Dictionary = {}
+var _object_types: Dictionary = {}
 
-## Stores the section parent, i.e., LevelBase.Objects
+## Stores the object parent, i.e., LevelBase.Objects
 var _objects_parent: Node = null
 
 ## Details which object type we're currently configuring, will be one of _valid_keys
@@ -64,12 +64,12 @@ var _npc_timeline_dict: Dictionary = {}
 
 
 func _ready() -> void:
-	_sections = {
+	_object_types = {
 		GENERIC_KEY: [_generic, _generic_detail, _reset_generic_state],
 		PUSHABLE_KEY: [_pushable, _pushable_detail, _reset_pushable_state],
 		NPC_KEY: [_npc, _npc_detail, _reset_npc_state],
 	}
-	for k: String in _sections.keys():
+	for k: String in _object_types.keys():
 		_valid_keys.append(k)
 
 	_reset()
@@ -86,34 +86,34 @@ func setup(plugin: EditorPlugin, parent_node: Node) -> void:
 
 func _reset() -> void:
 	_focused_object_type = ""
-	for k: String in _sections.keys():
-		var main: Control = _sections[k][BUTTON_IDX]
-		var detail: Control = _sections[k][DETAIL_IDX]
-		var reset: Callable = _sections[k][RESET_IDX]
+	for k: String in _object_types.keys():
+		var main: Control = _object_types[k][BUTTON_IDX]
+		var detail: Control = _object_types[k][DETAIL_IDX]
+		var reset: Callable = _object_types[k][RESET_IDX]
 		main.show()
 		detail.hide()
 		reset.call()
 	_complete_buttons.hide()
 
 
-## Hides section selection buttons and focuses on the configuration details for
-## the section referenced via name.
-func _select_section(section_name: String) -> void:
+## Hides object type selection buttons and focuses on the configuration details
+## for the object type referenced via name.
+func _select_object_type(type_name: String) -> void:
 	_reset()
-	if !(section_name in _valid_keys):
-		assert(false, "Invalid section key provided: %s vs %s" % [section_name, _valid_keys])
+	if !(type_name in _valid_keys):
+		assert(false, "Invalid object type key provided: %s vs %s" % [type_name, _valid_keys])
 
-	_focused_object_type = section_name
-	var detail: Control = _sections[section_name][DETAIL_IDX]
+	_focused_object_type = type_name
+	var detail: Control = _object_types[type_name][DETAIL_IDX]
 	detail.show()
 	_complete_buttons.show()
-	for k: String in _sections.keys():
-		if k != section_name:
-			_sections[k][BUTTON_IDX].hide()
-			_sections[k][DETAIL_IDX].hide()
+	for k: String in _object_types.keys():
+		if k != type_name:
+			_object_types[k][BUTTON_IDX].hide()
+			_object_types[k][DETAIL_IDX].hide()
 
 
-## Apply whatever section + configuration is in process
+## Apply whatever type + configuration is in process
 func _apply() -> void:
 	match _focused_object_type:
 		GENERIC_KEY:
@@ -127,7 +127,7 @@ func _apply() -> void:
 	var prev := _focused_object_type
 
 	_reset()
-	_select_section(prev)
+	_select_object_type(prev)
 
 
 ## When adding a child node examine existing children and find a unique
