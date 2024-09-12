@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=3 uid="uid://d4mrsiv1l8m35"]
+[gd_scene load_steps=19 format=3 uid="uid://d4mrsiv1l8m35"]
 
 [ext_resource type="PackedScene" uid="uid://dyq8mcdsutnsa" path="res://Scenes/Components/LevelBase.tscn" id="1_iejup"]
 [ext_resource type="Script" path="res://ZZ_Scratch/GreyboxingTools/BadLevelA.gd" id="2_22a2t"]
@@ -12,7 +12,6 @@
 [ext_resource type="PackedScene" uid="uid://c7gburp74xsto" path="res://Scenes/Components/NPC/MayorBuckley.tscn" id="10_2hlxg"]
 [ext_resource type="Script" path="res://Scripts/Resources/InteractableDialogue.gd" id="11_03hvs"]
 [ext_resource type="Resource" path="res://Dialogue/Buckley/BuckleyTestTimeline.dtl" id="11_i8wpl"]
-[ext_resource type="Script" path="res://Scripts/Components/Greyboxing/MoveableBlock.gd" id="13_ke2vc"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_ptcao"]
 atlas = ExtResource("3_uhn0b")
@@ -98,15 +97,6 @@ height = 3
 position = Vector2(546, 308)
 dlg = SubResource("Resource_lh8xy")
 id = "mayor_buckley"
-
-[node name="PushableBlock" type="RigidBody2D" parent="Objects" index="6" instance=ExtResource("9_78gjk")]
-position = Vector2(626, 223)
-mass = 0.25
-gravity_scale = 0.0
-lock_rotation = true
-freeze = true
-linear_damp = 10.0
-script = ExtResource("13_ke2vc")
 
 [node name="PlayerStart" type="Node2D" parent="Markers" index="0"]
 position = Vector2(522, 183)
