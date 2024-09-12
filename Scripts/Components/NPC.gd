@@ -4,15 +4,15 @@ extends Character
 
 const SCENE_RES = preload("res://Scenes/Components/NPC.tscn")
 
-## This is the dialog timeline that gets triggered when the player speaks
-## with this this NPC.
-# @export var dlg: InteractableDialogue = null
-
-@onready var _talk_sensor := $TalkSensor
-
+## Contains NPC specification, only used during _ready call to bootstrop
+## NPC data.
 @export var config: NPCConfig
+
+## This is the conversation event that will be triggered when the NPC
+## is spoken with. If null at _ready no conversation will be set up.
 @export var dlg: InteractableDialogue
 
+@onready var _talk_sensor := $TalkSensor
 
 func _ready() -> void:
 	if !Engine.is_editor_hint() && dlg != null:

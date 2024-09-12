@@ -15,12 +15,8 @@ const BUTTON_IDX = 0
 const DETAIL_IDX = 1
 const RESET_IDX = 2
 
-## character: String -> NPCConfig
-var _npc_dict: Dictionary = {}
-## timeline name: String -> String (path to DialogicTimeline)
-var _npc_timeline_dict: Dictionary = {}
-
 var _plugin_ref: EditorPlugin
+
 ## Stores a collection of data for each helper section.
 ##   Map[String, [Control, Control, Callable]].
 ##
@@ -29,9 +25,21 @@ var _plugin_ref: EditorPlugin
 ## Value[1]: A container with any configuration necessary for the section
 ## Value[2]: Callable that resets the configuration back to a default state
 var _sections: Dictionary = {}
+
+## Stores the section parent, i.e., LevelBase.Objects
 var _objects_parent: Node = null
+
+## Details which object type we're currently configuring, will be one of _valid_keys
 var _focused_section: String = ""
+
+## what kind of objects we can configure
 var _valid_keys: Array[String] = []
+
+## character: String -> NPCConfig
+var _npc_dict: Dictionary = {}
+
+## timeline name: String -> String (path to DialogicTimeline)
+var _npc_timeline_dict: Dictionary = {}
 
 @onready var _generic := $Container/AddItems/Generic
 @onready var _generic_detail := $Container/AddItems/GenericDetails
@@ -262,7 +270,7 @@ func _npc_detail_visibility_changed() -> void:
 		npc_file = dir.get_next()
 	_npc_dlg_refresh()
 
-func _npc_config_selected(index: int) -> void:
+func _npc_config_selected(_index: int) -> void:
 	_npc_dlg_refresh()
 
 func _npc_dlg_refresh() -> void:
