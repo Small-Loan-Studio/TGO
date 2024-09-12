@@ -2,8 +2,6 @@
 class_name NPC
 extends Character
 
-const SCENE_RES = preload("res://Scenes/Components/NPC.tscn")
-
 ## Contains NPC specification, only used during _ready call to bootstrop
 ## NPC data.
 @export var config: NPCConfig

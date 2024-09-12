@@ -28,7 +28,6 @@ monitoring = false
 monitorable = false
 
 [node name="TalkSensor" parent="." index="4" instance=ExtResource("3_1etq5")]
-actions = Array[Resource("res://Scripts/Resources/InteractableAction.gd")]([])
 action_verb = 2
 
 [node name="InteractableShape2D" type="CollisionShape2D" parent="TalkSensor" index="0"]
