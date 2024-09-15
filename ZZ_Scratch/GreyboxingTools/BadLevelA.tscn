@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=3 uid="uid://d4mrsiv1l8m35"]
+[gd_scene load_steps=19 format=3 uid="uid://d4mrsiv1l8m35"]
 
 [ext_resource type="PackedScene" uid="uid://dyq8mcdsutnsa" path="res://Scenes/Components/LevelBase.tscn" id="1_iejup"]
 [ext_resource type="Script" path="res://ZZ_Scratch/GreyboxingTools/BadLevelA.gd" id="2_22a2t"]
@@ -27,9 +27,6 @@ size = Vector2(46.75, 12)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_wpjqq"]
 size = Vector2(49, 30)
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_uksq2"]
-size = Vector2(64, 67)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_qqykj"]
 size = Vector2(64, 68)
@@ -81,15 +78,7 @@ can_block_movement = true
 texture = ExtResource("8_smen8")
 offset = Vector2(0, -61)
 
-[node name="StaticBody2D" type="StaticBody2D" parent="Objects/testobj" index="1"]
-position = Vector2(-33, -66)
-disable_mode = 2
-
-[node name="Shape" type="CollisionShape2D" parent="Objects/testobj/StaticBody2D" index="0"]
-position = Vector2(34, 35.5)
-shape = SubResource("RectangleShape2D_uksq2")
-
-[node name="Physics" parent="Objects/testobj" index="2"]
+[node name="Physics" parent="Objects/testobj" index="1"]
 collision_mask = 0
 freeze_mode = 1
 
