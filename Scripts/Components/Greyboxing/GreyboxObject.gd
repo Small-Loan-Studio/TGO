@@ -121,6 +121,8 @@ func _process_can_block_movement_update() -> void:
 		_physics.name = "Physics"
 		_physics.collision_layer = 1
 		_physics.collision_mask = 0
+		#currently doesn't seem to help, I think there's still a static body
+		_physics.set_freeze_mode(1) #sets freeze to kinematic
 		var shape := CollisionShape2D.new()
 		_physics.add_child(shape)
 		shape.owner = self
