@@ -8,6 +8,7 @@ script = ExtResource("1_p7ajo")
 
 [node name="TileMap" type="TileMap" parent="."]
 y_sort_enabled = true
+collision_animatable = true
 format = 2
 layer_0/name = "Base Layer"
 layer_0/y_sort_enabled = true
