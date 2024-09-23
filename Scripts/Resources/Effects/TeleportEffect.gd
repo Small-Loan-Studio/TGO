@@ -1,5 +1,5 @@
-class_name InteractableTeleport
-extends InteractableAction
+class_name TeleportEffect
+extends Effect
 
 ## A Node2D that is the desired destination
 @export var dest_path: NodePath

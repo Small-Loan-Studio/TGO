@@ -1,5 +1,5 @@
-class_name InteractableLevelLoad
-extends InteractableAction
+class_name LevelLoadEffect
+extends Effect
 
 ## Path to a scene that should be loaded as the next level.
 ## TODO: Unclear why using PackedScene didn't work here -- that's very much

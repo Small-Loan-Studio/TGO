@@ -5,12 +5,12 @@
 [ext_resource type="TileSet" uid="uid://c5vrjt6pkv26m" path="res://ZZ_Scratch/GreyboxingTools/test_tileset.tres" id="2_nrxue"]
 [ext_resource type="Texture2D" uid="uid://v8wedauptprb" path="res://ZZ_Scratch/GreyboxingTools/template_tileset.png" id="3_uhn0b"]
 [ext_resource type="PackedScene" uid="uid://c2040l84asu8j" path="res://Scenes/Components/Interactable.tscn" id="5_6ixdr"]
-[ext_resource type="Script" path="res://Scripts/Resources/InteractableLevelLoad.gd" id="7_7tyl1"]
+[ext_resource type="Script" path="res://Scripts/Resources/Effects/LevelLoadEffect.gd" id="7_7tyl1"]
 [ext_resource type="PackedScene" uid="uid://bx2qjlw58ci20" path="res://Scenes/Components/Greyboxing/GreyboxObject.tscn" id="7_ipcqk"]
 [ext_resource type="Texture2D" uid="uid://ceo0a1wjutqct" path="res://Art/Environment/Placeables/box.png" id="8_smen8"]
 [ext_resource type="PackedScene" uid="uid://d1y25semyqxkw" path="res://Scenes/Components/Greyboxing/MoveableBlock.tscn" id="9_78gjk"]
 [ext_resource type="PackedScene" uid="uid://c7gburp74xsto" path="res://Scenes/Components/NPC/MayorBuckley.tscn" id="10_2hlxg"]
-[ext_resource type="Script" path="res://Scripts/Resources/InteractableDialogue.gd" id="11_03hvs"]
+[ext_resource type="Script" path="res://Scripts/Resources/Effects/DialogueEffect.gd" id="11_03hvs"]
 [ext_resource type="Resource" path="res://Dialogue/Buckley/BuckleyTestTimeline.dtl" id="11_i8wpl"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_ptcao"]
@@ -52,7 +52,7 @@ texture = SubResource("AtlasTexture_ptcao")
 
 [node name="Interactable" parent="Objects/Sprite2D" index="0" instance=ExtResource("5_6ixdr")]
 y_sort_enabled = true
-actions = Array[Resource("res://Scripts/Resources/InteractableAction.gd")]([SubResource("Resource_8cdkq")])
+actions = Array[Resource("res://Scripts/Resources/Effect.gd")]([SubResource("Resource_8cdkq")])
 action_verb = 5
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Objects/Sprite2D/Interactable" index="0"]
