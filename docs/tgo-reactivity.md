@@ -38,12 +38,12 @@ Level
 ├── Objects
 │   └── Characters
 ├── Markers
-└── Triggers
+└── TriggerSystem
 ```
 
 In lieu of a custom UI to help manage triggers in a scene we'll build `Trigger`
 as a `Node` subclass and each new trigger will be added as a child of the new
-`Triggers` group, e.g.,:
+`TriggerSystem` group, e.g.,:
 
 ```
 Level
