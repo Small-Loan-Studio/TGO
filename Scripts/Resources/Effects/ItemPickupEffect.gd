@@ -1,5 +1,5 @@
-class_name InteractablePickup
-extends InteractableAction
+class_name ItemPickupEffect
+extends Effect
 
 ## The destination path to the node that represents an item
 @export var dest_path: NodePath

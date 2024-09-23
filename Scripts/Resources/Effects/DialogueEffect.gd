@@ -1,5 +1,5 @@
-class_name InteractableDialogue
-extends InteractableAction
+class_name DialogueEffect
+extends Effect
 
 @export var timeline: DialogicTimeline
 

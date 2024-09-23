@@ -1,13 +1,13 @@
 ## Base class that can be extended to make easily configurable actions
 ## interactable objects. See [InteractableTeleport] for an example of its
 ## usage.
-class_name InteractableAction
+class_name Effect
 extends Resource
 
 ## Stores the parent that this action is attached to. Note that this is
-## the Interactable scene. It's set by the Interactable before act is
-## called.
-var parent: Interactable
+## the a Node and not the level itself. It must be set by the logic running
+## an Effect (chain?) before act is called.
+var parent: Node2D
 
 
 ## Called with the actor triggering this action and the LevelBase context in

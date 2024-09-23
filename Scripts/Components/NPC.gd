@@ -8,7 +8,7 @@ extends Character
 
 ## This is the conversation event that will be triggered when the NPC
 ## is spoken with. If null at _ready no conversation will be set up.
-@export var dlg: InteractableDialogue
+@export var dlg: DialogueEffect
 
 @onready var _talk_sensor := $TalkSensor
 

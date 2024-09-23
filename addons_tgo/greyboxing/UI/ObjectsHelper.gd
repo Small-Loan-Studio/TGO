@@ -204,7 +204,7 @@ func _apply_npc() -> void:
 	new_npc.name = _mk_name_unique(parent, npc_name)
 	var timeline := _npc_get_timeline()
 	if timeline != null:
-		var dlg := InteractableDialogue.new()
+		var dlg := DialogueEffect.new()
 		dlg.timeline = timeline
 		new_npc.dlg = dlg
 

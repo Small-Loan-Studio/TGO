@@ -18,7 +18,7 @@ signal triggered(actor: Character)
 
 ## A set of actions to be taken when this interactable gets triggered. Will be
 ## evaluated before the signal is emitted.
-@export var actions: Array[InteractableAction]
+@export var actions: Array[Effect]
 
 ## Changing this impacts what the game toast will be when the player
 ## has a chance to interact with the interactable object.
