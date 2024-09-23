@@ -1,3 +1,4 @@
+@tool
 ## Node that can be attached to make something an interactable object.
 ## When interaction is triggered (manual or automatic) the list of attached
 ## actions will be run and then the triggered signal will be emitted.
@@ -54,4 +55,6 @@ func verb_name() -> String:
 # TODO: Check if Collision layer is set properly -- if we do this make sure to
 # add @tool annotation
 func _get_configuration_warnings() -> PackedStringArray:
+	if collision_layer != 2:
+		return ["Collision layer set should be set to 2 by default"]
 	return []
