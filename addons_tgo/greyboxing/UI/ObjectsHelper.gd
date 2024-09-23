@@ -79,14 +79,23 @@ func _ready() -> void:
 
 	_reset()
 
+
 func _input(event: InputEvent) -> void:
-	## Handles the placing of objects at the left mouse click location or cancels/resets with right mouse click
+	## Handles mouse clicks, left click for placing an object, right click to cancel
 	if _is_object_ready_to_place:
-		if event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_RIGHT and event.pressed:
+		if (
+			event is InputEventMouseButton
+			and event.button_index == MOUSE_BUTTON_RIGHT
+			and event.pressed
+		):
 			_reset()
-			
-		if event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_LEFT and event.pressed:
+		if (
+			event is InputEventMouseButton
+			and event.button_index == MOUSE_BUTTON_LEFT
+			and event.pressed
+		):
 			_apply_implementation(EditorInterface.get_editor_viewport_2d().get_mouse_position())
+
 
 ## Called after _ready to provide any necessary external objects.
 ## - plugin is a reference to the outtermost plugin host
@@ -100,7 +109,6 @@ func setup(plugin: EditorPlugin, parent_node: Node) -> void:
 func _reset() -> void:
 	var place_button: Button = _complete_buttons.get_child(1)
 	place_button.text = BUTTON_TEXT_PLACE
-	
 	_is_object_ready_to_place = false
 	_focused_object_type = ""
 	for k: String in _object_types.keys():
@@ -130,12 +138,14 @@ func _select_object_type(type_name: String) -> void:
 			_object_types[k][DETAIL_IDX].hide()
 
 
-## Toggles the ability to place an object in the scene. Called when create button in ObjectsHelper scene is pressed. 
+## Toggles the ability to place an object in the scene. Called when create button in ObjectsHelper
+## scene is pressed.
 func _apply() -> void:
 	_is_object_ready_to_place = true
 	var place_button: Button = _complete_buttons.get_child(1)
 	place_button.text = BUTTON_TEXT_PLACING
-	
+
+
 ## Apply whatever type + configuration is in process
 func _apply_implementation(position: Vector2) -> void:
 	match _focused_object_type:
@@ -236,6 +246,7 @@ func _apply_npc(position: Vector2) -> void:
 	parent.add_child(new_npc)
 	new_npc.owner = _objects_parent.get_parent()
 	new_npc.global_position = position
+
 
 func _reset_npc_state() -> void:
 	_npc_dlg_path.text = ""
