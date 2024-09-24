@@ -14,6 +14,8 @@ const NPC_PATH = "res://Scripts/Resources/NPCs"
 const BUTTON_IDX = 0
 const DETAIL_IDX = 1
 const RESET_IDX = 2
+const BUTTON_TEXT_PLACE = "Place"
+const BUTTON_TEXT_PLACING = "Placing object..."
 
 var _plugin_ref: EditorPlugin
 
@@ -41,6 +43,9 @@ var _npc_dict: Dictionary = {}
 ## timeline name: String -> String (path to DialogicTimeline)
 var _npc_timeline_dict: Dictionary = {}
 
+## Check to see if an object is ready to be placed in the scene
+var _is_object_ready_to_place: bool = false
+
 @onready var _generic := $Container/AddItems/Generic
 @onready var _generic_detail := $Container/AddItems/GenericDetails
 @onready var _generic_name: LineEdit = $Container/AddItems/GenericDetails/HBox/Margin/Name
@@ -61,6 +66,7 @@ var _npc_timeline_dict: Dictionary = {}
 @onready var _npc_dlg_dropdown := %NPCDlgDropdown
 
 @onready var _complete_buttons := $Container/CompleteButtons
+@onready var _place_button := $Container/CompleteButtons/Place
 
 
 func _ready() -> void:
@@ -75,6 +81,23 @@ func _ready() -> void:
 	_reset()
 
 
+func _input(event: InputEvent) -> void:
+	# Handles mouse clicks, left click for placing an object, right click to cancel
+	if _is_object_ready_to_place:
+		if (
+			event is InputEventMouseButton
+			and event.button_index == MOUSE_BUTTON_RIGHT
+			and event.pressed
+		):
+			_reset()
+		if (
+			event is InputEventMouseButton
+			and event.button_index == MOUSE_BUTTON_LEFT
+			and event.pressed
+		):
+			_apply_implementation(EditorInterface.get_editor_viewport_2d().get_mouse_position())
+
+
 ## Called after _ready to provide any necessary external objects.
 ## - plugin is a reference to the outtermost plugin host
 ## - parent_node is the first-level Levelbase node that will contain any
@@ -85,6 +108,8 @@ func setup(plugin: EditorPlugin, parent_node: Node) -> void:
 
 
 func _reset() -> void:
+	_place_button.text = BUTTON_TEXT_PLACE
+	_is_object_ready_to_place = false
 	_focused_object_type = ""
 	for k: String in _object_types.keys():
 		var main: Control = _object_types[k][BUTTON_IDX]
@@ -113,15 +138,22 @@ func _select_object_type(type_name: String) -> void:
 			_object_types[k][DETAIL_IDX].hide()
 
 
-## Apply whatever type + configuration is in process
+## Toggles the ability to place an object in the scene. Called when place button in ObjectsHelper
+## scene is pressed.
 func _apply() -> void:
+	_is_object_ready_to_place = true
+	_place_button.text = BUTTON_TEXT_PLACING
+
+
+## Apply whatever type + configuration is in process
+func _apply_implementation(obj_position: Vector2) -> void:
 	match _focused_object_type:
 		GENERIC_KEY:
-			_apply_generic()
+			_apply_generic(obj_position)
 		PUSHABLE_KEY:
-			_apply_pushable()
+			_apply_pushable(obj_position)
 		NPC_KEY:
-			_apply_npc()
+			_apply_npc(obj_position)
 		_:
 			assert(false, "Invalid focused object Type: " + _focused_object_type)
 	var prev := _focused_object_type
@@ -144,7 +176,7 @@ func _mk_name_unique(parent: Node, in_str: String) -> String:
 
 
 ## Create a generic greybox and add it to the scene
-func _apply_generic() -> void:
+func _apply_generic(obj_position: Vector2) -> void:
 	var obj_name := _generic_name.text.strip_edges()
 	if obj_name == "":
 		obj_name = "GreyboxObj"
@@ -161,6 +193,7 @@ func _apply_generic() -> void:
 	obj.can_block_movement = collides
 	obj.can_block_light = occludes
 	obj.can_interact = interacts
+	obj.global_position = obj_position
 
 
 func _reset_generic_state() -> void:
@@ -170,7 +203,7 @@ func _reset_generic_state() -> void:
 	_generic_interacts.button_pressed = false
 
 
-func _apply_pushable() -> void:
+func _apply_pushable(obj_position: Vector2) -> void:
 	var obj_name := _pushable_name.text
 	if obj_name == "":
 		obj_name = "PushableBlock"
@@ -182,6 +215,7 @@ func _apply_pushable() -> void:
 	obj.owner = _objects_parent.get_parent()
 	obj.width = _pushable_size_x.value
 	obj.height = _pushable_size_y.value
+	obj.global_position = obj_position
 
 
 func _reset_pushable_state() -> void:
@@ -190,7 +224,7 @@ func _reset_pushable_state() -> void:
 	_pushable_size_y.value = 1
 
 
-func _apply_npc() -> void:
+func _apply_npc(obj_position: Vector2) -> void:
 	var npc_name: String = _npc_dropdown.get_item_text(_npc_dropdown.get_selected_id())
 	var config: NPCConfig = _npc_dict[npc_name]
 
@@ -210,6 +244,7 @@ func _apply_npc() -> void:
 
 	parent.add_child(new_npc)
 	new_npc.owner = _objects_parent.get_parent()
+	new_npc.global_position = obj_position
 
 
 func _reset_npc_state() -> void:

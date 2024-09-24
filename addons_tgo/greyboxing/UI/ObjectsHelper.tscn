@@ -183,10 +183,10 @@ size_flags_horizontal = 3
 text = "Cancel
 "
 
-[node name="Create" type="Button" parent="Container/CompleteButtons"]
+[node name="Place" type="Button" parent="Container/CompleteButtons"]
 layout_mode = 2
 size_flags_horizontal = 3
-text = "Create"
+text = "Place"
 
 [connection signal="pressed" from="Container/AddItems/Generic" to="." method="_select_object_type" binds= ["generic"]]
 [connection signal="pressed" from="Container/AddItems/Pushable" to="." method="_select_object_type" binds= ["pushable"]]
@@ -195,4 +195,4 @@ text = "Create"
 [connection signal="item_selected" from="Container/AddItems/NPCDetails/HBoxContainer/MarginContainer/NPCDropdown" to="." method="_npc_config_selected"]
 [connection signal="text_changed" from="Container/AddItems/NPCDetails/HBoxContainer2/MarginContainer/NPCDialoguePath" to="." method="_npc_dialogue_text_changed"]
 [connection signal="pressed" from="Container/CompleteButtons/Cancel" to="." method="_reset"]
-[connection signal="pressed" from="Container/CompleteButtons/Create" to="." method="_apply"]
+[connection signal="pressed" from="Container/CompleteButtons/Place" to="." method="_apply"]
