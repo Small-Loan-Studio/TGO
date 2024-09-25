@@ -97,6 +97,7 @@ id = "block-left"
 
 [node name="AnotherBlock" parent="Objects" index="4" instance=ExtResource("9_78gjk")]
 position = Vector2(11, 255)
+id = ""
 width = 3
 height = 3
 
@@ -107,6 +108,8 @@ id = "mayor_buckley"
 
 [node name="Switch" parent="Objects" index="6" instance=ExtResource("13_i2hg4")]
 position = Vector2(102, 174)
+conditions = null
+id_mask = Array[String](["block-right"])
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Objects/Switch" index="0"]
 position = Vector2(3, -3)

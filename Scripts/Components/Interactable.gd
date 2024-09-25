@@ -33,7 +33,7 @@ func _ready() -> void:
 	while not (ref is LevelBase):
 		ref = ref.get_parent()
 		if ref == null:
-			printerr("did not find a LevelBase parent for %s" % [name])
+			printerr("Interactable: did not find a LevelBase parent for %s" % [name])
 			break
 	if ref != null:
 		_cur_level = ref
