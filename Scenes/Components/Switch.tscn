@@ -9,7 +9,6 @@ script = ExtResource("1_rlyjj")
 conditions = null
 single_fire = null
 id_mask = null
-has_triggered = null
 on_pressed_effects = null
 on_released_effects = null
 

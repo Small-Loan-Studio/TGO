@@ -1,6 +1,8 @@
 class_name Utils
 extends RefCounted
 
+const ID_GROUP := "NodesWithID"
+
 
 # converts an angle relative to Vector2.UP into a direction;
 # the angle is expected to be radians between [-TAU, TAU]

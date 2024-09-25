@@ -2,8 +2,8 @@
 
 [ext_resource type="Script" path="res://Scripts/Driver.gd" id="1_agcjs"]
 [ext_resource type="Script" path="res://Scripts/AudioManager.gd" id="2_4seev"]
-[ext_resource type="PackedScene" uid="uid://d4mrsiv1l8m35" path="res://ZZ_Scratch/GreyboxingTools/BadLevelA.tscn" id="2_cncbu"]
 [ext_resource type="Script" path="res://Scripts/UI/Curtain.gd" id="2_gom2g"]
+[ext_resource type="PackedScene" uid="uid://d4mrsiv1l8m35" path="res://ZZ_Scratch/GreyboxingTools/BadLevelA.tscn" id="2_t7mwh"]
 [ext_resource type="Script" path="res://Scripts/Menu/MenuManager.gd" id="3_h1ccd"]
 [ext_resource type="PackedScene" uid="uid://ci7ksomi5hsr5" path="res://Scenes/Menu/DebugMenu.tscn" id="3_i7nbg"]
 [ext_resource type="Script" path="res://Scripts/UI/HUD.gd" id="4_kq6n3"]
@@ -13,7 +13,7 @@
 
 [node name="Driver" type="Node2D"]
 script = ExtResource("1_agcjs")
-autoload_scene = ExtResource("2_cncbu")
+autoload_scene = ExtResource("2_t7mwh")
 
 [node name="AudioManager" type="Node" parent="."]
 script = ExtResource("2_4seev")
@@ -35,6 +35,26 @@ grow_vertical = 2
 color = Color(0, 0, 0, 1)
 script = ExtResource("2_gom2g")
 
+[node name="MenuManager" type="Control" parent="OverlayManager"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("3_h1ccd")
+
+[node name="DebugMenu" parent="OverlayManager/MenuManager" instance=ExtResource("3_i7nbg")]
+layout_mode = 1
+anchors_preset = -1
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_left = 300.0
+offset_top = -1.0
+offset_right = -300.0
+offset_bottom = -1.0
+size_flags_horizontal = 4
+
 [node name="HUD" type="Control" parent="OverlayManager"]
 layout_mode = 3
 anchors_preset = 15
@@ -42,6 +62,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+mouse_filter = 2
 script = ExtResource("4_kq6n3")
 
 [node name="Toast" type="ColorRect" parent="OverlayManager/HUD"]
@@ -74,25 +95,17 @@ text = "Toast Text"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="MenuManager" type="Control" parent="OverlayManager"]
-layout_mode = 3
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-script = ExtResource("3_h1ccd")
-
-[node name="DebugMenu" parent="OverlayManager/MenuManager" instance=ExtResource("3_i7nbg")]
+[node name="Button" type="Button" parent="OverlayManager/HUD"]
 layout_mode = 1
 anchors_preset = -1
-anchor_top = 0.5
-anchor_bottom = 0.5
-offset_left = 300.0
-offset_top = -1.0
-offset_right = -300.0
-offset_bottom = -1.0
-size_flags_horizontal = 4
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -100.0
+offset_top = 20.0
+offset_right = -20.0
+offset_bottom = 60.0
+grow_horizontal = 0
+text = "Debug"
 
 [node name="InventoryManager" type="Node" parent="."]
 script = ExtResource("6_na5am")
@@ -114,4 +127,5 @@ position = Vector2(0, 0)
 [node name="Camera2D" type="Camera2D" parent="GameWorld/Devin"]
 
 [connection signal="request_load" from="OverlayManager/MenuManager/DebugMenu" to="." method="request_debug_load"]
+[connection signal="pressed" from="OverlayManager/HUD/Button" to="." method="_on_debug_pressed"]
 [connection signal="timeout" from="GameWorld/Clock/Timer" to="GameWorld/Clock" method="_on_timer_timeout"]
