@@ -89,7 +89,7 @@ func _on_enter_id(id: String) -> void:
 		return
 
 	for c in conditions:
-		if !c.evaluate():
+		if !c.evaluate(id):
 			failed_trigger.emit("TriggerFailure.CONDITIONS")
 			return
 

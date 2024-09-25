@@ -10,6 +10,21 @@ signal inventory_item_inserted(item: ItemStack)
 @export var size: int = -1
 
 
+func has_item(item: Item) -> bool:
+	for stack in _items:
+		if stack.item == item:
+			return true
+	return false
+
+
+func count_item(item: Item) -> int:
+	var count := 0
+	for stack in _items:
+		if stack.item == item:
+			count += stack.quantity
+	return count
+
+
 func insert(item: ItemStack) -> bool:
 	## Iterate over our inventory and stack items if available
 	for index in _items.size():
