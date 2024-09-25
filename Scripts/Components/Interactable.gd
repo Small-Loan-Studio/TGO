@@ -44,7 +44,7 @@ func trigger(actor: Character) -> void:
 		if a == null:
 			continue
 		a.parent = self
-		a.act(actor, _cur_level)
+		a.act(actor.id, _cur_level)
 	triggered.emit(actor)
 
 

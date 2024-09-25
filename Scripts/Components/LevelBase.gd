@@ -59,7 +59,6 @@ func get_by_id(id: String) -> Node2D:
 		return null
 
 	id = id.to_lower()
-	print("Examining tree for: ", Utils.ID_GROUP)
 	for n in get_tree().get_nodes_in_group(Utils.ID_GROUP):
 		if n.id.to_lower() == id:
 			return n

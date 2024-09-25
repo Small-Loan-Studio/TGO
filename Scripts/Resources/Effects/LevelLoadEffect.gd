@@ -13,7 +13,7 @@ extends Effect
 @export var marker_name: String = ""
 
 
-func act(_actor: Character, cur_level: LevelBase) -> void:
+func act(_actor_id: String, cur_level: LevelBase) -> void:
 	if cur_level == null:
 		return
 

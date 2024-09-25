@@ -8,13 +8,13 @@ extends Effect
 @export var item: ItemStack
 
 
-func act(_actor: Character, _level: LevelBase) -> void:
+func act(actor_id: String, _level: LevelBase) -> void:
 	print("Actor InteractablePickup")
 	# TODO: Come back and fix this later
 	# No idea how we are going to wire this up, but I will use this hack for now
 	var inv_manager: InventoryManager = parent.get_node("/root/Driver/InventoryManager")
 	var item_node := parent.get_node(dest_path) as Node2D
 
-	var inventory: Inventory = inv_manager.get_inventory(_actor.id)
+	var inventory: Inventory = inv_manager.get_inventory(actor_id)
 	if inventory.insert(item):
 		item_node.queue_free()

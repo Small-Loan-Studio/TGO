@@ -93,7 +93,7 @@ func _on_enter_id(id: String) -> void:
 	_activation_stack.push_back(id)
 
 	if !is_pressed:
-		_do_press()
+		_do_press(id)
 
 
 func _on_exit_id(id: String) -> void:
@@ -103,26 +103,26 @@ func _on_exit_id(id: String) -> void:
 	_activation_stack.remove_at(idx)
 
 	if _activation_stack.size() == 0:
-		_do_release()
+		_do_release(id)
 
 
 ## Does the work of actually setting the switch state to pressed. It updates
 ## internal state, emits triggered signals, and fires any configured effects.
 ## If a switch is already pressed bails without any changes / side effects.
-func _do_press() -> void:
+func _do_press(id: String) -> void:
 	if is_pressed:
 		return
 	is_pressed = true
 	print("_do_press")
 	triggered.emit(true)
 	for e in on_pressed_effects:
-		e.act(null, _cur_level)
+		e.act(id, _cur_level)
 
 
 ## Does the work of deactivating the switch. That is it updates internal state,
 ## emits a triggered signal, and fires any configured effects. If a switch is
 ## single_fire then it does not make any changes.
-func _do_release() -> void:
+func _do_release(id: String) -> void:
 	print("_do_release")
 	if single_fire:
 		print("   ...but single_fire")
@@ -131,4 +131,4 @@ func _do_release() -> void:
 	is_pressed = false
 	triggered.emit(false)
 	for e in on_released_effects:
-		e.act(null, _cur_level)
+		e.act(id, _cur_level)
