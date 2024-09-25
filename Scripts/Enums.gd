@@ -1,6 +1,15 @@
 class_name Enums
 extends RefCounted
 
+enum CheckOp {
+	EXISTS,
+	LT,
+	LTE,
+	EQ,
+	GTE,
+	GT,
+}
+
 enum Direction {
 	NORTH,
 	SOUTH,

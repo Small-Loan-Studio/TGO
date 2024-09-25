@@ -88,7 +88,10 @@ func _on_enter_id(id: String) -> void:
 	if id in _activation_stack:
 		return
 
-	print("TODO: check conditions")
+	for c in conditions:
+		if !c.evaluate():
+			failed_trigger.emit("TriggerFailure.CONDITIONS")
+			return
 
 	_activation_stack.push_back(id)
 

@@ -1,4 +1,4 @@
-[gd_scene load_steps=23 format=3 uid="uid://d4mrsiv1l8m35"]
+[gd_scene load_steps=25 format=3 uid="uid://d4mrsiv1l8m35"]
 
 [ext_resource type="PackedScene" uid="uid://dyq8mcdsutnsa" path="res://Scenes/Components/LevelBase.tscn" id="1_iejup"]
 [ext_resource type="Script" path="res://ZZ_Scratch/GreyboxingTools/BadLevelA.gd" id="2_22a2t"]
@@ -14,6 +14,7 @@
 [ext_resource type="Resource" path="res://Dialogue/Buckley/BuckleyTestTimeline.dtl" id="11_i8wpl"]
 [ext_resource type="PackedScene" uid="uid://bmwu7t5fqfmd5" path="res://Scenes/Components/Switch.tscn" id="13_i2hg4"]
 [ext_resource type="Script" path="res://Scripts/Resources/Effects/DebugEffect.gd" id="14_jkjx4"]
+[ext_resource type="Script" path="res://Scripts/Resources/Conditions/DialogicVarCondition.gd" id="14_prx1d"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_ptcao"]
 atlas = ExtResource("3_uhn0b")
@@ -36,6 +37,12 @@ size = Vector2(64, 67)
 [sub_resource type="Resource" id="Resource_lh8xy"]
 script = ExtResource("11_03hvs")
 timeline = ExtResource("11_i8wpl")
+
+[sub_resource type="Resource" id="Resource_uyrf7"]
+script = ExtResource("14_prx1d")
+variable_name = "HasSpoken"
+check_type = null
+check_value = "true"
 
 [sub_resource type="Resource" id="Resource_8sp0r"]
 script = ExtResource("14_jkjx4")
@@ -111,6 +118,7 @@ id = "mayor_buckley"
 
 [node name="Switch" parent="Objects" index="6" instance=ExtResource("13_i2hg4")]
 position = Vector2(102, 174)
+conditions = Array[Resource("res://Scripts/Resources/TriggerCondition.gd")]([SubResource("Resource_uyrf7")])
 on_pressed_effects = Array[Resource("res://Scripts/Resources/Effect.gd")]([SubResource("Resource_8sp0r")])
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Objects/Switch" index="0"]

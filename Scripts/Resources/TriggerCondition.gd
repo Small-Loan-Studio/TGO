@@ -2,3 +2,6 @@
 ## I want to utilize the in-editor editing
 class_name TriggerCondition
 extends Resource
+
+func evaluate() -> bool:
+  return false
