@@ -1,7 +1,8 @@
-[gd_scene load_steps=10 format=3 uid="uid://cobsc7v0oqc8l"]
+[gd_scene load_steps=11 format=3 uid="uid://cobsc7v0oqc8l"]
 
 [ext_resource type="Script" path="res://Scripts/Driver.gd" id="1_agcjs"]
 [ext_resource type="Script" path="res://Scripts/AudioManager.gd" id="2_4seev"]
+[ext_resource type="PackedScene" uid="uid://d4mrsiv1l8m35" path="res://ZZ_Scratch/GreyboxingTools/BadLevelA.tscn" id="2_cncbu"]
 [ext_resource type="Script" path="res://Scripts/UI/Curtain.gd" id="2_gom2g"]
 [ext_resource type="Script" path="res://Scripts/Menu/MenuManager.gd" id="3_h1ccd"]
 [ext_resource type="PackedScene" uid="uid://ci7ksomi5hsr5" path="res://Scenes/Menu/DebugMenu.tscn" id="3_i7nbg"]
@@ -12,6 +13,7 @@
 
 [node name="Driver" type="Node2D"]
 script = ExtResource("1_agcjs")
+autoload_scene = ExtResource("2_cncbu")
 
 [node name="AudioManager" type="Node" parent="."]
 script = ExtResource("2_4seev")

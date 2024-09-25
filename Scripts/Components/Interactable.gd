@@ -55,6 +55,7 @@ func verb_name() -> String:
 # TODO: Check if Collision layer is set properly -- if we do this make sure to
 # add @tool annotation
 func _get_configuration_warnings() -> PackedStringArray:
-	if collision_layer != 2:
+	# TODO: Don't use a magic number here -- switch to named layers https://gamedev.stackexchange.com/a/185955
+	if collision_layer | 2:
 		return ["Collision layer set should be set to 2 by default"]
 	return []

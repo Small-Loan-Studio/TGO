@@ -3,6 +3,9 @@
 class_name MoveableBlock
 extends RigidBody2D
 
+## The id of this moveable block if it needs to be referenced in the level
+@export var id: String = ""
+
 ## The pixel size of a single unit of tile
 @export var tile_size := 32
 
@@ -52,3 +55,10 @@ func _set_size(x: int, y: int) -> void:
 func _update_shape(rect: RectangleShape2D, x: int, y: int) -> void:
 	rect.size.x = x * tile_size
 	rect.size.y = y * tile_size
+
+func _get_configuration_warnings() -> PackedStringArray:
+	# TODO: don't use a magic number here
+	if collision_layer | 4:
+		if id == "" || id == null:
+			return ["This is a switch actor and may need an ID"]
+	return []
