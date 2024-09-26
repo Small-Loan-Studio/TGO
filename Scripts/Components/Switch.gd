@@ -54,6 +54,7 @@ var _cur_level: LevelBase
 func _ready() -> void:
 	_cur_level = Utils.get_level_parent(self)
 
+
 ## Reset switch state. That means:
 ##    a. clears the activation stack
 ##    b. sets is_pressed to false.

@@ -27,7 +27,6 @@ static func str_to_bool(in_s: String) -> bool:
 	return false
 
 
-
 # converts an angle relative to Vector2.UP into a direction;
 # the angle is expected to be radians between [-TAU, TAU]
 static func angle_to_direction(

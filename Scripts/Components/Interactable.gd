@@ -34,6 +34,7 @@ func _ready() -> void:
 	_cur_level = Utils.get_level_parent(self)
 	print("Interactable._cur_level: ", _cur_level)
 
+
 func trigger(actor: Character) -> void:
 	for a in actions:
 		if a == null:
