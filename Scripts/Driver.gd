@@ -93,6 +93,4 @@ func request_debug_load(path: String) -> void:
 
 
 func _on_debug_pressed() -> void:
-	print("_on_debug_pressed")
-	for n in get_tree().get_nodes_in_group("NodesWithID"):
-		print("%s : %s" % [n.name, n])
+	print(Dialogic.VAR.get_variable("test_var"))

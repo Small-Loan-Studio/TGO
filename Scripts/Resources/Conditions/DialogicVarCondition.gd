@@ -20,19 +20,9 @@ func evaluate(_actor_id: String) -> bool:
 		TYPE_FLOAT:
 			return Enums.check_op_eval_float(check_type, var_value, float(check_value))
 		TYPE_BOOL:
-			return Enums.check_op_eval_bool(check_type, var_value, _to_bool(check_value))
+			return Enums.check_op_eval_bool(check_type, var_value, Utils.str_to_bool(check_value))
 		TYPE_STRING:
 			return Enums.check_op_eval_str(check_type, var_value, check_value)
 
 	printerr("Unknown type for Dialogic Variable %s: %s" % [variable_name, var_type])
-	return false
-
-
-func _to_bool(in_s: String) -> bool:
-	in_s = in_s.to_lower()
-	if in_s == "1" || in_s == "t" || in_s == "true":
-		return true
-	if in_s == "" || in_s == "0" || in_s == "t" || in_s == "true":
-		return false
-	printerr("Fallback to false trying to convert '%s' to bool" % [in_s])
 	return false

@@ -95,7 +95,8 @@ text = "Toast Text"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="Button" type="Button" parent="OverlayManager/HUD"]
+[node name="DebugButton" type="Button" parent="OverlayManager/HUD"]
+visible = false
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 1.0
@@ -127,5 +128,5 @@ position = Vector2(0, 0)
 [node name="Camera2D" type="Camera2D" parent="GameWorld/Devin"]
 
 [connection signal="request_load" from="OverlayManager/MenuManager/DebugMenu" to="." method="request_debug_load"]
-[connection signal="pressed" from="OverlayManager/HUD/Button" to="." method="_on_debug_pressed"]
+[connection signal="pressed" from="OverlayManager/HUD/DebugButton" to="." method="_on_debug_pressed"]
 [connection signal="timeout" from="GameWorld/Clock/Timer" to="GameWorld/Clock" method="_on_timer_timeout"]

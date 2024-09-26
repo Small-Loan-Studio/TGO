@@ -1,10 +1,29 @@
+## A reactive area that can be placed in a level to monitor for activation
+## under specified conditions. In order to activate a switch you must move
+## an Area2D or Physics Body in the "switch actor" collision layer into the
+## area.
+##
+## In addition to the raw ability to detect Switch Actors we can limit
+## activation in two ways:
+##   1. id_mask is an Array[String] that filters out any activations not
+##      resulting from an area/body with an id in this set
+##   2. conditions is an Array[TriggerCondition] that filters out any
+##      activations if conditions are not met
+##
+## When activated a Switch will first emit the [triggered] signal and then
+## perform any configured on_press_effects.
+##
+## When the last activating actor leaves the space a switch may release if
+## [single_fire] is not set. In that case it first emits triggered and then
+## performs any configured on_release_effects.
+##
+## When an actor enters the switch space and fails to trigger an activation
+## for an unpressed switch failed_trigger is fired.
 class_name Switch
 extends Area2D
 
-# enum TriggerFailue { ID_MASK, CONDITIONS }
-
-signal triggered(state: bool)
-signal failed_trigger(reason: Enums.TriggerFailure)
+signal triggered(id: String, state: bool)
+signal failed_trigger(id: String, reason: Enums.TriggerFailure)
 
 ## Checked as part of an evaluation if some actor can press a switch
 @export var conditions: Array[TriggerCondition] = []
@@ -16,7 +35,9 @@ signal failed_trigger(reason: Enums.TriggerFailure)
 ## If set only an actor with one of the listed IDs can activate a switch.
 @export var id_mask: Array[String] = []
 
+## A list of effects to perform when a switch is pressed
 @export var on_pressed_effects: Array[Effect] = []
+## A list of effects to perform when a switch is released
 @export var on_released_effects: Array[Effect] = []
 
 ## This is set when the switch has been pressed by one or more actors
@@ -74,15 +95,19 @@ func _on_exit_body(body: Node2D) -> void:
 func _on_enter_id(id: String) -> void:
 	if id_mask != null && id_mask.size() > 0:
 		if !(id in id_mask):
-			failed_trigger.emit(Enums.TriggerFailure.ID_MASK)
+			# Because the switch is already pressed this activation didn't really
+			# fail to press it so much it didn't get into the activation stack.
+			if !is_pressed:
+				failed_trigger.emit(id, Enums.TriggerFailure.ID_MASK)
 			return
 
 	if id in _activation_stack:
+		printerr("%s: ID %s attempting to activate but already in stack" % [name, id])
 		return
 
 	for c in conditions:
 		if !c.evaluate(id):
-			failed_trigger.emit(Enums.TriggerFailure.CONDITIONS)
+			failed_trigger.emit(id, Enums.TriggerFailure.CONDITIONS)
 			return
 
 	_activation_stack.push_back(id)
@@ -108,8 +133,7 @@ func _do_press(id: String) -> void:
 	if is_pressed:
 		return
 	is_pressed = true
-	print("_do_press")
-	triggered.emit(true)
+	triggered.emit(id, true)
 	for e in on_pressed_effects:
 		e.act(id, _cur_level)
 
@@ -118,12 +142,10 @@ func _do_press(id: String) -> void:
 ## emits a triggered signal, and fires any configured effects. If a switch is
 ## single_fire then it does not make any changes.
 func _do_release(id: String) -> void:
-	print("_do_release")
 	if single_fire:
-		print("   ...but single_fire")
 		return
 
 	is_pressed = false
-	triggered.emit(false)
+	triggered.emit(id, false)
 	for e in on_released_effects:
 		e.act(id, _cur_level)

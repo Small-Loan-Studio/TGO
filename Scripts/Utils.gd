@@ -17,6 +17,17 @@ static func get_level_parent(node: Node) -> LevelBase:
 	return ref
 
 
+static func str_to_bool(in_s: String) -> bool:
+	in_s = in_s.to_lower()
+	if in_s == "1" || in_s == "t" || in_s == "true":
+		return true
+	if in_s == "" || in_s == "0" || in_s == "t" || in_s == "true":
+		return false
+	printerr("Fallback to false trying to convert '%s' to bool" % [in_s])
+	return false
+
+
+
 # converts an angle relative to Vector2.UP into a direction;
 # the angle is expected to be radians between [-TAU, TAU]
 static func angle_to_direction(

@@ -53,6 +53,8 @@ func get_named_location(named_pos: String) -> Vector2:
 	return marker.global_position
 
 
+## Examines nodes that are marked as having an ID and returns the first match
+## if any are found.
 func get_by_id(id: String) -> Node2D:
 	if id == "" || id == null:
 		printerr("Unable to find empty or null id")
