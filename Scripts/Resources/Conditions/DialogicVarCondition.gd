@@ -15,47 +15,16 @@ func evaluate(_actor_id: String) -> bool:
 
   match var_type:
     TYPE_INT:
-      return _cmp_int(var_value, check_type, int(check_value))
+      return Enums.check_op_eval_int(check_type, var_value, int(check_value))
     TYPE_FLOAT:
-      return _cmp_float(var_value, check_type, float(check_value))
+      return Enums.check_op_eval_float(check_type, var_value, float(check_value))
     TYPE_BOOL:
-      return _cmp_bool(var_value, check_type, _to_bool(check_value))
+      return Enums.check_op_eval_bool(check_type, var_value, _to_bool(check_value))
     TYPE_STRING:
-      return _cmp_str(var_value, check_type, check_value)
+      return Enums.check_op_eval_str(check_type, var_value, check_value)
 
   printerr("Unknown type for Dialogic Variable %s: %s" % [variable_name, var_type])
   return false
-
-func _cmp_int(x: int, check_op: Enums.CheckOp, y: int) -> bool:
-  var res := false
-  match check_op:
-    Enums.CheckOp.LTE:
-      res = x <= y
-    Enums.CheckOp.LT:
-      res = x < y
-    Enums.CheckOp.EQ:
-      res = x == y
-    Enums.CheckOp.GT:
-      res = x > y
-    Enums.CheckOp.GTE:
-      res = x >= y
-  return res
-
-
-func _cmp_float(x: float, check_op: Enums.CheckOp, y: float) -> bool:
-  var res := false
-  match check_op:
-    Enums.CheckOp.LTE:
-      res = x <= y
-    Enums.CheckOp.LT:
-      res = x < y
-    Enums.CheckOp.EQ:
-      res = x == y
-    Enums.CheckOp.GT:
-      res = x > y
-    Enums.CheckOp.GTE:
-      res = x >= y
-  return res
 
 
 func _to_bool(in_s: String) -> bool:
@@ -66,26 +35,3 @@ func _to_bool(in_s: String) -> bool:
     return false
   printerr("Fallback to false trying to convert '%s' to bool" % [in_s])
   return false
-
-func _cmp_bool(x: bool, check_op: Enums.CheckOp, y: bool) -> bool:
-  var res := false
-  match check_op:
-    Enums.CheckOp.EQ:
-      res = x == y
-  return res
-
-
-func _cmp_str(x: String, check_op: Enums.CheckOp, y: String) -> bool:
-  var res := false
-  match check_op:
-    Enums.CheckOp.LTE:
-      res = x <= y
-    Enums.CheckOp.LT:
-      res = x < y
-    Enums.CheckOp.EQ:
-      res = x == y
-    Enums.CheckOp.GT:
-      res = x > y
-    Enums.CheckOp.GTE:
-      res = x >= y
-  return res

@@ -23,19 +23,4 @@ func evaluate(actor_id: String) -> bool:
   if check_type == Enums.CheckOp.EXISTS:
     return inv.has_item(target_item)
 
-  return _cmp_int(inv.count_item(target_item), check_type, check_value)
-
-func _cmp_int(x: int, check_op: Enums.CheckOp, y: int) -> bool:
-  var res := false
-  match check_op:
-    Enums.CheckOp.LTE:
-      res = x <= y
-    Enums.CheckOp.LT:
-      res = x < y
-    Enums.CheckOp.EQ:
-      res = x == y
-    Enums.CheckOp.GT:
-      res = x > y
-    Enums.CheckOp.GTE:
-      res = x >= y
-  return res
+  return Enums.check_op_eval_int(check_type, inv.count_item(target_item), check_value)
