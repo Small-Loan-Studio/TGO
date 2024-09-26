@@ -29,8 +29,9 @@ var _activation_stack: Array[String]
 ## Tracks the level that the action is taking place in
 var _cur_level: LevelBase
 
+
 func _ready() -> void:
-	print('Switch %s._ready()' % [ name])
+	print("Switch %s._ready()" % [name])
 
 	var ref: Node = self
 	while not (ref is LevelBase):
@@ -50,6 +51,7 @@ func _ready() -> void:
 func reset() -> void:
 	_activation_stack.clear()
 	is_pressed = false
+
 
 func _on_enter(area: Area2D) -> void:
 	if "id" in area.get_parent():

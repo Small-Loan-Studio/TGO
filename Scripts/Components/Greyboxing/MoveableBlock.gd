@@ -56,6 +56,7 @@ func _update_shape(rect: RectangleShape2D, x: int, y: int) -> void:
 	rect.size.x = x * tile_size
 	rect.size.y = y * tile_size
 
+
 func _get_configuration_warnings() -> PackedStringArray:
 	# TODO: don't use a magic number here
 	if collision_layer | 4:

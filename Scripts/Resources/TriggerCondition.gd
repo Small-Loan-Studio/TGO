@@ -3,5 +3,6 @@
 class_name TriggerCondition
 extends Resource
 
+
 func evaluate(_actor_id: String) -> bool:
-  return false
+	return false

@@ -13,14 +13,15 @@ extends TriggerCondition
 
 @export var check_value: int
 
+
 func evaluate(actor_id: String) -> bool:
-  var check_id := inventory_id
-  if check_id == "":
-    check_id = actor_id
+	var check_id := inventory_id
+	if check_id == "":
+		check_id = actor_id
 
-  var inv := Driver.instance().inventory_mgr.get_inventory(check_id)
+	var inv := Driver.instance().inventory_mgr.get_inventory(check_id)
 
-  if check_type == Enums.CheckOp.EXISTS:
-    return inv.has_item(target_item)
+	if check_type == Enums.CheckOp.EXISTS:
+		return inv.has_item(target_item)
 
-  return Enums.check_op_eval_int(check_type, inv.count_item(target_item), check_value)
+	return Enums.check_op_eval_int(check_type, inv.count_item(target_item), check_value)
