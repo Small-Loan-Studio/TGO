@@ -55,7 +55,7 @@ condition = SubResource("Resource_3kw88")
 script = ExtResource("14_jkjx4")
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_ty38j"]
-radius = 16.0
+radius = 13.0
 
 [node name="LevelBase" instance=ExtResource("1_iejup")]
 script = ExtResource("2_22a2t")
