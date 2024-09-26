@@ -6,9 +6,6 @@ extends Area2D
 signal triggered(state: bool)
 signal failed_trigger(reason: String)
 
-## This is set when the switch has been pressed by one or more actors
-var is_pressed: bool = false
-
 ## Checked as part of an evaluation if some actor can press a switch
 @export var conditions: Array[TriggerCondition] = []
 
@@ -21,6 +18,9 @@ var is_pressed: bool = false
 
 @export var on_pressed_effects: Array[Effect] = []
 @export var on_released_effects: Array[Effect] = []
+
+## This is set when the switch has been pressed by one or more actors
+var is_pressed: bool = false
 
 ## Tracks the full set of ids that are present in this switch area and have
 ## triggered an activation (or can keep it activated)
