@@ -6,6 +6,11 @@
 collision_layer = 0
 collision_mask = 4
 script = ExtResource("1_rlyjj")
+conditions = null
+single_fire = null
+id_mask = null
+on_pressed_effects = null
+on_released_effects = null
 
 [connection signal="area_entered" from="." to="." method="_on_enter"]
 [connection signal="area_exited" from="." to="." method="_on_exit"]

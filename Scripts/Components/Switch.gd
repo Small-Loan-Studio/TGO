@@ -4,7 +4,7 @@ extends Area2D
 # enum TriggerFailue { ID_MASK, CONDITIONS }
 
 signal triggered(state: bool)
-signal failed_trigger(reason: String)
+signal failed_trigger(reason: Enums.TriggerFailure)
 
 ## Checked as part of an evaluation if some actor can press a switch
 @export var conditions: Array[TriggerCondition] = []
@@ -31,17 +31,7 @@ var _cur_level: LevelBase
 
 
 func _ready() -> void:
-	print("Switch %s._ready()" % [name])
-
-	var ref: Node = self
-	while not (ref is LevelBase):
-		ref = ref.get_parent()
-		if ref == null:
-			printerr("Switch: 2did not find a LevelBase parent for %s" % [name])
-			break
-	if ref != null:
-		_cur_level = ref
-
+	_cur_level = Utils.get_level_parent(self)
 
 ## Reset switch state. That means:
 ##    a. clears the activation stack
@@ -84,7 +74,7 @@ func _on_exit_body(body: Node2D) -> void:
 func _on_enter_id(id: String) -> void:
 	if id_mask != null && id_mask.size() > 0:
 		if !(id in id_mask):
-			failed_trigger.emit("TriggerFailue.ID_MASK")
+			failed_trigger.emit(Enums.TriggerFailure.ID_MASK)
 			return
 
 	if id in _activation_stack:
@@ -92,7 +82,7 @@ func _on_enter_id(id: String) -> void:
 
 	for c in conditions:
 		if !c.evaluate(id):
-			failed_trigger.emit("TriggerFailure.CONDITIONS")
+			failed_trigger.emit(Enums.TriggerFailure.CONDITIONS)
 			return
 
 	_activation_stack.push_back(id)

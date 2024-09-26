@@ -4,6 +4,19 @@ extends RefCounted
 const ID_GROUP := "NodesWithID"
 
 
+## Finds a LevelBase ancestor of a node if it exists. Returns null if none
+## found.
+static func get_level_parent(node: Node) -> LevelBase:
+	var ref := node
+	while not (ref is LevelBase):
+		ref = ref.get_parent()
+		if ref == null:
+			printerr("Switch: did not find a LevelBase parent for %s" % [node.name])
+			return null
+
+	return ref
+
+
 # converts an angle relative to Vector2.UP into a direction;
 # the angle is expected to be radians between [-TAU, TAU]
 static func angle_to_direction(

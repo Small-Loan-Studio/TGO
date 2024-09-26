@@ -10,6 +10,8 @@ enum CheckOp {
 	GT,
 }
 
+enum TriggerFailure { ID_MASK, CONDITIONS }
+
 enum Direction {
 	NORTH,
 	SOUTH,

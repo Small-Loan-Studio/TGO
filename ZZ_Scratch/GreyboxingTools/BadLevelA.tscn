@@ -1,4 +1,4 @@
-[gd_scene load_steps=28 format=3 uid="uid://d4mrsiv1l8m35"]
+[gd_scene load_steps=26 format=3 uid="uid://d4mrsiv1l8m35"]
 
 [ext_resource type="PackedScene" uid="uid://dyq8mcdsutnsa" path="res://Scenes/Components/LevelBase.tscn" id="1_iejup"]
 [ext_resource type="Script" path="res://ZZ_Scratch/GreyboxingTools/BadLevelA.gd" id="2_22a2t"]
@@ -16,7 +16,6 @@
 [ext_resource type="Script" path="res://Scripts/Resources/Effects/DebugEffect.gd" id="14_jkjx4"]
 [ext_resource type="Script" path="res://Scripts/Resources/Conditions/InventoryCheckCondition.gd" id="14_ugj4l"]
 [ext_resource type="Resource" uid="uid://b7w2axnxl0fkt" path="res://Scripts/Resources/Items/Key.tres" id="15_5ff5q"]
-[ext_resource type="Script" path="res://Scripts/Resources/Conditions/InvertCondition.gd" id="16_fr4w6"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_ptcao"]
 atlas = ExtResource("3_uhn0b")
@@ -46,10 +45,6 @@ inventory_id = ""
 target_item = ExtResource("15_5ff5q")
 check_type = 0
 check_value = 0
-
-[sub_resource type="Resource" id="Resource_wquwv"]
-script = ExtResource("16_fr4w6")
-condition = SubResource("Resource_3kw88")
 
 [sub_resource type="Resource" id="Resource_8sp0r"]
 script = ExtResource("14_jkjx4")
@@ -125,7 +120,7 @@ id = "mayor_buckley"
 
 [node name="Switch" parent="Objects" index="6" instance=ExtResource("13_i2hg4")]
 position = Vector2(102, 174)
-conditions = Array[Resource("res://Scripts/Resources/TriggerCondition.gd")]([SubResource("Resource_wquwv")])
+conditions = Array[Resource("res://Scripts/Resources/TriggerCondition.gd")]([SubResource("Resource_3kw88")])
 single_fire = true
 on_pressed_effects = Array[Resource("res://Scripts/Resources/Effect.gd")]([SubResource("Resource_8sp0r")])
 

@@ -29,15 +29,8 @@ var _cur_level: LevelBase
 
 
 func _ready() -> void:
-	var ref: Node = self
-	while not (ref is LevelBase):
-		ref = ref.get_parent()
-		if ref == null:
-			printerr("Interactable: did not find a LevelBase parent for %s" % [name])
-			break
-	if ref != null:
-		_cur_level = ref
-
+	_cur_level = Utils.get_level_parent(self)
+	print("Interactable._cur_level: ", _cur_level)
 
 func trigger(actor: Character) -> void:
 	for a in actions:
