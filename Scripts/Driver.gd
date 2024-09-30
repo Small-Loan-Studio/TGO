@@ -9,7 +9,7 @@ var _last_loaded_level: LevelBase = null
 
 @onready var audio_mgr: AudioManager = $AudioManager
 @onready var player: Devin = %Devin
-@onready var inventory_mgr := $InventoryManager
+@onready var inventory_mgr: InventoryManager = $InventoryManager
 @onready var _menu_mgr: MenuManager = $OverlayManager/MenuManager
 @onready var _curtain := $OverlayManager/Curtain
 @onready var _world := $GameWorld
@@ -90,3 +90,7 @@ func request_debug_load(path: String) -> void:
 
 	await music_ready.finished
 	await _curtain.fade_out(1)
+
+
+func _on_debug_pressed() -> void:
+	print(Dialogic.VAR.get_variable("test_var"))

@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=3 uid="uid://d4mrsiv1l8m35"]
+[gd_scene load_steps=21 format=3 uid="uid://d4mrsiv1l8m35"]
 
 [ext_resource type="PackedScene" uid="uid://dyq8mcdsutnsa" path="res://Scenes/Components/LevelBase.tscn" id="1_iejup"]
 [ext_resource type="Script" path="res://ZZ_Scratch/GreyboxingTools/BadLevelA.gd" id="2_22a2t"]
@@ -12,6 +12,7 @@
 [ext_resource type="PackedScene" uid="uid://c7gburp74xsto" path="res://Scenes/Components/NPC/MayorBuckley.tscn" id="10_2hlxg"]
 [ext_resource type="Script" path="res://Scripts/Resources/Effects/DialogueEffect.gd" id="11_03hvs"]
 [ext_resource type="Resource" path="res://Dialogue/Buckley/BuckleyTestTimeline.dtl" id="11_i8wpl"]
+[ext_resource type="PackedScene" uid="uid://bmwu7t5fqfmd5" path="res://Scenes/Components/Switch.tscn" id="13_i2hg4"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_ptcao"]
 atlas = ExtResource("3_uhn0b")
@@ -34,6 +35,9 @@ size = Vector2(64, 68)
 [sub_resource type="Resource" id="Resource_lh8xy"]
 script = ExtResource("11_03hvs")
 timeline = ExtResource("11_i8wpl")
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_ty38j"]
+radius = 13.0
 
 [node name="LevelBase" instance=ExtResource("1_iejup")]
 script = ExtResource("2_22a2t")
@@ -88,14 +92,29 @@ shape = SubResource("RectangleShape2D_qqykj")
 
 [node name="MoveableBlock" parent="Objects" index="2" instance=ExtResource("9_78gjk")]
 position = Vector2(138, 172)
+collision_layer = 5
+id = "block-right"
 
 [node name="MoveableBlock2" parent="Objects" index="3" instance=ExtResource("9_78gjk")]
-position = Vector2(89, 172)
+position = Vector2(71, 171)
+id = "block-left"
 
 [node name="MayorBuckley" parent="Objects/Characters" index="0" instance=ExtResource("10_2hlxg")]
 position = Vector2(546, 308)
 dlg = SubResource("Resource_lh8xy")
 id = "mayor_buckley"
+
+[node name="Switch" parent="Objects" index="6" instance=ExtResource("13_i2hg4")]
+position = Vector2(102, 174)
+conditions = Array[Resource("res://Scripts/Resources/TriggerCondition.gd")]([])
+single_fire = false
+id_mask = Array[Resource("res://Scripts/Resources/TriggerCondition.gd")]([])
+on_pressed_effects = Array[Resource("res://Scripts/Resources/TriggerCondition.gd")]([])
+on_released_effects = Array[Resource("res://Scripts/Resources/TriggerCondition.gd")]([])
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Objects/Switch" index="0"]
+position = Vector2(3, -3)
+shape = SubResource("CircleShape2D_ty38j")
 
 [node name="PlayerStart" type="Node2D" parent="Markers" index="0"]
 position = Vector2(522, 183)

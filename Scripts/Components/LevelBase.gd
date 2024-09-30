@@ -51,3 +51,17 @@ func get_named_location(named_pos: String) -> Vector2:
 			printerr("Failed to find any location markers")
 
 	return marker.global_position
+
+
+## Examines nodes that are marked as having an ID and returns the first match
+## if any are found.
+func get_by_id(id: String) -> Node2D:
+	if id == "" || id == null:
+		printerr("Unable to find empty or null id")
+		return null
+
+	id = id.to_lower()
+	for n in get_tree().get_nodes_in_group(Utils.ID_GROUP):
+		if n.id.to_lower() == id:
+			return n
+	return null
