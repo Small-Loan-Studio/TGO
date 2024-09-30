@@ -17,6 +17,11 @@ static func get_level_parent(node: Node) -> LevelBase:
 	return ref
 
 
+## converts a string to a bool. string comparisons are case insensitive
+## - 1 and t or true map to true.
+## - 0 and f or false map to false.
+##
+## any other string will return false but print an error
 static func str_to_bool(in_s: String) -> bool:
 	in_s = in_s.to_lower()
 	if in_s == "1" || in_s == "t" || in_s == "true":

@@ -7,7 +7,7 @@
 ##   1. overwrite which will completely replace the previosu value
 ##   2. Update which applies a modification to the previous value.
 ##      An update change may only be done on a number.
-class_name SetVAREffect
+class_name SetVarEffect
 extends Effect
 
 ## The variable name to be set or updated.
@@ -35,8 +35,6 @@ func act(_actor_id: String, _cur_level: LevelBase) -> void:
 			Dialogic.VAR.set_variable(variable_name, coerced_value)
 		"update":
 			var cur_value: Variant = Dialogic.VAR.get_variable(variable_name)
-			print("cur_value: ", cur_value)
-			print("coerced_value: ", coerced_value)
 			match typeof(cur_value):
 				TYPE_INT:
 					Dialogic.VAR.set_variable(variable_name, cur_value + coerced_value)
