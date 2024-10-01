@@ -3,23 +3,23 @@
 [ext_resource type="PackedScene" uid="uid://bmwu7t5fqfmd5" path="res://Scenes/Components/Switch.tscn" id="1_a5k7c"]
 [ext_resource type="Script" path="res://Scripts/Components/SimpleSwitch.gd" id="2_xotxe"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_fmbvn"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_gtlpp"]
 size = Vector2(0, 0)
 
 [node name="SimpleSwitch" instance=ExtResource("1_a5k7c")]
 z_index = -1
 script = ExtResource("2_xotxe")
+track_variable = ""
+sensor_size = Vector2(0, 0)
 feedback_enabled = true
 default_color = Color(0.745098, 0.745098, 0.745098, 1)
 active_color = Color(0, 0.392157, 0, 1)
-track_variable = null
-sensor_size = Vector2(0, 0)
 
 [node name="Polygon2D" type="Polygon2D" parent="." index="0"]
 color = Color(0.745098, 0.745098, 0.745098, 1)
 polygon = PackedVector2Array(0, 0, 0, 0, 0, 0, 0, 0)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." index="1"]
-shape = SubResource("RectangleShape2D_fmbvn")
+shape = SubResource("RectangleShape2D_gtlpp")
 
 [connection signal="triggered" from="." to="." method="_on_triggered"]
