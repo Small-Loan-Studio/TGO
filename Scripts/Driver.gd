@@ -93,4 +93,4 @@ func request_debug_load(path: String) -> void:
 
 
 func _on_debug_pressed() -> void:
-	print(Dialogic.VAR.get_variable("test_var"))
+	print(Dialogic.VAR.get_variable("HasSpoken"))
