@@ -125,12 +125,12 @@ func build() -> Switch:
 
 			set_effect.condition = [var_condition]
 
-			var was_true := SetVAREffect.new()
+			var was_true := SetVarEffect.new()
 			was_true.variable_name = _get_variable()
 			was_true.new_value = "false"
 			set_effect.true_path = [was_true]
 
-			var was_false := SetVAREffect.new()
+			var was_false := SetVarEffect.new()
 			was_false.variable_name = _get_variable()
 			was_false.new_value = "true"
 			set_effect.false_path = [was_false]
@@ -138,12 +138,12 @@ func build() -> Switch:
 			scn.on_pressed_effects = [set_effect]
 
 		TMPL_INSTANT_BOOL:
-			var set_effect := SetVAREffect.new()
+			var set_effect := SetVarEffect.new()
 			set_effect.variable_name = _get_variable()
 			set_effect.new_value = "true"
 			scn.on_pressed_effects = [set_effect]
 
-			var unset_effect := SetVAREffect.new()
+			var unset_effect := SetVarEffect.new()
 			unset_effect.variable_name = _get_variable()
 			unset_effect.new_value = "false"
 			scn.on_released_effects = [unset_effect]
