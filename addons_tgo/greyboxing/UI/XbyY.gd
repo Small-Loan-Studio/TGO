@@ -11,6 +11,7 @@ extends HBoxContainer
 @onready var _x_spinner: SpinBox = $Margin/SizeX
 @onready var _y_spinner: SpinBox = $Margin3/SizeY
 
+
 func _ready() -> void:
 	_setup(_x_spinner)
 	_setup(_y_spinner)

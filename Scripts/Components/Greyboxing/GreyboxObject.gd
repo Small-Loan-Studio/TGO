@@ -259,6 +259,7 @@ func _sync_interactable() -> void:
 func _get_y_offset() -> int:
 	return -(UNIT_SIZE * size.y) / 2
 
+
 func _sync_display() -> void:
 	_display.scale = size
 	_display.offset.y = _get_y_offset() / size.y
