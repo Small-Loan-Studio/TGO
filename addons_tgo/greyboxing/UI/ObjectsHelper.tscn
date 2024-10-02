@@ -1,6 +1,7 @@
-[gd_scene load_steps=2 format=3 uid="uid://1j701pum1cgx"]
+[gd_scene load_steps=3 format=3 uid="uid://1j701pum1cgx"]
 
 [ext_resource type="Script" path="res://addons_tgo/greyboxing/UI/ObjectsHelper.gd" id="1_u6ws1"]
+[ext_resource type="PackedScene" uid="uid://bvm1fjatmfabx" path="res://addons_tgo/greyboxing/UI/XbyY.tscn" id="2_grtm3"]
 
 [node name="ObjectsHelper" type="Control"]
 layout_mode = 3
@@ -49,6 +50,14 @@ theme_override_constants/margin_left = 8
 layout_mode = 2
 size_flags_horizontal = 3
 
+[node name="Size" parent="Container/AddItems/GenericDetails" instance=ExtResource("2_grtm3")]
+layout_mode = 2
+unit = "unit"
+min_value = 1
+max_value = 10
+initial_values = Vector2(4, 4)
+step = 0.5
+
 [node name="BlockMovement" type="CheckBox" parent="Container/AddItems/GenericDetails"]
 layout_mode = 2
 text = "Blocks Movement"
@@ -86,46 +95,10 @@ theme_override_constants/margin_left = 8
 [node name="Name" type="LineEdit" parent="Container/AddItems/PushableDetails/HBox/Margin"]
 layout_mode = 2
 
-[node name="Size" type="HBoxContainer" parent="Container/AddItems/PushableDetails"]
-layout_mode = 2
-
-[node name="Label" type="Label" parent="Container/AddItems/PushableDetails/Size"]
-layout_mode = 2
-text = "Size"
-
-[node name="Margin" type="MarginContainer" parent="Container/AddItems/PushableDetails/Size"]
-layout_mode = 2
-size_flags_horizontal = 3
-theme_override_constants/margin_left = 8
-
-[node name="PushableSizeX" type="SpinBox" parent="Container/AddItems/PushableDetails/Size/Margin"]
+[node name="PushableSize" parent="Container/AddItems/PushableDetails" instance=ExtResource("2_grtm3")]
 unique_name_in_owner = true
 layout_mode = 2
-min_value = 1.0
-max_value = 10.0
-value = 1.0
-alignment = 1
-
-[node name="Margin2" type="MarginContainer" parent="Container/AddItems/PushableDetails/Size"]
-layout_mode = 2
-theme_override_constants/margin_left = 8
-
-[node name="Label2" type="Label" parent="Container/AddItems/PushableDetails/Size/Margin2"]
-layout_mode = 2
-text = "x"
-
-[node name="Margin3" type="MarginContainer" parent="Container/AddItems/PushableDetails/Size"]
-layout_mode = 2
-size_flags_horizontal = 3
-theme_override_constants/margin_left = 8
-
-[node name="PushableSizeY" type="SpinBox" parent="Container/AddItems/PushableDetails/Size/Margin3"]
-unique_name_in_owner = true
-layout_mode = 2
-min_value = 1.0
-max_value = 10.0
-value = 1.0
-alignment = 1
+unit = "units"
 
 [node name="NPC" type="Button" parent="Container/AddItems"]
 layout_mode = 2

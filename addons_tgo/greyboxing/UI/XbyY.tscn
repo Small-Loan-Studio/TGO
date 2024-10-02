@@ -1,0 +1,40 @@
+[gd_scene load_steps=2 format=3 uid="uid://bvm1fjatmfabx"]
+
+[ext_resource type="Script" path="res://addons_tgo/greyboxing/UI/XbyY.gd" id="1_e2wb3"]
+
+[node name="Size" type="HBoxContainer"]
+script = ExtResource("1_e2wb3")
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 2
+text = "Size"
+
+[node name="Margin" type="MarginContainer" parent="."]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/margin_left = 8
+
+[node name="SizeX" type="SpinBox" parent="Margin"]
+unique_name_in_owner = true
+layout_mode = 2
+value = 1.0
+alignment = 1
+
+[node name="Margin2" type="MarginContainer" parent="."]
+layout_mode = 2
+theme_override_constants/margin_left = 8
+
+[node name="Label2" type="Label" parent="Margin2"]
+layout_mode = 2
+text = "x"
+
+[node name="Margin3" type="MarginContainer" parent="."]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/margin_left = 8
+
+[node name="SizeY" type="SpinBox" parent="Margin3"]
+unique_name_in_owner = true
+layout_mode = 2
+value = 1.0
+alignment = 1

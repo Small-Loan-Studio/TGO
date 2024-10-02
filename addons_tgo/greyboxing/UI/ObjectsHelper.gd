@@ -56,8 +56,7 @@ var _is_object_ready_to_place: bool = false
 @onready var _pushable := $Container/AddItems/Pushable
 @onready var _pushable_detail := $Container/AddItems/PushableDetails
 @onready var _pushable_name: LineEdit = $Container/AddItems/PushableDetails/HBox/Margin/Name
-@onready var _pushable_size_x: SpinBox = %PushableSizeX
-@onready var _pushable_size_y: SpinBox = %PushableSizeY
+@onready var _pushable_size: XbyY = %PushableSize
 
 @onready var _npc := $Container/AddItems/NPC
 @onready var _npc_detail := $Container/AddItems/NPCDetails
@@ -213,15 +212,15 @@ func _apply_pushable(obj_position: Vector2) -> void:
 	obj.name = obj_name
 	_objects_parent.add_child(obj)
 	obj.owner = _objects_parent.get_parent()
-	obj.width = _pushable_size_x.value
-	obj.height = _pushable_size_y.value
+	var xy := _pushable_size.get_xy()
+	obj.width = xy.x
+	obj.height = xy.y
 	obj.global_position = obj_position
 
 
 func _reset_pushable_state() -> void:
 	_pushable_name.text = _pushable_name.placeholder_text
-	_pushable_size_x.value = 1
-	_pushable_size_y.value = 1
+	_pushable_size.reset()
 
 
 func _apply_npc(obj_position: Vector2) -> void:

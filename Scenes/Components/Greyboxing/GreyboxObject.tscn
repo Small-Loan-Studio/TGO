@@ -1,6 +1,7 @@
-[gd_scene load_steps=2 format=3 uid="uid://bx2qjlw58ci20"]
+[gd_scene load_steps=3 format=3 uid="uid://bx2qjlw58ci20"]
 
 [ext_resource type="Script" path="res://Scripts/Components/Greyboxing/GreyboxObject.gd" id="1_qvo0g"]
+[ext_resource type="Texture2D" uid="uid://cgvsnvlyl0gl" path="res://Art/Environment/Placeables/unit-box.png" id="2_vnr7i"]
 
 [node name="Object" type="Node2D"]
 y_sort_enabled = true
@@ -8,3 +9,5 @@ script = ExtResource("1_qvo0g")
 metadata/_edit_group_ = true
 
 [node name="Display" type="Sprite2D" parent="."]
+texture = ExtResource("2_vnr7i")
+offset = Vector2(0, -14)
