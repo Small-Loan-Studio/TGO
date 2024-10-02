@@ -6,11 +6,15 @@ extends Control
 const GREYBOX_OBJECT_SCENE = "res://Scenes/Components/Greyboxing/GreyboxObject.tscn"
 const PUSHABLE_OBJECT_SCENE = "res://Scenes/Components/Greyboxing/MoveableBlock.tscn"
 const NPC_OBJECT_SCENE = "res://Scenes/Components/NPC.tscn"
+const ITEM_OBJECT_SCENE = "res://Scenes/Components/Inventory/Item.tscn"
 const GENERIC_KEY = "generic"
 const PUSHABLE_KEY = "pushable"
 const NPC_KEY = "npc"
+const ITEM_KEY = "item"
 const CHARACTERS_CHILD_NODE = "Characters"
+const ITEMS_CHILD_NODE = "Items"
 const NPC_PATH = "res://Scripts/Resources/NPCs"
+const ITEM_PATH = "res://Scripts/Resources/Items"
 const BUTTON_IDX = 0
 const DETAIL_IDX = 1
 const RESET_IDX = 2
@@ -43,6 +47,9 @@ var _npc_dict: Dictionary = {}
 ## timeline name: String -> String (path to DialogicTimeline)
 var _npc_timeline_dict: Dictionary = {}
 
+## item: String -> Item
+var _item_dict: Dictionary = {}
+
 ## Check to see if an object is ready to be placed in the scene
 var _is_object_ready_to_place: bool = false
 
@@ -65,6 +72,11 @@ var _is_object_ready_to_place: bool = false
 @onready var _npc_dlg_path: LineEdit = %NPCDialoguePath
 @onready var _npc_dlg_dropdown := %NPCDlgDropdown
 
+@onready var _item := $Container/AddItems/Item
+@onready var _item_detail := $Container/AddItems/ItemDetails
+@onready var _item_dropdown := %ItemDropdown
+@onready var _item_spinbox := %ItemSpinBox
+
 @onready var _complete_buttons := $Container/CompleteButtons
 @onready var _place_button := $Container/CompleteButtons/Place
 
@@ -74,6 +86,7 @@ func _ready() -> void:
 		GENERIC_KEY: [_generic, _generic_detail, _reset_generic_state],
 		PUSHABLE_KEY: [_pushable, _pushable_detail, _reset_pushable_state],
 		NPC_KEY: [_npc, _npc_detail, _reset_npc_state],
+		ITEM_KEY: [_item, _item_detail, _reset_item_state]
 	}
 	for k: String in _object_types.keys():
 		_valid_keys.append(k)
@@ -154,6 +167,8 @@ func _apply_implementation(obj_position: Vector2) -> void:
 			_apply_pushable(obj_position)
 		NPC_KEY:
 			_apply_npc(obj_position)
+		ITEM_KEY:
+			_apply_item(obj_position)
 		_:
 			assert(false, "Invalid focused object Type: " + _focused_object_type)
 	var prev := _focused_object_type
@@ -327,3 +342,69 @@ func _npc_dlg_refresh() -> void:
 				key = key.substr(0, key.length() - 4)
 				_npc_timeline_dict[key] = dtl
 				_npc_dlg_dropdown.add_item(key)
+
+
+func _apply_item(obj_position: Vector2) -> void:
+	var item_name: String = _item_dropdown.get_item_text(_item_dropdown.get_selected_id())
+	var config: Item = _item_dict[item_name]
+
+	var new_item := preload(ITEM_OBJECT_SCENE).instantiate()
+	new_item.item = config
+	new_item.quantity = _item_spinbox.value
+
+	# This is fragile, messy, and runs counter one of my gdscript principles...
+	# And so while I'd rather not do it I also don't want to restructure the
+	# whole of the plugin setup bullshit so here we are.
+	var parent := _objects_parent.get_node(ITEMS_CHILD_NODE)
+	new_item.name = _mk_name_unique(parent, item_name)
+
+	parent.add_child(new_item)
+	new_item.owner = _objects_parent.get_parent()
+	new_item.global_position = obj_position
+
+
+func _reset_item_state() -> void:
+	_item_dropdown.selected = 0
+
+
+# is called when the detail visibility is changed; when made visible
+# we reload the viable Item configs and populate the template dropdown
+func _item_detail_visibility_changed() -> void:
+	if _item_detail == null:
+		return
+
+	_item_dropdown.clear()
+	_item_dict.clear()
+	if !_item_detail.visible:
+		return
+
+	var dir := DirAccess.open(ITEM_PATH)
+	if dir == null:
+		printerr("Failed to open item resource path:", DirAccess.get_open_error())
+		return
+
+	dir.list_dir_begin()
+	var item_file := dir.get_next()
+	# walks the Item resource path and gets the configured resources
+	# TODO: doesn't traverse subdirs
+	while item_file != "":
+		if item_file.ends_with(".tres"):
+			var config := ResourceLoader.load(ITEM_PATH + "/" + item_file) as Item
+			if config != null:
+				var key := config.id
+				_item_dict[key] = config
+				if _item_dropdown:
+					_item_dropdown.add_item(key)
+		item_file = dir.get_next()
+	_item_dropdown_refresh()
+
+
+func _item_dropdown_refresh() -> void:
+	# get current id
+	var index: int = _item_dropdown.get_selected_id()
+	if index == -1:
+		return
+
+	# get config
+	var config: Item = _item_dict[_item_dropdown.get_item_text(index)]
+	print(config)

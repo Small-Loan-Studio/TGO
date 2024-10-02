@@ -172,6 +172,52 @@ layout_mode = 2
 [node name="NPCDlgDropdown" type="OptionButton" parent="Container/AddItems/NPCDetails/HBoxContainer2/MarginContainer"]
 unique_name_in_owner = true
 layout_mode = 2
+item_count = 2
+selected = 0
+popup/item_0/text = "None / Custom"
+popup/item_0/id = 0
+popup/item_1/text = "BuckleyTestTimeline"
+popup/item_1/id = 1
+
+[node name="Item" type="Button" parent="Container/AddItems"]
+layout_mode = 2
+text = "Item"
+
+[node name="ItemDetails" type="VBoxContainer" parent="Container/AddItems"]
+visible = false
+layout_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Container/AddItems/ItemDetails"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Container/AddItems/ItemDetails/HBoxContainer"]
+layout_mode = 2
+text = "Item Config"
+
+[node name="MarginContainer" type="MarginContainer" parent="Container/AddItems/ItemDetails/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/margin_left = 8
+
+[node name="ItemDropdown" type="OptionButton" parent="Container/AddItems/ItemDetails/HBoxContainer/MarginContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="Container/AddItems/ItemDetails"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Container/AddItems/ItemDetails/HBoxContainer2"]
+layout_mode = 2
+text = "Quantity"
+
+[node name="ItemSpinBox" type="SpinBox" parent="Container/AddItems/ItemDetails/HBoxContainer2"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+focus_mode = 2
+min_value = 1.0
+value = 1.0
 
 [node name="CompleteButtons" type="HBoxContainer" parent="Container"]
 visible = false
@@ -194,5 +240,7 @@ text = "Place"
 [connection signal="visibility_changed" from="Container/AddItems/NPCDetails" to="." method="_npc_detail_visibility_changed"]
 [connection signal="item_selected" from="Container/AddItems/NPCDetails/HBoxContainer/MarginContainer/NPCDropdown" to="." method="_npc_config_selected"]
 [connection signal="text_changed" from="Container/AddItems/NPCDetails/HBoxContainer2/MarginContainer/NPCDialoguePath" to="." method="_npc_dialogue_text_changed"]
+[connection signal="pressed" from="Container/AddItems/Item" to="." method="_select_object_type" binds= ["item"]]
+[connection signal="visibility_changed" from="Container/AddItems/ItemDetails" to="." method="_item_detail_visibility_changed"]
 [connection signal="pressed" from="Container/CompleteButtons/Cancel" to="." method="_reset"]
 [connection signal="pressed" from="Container/CompleteButtons/Place" to="." method="_apply"]
