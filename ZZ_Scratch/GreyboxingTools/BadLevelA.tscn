@@ -70,12 +70,12 @@ position = Vector2(0, 8)
 shape = SubResource("RectangleShape2D_wpjqq")
 
 [node name="testobj" parent="Objects" index="1" instance=ExtResource("7_ipcqk")]
-position = Vector2(-23, 119)
+position = Vector2(-1, 137)
 size = Vector2(2, 3.5)
 can_block_movement = true
 can_interact = true
 action_verb = 2
-y_sort_width = 185
+y_sort_width = 104
 
 [node name="MoveableBlock" parent="Objects" index="2" instance=ExtResource("9_78gjk")]
 position = Vector2(138, 172)

@@ -6,8 +6,9 @@
 [node name="Object" type="Node2D"]
 y_sort_enabled = true
 script = ExtResource("1_qvo0g")
+y_sort_width = 72
 metadata/_edit_group_ = true
 
 [node name="Display" type="Sprite2D" parent="."]
 texture = ExtResource("2_vnr7i")
-offset = Vector2(0, -14)
+offset = Vector2(0, -16)

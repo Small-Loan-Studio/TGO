@@ -115,6 +115,8 @@ func _ready() -> void:
 func _process(_delta: float) -> void:
 	if Engine.is_editor_hint():
 		_sync_all_shapes()
+		if scale != Vector2.ONE:
+			scale = Vector2.ONE
 
 
 func _draw() -> void:
@@ -255,7 +257,7 @@ func _sync_interactable() -> void:
 
 
 func _get_y_offset() -> int:
-	return 2 - (UNIT_SIZE * size.y) / 2
+	return -(UNIT_SIZE * size.y) / 2
 
 func _sync_display() -> void:
 	_display.scale = size
