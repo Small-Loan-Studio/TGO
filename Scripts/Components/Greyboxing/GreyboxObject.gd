@@ -32,7 +32,7 @@ const LIGHT_NODE = "Lighting"
 		return can_block_light
 	set(value):
 		can_block_light = value
-		_process_light_update()
+		_process_can_block_light_update()
 
 @export var can_interact: bool = false:
 	get:
@@ -137,12 +137,12 @@ func _update_collider_display() -> void:
 
 func _process_can_block_movement_update() -> void:
 	if !can_block_movement:
+		_physics = null
 		if !has_node(PHYSICS_NODE):
 			return
 		var n := get_node(PHYSICS_NODE)
 		n.queue_free()
 		remove_child(n)
-		_physics = null
 		return
 
 	if _physics == null:
@@ -165,12 +165,12 @@ func _process_can_block_movement_update() -> void:
 
 func _process_can_interact_update() -> void:
 	if !can_interact:
+		_interactable = null
 		if !has_node(INTERACT_NODE):
 			return
 		var inode := get_node(INTERACT_NODE)
 		remove_child(inode)
 		inode.queue_free()
-		_interactable = null
 		return
 
 	_interactable = Interactable.new()
@@ -188,12 +188,13 @@ func _process_can_interact_update() -> void:
 	_sync_all_shapes()
 
 
-func _process_light_update() -> void:
+func _process_can_block_light_update() -> void:
 	if !can_block_light:
-		if !_light == null:
-			remove_child(_light)
-			_light.queue_free()
-			_light = null
+		_light = null
+		if has_node(LIGHT_NODE):
+			var l := get_node(LIGHT_NODE)
+			remove_child(l)
+			l.queue_free()
 		return
 
 	if _light == null:
@@ -201,7 +202,7 @@ func _process_light_update() -> void:
 		_light.light_mask = 1
 		_light.occluder_light_mask = 2
 		_light.show_behind_parent = true
-		_light.name = "Light"
+		_light.name = LIGHT_NODE
 		add_child(_light)
 		_light.owner = self
 
