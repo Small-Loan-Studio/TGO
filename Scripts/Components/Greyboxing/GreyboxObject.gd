@@ -205,7 +205,7 @@ func _sync_occluder() -> void:
 		return
 
 	# var collider_shape: Shape2D = physics_shape.shape
-	print("TOOD: We don't yet sync the light collider shape to the physics shape")
+	print("TODO: We don't yet sync the light collider shape to the physics shape")
 
 	_light.occluder = OccluderPolygon2D.new()
 	_light.occluder.polygon = PackedVector2Array()

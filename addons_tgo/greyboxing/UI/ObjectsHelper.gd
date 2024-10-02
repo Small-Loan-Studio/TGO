@@ -335,12 +335,10 @@ func _npc_dlg_refresh() -> void:
 
 	# get config
 	var config: NPCConfig = _npc_dict[_npc_dropdown.get_item_text(index)]
-	print(config)
 
 	# populate with DTL options
 	_npc_dlg_dropdown.add_item("None / Custom")
 	for dtl_path in config.valid_timelines:
-		print("dtl_path: ", dtl_path)
 		if dtl_path.ends_with(".dtl"):
 			var dtl := load(dtl_path)
 			if dtl is DialogicTimeline:

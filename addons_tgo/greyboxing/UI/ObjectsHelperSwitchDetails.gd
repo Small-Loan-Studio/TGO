@@ -82,7 +82,6 @@ func _get_bool_variables() -> Array[String]:
 	var res: Array[String] = []
 	for kv: Array in _list_variables_and_type():
 		var k: String = kv[0]
-		print("checking: ", k)
 		var tk: Variant.Type = kv[1]
 		if tk == TYPE_BOOL:
 			res.push_back(k)
