@@ -50,15 +50,16 @@ var _is_object_ready_to_place: bool = false
 @onready var _generic := $Container/AddItems/Generic
 @onready var _generic_detail := $Container/AddItems/GenericDetails
 @onready var _generic_name: LineEdit = $Container/AddItems/GenericDetails/HBox/Margin/Name
+@onready var _generic_size: XbyY = $Container/AddItems/GenericDetails/Size
 @onready var _generic_block_movement: CheckBox = $Container/AddItems/GenericDetails/BlockMovement
 @onready var _generic_occludes: CheckBox = $Container/AddItems/GenericDetails/Occludes
 @onready var _generic_interacts: CheckBox = $Container/AddItems/GenericDetails/Interactable
+@onready var _generic_interacts_desc := %InteractableDesc
 
 @onready var _pushable := $Container/AddItems/Pushable
 @onready var _pushable_detail := $Container/AddItems/PushableDetails
 @onready var _pushable_name: LineEdit = $Container/AddItems/PushableDetails/HBox/Margin/Name
-@onready var _pushable_size_x: SpinBox = %PushableSizeX
-@onready var _pushable_size_y: SpinBox = %PushableSizeY
+@onready var _pushable_size: XbyY = %PushableSize
 
 @onready var _npc := $Container/AddItems/NPC
 @onready var _npc_detail := $Container/AddItems/NPCDetails
@@ -143,8 +144,8 @@ func _select_object_type(type_name: String) -> void:
 			_object_types[k][DETAIL_IDX].hide()
 
 
-## Toggles the ability to place an object in the scene. Called when place button in ObjectsHelper
-## scene is pressed.
+## Toggles the ability to place an object in the scene. Called when place
+## button in ObjectsHelper scene is pressed.
 func _apply() -> void:
 	_is_object_ready_to_place = true
 	_place_button.text = BUTTON_TEXT_PLACING
@@ -200,6 +201,7 @@ func _apply_generic(obj_position: Vector2) -> void:
 	obj.can_block_movement = collides
 	obj.can_block_light = occludes
 	obj.can_interact = interacts
+	obj.size = _generic_size.get_xy()
 	obj.global_position = obj_position
 
 
@@ -220,15 +222,15 @@ func _apply_pushable(obj_position: Vector2) -> void:
 	obj.name = obj_name
 	_objects_parent.add_child(obj)
 	obj.owner = _objects_parent.get_parent()
-	obj.width = _pushable_size_x.value
-	obj.height = _pushable_size_y.value
+	var xy := _pushable_size.get_xy()
+	obj.width = xy.x
+	obj.height = xy.y
 	obj.global_position = obj_position
 
 
 func _reset_pushable_state() -> void:
 	_pushable_name.text = _pushable_name.placeholder_text
-	_pushable_size_x.value = 1
-	_pushable_size_y.value = 1
+	_pushable_size.reset()
 
 
 func _apply_npc(obj_position: Vector2) -> void:
@@ -346,3 +348,7 @@ func _npc_dlg_refresh() -> void:
 				key = key.substr(0, key.length() - 4)
 				_npc_timeline_dict[key] = dtl
 				_npc_dlg_dropdown.add_item(key)
+
+
+func _on_generic_interactable_toggled(toggled_on: bool) -> void:
+	_generic_interacts_desc.visible = toggled_on

@@ -1,21 +1,22 @@
 [gd_scene load_steps=5 format=3 uid="uid://ibnwktw1xdvu"]
 
-[ext_resource type="Texture2D" uid="uid://ceo0a1wjutqct" path="res://Art/Environment/Placeables/box.png" id="1_8wuxv"]
 [ext_resource type="Script" path="res://ZZ_Scratch/Movement/GrayBox.gd" id="1_bocbp"]
+[ext_resource type="Texture2D" uid="uid://cgvsnvlyl0gl" path="res://Art/Environment/Placeables/unit-box.png" id="2_312ls"]
 
 [sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_55kx7"]
-polygon = PackedVector2Array(-32, 64, 32, 64, 32, -64, -32, -64)
+polygon = PackedVector2Array(-16, 16, 16, 16, 16, -16, -16, -16)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_tmfnm"]
-size = Vector2(64, 128)
+size = Vector2(66, 127)
 
 [node name="GrayBox" type="Node2D"]
 script = ExtResource("1_bocbp")
 
 [node name="BoxSprite" type="Sprite2D" parent="."]
 z_index = -5
-position = Vector2(32, 64)
-texture = ExtResource("1_8wuxv")
+position = Vector2(31, 63.5)
+scale = Vector2(2.0625, 3.96875)
+texture = ExtResource("2_312ls")
 
 [node name="LightOccluder2D" type="LightOccluder2D" parent="BoxSprite"]
 show_behind_parent = true
@@ -26,6 +27,7 @@ occluder_light_mask = 2
 position = Vector2(32, 64)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(-1, -0.5)
 shape = SubResource("RectangleShape2D_tmfnm")
 
 [node name="BoxLabel" type="Label" parent="."]

@@ -1,6 +1,7 @@
-[gd_scene load_steps=3 format=3 uid="uid://1j701pum1cgx"]
+[gd_scene load_steps=4 format=3 uid="uid://1j701pum1cgx"]
 
 [ext_resource type="Script" path="res://addons_tgo/greyboxing/UI/ObjectsHelper.gd" id="1_u6ws1"]
+[ext_resource type="PackedScene" uid="uid://bvm1fjatmfabx" path="res://addons_tgo/greyboxing/UI/XbyY.tscn" id="2_grtm3"]
 [ext_resource type="PackedScene" uid="uid://efk1feabjm8y" path="res://addons_tgo/greyboxing/UI/ObjectsHelperSwitchDetails.tscn" id="2_wpheu"]
 
 [node name="ObjectsHelper" type="Control"]
@@ -51,6 +52,14 @@ theme_override_constants/margin_left = 8
 layout_mode = 2
 size_flags_horizontal = 3
 
+[node name="Size" parent="Container/AddItems/GenericDetails" instance=ExtResource("2_grtm3")]
+layout_mode = 2
+unit = "unit"
+min_value = 1
+max_value = 10
+initial_values = Vector2(4, 4)
+step = 0.5
+
 [node name="BlockMovement" type="CheckBox" parent="Container/AddItems/GenericDetails"]
 layout_mode = 2
 text = "Blocks Movement"
@@ -64,6 +73,17 @@ text = "Blocks Light
 layout_mode = 2
 text = "Is Interactable
 "
+
+[node name="MarginContainer" type="MarginContainer" parent="Container/AddItems/GenericDetails"]
+layout_mode = 2
+theme_override_constants/margin_left = 32
+
+[node name="InteractableDesc" type="Label" parent="Container/AddItems/GenericDetails/MarginContainer"]
+unique_name_in_owner = true
+visible = false
+layout_mode = 2
+text = "Interactable configuration is done on the greybox object itself once it has been added to the scene."
+autowrap_mode = 3
 
 [node name="Pushable" type="Button" parent="Container/AddItems"]
 layout_mode = 2
@@ -88,48 +108,10 @@ theme_override_constants/margin_left = 8
 [node name="Name" type="LineEdit" parent="Container/AddItems/PushableDetails/HBox/Margin"]
 layout_mode = 2
 
-[node name="Size" type="HBoxContainer" parent="Container/AddItems/PushableDetails"]
-layout_mode = 2
-
-[node name="Label" type="Label" parent="Container/AddItems/PushableDetails/Size"]
-layout_mode = 2
-text = "Size"
-
-[node name="Margin" type="MarginContainer" parent="Container/AddItems/PushableDetails/Size"]
-layout_mode = 2
-size_flags_horizontal = 3
-theme_override_constants/margin_left = 8
-
-[node name="PushableSizeX" type="SpinBox" parent="Container/AddItems/PushableDetails/Size/Margin"]
+[node name="PushableSize" parent="Container/AddItems/PushableDetails" instance=ExtResource("2_grtm3")]
 unique_name_in_owner = true
 layout_mode = 2
-min_value = 1.0
-max_value = 10.0
-value = 1.0
-alignment = 1
-suffix = "unit"
-
-[node name="Margin2" type="MarginContainer" parent="Container/AddItems/PushableDetails/Size"]
-layout_mode = 2
-theme_override_constants/margin_left = 8
-
-[node name="Label2" type="Label" parent="Container/AddItems/PushableDetails/Size/Margin2"]
-layout_mode = 2
-text = "x"
-
-[node name="Margin3" type="MarginContainer" parent="Container/AddItems/PushableDetails/Size"]
-layout_mode = 2
-size_flags_horizontal = 3
-theme_override_constants/margin_left = 8
-
-[node name="PushableSizeY" type="SpinBox" parent="Container/AddItems/PushableDetails/Size/Margin3"]
-unique_name_in_owner = true
-layout_mode = 2
-min_value = 1.0
-max_value = 10.0
-value = 1.0
-alignment = 1
-suffix = "unit"
+unit = "units"
 
 [node name="NPC" type="Button" parent="Container/AddItems"]
 layout_mode = 2
@@ -206,6 +188,7 @@ size_flags_horizontal = 3
 text = "Place"
 
 [connection signal="pressed" from="Container/AddItems/Generic" to="." method="_select_object_type" binds= ["generic"]]
+[connection signal="toggled" from="Container/AddItems/GenericDetails/Interactable" to="." method="_on_generic_interactable_toggled"]
 [connection signal="pressed" from="Container/AddItems/Pushable" to="." method="_select_object_type" binds= ["pushable"]]
 [connection signal="pressed" from="Container/AddItems/NPC" to="." method="_select_object_type" binds= ["npc"]]
 [connection signal="visibility_changed" from="Container/AddItems/NPCDetails" to="." method="_npc_detail_visibility_changed"]
