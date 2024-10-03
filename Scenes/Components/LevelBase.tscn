@@ -33,6 +33,8 @@ layer_4/tile_data = PackedInt32Array()
 [node name="Objects" type="Node2D" parent="."]
 y_sort_enabled = true
 
+[node name="Switches" type="Node" parent="Objects"]
+
 [node name="Characters" type="Node" parent="Objects"]
 
 [node name="Markers" type="Node" parent="."]
