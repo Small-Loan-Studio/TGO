@@ -35,10 +35,14 @@ func _ready() -> void:
 
 	# TODO: jank, delete later
 	inventory_mgr.get_inventory(player.id).inventory_updated.connect(_refresh_debug_inventory_ui)
+	# do an initial build from the start state
+	_refresh_debug_inventory_ui(inventory_mgr.get_inventory(player.id))
 
 
 func _refresh_debug_inventory_ui(inventory: Inventory) -> void:
-	_debug_ui_inventory.build(inventory.get_items())
+	var items := inventory.get_items()
+	_debug_ui_inventory.visible = items.size() > 0
+	_debug_ui_inventory.build(items)
 
 
 func _post_ready() -> void:
