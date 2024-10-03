@@ -25,7 +25,7 @@ func act(_actor_id: String, _cur_level: LevelBase) -> void:
 	if coerced_value == null:
 		printerr(
 			(
-				"SetVAREffect: Unable to coerce %s into the expected type for %s"
+				"SetVarEffect: Unable to coerce %s into the expected type for %s"
 				% [new_value, variable_name]
 			)
 		)
@@ -42,14 +42,14 @@ func act(_actor_id: String, _cur_level: LevelBase) -> void:
 					Dialogic.VAR.set_variable(variable_name, cur_value + coerced_value)
 				_:
 					printerr(
-						"SetVAREffect: Unable to make update to non-numeric variable ",
+						"SetVarEffect: Unable to make update to non-numeric variable ",
 						variable_name
 					)
 
 
 func _get_valid_value(variable_name: String, new_value: String) -> Variant:
 	if !Dialogic.VAR.has(variable_name):
-		printerr("SetVAREffect: Invalid variable", variable_name)
+		printerr("SetVarEffect: Invalid variable", variable_name)
 		return null
 
 	match typeof(Dialogic.VAR.get_variable(variable_name)):
