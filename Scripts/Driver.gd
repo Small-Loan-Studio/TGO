@@ -33,13 +33,15 @@ func _ready() -> void:
 	# sure that's a bad thing to do but it felt weird so here we are.
 	call_deferred("_post_ready")
 
-	# TODO: jank, delete later
-	inventory_mgr.get_inventory(player.id).inventory_updated.connect(_refresh_debug_inventory_ui)
+	# TODO: we probably don't want to use this as a way to wire up the inventory
+	# replace eventually with a more principled method that can be used for more
+	# than just one-offs
+	inventory_mgr.get_inventory(player.id).inventory_updated.connect(_debug_refresh_inventory_ui)
 	# do an initial build from the start state
-	_refresh_debug_inventory_ui(inventory_mgr.get_inventory(player.id))
+	_debug_refresh_inventory_ui(inventory_mgr.get_inventory(player.id))
 
 
-func _refresh_debug_inventory_ui(inventory: Inventory) -> void:
+func _debug_refresh_inventory_ui(inventory: Inventory) -> void:
 	var items := inventory.get_items()
 	_debug_ui_inventory.visible = items.size() > 0
 	_debug_ui_inventory.build(items)
