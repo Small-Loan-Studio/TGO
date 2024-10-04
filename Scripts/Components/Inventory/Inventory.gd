@@ -41,7 +41,7 @@ func insert(item: ItemStack) -> bool:
 			return true
 
 	## We cannot stack, so let's insert the new ItemStack if there is an available slot
-	if _items.size() < size:
+	if size == -1 || (_items.size() < size):
 		_items.append(item)
 		inventory_item_inserted.emit(item)
 		inventory_updated.emit(self)
