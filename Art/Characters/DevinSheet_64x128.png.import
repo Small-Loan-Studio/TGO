@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://c1vp6b1dc8x0i"
-path="res://.godot/imported/DevinSheet.png-242851a9507bdce5dd5ac3cc620ea28e.ctex"
+uid="uid://cstgt6kp8qq1m"
+path="res://.godot/imported/DevinSheet_64x128.png-a75cdfe0210d715c41fce4e068180615.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Art/Characters/DevinSheet.png"
-dest_files=["res://.godot/imported/DevinSheet.png-242851a9507bdce5dd5ac3cc620ea28e.ctex"]
+source_file="res://Art/Characters/DevinSheet_64x128.png"
+dest_files=["res://.godot/imported/DevinSheet_64x128.png-a75cdfe0210d715c41fce4e068180615.ctex"]
 
 [params]
 
