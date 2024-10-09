@@ -11,6 +11,7 @@ const GENERIC_KEY = "generic"
 const PUSHABLE_KEY = "pushable"
 const NPC_KEY = "npc"
 const ITEM_KEY = "item"
+const SWITCH_KEY = "switch"
 const CHARACTERS_CHILD_NODE = "Characters"
 const ITEMS_CHILD_NODE = "Items"
 const NPC_PATH = "res://Scripts/Resources/NPCs"
@@ -56,15 +57,16 @@ var _is_object_ready_to_place: bool = false
 @onready var _generic := $Container/AddItems/Generic
 @onready var _generic_detail := $Container/AddItems/GenericDetails
 @onready var _generic_name: LineEdit = $Container/AddItems/GenericDetails/HBox/Margin/Name
+@onready var _generic_size: XbyY = $Container/AddItems/GenericDetails/Size
 @onready var _generic_block_movement: CheckBox = $Container/AddItems/GenericDetails/BlockMovement
 @onready var _generic_occludes: CheckBox = $Container/AddItems/GenericDetails/Occludes
 @onready var _generic_interacts: CheckBox = $Container/AddItems/GenericDetails/Interactable
+@onready var _generic_interacts_desc := %InteractableDesc
 
 @onready var _pushable := $Container/AddItems/Pushable
 @onready var _pushable_detail := $Container/AddItems/PushableDetails
 @onready var _pushable_name: LineEdit = $Container/AddItems/PushableDetails/HBox/Margin/Name
-@onready var _pushable_size_x: SpinBox = %PushableSizeX
-@onready var _pushable_size_y: SpinBox = %PushableSizeY
+@onready var _pushable_size: XbyY = %PushableSize
 
 @onready var _npc := $Container/AddItems/NPC
 @onready var _npc_detail := $Container/AddItems/NPCDetails
@@ -77,6 +79,9 @@ var _is_object_ready_to_place: bool = false
 @onready var _item_dropdown := %ItemDropdown
 @onready var _item_spinbox := %ItemSpinBox
 
+@onready var _switch := $Container/AddItems/Switch
+@onready var _switch_detail: ObjectsHelperSwitchDetails = $Container/AddItems/SwitchDetails
+
 @onready var _complete_buttons := $Container/CompleteButtons
 @onready var _place_button := $Container/CompleteButtons/Place
 
@@ -86,7 +91,8 @@ func _ready() -> void:
 		GENERIC_KEY: [_generic, _generic_detail, _reset_generic_state],
 		PUSHABLE_KEY: [_pushable, _pushable_detail, _reset_pushable_state],
 		NPC_KEY: [_npc, _npc_detail, _reset_npc_state],
-		ITEM_KEY: [_item, _item_detail, _reset_item_state]
+		ITEM_KEY: [_item, _item_detail, _reset_item_state],
+		SWITCH_KEY: [_switch, _switch_detail, _switch_detail.reset],
 	}
 	for k: String in _object_types.keys():
 		_valid_keys.append(k)
@@ -151,8 +157,8 @@ func _select_object_type(type_name: String) -> void:
 			_object_types[k][DETAIL_IDX].hide()
 
 
-## Toggles the ability to place an object in the scene. Called when place button in ObjectsHelper
-## scene is pressed.
+## Toggles the ability to place an object in the scene. Called when place
+## button in ObjectsHelper scene is pressed.
 func _apply() -> void:
 	_is_object_ready_to_place = true
 	_place_button.text = BUTTON_TEXT_PLACING
@@ -169,6 +175,8 @@ func _apply_implementation(obj_position: Vector2) -> void:
 			_apply_npc(obj_position)
 		ITEM_KEY:
 			_apply_item(obj_position)
+		SWITCH_KEY:
+			_apply_switch(obj_position)
 		_:
 			assert(false, "Invalid focused object Type: " + _focused_object_type)
 	var prev := _focused_object_type
@@ -228,15 +236,15 @@ func _apply_pushable(obj_position: Vector2) -> void:
 	obj.name = obj_name
 	_objects_parent.add_child(obj)
 	obj.owner = _objects_parent.get_parent()
-	obj.width = _pushable_size_x.value
-	obj.height = _pushable_size_y.value
+	var xy := _pushable_size.get_xy()
+	obj.width = xy.x
+	obj.height = xy.y
 	obj.global_position = obj_position
 
 
 func _reset_pushable_state() -> void:
 	_pushable_name.text = _pushable_name.placeholder_text
-	_pushable_size_x.value = 1
-	_pushable_size_y.value = 1
+	_pushable_size.reset()
 
 
 func _apply_npc(obj_position: Vector2) -> void:
@@ -260,6 +268,20 @@ func _apply_npc(obj_position: Vector2) -> void:
 	parent.add_child(new_npc)
 	new_npc.owner = _objects_parent.get_parent()
 	new_npc.global_position = obj_position
+
+
+func _apply_switch(obj_position: Vector2) -> void:
+	var parent := _objects_parent.get_node("Switches")
+
+	var obj := _switch_detail.build()
+	var obj_name := _switch_detail.switch_name.text
+	if obj_name == "":
+		obj_name = "Switch"
+	obj.name = _mk_name_unique(parent, obj_name)
+
+	parent.add_child(obj)
+	obj.owner = _objects_parent.get_parent()
+	obj.global_position = obj_position
 
 
 func _reset_npc_state() -> void:
@@ -329,12 +351,10 @@ func _npc_dlg_refresh() -> void:
 
 	# get config
 	var config: NPCConfig = _npc_dict[_npc_dropdown.get_item_text(index)]
-	print(config)
 
 	# populate with DTL options
 	_npc_dlg_dropdown.add_item("None / Custom")
 	for dtl_path in config.valid_timelines:
-		print("dtl_path: ", dtl_path)
 		if dtl_path.ends_with(".dtl"):
 			var dtl := load(dtl_path)
 			if dtl is DialogicTimeline:
@@ -408,3 +428,7 @@ func _item_dropdown_refresh() -> void:
 	# get config
 	var config: Item = _item_dict[_item_dropdown.get_item_text(index)]
 	print(config)
+
+
+func _on_generic_interactable_toggled(toggled_on: bool) -> void:
+	_generic_interacts_desc.visible = toggled_on

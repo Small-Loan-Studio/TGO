@@ -1,5 +1,4 @@
 @tool
-
 class_name MoveableBlock
 extends RigidBody2D
 
@@ -59,7 +58,7 @@ func _update_shape(rect: RectangleShape2D, x: int, y: int) -> void:
 
 func _get_configuration_warnings() -> PackedStringArray:
 	# TODO: don't use a magic number here
-	if collision_layer | 4:
+	if collision_layer & 4:
 		if id == "" || id == null:
 			return ["This is a switch actor and may need an ID"]
 	return []

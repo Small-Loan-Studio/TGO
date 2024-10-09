@@ -14,6 +14,7 @@ var _last_loaded_level: LevelBase = null
 @onready var _curtain := $OverlayManager/Curtain
 @onready var _world := $GameWorld
 @onready var _hud: HUD = $OverlayManager/HUD
+@onready var _debug_ui_inventory := $OverlayManager/HUD/DebugInventoryUI
 
 
 static func instance() -> Driver:
@@ -31,6 +32,19 @@ func _ready() -> void:
 	# call via deferred so we don't have await in the _ready path. I'm not
 	# sure that's a bad thing to do but it felt weird so here we are.
 	call_deferred("_post_ready")
+
+	# TODO: we probably don't want to use this as a way to wire up the inventory
+	# replace eventually with a more principled method that can be used for more
+	# than just one-offs
+	inventory_mgr.get_inventory(player.id).inventory_updated.connect(_debug_refresh_inventory_ui)
+	# do an initial build from the start state
+	_debug_refresh_inventory_ui(inventory_mgr.get_inventory(player.id))
+
+
+func _debug_refresh_inventory_ui(inventory: Inventory) -> void:
+	var items := inventory.get_items()
+	_debug_ui_inventory.visible = items.size() > 0
+	_debug_ui_inventory.build(items)
 
 
 func _post_ready() -> void:
@@ -57,8 +71,13 @@ func load_level(tgt: LevelBase, target_name: String) -> void:
 		_world.remove_child(_last_loaded_level)
 		_last_loaded_level.save_level_state()
 		_last_loaded_level.queue_free()
+
+	# make sure the hud is shown
+	get_hud().show()
+
 	# run any setup the level needs to do to work
 	tgt.setup(self)
+
 	# TODO: get the player ready and move them to the appropriate location
 	# we'll probably want to parameterize this more eventually.
 	player.visible = true
@@ -93,4 +112,4 @@ func request_debug_load(path: String) -> void:
 
 
 func _on_debug_pressed() -> void:
-	print(Dialogic.VAR.get_variable("test_var"))
+	print(Dialogic.VAR.get_variable("HasSpoken"))
