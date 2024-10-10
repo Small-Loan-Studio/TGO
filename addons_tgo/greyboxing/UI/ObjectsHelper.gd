@@ -59,7 +59,8 @@ var _is_object_ready_to_place: bool = false
 @onready var _generic_detail := $Container/Scroll/AddItems/GenericDetails
 @onready var _generic_name: LineEdit = $Container/Scroll/AddItems/GenericDetails/HBox/Margin/Name
 @onready var _generic_size: XbyY = $Container/Scroll/AddItems/GenericDetails/Size
-@onready var _generic_block_movement: CheckBox = $Container/Scroll/AddItems/GenericDetails/BlockMovement
+@onready
+var _generic_block_movement: CheckBox = $Container/Scroll/AddItems/GenericDetails/BlockMovement
 @onready var _generic_occludes: CheckBox = $Container/Scroll/AddItems/GenericDetails/Occludes
 @onready var _generic_interacts: CheckBox = $Container/Scroll/AddItems/GenericDetails/Interactable
 @onready var _generic_interacts_desc := %InteractableDesc
@@ -87,6 +88,7 @@ var _is_object_ready_to_place: bool = false
 @onready var _complete_buttons := $Container/CompleteButtons
 @onready var _place_button := $Container/CompleteButtons/Place
 #gdlint: enable=max-line-length
+
 
 func _ready() -> void:
 	_object_types = {
@@ -421,6 +423,7 @@ func _item_detail_visibility_changed() -> void:
 
 	_item_dropdown_selected(-1)
 
+
 func _item_dropdown_selected(_unused: int) -> void:
 	var index: int = _item_dropdown.get_selected_id()
 	if index == -1:
@@ -431,7 +434,6 @@ func _item_dropdown_selected(_unused: int) -> void:
 	var detail: Item = _item_dict[key]
 	_item_tex.texture = detail.icon
 	_item_tex.show()
-
 
 
 func _on_generic_interactable_toggled(toggled_on: bool) -> void:
