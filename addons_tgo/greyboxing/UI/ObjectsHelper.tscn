@@ -6,10 +6,9 @@
 
 [node name="ObjectsHelper" type="Control"]
 layout_mode = 3
-anchors_preset = 0
-offset_top = 167.0
-offset_right = 1280.0
-offset_bottom = 167.0
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 size_flags_horizontal = 3
@@ -24,35 +23,40 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="AddItems" type="VBoxContainer" parent="Container"]
+[node name="Scroll" type="ScrollContainer" parent="Container"]
 layout_mode = 2
 size_flags_vertical = 3
 
-[node name="Generic" type="Button" parent="Container/AddItems"]
+[node name="AddItems" type="VBoxContainer" parent="Container/Scroll"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="Generic" type="Button" parent="Container/Scroll/AddItems"]
 layout_mode = 2
 text = "Generic Greybox"
 
-[node name="GenericDetails" type="VBoxContainer" parent="Container/AddItems"]
+[node name="GenericDetails" type="VBoxContainer" parent="Container/Scroll/AddItems"]
 visible = false
 layout_mode = 2
 
-[node name="HBox" type="HBoxContainer" parent="Container/AddItems/GenericDetails"]
+[node name="HBox" type="HBoxContainer" parent="Container/Scroll/AddItems/GenericDetails"]
 layout_mode = 2
 
-[node name="Label" type="Label" parent="Container/AddItems/GenericDetails/HBox"]
+[node name="Label" type="Label" parent="Container/Scroll/AddItems/GenericDetails/HBox"]
 layout_mode = 2
 text = "Name"
 
-[node name="Margin" type="MarginContainer" parent="Container/AddItems/GenericDetails/HBox"]
+[node name="Margin" type="MarginContainer" parent="Container/Scroll/AddItems/GenericDetails/HBox"]
 layout_mode = 2
 size_flags_horizontal = 3
 theme_override_constants/margin_left = 8
 
-[node name="Name" type="LineEdit" parent="Container/AddItems/GenericDetails/HBox/Margin"]
+[node name="Name" type="LineEdit" parent="Container/Scroll/AddItems/GenericDetails/HBox/Margin"]
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="Size" parent="Container/AddItems/GenericDetails" instance=ExtResource("2_grtm3")]
+[node name="Size" parent="Container/Scroll/AddItems/GenericDetails" instance=ExtResource("2_grtm3")]
 layout_mode = 2
 unit = "unit"
 min_value = 1
@@ -60,101 +64,101 @@ max_value = 10
 initial_values = Vector2(4, 4)
 step = 0.5
 
-[node name="BlockMovement" type="CheckBox" parent="Container/AddItems/GenericDetails"]
+[node name="BlockMovement" type="CheckBox" parent="Container/Scroll/AddItems/GenericDetails"]
 layout_mode = 2
 text = "Blocks Movement"
 
-[node name="Occludes" type="CheckBox" parent="Container/AddItems/GenericDetails"]
+[node name="Occludes" type="CheckBox" parent="Container/Scroll/AddItems/GenericDetails"]
 layout_mode = 2
 text = "Blocks Light
 "
 
-[node name="Interactable" type="CheckBox" parent="Container/AddItems/GenericDetails"]
+[node name="Interactable" type="CheckBox" parent="Container/Scroll/AddItems/GenericDetails"]
 layout_mode = 2
 text = "Is Interactable
 "
 
-[node name="MarginContainer" type="MarginContainer" parent="Container/AddItems/GenericDetails"]
+[node name="MarginContainer" type="MarginContainer" parent="Container/Scroll/AddItems/GenericDetails"]
 layout_mode = 2
 theme_override_constants/margin_left = 32
 
-[node name="InteractableDesc" type="Label" parent="Container/AddItems/GenericDetails/MarginContainer"]
+[node name="InteractableDesc" type="Label" parent="Container/Scroll/AddItems/GenericDetails/MarginContainer"]
 unique_name_in_owner = true
 visible = false
 layout_mode = 2
 text = "Interactable configuration is done on the greybox object itself once it has been added to the scene."
 autowrap_mode = 3
 
-[node name="Pushable" type="Button" parent="Container/AddItems"]
+[node name="Pushable" type="Button" parent="Container/Scroll/AddItems"]
 layout_mode = 2
 text = "Pushable Block"
 
-[node name="PushableDetails" type="VBoxContainer" parent="Container/AddItems"]
+[node name="PushableDetails" type="VBoxContainer" parent="Container/Scroll/AddItems"]
 visible = false
 layout_mode = 2
 
-[node name="HBox" type="HBoxContainer" parent="Container/AddItems/PushableDetails"]
+[node name="HBox" type="HBoxContainer" parent="Container/Scroll/AddItems/PushableDetails"]
 layout_mode = 2
 
-[node name="Label" type="Label" parent="Container/AddItems/PushableDetails/HBox"]
+[node name="Label" type="Label" parent="Container/Scroll/AddItems/PushableDetails/HBox"]
 layout_mode = 2
 text = "Name"
 
-[node name="Margin" type="MarginContainer" parent="Container/AddItems/PushableDetails/HBox"]
+[node name="Margin" type="MarginContainer" parent="Container/Scroll/AddItems/PushableDetails/HBox"]
 layout_mode = 2
 size_flags_horizontal = 3
 theme_override_constants/margin_left = 8
 
-[node name="Name" type="LineEdit" parent="Container/AddItems/PushableDetails/HBox/Margin"]
+[node name="Name" type="LineEdit" parent="Container/Scroll/AddItems/PushableDetails/HBox/Margin"]
 layout_mode = 2
 
-[node name="PushableSize" parent="Container/AddItems/PushableDetails" instance=ExtResource("2_grtm3")]
+[node name="PushableSize" parent="Container/Scroll/AddItems/PushableDetails" instance=ExtResource("2_grtm3")]
 unique_name_in_owner = true
 layout_mode = 2
 unit = "units"
 
-[node name="NPC" type="Button" parent="Container/AddItems"]
+[node name="NPC" type="Button" parent="Container/Scroll/AddItems"]
 layout_mode = 2
 text = "NPC"
 
-[node name="NPCDetails" type="VBoxContainer" parent="Container/AddItems"]
+[node name="NPCDetails" type="VBoxContainer" parent="Container/Scroll/AddItems"]
 visible = false
 layout_mode = 2
 
-[node name="ConfigHBox" type="HBoxContainer" parent="Container/AddItems/NPCDetails"]
+[node name="ConfigHBox" type="HBoxContainer" parent="Container/Scroll/AddItems/NPCDetails"]
 layout_mode = 2
 
-[node name="Label" type="Label" parent="Container/AddItems/NPCDetails/ConfigHBox"]
+[node name="Label" type="Label" parent="Container/Scroll/AddItems/NPCDetails/ConfigHBox"]
 layout_mode = 2
 text = "NPC Config"
 
-[node name="MarginContainer" type="MarginContainer" parent="Container/AddItems/NPCDetails/ConfigHBox"]
+[node name="MarginContainer" type="MarginContainer" parent="Container/Scroll/AddItems/NPCDetails/ConfigHBox"]
 layout_mode = 2
 size_flags_horizontal = 3
 theme_override_constants/margin_left = 8
 
-[node name="NPCDropdown" type="OptionButton" parent="Container/AddItems/NPCDetails/ConfigHBox/MarginContainer"]
+[node name="NPCDropdown" type="OptionButton" parent="Container/Scroll/AddItems/NPCDetails/ConfigHBox/MarginContainer"]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="DlgHBox" type="HBoxContainer" parent="Container/AddItems/NPCDetails"]
+[node name="DlgHBox" type="HBoxContainer" parent="Container/Scroll/AddItems/NPCDetails"]
 layout_mode = 2
 
-[node name="Label" type="Label" parent="Container/AddItems/NPCDetails/DlgHBox"]
+[node name="Label" type="Label" parent="Container/Scroll/AddItems/NPCDetails/DlgHBox"]
 layout_mode = 2
 text = "Dialogue Timeline"
 
-[node name="MarginContainer" type="MarginContainer" parent="Container/AddItems/NPCDetails/DlgHBox"]
+[node name="MarginContainer" type="MarginContainer" parent="Container/Scroll/AddItems/NPCDetails/DlgHBox"]
 layout_mode = 2
 size_flags_horizontal = 3
 theme_override_constants/margin_left = 8
 
-[node name="NPCDialoguePath" type="LineEdit" parent="Container/AddItems/NPCDetails/DlgHBox/MarginContainer"]
+[node name="NPCDialoguePath" type="LineEdit" parent="Container/Scroll/AddItems/NPCDetails/DlgHBox/MarginContainer"]
 unique_name_in_owner = true
 layout_mode = 2
 
-[node name="NPCDlgDropdown" type="OptionButton" parent="Container/AddItems/NPCDetails/DlgHBox/MarginContainer"]
+[node name="NPCDlgDropdown" type="OptionButton" parent="Container/Scroll/AddItems/NPCDetails/DlgHBox/MarginContainer"]
 unique_name_in_owner = true
 layout_mode = 2
 item_count = 2
@@ -164,62 +168,63 @@ popup/item_0/id = 0
 popup/item_1/text = "BuckleyTestTimeline"
 popup/item_1/id = 1
 
-[node name="Item" type="Button" parent="Container/AddItems"]
+[node name="Switch" type="Button" parent="Container/Scroll/AddItems"]
 layout_mode = 2
-text = "Item"
+text = "Switch"
 
-[node name="ItemDetails" type="VBoxContainer" parent="Container/AddItems"]
+[node name="SwitchDetails" parent="Container/Scroll/AddItems" instance=ExtResource("2_wpheu")]
 visible = false
 layout_mode = 2
 
-[node name="HBoxContainer" type="HBoxContainer" parent="Container/AddItems/ItemDetails"]
+[node name="Item" type="Button" parent="Container/Scroll/AddItems"]
+layout_mode = 2
+text = "Item"
+
+[node name="ItemDetails" type="VBoxContainer" parent="Container/Scroll/AddItems"]
+visible = false
 layout_mode = 2
 
-[node name="Label" type="Label" parent="Container/AddItems/ItemDetails/HBoxContainer"]
+[node name="HBoxContainer" type="HBoxContainer" parent="Container/Scroll/AddItems/ItemDetails"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Container/Scroll/AddItems/ItemDetails/HBoxContainer"]
 layout_mode = 2
 text = "Item Config"
 
-[node name="MarginContainer" type="MarginContainer" parent="Container/AddItems/ItemDetails/HBoxContainer"]
+[node name="MarginContainer" type="MarginContainer" parent="Container/Scroll/AddItems/ItemDetails/HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 theme_override_constants/margin_left = 8
 
-[node name="ItemDropdown" type="OptionButton" parent="Container/AddItems/ItemDetails/HBoxContainer/MarginContainer"]
+[node name="ItemDropdown" type="OptionButton" parent="Container/Scroll/AddItems/ItemDetails/HBoxContainer/MarginContainer"]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="HBoxContainer2" type="HBoxContainer" parent="Container/AddItems/ItemDetails"]
+[node name="ItemIcon" type="TextureRect" parent="Container/Scroll/AddItems/ItemDetails"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(32, 32)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+expand_mode = 3
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="Container/Scroll/AddItems/ItemDetails"]
 layout_mode = 2
 
-[node name="Label" type="Label" parent="Container/AddItems/ItemDetails/HBoxContainer2"]
+[node name="Label" type="Label" parent="Container/Scroll/AddItems/ItemDetails/HBoxContainer2"]
 layout_mode = 2
 text = "Quantity"
 
-[node name="ItemSpinBox" type="SpinBox" parent="Container/AddItems/ItemDetails/HBoxContainer2"]
+[node name="ItemSpinBox" type="SpinBox" parent="Container/Scroll/AddItems/ItemDetails/HBoxContainer2"]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 3
 focus_mode = 2
 min_value = 1.0
 value = 1.0
-item_count = 2
-selected = 0
-popup/item_0/text = "None / Custom"
-popup/item_0/id = 0
-popup/item_1/text = "BuckleyTestTimeline"
-popup/item_1/id = 1
-
-[node name="Switch" type="Button" parent="Container/AddItems"]
-layout_mode = 2
-text = "Switch"
-
-[node name="SwitchDetails" parent="Container/AddItems" instance=ExtResource("2_wpheu")]
-visible = false
-layout_mode = 2
 
 [node name="CompleteButtons" type="HBoxContainer" parent="Container"]
-visible = false
 layout_mode = 2
 
 [node name="Cancel" type="Button" parent="Container/CompleteButtons"]
@@ -233,17 +238,16 @@ layout_mode = 2
 size_flags_horizontal = 3
 text = "Place"
 
-[connection signal="pressed" from="Container/AddItems/Generic" to="." method="_select_object_type" binds= ["generic"]]
-[connection signal="toggled" from="Container/AddItems/GenericDetails/Interactable" to="." method="_on_generic_interactable_toggled"]
-[connection signal="pressed" from="Container/AddItems/Pushable" to="." method="_select_object_type" binds= ["pushable"]]
-[connection signal="pressed" from="Container/AddItems/NPC" to="." method="_select_object_type" binds= ["npc"]]
-[connection signal="visibility_changed" from="Container/AddItems/NPCDetails" to="." method="_npc_detail_visibility_changed"]
-[connection signal="item_selected" from="Container/AddItems/NPCDetails/HBoxContainer/MarginContainer/NPCDropdown" to="." method="_npc_config_selected"]
-[connection signal="text_changed" from="Container/AddItems/NPCDetails/HBoxContainer2/MarginContainer/NPCDialoguePath" to="." method="_npc_dialogue_text_changed"]
-[connection signal="pressed" from="Container/AddItems/Item" to="." method="_select_object_type" binds= ["item"]]
-[connection signal="visibility_changed" from="Container/AddItems/ItemDetails" to="." method="_item_detail_visibility_changed"]
-[connection signal="item_selected" from="Container/AddItems/NPCDetails/ConfigHBox/MarginContainer/NPCDropdown" to="." method="_npc_config_selected"]
-[connection signal="text_changed" from="Container/AddItems/NPCDetails/DlgHBox/MarginContainer/NPCDialoguePath" to="." method="_npc_dialogue_text_changed"]
-[connection signal="pressed" from="Container/AddItems/Switch" to="." method="_select_object_type" binds= ["switch"]]
+[connection signal="pressed" from="Container/Scroll/AddItems/Generic" to="." method="_select_object_type" binds= ["generic"]]
+[connection signal="toggled" from="Container/Scroll/AddItems/GenericDetails/Interactable" to="." method="_on_generic_interactable_toggled"]
+[connection signal="pressed" from="Container/Scroll/AddItems/Pushable" to="." method="_select_object_type" binds= ["pushable"]]
+[connection signal="pressed" from="Container/Scroll/AddItems/NPC" to="." method="_select_object_type" binds= ["npc"]]
+[connection signal="visibility_changed" from="Container/Scroll/AddItems/NPCDetails" to="." method="_npc_detail_visibility_changed"]
+[connection signal="item_selected" from="Container/Scroll/AddItems/NPCDetails/ConfigHBox/MarginContainer/NPCDropdown" to="." method="_npc_config_selected"]
+[connection signal="text_changed" from="Container/Scroll/AddItems/NPCDetails/DlgHBox/MarginContainer/NPCDialoguePath" to="." method="_npc_dialogue_text_changed"]
+[connection signal="pressed" from="Container/Scroll/AddItems/Switch" to="." method="_select_object_type" binds= ["switch"]]
+[connection signal="pressed" from="Container/Scroll/AddItems/Item" to="." method="_select_object_type" binds= ["item"]]
+[connection signal="visibility_changed" from="Container/Scroll/AddItems/ItemDetails" to="." method="_item_detail_visibility_changed"]
+[connection signal="item_selected" from="Container/Scroll/AddItems/ItemDetails/HBoxContainer/MarginContainer/ItemDropdown" to="." method="_item_dropdown_selected"]
 [connection signal="pressed" from="Container/CompleteButtons/Cancel" to="." method="_reset"]
 [connection signal="pressed" from="Container/CompleteButtons/Place" to="." method="_apply"]

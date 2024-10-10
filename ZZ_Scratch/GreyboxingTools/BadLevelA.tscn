@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=3 uid="uid://d4mrsiv1l8m35"]
+[gd_scene load_steps=17 format=3 uid="uid://d4mrsiv1l8m35"]
 
 [ext_resource type="PackedScene" uid="uid://dyq8mcdsutnsa" path="res://Scenes/Components/LevelBase.tscn" id="1_iejup"]
 [ext_resource type="Script" path="res://ZZ_Scratch/GreyboxingTools/BadLevelA.gd" id="2_22a2t"]
@@ -11,8 +11,6 @@
 [ext_resource type="PackedScene" uid="uid://c7gburp74xsto" path="res://Scenes/Components/NPC/MayorBuckley.tscn" id="10_2hlxg"]
 [ext_resource type="Script" path="res://Scripts/Resources/Effects/DialogueEffect.gd" id="11_03hvs"]
 [ext_resource type="Resource" path="res://Dialogue/Buckley/BuckleyTestTimeline.dtl" id="11_i8wpl"]
-[ext_resource type="PackedScene" uid="uid://rgvfsx60t2ap" path="res://Scenes/Components/Inventory/Item.tscn" id="14_4v7wq"]
-[ext_resource type="Resource" uid="uid://b7w2axnxl0fkt" path="res://Scripts/Resources/Items/Key.tres" id="15_wd8wo"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_ptcao"]
 atlas = ExtResource("3_uhn0b")
@@ -88,11 +86,6 @@ id = "block-left"
 position = Vector2(546, 308)
 dlg = SubResource("Resource_lh8xy")
 id = "mayor_buckley"
-
-[node name="Item" parent="Objects" index="6" instance=ExtResource("14_4v7wq")]
-position = Vector2(41, 322)
-item = ExtResource("15_wd8wo")
-quantity = 1
 
 [node name="PlayerStart" type="Node2D" parent="Markers" index="0"]
 position = Vector2(522, 183)
