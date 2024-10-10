@@ -37,4 +37,6 @@ y_sort_enabled = true
 
 [node name="Characters" type="Node" parent="Objects"]
 
+[node name="Items" type="Node" parent="Objects"]
+
 [node name="Markers" type="Node" parent="."]
