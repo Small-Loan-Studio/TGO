@@ -416,18 +416,6 @@ func _item_detail_visibility_changed() -> void:
 				if _item_dropdown:
 					_item_dropdown.add_item(key)
 		item_file = dir.get_next()
-	_item_dropdown_refresh()
-
-
-func _item_dropdown_refresh() -> void:
-	# get current id
-	var index: int = _item_dropdown.get_selected_id()
-	if index == -1:
-		return
-
-	# get config
-	var config: Item = _item_dict[_item_dropdown.get_item_text(index)]
-	print(config)
 
 
 func _on_generic_interactable_toggled(toggled_on: bool) -> void:
