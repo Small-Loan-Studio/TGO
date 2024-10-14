@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://d4mrsiv1l8m35"]
+[gd_scene load_steps=17 format=3 uid="uid://d4mrsiv1l8m35"]
 
 [ext_resource type="PackedScene" uid="uid://dyq8mcdsutnsa" path="res://Scenes/Components/LevelBase.tscn" id="1_iejup"]
 [ext_resource type="Script" path="res://ZZ_Scratch/GreyboxingTools/BadLevelA.gd" id="2_22a2t"]
@@ -9,6 +9,8 @@
 [ext_resource type="PackedScene" uid="uid://bx2qjlw58ci20" path="res://Scenes/Components/Greyboxing/GreyboxObject.tscn" id="7_ipcqk"]
 [ext_resource type="Texture2D" uid="uid://ceo0a1wjutqct" path="res://Art/Environment/Placeables/box.png" id="8_smen8"]
 [ext_resource type="PackedScene" uid="uid://d1y25semyqxkw" path="res://Scenes/Components/Greyboxing/MoveableBlock.tscn" id="9_78gjk"]
+[ext_resource type="PackedScene" uid="uid://cqin6fb282fjf" path="res://Scenes/Components/DayNightCycle.tscn" id="10_80v41"]
+[ext_resource type="PackedScene" uid="uid://b13wrl3bedjku" path="res://Scenes/Components/Greyboxing/Torch.tscn" id="11_8g2pm"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_ptcao"]
 atlas = ExtResource("3_uhn0b")
@@ -82,5 +84,10 @@ position = Vector2(89, 172)
 
 [node name="PlayerStart" type="Node2D" parent="Markers" index="0"]
 position = Vector2(522, 183)
+
+[node name="DayNightCycle" parent="." index="4" instance=ExtResource("10_80v41")]
+
+[node name="Torch" parent="." index="5" instance=ExtResource("11_8g2pm")]
+position = Vector2(602, 18)
 
 [editable path="Objects/testobj"]
