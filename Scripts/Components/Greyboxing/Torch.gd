@@ -23,22 +23,22 @@ extends Node2D
 		light_size = value
 		_change_light_size(light_size)
 
-@onready var _pointLight2D: PointLight2D = $PointLight2D
+@onready var _point_light_2d: PointLight2D = $PointLight2D
 
 
 func _toggle() -> void:
-	_pointLight2D.visible = !_pointLight2D.visible
-	print(_pointLight2D.visible)
+	_point_light_2d.visible = !_point_light_2d.visible
+	print(_point_light_2d.visible)
 
 func _change_light_color(new_color: Color) -> void:
-	if _pointLight2D != null:
-		_pointLight2D.color = new_color
+	if _point_light_2d != null:
+		_point_light_2d.color = new_color
 
 func _change_light_energy(new_energy: float) -> void:
-	if _pointLight2D != null:
-		_pointLight2D.energy = new_energy
+	if _point_light_2d != null:
+		_point_light_2d.energy = new_energy
 
 func _change_light_size(new_size: float) -> void:
-	if _pointLight2D != null:
-		_pointLight2D.texture_scale = new_size
+	if _point_light_2d != null:
+		_point_light_2d.texture_scale = new_size
 
