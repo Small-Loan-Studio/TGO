@@ -84,5 +84,38 @@ using for much of the TGO-specific features we've built.
 
 [GODOT: Editor, pristine condition]
 
-This is the godot editor having just opened the project. In the bottom left you'll
-notice 
+This is the godot editor having just opened the project. In the bottom left
+sidebar slot notice a tab called "Control Dock" that's where all the stuff
+we're building for you will go.
+
+[GODOT: Open Control Dock]
+Go ahead and open that up -- notice that right now there isn't anything present.
+That's because you're not editing a level scene so let's do that.
+
+I'll just press Control-P to get access to the quick-finder dialogue and open up
+scene I've got prepared for this video.
+
+[GODOT: Open a TutorialDemoLevel.tscn]
+
+Checking in on the control dock and there still isn't anything available. That's
+because we haven't selected a section of the level we want to edit. This is indicated
+by the `Editing: Unknown` heading.
+
+so let's take a look at the options...
+
+[GODOT: Select TileMap & Markers]
+
+If we select TileMap or Markers we notice that the Control Dock pics up on our selection
+but still doesn't have any content. That's just because we don't have any custom editors
+built for those items yet.
+
+[GODOT: Select Objects and some of the children]
+
+Now instead let's head back to the scene tree and select the objects section, or any of
+the children within. That's a different story and gives you have access to several
+pre-built components that we can add as a way to start laying laying pieces down that
+a player-as-Devin can interact with to drive the story forward.
+
+[Wrapping up]
+Up next we'll get into how to create a new level and then following that we'll
+dig into each of the components you see in the Control Dock.
