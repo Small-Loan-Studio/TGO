@@ -36,7 +36,7 @@ be the most intuitive process at all times and so understanding how things work
 will help you to reason about how to solve narrative, puzzle, or other design
 problems.
 
-[TGO Major Components]
+[SLIDE: TGO Major Components]
 
 As a game TGO is a platform balanced on three pillars. We'll first name
 and then explain them...
@@ -50,8 +50,8 @@ that the player can do: run, push boxes, pick up items, talk to NPCs etc. As a d
 you can think of these as the verbs or actions that Devin can take as part
 of the story you're telling.
 
-Foundational systems are the ways in which the human player experiences the world
-through Devin's eyes. They're things like Inventory, Quests, Dialogue, Controller
+Foundational systems are the ways in which the Devin's world manifests for the
+player driving him. They're things like Inventory, Quests, Dialogue, Controller
 input handling, and the Journal. These are not directly actions that Devin takes
 but a way to mediate between the player intent and Devin. As a designer you'll use
 these to communicate with the player: Devin has picked an item up, learned
@@ -61,11 +61,28 @@ will be mechanisms that allow you to interrogate and change their state.
 
 ...Which leads directly into world state management. If the world was a static thing
 there would be no story because nothing could happen. State management is broadly
-a set of tools that allow as 
+a set of tools that allow you to change what is going on in the world. It could be
+as simple as adding a Journal entry about a new NPC Devin has met, more complicated
+like "these three switches have been pressed so the secret door is unlocked," or
+a higher level "this quest has started its second phase so change these NPC dialogue
+trees." The specific mechanisms you'll use to effect and react to world state will
+vary and we'll talk about them in the upcoming sections.
 
+So.
 
-While building we've been thinking of TGO as the interplay of three different
+The primary challenge designing for TGO is likely going to boil down to answering
+the question of how to decompose your ideas into a series of state changes using
+the tools at your disposal... which honestly sounds a lot more complex in theory
+than it actually is so don't worry! By the time we're done with this intro material
+you'll have everything you need to reason through beginning most situations and
+the eng team is always here to answer questions or provide new features.
 
-TGO foundational systems
-TGO gameplay mechanics
-TGO game state
+[SLIDE: The Control Dock]
+
+Before we get into the details let's take a moment to look at the tool you'll be
+using for much of the TGO-specific features we've built.
+
+[GODOT: Editor, pristine condition]
+
+This is the godot editor having just opened the project. In the bottom left you'll
+notice 
