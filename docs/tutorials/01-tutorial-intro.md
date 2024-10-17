@@ -1,6 +1,6 @@
 [SLIDE: TGO titlecard]
 
-Okay then. The much anticipanted and hopefully not-underwhelming video tutorials
+Okay then. The much anticipated and hopefully not-underwhelming video tutorials
 for the TGO level design toolkit. What we talk through and what you'll be using
 is a first cut at the tools available so over time we should see both the ergonomics
 and power of these improve. While you're using them:
@@ -9,20 +9,24 @@ and power of these improve. While you're using them:
    tooling work done there
 then please reach out to the dev team to let us know.
 
+[SLIDE: Series agenda]
+
 With that out of the way let's talk about TGO level design tooling! I'll be breaking
 this up into several topic-focused videos. For this first release we'll be covering:
-[SLIDE: Now: How TGO works]
-How TGO (the game) fits together and the hub we've built to interact with it as a
+
+How TGO (the game) fits together and the hub we've built to interact with levels as a
 designer.
 
-[SLIDE: Soon: guides on...]
+[SLIDE: Advance]
 Subsequent videos will go through the mechanics of using Godot or our tooling to
 accomplish specific tasks:
+[SLIDE: Advance]
 1. How to create a new level, select a tileset, and add maps with collision;
-2. How to define and place new items;
-3. How NPCS definition, configuration, and placement works;
-4. How to add new conversations in Dialogic, what a Dialogic variable is, and how to use them;
-5. and finally an introduction to simple switch use ... followed by some starting pointers for more complex use.
+2. How to create large non-tile based objects or interactable objects in your level
+3. How to define and place new items;
+4. NPCS definition, configuration, and placement;
+5. How to add new conversations in Dialogic, what a Dialogic variable is, and how to use them;
+6. and finally an introduction to simple switch use ... followed by some starting pointers for more complex usage.
 
 With that out of the way: onward!
 
@@ -31,18 +35,18 @@ With that out of the way: onward!
 As an artist, level, or gameplay designer your goal is to realize the creative
 vision of TGO. For the engineering team our goal is to build the tooling that
 will let you do that. Unfortunately the process of translating your grand
-schemes into the cold reality of code that has actually been written may not
+schemes into the cold reality of code that has been written may not
 be the most intuitive process at all times and so understanding how things work
-will help you to reason about how to solve narrative, puzzle, or other design
+will hopefully help you reason about how to solve narrative, puzzle, or other design
 problems.
 
 [SLIDE: TGO Major Components]
 
-As a game TGO is a platform balanced on three pillars. We'll first name
+As a game TGO is a platform sitting atop three core pillars. We'll first name
 and then explain them...
 
-1. Foundational systems
-2. Gameplay mechanics
+1. Gameplay mechanics
+2. Foundational systems
 3. And world state management
 
 Gameplay mechanics are fully in the realm of engineering and covers the things
@@ -66,21 +70,22 @@ as simple as adding a Journal entry about a new NPC Devin has met, more complica
 like "these three switches have been pressed so the secret door is unlocked," or
 a higher level "this quest has started its second phase so change these NPC dialogue
 trees." The specific mechanisms you'll use to effect and react to world state will
-vary and we'll talk about them in the upcoming sections.
+vary and we'll talk about them in the upcoming videos.
 
 So.
 
 The primary challenge designing for TGO is likely going to boil down to answering
-the question of how to decompose your ideas into a series of state changes using
+the question of how to decompose the story into a series of state changes using
 the tools at your disposal... which honestly sounds a lot more complex in theory
 than it actually is so don't worry! By the time we're done with this intro material
-you'll have everything you need to reason through beginning most situations and
-the eng team is always here to answer questions or provide new features.
+you'll have everything you need to reason through most situations and the eng team
+is always here to answer questions or provide new features as needed.
 
 [SLIDE: The Control Dock]
 
 Before we get into the details let's take a moment to look at the tool you'll be
-using for much of the TGO-specific features we've built.
+using for much of the TGO-specific features we've built. For that let's jump into
+Godot itself.
 
 [GODOT: Editor, pristine condition]
 
@@ -105,17 +110,18 @@ so let's take a look at the options...
 
 [GODOT: Select TileMap & Markers]
 
-If we select TileMap or Markers we notice that the Control Dock pics up on our selection
+If we select TileMap or Markers we notice that the Control Dock picks up on our selection
 but still doesn't have any content. That's just because we don't have any custom editors
 built for those items yet.
 
 [GODOT: Select Objects and some of the children]
 
 Now instead let's head back to the scene tree and select the objects section, or any of
-the children within. That's a different story and gives you have access to several
-pre-built components that we can add as a way to start laying laying pieces down that
-a player-as-Devin can interact with to drive the story forward.
+the children within. That's a different story and now you'll have access to several
+pre-built components that we can add as a way to start laying pieces down that a
+player-as-Devin can interact with to drive the story forward.
 
-[Wrapping up]
-Up next we'll get into how to create a new level and then following that we'll
-dig into each of the components you see in the Control Dock.
+[SLIDE: Wrapping up]
+Cheers! That's it for the structure & tooling intro. Up next we'll get into how to
+create a new level and then following that we'll dig into each of the components
+you see in the Control Dock.
