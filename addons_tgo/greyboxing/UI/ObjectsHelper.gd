@@ -64,6 +64,7 @@ var _generic_block_movement: CheckBox = $Container/Scroll/AddItems/GenericDetail
 @onready var _generic_occludes: CheckBox = $Container/Scroll/AddItems/GenericDetails/Occludes
 @onready var _generic_interacts: CheckBox = $Container/Scroll/AddItems/GenericDetails/Interactable
 @onready var _generic_interacts_desc := %InteractableDesc
+@onready var _generic_tint: ColorPickerButton = %GreyboxTint
 
 @onready var _pushable := $Container/Scroll/AddItems/Pushable
 @onready var _pushable_detail := $Container/Scroll/AddItems/PushableDetails
@@ -221,6 +222,8 @@ func _apply_generic(obj_position: Vector2) -> void:
 	obj.can_block_light = occludes
 	obj.can_interact = interacts
 	obj.global_position = obj_position
+	obj.size = _generic_size.get_xy()
+	obj.tint = _generic_tint.color
 
 
 func _reset_generic_state() -> void:
@@ -228,6 +231,7 @@ func _reset_generic_state() -> void:
 	_generic_block_movement.button_pressed = false
 	_generic_occludes.button_pressed = false
 	_generic_interacts.button_pressed = false
+	_generic_tint.color = Color.GRAY
 
 
 func _apply_pushable(obj_position: Vector2) -> void:

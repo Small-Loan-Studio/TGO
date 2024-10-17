@@ -41,6 +41,13 @@ const LIGHT_NODE = "Lighting"
 		can_interact = value
 		_process_can_interact_update()
 
+@export var tint: Color = Color.GRAY:
+	get:
+		return tint
+	set(value):
+		tint = value
+		_sync_tint()
+
 @export_subgroup("Interactable Configuration")
 @export var action_verb: Enums.ActionVerb = Enums.ActionVerb.DEFAULT
 @export var effects: Array[Effect] = []
@@ -110,6 +117,7 @@ func _ready() -> void:
 		_light = get_node(LIGHT_NODE)
 
 	_sync_all_shapes()
+	_sync_tint()
 
 
 func _process(_delta: float) -> void:
@@ -125,6 +133,11 @@ func _draw() -> void:
 			draw_line(Vector2(-y_sort_width / 2, 0), Vector2(y_sort_width / 2, 0), debug_color, 2)
 		if show_object_center:
 			draw_circle(Vector2.ZERO, 4, debug_color)
+
+
+func _sync_tint() -> void:
+	if _display != null:
+		_display.modulate = tint
 
 
 func _update_collider_display() -> void:

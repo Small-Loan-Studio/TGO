@@ -89,6 +89,23 @@ layout_mode = 2
 text = "Interactable configuration is done on the greybox object itself once it has been added to the scene."
 autowrap_mode = 3
 
+[node name="TintHBox" type="HBoxContainer" parent="Container/Scroll/AddItems/GenericDetails"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Container/Scroll/AddItems/GenericDetails/TintHBox"]
+layout_mode = 2
+text = "Tint"
+
+[node name="MarginContainer" type="MarginContainer" parent="Container/Scroll/AddItems/GenericDetails/TintHBox"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/margin_left = 8
+
+[node name="GreyboxTint" type="ColorPickerButton" parent="Container/Scroll/AddItems/GenericDetails/TintHBox/MarginContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+color = Color(1, 1, 1, 1)
+
 [node name="Pushable" type="Button" parent="Container/Scroll/AddItems"]
 layout_mode = 2
 text = "Pushable Block"
@@ -225,6 +242,7 @@ min_value = 1.0
 value = 1.0
 
 [node name="CompleteButtons" type="HBoxContainer" parent="Container"]
+visible = false
 layout_mode = 2
 
 [node name="Cancel" type="Button" parent="Container/CompleteButtons"]
