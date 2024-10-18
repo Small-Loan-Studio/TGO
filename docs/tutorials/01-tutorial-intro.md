@@ -1,6 +1,6 @@
 [SLIDE: TGO titlecard]
 
-Okay then. The much anticipated and hopefully not-underwhelming video tutorials
+Welcome to the much anticipated and hopefully not-underwhelming video tutorials
 for the TGO level design toolkit. What we talk through and what you'll be using
 is a first cut at the tools available so over time we should see both the ergonomics
 and power of these improve. While you're using them:
@@ -30,7 +30,7 @@ accomplish specific tasks:
 
 With that out of the way: onward!
 
-[SLIDE: How TGO is Built]
+[SLIDE: TGO Structure]
 
 As an artist, level, or gameplay designer your goal is to realize the creative
 vision of TGO. For the engineering team our goal is to build the tooling that
