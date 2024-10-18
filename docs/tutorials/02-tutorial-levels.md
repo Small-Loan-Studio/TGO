@@ -1,6 +1,10 @@
 [SLIDE: TGO titlecard]
 
-Hi folks, let's talk about levels!
+Welcome back! Today we're going to take about ...
+
+[SLIDE: Levels]
+
+Levels!
 
 [SLIDE: Agenda]
 
@@ -9,12 +13,33 @@ Specifically by the end of this video you should understand:
 1. What a "Level" is for TGO
 2. What the components in the scene tree are
 3. How to create a new empty level
-4. How to add geography to your level
-5. The layers of our tilemap (and what that even means)
-6. And, finally, how to test your level
+4. The layers of our tilemap (and what that even means)
+5. How to add geography to your level
+6. And, finally, how to take your level for a test run
+
+[SLIDE: Why Levels?]
+Intuitively we probably all know what a level is -- it's a physical space for
+our character to explore. We populate it with people, clues, and environmental
+story telling to add depth.
+
+From a designer's perspective it's also the unit sizing of what one person will be
+assigned to build. For technical reasons it's non-trivial for multiple people to
+make changes to a level at the same time and coordination is required if a team
+will be working together. This kind of overhead means that our levels will be
+limited by the team's ability and willingness to handle the communication hurdles
+more than technical constraints on size.
+
+In some cases we'll likely be willing to eat that cost to enable a large expansive
+areas (e.g. Oakshaw proper perhaps) and in the long run we may be able to find
+ways to stitch smaller sections together but that's more hope than promise right
+now.
+
+So in summary -- a level is, hopefully, pretty much what you'd expect. Now let's
+talk about how to build them and what they can contain.
+
+To do that we'll switch to Godot.
 
 [GODOT: Pristine]
-Let's return to godot and walk through starting a new level.
 
 All levels start with a common set of features that are defined in something called
 the LevelBase. In Godot we call that the "parent" scene to your level. So naturally
