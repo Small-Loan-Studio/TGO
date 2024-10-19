@@ -3,6 +3,10 @@
 Boxes! Get your boxes here!
 Moving boxes, grey boxes, named boxes, I got 'em all.
 
+...
+
+Well that's actually all we have.
+
 [SLIDE: Agenda]
 
 By the end of this video you should understand:

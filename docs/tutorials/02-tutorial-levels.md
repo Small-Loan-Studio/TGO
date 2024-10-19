@@ -37,9 +37,9 @@ now.
 So in summary -- a level is, hopefully, pretty much what you'd expect. Now let's
 talk about how to build them and what they can contain.
 
-To do that we'll switch to Godot.
+[GODOT: Creating A Level]
 
-[GODOT: Pristine]
+To do that we'll switch to Godot.
 
 All levels start with a common set of features that are defined in something called
 the LevelBase. In Godot we call that the "parent" scene to your level. So naturally
@@ -54,7 +54,7 @@ in order to create a new level we will inherit from our parent. To do that:
 
 Congrats! You've just created your first level for TGO...
 
-Now what?
+Now what do all the things you inherit even mean?
 
 [SLIDE: Levels: Structure]
 
