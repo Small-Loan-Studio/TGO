@@ -10,19 +10,27 @@ signal inventory_item_inserted(item: ItemStack)
 @export var size: int = -1
 
 
-func has_item(item: Item) -> bool:
+func has_item_by_id(item_id: String) -> bool:
 	for stack in _items:
-		if stack.item == item:
+		if stack.item.id == item_id:
 			return true
 	return false
 
 
-func count_item(item: Item) -> int:
+func has_item(item: Item) -> bool:
+	return has_item_by_id(item.id)
+
+
+func count_item_by_id(item_id: String) -> int:
 	var count := 0
 	for stack in _items:
-		if stack.item == item:
+		if stack.item.id == item_id:
 			count += stack.quantity
 	return count
+
+
+func count_item(item: Item) -> int:
+	return count_item_by_id(item.id)
 
 
 func insert(item: ItemStack) -> bool:

@@ -5,6 +5,7 @@ var _inventories: Dictionary
 
 
 func get_inventory(id: String) -> Inventory:
+	id = id.to_lower()
 	if _inventories.has(id):
 		return _inventories[id]
 	print(id + " does not have an inventory associated with it! Creating a new one")
