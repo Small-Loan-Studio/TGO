@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="NPCConfig" load_steps=3 format=3 uid="uid://dthcliu6qtthu"]
+
+[ext_resource type="Script" path="res://Scripts/Resources/NpcConfig.gd" id="1_dkypg"]
+[ext_resource type="SpriteFrames" uid="uid://b3igo1ygiyl0b" path="res://Art/Characters/character_placeholder.tres" id="2_tp8c3"]
+
+[resource]
+script = ExtResource("1_dkypg")
+character_id = "villager"
+sprite_sheet = ExtResource("2_tp8c3")
+valid_timelines = Array[String]([])
