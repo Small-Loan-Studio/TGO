@@ -1,0 +1,12 @@
+if {TGO.player_inventory.has("ALTAR_POTION")} == true:
+	if {TutorialLevel.HasSpoken} == false:
+		You must know me very well, you already got my potion!
+	else:
+		You got it!
+	[end_timeline]
+
+if {TutorialLevel.HasSpoken} == false:
+	Welcome to the tutorial path!
+	You should go get a potion!
+else:
+	Have you gotten my potion yet?

@@ -5,14 +5,17 @@
 [ext_resource type="PackedScene" uid="uid://c2kg6apj756dw" path="res://Scenes/Components/NPC.tscn" id="3_6n87b"]
 [ext_resource type="PackedScene" uid="uid://bx2qjlw58ci20" path="res://Scenes/Components/Greyboxing/GreyboxObject.tscn" id="3_ftvfe"]
 [ext_resource type="PackedScene" uid="uid://rgvfsx60t2ap" path="res://Scenes/Components/Inventory/Item.tscn" id="3_iip6i"]
-[ext_resource type="Script" path="res://Scenes/Components/Inventory/Item.gd" id="4_3pk1b"]
 [ext_resource type="Script" path="res://Scripts/Components/NPC.gd" id="4_cuc8t"]
-[ext_resource type="Script" path="res://Scripts/Components/Greyboxing/GreyboxObject.gd" id="4_sawvb"]
 [ext_resource type="Script" path="res://Scripts/Resources/Effects/TeleportEffect.gd" id="5_0y1w2"]
+[ext_resource type="Resource" uid="uid://blg4iep53vlje" path="res://Scripts/Resources/NPCs/villager.tres" id="5_f7b1m"]
 [ext_resource type="Resource" uid="uid://bt8nwwh7mwe0s" path="res://Scripts/Resources/Items/AltarPotion.tres" id="5_l47q4"]
-[ext_resource type="Resource" uid="uid://dthcliu6qtthu" path="res://Scripts/Resources/NPCs/FriendlyVillager.tres" id="5_qw7dj"]
 [ext_resource type="PackedScene" uid="uid://d1y25semyqxkw" path="res://Scenes/Components/Greyboxing/MoveableBlock.tscn" id="6_5viog"]
-[ext_resource type="Script" path="res://Scripts/Components/Greyboxing/MoveableBlock.gd" id="7_7ucw1"]
+[ext_resource type="Resource" path="res://Dialogue/TutorialVillager/sample_timeline.dtl" id="6_roj8p"]
+[ext_resource type="Script" path="res://Scripts/Resources/Effects/DialogueEffect.gd" id="6_ullvm"]
+
+[sub_resource type="Resource" id="Resource_xwa36"]
+script = ExtResource("6_ullvm")
+timeline = ExtResource("6_roj8p")
 
 [sub_resource type="Resource" id="Resource_78cas"]
 script = ExtResource("5_0y1w2")
@@ -29,36 +32,30 @@ layer_3/tile_data = PackedInt32Array(917513, 65536, 1, 983052, 65536, 1, 917520,
 position = Vector2(120, 40)
 
 [node name="villager" type="CharacterBody2D" parent="Objects/Characters" index="0" groups=["NodesWithID"] instance=ExtResource("3_6n87b")]
-position = Vector2(362, 141)
+position = Vector2(357.77, 152.521)
 collision_layer = 5
 motion_mode = 1
 script = ExtResource("4_cuc8t")
-config = ExtResource("5_qw7dj")
+config = ExtResource("5_f7b1m")
+dlg = SubResource("Resource_xwa36")
 id = "villager"
 activate_external_sensors = false
 
-[node name="ALTAR_POTION" type="Node2D" parent="Objects/Items" index="0" instance=ExtResource("3_iip6i")]
-texture_filter = 1
-position = Vector2(839.307, 555.755)
-script = ExtResource("4_3pk1b")
+[node name="ALTAR_POTION" parent="Objects/Items" index="0" instance=ExtResource("3_iip6i")]
+position = Vector2(280, 255)
 item = ExtResource("5_l47q4")
 quantity = 1
 
-[node name="TestBuilding" type="Node2D" parent="Objects" index="3" instance=ExtResource("3_ftvfe")]
-y_sort_enabled = true
+[node name="TestBuilding" parent="Objects" index="3" instance=ExtResource("3_ftvfe")]
 position = Vector2(153, 121)
-script = ExtResource("4_sawvb")
 size = Vector2(4, 4)
 can_block_movement = true
 can_block_light = true
 tint = Color(0.269531, 0.98288, 1, 1)
 y_sort_width = 168
-metadata/_edit_group_ = true
 
-[node name="Altar" type="Node2D" parent="Objects" index="4" instance=ExtResource("3_ftvfe")]
-y_sort_enabled = true
+[node name="Altar" parent="Objects" index="4" instance=ExtResource("3_ftvfe")]
 position = Vector2(659, 22)
-script = ExtResource("4_sawvb")
 size = Vector2(2, 1)
 can_block_movement = true
 can_interact = true
@@ -66,66 +63,33 @@ tint = Color(1, 0.101563, 0.101563, 1)
 action_verb = 5
 effects = Array[Resource("res://Scripts/Resources/Effect.gd")]([SubResource("Resource_78cas")])
 y_sort_width = 104
-metadata/_edit_group_ = true
 
-[node name="GreyboxObj" type="Node2D" parent="Objects" index="5" instance=ExtResource("3_ftvfe")]
-y_sort_enabled = true
+[node name="GreyboxObj" parent="Objects" index="5" instance=ExtResource("3_ftvfe")]
 position = Vector2(611, 49)
-script = ExtResource("4_sawvb")
 size = Vector2(1, 4)
 can_block_movement = true
-y_sort_width = 72
-metadata/_edit_group_ = true
 
-[node name="GreyboxObj_2" type="Node2D" parent="Objects" index="6" instance=ExtResource("3_ftvfe")]
-y_sort_enabled = true
+[node name="GreyboxObj_2" parent="Objects" index="6" instance=ExtResource("3_ftvfe")]
 position = Vector2(707, 51)
-script = ExtResource("4_sawvb")
 size = Vector2(1, 4)
 can_block_movement = true
-y_sort_width = 72
-metadata/_edit_group_ = true
 
-[node name="GreyboxObj_3" type="Node2D" parent="Objects" index="7" instance=ExtResource("3_ftvfe")]
-y_sort_enabled = true
+[node name="GreyboxObj_3" parent="Objects" index="7" instance=ExtResource("3_ftvfe")]
 position = Vector2(662, -20)
-script = ExtResource("4_sawvb")
 size = Vector2(3, 4)
 can_block_movement = true
 y_sort_width = 136
-metadata/_edit_group_ = true
 
-[node name="PushableBlock" type="RigidBody2D" parent="Objects" index="8" groups=["NodesWithID"] instance=ExtResource("6_5viog")]
+[node name="PushableBlock" parent="Objects" index="8" instance=ExtResource("6_5viog")]
 position = Vector2(622, 66)
-mass = 0.25
-gravity_scale = 0.0
-lock_rotation = true
-freeze = true
-freeze_mode = 1
-linear_damp = 10.0
-script = ExtResource("7_7ucw1")
 id = "a_very_special_block"
 
-[node name="PushableBlock_2" type="RigidBody2D" parent="Objects" index="9" groups=["NodesWithID"] instance=ExtResource("6_5viog")]
+[node name="PushableBlock_2" parent="Objects" index="9" instance=ExtResource("6_5viog")]
 position = Vector2(672, 80)
-mass = 0.25
-gravity_scale = 0.0
-lock_rotation = true
-freeze = true
-freeze_mode = 1
-linear_damp = 10.0
-script = ExtResource("7_7ucw1")
 width = 2
 
-[node name="PushableBlock_3" type="RigidBody2D" parent="Objects" index="10" groups=["NodesWithID"] instance=ExtResource("6_5viog")]
+[node name="PushableBlock_3" parent="Objects" index="10" instance=ExtResource("6_5viog")]
 position = Vector2(674, 46)
-mass = 0.25
-gravity_scale = 0.0
-lock_rotation = true
-freeze = true
-freeze_mode = 1
-linear_damp = 10.0
-script = ExtResource("7_7ucw1")
 
 [node name="PlayerStart" type="Node2D" parent="Markers" index="0"]
 position = Vector2(37, 192)
