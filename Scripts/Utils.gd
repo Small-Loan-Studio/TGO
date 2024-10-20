@@ -2,6 +2,7 @@ class_name Utils
 extends RefCounted
 
 const ID_GROUP := "NodesWithID"
+const PLAYER_ID := "Devin"
 
 
 ## Finds a LevelBase ancestor of a node if it exists. Returns null if none
