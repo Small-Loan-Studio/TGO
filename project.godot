@@ -30,6 +30,7 @@ config/icon="res://icon.svg"
 [autoload]
 
 Dialogic="*res://addons/dialogic/Core/DialogicGameHandler.gd"
+TGO="*res://Scripts/DialogicAdapter.gd"
 
 [debug]
 
@@ -41,6 +42,7 @@ directories/dch_directory={}
 directories/dtl_directory={
 "BuckleyTestTimeline": "res://Dialogue/Buckley/BuckleyTestTimeline.dtl",
 "npc_test_dialogue": "res://ZZ_Scratch/NPCDialogue/npc_test_dialogue.dtl",
+"sample_timeline": "res://Dialogue/TutorialVillager/sample_timeline.dtl",
 "test_timeline": "res://ZZ_Scratch/DialogicValidation/test_timeline.dtl"
 }
 text/letter_speed=0.01
@@ -60,15 +62,7 @@ choices/reveal_by_input=false
 save/autosave_delay=60.0
 save/encryption_on_exports_only=true
 text/autopauses={}
-variables={
-"HasSpoken": false,
-"NewFolder": {
-"Nested": {
-"Var3": false
-},
-"NewVar": ""
-}
-}
+variables={}
 layout/style_list=[]
 layout/default_style="Default"
 glossary/default_case_sensitive=true
