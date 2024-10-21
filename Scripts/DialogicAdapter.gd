@@ -3,11 +3,14 @@ extends Node
 
 static var player_inventory := InventoryAdapter.new(Utils.PLAYER_ID)
 
+
 static func character_inventory(name: String) -> InventoryAdapter:
 	return InventoryAdapter.new(name)
 
+
 class InventoryAdapter:
 	var _id: String
+
 	func _init(id: String) -> void:
 		_id = id
 
