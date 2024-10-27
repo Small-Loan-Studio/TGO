@@ -50,7 +50,6 @@ extends Node2D
 		speed_scale = value
 		_change_speed_scale(speed_scale)
 
-
 @onready var _point_light_2d: PointLight2D = $PointLight2D
 @onready var _sprite_2d: Sprite2D = $Sprite2D
 @onready var _animated_sprite: AnimatedSprite2D = $AnimatedSprite2D
@@ -75,17 +74,21 @@ func _change_light_size(new_size: float) -> void:
 	if _point_light_2d != null:
 		_point_light_2d.texture_scale = new_size
 
+
 func _change_light_texture(new_texture: Texture) -> void:
 	if _point_light_2d != null:
 		_point_light_2d.texture = new_texture
+
 
 func _change_sprite_texture(new_texture: Texture) -> void:
 	if _sprite_2d != null:
 		_sprite_2d.texture = new_texture
 
+
 func _change_sprite_frames(new_frames: SpriteFrames) -> void:
 	if _animated_sprite != null:
 		_animated_sprite.sprite_frames = new_frames
+
 
 func _change_speed_scale(new_scale: float) -> void:
 	if _animated_sprite != null:
