@@ -1,6 +1,8 @@
 class_name Quest
 extends Resource
 
+signal state_change(id: String)
+
 @export var id: String
 @export var title: String
 @export var description: String

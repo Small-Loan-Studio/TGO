@@ -19,6 +19,10 @@
 	quest can mark itself as failed if one of the phases fails without being marked
 	as may_fail
 
+### QuestManager
+
+On game start loads all defined quests into a hash based on ID
+
 ### Quest
 
 A Quest is a node on a quest graph. It knows how to evaluate itself (via
