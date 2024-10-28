@@ -4,7 +4,7 @@
 
 [resource]
 script = ExtResource("1_sp4sk")
-id = ""
+id = "quest"
 title = ""
 description = ""
 manual_start = false

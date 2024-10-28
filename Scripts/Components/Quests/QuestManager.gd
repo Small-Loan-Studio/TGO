@@ -1,8 +1,12 @@
 class_name QuestManager
 extends Node
 
+# maps from quest id to the quest and resource path
 # Map<String, [Quest, path]>
 var _quest_dict: Dictionary = {}
+
+# Array of ids for quests that have phases
+var _phase_starts: Array[String]
 
 
 func _ready() -> void:
@@ -11,7 +15,19 @@ func _ready() -> void:
 
 func _load_quests() -> void:
 	_load_quests_helper(Utils.QUEST_DIR)
-	print(_quest_dict)
+	_link_quests()
+	_debug_print()
+
+
+func _debug_print() -> void:
+	print("Quest structure:")
+	for k: String in _quest_dict.keys():
+		print(_quest_dict[k][0])
+		print("------")
+
+	print("Phase start quests:")
+	for k: String in _phase_starts:
+		print(k)
 
 
 func _load_quests_helper(cur_dir: String) -> void:
@@ -35,7 +51,7 @@ func _load_quests_helper(cur_dir: String) -> void:
 				_register_quest(quest_res, abs_path)
 
 		path = dir.get_next()
-	
+
 	dir.list_dir_end()
 
 
@@ -50,3 +66,19 @@ func _register_quest(q: Quest, path: String) -> void:
 		printerr("Duplicate quest IDs detected for '%s': %s & %s" % [q.id, old_path, path])
 		return
 	_quest_dict[q.id] = [q, path]
+
+
+func _link_quests() -> void:
+	for k: String in _quest_dict.keys():
+		# pull out the quests with phases
+		var q: Quest = _quest_dict[k][0]
+		if len(q.phases) > 0:
+			_phase_starts.append(k)
+
+		# link children/parents
+		_link_children_of(q)
+
+func _link_children_of(q: Quest) -> void:
+	for c: Quest in q.next:
+		c._parent.append(q)
+		_link_children_of(c)
