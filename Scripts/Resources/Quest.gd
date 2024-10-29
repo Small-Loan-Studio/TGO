@@ -1,7 +1,9 @@
 class_name Quest
 extends Resource
 
-signal state_change(id: String)
+
+signal state_change(id: String, context: Dictionary)
+
 
 @export var id: String
 @export var title: String
@@ -16,7 +18,20 @@ signal state_change(id: String)
 @export var results: Array[Effect]
 @export var next: Array[Quest]
 
+var _mgr: QuestManager
+
+# Set during Quest linking if this quest is part of a phased parent
+var _phase_parent: Quest
+
+# Set during Quest linking if this quest is a child of some other Quest
 var _parent: Array[Quest]
+
+
+func get_phase_parent() -> Quest:
+  # TODO: what to do if there are multiple parents with multiple phase parents
+  # (lol maybe don't set that situation up dumbass / maybe we need to lint for it)
+  return null
+
 
 
 func _to_string() -> String:

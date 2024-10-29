@@ -11,23 +11,32 @@ var _phase_starts: Array[String]
 
 func _ready() -> void:
 	_load_quests()
+	debug_print()
 
 
+## saves a loaded set of quests to a target file; if the quests haven't been
+## loaded prints an error and bails
+##
+## TODO: not implemented
+func save_to_path(dest: String) -> void:
+	if len(_quest_dict.keys) == 0:
+		printerr("Attempting to save an empty quest structure what are you doing")
+		return
+	assert(false, "Not yet implemented")
+
+
+## loads quest data from a file and sets up the manager data structures + any
+## necessary post-load linkages
+##
+## TODO: not implemented
+func load_from_path(src: String) -> void:
+	assert(false, "Not yet implemented")
+
+## Processes all defined quests and builds the necessary data structures for
+## tracking quest state
 func _load_quests() -> void:
 	_load_quests_helper(Utils.QUEST_DIR)
 	_link_quests()
-	_debug_print()
-
-
-func _debug_print() -> void:
-	print("Quest structure:")
-	for k: String in _quest_dict.keys():
-		print(_quest_dict[k][0])
-		print("------")
-
-	print("Phase start quests:")
-	for k: String in _phase_starts:
-		print(k)
 
 
 func _load_quests_helper(cur_dir: String) -> void:
@@ -68,6 +77,8 @@ func _register_quest(q: Quest, path: String) -> void:
 	_quest_dict[q.id] = [q, path]
 
 
+## walks the list of defined quests establishing parent links, pulling out all
+## the quests that are phase parents, and setting the quest manager reference
 func _link_quests() -> void:
 	for k: String in _quest_dict.keys():
 		# pull out the quests with phases
@@ -78,7 +89,25 @@ func _link_quests() -> void:
 		# link children/parents
 		_link_children_of(q)
 
+
+## helper for _link_quests
 func _link_children_of(q: Quest) -> void:
+	q._mgr = self
+
+	for p: QuestPhase in q.phases:
+		p.quest._phase_parent = self
+
 	for c: Quest in q.next:
 		c._parent.append(q)
 		_link_children_of(c)
+
+
+func debug_print() -> void:
+	print("Quest structure:")
+	for k: String in _quest_dict.keys():
+		print(_quest_dict[k][0])
+		print("------")
+
+	print("Phase start quests:")
+	for k: String in _phase_starts:
+		print(k)
