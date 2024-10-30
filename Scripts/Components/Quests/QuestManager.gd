@@ -12,6 +12,31 @@ var _phase_starts: Array[String]
 func _ready() -> void:
 	_load_quests()
 	debug_print()
+	# call this because it relies on peers within the Driver's scene tree to have
+	# been set up. Could work around this via setup() call to explicitly inject
+	# dependencies if needed. That wolud be the more reasonable way to do this...
+	Callable(_connect_post_ready).call_deferred()
+
+
+## Connect to external data sources
+func _connect_post_ready() -> void:
+	Dialogic.VAR.variable_changed.connect(_on_dialogic_var_changed)
+	Driver.instance().inventory_mgr.inventory_updated.connect(_on_inventory_changed)
+
+
+func _on_dialogic_var_changed(info: Dictionary) -> void:
+	if !info.has("variable") || !info.has("new_value"):
+		printerr("variable changed signal must contain both variable and new_value: " , info)
+		return
+	var variable: String = info["variable"]
+	var value: Variant = info["new_value"]
+
+	print("variable_changed: %s -> %s" % [variable, str(value)])
+
+
+func _on_inventory_changed(id: String) -> void:
+	print("%s inventory updated" % [id])
+	print(Driver.instance().inventory_mgr.get_inventory(id))
 
 
 ## saves a loaded set of quests to a target file; if the quests haven't been
@@ -95,7 +120,10 @@ func _link_children_of(q: Quest) -> void:
 	q._mgr = self
 
 	for p: QuestPhase in q.phases:
-		p.quest._phase_parent = self
+		if p.quest == null:
+			printerr("What are you doing, this is an invalid quest phase")
+		else:
+			p.quest._phase_parent = q
 
 	for c: Quest in q.next:
 		c._parent.append(q)

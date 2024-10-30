@@ -1,5 +1,5 @@
 ## Allows quests to have completion conditions based on inventory state.
-## Inventory ID is the name of the container, e.g. Devin for the PC.
+## Inventory ID is the name of the container, e.g. 'Devin' for the PC.
 class_name QuestConditionInventory
 extends QuestCondition
 
