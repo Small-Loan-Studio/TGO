@@ -1,19 +1,15 @@
-[gd_resource type="Resource" script_class="Quest" load_steps=7 format=3 uid="uid://clg4c0wq5om5m"]
+[gd_resource type="Resource" script_class="Quest" load_steps=5 format=3 uid="uid://clg4c0wq5om5m"]
 
 [ext_resource type="Script" path="res://Scripts/Resources/Quest.gd" id="1_3r2an"]
-[ext_resource type="Resource" uid="uid://bxdn0h0w2ebqk" path="res://Scripts/Resources/Quests/00-Prologue/other-quest.tres" id="1_jtyyn"]
 [ext_resource type="Script" path="res://Scripts/QuestPhase.gd" id="2_ok6oc"]
-[ext_resource type="Resource" uid="uid://df2nc62jm1bw1" path="res://Scripts/Resources/Quests/01-ActOne/quest.tres" id="3_x3jxc"]
 
 [sub_resource type="Resource" id="Resource_iwydt"]
 script = ExtResource("2_ok6oc")
 may_fail = false
-quest_id = ExtResource("1_jtyyn")
 
 [sub_resource type="Resource" id="Resource_i5b6l"]
 script = ExtResource("2_ok6oc")
 may_fail = false
-quest_id = ExtResource("3_x3jxc")
 
 [resource]
 script = ExtResource("1_3r2an")

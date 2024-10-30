@@ -1,7 +1,6 @@
 class_name Quest
 extends Resource
 
-
 signal state_change(id: String, old_state: Enums.QuestState, new_state: Enums.QuestState)
 
 
@@ -92,10 +91,7 @@ func evaluate() -> bool:
     if !c.eval():
       return false
 
-  state = Enums.QuestState.COMPLETED
-  state_change.emit(id, Enums.QuestState.ACTIVE, Enums.QuestState.COMPLETED)
-
-  return true
+  return self.mark_completed()
 
 
 ## Move a quest into an active state. May only be entered from a dormant

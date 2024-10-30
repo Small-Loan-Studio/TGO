@@ -1,0 +1,23 @@
+[gd_resource type="Resource" script_class="Quest" load_steps=5 format=3 uid="uid://csu7ylxnle2rd"]
+
+[ext_resource type="Script" path="res://Scripts/QuestConditionInventory.gd" id="1_tfuy1"]
+[ext_resource type="Resource" uid="uid://b7w2axnxl0fkt" path="res://Scripts/Resources/Items/Key.tres" id="2_lxs6s"]
+[ext_resource type="Script" path="res://Scripts/Resources/Quest.gd" id="3_x283v"]
+
+[sub_resource type="Resource" id="Resource_wlk6t"]
+script = ExtResource("1_tfuy1")
+inventory_id = "devin"
+check = "has"
+target_item = ExtResource("2_lxs6s")
+
+[resource]
+script = ExtResource("3_x283v")
+id = "test-item-quest"
+title = "TestQuest"
+description = "This is a test quest"
+manual_start = false
+state = 0
+conditions = Array[Resource("res://Scripts/Resources/QuestCondition.gd")]([SubResource("Resource_wlk6t")])
+phases = Array[Resource("res://Scripts/QuestPhase.gd")]([])
+results = Array[Resource("res://Scripts/Resources/Effect.gd")]([])
+next = Array[ExtResource("3_x283v")]([])
