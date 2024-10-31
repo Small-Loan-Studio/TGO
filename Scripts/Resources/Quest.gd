@@ -91,6 +91,28 @@ func evaluate() -> bool:
     if !c.eval():
       return false
 
+  # if there are no phases for this quest then go ahead and mark the whole
+  # thing as done since conditions are sorted
+  if len(phases) == 0:
+    return self.mark_completed()
+
+  # if there are phases check to see if everything is sorted
+  for qp: QuestPhase in phases:
+    if qp.quest != null:
+      var q := qp.quest
+      match q.state:
+        Enums.QuestState.DORMANT:
+          return false
+        Enums.QuestState.ACTIVE:
+          return false
+        Enums.QuestState.FAILED:
+          if !q.may_fail:
+            return self.mark_failed()
+        Enums.QuestState.COMPLETED:
+          pass
+        _:
+          printerr("Unknown quest state for '%s': %s" % [id, q.state])
+
   return self.mark_completed()
 
 
@@ -131,6 +153,9 @@ func mark_completed() -> bool:
 
   var old_state := state
   state = Enums.QuestState.COMPLETED
+
+  # TODO: trigger effects
+
   state_change.emit(id, old_state, state)
   return true
 

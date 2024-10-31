@@ -161,7 +161,7 @@ func _on_dialogic_var_changed(info: Dictionary) -> void:
 func _on_inventory_changed(id: String) -> void:
 	print("%s inventory updated" % [id])
 	print("    ", Driver.instance().inventory_mgr.get_inventory(id))
-	
+
 	# TODO: for now just reevaluate all quests on any inventory change
 	_eval_active_quests()
 
@@ -183,9 +183,11 @@ func _on_quest_state_changed(quest_id: String, old_state: Enums.QuestState, new_
 
 		Enums.QuestState.COMPLETED:
 			_active_quests.erase(canonicalized_id)
+			_process_completed_quest(canonicalized_id)
 
 		Enums.QuestState.FAILED:
 			_active_quests.erase(canonicalized_id)
+			_process_completed_quest(canonicalized_id)
 
 	quest_updated.emit(quest_id)
 
@@ -210,6 +212,18 @@ func _add_active_quest(id: String) -> void:
 	await get_tree().create_timer(2.5).timeout
 	_eval_active_quests()
 
+
+func _process_completed_quest(id: String) -> void:
+	var q := quest_by_id(id)
+	if q == null:
+		return
+
+	for q_next: Quest in q.next:
+		if !q_next.manual_start:
+			q_next.mark_active()
+
+	if q._phase_parent != null:
+		q._phase_parent.evaluate()
 
 func debug_print() -> void:
 	print("Quest structure:")
