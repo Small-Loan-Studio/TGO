@@ -374,7 +374,7 @@ func _npc_dlg_refresh() -> void:
 
 func _apply_item(obj_position: Vector2) -> void:
 	var item_name: String = _item_dropdown.get_item_text(_item_dropdown.get_selected_id())
-	var config: Item = _item_dict[item_name]
+	var config: Item = _item_dict[item_name] #Hold max value of item
 
 	var new_item := preload(ITEM_OBJECT_SCENE).instantiate()
 	new_item.item = config
@@ -389,7 +389,13 @@ func _apply_item(obj_position: Vector2) -> void:
 	parent.add_child(new_item)
 	new_item.owner = _objects_parent.get_parent()
 	new_item.global_position = obj_position
-
+	
+	#Signal to be used: _item_dropdown_selected	
+	#Need to cap the max value of item
+	#if (_item_dropdown_selected ) :
+		#we selected item, can proceed to set cap
+	
+	
 
 func _reset_item_state() -> void:
 	_item_dropdown.selected = 0
@@ -435,7 +441,8 @@ func _item_dropdown_selected(_unused: int) -> void:
 		return
 
 	var key: String = _item_dropdown.get_item_text(index)
-	var detail: Item = _item_dict[key]
+	var detail: Item = _item_dict[key] #Item selected
+	_item_spinbox.max_value = detail.stack_size
 	_item_tex.texture = detail.icon
 	_item_tex.show()
 
