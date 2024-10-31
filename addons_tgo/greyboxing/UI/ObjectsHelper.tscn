@@ -1,8 +1,9 @@
-[gd_scene load_steps=4 format=3 uid="uid://1j701pum1cgx"]
+[gd_scene load_steps=5 format=3 uid="uid://1j701pum1cgx"]
 
 [ext_resource type="Script" path="res://addons_tgo/greyboxing/UI/ObjectsHelper.gd" id="1_u6ws1"]
 [ext_resource type="PackedScene" uid="uid://bvm1fjatmfabx" path="res://addons_tgo/greyboxing/UI/XbyY.tscn" id="2_grtm3"]
 [ext_resource type="PackedScene" uid="uid://efk1feabjm8y" path="res://addons_tgo/greyboxing/UI/ObjectsHelperSwitchDetails.tscn" id="2_wpheu"]
+[ext_resource type="Texture2D" uid="uid://3cvlh3bqqte5" path="res://Art/Items/Key.png" id="4_c3s30"]
 
 [node name="ObjectsHelper" type="Control"]
 layout_mode = 3
@@ -104,7 +105,7 @@ theme_override_constants/margin_left = 8
 [node name="GreyboxTint" type="ColorPickerButton" parent="Container/Scroll/AddItems/GenericDetails/TintHBox/MarginContainer"]
 unique_name_in_owner = true
 layout_mode = 2
-color = Color(1, 1, 1, 1)
+color = Color(0.745098, 0.745098, 0.745098, 1)
 
 [node name="Pushable" type="Button" parent="Container/Scroll/AddItems"]
 layout_mode = 2
@@ -198,7 +199,6 @@ layout_mode = 2
 text = "Item"
 
 [node name="ItemDetails" type="VBoxContainer" parent="Container/Scroll/AddItems"]
-visible = false
 layout_mode = 2
 
 [node name="HBoxContainer" type="HBoxContainer" parent="Container/Scroll/AddItems/ItemDetails"]
@@ -217,6 +217,12 @@ theme_override_constants/margin_left = 8
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 3
+item_count = 2
+selected = 0
+popup/item_0/text = "QUEST_KEY"
+popup/item_0/id = 0
+popup/item_1/text = "HEALTH_POTION"
+popup/item_1/id = 1
 
 [node name="ItemIcon" type="TextureRect" parent="Container/Scroll/AddItems/ItemDetails"]
 unique_name_in_owner = true
@@ -224,6 +230,7 @@ custom_minimum_size = Vector2(32, 32)
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
+texture = ExtResource("4_c3s30")
 expand_mode = 3
 
 [node name="HBoxContainer2" type="HBoxContainer" parent="Container/Scroll/AddItems/ItemDetails"]
