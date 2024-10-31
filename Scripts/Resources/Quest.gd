@@ -14,8 +14,8 @@ signal state_change(id: String, old_state: Enums.QuestState, new_state: Enums.Qu
 
 @export_category("Quest line structure")
 @export var phases: Array[QuestPhase]
-@export var results: Array[Effect]
 @export var next: Array[Quest]
+@export var results: Array[Effect]
 
 var _mgr: QuestManager
 
@@ -81,7 +81,9 @@ func get_phase_parent() -> Quest:
 ## completed. If a quest is not active no work is done, an error is printed,
 ## and false is returned.
 ##
-## For an active quest this walks the conditions and checks if they all are met.
+## For an active quest this walks the conditions and checks if they are all met.
+## When phases are present it will check the completion state of all phases and
+## mark the current quest as COMPLETED or FAILED as appropriate.
 func evaluate() -> bool:
   if state != Enums.QuestState.ACTIVE:
     printerr("Not evaluating quest %s because state is %s" % [id, Enums.quest_state_name(state)])
@@ -96,7 +98,8 @@ func evaluate() -> bool:
   if len(phases) == 0:
     return self.mark_completed()
 
-  # if there are phases check to see if everything is sorted
+  # if there are phases check to see if everything has completed such that we
+	# should close out this quest
   for qp: QuestPhase in phases:
     if qp.quest != null:
       var q := qp.quest
@@ -154,7 +157,8 @@ func mark_completed() -> bool:
   var old_state := state
   state = Enums.QuestState.COMPLETED
 
-  # TODO: trigger effects
+  for e: Effect in results:
+    e.act(id, Driver.instance().get_current_level())
 
   state_change.emit(id, old_state, state)
   return true

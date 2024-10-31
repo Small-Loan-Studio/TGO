@@ -92,6 +92,12 @@ func load_level(tgt: LevelBase, target_name: String) -> void:
 	_last_loaded_level = tgt
 
 
+## Returns the currently loaded level. A bit of a hack for routing things into
+## Quest effect chain.
+func get_current_level() -> LevelBase:
+	return _last_loaded_level
+
+
 ## TODO: We'll need to switch away  from debug load path soon
 func request_debug_load(path: String) -> void:
 	var music_ready := audio_mgr.play(Enums.AudioTrack.SKETCH_2, 2)

@@ -1,3 +1,5 @@
+## Adds an item from the world into the actor's inventory. The world item
+## will be destroyed.
 class_name ItemPickupEffect
 extends Effect
 
