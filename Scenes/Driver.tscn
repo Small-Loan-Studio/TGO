@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://cobsc7v0oqc8l"]
+[gd_scene load_steps=12 format=3 uid="uid://cobsc7v0oqc8l"]
 
 [ext_resource type="Script" path="res://Scripts/Driver.gd" id="1_agcjs"]
 [ext_resource type="Script" path="res://Scripts/AudioManager.gd" id="2_4seev"]
@@ -10,6 +10,7 @@
 [ext_resource type="Script" path="res://Scripts/Components/Inventory/InventoryManager.gd" id="6_na5am"]
 [ext_resource type="Script" path="res://Scripts/Resources/Clock.gd" id="6_t80u5"]
 [ext_resource type="PackedScene" uid="uid://dukcf64qxy46o" path="res://Scenes/UI/Debug/Inventory.tscn" id="7_3yw60"]
+[ext_resource type="Script" path="res://Scripts/SerializationManager.gd" id="11_e6bsk"]
 
 [node name="Driver" type="Node2D"]
 script = ExtResource("1_agcjs")
@@ -133,6 +134,9 @@ visible = false
 position = Vector2(0, 0)
 
 [node name="Camera2D" type="Camera2D" parent="GameWorld/Devin"]
+
+[node name="SerializationManager" type="Node" parent="."]
+script = ExtResource("11_e6bsk")
 
 [connection signal="request_load" from="OverlayManager/MenuManager/DebugMenu" to="." method="request_debug_load"]
 [connection signal="pressed" from="OverlayManager/HUD/DebugButton" to="." method="_on_debug_pressed"]

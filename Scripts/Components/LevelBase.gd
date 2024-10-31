@@ -5,6 +5,8 @@ const DEFAULT_MARKER: String = "PlayerStart"
 
 var driver: Driver
 
+var level_name: String = name
+
 @onready var _marker_root := $Markers
 
 
@@ -31,8 +33,8 @@ func save_level_state() -> void:
 ##
 ## TODO: Currently this is just plumbing between the level and driver that
 ## may be unnecessary. Think about the wiring and what this should look like.
-func swap_to_level(tgt: LevelBase, marker_target: String) -> void:
-	driver.load_level(tgt, marker_target)
+func swap_to_level(target_level_name: String, marker_target: String) -> void:
+	driver.load_level(target_level_name, marker_target)
 
 
 ## Finds a named position under the market root. Used in conjuction with

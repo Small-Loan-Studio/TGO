@@ -5,6 +5,10 @@ extends Node2D
 ## scene. It [b]must[/b] be a child of LevelBase.
 @export var autoload_scene: PackedScene
 
+## TODO: Replace this with the official location for levels in the future
+const LEVEL_FILE_PATH: String = "res://ZZ_Scratch/GreyboxingTools/"
+const FIRST_LEVEL_NAME: String = "BadLevelA"
+
 var _last_loaded_level: LevelBase = null
 
 @onready var audio_mgr: AudioManager = $AudioManager
@@ -15,10 +19,11 @@ var _last_loaded_level: LevelBase = null
 @onready var _world := $GameWorld
 @onready var _hud: HUD = $OverlayManager/HUD
 @onready var _debug_ui_inventory := $OverlayManager/HUD/DebugInventoryUI
+@onready var _serialization_mgr: SerializationManager = $SerializationManager
 
 
 static func instance() -> Driver:
-	return Engine.get_singleton("DriverInstance")
+	return Engine.get_singleton("DriverInstance") as Driver
 
 
 func _ready() -> void:
@@ -51,7 +56,7 @@ func _post_ready() -> void:
 	if autoload_scene != null:
 		var level_instance := autoload_scene.instantiate() as LevelBase
 		await _curtain.fade_in(1)
-		load_level(level_instance, "")
+		load_level(level_instance.level_name, "")
 		await _curtain.fade_out(1)
 	else:
 		_menu_mgr.show_menu(Enums.MenuType.DEBUG)
@@ -63,11 +68,15 @@ func get_hud() -> HUD:
 
 
 ## Loads a new level into the game world
-func load_level(tgt: LevelBase, target_name: String) -> void:
+func load_level(target_level_name: String, target_name: String) -> void:
 	# first add the new level
-	_world.add_child(tgt)
+	var load_level: PackedScene
+	var new_level: LevelBase
+	
 	if _last_loaded_level != null:
 		# if we had a previous level clean it up.
+
+		_serialization_mgr._update_persistent_level(_last_loaded_level)
 		_world.remove_child(_last_loaded_level)
 		_last_loaded_level.save_level_state()
 		_last_loaded_level.queue_free()
@@ -76,7 +85,17 @@ func load_level(tgt: LevelBase, target_name: String) -> void:
 	get_hud().show()
 
 	# run any setup the level needs to do to work
-	tgt.setup(self)
+	print("Target Level Name: "+target_level_name)
+	if _serialization_mgr.check_level_persistence(target_level_name):
+		load_level= load(_serialization_mgr.get_persistent_level_dict()[target_level_name])
+		print("Loading persisting level")
+	else:
+		load_level= load(LEVEL_FILE_PATH+target_level_name+".tscn")
+		print("Loading non-persisting level")
+	
+	new_level = load_level.instantiate()
+	_world.add_child(new_level, true)
+	new_level.setup(self)
 
 	# TODO: get the player ready and move them to the appropriate location
 	# we'll probably want to parameterize this more eventually.
@@ -84,11 +103,11 @@ func load_level(tgt: LevelBase, target_name: String) -> void:
 	player.player_controled = true
 	if target_name == null || target_name == "":
 		target_name = LevelBase.DEFAULT_MARKER
-	var location := tgt.get_named_location(target_name)
+	var location := new_level.get_named_location(target_name)
 	player.global_position = location
 
 	# update level ref
-	_last_loaded_level = tgt
+	_last_loaded_level = new_level
 
 
 ## TODO: We'll need to switch away  from debug load path soon
@@ -96,20 +115,13 @@ func request_debug_load(path: String) -> void:
 	var music_ready := audio_mgr.play(Enums.AudioTrack.SKETCH_2, 2)
 	await _curtain.fade_in(1)
 	_menu_mgr.hide_menu(Enums.MenuType.DEBUG)
-
-	var new_scene_resource := load(path) as PackedScene
-	var new_scene := new_scene_resource.instantiate()
-	if new_scene is LevelBase:
-		load_level(new_scene as LevelBase, LevelBase.DEFAULT_MARKER)
-	else:
-		_world.add_child(new_scene)
-		_world.remove_child(player)
-		player.queue_free()
-		new_scene.setup(self)
+	print("debug loading")
+	load_level(FIRST_LEVEL_NAME, LevelBase.DEFAULT_MARKER)
 
 	await music_ready.finished
 	await _curtain.fade_out(1)
 
 
 func _on_debug_pressed() -> void:
-	print(Dialogic.VAR.get_variable("HasSpoken"))
+	pass
+	#print(Dialogic.VAR.get_variable("HasSpoken"))

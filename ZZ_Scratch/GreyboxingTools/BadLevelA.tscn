@@ -18,7 +18,7 @@ region = Rect2(64, 200, 59, 56)
 
 [sub_resource type="Resource" id="Resource_8cdkq"]
 script = ExtResource("7_7tyl1")
-load_level_path = "res://ZZ_Scratch/GreyboxingTools/BadLevelB.tscn"
+load_level_name = "BadLevelB"
 marker_name = ""
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_lwweu"]
