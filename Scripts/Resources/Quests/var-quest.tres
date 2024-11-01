@@ -13,11 +13,11 @@ invert_result = false
 [resource]
 script = ExtResource("1_hyo5r")
 id = "test-var-quest"
-title = "Testing variables"
+title = "Testing Variable Tracking"
 description = ""
 manual_start = false
 state = 0
 conditions = Array[Resource("res://Scripts/Resources/QuestCondition.gd")]([SubResource("Resource_6m7l0")])
 phases = Array[Resource("res://Scripts/QuestPhase.gd")]([])
-results = Array[Resource("res://Scripts/Resources/Effect.gd")]([])
 next = Array[ExtResource("1_hyo5r")]([])
+results = Array[Resource("res://Scripts/Resources/Effect.gd")]([])

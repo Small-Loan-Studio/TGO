@@ -193,7 +193,10 @@ func _on_quest_state_changed(quest_id: String, old_state: Enums.QuestState, new_
 
 
 func get_active_quests() -> Array[String]:
-	return _active_quests.keys()
+	var r: Array[String] = []
+	for k: String in _active_quests.keys():
+		r.append(k)
+	return r
 
 func start_quest(id: String) -> bool:
 	var q := quest_by_id(id)

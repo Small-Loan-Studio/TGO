@@ -13,11 +13,11 @@ target_item = ExtResource("2_lxs6s")
 [resource]
 script = ExtResource("3_x283v")
 id = "test-item-quest"
-title = "TestQuest"
+title = "Testing Item Pickup"
 description = "This is a test quest"
 manual_start = false
 state = 0
 conditions = Array[Resource("res://Scripts/Resources/QuestCondition.gd")]([SubResource("Resource_wlk6t")])
 phases = Array[Resource("res://Scripts/QuestPhase.gd")]([])
-results = Array[Resource("res://Scripts/Resources/Effect.gd")]([])
 next = Array[ExtResource("3_x283v")]([])
+results = Array[Resource("res://Scripts/Resources/Effect.gd")]([])

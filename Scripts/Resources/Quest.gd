@@ -19,7 +19,7 @@ signal state_change(id: String, old_state: Enums.QuestState, new_state: Enums.Qu
 
 var _mgr: QuestManager
 
-# Set during Quest linking if this quest is part of a phased parent
+# Set during Quest linking if this quest is directly part of a phased parent
 var _phase_parent: Quest
 
 # Set during Quest linking if this quest is a child of some other Quest
@@ -77,6 +77,15 @@ func get_phase_parent() -> Quest:
   return null
 
 
+func abs_title() -> String:
+  var full_title := title
+  var cur := get_phase_parent()
+  while cur != null:
+    full_title = "%s/%s" % [cur.title, full_title]
+    cur = cur.get_phase_parent()
+  return full_title
+
+
 ## Triggers an evaluation as to whether a quest should be moved from active to
 ## completed. If a quest is not active no work is done, an error is printed,
 ## and false is returned.
@@ -112,16 +121,41 @@ func evaluate() -> bool:
           if !q.may_fail:
             return self.mark_failed()
         Enums.QuestState.COMPLETED:
-          pass
+          if !_chain_completed(q):
+            return false
         _:
           printerr("Unknown quest state for '%s': %s" % [id, q.state])
 
   return self.mark_completed()
 
 
+## returns whether or not a quest and all children have been marked as completed
+func _chain_completed(q: Quest) -> bool:
+  var quest_list: Array[Quest] = [q]
+
+  while len(quest_list) > 0:
+    var cur := quest_list[0]
+    if !cur.is_finished():
+      return false
+    quest_list.remove_at(0)
+    for n: Quest in cur.next:
+      quest_list.append(n)
+
+  return true
+
+
+## returns whether the quest state is in a "finished" state (completed or
+## failed)
+func is_finished() -> bool:
+  return state == Enums.QuestState.COMPLETED || state == Enums.QuestState.FAILED
+
+
 ## Move a quest into an active state. May only be entered from a dormant
 ## and will emit a state change signal. Returns true if state was
 ## successfully updated.
+##
+## TODO: what should we do if this is part of a chain or phased quest and the
+## parent or phase_parent isn't active?
 func mark_active() -> bool:
   if state != Enums.QuestState.DORMANT:
     printerr("Attempting to set quest to active from invalid state: ", Enums.quest_state_name(state))

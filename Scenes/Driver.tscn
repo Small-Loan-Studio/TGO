@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://cobsc7v0oqc8l"]
+[gd_scene load_steps=13 format=3 uid="uid://cobsc7v0oqc8l"]
 
 [ext_resource type="Script" path="res://Scripts/Driver.gd" id="1_agcjs"]
 [ext_resource type="Script" path="res://Scripts/AudioManager.gd" id="2_4seev"]
@@ -10,6 +10,7 @@
 [ext_resource type="Script" path="res://Scripts/Components/Inventory/InventoryManager.gd" id="6_na5am"]
 [ext_resource type="Script" path="res://Scripts/Resources/Clock.gd" id="6_t80u5"]
 [ext_resource type="PackedScene" uid="uid://dukcf64qxy46o" path="res://Scenes/UI/Debug/Inventory.tscn" id="7_3yw60"]
+[ext_resource type="PackedScene" uid="uid://dqrxejwlgxsgu" path="res://Scenes/UI/Debug/QuestTracker.tscn" id="8_8e3e0"]
 [ext_resource type="Script" path="res://Scripts/Components/Quests/QuestManager.gd" id="9_4hdkn"]
 
 [node name="Driver" type="Node2D"]
@@ -68,10 +69,20 @@ script = ExtResource("4_kq6n3")
 
 [node name="DebugInventoryUI" parent="OverlayManager/HUD" instance=ExtResource("7_3yw60")]
 layout_mode = 0
-offset_left = 37.0
-offset_top = 33.0
-offset_right = 53.0
-offset_bottom = 49.0
+offset_left = 40.0
+offset_top = 40.0
+offset_right = 56.0
+offset_bottom = 56.0
+
+[node name="DebugQuestUI" parent="OverlayManager/HUD" instance=ExtResource("8_8e3e0")]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 1.0
+anchor_bottom = 0.0
+offset_top = 40.0
+offset_right = -40.0
+grow_horizontal = 0
+grow_vertical = 1
 
 [node name="Toast" type="ColorRect" parent="OverlayManager/HUD"]
 unique_name_in_owner = true

@@ -12,5 +12,5 @@ manual_start = false
 state = 0
 conditions = Array[Resource("res://Scripts/Resources/QuestCondition.gd")]([])
 phases = Array[Resource("res://Scripts/QuestPhase.gd")]([])
-results = Array[Resource("res://Scripts/Resources/Effect.gd")]([])
 next = Array[ExtResource("1_hcm75")]([ExtResource("1_o2lpw")])
+results = Array[Resource("res://Scripts/Resources/Effect.gd")]([])
