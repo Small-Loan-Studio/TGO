@@ -1,4 +1,4 @@
-[gd_scene load_steps=24 format=3 uid="uid://d4mrsiv1l8m35"]
+[gd_scene load_steps=23 format=3 uid="uid://d4mrsiv1l8m35"]
 
 [ext_resource type="PackedScene" uid="uid://dyq8mcdsutnsa" path="res://Scenes/Components/LevelBase.tscn" id="1_iejup"]
 [ext_resource type="Script" path="res://ZZ_Scratch/GreyboxingTools/BadLevelA.gd" id="2_22a2t"]
@@ -13,7 +13,6 @@
 [ext_resource type="Script" path="res://Scripts/Resources/Effects/DialogueEffect.gd" id="11_03hvs"]
 [ext_resource type="Resource" path="res://ZZ_Scratch/DialogicValidation/test_timeline.dtl" id="12_lpexj"]
 [ext_resource type="PackedScene" uid="uid://rgvfsx60t2ap" path="res://Scenes/Components/Inventory/Item.tscn" id="13_1m8di"]
-[ext_resource type="Script" path="res://Scripts/Components/Greyboxing/GreyboxObject.gd" id="15_jv0xj"]
 [ext_resource type="Resource" uid="uid://b7w2axnxl0fkt" path="res://Scripts/Resources/Items/Key.tres" id="15_svqc7"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_ptcao"]
@@ -120,17 +119,13 @@ tint = Color(0.171265, 0.539106, 0.71875, 1)
 action_verb = 5
 effects = Array[Resource("res://Scripts/Resources/Effect.gd")]([SubResource("Resource_yblux")])
 
-[node name="GreyboxObj" type="Node2D" parent="Objects" index="8" instance=ExtResource("7_ipcqk")]
-y_sort_enabled = true
+[node name="GreyboxObj" parent="Objects" index="8" instance=ExtResource("7_ipcqk")]
 position = Vector2(451, 319)
-script = ExtResource("15_jv0xj")
 can_block_movement = true
 can_interact = true
 tint = Color(0.171875, 0.6875, 0.179932, 1)
 action_verb = 5
 effects = Array[Resource("res://Scripts/Resources/Effect.gd")]([SubResource("Resource_yp128")])
-y_sort_width = 72
-metadata/_edit_group_ = true
 
 [node name="PlayerStart" type="Node2D" parent="Markers" index="0"]
 position = Vector2(522, 183)

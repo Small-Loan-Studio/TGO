@@ -20,23 +20,21 @@ func _sync() -> void:
 		c.queue_free()
 		_tracked.clear()
 
-	var i := 0
-
 	var roots := _get_quest_roots()
 	for root_quest in roots:
-		_add_quest(root_quest, 0)
+		_process_quest(root_quest, 0)
 
 
 	for q_id in _mgr.get_active_quests():
-		var quest_line: QuestLineItem = LINE_ITEM_SCENE.instantiate()
-		var q := _mgr.quest_by_id(q_id)
-		quest_line.track(q, i)
-		_quest_container.add_child(quest_line)
-		i = i + 1
+		if !(q_id in _tracked):
+			_add_questline(_mgr.quest_by_id(q_id), 0)
 
+	if len(_tracked) == 0:
+		hide()
+	else:
+		show()
 
-## returns the quests being tracked that have no phase parent; this could be
-## because
+## returns the quests being tracked that have no phase parent
 func _get_quest_roots() -> Array[Quest]:
 	var r: Array[Quest] = []
 	for id in _mgr.get_active_quests():
@@ -45,49 +43,62 @@ func _get_quest_roots() -> Array[Quest]:
 			r.append(q)
 	return r
 
-
-func _add_quest(q: Quest, indent: int) -> void:
-	if q.id in _tracked:
-		return
-
-	_tracked.append(q.id)
-	var quest_line: QuestLineItem = LINE_ITEM_SCENE.instantiate()
-	quest_line.track(q, indent)
-	_quest_container.add_child(quest_line)
-
-	# if len(q.phases) > 0:
-	for q_phase in q.phases:
-		var phase_quest := q_phase.quest
-		if phase_quest != null:
-			if len(phase_quest.next) == 0:
-				# this is not a phased chain, just treat it normally
-				_add_quest(phase_quest, indent + 1)
-			else:
-				# this is a phased chain, get the first incomplete quest (or last quest)
-				var candidates: Array[Quest] = []
-				for phase_quest_next in phase_quest.next:
-					if !phase_quest_next.is_finished():
-						candidates.append(phase_quest_next)
-
-func _process_quest(q: Quest, indent: int) -> void:
+func _process_quest(q: Quest, indent: int, force_add: bool = false) -> void:
+	print("_process_quest(%s)" % [q.id])
 	if len(q.phases) > 0:
-		_process_phase_parent(q, indent)
+		_process_phase_parent(q, indent, force_add)
 	else:
-		_process_normal_quest(q, indent)
+		_process_normal_quest(q, indent, force_add)
 
-func _process_phase_parent(q: Quest, indent: int) -> void:
+# handle adding a phased quest
+func _process_phase_parent(q: Quest, indent: int, force_add: bool) -> void:
 	if q.id in _tracked:
 		return
+	print("_process_phase_parent(%s, %d, %s)" % [q.id, indent, force_add])
 
 	_add_questline(q, indent)
 
+	var last_phase_completed := true
+
 	for phase in q.phases:
 		var phase_quest := phase.quest
-		_process_quest(phase_quest, indent + 1)
+		_process_quest(phase_quest, indent + 1, last_phase_completed)
+		last_phase_completed = phase_quest.is_finished()
 
 
-func _process_normal_quest(q: Quest, indent: int) -> void:
-	pass
+# handle adding a non-phased quest
+func _process_normal_quest(q: Quest, indent: int, force_add: bool) -> void:
+	print("_process_normal_quest(%s, %d, %s)" % [q.id, indent, force_add])
+	if q.state == Enums.QuestState.DORMANT:
+		return
+
+	if q.is_finished():                                  # this quest is completed
+		if len(q.next) == 0:                               # ...and there are no children quests
+			if force_add:                                    # ...and we're adding it for phased quest reasons
+				_add_questline(q, indent)
+
+		else:                                              # ...and there are children
+			# walk from the current quest until things get easy (!finished) or hard (multiple children)
+			var cur := q
+			while cur.is_finished() && len(q.next) == 1:
+				cur = cur.next[0]
+			# which situation are we in
+			if !cur.is_finished():                           # ...the end of cur's chain is unfinished
+				_process_quest(cur, indent, force_add)
+				return
+
+			if len(cur.next) == 0:                           # ...the end of cur's chain is just the end of the chain
+				_process_quest(cur, indent, force_add)
+				return
+
+			if len(cur.next) > 1:                            # ...we've hit a state where cur has multiple children
+				for cur_child in cur.next:
+					_process_quest(cur_child, indent, force_add)
+				return
+
+			printerr("Should never hit this case %s -> %s" % [q.id, cur._to_string()])
+	else:                                                # this quest is incomplete
+		_add_questline(q, indent)
 
 
 func _add_questline(q: Quest, indent: int) -> void:

@@ -163,6 +163,7 @@ func mark_active() -> bool:
 
   state = Enums.QuestState.ACTIVE
   state_change.emit(id, Enums.QuestState.DORMANT, Enums.QuestState.ACTIVE)
+
   return true
 
 

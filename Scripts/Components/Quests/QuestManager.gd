@@ -212,8 +212,14 @@ func start_quest(id: String) -> bool:
 func _add_active_quest(id: String) -> void:
 	print("Doing initial add of quest")
 	_active_quests[id] = null
+	var q := quest_by_id(id)
+	if len(q.phases) > 0:
+		q.phases[0].quest.mark_active()
+
 	await get_tree().create_timer(2.5).timeout
 	_eval_active_quests()
+
+	# check tosee if this quest has phases to start as well
 
 
 func _process_completed_quest(id: String) -> void:
@@ -229,11 +235,6 @@ func _process_completed_quest(id: String) -> void:
 		q._phase_parent.evaluate()
 
 func debug_print() -> void:
-	print("Quest structure:")
+	print("Quest Status:")
 	for k: String in _quest_dict.keys():
-		print(_quest_dict[k][QUEST_IDX])
-		print("------")
-
-	print("Phase start quests:")
-	for k: String in _phase_starts:
-		print(k)
+		print("  %s -> %s" % [k, Enums.quest_state_name(quest_by_id(k).state)])
