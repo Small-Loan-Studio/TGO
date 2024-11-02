@@ -58,12 +58,10 @@ func _process_phase_parent(q: Quest, indent: int, force_add: bool) -> void:
 
 	_add_questline(q, indent)
 
-	var last_phase_completed := true
-
 	for phase in q.phases:
 		var phase_quest := phase.quest
-		_process_quest(phase_quest, indent + 1, last_phase_completed)
-		last_phase_completed = phase_quest.is_finished()
+		if phase_quest.state != Enums.QuestState.DORMANT:
+			_process_quest(phase_quest, indent + 1, true)
 
 
 # handle adding a non-phased quest

@@ -132,11 +132,13 @@ func _link_quests() -> void:
 func _link_children_of(q: Quest) -> void:
 	q._mgr = self
 
-	for p: QuestPhase in q.phases:
-		if p.quest == null:
+	for idx in len(q.phases):
+		var phase := q.phases[idx]
+		phase.phase_index = idx
+		if phase.quest == null:
 			printerr("What are you doing, this is an invalid quest phase")
 		else:
-			p.quest._phase_parent = q
+			phase.quest._phase_parent = q
 
 	for c: Quest in q.next:
 		c._parent.append(q)
@@ -210,29 +212,58 @@ func start_quest(id: String) -> bool:
 
 
 func _add_active_quest(id: String) -> void:
-	print("Doing initial add of quest")
 	_active_quests[id] = null
 	var q := quest_by_id(id)
 	if len(q.phases) > 0:
+		# check to see if this quest has phases to start as well
 		q.phases[0].quest.mark_active()
 
 	await get_tree().create_timer(2.5).timeout
 	_eval_active_quests()
 
-	# check tosee if this quest has phases to start as well
 
-
+## resolve what happens when a quset is completed. This primarily focuses on
+## activating the next in sequence for chains and phased parents. Currently
+## only propagates failure up to phased parents.
 func _process_completed_quest(id: String) -> void:
 	var q := quest_by_id(id)
 	if q == null:
 		return
 
+	var phase_parent := q.get_phase_parent()
+
+	if q.state == Enums.QuestState.FAILED:
+		# In a failed state we trigger the phased parent to evaluate itself in case
+		# it should fail. Not that we *do not* check if the phase may_fail is set
+		# meaning we won't advance the quest sequence automatically even though the
+		# phase parent will not fail itself.
+		if phase_parent != null:
+			phase_parent.evaluate()
+		return
+
 	for q_next: Quest in q.next:
 		if !q_next.manual_start:
 			q_next.mark_active()
+		return
 
-	if q._phase_parent != null:
-		q._phase_parent.evaluate()
+	# if we didn't have further quests in that chain to activate look for
+	# additional quests in a potential phased parent
+
+	if phase_parent != null:
+		var idx := 0
+		# look through all phases from the parent until we find one that isn't
+		# completed or we run off the end of the list
+		while idx < len(phase_parent.phases) && phase_parent.phases[idx].quest.is_finished():
+			idx = idx + 1
+
+		if idx == len(phase_parent.phases):
+			# all phases of the phase_parent are finished
+			phase_parent.evaluate()
+		else:
+			# we have found a phase that isn't finished so activate it
+			var next_quest_phase := phase_parent.phases[idx]
+			if next_quest_phase.quest.state != Enums.QuestState.ACTIVE:
+				next_quest_phase.quest.mark_active()
 
 func debug_print() -> void:
 	print("Quest Status:")

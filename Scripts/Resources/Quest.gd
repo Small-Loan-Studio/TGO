@@ -54,9 +54,9 @@ var _parent: Array[Quest]
 ## Phase2.3c    | Phase2
 ## Phase2.3b.ii | Phase2.3b
 ##
-## A quest may have multiple parents, in that context we arbitrarily pick the
-## first parent to be the path to follow. Plausible we want to lint this into
-## a warning when setting up quest structure.
+## ⚠️: A quest may have multiple parents, in that context we arbitrarily pick
+## the first parent to be the path to follow. Plausible we want to lint this
+## into a warning when setting up quest structure.
 ##
 ## TODO: lmao. tests
 func get_phase_parent() -> Quest:

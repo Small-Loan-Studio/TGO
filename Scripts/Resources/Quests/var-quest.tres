@@ -13,7 +13,7 @@ invert_result = false
 [resource]
 script = ExtResource("1_hyo5r")
 id = "test-var-quest"
-title = "Testing Variable Tracking"
+title = "Set the variable"
 description = ""
 manual_start = false
 state = 0

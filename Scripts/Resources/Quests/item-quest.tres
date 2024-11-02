@@ -13,7 +13,7 @@ target_item = ExtResource("2_lxs6s")
 [resource]
 script = ExtResource("3_x283v")
 id = "test-item-quest"
-title = "Testing Item Pickup"
+title = "Pick up the key"
 description = "This is a test quest"
 manual_start = false
 state = 0
