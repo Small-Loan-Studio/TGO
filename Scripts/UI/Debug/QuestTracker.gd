@@ -75,8 +75,8 @@ func _process_normal_quest(q: Quest, indent: int, force_add: bool) -> void:
 
 	if q.is_finished():
 		# quest is no longer active
-		if len(q.next) == 0: # ...and there are no children quests
-			if force_add: # ...and we're adding it for phased quest reasons
+		if len(q.next) == 0:  # ...and there are no children quests
+			if force_add:  # ...and we're adding it for phased quest reasons
 				_add_questline(q, indent)
 
 		else:
@@ -88,7 +88,7 @@ func _process_normal_quest(q: Quest, indent: int, force_add: bool) -> void:
 				cur = cur.next[0]
 
 			# which situation are we in
-			if !cur.is_finished(): # the end of cur's chain is unfinished
+			if !cur.is_finished():  # the end of cur's chain is unfinished
 				_process_quest(cur, indent, force_add)
 				return
 
