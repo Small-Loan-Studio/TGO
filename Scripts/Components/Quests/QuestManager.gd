@@ -38,7 +38,7 @@ func _connect_post_ready() -> void:
 ## loaded prints an error and bails
 ##
 ## TODO: not implemented
-func save_to_path(dest: String) -> void:
+func save_to_path(_dest: String) -> void:
 	if len(_quest_dict.keys) == 0:
 		printerr("Attempting to save an empty quest structure what are you doing")
 		return
@@ -49,7 +49,7 @@ func save_to_path(dest: String) -> void:
 ## necessary post-load linkages
 ##
 ## TODO: not implemented
-func load_from_path(src: String) -> void:
+func load_from_path(_src: String) -> void:
 	# TODO: when implmenting make sure that we end up in a state where we've
 	# done any necessary post hoc quest linkages are set up. In theory this
 	# should be as simple as leading _quest_dict up then calling _link_quests().
@@ -177,7 +177,8 @@ func _eval_active_quests() -> void:
 			print("%s not completed yet" % [q.id])
 
 
-func _on_quest_state_changed(quest_id: String, old_state: Enums.QuestState, new_state: Enums.QuestState) -> void:
+func _on_quest_state_changed(
+	quest_id: String, _old_state: Enums.QuestState, new_state: Enums.QuestState) -> void:
 	var canonicalized_id := quest_id.to_lower()
 	match new_state:
 		Enums.QuestState.ACTIVE:

@@ -3,10 +3,11 @@ extends PanelContainer
 
 const LINE_ITEM_SCENE = preload("res://Scenes/UI/Debug/QuestLineItem.tscn")
 
-@onready var _quest_container := $VBoxQuests
-
 var _mgr: QuestManager = null
 var _tracked: Array[String] = []
+
+@onready var _quest_container := $VBoxQuests
+
 
 func setup(mgr: QuestManager) -> void:
 	_mgr = mgr
@@ -70,6 +71,8 @@ func _process_normal_quest(q: Quest, indent: int, force_add: bool) -> void:
 	if q.state == Enums.QuestState.DORMANT:
 		return
 
+	# disable max line length for the comment alignment
+	#gdlint: disable=max-line-length
 	if q.is_finished():                                  # this quest is completed
 		if len(q.next) == 0:                               # ...and there are no children quests
 			if force_add:                                    # ...and we're adding it for phased quest reasons
@@ -94,9 +97,10 @@ func _process_normal_quest(q: Quest, indent: int, force_add: bool) -> void:
 					_process_quest(cur_child, indent, force_add)
 				return
 
-			printerr("Should never hit this case %s -> %s" % [q.id, cur._to_string()])
+			printerr("Should never hit this case %s -> %s" % [q.id, str(cur)])
 	else:                                                # this quest is incomplete
 		_add_questline(q, indent)
+	#gdlint: enable=max-line-length
 
 
 func _add_questline(q: Quest, indent: int) -> void:

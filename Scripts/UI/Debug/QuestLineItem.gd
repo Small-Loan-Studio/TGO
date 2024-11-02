@@ -3,13 +3,13 @@ extends HBoxContainer
 
 @export var indent_sizing := 20
 
+var _quest: Quest
+var _indent_level: int = 0
+
 @onready var _margin_container := $MarginContainer
 @onready var _title := $MarginContainer/Title
 @onready var _completed_marker := $CompletedMarker
 @onready var _failed_marker := $FailedMarker
-
-var _quest: Quest
-var _indent_level: int = 0
 
 
 func track(q: Quest, indent_level: int = 0) -> void:

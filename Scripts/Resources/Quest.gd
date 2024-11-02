@@ -86,8 +86,13 @@ func abs_title() -> String:
   return full_title
 
 
+# yes, this has a lot of returns but I believe it is actually easier to read
+# than a more clever version that reduces the number or breaks the evaluation
+# into multiple functions
+#gdlint: disable=max-returns
+
 ## Triggers an evaluation as to whether a quest should be moved from active to
-## completed. If a quest is not active no work is done, an error is printed,
+## a finished state. If a quest is not active no work is done, an error is printed,
 ## and false is returned.
 ##
 ## For an active quest this walks the conditions and checks if they are all met.
@@ -101,11 +106,6 @@ func evaluate() -> bool:
   for c: QuestCondition in conditions:
     if !c.eval():
       return false
-
-  # if there are no phases for this quest then go ahead and mark the whole
-  # thing as done since conditions are sorted
-  if len(phases) == 0:
-    return self.mark_completed()
 
   # if there are phases check to see if everything has completed such that we
 	# should close out this quest
@@ -127,6 +127,7 @@ func evaluate() -> bool:
           printerr("Unknown quest state for '%s': %s" % [id, q.state])
 
   return self.mark_completed()
+#gdlint: enable=max-returns
 
 
 ## returns whether or not a quest and all children have been marked as completed
@@ -158,7 +159,10 @@ func is_finished() -> bool:
 ## parent or phase_parent isn't active?
 func mark_active() -> bool:
   if state != Enums.QuestState.DORMANT:
-    printerr("Attempting to set quest to active from invalid state: ", Enums.quest_state_name(state))
+    printerr(
+      "Attempting to set quest to active from invalid state: ",
+      Enums.quest_state_name(state),
+    )
     return false
 
   state = Enums.QuestState.ACTIVE
@@ -172,7 +176,10 @@ func mark_active() -> bool:
 ## updated
 func mark_failed() -> bool:
   if state == Enums.QuestState.COMPLETED || state == Enums.QuestState.FAILED:
-    printerr("Attempting to set quest to failed from invalid state: ", Enums.quest_state_name(state))
+    printerr(
+      "Attempting to set quest to failed from invalid state: ",
+      Enums.quest_state_name(state),
+    )
     return false
 
   var old_state := state
@@ -186,7 +193,10 @@ func mark_failed() -> bool:
 ## updated
 func mark_completed() -> bool:
   if state == Enums.QuestState.COMPLETED || state == Enums.QuestState.FAILED:
-    printerr("Attempting to set quest to completed from invalid state: ", Enums.quest_state_name(state))
+    printerr(
+      "Attempting to set quest to completed from invalid state: ",
+      Enums.quest_state_name(state),
+    )
     return false
 
   var old_state := state
@@ -202,4 +212,10 @@ func mark_completed() -> bool:
 func _to_string() -> String:
   var next_ids: Array = next.map(func(e: Quest) -> String: return e.id)
   var parent_ids: Array = _parent.map(func(e: Quest) -> String: return e.id)
-  return "%s / %s / %s\nnext: %s\nparents: %s" % [id, title, Enums.quest_state_name(state), next_ids, parent_ids]
+  return "%s / %s / %s\nnext: %s\nparents: %s" % [
+    id,
+    title,
+    Enums.quest_state_name(state),
+    next_ids,
+    parent_ids,
+  ]

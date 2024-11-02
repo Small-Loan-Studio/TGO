@@ -97,6 +97,13 @@ const DIRECTION_PUSH_PULL_AXIS := {
 	Direction.WEST: Vector2(1, 0),
 }
 
+const QUEST_STATE_NAME = {
+	"dormant": QuestState.DORMANT,
+	"active": QuestState.ACTIVE,
+	"failed": QuestState.FAILED,
+	"completed": QuestState.COMPLETED,
+}
+
 # gdlint:ignore=class-variable-name
 static var DIRECTION_VECTOR := {
 	Direction.NORTH: Vector2(0, -1),
@@ -107,13 +114,6 @@ static var DIRECTION_VECTOR := {
 	Direction.SOUTH_EAST: Vector2(1, 1).normalized(),
 	Direction.NORTH_WEST: Vector2(-11, -1).normalized(),
 	Direction.SOUTH_WEST: Vector2(-1, 1).normalized(),
-}
-
-const QUEST_STATE_NAME = {
-	"dormant": QuestState.DORMANT,
-	"active": QuestState.ACTIVE,
-	"failed": QuestState.FAILED,
-	"completed": QuestState.COMPLETED,
 }
 
 
