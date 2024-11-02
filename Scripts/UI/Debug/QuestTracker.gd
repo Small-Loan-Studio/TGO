@@ -46,18 +46,16 @@ func _get_quest_roots() -> Array[Quest]:
 
 
 func _process_quest(q: Quest, indent: int, force_add: bool = false) -> void:
-	print("_process_quest(%s)" % [q.id])
 	if len(q.phases) > 0:
-		_process_phase_parent(q, indent, force_add)
+		_process_phase_parent(q, indent)
 	else:
 		_process_normal_quest(q, indent, force_add)
 
 
 # handle adding a phased quest
-func _process_phase_parent(q: Quest, indent: int, force_add: bool) -> void:
+func _process_phase_parent(q: Quest, indent: int) -> void:
 	if q.id in _tracked:
 		return
-	print("_process_phase_parent(%s, %d, %s)" % [q.id, indent, force_add])
 
 	_add_questline(q, indent)
 
@@ -69,7 +67,6 @@ func _process_phase_parent(q: Quest, indent: int, force_add: bool) -> void:
 
 # handle adding a non-phased quest
 func _process_normal_quest(q: Quest, indent: int, force_add: bool) -> void:
-	print("_process_normal_quest(%s, %d, %s)" % [q.id, indent, force_add])
 	if q.state == Enums.QuestState.DORMANT:
 		return
 
