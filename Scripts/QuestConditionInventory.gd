@@ -3,10 +3,8 @@
 class_name QuestConditionInventory
 extends QuestCondition
 
-
 const HAS_CHECK = "has"
 const HAS_NOT_CHECK = "does not have"
-
 
 ## Which container should we check for an item
 @export var inventory_id: String

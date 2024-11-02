@@ -7,6 +7,7 @@ extends Effect
 
 @export var target_state: Enums.QuestState = Enums.QuestState.ACTIVE
 
+
 func act(_actor_id: String, _cur_level: LevelBase) -> void:
 	match target_state:
 		Enums.QuestState.ACTIVE:

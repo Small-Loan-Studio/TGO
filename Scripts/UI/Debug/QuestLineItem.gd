@@ -16,6 +16,7 @@ func track(q: Quest, indent_level: int = 0) -> void:
 	_quest = q
 	_indent_level = indent_level
 
+
 func _ready() -> void:
 	if _quest == null:
 		printerr("Attempting to display quest summary for null")

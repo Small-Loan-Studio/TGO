@@ -18,7 +18,6 @@ extends QuestCondition
 ## the check / target value
 @export var invert_result: bool = false
 
-
 var _condition: DialogicVarCondition = null
 
 
@@ -43,6 +42,7 @@ func _construct_condition() -> DialogicVarCondition:
 	_condition = dvc
 
 	return _condition
+
 
 func eval() -> bool:
 	var dvc := _construct_condition()

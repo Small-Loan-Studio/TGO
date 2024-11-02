@@ -148,7 +148,7 @@ func _link_children_of(q: Quest) -> void:
 ## Handles routing variable changes to the active quests
 func _on_dialogic_var_changed(info: Dictionary) -> void:
 	if !info.has("variable") || !info.has("new_value"):
-		printerr("variable changed signal must contain both variable and new_value: " , info)
+		printerr("variable changed signal must contain both variable and new_value: ", info)
 		return
 	var variable: String = info["variable"]
 	var value: Variant = info["new_value"]
@@ -178,7 +178,8 @@ func _eval_active_quests() -> void:
 
 
 func _on_quest_state_changed(
-	quest_id: String, _old_state: Enums.QuestState, new_state: Enums.QuestState) -> void:
+	quest_id: String, _old_state: Enums.QuestState, new_state: Enums.QuestState
+) -> void:
 	var canonicalized_id := quest_id.to_lower()
 	match new_state:
 		Enums.QuestState.ACTIVE:
@@ -200,6 +201,7 @@ func get_active_quests() -> Array[String]:
 	for k: String in _active_quests.keys():
 		r.append(k)
 	return r
+
 
 func start_quest(id: String) -> bool:
 	var q := quest_by_id(id)
@@ -265,6 +267,7 @@ func _process_completed_quest(id: String) -> void:
 			var next_quest_phase := phase_parent.phases[idx]
 			if next_quest_phase.quest.state != Enums.QuestState.ACTIVE:
 				next_quest_phase.quest.mark_active()
+
 
 func debug_print() -> void:
 	print("Quest Status:")

@@ -3,7 +3,6 @@ extends Node
 
 signal inventory_updated(id: String)
 
-
 var _inventories: Dictionary
 
 

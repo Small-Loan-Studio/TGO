@@ -287,6 +287,7 @@ static func check_op_eval_str(op: CheckOp, x: String, y: String) -> bool:
 			printerr("EXISTS not defined without context")
 	return res
 
+
 static func quest_state_name(st: QuestState) -> String:
 	match st:
 		QuestState.DORMANT:
@@ -299,6 +300,7 @@ static func quest_state_name(st: QuestState) -> String:
 			return "completed"
 	printerr("Unknown quest state converted to string: ", st)
 	return "unknown"
+
 
 static func quest_state_from_str(str: String) -> QuestState:
 	str = str.to_lower()
