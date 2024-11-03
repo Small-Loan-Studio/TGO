@@ -11,11 +11,12 @@ region = Rect2(0, 0, 32, 32)
 resource_local_to_scene = true
 size = Vector2(32, 32)
 
-[node name="MoveableBlock" type="RigidBody2D"]
+[node name="MoveableBlock" type="RigidBody2D" groups=["NodesWithID"]]
 mass = 0.25
 gravity_scale = 0.0
 lock_rotation = true
 freeze = true
+freeze_mode = 1
 linear_damp = 10.0
 script = ExtResource("1_g2i3q")
 

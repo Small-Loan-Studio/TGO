@@ -8,6 +8,7 @@ script = ExtResource("1_p7ajo")
 
 [node name="TileMap" type="TileMap" parent="."]
 y_sort_enabled = true
+collision_animatable = true
 format = 2
 layer_0/name = "Base Layer"
 layer_0/y_sort_enabled = true
@@ -31,5 +32,11 @@ layer_4/tile_data = PackedInt32Array()
 
 [node name="Objects" type="Node2D" parent="."]
 y_sort_enabled = true
+
+[node name="Switches" type="Node" parent="Objects"]
+
+[node name="Characters" type="Node" parent="Objects"]
+
+[node name="Items" type="Node" parent="Objects"]
 
 [node name="Markers" type="Node" parent="."]

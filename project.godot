@@ -8,6 +8,16 @@
 
 config_version=5
 
+[addons]
+
+resources_spreadsheet_view/array_color_tint=100.0
+resources_spreadsheet_view/color_rows=true
+resources_spreadsheet_view/array_min_width=128.0
+resources_spreadsheet_view/resource_preview_size=32.0
+resources_spreadsheet_view/clip_headers=false
+resources_spreadsheet_view/dupe_arrays=true
+resources_spreadsheet_view/context_menu_on_leftclick=false
+
 [application]
 
 config/name="TGO"
@@ -21,6 +31,7 @@ config/icon="res://icon.svg"
 
 Signalbus="*res://ZZ_Scratch/QuestPrototype/Signalbus.gd"
 Dialogic="*res://addons/dialogic/Core/DialogicGameHandler.gd"
+TGO="*res://Scripts/DialogicAdapter.gd"
 
 [debug]
 
@@ -30,10 +41,9 @@ gdscript/warnings/untyped_declaration=2
 
 directories/dch_directory={}
 directories/dtl_directory={
-"Devin_wakeup": "res://ZZ_Scratch/QuestPrototype/Timelines/Devin_wakeup.dtl",
-"coffin_0": "res://ZZ_Scratch/QuestPrototype/Timelines/coffin_0.dtl",
-"found_lamp": "res://ZZ_Scratch/QuestPrototype/Timelines/found_lamp.dtl",
+"BuckleyTestTimeline": "res://Dialogue/Buckley/BuckleyTestTimeline.dtl",
 "npc_test_dialogue": "res://ZZ_Scratch/NPCDialogue/npc_test_dialogue.dtl",
+"sample_timeline": "res://Dialogue/TutorialVillager/sample_timeline.dtl",
 "test_timeline": "res://ZZ_Scratch/DialogicValidation/test_timeline.dtl"
 }
 text/letter_speed=0.01
@@ -53,6 +63,10 @@ choices/reveal_by_input=false
 save/autosave_delay=60.0
 save/encryption_on_exports_only=true
 text/autopauses={}
+variables={}
+layout/style_list=[]
+layout/default_style="Default"
+glossary/default_case_sensitive=true
 
 [display]
 
@@ -68,7 +82,7 @@ project/assembly_name="TGO"
 
 [editor_plugins]
 
-enabled=PackedStringArray("res://addons/dialogic/plugin.cfg", "res://addons/tgo_greyboxing/plugin.cfg")
+enabled=PackedStringArray("res://addons/dialogic/plugin.cfg", "res://addons/resources_spreadsheet_view/plugin.cfg", "res://addons/tgo_greyboxing/plugin.cfg")
 
 [input]
 
@@ -130,6 +144,7 @@ pause_time={
 2d_render/layer_20="Devin"
 2d_physics/layer_1="Collisions"
 2d_physics/layer_2="Interactions"
+2d_physics/layer_3="Switch Actor"
 2d_physics/layer_4="LightLevel2"
 2d_physics/layer_5="LightLevel3"
 

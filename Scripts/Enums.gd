@@ -1,6 +1,17 @@
 class_name Enums
 extends RefCounted
 
+enum CheckOp {
+	EXISTS,
+	LT,
+	LTE,
+	EQ,
+	GTE,
+	GT,
+}
+
+enum TriggerFailure { ID_MASK, CONDITIONS }
+
 enum Direction {
 	NORTH,
 	SOUTH,
@@ -67,6 +78,8 @@ enum TargetType {
 	INTERACTABLE,
 	MOVEABLE_BLOCK,
 }
+
+enum ActionVerb { DEFAULT, PICK_UP, TALK, PUSH_PULL, RELEASE, USE }
 
 const AUDIO_BUS_INFO = {
 	AudioBus.MASTER: [0, "Global"],
@@ -190,3 +203,82 @@ static func audio_bus_index(bus: AudioBus) -> int:
 
 static func audio_bus_description(bus: AudioBus) -> String:
 	return AUDIO_BUS_INFO[bus][1]
+
+
+static func action_verb_name(av: ActionVerb) -> String:
+	match av:
+		ActionVerb.PICK_UP:
+			return "Pick Up"
+		ActionVerb.TALK:
+			return "Talk"
+		ActionVerb.USE:
+			return "Use"
+		ActionVerb.PUSH_PULL:
+			return "Grab"
+		ActionVerb.RELEASE:
+			return "Release"
+		ActionVerb.DEFAULT:
+			return "Interact"
+	printerr("Unknown action verb name requested: ", av)
+	return "Interact"
+
+
+static func check_op_eval_int(op: CheckOp, x: int, y: int) -> bool:
+	var res := false
+	match op:
+		CheckOp.LTE:
+			res = x <= y
+		CheckOp.LT:
+			res = x < y
+		CheckOp.EQ:
+			res = x == y
+		CheckOp.GT:
+			res = x > y
+		CheckOp.GTE:
+			res = x >= y
+		CheckOp.EXISTS:
+			printerr("EXISTS not defined without context")
+	return res
+
+
+static func check_op_eval_float(op: CheckOp, x: float, y: float) -> bool:
+	var res := false
+	match op:
+		CheckOp.LTE:
+			res = x <= y
+		CheckOp.LT:
+			res = x < y
+		CheckOp.EQ:
+			res = x == y
+		CheckOp.GT:
+			res = x > y
+		CheckOp.GTE:
+			res = x >= y
+		CheckOp.EXISTS:
+			printerr("EXISTS not defined without context")
+	return res
+
+
+static func check_op_eval_bool(op: CheckOp, x: bool, y: bool) -> bool:
+	if op == CheckOp.EQ:
+		return x == y
+	printerr("%s not supported as a boolean comparison" % [op])
+	return false
+
+
+static func check_op_eval_str(op: CheckOp, x: String, y: String) -> bool:
+	var res := false
+	match op:
+		CheckOp.LTE:
+			res = x <= y
+		CheckOp.LT:
+			res = x < y
+		CheckOp.EQ:
+			res = x == y
+		CheckOp.GT:
+			res = x > y
+		CheckOp.GTE:
+			res = x >= y
+		CheckOp.EXISTS:
+			printerr("EXISTS not defined without context")
+	return res

@@ -10,6 +10,29 @@ signal inventory_item_inserted(item: ItemStack)
 @export var size: int = -1
 
 
+func has_item_by_id(item_id: String) -> bool:
+	for stack in _items:
+		if stack.item.id == item_id:
+			return true
+	return false
+
+
+func has_item(item: Item) -> bool:
+	return has_item_by_id(item.id)
+
+
+func count_item_by_id(item_id: String) -> int:
+	var count := 0
+	for stack in _items:
+		if stack.item.id == item_id:
+			count += stack.quantity
+	return count
+
+
+func count_item(item: Item) -> int:
+	return count_item_by_id(item.id)
+
+
 func insert(item: ItemStack) -> bool:
 	## Iterate over our inventory and stack items if available
 	for index in _items.size():
@@ -26,7 +49,7 @@ func insert(item: ItemStack) -> bool:
 			return true
 
 	## We cannot stack, so let's insert the new ItemStack if there is an available slot
-	if _items.size() < size:
+	if size == -1 || (_items.size() < size):
 		_items.append(item)
 		inventory_item_inserted.emit(item)
 		inventory_updated.emit(self)
