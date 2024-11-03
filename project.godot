@@ -30,8 +30,8 @@ config/icon="res://icon.svg"
 [autoload]
 
 Signalbus="*res://ZZ_Scratch/QuestPrototype/Signalbus.gd"
-Dialogic="*res://addons/dialogic/Core/DialogicGameHandler.gd"
 TGO="*res://Scripts/DialogicAdapter.gd"
+Dialogic="*res://addons/dialogic/Core/DialogicGameHandler.gd"
 
 [debug]
 
@@ -42,8 +42,10 @@ gdscript/warnings/untyped_declaration=2
 directories/dch_directory={}
 directories/dtl_directory={
 "BuckleyTestTimeline": "res://Dialogue/Buckley/BuckleyTestTimeline.dtl",
+"Devin_wakeup": "res://ZZ_Scratch/QuestPrototype/Timelines/Devin_wakeup.dtl",
+"coffin_0": "res://ZZ_Scratch/QuestPrototype/Timelines/coffin_0.dtl",
+"found_lamp": "res://ZZ_Scratch/QuestPrototype/Timelines/found_lamp.dtl",
 "npc_test_dialogue": "res://ZZ_Scratch/NPCDialogue/npc_test_dialogue.dtl",
-"sample_timeline": "res://Dialogue/TutorialVillager/sample_timeline.dtl",
 "test_timeline": "res://ZZ_Scratch/DialogicValidation/test_timeline.dtl"
 }
 text/letter_speed=0.01
