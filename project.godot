@@ -29,7 +29,6 @@ config/icon="res://icon.svg"
 
 [autoload]
 
-Signalbus="*res://ZZ_Scratch/QuestPrototype/Signalbus.gd"
 TGO="*res://Scripts/DialogicAdapter.gd"
 Dialogic="*res://addons/dialogic/Core/DialogicGameHandler.gd"
 
