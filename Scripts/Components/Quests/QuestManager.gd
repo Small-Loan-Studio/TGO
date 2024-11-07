@@ -1,3 +1,10 @@
+## Knows about all defined quests and allows access by id. When a Quest enters
+## an active state adds it to the tracking list. When a quest changes into a
+## finished (completed | failed) state this processes the results and advances
+## (or not) the active quest states. See _on_quest_state_changed &
+## _process_completed_quest for details.
+##
+## Provides an API to start a quest by ID.
 class_name QuestManager
 extends Node
 
@@ -58,7 +65,7 @@ func load_from_path(_src: String) -> void:
 	assert(false, "Not yet implemented")
 
 
-## Gets a quest by its id, id will be ca
+## Gets a quest by its id, id will be converted into a canonical format
 func quest_by_id(id: String) -> Quest:
 	id = id.to_lower()
 	if _quest_dict.has(id):
@@ -150,20 +157,12 @@ func _on_dialogic_var_changed(info: Dictionary) -> void:
 	if !info.has("variable") || !info.has("new_value"):
 		printerr("variable changed signal must contain both variable and new_value: ", info)
 		return
-	var variable: String = info["variable"]
-	var value: Variant = info["new_value"]
-
-	print("variable_changed: %s -> %s" % [variable, str(value)])
-
 	# TODO: for now just reevaluate all quests on any variable change
 	_eval_active_quests()
 
 
 ## Handles routing inventory updates to the active quests
-func _on_inventory_changed(id: String) -> void:
-	print("%s inventory updated" % [id])
-	print("    ", Driver.instance().inventory_mgr.get_inventory(id))
-
+func _on_inventory_changed(_id: String) -> void:
 	# TODO: for now just reevaluate all quests on any inventory change
 	_eval_active_quests()
 
@@ -171,10 +170,7 @@ func _on_inventory_changed(id: String) -> void:
 func _eval_active_quests() -> void:
 	for id: String in _active_quests.keys():
 		var q := quest_by_id(id)
-		if q.evaluate():
-			print("%s quest completed" % [q.id])
-		else:
-			print("%s not completed yet" % [q.id])
+		q.evaluate()
 
 
 func _on_quest_state_changed(
@@ -225,7 +221,7 @@ func _add_active_quest(id: String) -> void:
 	_eval_active_quests()
 
 
-## resolve what happens when a quset is completed. This primarily focuses on
+## resolve what happens when a quest is completed. This primarily focuses on
 ## activating the next in sequence for chains and phased parents. Currently
 ## only propagates failure up to phased parents.
 func _process_completed_quest(id: String) -> void:

@@ -1,6 +1,6 @@
 [gd_resource type="Resource" script_class="Quest" load_steps=5 format=3 uid="uid://csu7ylxnle2rd"]
 
-[ext_resource type="Script" path="res://Scripts/QuestConditionInventory.gd" id="1_tfuy1"]
+[ext_resource type="Script" path="res://Scripts/Resources/QuestConditionInventory.gd" id="1_tfuy1"]
 [ext_resource type="Resource" uid="uid://b7w2axnxl0fkt" path="res://Scripts/Resources/Items/Key.tres" id="2_lxs6s"]
 [ext_resource type="Script" path="res://Scripts/Resources/Quest.gd" id="3_x283v"]
 

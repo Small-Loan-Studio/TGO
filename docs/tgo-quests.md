@@ -33,12 +33,15 @@ A quest should not* be set to active unless all its parents are completed.
 When a quest is marked completed all next Quests will automatically be set as
 active _unless_ the next quest has manual_start attribute set
 
-> \* I'll probably let this work but print an error or something, TBD
+\* I'll probably let this work but print an error or something, TBD
 
 Quests that have multiple phases will:
-	- by default, only set the first non-completed as active
-	- may not be marked as completed unless all phases are completed|failed
-		- quests that are not required to pass can set 
+
+- by default, only set the first non-completed as active
+- may not be marked as completed unless all phases are completed|failed
+	- quests that are not required to pass can set may_fail
+
+Quest attributes are:
 
 - id
 - title
@@ -65,12 +68,20 @@ may only be marked as completed manually.
 - condition_type
   - DialogicVar
   - InventoryState
-- condition type specific config
+- eval()
 
 Initially we'll probably manually define quest conditions instead of trying to
-support all possible TriggerConditions for simplicity
+support all possible TriggerConditions for simplicity.
+
+Additionally with a small set of condition types instead of having each type
+provide a mechanism to hook QuestManager into some larger system we'll just
+explicitly match on condition type.
+
 
 #### Quests and effects
 When triggering an effect the id passed will be the id of the quest itself.
 If you want to trigger action for a specific character you should pin the ID
 via "PinnedIdEffect" (which hasn't been written yet).
+
+This could be tricky/confusing if the effect author hasn't considered this
+and we start trying to, e.g., have the quest id pick up an item in the world.

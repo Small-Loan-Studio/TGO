@@ -1,19 +1,55 @@
+## A quest is a collection of data describing something we want the user to do
+## captured in the title & description. It is then paired conditional checks
+## that we use to programmatically determine when it is finished -- these are
+## optional as a quest can be managed directly if they are omitted. those
+## conditions are met some results can be triggred to impact the world and
+## our management system can use the phase/next attributes to control determine
+## what new quests become available.
+##
+## A quest with phases is basically a structural quest that acts as a parent
+## for a series of sub-quests. It may not finish unless all phases are also
+## finished.
+##
+## A quest that has a next quest is sequential in nature and the next quest
+## will trigger once the current quest is completed.
+##
+## TODO: In a rational environment this is a prototype and we can reframe the
+## phase/next breakdown as all next linkages and either let a Quest specify a
+## custom progression strategy or something. Walking the tree was non-trivial
+## but has been shown to be workable for now so not going to touch it.
 class_name Quest
 extends Resource
 
 signal state_change(id: String, old_state: Enums.QuestState, new_state: Enums.QuestState)
 
+## How the quest is tracked in our internal systems. Should be unique among all quests
 @export var id: String
+## A short version of this quest for the user's HUD or similar
 @export var title: String
+## A longer description of what the goals of this quest are.
 @export var description: String
 
+## If set when this quest is part of a next array it will not automatically
+## transition to active when its parent is marked Completed
 @export var manual_start: bool = false
+## What state is the quest in -- Dormant is untracked, Active is currently in
+## progress, and Completed|Failed respresent a finish state
 @export var state: Enums.QuestState
+## The set of conditions that will be checked to see if the quest is completed
 @export var conditions: Array[QuestCondition]
 
 @export_category("Quest line structure")
+## A quest with phases acts as a kind of "parent" of its phase quests. When
+## this quest is marked active the first phase is automatically set to active
+## and each time a phase is completed the next one will be marked active. A
+## quest may not be finished unless all phases are completed or until one has
+## failed.
 @export var phases: Array[QuestPhase]
+## When this quest is Completed all the next quests will be marked as active
+## (unless manual_start is set)
 @export var next: Array[Quest]
+## When a quest is marked completed these results will be acted upon. The Effect
+## will receive the id of the quest acting and the current level.
 @export var results: Array[Effect]
 
 var _mgr: QuestManager
@@ -54,10 +90,10 @@ var _parent: Array[Quest]
 ## Phase2.3b.ii | Phase2.3b
 ##
 ## ⚠️: A quest may have multiple parents, in that context we arbitrarily pick
-## the first parent to be the path to follow. Plausible we want to lint this
+## the first parent to be the path to follow. Probably we want to lint this
 ## into a warning when setting up quest structure.
 ##
-## TODO: lmao. tests
+## TODO: lmao this def needs tests
 func get_phase_parent() -> Quest:
 	if _phase_parent != null:
 		return _phase_parent
