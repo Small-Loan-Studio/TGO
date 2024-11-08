@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3 uid="uid://d4mrsiv1l8m35"]
+[gd_scene load_steps=23 format=3 uid="uid://d4mrsiv1l8m35"]
 
 [ext_resource type="PackedScene" uid="uid://dyq8mcdsutnsa" path="res://Scenes/Components/LevelBase.tscn" id="1_iejup"]
 [ext_resource type="Script" path="res://ZZ_Scratch/GreyboxingTools/BadLevelA.gd" id="2_22a2t"]
@@ -7,10 +7,13 @@
 [ext_resource type="PackedScene" uid="uid://c2040l84asu8j" path="res://Scenes/Components/Interactable.tscn" id="5_6ixdr"]
 [ext_resource type="Script" path="res://Scripts/Resources/Effects/LevelLoadEffect.gd" id="7_7tyl1"]
 [ext_resource type="PackedScene" uid="uid://bx2qjlw58ci20" path="res://Scenes/Components/Greyboxing/GreyboxObject.tscn" id="7_ipcqk"]
+[ext_resource type="Script" path="res://Scripts/Resources/Effects/SetQuestStateEffect.gd" id="8_m75fk"]
 [ext_resource type="PackedScene" uid="uid://d1y25semyqxkw" path="res://Scenes/Components/Greyboxing/MoveableBlock.tscn" id="9_78gjk"]
 [ext_resource type="PackedScene" uid="uid://c7gburp74xsto" path="res://Scenes/Components/NPC/MayorBuckley.tscn" id="10_2hlxg"]
 [ext_resource type="Script" path="res://Scripts/Resources/Effects/DialogueEffect.gd" id="11_03hvs"]
-[ext_resource type="Resource" path="res://Dialogue/Buckley/BuckleyTestTimeline.dtl" id="11_i8wpl"]
+[ext_resource type="Resource" path="res://ZZ_Scratch/DialogicValidation/test_timeline.dtl" id="12_lpexj"]
+[ext_resource type="PackedScene" uid="uid://rgvfsx60t2ap" path="res://Scenes/Components/Inventory/Item.tscn" id="13_1m8di"]
+[ext_resource type="Resource" uid="uid://b7w2axnxl0fkt" path="res://Scripts/Resources/Items/Key.tres" id="15_svqc7"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_ptcao"]
 atlas = ExtResource("3_uhn0b")
@@ -27,9 +30,24 @@ size = Vector2(46.75, 12)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_wpjqq"]
 size = Vector2(49, 30)
 
+[sub_resource type="Resource" id="Resource_ecxtb"]
+script = ExtResource("8_m75fk")
+quest_id = "test-item-quest"
+target_state = 1
+
 [sub_resource type="Resource" id="Resource_lh8xy"]
 script = ExtResource("11_03hvs")
-timeline = ExtResource("11_i8wpl")
+timeline = ExtResource("12_lpexj")
+
+[sub_resource type="Resource" id="Resource_yblux"]
+script = ExtResource("8_m75fk")
+quest_id = "test-var-quest"
+target_state = 1
+
+[sub_resource type="Resource" id="Resource_yp128"]
+script = ExtResource("8_m75fk")
+quest_id = "phase-parent-test"
+target_state = 1
 
 [node name="LevelBase" instance=ExtResource("1_iejup")]
 script = ExtResource("2_22a2t")
@@ -66,11 +84,12 @@ position = Vector2(0, 8)
 shape = SubResource("RectangleShape2D_wpjqq")
 
 [node name="testobj" parent="Objects" index="1" instance=ExtResource("7_ipcqk")]
-position = Vector2(-1, 137)
+position = Vector2(3, 362)
 size = Vector2(2, 3.5)
 can_block_movement = true
 can_interact = true
-action_verb = 2
+action_verb = 5
+effects = Array[Resource("res://Scripts/Resources/Effect.gd")]([SubResource("Resource_ecxtb")])
 y_sort_width = 104
 
 [node name="MoveableBlock" parent="Objects" index="2" instance=ExtResource("9_78gjk")]
@@ -86,6 +105,27 @@ id = "block-left"
 position = Vector2(546, 308)
 dlg = SubResource("Resource_lh8xy")
 id = "mayor_buckley"
+
+[node name="QUEST_KEY" parent="Objects/Items" index="0" instance=ExtResource("13_1m8di")]
+position = Vector2(170.04, 350.165)
+item = ExtResource("15_svqc7")
+quantity = 1
+
+[node name="variable-quest-giver" parent="Objects" index="7" instance=ExtResource("7_ipcqk")]
+position = Vector2(325.779, 327.512)
+can_block_movement = true
+can_interact = true
+tint = Color(0.171265, 0.539106, 0.71875, 1)
+action_verb = 5
+effects = Array[Resource("res://Scripts/Resources/Effect.gd")]([SubResource("Resource_yblux")])
+
+[node name="GreyboxObj" parent="Objects" index="8" instance=ExtResource("7_ipcqk")]
+position = Vector2(451, 319)
+can_block_movement = true
+can_interact = true
+tint = Color(0.171875, 0.6875, 0.179932, 1)
+action_verb = 5
+effects = Array[Resource("res://Scripts/Resources/Effect.gd")]([SubResource("Resource_yp128")])
 
 [node name="PlayerStart" type="Node2D" parent="Markers" index="0"]
 position = Vector2(522, 183)

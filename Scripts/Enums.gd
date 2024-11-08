@@ -79,6 +79,9 @@ enum TargetType {
 
 enum ActionVerb { DEFAULT, PICK_UP, TALK, PUSH_PULL, RELEASE, USE }
 
+enum QuestState { DORMANT, ACTIVE, FAILED, COMPLETED }
+enum QuestConditionType { VARIABLE, INVENTORY }
+
 const AUDIO_BUS_INFO = {
 	AudioBus.MASTER: [0, "Global"],
 	AudioBus.BACKGROUND_MUSIC: [1, "Background Music"],
@@ -92,6 +95,13 @@ const DIRECTION_PUSH_PULL_AXIS := {
 	Direction.SOUTH: Vector2(0, 1),
 	Direction.EAST: Vector2(1, 0),
 	Direction.WEST: Vector2(1, 0),
+}
+
+const QUEST_STATE_NAME = {
+	"dormant": QuestState.DORMANT,
+	"active": QuestState.ACTIVE,
+	"failed": QuestState.FAILED,
+	"completed": QuestState.COMPLETED,
 }
 
 # gdlint:ignore=class-variable-name
@@ -276,3 +286,25 @@ static func check_op_eval_str(op: CheckOp, x: String, y: String) -> bool:
 		CheckOp.EXISTS:
 			printerr("EXISTS not defined without context")
 	return res
+
+
+static func quest_state_name(st: QuestState) -> String:
+	match st:
+		QuestState.DORMANT:
+			return "dormant"
+		QuestState.ACTIVE:
+			return "active"
+		QuestState.FAILED:
+			return "failed"
+		QuestState.COMPLETED:
+			return "completed"
+	printerr("Unknown quest state converted to string: ", st)
+	return "unknown"
+
+
+static func quest_state_from_str(str: String) -> QuestState:
+	str = str.to_lower()
+	if QUEST_STATE_NAME.has(str):
+		return QUEST_STATE_NAME[str]
+	printerr("Unable to resolve quest state %s, returning default" % [str])
+	return QuestState.DORMANT

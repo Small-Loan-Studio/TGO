@@ -1,0 +1,23 @@
+[gd_resource type="Resource" script_class="Quest" load_steps=4 format=3 uid="uid://0tjavnffo2v3"]
+
+[ext_resource type="Script" path="res://Scripts/Resources/Quest.gd" id="1_hyo5r"]
+[ext_resource type="Script" path="res://Scripts/Resources/QuestConditionVariable.gd" id="1_xi1tf"]
+
+[sub_resource type="Resource" id="Resource_6m7l0"]
+script = ExtResource("1_xi1tf")
+variable = "QuestVarConditionTest"
+check_type = 3
+target_value = "true"
+invert_result = false
+
+[resource]
+script = ExtResource("1_hyo5r")
+id = "test-var-quest"
+title = "Set the variable"
+description = ""
+manual_start = false
+state = 0
+conditions = Array[Resource("res://Scripts/Resources/QuestCondition.gd")]([SubResource("Resource_6m7l0")])
+phases = Array[Resource("res://Scripts/QuestPhase.gd")]([])
+next = Array[ExtResource("1_hyo5r")]([])
+results = Array[Resource("res://Scripts/Resources/Effect.gd")]([])

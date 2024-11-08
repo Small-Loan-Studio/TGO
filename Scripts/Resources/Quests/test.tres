@@ -1,0 +1,28 @@
+[gd_resource type="Resource" script_class="Quest" load_steps=7 format=3 uid="uid://clg4c0wq5om5m"]
+
+[ext_resource type="Resource" uid="uid://csu7ylxnle2rd" path="res://Scripts/Resources/Quests/item-quest.tres" id="1_1gsnb"]
+[ext_resource type="Script" path="res://Scripts/Resources/Quest.gd" id="1_3r2an"]
+[ext_resource type="Script" path="res://Scripts/QuestPhase.gd" id="2_ok6oc"]
+[ext_resource type="Resource" uid="uid://0tjavnffo2v3" path="res://Scripts/Resources/Quests/var-quest.tres" id="3_g0iy5"]
+
+[sub_resource type="Resource" id="Resource_iwydt"]
+script = ExtResource("2_ok6oc")
+may_fail = false
+quest = ExtResource("1_1gsnb")
+
+[sub_resource type="Resource" id="Resource_i5b6l"]
+script = ExtResource("2_ok6oc")
+may_fail = false
+quest = ExtResource("3_g0iy5")
+
+[resource]
+script = ExtResource("1_3r2an")
+id = "phase-parent-test"
+title = "Phase Parent"
+description = ""
+manual_start = false
+state = 0
+conditions = Array[Resource("res://Scripts/Resources/QuestCondition.gd")]([])
+phases = Array[ExtResource("2_ok6oc")]([SubResource("Resource_iwydt"), SubResource("Resource_i5b6l")])
+next = Array[ExtResource("1_3r2an")]([])
+results = Array[Resource("res://Scripts/Resources/Effect.gd")]([])

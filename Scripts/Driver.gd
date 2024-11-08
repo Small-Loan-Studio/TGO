@@ -10,11 +10,13 @@ var _last_loaded_level: LevelBase = null
 @onready var audio_mgr: AudioManager = $AudioManager
 @onready var player: Devin = %Devin
 @onready var inventory_mgr: InventoryManager = $InventoryManager
+@onready var quest_mgr: QuestManager = $QuestManager
 @onready var _menu_mgr: MenuManager = $OverlayManager/MenuManager
 @onready var _curtain := $OverlayManager/Curtain
 @onready var _world := $GameWorld
 @onready var _hud: HUD = $OverlayManager/HUD
 @onready var _debug_ui_inventory := $OverlayManager/HUD/DebugInventoryUI
+@onready var _debug_ui_quest: QuestTracker = $OverlayManager/HUD/DebugQuestUI
 
 
 static func instance() -> Driver:
@@ -48,6 +50,8 @@ func _debug_refresh_inventory_ui(inventory: Inventory) -> void:
 
 
 func _post_ready() -> void:
+	_debug_ui_quest.setup(quest_mgr)
+
 	if autoload_scene != null:
 		var level_instance := autoload_scene.instantiate() as LevelBase
 		await _curtain.fade_in(1)
@@ -91,6 +95,12 @@ func load_level(tgt: LevelBase, target_name: String) -> void:
 	_last_loaded_level = tgt
 
 
+## Returns the currently loaded level. A bit of a hack for routing things into
+## Quest effect chain.
+func get_current_level() -> LevelBase:
+	return _last_loaded_level
+
+
 ## TODO: We'll need to switch away  from debug load path soon
 func request_debug_load(path: String) -> void:
 	var music_ready := audio_mgr.play(Enums.AudioTrack.SKETCH_2, 2)
@@ -112,4 +122,4 @@ func request_debug_load(path: String) -> void:
 
 
 func _on_debug_pressed() -> void:
-	print(Dialogic.VAR.get_variable("HasSpoken"))
+	quest_mgr.debug_print()
