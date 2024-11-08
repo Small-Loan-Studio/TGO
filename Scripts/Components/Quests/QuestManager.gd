@@ -249,7 +249,6 @@ func _process_completed_quest(id: String) -> void:
 		# quest chain isn't completed yet (assuming there even are phases)
 		return
 
-
 	# if we didn't have further quests in that chain to activate look for
 	# additional quests in a potential phased parent
 
