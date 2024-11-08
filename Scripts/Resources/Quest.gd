@@ -1,10 +1,10 @@
 ## A quest is a collection of data describing something we want the user to do
-## captured in the title & description. It is then paired conditional checks
+## captured in the title & description. It is then paired with conditional checks
 ## that we use to programmatically determine when it is finished -- these are
-## optional as a quest can be managed directly if they are omitted. those
+## optional as a quest can be managed directly if they are omitted. After those
 ## conditions are met some results can be triggred to impact the world and
-## our management system can use the phase/next attributes to control determine
-## what new quests become available.
+## our management system can use the phase/next attributes to determine what
+## new quests become available.
 ##
 ## A quest with phases is basically a structural quest that acts as a parent
 ## for a series of sub-quests. It may not finish unless all phases are also
@@ -52,8 +52,6 @@ signal state_change(id: String, old_state: Enums.QuestState, new_state: Enums.Qu
 ## will receive the id of the quest acting and the current level.
 @export var results: Array[Effect]
 
-var _mgr: QuestManager
-
 # Set during Quest linking if this quest is directly part of a phased parent
 var _phase_parent: Quest
 
@@ -62,7 +60,7 @@ var _parent: Array[Quest]
 
 
 ## If this quest is part of a phased quest either directly or indirectly via
-## parent/child relationship return the containing quest.
+## parent/next relationship return the containing quest.
 ##
 ## Example:
 ## Given the following quest structure...
@@ -95,13 +93,7 @@ var _parent: Array[Quest]
 ##
 ## TODO: lmao this def needs tests
 func get_phase_parent() -> Quest:
-	if _phase_parent != null:
-		return _phase_parent
-
-	if len(_parent) == 0:
-		return null
-
-	var cur := _parent[0]
+	var cur := self
 	while true:
 		if cur._phase_parent != null:
 			return cur._phase_parent
@@ -110,15 +102,6 @@ func get_phase_parent() -> Quest:
 		cur = cur._parent[0]
 
 	return null
-
-
-func abs_title() -> String:
-	var full_title := title
-	var cur := get_phase_parent()
-	while cur != null:
-		full_title = "%s/%s" % [cur.title, full_title]
-		cur = cur.get_phase_parent()
-	return full_title
 
 
 # yes, this has a lot of returns but I believe it is actually easier to read
@@ -159,7 +142,7 @@ func evaluate() -> bool:
 					if !q.may_fail:
 						return self.mark_failed()
 				Enums.QuestState.COMPLETED:
-					if !_chain_completed(q):
+					if !chain_completed(q):
 						return false
 				_:
 					printerr("Unknown quest state for '%s': %s" % [id, q.state])
@@ -171,7 +154,7 @@ func evaluate() -> bool:
 
 
 ## returns whether or not a quest and all children have been marked as completed
-func _chain_completed(q: Quest) -> bool:
+func chain_completed(q: Quest) -> bool:
 	var quest_list: Array[Quest] = [q]
 
 	while len(quest_list) > 0:

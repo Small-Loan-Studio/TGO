@@ -17,9 +17,6 @@ const PATH_IDX = 1
 # Map<String, [Quest, path]>
 var _quest_dict: Dictionary = {}
 
-# Array of ids for quests that have phases
-var _phase_starts: Array[String]
-
 # manages the active quests
 # Map<String, null>
 var _active_quests: Dictionary = {}
@@ -27,7 +24,7 @@ var _active_quests: Dictionary = {}
 
 func _ready() -> void:
 	_load_quests()
-	debug_print()
+
 	# call this because it relies on peers within the Driver's scene tree to have
 	# been set up. Could work around this via setup() call to explicitly inject
 	# dependencies if needed. That wolud be the more designed way to do this...
@@ -112,6 +109,16 @@ func _register_quest(q: Quest, path: String) -> void:
 	if q.title == "":
 		printerr("Likely misconfigured quest; no title specified: %s / %s" % [q.id, path])
 
+	# validate that all QuestPhase objects have a configured quest
+	var bad_phase_indexes: Array[int] = []
+	for idx in len(q.phases):
+		if q.phases == null:
+			bad_phase_indexes.push_front(idx)
+			printerr("%s: will remove null quest at phases[%d]" % [q.id, idx])
+	while len(bad_phase_indexes) > 0:
+		var idx: int = bad_phase_indexes.pop_front()
+		q.phases.remove_at(idx)
+
 	var canonicalized_id := q.id.to_lower()
 	if _quest_dict.has(canonicalized_id):
 		var old_path: String = _quest_dict[canonicalized_id][PATH_IDX]
@@ -120,25 +127,19 @@ func _register_quest(q: Quest, path: String) -> void:
 	_quest_dict[canonicalized_id] = [q, path]
 
 
-## walks the list of defined quests establishing parent links, pulling out all
-## the quests that are phase parents, setting the quest manager reference, and
-## connecting to the quest signals as needed
+## walks the list of defined quests establishing parent links and connecting to
+## the quest signals as needed
 func _link_quests() -> void:
 	for k: String in _quest_dict.keys():
-		# pull out the quests with phases
 		var q: Quest = _quest_dict[k][QUEST_IDX]
 		q.state_change.connect(_on_quest_state_changed)
-		if len(q.phases) > 0:
-			_phase_starts.append(k)
 
-		# link children/parents
+		# establish parents/next links
 		_link_children_of(q)
 
 
 ## helper for _link_quests
 func _link_children_of(q: Quest) -> void:
-	q._mgr = self
-
 	for idx in len(q.phases):
 		var phase := q.phases[idx]
 		phase.phase_index = idx
@@ -240,10 +241,14 @@ func _process_completed_quest(id: String) -> void:
 			phase_parent.evaluate()
 		return
 
-	for q_next: Quest in q.next:
-		if !q_next.manual_start:
-			q_next.mark_active()
+	if len(q.next) > 0:
+		for q_next: Quest in q.next:
+			if !q_next.manual_start:
+				q_next.mark_active()
+		# safe to return because we don't want to advance phases if the current
+		# quest chain isn't completed yet (assuming there even are phases)
 		return
+
 
 	# if we didn't have further quests in that chain to activate look for
 	# additional quests in a potential phased parent
@@ -251,7 +256,10 @@ func _process_completed_quest(id: String) -> void:
 	if phase_parent != null:
 		var idx := 0
 		# look through all phases from the parent until we find one that isn't
-		# completed or we run off the end of the list
+		# completed or we run off the end of the list -- we can get away with only
+		# checking the first in the chain bc the code above should prevent us
+		# from arriving here unless a phase step is fully completed (otherwise
+		# we would need to quest.chain_completed()). I think.
 		while idx < len(phase_parent.phases) && phase_parent.phases[idx].quest.is_finished():
 			idx = idx + 1
 

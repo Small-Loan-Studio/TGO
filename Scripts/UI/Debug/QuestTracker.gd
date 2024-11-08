@@ -21,10 +21,13 @@ func _sync() -> void:
 		c.queue_free()
 		_tracked.clear()
 
-	var roots := _get_quest_roots()
+	# get active quests without a phase parent for top-level display
+	var roots := _get_quest_isolated()
 	for root_quest in roots:
 		_process_quest(root_quest, 0)
 
+	# walk the remaining quests (we filter out displayed quests via _tracked)
+	# to catch the full tree of anything that hangs off roots
 	for q_id in _mgr.get_active_quests():
 		if !(q_id in _tracked):
 			_add_questline(_mgr.quest_by_id(q_id), 0)
@@ -35,8 +38,8 @@ func _sync() -> void:
 		show()
 
 
-## returns the quests being tracked that have no phase parent
-func _get_quest_roots() -> Array[Quest]:
+## returns the quests that are active and  have no phase parent
+func _get_quest_isolated() -> Array[Quest]:
 	var r: Array[Quest] = []
 	for id in _mgr.get_active_quests():
 		var q := _mgr.quest_by_id(id)
