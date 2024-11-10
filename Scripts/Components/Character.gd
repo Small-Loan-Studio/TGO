@@ -3,6 +3,9 @@
 class_name Character
 extends CharacterBody2D
 
+## When set to true the game will have a circle drawn at the character's origin
+@export var _debug_draw_origin: bool = false
+
 ## Unique ID used in our design systems
 @export var id: String = ""
 
@@ -15,18 +18,12 @@ extends CharacterBody2D
 ## The amonut of force the character has to push objects
 @export var push_force: int = 200
 
-## set this to customize the AnimatedSprite, should only be accessed during
-## scene editing. Should have an animation for every direction defined in
-## Enums.Direction
-@export var _override_default_sprite_frames: SpriteFrames:
-	get:
-		return _override_default_sprite_frames
-	set(new_value):
-		if new_value == null:
-			new_value = preload("res://Art/Characters/character_placeholder.tres")
-		_override_default_sprite_frames = new_value
-		if Engine.is_editor_hint() && _sprite != null:
-			_sprite.sprite_frames = new_value
+## When set to false this will disable the monitoring state of the sensors
+## a character uses to interact with the exterior world, e.g., use items /
+## push/pull things. No checking is done to ensure it's safe to switch state
+## when this is changed / mostly intended as an edit time setting.
+@export var activate_external_sensors: bool = true:
+	set = _set_activate_external_sensors
 
 ## the most recent directional input as a vector
 var _raw_input: Vector2 = Vector2.ZERO
@@ -53,14 +50,19 @@ var _target: CharacterTarget = CharacterTarget.none()
 # component cache
 @onready var _sprite: AnimatedSprite2D = $AnimatedSprite2D
 @onready var _sensor_group: Node2D = $SensorSet
+@onready var _interaction_sensor: Area2D = $SensorSet/InteractionSensor
+@onready var _push_pull_sensor: Area2D = $SensorSet/PushPullSensor
 @onready var _pinjoint: PinJoint2D = $PinJoint2D
 
 
 func _ready() -> void:
-	if _override_default_sprite_frames != null:
-		_sprite.sprite_frames = _override_default_sprite_frames
-
 	_target.target_changed.connect(Callable(self, "_handle_target_changed"))
+	queue_redraw()
+
+
+func _draw() -> void:
+	if _debug_draw_origin:
+		draw_circle(Vector2.ZERO, 3, Color.GREEN)
 
 
 func _unhandled_input(_event: InputEvent) -> void:
@@ -207,14 +209,17 @@ func _handle_target_changed() -> void:
 	var hud := Driver.instance().get_hud()
 	if _target.is_set():
 		if _target.is_interactable():
-			hud.set_toast("interact")
+			hud.set_toast(_target.get_interactable().verb_name())
 		if _target.is_moveable_block():
-			hud.set_toast("push/pull")
+			hud.set_toast(Enums.action_verb_name(Enums.ActionVerb.PUSH_PULL))
 	else:
 		hud.clear_toast()
 
 
 func _get_configuration_warnings() -> PackedStringArray:
+	if _sprite.sprite_frames == null:
+		return ["No sprite frames have been set on AnimatedSprite2D"]
+
 	var animations := _sprite.sprite_frames.get_animation_names()
 	var missing_anims: Array[String] = []
 
@@ -246,7 +251,7 @@ func _start_pushpull() -> void:
 	_push_direction = Utils.angle_to_direction(_facing, Enums.DirectionMode.FOUR)
 	_target.get_moveable_block().freeze = false
 	# TODO(envy) - better toast management
-	Driver.instance().get_hud().set_toast("release")
+	Driver.instance().get_hud().set_toast(Enums.action_verb_name(Enums.ActionVerb.RELEASE))
 
 
 func _stop_pushpull() -> void:
@@ -258,3 +263,16 @@ func _stop_pushpull() -> void:
 	_target.get_moveable_block().set_deferred("freeze", true)
 	# TODO(envy) - better toast management
 	Driver.instance().get_hud().clear_toast()
+
+
+func _set_activate_external_sensors(value: bool) -> void:
+	activate_external_sensors = value
+	# need the null checks to prevent error spew during Editing
+	if _interaction_sensor != null:
+		_interaction_sensor.monitorable = value
+		_interaction_sensor.monitoring = value
+	if _push_pull_sensor != null:
+		_push_pull_sensor.monitorable = value
+		_push_pull_sensor.monitoring = value
+	if _sensor_group != null:
+		_sensor_group.visible = value

@@ -31,7 +31,7 @@ func _ready() -> void:
 	_collision.shape.radius = interactable_radius
 
 	# Create our Action for the Interactable
-	var action := InteractablePickup.new()
+	var action := ItemPickupEffect.new()
 	var stack := ItemStack.new()
 	stack.item = item
 	stack.quantity = quantity

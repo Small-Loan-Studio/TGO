@@ -1,0 +1,165 @@
+[gd_scene load_steps=2 format=3 uid="uid://efk1feabjm8y"]
+
+[ext_resource type="Script" path="res://addons_tgo/greyboxing/UI/ObjectsHelperSwitchDetails.gd" id="1_sb5xf"]
+
+[node name="SwitchDetails" type="VBoxContainer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_sb5xf")
+
+[node name="NameHBox" type="HBoxContainer" parent="."]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="NameHBox"]
+layout_mode = 2
+text = "Name"
+
+[node name="Margin" type="MarginContainer" parent="NameHBox"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/margin_left = 8
+
+[node name="Name" type="LineEdit" parent="NameHBox/Margin"]
+layout_mode = 2
+
+[node name="SizeHBox" type="HBoxContainer" parent="."]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="SizeHBox"]
+layout_mode = 2
+text = "Size"
+
+[node name="Margin" type="MarginContainer" parent="SizeHBox"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/margin_left = 8
+
+[node name="SwitchSizeX" type="SpinBox" parent="SizeHBox/Margin"]
+layout_mode = 2
+min_value = 1.0
+max_value = 320.0
+value = 20.0
+alignment = 1
+suffix = "px"
+custom_arrow_step = 1.0
+
+[node name="Margin2" type="MarginContainer" parent="SizeHBox"]
+layout_mode = 2
+theme_override_constants/margin_left = 8
+
+[node name="Label" type="Label" parent="SizeHBox/Margin2"]
+layout_mode = 2
+text = "x"
+
+[node name="Margin3" type="MarginContainer" parent="SizeHBox"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/margin_left = 8
+
+[node name="SwitchSizeY" type="SpinBox" parent="SizeHBox/Margin3"]
+layout_mode = 2
+min_value = 1.0
+max_value = 320.0
+value = 20.0
+alignment = 1
+suffix = "px"
+custom_arrow_step = 1.0
+
+[node name="SingleFire" type="CheckBox" parent="."]
+layout_mode = 2
+text = "Single Fire"
+
+[node name="Visual" type="CheckBox" parent="."]
+layout_mode = 2
+text = "Has visible feedback"
+
+[node name="ColorMargin" type="MarginContainer" parent="."]
+visible = false
+layout_mode = 2
+theme_override_constants/margin_left = 32
+
+[node name="ColorHBox" type="HBoxContainer" parent="ColorMargin"]
+layout_mode = 2
+
+[node name="Label1" type="Label" parent="ColorMargin/ColorHBox"]
+layout_mode = 2
+text = "Default Color"
+
+[node name="DefaultColor" type="ColorPickerButton" parent="ColorMargin/ColorHBox"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 5.0
+color = Color(0.61339, 0.61339, 0.61339, 1)
+
+[node name="Label2" type="Label" parent="ColorMargin/ColorHBox"]
+layout_mode = 2
+text = "Active Color"
+
+[node name="ActiveColor" type="ColorPickerButton" parent="ColorMargin/ColorHBox"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 5.0
+color = Color(0.401161, 0.710938, 0.374908, 1)
+
+[node name="TemplateHBox" type="HBoxContainer" parent="."]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="TemplateHBox"]
+layout_mode = 2
+text = "Template"
+
+[node name="OptionButton" type="OptionButton" parent="TemplateHBox"]
+layout_mode = 2
+size_flags_horizontal = 3
+item_count = 4
+selected = 0
+popup/item_0/text = "None"
+popup/item_0/id = 0
+popup/item_1/text = "Toggle Boolean"
+popup/item_1/id = 1
+popup/item_2/text = "Autorelease Boolean"
+popup/item_2/id = 2
+popup/item_3/text = "Set Variable"
+popup/item_3/id = 3
+popup/item_3/disabled = true
+
+[node name="VariableMargin" type="MarginContainer" parent="."]
+layout_mode = 2
+theme_override_constants/margin_left = 32
+
+[node name="VariableVBox" type="VBoxContainer" parent="VariableMargin"]
+layout_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="VariableMargin/VariableVBox"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="VariableMargin/VariableVBox/HBoxContainer"]
+layout_mode = 2
+text = "Variable"
+
+[node name="VariableDropdown" type="OptionButton" parent="VariableMargin/VariableVBox/HBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="ToggleDesc" type="Label" parent="VariableMargin/VariableVBox"]
+visible = false
+layout_mode = 2
+text = "Toggle Boolean: When this switch is pressed the selected variable will change from true to false or false to true.
+
+Stepping off the switch will not cause the variable to revert back to its previous state"
+autowrap_mode = 3
+
+[node name="AutoreleaseDesc" type="Label" parent="VariableMargin/VariableVBox"]
+visible = false
+layout_mode = 2
+text = "Autorelease Boolean: When this switch is pressed the selected variable will be set to true.
+
+When moving off this switch the variable will be set to false."
+autowrap_mode = 3
+
+[connection signal="toggled" from="Visual" to="." method="_on_visual_toggled"]
+[connection signal="item_selected" from="TemplateHBox/OptionButton" to="." method="_on_template_selected"]

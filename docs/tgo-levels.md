@@ -11,6 +11,7 @@
     - [Objects](#objects)
     - [Markers](#markers)
     - [An argument against premature optimization](#an-argument-against-premature-optimization)
+    - [Tilemap Collision Changes](#tilemap-collision-changes)
   - [TODO: These things need more thinking / writing](#todo-these-things-need-more-thinking--writing)
     - [Interactable nodes](#interactable-nodes)
     - [Lighting](#lighting)
@@ -152,6 +153,13 @@ possible and only complicate if we find that we actually have performance issues
 I think a good reference here is probably old 2D pokemon games. Which of course
 still have open areas, but break things up into towns, routes, floors of buildings,
 caves, and other areas which are always connected by some kind of portal/door.
+
+### Tilemap Collision Changes
+
+Due to a current bug with pushing and pulling moveable blocks, the player character gets stuck if they drag a block so that the character is stuck between the block and the wall. Once they do this, the block is not grabbable so that the player can get unstuck. By changing Collision Animatable to "On" we can avoid this bug.
+
+![image](https://github.com/user-attachments/assets/fc2f9c2c-6c20-412b-8f29-5927b368c58d)
+
 
 ## TODO: These things need more thinking / writing
 ### Interactable nodes

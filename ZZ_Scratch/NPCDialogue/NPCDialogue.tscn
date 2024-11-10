@@ -1,11 +1,10 @@
-[gd_scene load_steps=11 format=3 uid="uid://xkcmymq84ufc"]
+[gd_scene load_steps=10 format=3 uid="uid://xkcmymq84ufc"]
 
 [ext_resource type="PackedScene" uid="uid://k5l5ypr21vvu" path="res://ZZ_Scratch/PeerPhysics/ScnA.tscn" id="1_tca8v"]
 [ext_resource type="Script" path="res://ZZ_Scratch/NPCDialogue/NPCDialogue.gd" id="1_we2v1"]
 [ext_resource type="PackedScene" uid="uid://cx703e8t27grh" path="res://Scenes/Components/Character.tscn" id="2_hxwcb"]
-[ext_resource type="SpriteFrames" uid="uid://c2xt2ljsuogw" path="res://ZZ_Scratch/NPCDialogue/lidia.tres" id="3_sk32y"]
 [ext_resource type="PackedScene" uid="uid://c2040l84asu8j" path="res://Scenes/Components/Interactable.tscn" id="4_n5uxa"]
-[ext_resource type="Script" path="res://Scripts/Resources/InteractableDialogue.gd" id="5_8ojll"]
+[ext_resource type="Script" path="res://Scripts/Resources/Effects/DialogueEffect.gd" id="5_8ojll"]
 [ext_resource type="Resource" path="res://ZZ_Scratch/NPCDialogue/npc_test_dialogue.dtl" id="6_bg5gt"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_57ixx"]
@@ -29,21 +28,20 @@ position = Vector2(402, 105)
 [node name="TestNPC" parent="." instance=ExtResource("2_hxwcb")]
 position = Vector2(155, 145)
 scale = Vector2(1.2, 1.2)
-_override_default_sprite_frames = ExtResource("3_sk32y")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="TestNPC"]
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="TestNPC"]
 position = Vector2(0.833333, 20.8333)
 shape = SubResource("CircleShape2D_57ixx")
 
 [node name="Interactable" parent="TestNPC" instance=ExtResource("4_n5uxa")]
 position = Vector2(0, 0.833336)
-actions = Array[Resource("res://Scripts/Resources/InteractableAction.gd")]([SubResource("Resource_2xq8y")])
+actions = Array[Resource("res://Scripts/Resources/Effect.gd")]([SubResource("Resource_2xq8y")])
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="TestNPC/Interactable"]
 position = Vector2(-0.833333, 20.8333)
 shape = SubResource("CircleShape2D_ipmyu")
 
-[node name="Marker" type="Node" parent="."]
+[node name="Markers" type="Node" parent="."]
 
-[node name="PlayerStart" type="Node2D" parent="Marker"]
+[node name="PlayerStart" type="Node2D" parent="Markers"]
 position = Vector2(310, 613)

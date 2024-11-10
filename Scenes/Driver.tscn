@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://cobsc7v0oqc8l"]
+[gd_scene load_steps=11 format=3 uid="uid://cobsc7v0oqc8l"]
 
 [ext_resource type="Script" path="res://Scripts/Driver.gd" id="1_agcjs"]
 [ext_resource type="Script" path="res://Scripts/AudioManager.gd" id="2_4seev"]
@@ -9,6 +9,7 @@
 [ext_resource type="PackedScene" uid="uid://mqvl5162rawb" path="res://Scenes/Devin.tscn" id="6_gmy4s"]
 [ext_resource type="Script" path="res://Scripts/Components/Inventory/InventoryManager.gd" id="6_na5am"]
 [ext_resource type="Script" path="res://Scripts/Resources/Clock.gd" id="6_t80u5"]
+[ext_resource type="PackedScene" uid="uid://dukcf64qxy46o" path="res://Scenes/UI/Debug/Inventory.tscn" id="7_3yw60"]
 
 [node name="Driver" type="Node2D"]
 script = ExtResource("1_agcjs")
@@ -33,14 +34,43 @@ grow_vertical = 2
 color = Color(0, 0, 0, 1)
 script = ExtResource("2_gom2g")
 
-[node name="HUD" type="Control" parent="OverlayManager"]
+[node name="MenuManager" type="Control" parent="OverlayManager"]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+script = ExtResource("3_h1ccd")
+
+[node name="DebugMenu" parent="OverlayManager/MenuManager" instance=ExtResource("3_i7nbg")]
+layout_mode = 1
+anchors_preset = -1
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_left = 300.0
+offset_top = -1.0
+offset_right = -300.0
+offset_bottom = -1.0
+size_flags_horizontal = 4
+
+[node name="HUD" type="Control" parent="OverlayManager"]
+visible = false
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
 script = ExtResource("4_kq6n3")
+
+[node name="DebugInventoryUI" parent="OverlayManager/HUD" instance=ExtResource("7_3yw60")]
+layout_mode = 0
+offset_left = 37.0
+offset_top = 33.0
+offset_right = 53.0
+offset_bottom = 49.0
 
 [node name="Toast" type="ColorRect" parent="OverlayManager/HUD"]
 unique_name_in_owner = true
@@ -72,25 +102,18 @@ text = "Toast Text"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="MenuManager" type="Control" parent="OverlayManager"]
-layout_mode = 3
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-script = ExtResource("3_h1ccd")
-
-[node name="DebugMenu" parent="OverlayManager/MenuManager" instance=ExtResource("3_i7nbg")]
+[node name="DebugButton" type="Button" parent="OverlayManager/HUD"]
+visible = false
 layout_mode = 1
 anchors_preset = -1
-anchor_top = 0.5
-anchor_bottom = 0.5
-offset_left = 300.0
-offset_top = -1.0
-offset_right = -300.0
-offset_bottom = -1.0
-size_flags_horizontal = 4
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -100.0
+offset_top = 20.0
+offset_right = -20.0
+offset_bottom = 60.0
+grow_horizontal = 0
+text = "Debug"
 
 [node name="InventoryManager" type="Node" parent="."]
 script = ExtResource("6_na5am")
@@ -112,4 +135,5 @@ position = Vector2(0, 0)
 [node name="Camera2D" type="Camera2D" parent="GameWorld/Devin"]
 
 [connection signal="request_load" from="OverlayManager/MenuManager/DebugMenu" to="." method="request_debug_load"]
+[connection signal="pressed" from="OverlayManager/HUD/DebugButton" to="." method="_on_debug_pressed"]
 [connection signal="timeout" from="GameWorld/Clock/Timer" to="GameWorld/Clock" method="_on_timer_timeout"]

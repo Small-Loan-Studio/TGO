@@ -39,12 +39,12 @@ would love to help.
 ## People
 This is a large project! a full org chart is [available here][orgchart] but some
 the relevant leads:
-  - Ahria (discord: `katamahri`) &mdash; Engineering (that's us!)
+  - envy &mdash; Engineering (that's us!)
   - Stephen &mdash; Technical Narrative
   - Mario &mdash; Game Design
   - Keumars &mdash; Creative Director
   - Andrea &mdash; Lead Producer
-  - Marlo &mdash; Technical Producer
+  - Marlo &mdash; Technical Producer (Engineering point of contact)
 
 ### Questions?
 If something is unclear at any point in time feel free to ask around
@@ -160,7 +160,7 @@ process when trying to merge new code to tgo_dev will be:
    feel free to post a note in channel and squash-merge it into `tgo_dev`.
 
 **Notes / exceptions:**  
-- For PRs that need an expedited review tag Ahria or envy in #tgo-programming when you
+- For PRs that need an expedited review tag envy in #tgo-programming when you
 have a PR ready and we'll try to help make sure we can keep things speedy without
 compromising code quality.
 - For minor changes (an, admittedly, subjective assessment) include a `[minor]`
@@ -168,7 +168,7 @@ indicator in your PR title and feel free to merge without the 48h waiting period
 but do go through the PR process & writeup so that we have a full history of what
 got merged and why
 - For particularly complicated / expansive changes please do not merge without review. If
-you need attention on the PR tag Ahria or envy in #tgo-programming.
+you need attention on the PR tag envy in #tgo-programming.
 
 ##### For non-engineering submissions
 Most of above process is focused on **GDScript and technical changes** but
