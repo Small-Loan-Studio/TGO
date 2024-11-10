@@ -12,6 +12,7 @@
 [ext_resource type="Script" path="res://Scripts/Resources/Effects/DialogueEffect.gd" id="11_03hvs"]
 [ext_resource type="Resource" path="res://Dialogue/Buckley/BuckleyTestTimeline.dtl" id="11_i8wpl"]
 
+
 [sub_resource type="AtlasTexture" id="AtlasTexture_ptcao"]
 atlas = ExtResource("3_uhn0b")
 region = Rect2(64, 200, 59, 56)
@@ -90,4 +91,6 @@ id = "mayor_buckley"
 [node name="PlayerStart" type="Node2D" parent="Markers" index="0"]
 position = Vector2(522, 183)
 
+
 [editable path="Objects/Characters/MayorBuckley"]
+
