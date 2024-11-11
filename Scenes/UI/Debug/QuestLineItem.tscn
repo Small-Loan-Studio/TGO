@@ -1,0 +1,24 @@
+[gd_scene load_steps=2 format=3 uid="uid://bsjdk3nmam28t"]
+
+[ext_resource type="Script" path="res://Scripts/UI/Debug/QuestLineItem.gd" id="1_vfrgf"]
+
+[node name="QuestLineItem" type="HBoxContainer"]
+size_flags_horizontal = 3
+script = ExtResource("1_vfrgf")
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Title" type="Label" parent="MarginContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Some quest name "
+
+[node name="CompletedMarker" type="Label" parent="."]
+layout_mode = 2
+text = "✅ "
+
+[node name="FailedMarker" type="Label" parent="."]
+layout_mode = 2
+text = "❌ "

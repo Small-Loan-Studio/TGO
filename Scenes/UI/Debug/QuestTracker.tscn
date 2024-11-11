@@ -1,0 +1,26 @@
+[gd_scene load_steps=3 format=3 uid="uid://dqrxejwlgxsgu"]
+
+[ext_resource type="Script" path="res://Scripts/UI/Debug/QuestTracker.gd" id="1_fh5s3"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_xfhlj"]
+content_margin_left = 8.0
+content_margin_top = 8.0
+content_margin_right = 8.0
+content_margin_bottom = 8.0
+bg_color = Color(0.6, 0.6, 0.6, 0.498039)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+
+[node name="PanelContainer" type="PanelContainer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_xfhlj")
+script = ExtResource("1_fh5s3")
+
+[node name="VBoxQuests" type="VBoxContainer" parent="."]
+layout_mode = 2
