@@ -103,11 +103,11 @@ game:
 	- has an API that allows inquiry and modification of the data.
 2. The interface API has a `setup` function that can be used when it's
    added to a scene to inject necessary references and trigger interface.
-	 We use this instead of `_ready` to avoid initializitaion sequence issues
-	 and it may be invoked via deferred call from the parent.
+   We use this instead of `_ready` to avoid initializitaion sequence issues
+   and it may be invoked via deferred call from the parent.
 3. Any cleanup can be done in `_exit_tree`. If necessary we can adopt a
    `teardown` paradigm before removing the interface but I can't imagine
-	 when that'd be needed.
+   when that'd be needed.
 
 ### Reacting to user action
 
