@@ -1,13 +1,13 @@
 class_name Driver
 extends Node2D
 
-## This will bypass the normal menu and automatically swap to the provided
-## scene. It [b]must[/b] be a child of LevelBase.
-@export var autoload_scene: PackedScene
-
 ## TODO: Replace this with the official location for levels in the future
 const LEVEL_FILE_PATH: String = "res://ZZ_Scratch/GreyboxingTools/"
 const FIRST_LEVEL_NAME: String = "BadLevelA"
+
+## This will bypass the normal menu and automatically swap to the provided
+## scene. It [b]must[/b] be a child of LevelBase.
+@export var autoload_scene: PackedScene
 
 var _last_loaded_level: LevelBase = null
 
@@ -76,11 +76,10 @@ func load_level(target_level_name: String, target_name: String) -> void:
 	# first add the new level
 	var load_level: PackedScene
 	var new_level: LevelBase
-	
+
 	if _last_loaded_level != null:
 		# if we had a previous level clean it up.
-
-		_serialization_mgr._update_persistent_level(_last_loaded_level)
+		_serialization_mgr.update_persistent_level(_last_loaded_level)
 		_world.remove_child(_last_loaded_level)
 		_last_loaded_level.save_level_state()
 		_last_loaded_level.queue_free()
@@ -89,14 +88,14 @@ func load_level(target_level_name: String, target_name: String) -> void:
 	get_hud().show()
 
 	# run any setup the level needs to do to work
-	print("Target Level Name: "+target_level_name)
+	print("Target Level Name: " + target_level_name)
 	if _serialization_mgr.check_level_persistence(target_level_name):
-		load_level= load(_serialization_mgr.get_persistent_level_dict()[target_level_name])
+		load_level = load(_serialization_mgr.get_persistent_level_dict()[target_level_name])
 		print("Loading persisting level")
 	else:
-		load_level= load(LEVEL_FILE_PATH+target_level_name+".tscn")
+		load_level = load(LEVEL_FILE_PATH + target_level_name + ".tscn")
 		print("Loading non-persisting level")
-	
+
 	new_level = load_level.instantiate()
 	_world.add_child(new_level, true)
 	new_level.setup(self)
@@ -121,7 +120,7 @@ func get_current_level() -> LevelBase:
 
 
 ## TODO: We'll need to switch away  from debug load path soon
-func request_debug_load(path: String) -> void:
+func request_debug_load() -> void:
 	var music_ready := audio_mgr.play(Enums.AudioTrack.SKETCH_2, 2)
 	await _curtain.fade_in(1)
 	_menu_mgr.hide_menu(Enums.MenuType.DEBUG)
