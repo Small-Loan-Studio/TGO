@@ -120,6 +120,8 @@ func _input(event: InputEvent) -> void:
 			and event.pressed
 		):
 			_apply_implementation(EditorInterface.get_editor_viewport_2d().get_mouse_position())
+			#Possible place for logic: Restricting item placed out of bounds of map
+			#If out of bounds, place on edge closest to coords
 
 
 ## Called after _ready to provide any necessary external objects.
@@ -171,6 +173,7 @@ func _apply() -> void:
 
 ## Apply whatever type + configuration is in process
 func _apply_implementation(obj_position: Vector2) -> void:
+	
 	match _focused_object_type:
 		GENERIC_KEY:
 			_apply_generic(obj_position)
@@ -185,7 +188,8 @@ func _apply_implementation(obj_position: Vector2) -> void:
 		_:
 			assert(false, "Invalid focused object Type: " + _focused_object_type)
 	var prev := _focused_object_type
-
+	print("Prev:", prev)
+	print("----------")
 	_reset()
 	_select_object_type(prev)
 
@@ -374,7 +378,7 @@ func _npc_dlg_refresh() -> void:
 
 func _apply_item(obj_position: Vector2) -> void:
 	var item_name: String = _item_dropdown.get_item_text(_item_dropdown.get_selected_id())
-	var config: Item = _item_dict[item_name] #Hold max value of item
+	var config: Item = _item_dict[item_name] #Holds all the items
 
 	var new_item := preload(ITEM_OBJECT_SCENE).instantiate()
 	new_item.item = config
@@ -390,10 +394,6 @@ func _apply_item(obj_position: Vector2) -> void:
 	new_item.owner = _objects_parent.get_parent()
 	new_item.global_position = obj_position
 	
-	#Signal to be used: _item_dropdown_selected	
-	#Need to cap the max value of item
-	#if (_item_dropdown_selected ) :
-		#we selected item, can proceed to set cap
 	
 	
 
@@ -401,8 +401,8 @@ func _reset_item_state() -> void:
 	_item_dropdown.selected = 0
 
 
-# is called when the detail visibility is changed; when made visible
-# we reload the viable Item configs and populate the template dropdown
+## is called when the detail visibility is changed; when made visible
+## we reload the viable Item configs and populate the template dropdown
 func _item_detail_visibility_changed() -> void:
 	if _item_detail == null:
 		return
