@@ -375,7 +375,7 @@ func _npc_dlg_refresh() -> void:
 
 func _apply_item(obj_position: Vector2) -> void:
 	var item_name: String = _item_dropdown.get_item_text(_item_dropdown.get_selected_id())
-	var config: Item = _item_dict[item_name] #Holds all the items
+	var config: Item = _item_dict[item_name]  #Holds all the items
 
 	var new_item := preload(ITEM_OBJECT_SCENE).instantiate()
 	new_item.item = config
@@ -436,7 +436,7 @@ func _item_dropdown_selected(_unused: int) -> void:
 		return
 
 	var key: String = _item_dropdown.get_item_text(index)
-	var detail: Item = _item_dict[key] #Item selected
+	var detail: Item = _item_dict[key]  #Item selected
 	_item_spinbox.max_value = detail.stack_size
 	_item_tex.texture = detail.icon
 	_item_tex.show()
