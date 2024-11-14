@@ -390,7 +390,7 @@ func _apply_item(obj_position: Vector2) -> void:
 	parent.add_child(new_item)
 	new_item.owner = _objects_parent.get_parent()
 	new_item.global_position = obj_position
-	
+
 
 func _reset_item_state() -> void:
 	_item_dropdown.selected = 0
