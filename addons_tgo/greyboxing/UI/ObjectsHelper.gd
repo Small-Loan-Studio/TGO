@@ -173,7 +173,6 @@ func _apply() -> void:
 
 ## Apply whatever type + configuration is in process
 func _apply_implementation(obj_position: Vector2) -> void:
-	
 	match _focused_object_type:
 		GENERIC_KEY:
 			_apply_generic(obj_position)
@@ -188,8 +187,6 @@ func _apply_implementation(obj_position: Vector2) -> void:
 		_:
 			assert(false, "Invalid focused object Type: " + _focused_object_type)
 	var prev := _focused_object_type
-	print("Prev:", prev)
-	print("----------")
 	_reset()
 	_select_object_type(prev)
 
@@ -393,8 +390,6 @@ func _apply_item(obj_position: Vector2) -> void:
 	parent.add_child(new_item)
 	new_item.owner = _objects_parent.get_parent()
 	new_item.global_position = obj_position
-	
-	
 	
 
 func _reset_item_state() -> void:
