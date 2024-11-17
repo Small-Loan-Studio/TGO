@@ -24,6 +24,8 @@ signal triggered(actor: Character)
 ## has a chance to interact with the interactable object.
 @export var action_verb: Enums.ActionVerb = Enums.ActionVerb.DEFAULT
 
+@export var secondary_actions: Dictionary = {}
+
 # TODO: add conditions
 
 ## Tracks the level that the action is taking place in
