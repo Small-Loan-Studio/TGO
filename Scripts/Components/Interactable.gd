@@ -24,6 +24,7 @@ signal triggered(actor: Character)
 ## has a chance to interact with the interactable object.
 @export var action_verb: Enums.ActionVerb = Enums.ActionVerb.DEFAULT
 
+## Map[Enums.ActionVerb, Array[Effect]]
 @export var secondary_actions: Dictionary = {}
 
 # TODO: add conditions
@@ -57,3 +58,38 @@ func _get_configuration_warnings() -> PackedStringArray:
 	if !(collision_layer & 2):
 		return ["Collision layer set should be set to 2 by default"]
 	return []
+
+
+func _get_property_list() -> Array[Dictionary]:
+	var props: Array[Dictionary] = []
+
+	for k: Enums.ActionVerb in secondary_actions.keys():
+		props.append({
+			"name": "%s_effects" % [Enums.action_verb_name(k)],
+			"type": TYPE_ARRAY,
+			"hint": PROPERTY_HINT_ARRAY_TYPE,
+			"hint_string": "24/17:Effect",
+			"usage": PROPERTY_USAGE_DEFAULT,
+		})
+	return props
+
+
+func _set(prop: StringName, _val: Variant) -> bool:
+	if prop.ends_with("_effects"):
+		var parts := prop.split("_")
+		var verb := Enums.action_verb_from_str(parts[0])
+		print("%s: %s -> %s" % [parts[0], secondary_actions[verb], _val])
+		secondary_actions[verb] = _val
+		return true
+	return false
+
+func _get(prop: StringName) -> Variant:
+	if prop.ends_with("_effects"):
+		var parts := prop.split("_")
+		var verb := Enums.action_verb_from_str(parts[0])
+		if secondary_actions.has(verb):
+			return secondary_actions[verb]
+		else:
+			return null
+
+	return null

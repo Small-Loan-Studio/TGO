@@ -35,17 +35,17 @@ func _parse_property(
   usage_flags: int,
   wide: bool
 ) -> bool:
-  # print("_parse_property(%s, %s, %s, 0b%s, %s)" % [type, name, hint_str, String.num_int64(usage_flags, 2), wide])
   if name == "secondary_actions":
-    add_property_editor(name, Property.new(obj as Interactable))
+    print("_parse_property(%s, %s, %s, 0b%s, %s)" % [type, name, hint_str, String.num_int64(usage_flags, 2), wide])
+    add_property_editor(name, Property.new(self, obj as Interactable))
     return true
   return false
 
 class Property extends EditorProperty:
-  func _init(obj: Interactable) -> void:
+  func _init(plugin: TGO_InspectorInteractable, obj: Interactable) -> void:
     var control_scene: PackedScene = load("res://addons_tgo/editors/TGOInteractableSecondaryActions.tscn")
     var control := control_scene.instantiate() as TGOInteractableSecondaryActions
-    control.setup(obj)
+    control.setup(plugin, obj)
     add_child(control)
     set_bottom_editor(control)
     add_focusable(control)

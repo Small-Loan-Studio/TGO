@@ -227,6 +227,26 @@ static func action_verb_name(av: ActionVerb) -> String:
 	return "Interact"
 
 
+static func action_verb_from_str(str: String) -> Enums.ActionVerb:
+	var v: Enums.ActionVerb = ActionVerb.DEFAULT
+	match str:
+		"Pick Up":
+			v = ActionVerb.PICK_UP
+		"Talk":
+			v = ActionVerb.TALK
+		"Use":
+			v = ActionVerb.USE
+		"Grab":
+			v = ActionVerb.PUSH_PULL
+		"Release":
+			v = ActionVerb.RELEASE
+		"Interact":
+			v = ActionVerb.DEFAULT
+		_:
+			printerr("Unknown action verb: ", str)
+	return v
+
+
 static func check_op_eval_int(op: CheckOp, x: int, y: int) -> bool:
 	var res := false
 	match op:
