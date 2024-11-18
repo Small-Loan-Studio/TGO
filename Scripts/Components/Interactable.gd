@@ -86,8 +86,13 @@ func _get_configuration_warnings() -> PackedStringArray:
 	if !(collision_layer & 2):
 		errs.push_back("Collision layer set should be set to 2 by default")
 
-	if !action_map.has(default_verb) || len(action_map[default_verb].filter(func(e: Effect) -> bool: return e != null)) == 0:
-		errs.push_back("No actions defined for default_verb " + Enums.action_verb_name(default_verb))
+	if (
+		!action_map.has(default_verb)
+		|| len(action_map[default_verb].filter(func(e: Effect) -> bool: return e != null)) == 0
+	):
+		errs.push_back(
+			"No actions defined for default_verb " + Enums.action_verb_name(default_verb)
+		)
 	return errs
 
 
@@ -95,14 +100,25 @@ func _get_property_list() -> Array[Dictionary]:
 	var props: Array[Dictionary] = []
 
 	for k: Enums.ActionVerb in action_map.keys():
-		props.append({
-			"name": "%s_effects" % [Enums.action_verb_name(k)],
-			"type": TYPE_ARRAY,
-			"hint": PROPERTY_HINT_ARRAY_TYPE,
-			"hint_string": "24/17:Effect",
-			"usage": PROPERTY_USAGE_EDITOR,
-		})
+		(
+			props
+			. append(
+				{
+					"name": "%s_effects" % [Enums.action_verb_name(k)],
+					"type": TYPE_ARRAY,
+					"hint": PROPERTY_HINT_ARRAY_TYPE,
+					"hint_string": "24/17:Effect",
+					"usage": PROPERTY_USAGE_EDITOR,
+				}
+			)
+		)
 	return props
+
+
+## TODO: ensure this refactor works in test
+func _unset_verb(verb: Enums.ActionVerb) -> void:
+	action_map.erase(verb)
+	property_list_changed.emit()
 
 
 func _set(prop: StringName, _val: Variant) -> bool:
@@ -112,15 +128,12 @@ func _set(prop: StringName, _val: Variant) -> bool:
 
 		if action_map.has(verb) and len(_val) == 0:
 			action_map[verb] = _val
-			Callable(
-				func() -> void:
-					action_map.erase(verb)
-					property_list_changed.emit()
-			).call_deferred()
+			_unset_verb.bind(verb).call_deferred()
 		else:
 			action_map[verb] = _val
 		return true
 	return false
+
 
 func _get(prop: StringName) -> Variant:
 	if prop.ends_with("_effects"):
