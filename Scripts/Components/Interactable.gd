@@ -16,20 +16,6 @@ signal triggered(actor: Character)
 ## triggerable through the "interact" action
 @export var automatic: bool = false
 
-## A set of actions to be taken when this interactable gets triggered. Will be
-## evaluated before the signal is emitted.
-@export var actions: Array[Effect]:
-	get:
-		if len(actions) > 0:
-			action_map[default_verb] = actions
-		return []
-	set(value):
-		if len(value) > 0:
-			action_map[default_verb] = value
-		printerr("Should not be setting actions")
-		print_stack()
-		actions = value
-
 ## Changing this impacts what the game toast will be when the player
 ## has a chance to interact with the interactable object.
 @export var default_verb: Enums.ActionVerb = Enums.ActionVerb.DEFAULT:
@@ -48,6 +34,22 @@ signal triggered(actor: Character)
 @export var action_map: Dictionary = {}
 
 # TODO: add conditions
+
+## A set of actions to be taken when this interactable gets triggered. Will be
+## evaluated before the signal is emitted.
+##
+## USAGE OF THIS IS DEPRECATED
+var actions: Array[Effect]:
+	get:
+		if len(actions) > 0:
+			action_map[default_verb] = actions
+		return actions
+	set(value):
+		if len(value) > 0:
+			action_map[default_verb] = value
+		printerr("Should not be setting actions")
+		print_stack()
+		actions = value
 
 ## Tracks the level that the action is taking place in
 var _cur_level: LevelBase
@@ -97,7 +99,15 @@ func _get_configuration_warnings() -> PackedStringArray:
 
 
 func _get_property_list() -> Array[Dictionary]:
-	var props: Array[Dictionary] = []
+	var props: Array[Dictionary] = [
+		{
+			"name": "actions",
+			"type": TYPE_ARRAY,
+			"hint": PROPERTY_HINT_ARRAY_TYPE,
+			"hint_string": "24/17:Effect",
+			"usage": PROPERTY_USAGE_STORAGE,
+		}
+	]
 
 	for k: Enums.ActionVerb in action_map.keys():
 		(
@@ -141,7 +151,5 @@ func _get(prop: StringName) -> Variant:
 		var verb := Enums.action_verb_from_str(parts[0])
 		if action_map.has(verb):
 			return action_map[verb]
-		else:
-			return null
 
 	return null

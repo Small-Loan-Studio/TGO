@@ -4,11 +4,11 @@ extends Control
 
 signal add_action(v: Enums.ActionVerb)
 
+var _plugin_ref: TGOInspectorInteractable
+var _data: Interactable
+
 @onready var _margin_container := $MarginContainer
 @onready var _action_select: OptionButton = %ActionSelect
-
-var _plugin_ref: TGO_InspectorInteractable
-var _data: Interactable
 
 
 func _ready() -> void:
@@ -16,7 +16,7 @@ func _ready() -> void:
 	_sync()
 
 
-func setup(plugin: TGO_InspectorInteractable, obj: Interactable) -> void:
+func setup(plugin: TGOInspectorInteractable, obj: Interactable) -> void:
 	_plugin_ref = plugin
 	_data = obj
 
