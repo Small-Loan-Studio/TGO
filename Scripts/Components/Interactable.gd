@@ -86,13 +86,6 @@ func _get_configuration_warnings() -> PackedStringArray:
 	if !(collision_layer & 2):
 		errs.push_back("Collision layer set should be set to 2 by default")
 
-	if action_map.has(default_verb):
-		print(action_map[default_verb])
-		print(action_map[default_verb].filter(
-			func(e: Effect) -> bool:
-				return e != null
-		))
-
 	if !action_map.has(default_verb) || len(action_map[default_verb].filter(func(e: Effect) -> bool: return e != null)) == 0:
 		errs.push_back("No actions defined for default_verb " + Enums.action_verb_name(default_verb))
 	return errs
