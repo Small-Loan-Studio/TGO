@@ -18,11 +18,26 @@ signal triggered(actor: Character)
 
 ## A set of actions to be taken when this interactable gets triggered. Will be
 ## evaluated before the signal is emitted.
-@export var actions: Array[Effect]
+@export var actions: Array[Effect]:
+	get:
+		if len(actions) > 0:
+			action_map[default_verb] = actions
+		return []
+	set(value):
+		if len(value) > 0:
+			action_map[default_verb] = value
+		printerr("Should not be setting actions")
+		print_stack()
+		actions = value
 
 ## Changing this impacts what the game toast will be when the player
 ## has a chance to interact with the interactable object.
-@export var default_verb: Enums.ActionVerb = Enums.ActionVerb.DEFAULT
+@export var default_verb: Enums.ActionVerb = Enums.ActionVerb.DEFAULT:
+	get:
+		return default_verb
+	set(value):
+		default_verb = value
+		update_configuration_warnings()
 
 ## Maps action type to the effect when that action is taken. Note that
 ## Some combinations won't make sense, e.g., Adding a Grab action to something
@@ -45,8 +60,11 @@ func _ready() -> void:
 			actions = []
 
 
-func trigger(actor: Character) -> void:
-	for a in actions:
+func trigger(actor: Character, action: Enums.ActionVerb = default_verb) -> void:
+	if !action_map.has(action):
+		return
+
+	for a: Effect in action_map[action]:
 		if a == null:
 			continue
 		a.parent = self
@@ -61,11 +79,25 @@ func verb_name() -> String:
 # TODO: Check if Collision layer is set properly -- if we do this make sure to
 # add @tool annotation
 func _get_configuration_warnings() -> PackedStringArray:
+	var errs := []
 	# TODO: Don't use a magic number here; switch to named layers, c.f.
 	#     https://gamedev.stackexchange.com/a/185955
 	if !(collision_layer & 2):
-		return ["Collision layer set should be set to 2 by default"]
-	return []
+		errs.push_back("Collision layer set should be set to 2 by default")
+
+	if action_map.has(default_verb):
+		print(action_map[default_verb])
+		print(action_map[default_verb].filter(
+			func(e: Effect) -> bool:
+				return e== null
+		))
+
+	if !action_map.has(default_verb) || len(action_map[default_verb].filter(
+		func(e: Effect) -> bool:
+			return e == null
+	)) == 0:
+		errs.push_back("No actions defined for default_verb " + Enums.action_verb_name(default_verb))
+	return errs
 
 
 func _get_property_list() -> Array[Dictionary]:

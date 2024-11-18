@@ -25,7 +25,7 @@ func _sync() -> void:
 	_action_select.clear()
 	var secondary_keys := _data.action_map.keys()
 	for a: Enums.ActionVerb in Enums.ActionVerb.values():
-		if !(a == _data.action_verb || a in secondary_keys):
+		if !(a == _data.default_verb || a in secondary_keys):
 			_action_select.add_item(Enums.action_verb_name(a))
 
 
@@ -49,4 +49,4 @@ func _on_add_entry_pressed() -> void:
 func _on_debug_pressed() -> void:
 	var arr: Array[Dictionary] = _data.get_property_list()
 	var j := JSON.new()
-	print(j.stringify(arr, "  ", true, false))
+	print(j.stringify(_data.action_map, "  ", true, false))
