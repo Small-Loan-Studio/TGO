@@ -4,24 +4,25 @@ extends EditorInspectorPlugin
 
 
 func _can_handle(obj: Object) -> bool:
-  print("_can_handle: ", obj)
   return obj is Interactable
 
 
-func _parse_begin(obj: Object) -> void:
-  print("_parse_begin: ", obj)
+func _parse_begin(_obj: Object) -> void:
+  # print("_parse_begin: ", obj)
+  pass
 
 
-func _parse_end(obj: Object) -> void:
-  print("_parse_end: ", obj)
+func _parse_end(_obj: Object) -> void:
+  # print("_parse_end: ", obj)
+  pass
 
 
-func _parse_category(obj: Object, category: String) -> void:
+func _parse_category(_obj: Object, _category: String) -> void:
   # print("_parse_category(%s): " % [category], obj)
   pass
 
 
-func _parse_group(obj: Object, group: String) -> void:
+func _parse_group(_obj: Object, _group: String) -> void:
   # print("_parse_group(%s): " % [group], obj)
   pass
 
@@ -35,8 +36,8 @@ func _parse_property(
   usage_flags: int,
   wide: bool
 ) -> bool:
-  if name == "secondary_actions":
-    print("_parse_property(%s, %s, %s, 0b%s, %s)" % [type, name, hint_str, String.num_int64(usage_flags, 2), wide])
+  if name == "action_map":
+    # print("_parse_property(%s, %s, %s, 0b%s, %s)" % [type, name, hint_str, String.num_int64(usage_flags, 2), wide])
     add_property_editor(name, Property.new(self, obj as Interactable))
     return true
   return false
