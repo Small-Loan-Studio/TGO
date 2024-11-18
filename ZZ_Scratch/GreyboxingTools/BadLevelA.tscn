@@ -67,7 +67,7 @@ texture = SubResource("AtlasTexture_ptcao")
 [node name="Interactable" parent="Objects/Sprite2D" index="0" instance=ExtResource("5_6ixdr")]
 y_sort_enabled = true
 actions = Array[Resource("res://Scripts/Resources/Effect.gd")]([SubResource("Resource_8cdkq")])
-action_verb = 5
+default_verb = 5
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Objects/Sprite2D/Interactable" index="0"]
 position = Vector2(0, 15)

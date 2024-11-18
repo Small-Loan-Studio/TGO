@@ -112,7 +112,7 @@ func _ready() -> void:
 	if has_node(INTERACT_NODE):
 		_interactable = get_node(INTERACT_NODE)
 		_interactable.actions = effects
-		_interactable.action_verb = action_verb
+		_interactable.default_verb = action_verb
 	if has_node(LIGHT_NODE):
 		_light = get_node(LIGHT_NODE)
 

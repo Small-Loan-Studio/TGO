@@ -22,7 +22,7 @@ signal triggered(actor: Character)
 
 ## Changing this impacts what the game toast will be when the player
 ## has a chance to interact with the interactable object.
-@export var action_verb: Enums.ActionVerb = Enums.ActionVerb.DEFAULT
+@export var default_verb: Enums.ActionVerb = Enums.ActionVerb.DEFAULT
 
 ## Maps action type to the effect when that action is taken. Note that
 ## Some combinations won't make sense, e.g., Adding a Grab action to something
@@ -39,6 +39,10 @@ var _cur_level: LevelBase
 
 func _ready() -> void:
 	_cur_level = Utils.get_level_parent(self)
+	if Engine.is_editor_hint():
+		if len(actions) > 0:
+			action_map[default_verb] = actions
+			actions = []
 
 
 func trigger(actor: Character) -> void:
@@ -51,7 +55,7 @@ func trigger(actor: Character) -> void:
 
 
 func verb_name() -> String:
-	return Enums.action_verb_name(action_verb)
+	return Enums.action_verb_name(default_verb)
 
 
 # TODO: Check if Collision layer is set properly -- if we do this make sure to
