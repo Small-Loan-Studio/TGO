@@ -37,6 +37,7 @@ signal triggered(actor: Character)
 		return default_verb
 	set(value):
 		default_verb = value
+		# TODO: this doesn't seem to reliably trigger reevaluation?
 		update_configuration_warnings()
 
 ## Maps action type to the effect when that action is taken. Note that
@@ -89,13 +90,10 @@ func _get_configuration_warnings() -> PackedStringArray:
 		print(action_map[default_verb])
 		print(action_map[default_verb].filter(
 			func(e: Effect) -> bool:
-				return e== null
+				return e != null
 		))
 
-	if !action_map.has(default_verb) || len(action_map[default_verb].filter(
-		func(e: Effect) -> bool:
-			return e == null
-	)) == 0:
+	if !action_map.has(default_verb) || len(action_map[default_verb].filter(func(e: Effect) -> bool: return e != null)) == 0:
 		errs.push_back("No actions defined for default_verb " + Enums.action_verb_name(default_verb))
 	return errs
 
