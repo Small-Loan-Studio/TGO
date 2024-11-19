@@ -2,8 +2,6 @@
 class_name TGOInteractableSecondaryActions
 extends Control
 
-signal add_action(v: Enums.ActionVerb)
-
 var _plugin_ref: TGOInspectorInteractable
 var _data: Interactable
 
@@ -42,11 +40,4 @@ func _on_add_entry_pressed() -> void:
 	_sync()
 
 	# inform the UI it should refresh the inspector view
-	add_action.emit(verb)
 	_data.property_list_changed.emit()
-
-
-func _on_debug_pressed() -> void:
-	var arr: Array[Dictionary] = _data.get_property_list()
-	var j := JSON.new()
-	print(j.stringify(_data.action_map, "  ", true, false))

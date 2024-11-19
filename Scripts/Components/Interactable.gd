@@ -43,7 +43,9 @@ var actions: Array[Effect]:
 	get:
 		if len(actions) > 0:
 			action_map[default_verb] = actions
-		return actions
+		if action_map.has(default_verb):
+			return action_map[default_verb]
+		return []
 	set(value):
 		if len(value) > 0:
 			action_map[default_verb] = value
@@ -98,7 +100,10 @@ func _get_configuration_warnings() -> PackedStringArray:
 	return errs
 
 
+## Overrides the properties that an interactable reports as available for edit.
 func _get_property_list() -> Array[Dictionary]:
+	# this should keep "actions" loading and persisting to a .tscn while hiding
+	# it from the inspector UI
 	var props: Array[Dictionary] = [
 		{
 			"name": "actions",
@@ -109,6 +114,10 @@ func _get_property_list() -> Array[Dictionary]:
 		}
 	]
 
+	# Walk the set of actions that have entries in the action_map and generate
+	# synthetic properties for editing since the inspector-default editor for
+	# dictionaries is shit / doesn't understand type constraints; we handle
+	# assignment for these via _set
 	for k: Enums.ActionVerb in action_map.keys():
 		(
 			props
@@ -125,18 +134,22 @@ func _get_property_list() -> Array[Dictionary]:
 	return props
 
 
-## TODO: ensure this refactor works in test
+## Callback used by _set to clear a verb from the action_map
 func _unset_verb(verb: Enums.ActionVerb) -> void:
 	action_map.erase(verb)
 	property_list_changed.emit()
 
 
+## Gets called when a property is set, if changing one of the synthetic props
+## translates that into updating the action_map.
 func _set(prop: StringName, _val: Variant) -> bool:
 	if prop.ends_with("_effects"):
 		var parts := prop.split("_")
 		var verb := Enums.action_verb_from_str(parts[0])
 
 		if action_map.has(verb) and len(_val) == 0:
+			# this branch runs when we had a verb and we remove the last element;
+			# in that case just remove the verb entirely
 			action_map[verb] = _val
 			_unset_verb.bind(verb).call_deferred()
 		else:
@@ -145,6 +158,8 @@ func _set(prop: StringName, _val: Variant) -> bool:
 	return false
 
 
+## Gets called when a read is issued to a property, if called on one of the
+## synthetic props translates into pulling data from the action_map
 func _get(prop: StringName) -> Variant:
 	if prop.ends_with("_effects"):
 		var parts := prop.split("_")

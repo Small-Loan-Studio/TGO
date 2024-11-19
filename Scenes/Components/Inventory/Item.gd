@@ -37,8 +37,8 @@ func _ready() -> void:
 	stack.quantity = quantity
 	action.dest_path = self.get_path()
 	action.item = stack
-	_interactable.action_map[Enums.ActionVerb.PICK_UP] = []
-	_interactable.action_map[Enums.ActionVerb.PICK_UP].append(action)
+	_interactable.default_action = Enums.ActionVerb.PICK_UP
+	_interactable.action_map[Enums.ActionVerb.PICK_UP] = [action]
 
 
 func _get_configuration_warnings() -> PackedStringArray:

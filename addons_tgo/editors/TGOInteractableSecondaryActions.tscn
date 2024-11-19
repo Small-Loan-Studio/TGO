@@ -44,10 +44,4 @@ unique_name_in_owner = true
 layout_mode = 2
 text = "+ Add Action"
 
-[node name="DebugButton" type="Button" parent="MarginContainer/VBoxContainer"]
-visible = false
-layout_mode = 2
-text = "Debug"
-
 [connection signal="pressed" from="MarginContainer/VBoxContainer/NewActionHBox/AddEntry" to="." method="_on_add_entry_pressed"]
-[connection signal="pressed" from="MarginContainer/VBoxContainer/DebugButton" to="." method="_on_debug_pressed"]

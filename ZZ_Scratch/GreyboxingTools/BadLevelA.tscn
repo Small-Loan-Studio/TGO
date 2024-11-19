@@ -71,6 +71,7 @@ default_verb = 5
 action_map = {
 5: Array[Resource("res://Scripts/Resources/Effect.gd")]([SubResource("Resource_epjiw")])
 }
+actions = Array[Resource("res://Scripts/Resources/Effect.gd")]([SubResource("Resource_epjiw")])
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Objects/Sprite2D/Interactable" index="0"]
 position = Vector2(0, 15)
