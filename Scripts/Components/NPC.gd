@@ -15,7 +15,7 @@ extends Character
 
 func _ready() -> void:
 	if !Engine.is_editor_hint() && dlg != null:
-		_talk_sensor.actions.append(dlg)
+		_talk_sensor.action_map[Enums.ActionVerb.TALK] = [dlg]
 
 	if config != null:
 		id = config.character_id
