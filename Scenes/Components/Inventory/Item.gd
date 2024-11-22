@@ -37,7 +37,7 @@ func _ready() -> void:
 	stack.quantity = quantity
 	action.dest_path = self.get_path()
 	action.item = stack
-	_interactable.default_action = Enums.ActionVerb.PICK_UP
+	_interactable.default_verb = Enums.ActionVerb.PICK_UP
 	_interactable.action_map[Enums.ActionVerb.PICK_UP] = [action]
 
 
