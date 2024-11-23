@@ -1,11 +1,17 @@
-[gd_scene load_steps=11 format=3 uid="uid://c3pgmxm78klqy"]
+[gd_scene load_steps=18 format=3 uid="uid://c3pgmxm78klqy"]
 
 [ext_resource type="PackedScene" uid="uid://dyq8mcdsutnsa" path="res://Scenes/Components/LevelBase.tscn" id="1_qb1mu"]
 [ext_resource type="Script" path="res://ZZ_Scratch/GreyboxingTools/BadLevelA.gd" id="2_fvydm"]
 [ext_resource type="TileSet" uid="uid://c5vrjt6pkv26m" path="res://ZZ_Scratch/GreyboxingTools/test_tileset.tres" id="3_mn72j"]
 [ext_resource type="Texture2D" uid="uid://v8wedauptprb" path="res://ZZ_Scratch/GreyboxingTools/template_tileset.png" id="4_eh4ix"]
 [ext_resource type="PackedScene" uid="uid://c2040l84asu8j" path="res://Scenes/Components/Interactable.tscn" id="5_io1ts"]
+[ext_resource type="PackedScene" uid="uid://c2kg6apj756dw" path="res://Scenes/Components/NPC.tscn" id="7_mk0pf"]
 [ext_resource type="Script" path="res://Scripts/Resources/Effects/LevelLoadEffect.gd" id="7_pejyo"]
+[ext_resource type="Resource" uid="uid://0e6y5ablkqx" path="res://Scripts/Resources/NPCs/Buckley.tres" id="9_kw0an"]
+[ext_resource type="Script" path="res://Scripts/Resources/Effects/DialogueEffect.gd" id="10_1qx48"]
+[ext_resource type="Resource" path="res://Dialogue/Buckley/BuckleyTestTimeline.dtl" id="11_xqhps"]
+[ext_resource type="PackedScene" uid="uid://rgvfsx60t2ap" path="res://Scenes/Components/Inventory/Item.tscn" id="12_d88fh"]
+[ext_resource type="Resource" uid="uid://b7w2axnxl0fkt" path="res://Scripts/Resources/Items/Key.tres" id="14_rc0lt"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_72abb"]
 radius = 23.0868
@@ -21,6 +27,10 @@ size = Vector2(29, 27)
 [sub_resource type="AtlasTexture" id="AtlasTexture_ptcao"]
 atlas = ExtResource("4_eh4ix")
 region = Rect2(64, 200, 59, 56)
+
+[sub_resource type="Resource" id="Resource_ql4ne"]
+script = ExtResource("10_1qx48")
+timeline = ExtResource("11_xqhps")
 
 [node name="LevelBase" instance=ExtResource("1_qb1mu")]
 script = ExtResource("2_fvydm")
@@ -53,6 +63,17 @@ shape = SubResource("RectangleShape2D_lwweu")
 [node name="Sprite2D" type="Sprite2D" parent="Objects/RigidBody2D" index="2"]
 y_sort_enabled = true
 texture = SubResource("AtlasTexture_ptcao")
+
+[node name="mayor_buckley" parent="Objects/Characters" index="0" instance=ExtResource("7_mk0pf")]
+position = Vector2(214, 137)
+config = ExtResource("9_kw0an")
+dlg = SubResource("Resource_ql4ne")
+id = "mayor_buckley"
+
+[node name="QUEST_KEY" parent="Objects/Items" index="0" instance=ExtResource("12_d88fh")]
+position = Vector2(84, 241)
+item = ExtResource("14_rc0lt")
+quantity = 1
 
 [node name="PlayerStart" type="Node2D" parent="Markers" index="0"]
 position = Vector2(490, 207)
