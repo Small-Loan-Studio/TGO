@@ -28,7 +28,7 @@ monitoring = false
 monitorable = false
 
 [node name="TalkSensor" parent="." index="4" instance=ExtResource("3_1etq5")]
-action_verb = 2
+default_verb = 2
 
 [node name="InteractableShape2D" type="CollisionShape2D" parent="TalkSensor" index="0"]
 position = Vector2(0, -9)

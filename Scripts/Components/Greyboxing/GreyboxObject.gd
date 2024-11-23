@@ -111,8 +111,8 @@ func _ready() -> void:
 		_physics = get_node(PHYSICS_NODE)
 	if has_node(INTERACT_NODE):
 		_interactable = get_node(INTERACT_NODE)
-		_interactable.actions = effects
-		_interactable.action_verb = action_verb
+		_interactable.default_verb = action_verb
+		_interactable.action_map[action_verb] = effects
 	if has_node(LIGHT_NODE):
 		_light = get_node(LIGHT_NODE)
 

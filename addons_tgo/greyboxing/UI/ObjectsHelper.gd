@@ -120,6 +120,8 @@ func _input(event: InputEvent) -> void:
 			and event.pressed
 		):
 			_apply_implementation(EditorInterface.get_editor_viewport_2d().get_mouse_position())
+			#Possible place for logic: Restricting item placed out of bounds of map
+			#If out of bounds, place on edge closest to coords
 
 
 ## Called after _ready to provide any necessary external objects.
@@ -185,7 +187,6 @@ func _apply_implementation(obj_position: Vector2) -> void:
 		_:
 			assert(false, "Invalid focused object Type: " + _focused_object_type)
 	var prev := _focused_object_type
-
 	_reset()
 	_select_object_type(prev)
 
@@ -374,7 +375,7 @@ func _npc_dlg_refresh() -> void:
 
 func _apply_item(obj_position: Vector2) -> void:
 	var item_name: String = _item_dropdown.get_item_text(_item_dropdown.get_selected_id())
-	var config: Item = _item_dict[item_name]
+	var config: Item = _item_dict[item_name]  #Holds all the items
 
 	var new_item := preload(ITEM_OBJECT_SCENE).instantiate()
 	new_item.item = config
@@ -395,8 +396,8 @@ func _reset_item_state() -> void:
 	_item_dropdown.selected = 0
 
 
-# is called when the detail visibility is changed; when made visible
-# we reload the viable Item configs and populate the template dropdown
+## is called when the detail visibility is changed; when made visible
+## we reload the viable Item configs and populate the template dropdown
 func _item_detail_visibility_changed() -> void:
 	if _item_detail == null:
 		return
@@ -435,7 +436,8 @@ func _item_dropdown_selected(_unused: int) -> void:
 		return
 
 	var key: String = _item_dropdown.get_item_text(index)
-	var detail: Item = _item_dict[key]
+	var detail: Item = _item_dict[key]  #Item selected
+	_item_spinbox.max_value = detail.stack_size
 	_item_tex.texture = detail.icon
 	_item_tex.show()
 
