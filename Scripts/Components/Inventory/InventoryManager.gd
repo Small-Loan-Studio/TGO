@@ -2,8 +2,8 @@ class_name InventoryManager
 extends Node
 
 signal inventory_updated(id: String)
-signal save_inventory()
-signal load_inventory()
+signal save_inventory
+signal load_inventory
 
 var _inventories: Dictionary
 
@@ -33,12 +33,14 @@ func _load(filepath: String) -> bool:
 
 	return 0
 
+
 func _save(filepath: String) -> void:
-	_check_file_location(filepath+"inventory.json")
+	_check_file_location(filepath + "inventory.json")
 
 
 func _check_file_location(filepath: String) -> void:
 	var error: int
 	if !DirAccess.dir_exists_absolute(filepath):
 		error = DirAccess.make_dir_absolute(filepath)
-		if error: printerr("Could not create directory: ", filepath," Error: " , error)
+		if error:
+			printerr("Could not create directory: ", filepath, " Error: ", error)

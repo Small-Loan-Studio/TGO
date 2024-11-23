@@ -1,13 +1,13 @@
 class_name Driver
 extends Node2D
 
+signal update_level(level: LevelBase)
+
 const FIRST_LEVEL_NAME: String = "BadLevelA"
 
 ## This will bypass the normal menu and automatically swap to the provided
 ## scene. It [b]must[/b] be a child of LevelBase.
 @export var autoload_scene_name: String
-
-signal update_level(level:LevelBase)
 
 var _last_loaded_level: LevelBase = null
 
@@ -46,7 +46,7 @@ func _ready() -> void:
 	inventory_mgr.get_inventory(player.id).inventory_updated.connect(_debug_refresh_inventory_ui)
 	# do an initial build from the start state
 	_debug_refresh_inventory_ui(inventory_mgr.get_inventory(player.id))
-	
+
 	_serialization_mgr.load_saved_level.connect(load_level)
 
 
@@ -71,57 +71,58 @@ func _post_ready() -> void:
 
 func get_hud() -> HUD:
 	return _hud
-	
+
+
 func update_loaded_level() -> String:
 	print("Updating level")
 	var level_name: String = _last_loaded_level.level_name
 	update_level.emit(_last_loaded_level)
 	return level_name
-	
 
-func free_previous_level() -> void:	
+
+func free_previous_level() -> void:
 	_world.remove_child(_last_loaded_level)
 	_last_loaded_level.queue_free()
+
 
 ## Loads a new level into the game world. Connected to SerilizationManager.gd: load_saved_level
 func load_level(target_level_name: String, target_name: String) -> void:
 	var packed_level: PackedScene
 	var new_level: LevelBase
-	
-	if(_last_loaded_level != null):
+
+	if _last_loaded_level != null:
 		if !_serialization_mgr.is_loading_game:
 			update_loaded_level()
 		free_previous_level()
-	
+
 	# make sure the hud is shown
 	get_hud().show()
 
 	# Load a level, either a previously saved/persisting level otherwise a new level
 	print("Target Level Name: " + target_level_name)
 	if _serialization_mgr.check_level_persistence(target_level_name):
-		
 		packed_level = load(_serialization_mgr.get_persistent_level_dict()[target_level_name])
 		print("Loading persisting level")
 	else:
 		packed_level = load(Utils.level_to_path_text(target_level_name))
 		print("Loading non-persisting level")
-	
+
 	if packed_level:
 		new_level = packed_level.instantiate()
 		_world.add_child(new_level, true)
-	
+
 		## Run any setup the level needs to do to work
 		new_level.setup(self)
 
 		# update level ref
 		_last_loaded_level = new_level
-	
+
 		_set_player(new_level, target_name)
 	else:
 		printerr("packed level is null")
 
 
-## Setup the player in the recently loaded level	
+## Setup the player in the recently loaded level
 func _set_player(new_level: LevelBase, marker_name: String) -> void:
 	# TODO: get the player ready and move them to the appropriate location
 	# we'll probably want to parameterize this more eventually.

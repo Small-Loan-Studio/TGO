@@ -13,6 +13,7 @@ const SAVE_FOLDER := "save/"
 const LEVEL_FOLDER := "level/"
 const INVENTORY_FOLDER := "inventory/"
 
+
 ## Finds a LevelBase ancestor of a node if it exists. Returns null if none
 ## found.
 static func get_level_parent(node: Node) -> LevelBase:
@@ -89,22 +90,28 @@ static func _angle_to_direction_4(angle_rad: float) -> Enums.Direction:
 		return [Enums.Direction.WEST, Enums.Direction.EAST][side]
 	return Enums.Direction.SOUTH
 
+
 ## Used for getting persistent levels and loading saved levels [b]NOT[/b] the original levels
 static func level_to_path_binary(level_name: String) -> String:
 	return USER_DATA_DIR + SAVE_FOLDER + LEVEL_FOLDER + level_name + LEVEL_EXT_BIN
+
 
 ## Used for getting brand new levels in their original state [b]NOT[/b] persistent levels
 static func level_to_path_text(level_name: String) -> String:
 	return LEVEL_DIR + level_name + LEVEL_EXT_TXT
 
+
 static func user_data_dir() -> String:
 	return USER_DATA_DIR
-	
+
+
 static func user_save_dir() -> String:
 	return USER_DATA_DIR + SAVE_FOLDER
-	
+
+
 static func user_level_dir() -> String:
 	return USER_DATA_DIR + SAVE_FOLDER + LEVEL_FOLDER
+
 
 static func user_inventory_dir() -> String:
 	return USER_DATA_DIR + SAVE_FOLDER + INVENTORY_FOLDER

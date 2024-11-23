@@ -1,19 +1,20 @@
 class_name SerializationManager
 extends Node
 
+signal load_saved_level(level_name: String, marker: String)
+
 const INVENTORY_FOLDER: String = "inventory/"
 const SAVE_FILE_NAME: String = "TGO.sav"
 const ZIP_FILE_NAME: String = "TGO.zip"
 const META_FILE_NAME: String = "TGO.meta"
 
-signal load_saved_level(level_name: String, marker: String)
+@export var is_loading_game: bool = false
 
 ## Stores all the levels the player has encountered during a playthrough.
 ## Key: the name of a level
 ## Value: the location on disk of the named level
 var _persistent_levels: Dictionary = {}
 
-@export var is_loading_game: bool = false
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -33,7 +34,7 @@ func _check_file_path_exists() -> bool:
 
 
 func _check_save_exists() -> bool:
-	var exist: bool = FileAccess.file_exists(Utils.USER_DATA_DIR+SAVE_FILE_NAME)
+	var exist: bool = FileAccess.file_exists(Utils.USER_DATA_DIR + SAVE_FILE_NAME)
 	if !exist:
 		printerr("Save file does not exist")
 	return exist
@@ -44,33 +45,36 @@ func _create_file_paths() -> int:
 	var error: int
 	error = DirAccess.make_dir_recursive_absolute(Utils.user_save_dir())
 	if error != OK:
-		printerr("Could not create directory: ", Utils.user_save_dir()," Error: " , error)
+		printerr("Could not create directory: ", Utils.user_save_dir(), " Error: ", error)
 		return error
 
 	if !DirAccess.dir_exists_absolute(Utils.user_level_dir()):
 		error = DirAccess.make_dir_absolute(Utils.user_level_dir())
 		if error != OK:
-			printerr("Could not create directory: ", Utils.user_level_dir()," Error: " , error)
+			printerr("Could not create directory: ", Utils.user_level_dir(), " Error: ", error)
 
 	if !DirAccess.dir_exists_absolute(Utils.user_inventory_dir()):
 		error = DirAccess.make_dir_absolute(Utils.user_inventory_dir())
 		if error != OK:
-			printerr("Could not create directory: ", Utils.user_inventory_dir()," Error: " , error)
+			printerr("Could not create directory: ", Utils.user_inventory_dir(), " Error: ", error)
 	return error
 
 
-## Saves everything necessary in the game and creates a .sav file recording this data. Connected to Driver.gd signal: save_level
+## Saves everything necessary in the game and creates a .sav file recording this data.
+## Connected to Driver.gd signal: save_level
 func _save_game() -> void:
 	print("Saving Game")
 	if !_check_file_path_exists():
 		_create_file_paths()
 
-	# Need to get the last loaded level to update and its level name for meta data which lives in Driver. 
+	# Need to get the last loaded level to update and its name for meta data which lives in Driver.
 	_write_meta_data(Driver.instance().update_loaded_level())
 	Driver.instance().inventory_mgr.save_inventory.emit()
 
 	_write_zip_file()
-	DirAccess.rename_absolute(Utils.user_data_dir() + ZIP_FILE_NAME, Utils.user_data_dir() + SAVE_FILE_NAME)
+	DirAccess.rename_absolute(
+		Utils.user_data_dir() + ZIP_FILE_NAME, Utils.user_data_dir() + SAVE_FILE_NAME
+	)
 	print("Saved Game")
 
 
@@ -79,19 +83,23 @@ func _load_game() -> void:
 	print("Loading Game")
 
 	if _check_save_exists():
-		var error: int = DirAccess.rename_absolute(Utils.user_data_dir() + SAVE_FILE_NAME, Utils.user_data_dir() + ZIP_FILE_NAME)
+		var error: int = DirAccess.rename_absolute(
+			Utils.user_data_dir() + SAVE_FILE_NAME, Utils.user_data_dir() + ZIP_FILE_NAME
+		)
 		if error != OK:
 			printerr("Could not open sav file: ", error)
 			return
 
 	is_loading_game = true
 	_read_zip_file()
-	DirAccess.rename_absolute(Utils.user_data_dir() + ZIP_FILE_NAME, Utils.user_data_dir() + SAVE_FILE_NAME)
+	DirAccess.rename_absolute(
+		Utils.user_data_dir() + ZIP_FILE_NAME, Utils.user_data_dir() + SAVE_FILE_NAME
+	)
 	print("Loaded Game")
 
 
-## Deletes the save folder where persisted data exists and the TGO.sav file if they exist. 
-## NOTE: These should probably be seperated in the future because we will always want to clear 
+## Deletes the save folder where persisted data exists and the TGO.sav file if they exist.
+## NOTE: These should probably be seperated in the future because we will always want to clear
 ## the persisted data folder when the game closes not necessarily delete any save files.
 func _delete_save() -> void:
 	print("Deleting Save...")
@@ -141,7 +149,7 @@ func _load_saved_level(map_name: String) -> void:
 
 
 func _write_zip_file() -> void:
-	var writer : ZIPPacker = ZIPPacker.new()
+	var writer: ZIPPacker = ZIPPacker.new()
 	var error := writer.open(Utils.user_data_dir() + ZIP_FILE_NAME)
 	if error != OK:
 		printerr("Could not open zip: ", error)
@@ -151,8 +159,6 @@ func _write_zip_file() -> void:
 	var directory: DirAccess = DirAccess.open(Utils.user_save_dir())
 	for file_name: String in directory.get_files():
 		writer.start_file(file_name)
-		#var open_file: FileAccess = FileAccess.open(Utils.user_save_dir() + file_name, FileAccess.READ)
-		#for next_line: String in open_file.get_line():
 		writer.write_file(FileAccess.get_file_as_bytes(Utils.user_save_dir() + file_name))
 
 	# Saves files in sub directories in the save folder
@@ -160,25 +166,29 @@ func _write_zip_file() -> void:
 		var subdir: DirAccess = DirAccess.open(Utils.user_save_dir() + dir_name + "/")
 		for file: String in subdir.get_files():
 			writer.start_file(dir_name + "/" + file)
-			writer.write_file(FileAccess.get_file_as_bytes(Utils.user_save_dir() + dir_name + "/" + file))
+			writer.write_file(
+				FileAccess.get_file_as_bytes(Utils.user_save_dir() + dir_name + "/" + file)
+			)
 
 	writer.close_file()
 	writer.close()
 
 
 func _read_zip_file() -> void:
-	var reader : ZIPReader = ZIPReader.new()
+	var reader: ZIPReader = ZIPReader.new()
 	var error := reader.open(Utils.user_data_dir() + ZIP_FILE_NAME)
 	if error != OK:
 		printerr("Could not open zip: ", error)
 		return
 
-	# file_name includes the whole directory path within the zip file for example, the filename for a level would be 
-	# level/level_name.scn
+	# file_name includes the whole directory path within the zip file for example,
+	# the filename for a level would be level/level_name.scn
 	for file_name: String in reader.get_files():
 		if file_name.contains(".scn") or file_name.contains(".tscn"):
 			var file: PackedByteArray = reader.read_file(file_name, true)
-			var new_file: FileAccess = FileAccess.open(Utils.user_save_dir() + file_name, FileAccess.WRITE_READ)
+			var new_file: FileAccess = FileAccess.open(
+				Utils.user_save_dir() + file_name, FileAccess.WRITE_READ
+			)
 			if !new_file:
 				printerr("newfile is null: ", FileAccess.get_open_error())
 
@@ -189,7 +199,7 @@ func _read_zip_file() -> void:
 			_persistent_levels[map_name] = Utils.user_save_dir() + file_name
 
 			new_file.close()
-		
+
 	var meta_dict: Dictionary = _read_meta_data()
 	print(meta_dict)
 	_load_saved_level(meta_dict["[level]"])
@@ -197,7 +207,9 @@ func _read_zip_file() -> void:
 
 
 func _write_meta_data(level_name: String) -> void:
-	var new_file: FileAccess = FileAccess.open(Utils.user_save_dir() + META_FILE_NAME, FileAccess.WRITE_READ)
+	var new_file: FileAccess = FileAccess.open(
+		Utils.user_save_dir() + META_FILE_NAME, FileAccess.WRITE_READ
+	)
 	if !new_file:
 		printerr("Meta file could not be created")
 		return
@@ -208,13 +220,15 @@ func _write_meta_data(level_name: String) -> void:
 
 
 func _read_meta_data() -> Dictionary:
-	var meta_file: FileAccess = FileAccess.open(Utils.user_save_dir() + META_FILE_NAME, FileAccess.READ)
-	var meta_dict: Dictionary 
+	var meta_file: FileAccess = FileAccess.open(
+		Utils.user_save_dir() + META_FILE_NAME, FileAccess.READ
+	)
+	var meta_dict: Dictionary
 	if meta_file:
 		while meta_file.get_position() < meta_file.get_length():
 			var key: String = meta_file.get_line()
 			meta_dict[key] = meta_file.get_line()
-		
+
 		meta_file.close()
 	else:
 		printerr("Meta file could not be read")

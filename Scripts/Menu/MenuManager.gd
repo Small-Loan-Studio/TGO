@@ -4,6 +4,7 @@ extends Control
 @onready var _debug_menu := $DebugMenu
 @onready var _saveload_menu := $SaveLoadMenu
 
+
 func _ready() -> void:
 	for c in get_children():
 		c.visible = false
