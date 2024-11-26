@@ -7,9 +7,13 @@ const PLUGIN_NAME = "tgo_greyboxing"
 var _control_scene: TGOControlDock = null
 var _editor: EditorInterface = null
 
+var _interactable_plugin: EditorInspectorPlugin
+
 func _enter_tree() -> void:
-	_editor = get_editor_interface()
 	_load_scene()
+	_editor = get_editor_interface()
+	_interactable_plugin = preload("res://addons_tgo/editors/tgo_inspector_interactable.gd").new()
+	add_inspector_plugin(_interactable_plugin)
 
 
 func _load_scene() -> void:
@@ -35,3 +39,4 @@ func reload() -> void:
 
 func _exit_tree() -> void:
 	_unload_scene()
+	remove_inspector_plugin(_interactable_plugin)
