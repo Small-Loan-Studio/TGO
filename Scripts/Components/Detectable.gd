@@ -1,6 +1,8 @@
 class_name Detectable
 extends Area2D
 
+## XXX: [Lamp] has been removed, this code no longer works
+##
 ## A node that can be used to trigger behavior when the a [Lamp] area
 ## triggers collision. Typically this will be used to show or hide a
 ## scene when it passes in/out of the Lamp's range for various light
