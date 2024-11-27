@@ -6,11 +6,13 @@ var _light: Torch
 
 @onready var _toggle_btn: Button = $ToggleLight
 
+
 func setup(devin: Devin, torch: Torch) -> void:
 	_devin = devin
 	_light = torch
 	if !_light.is_lit():
 		_toggle_btn.text = "Off"
+
 
 func _on_toggle_light() -> void:
 	if _light.is_lit():
