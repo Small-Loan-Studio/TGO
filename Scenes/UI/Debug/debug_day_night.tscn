@@ -1,0 +1,35 @@
+[gd_scene load_steps=2 format=3 uid="uid://dmyrmmjngi1ts"]
+
+[ext_resource type="Script" path="res://Scenes/UI/Debug/debug_day_night.gd" id="1_rbikb"]
+
+[node name="DebugDayNight" type="HBoxContainer"]
+script = ExtResource("1_rbikb")
+
+[node name="PauseTime" type="Button" parent="."]
+layout_mode = 2
+focus_mode = 0
+text = "Pause Time"
+
+[node name="Clock" type="Label" parent="."]
+layout_mode = 2
+text = "Hr: 00"
+
+[node name="SetDay" type="Button" parent="."]
+layout_mode = 2
+focus_mode = 0
+text = "Day"
+
+[node name="SetDusk" type="Button" parent="."]
+layout_mode = 2
+focus_mode = 0
+text = "Dusk"
+
+[node name="SetNight" type="Button" parent="."]
+layout_mode = 2
+focus_mode = 0
+text = "Night"
+
+[connection signal="pressed" from="PauseTime" to="." method="_on_pause_pressed"]
+[connection signal="pressed" from="SetDay" to="." method="_on_day_pressed"]
+[connection signal="pressed" from="SetDusk" to="." method="_on_dusk_pressed"]
+[connection signal="pressed" from="SetNight" to="." method="_on_night_pressed"]

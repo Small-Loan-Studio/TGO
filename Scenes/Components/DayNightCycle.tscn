@@ -14,5 +14,5 @@ script = ExtResource("2_xyfny")
 [node name="Timer" type="Timer" parent="Clock"]
 wait_time = 5.0
 
-[connection signal="hour_passed" from="Clock" to="." method="_on_clock_hour_passed"]
+[connection signal="time_changed" from="Clock" to="." method="_on_clock_time_changed"]
 [connection signal="timeout" from="Clock/Timer" to="Clock" method="_on_timer_timeout"]

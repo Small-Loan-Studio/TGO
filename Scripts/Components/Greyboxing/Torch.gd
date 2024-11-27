@@ -55,9 +55,12 @@ extends Node2D
 @onready var _animated_sprite: AnimatedSprite2D = $AnimatedSprite2D
 
 
-func _toggle() -> void:
-	_point_light_2d.visible = !_point_light_2d.visible
-	print(_point_light_2d.visible)
+func is_lit() -> bool:
+	return _point_light_2d.enabled
+
+
+func toggle(on: bool) -> void:
+	_point_light_2d.enabled = on
 
 
 func _change_light_color(new_color: Color) -> void:
