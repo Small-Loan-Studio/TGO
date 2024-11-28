@@ -33,11 +33,13 @@ var _canvas_modulate: CanvasModulate = null:
 
 @onready var _marker_root := $Markers
 
+
 func _ready() -> void:
 	if !Engine.is_editor_hint():
 		var ref := _canvas_modulate
 		remove_child(ref)
 		ref.queue_free()
+
 
 func setup(driver_in: Driver) -> void:
 	driver = driver_in

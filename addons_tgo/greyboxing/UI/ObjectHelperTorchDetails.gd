@@ -2,10 +2,8 @@
 class_name ObjectsHelperTorchDetails
 extends VBoxContainer
 
-
 const TORCH_SCENE = preload("res://Scenes/Components/Torch.tscn")
 const DEFAULT_TEX = preload("res://Art/Stub/stub_torch.png")
-
 
 @onready var _radius_spinner: SpinBox = %Radius
 @onready var _sprite_check: CheckBox = %HasSprite
@@ -14,7 +12,7 @@ const DEFAULT_TEX = preload("res://Art/Stub/stub_torch.png")
 @onready var _energy_bar: HSlider = %Energy
 
 
-func _on_has_sprite_toggled(toggled_on:bool) -> void:
+func _on_has_sprite_toggled(toggled_on: bool) -> void:
 	_height_spinner.editable = toggled_on
 
 
