@@ -1,0 +1,107 @@
+[gd_scene load_steps=2 format=3 uid="uid://b82deie7daj5h"]
+
+[ext_resource type="Script" path="res://addons_tgo/greyboxing/UI/ObjectHelperTorchDetails.gd" id="1_hjg45"]
+
+[node name="ObjectHelperTorchDetails" type="VBoxContainer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_hjg45")
+
+[node name="ColorLine" type="HBoxContainer" parent="."]
+layout_mode = 2
+theme_override_constants/separation = 8
+
+[node name="Label" type="Label" parent="ColorLine"]
+layout_mode = 2
+text = "Light Color"
+
+[node name="Color" type="ColorPickerButton" parent="ColorLine"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+color = Color(1, 1, 1, 1)
+
+[node name="EnergyLine" type="HBoxContainer" parent="."]
+layout_mode = 2
+theme_override_constants/separation = 8
+
+[node name="Label" type="Label" parent="EnergyLine"]
+layout_mode = 2
+text = "Light Energy"
+
+[node name="Energy" type="HSlider" parent="EnergyLine"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+max_value = 3.0
+step = 0.1
+value = 0.7
+
+[node name="RadiusLine" type="HBoxContainer" parent="."]
+layout_mode = 2
+theme_override_constants/separation = 8
+
+[node name="Label" type="Label" parent="RadiusLine"]
+layout_mode = 2
+text = "Light Radius
+"
+
+[node name="Radius" type="SpinBox" parent="RadiusLine"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+min_value = 1.0
+max_value = 30.0
+step = 0.5
+value = 1.0
+suffix = "tiles"
+
+[node name="HasSpriteContainer" type="VBoxContainer" parent="."]
+layout_mode = 2
+
+[node name="HasSprite" type="CheckBox" parent="HasSpriteContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+button_pressed = true
+text = "Show Torch"
+
+[node name="MarginContainer" type="MarginContainer" parent="HasSpriteContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 16
+
+[node name="Label" type="Label" parent="HasSpriteContainer/MarginContainer"]
+layout_mode = 2
+text = "If set the light will have a sprite component showing the player where the light source is located."
+autowrap_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 2
+
+[node name="HeightLine" type="HBoxContainer" parent="VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 8
+
+[node name="Label" type="Label" parent="VBoxContainer/HeightLine"]
+layout_mode = 2
+text = "Height"
+
+[node name="Height" type="SpinBox" parent="VBoxContainer/HeightLine"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+max_value = 10.0
+suffix = "tiles"
+
+[node name="MarginContainer" type="MarginContainer" parent="VBoxContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 16
+
+[node name="Label" type="Label" parent="VBoxContainer/MarginContainer"]
+layout_mode = 2
+text = "When the torch has a visible component this determines how far above the ground it will be presented for y-sorting purposes."
+autowrap_mode = 2
+
+[connection signal="toggled" from="HasSpriteContainer/HasSprite" to="." method="_on_has_sprite_toggled"]

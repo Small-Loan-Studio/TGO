@@ -1,4 +1,4 @@
-[gd_scene load_steps=24 format=3 uid="uid://d4mrsiv1l8m35"]
+[gd_scene load_steps=25 format=3 uid="uid://d4mrsiv1l8m35"]
 
 [ext_resource type="PackedScene" uid="uid://dyq8mcdsutnsa" path="res://Scenes/Components/LevelBase.tscn" id="1_iejup"]
 [ext_resource type="Script" path="res://ZZ_Scratch/GreyboxingTools/BadLevelA.gd" id="2_22a2t"]
@@ -15,6 +15,7 @@
 [ext_resource type="Resource" path="res://ZZ_Scratch/DialogicValidation/test_timeline.dtl" id="12_lpexj"]
 [ext_resource type="PackedScene" uid="uid://rgvfsx60t2ap" path="res://Scenes/Components/Inventory/Item.tscn" id="13_1m8di"]
 [ext_resource type="Resource" uid="uid://b7w2axnxl0fkt" path="res://Scripts/Resources/Items/Key.tres" id="15_svqc7"]
+[ext_resource type="PackedScene" uid="uid://b13wrl3bedjku" path="res://Scenes/Components/Torch.tscn" id="16_p267s"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_ptcao"]
 atlas = ExtResource("3_uhn0b")
@@ -52,6 +53,7 @@ target_state = 1
 
 [node name="LevelBase" instance=ExtResource("1_iejup")]
 script = ExtResource("2_22a2t")
+editor_overlay_color = Color(0.122252, 0.122252, 0.122252, 1)
 
 [node name="TileMap" parent="." index="0"]
 tile_set = ExtResource("2_nrxue")
@@ -135,9 +137,29 @@ tint = Color(0.171875, 0.6875, 0.179932, 1)
 action_verb = 5
 effects = Array[Resource("res://Scripts/Resources/Effect.gd")]([SubResource("Resource_yp128")])
 
+[node name="Torch" parent="Objects/Lighting" index="0" instance=ExtResource("16_p267s")]
+position = Vector2(208, 153)
+light_size = 1.5
+display_height = 2
+
+[node name="Torch_2" parent="Objects/Lighting" index="1" instance=ExtResource("16_p267s")]
+position = Vector2(269, 154)
+light_size = 1.5
+display_height = 2
+
+[node name="Torch_3" parent="Objects/Lighting" index="2" instance=ExtResource("16_p267s")]
+position = Vector2(209, 287)
+light_size = 3.0
+display_height = 2
+
+[node name="Torch_4" parent="Objects/Lighting" index="3" instance=ExtResource("16_p267s")]
+position = Vector2(398, 288)
+light_size = 3.0
+display_height = 2
+
 [node name="PlayerStart" type="Node2D" parent="Markers" index="0"]
 position = Vector2(522, 183)
 
 [node name="CanvasModulate" parent="." index="4"]
 visible = false
-color = Color(0.411765, 0.411765, 0.411765, 1)
+color = Color(0.122252, 0.122252, 0.122252, 1)

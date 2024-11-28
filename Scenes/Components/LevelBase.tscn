@@ -36,11 +36,17 @@ layer_0/z_index = 10
 [node name="Objects" type="Node2D" parent="."]
 y_sort_enabled = true
 
-[node name="Switches" type="Node" parent="Objects"]
+[node name="Switches" type="Node2D" parent="Objects"]
+y_sort_enabled = true
 
-[node name="Characters" type="Node" parent="Objects"]
+[node name="Characters" type="Node2D" parent="Objects"]
+y_sort_enabled = true
 
-[node name="Items" type="Node" parent="Objects"]
+[node name="Items" type="Node2D" parent="Objects"]
+y_sort_enabled = true
+
+[node name="Lighting" type="Node2D" parent="Objects"]
+y_sort_enabled = true
 
 [node name="Markers" type="Node" parent="."]
 
