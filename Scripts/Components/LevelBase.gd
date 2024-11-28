@@ -35,8 +35,9 @@ var _canvas_modulate: CanvasModulate = null:
 
 func _ready() -> void:
 	if !Engine.is_editor_hint():
-		remove_child(_canvas_modulate)
-		_canvas_modulate.queue_free()
+		var ref := _canvas_modulate
+		remove_child(ref)
+		ref.queue_free()
 
 func setup(driver_in: Driver) -> void:
 	driver = driver_in
