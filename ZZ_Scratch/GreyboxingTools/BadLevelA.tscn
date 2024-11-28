@@ -137,3 +137,7 @@ effects = Array[Resource("res://Scripts/Resources/Effect.gd")]([SubResource("Res
 
 [node name="PlayerStart" type="Node2D" parent="Markers" index="0"]
 position = Vector2(522, 183)
+
+[node name="CanvasModulate" parent="." index="4"]
+visible = false
+color = Color(0.411765, 0.411765, 0.411765, 1)

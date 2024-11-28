@@ -43,3 +43,5 @@ y_sort_enabled = true
 [node name="Items" type="Node" parent="Objects"]
 
 [node name="Markers" type="Node" parent="."]
+
+[node name="CanvasModulate" type="CanvasModulate" parent="."]
