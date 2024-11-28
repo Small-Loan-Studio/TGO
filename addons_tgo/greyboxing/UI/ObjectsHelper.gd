@@ -12,6 +12,7 @@ const PUSHABLE_KEY = "pushable"
 const NPC_KEY = "npc"
 const ITEM_KEY = "item"
 const SWITCH_KEY = "switch"
+const TORCH_KEY = "torch"
 const CHARACTERS_CHILD_NODE = "Characters"
 const ITEMS_CHILD_NODE = "Items"
 const NPC_PATH = "res://Scripts/Resources/NPCs"
@@ -86,6 +87,9 @@ var _generic_block_movement: CheckBox = $Container/Scroll/AddItems/GenericDetail
 @onready var _switch := $Container/Scroll/AddItems/Switch
 @onready var _switch_detail: ObjectsHelperSwitchDetails = $Container/Scroll/AddItems/SwitchDetails
 
+@onready var _torch := $Container/Scroll/AddItems/Light
+@onready var _torch_detail: ObjectsHelperTorchDetails = $Container/Scroll/AddItems/LightDetails
+
 @onready var _complete_buttons := $Container/CompleteButtons
 @onready var _place_button := $Container/CompleteButtons/Place
 #gdlint: enable=max-line-length
@@ -98,6 +102,7 @@ func _ready() -> void:
 		NPC_KEY: [_npc, _npc_detail, _reset_npc_state],
 		ITEM_KEY: [_item, _item_detail, _reset_item_state],
 		SWITCH_KEY: [_switch, _switch_detail, _switch_detail.reset],
+		TORCH_KEY: [_torch, _torch_detail, _torch_detail.reset],
 	}
 	for k: String in _object_types.keys():
 		_valid_keys.append(k)
@@ -184,6 +189,8 @@ func _apply_implementation(obj_position: Vector2) -> void:
 			_apply_item(obj_position)
 		SWITCH_KEY:
 			_apply_switch(obj_position)
+		TORCH_KEY:
+			_apply_torch(obj_position)
 		_:
 			assert(false, "Invalid focused object Type: " + _focused_object_type)
 	var prev := _focused_object_type
@@ -291,6 +298,19 @@ func _apply_switch(obj_position: Vector2) -> void:
 	parent.add_child(obj)
 	obj.owner = _objects_parent.get_parent()
 	obj.global_position = obj_position
+
+
+func _apply_torch(obj_position: Vector2) -> void:
+	var parent := _objects_parent.get_node("Lighting")
+
+	var obj := _torch_detail.build()
+	obj.name = _mk_name_unique(parent, "Torch")
+
+	parent.add_child(obj)
+	obj.owner = _objects_parent.get_parent()
+
+	if _torch_detail.has_display():
+		obj.global_position = obj_position - obj.display_height_offset()
 
 
 func _reset_npc_state() -> void:

@@ -1,11 +1,44 @@
+@tool
 class_name LevelBase
 extends Node2D
 
 const DEFAULT_MARKER: String = "PlayerStart"
 
+## Set this to a color to get an overlay and rough simulation of how your
+## lighting will look in that setting
+@export var editor_overlay_color: Color = Color.DIM_GRAY:
+	get:
+		return editor_overlay_color
+	set(value):
+		editor_overlay_color = value
+		if Engine.is_editor_hint():
+			_canvas_modulate.color = value
+
+## When enabled the color overlay will be applied. When unset it will not.
+@export var apply_editor_overlay: bool = false:
+	get:
+		return apply_editor_overlay
+	set(value):
+		apply_editor_overlay = value
+		if Engine.is_editor_hint():
+			_canvas_modulate.visible = apply_editor_overlay
+
 var driver: Driver
 
+var _canvas_modulate: CanvasModulate = null:
+	get:
+		# done as a property getter because we can't use @onready as part of @tool
+		# script and I don't know a better pattern
+		return get_node("CanvasModulate")
+
 @onready var _marker_root := $Markers
+
+
+func _ready() -> void:
+	if !Engine.is_editor_hint():
+		var ref := _canvas_modulate
+		remove_child(ref)
+		ref.queue_free()
 
 
 func setup(driver_in: Driver) -> void:
