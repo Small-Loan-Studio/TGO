@@ -14,7 +14,7 @@
 [ext_resource type="PackedScene" uid="uid://dmyrmmjngi1ts" path="res://Scenes/UI/Debug/debug_day_night.tscn" id="10_8xh8g"]
 [ext_resource type="PackedScene" uid="uid://dyuykg87w5vff" path="res://Scenes/UI/Debug/devin_light_control.tscn" id="11_igd87"]
 [ext_resource type="PackedScene" uid="uid://cqin6fb282fjf" path="res://Scenes/Components/DayNightCycle.tscn" id="12_8kqo6"]
-[ext_resource type="PackedScene" uid="uid://b13wrl3bedjku" path="res://Scenes/Components/Greyboxing/Torch.tscn" id="13_kgcxt"]
+[ext_resource type="PackedScene" uid="uid://b13wrl3bedjku" path="res://Scenes/Components/Torch.tscn" id="13_kgcxt"]
 
 [node name="Driver" type="Node2D"]
 script = ExtResource("1_agcjs")
@@ -164,6 +164,8 @@ position = Vector2(0, 0)
 [node name="Camera2D" type="Camera2D" parent="GameWorld/Devin"]
 
 [node name="Debug_Torch" parent="GameWorld/Devin" instance=ExtResource("13_kgcxt")]
+light_size = 4.0
+display_height = 0
 
 [connection signal="request_load" from="OverlayManager/MenuManager/DebugMenu" to="." method="request_debug_load"]
 [connection signal="pressed" from="OverlayManager/HUD/DebugButton" to="." method="_on_debug_pressed"]

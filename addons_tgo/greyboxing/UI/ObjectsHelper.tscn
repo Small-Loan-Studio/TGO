@@ -1,9 +1,10 @@
-[gd_scene load_steps=5 format=3 uid="uid://1j701pum1cgx"]
+[gd_scene load_steps=6 format=3 uid="uid://1j701pum1cgx"]
 
 [ext_resource type="Script" path="res://addons_tgo/greyboxing/UI/ObjectsHelper.gd" id="1_u6ws1"]
 [ext_resource type="PackedScene" uid="uid://bvm1fjatmfabx" path="res://addons_tgo/greyboxing/UI/XbyY.tscn" id="2_grtm3"]
 [ext_resource type="PackedScene" uid="uid://efk1feabjm8y" path="res://addons_tgo/greyboxing/UI/ObjectsHelperSwitchDetails.tscn" id="2_wpheu"]
 [ext_resource type="Texture2D" uid="uid://3cvlh3bqqte5" path="res://Art/Items/Key.png" id="4_c3s30"]
+[ext_resource type="PackedScene" uid="uid://b82deie7daj5h" path="res://addons_tgo/greyboxing/UI/ObjectHelperTorchDetails.tscn" id="5_s0n33"]
 
 [node name="ObjectsHelper" type="Control"]
 layout_mode = 3
@@ -244,6 +245,15 @@ min_value = 1.0
 max_value = 1.0
 value = 1.0
 
+[node name="Light" type="Button" parent="Container/Scroll/AddItems"]
+layout_mode = 2
+text = "Light
+"
+
+[node name="LightDetails" parent="Container/Scroll/AddItems" instance=ExtResource("5_s0n33")]
+visible = false
+layout_mode = 2
+
 [node name="CompleteButtons" type="HBoxContainer" parent="Container"]
 visible = false
 layout_mode = 2
@@ -270,5 +280,6 @@ text = "Place"
 [connection signal="pressed" from="Container/Scroll/AddItems/Item" to="." method="_select_object_type" binds= ["item"]]
 [connection signal="visibility_changed" from="Container/Scroll/AddItems/ItemDetails" to="." method="_item_detail_visibility_changed"]
 [connection signal="item_selected" from="Container/Scroll/AddItems/ItemDetails/HBoxContainer/MarginContainer/ItemDropdown" to="." method="_item_dropdown_selected"]
+[connection signal="pressed" from="Container/Scroll/AddItems/Light" to="." method="_select_object_type" binds= ["torch"]]
 [connection signal="pressed" from="Container/CompleteButtons/Cancel" to="." method="_reset"]
 [connection signal="pressed" from="Container/CompleteButtons/Place" to="." method="_apply"]
