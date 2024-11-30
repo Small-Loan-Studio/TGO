@@ -1,8 +1,9 @@
-[gd_scene load_steps=16 format=3 uid="uid://cobsc7v0oqc8l"]
+[gd_scene load_steps=17 format=3 uid="uid://cobsc7v0oqc8l"]
 
 [ext_resource type="Script" path="res://Scripts/Driver.gd" id="1_agcjs"]
 [ext_resource type="Script" path="res://Scripts/AudioManager.gd" id="2_4seev"]
 [ext_resource type="Script" path="res://Scripts/UI/Curtain.gd" id="2_gom2g"]
+[ext_resource type="PackedScene" uid="uid://boxsp6gl8ira3" path="res://Scenes/Levels/world_overall.tscn" id="2_mi02o"]
 [ext_resource type="Script" path="res://Scripts/Menu/MenuManager.gd" id="3_h1ccd"]
 [ext_resource type="PackedScene" uid="uid://ci7ksomi5hsr5" path="res://Scenes/Menu/DebugMenu.tscn" id="3_i7nbg"]
 [ext_resource type="Script" path="res://Scripts/UI/HUD.gd" id="4_kq6n3"]
@@ -18,6 +19,7 @@
 
 [node name="Driver" type="Node2D"]
 script = ExtResource("1_agcjs")
+autoload_scene = ExtResource("2_mi02o")
 
 [node name="AudioManager" type="Node" parent="."]
 script = ExtResource("2_4seev")
