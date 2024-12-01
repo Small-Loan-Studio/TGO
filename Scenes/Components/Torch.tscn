@@ -17,18 +17,17 @@ fill_from = Vector2(0.5, 0.5)
 [node name="Torch" type="Node2D"]
 script = ExtResource("1_fjyou")
 light_texture = SubResource("GradientTexture2D_bmn7b")
-display_height = null
 sprite_texture = ExtResource("2_lum1k")
 
 [node name="PointLight2D" type="PointLight2D" parent="."]
 position = Vector2(-2.38419e-07, -5)
 texture = SubResource("GradientTexture2D_bmn7b")
-offset = Vector2(0, -16)
+offset = Vector2(0, 16)
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-visible = false
-offset = Vector2(0, -16)
+texture = ExtResource("2_lum1k")
+offset = Vector2(0, 16)
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 visible = false
-offset = Vector2(0, -16)
+offset = Vector2(0, 16)
