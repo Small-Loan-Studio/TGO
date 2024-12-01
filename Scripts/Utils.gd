@@ -6,7 +6,7 @@ const PLAYER_ID := "Devin"
 const QUEST_DIR := "res://Scripts/Resources/Quests"
 const USER_DATA_DIR := "user://"
 ## TODO: Replace this with the official location for levels in the future
-const LEVEL_DIR := "res://ZZ_Scratch/GreyboxingTools/"
+const LEVEL_DIR := "res://Scenes/Levels/"
 const LEVEL_EXT_BIN := ".scn"
 const LEVEL_EXT_TXT := ".tscn"
 const SAVE_FOLDER := "save/"

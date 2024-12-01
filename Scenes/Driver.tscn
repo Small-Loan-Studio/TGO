@@ -71,6 +71,7 @@ offset_left = 37.0
 offset_top = -67.12
 offset_right = 85.0
 offset_bottom = -35.12
+focus_mode = 0
 text = "Save"
 
 [node name="LoadButton" type="Button" parent="OverlayManager/MenuManager/SaveLoadMenu"]
@@ -82,6 +83,7 @@ offset_left = 96.0
 offset_top = -67.0
 offset_right = 144.0
 offset_bottom = -35.0
+focus_mode = 0
 text = "Load"
 
 [node name="DeleteButton" type="Button" parent="OverlayManager/MenuManager/SaveLoadMenu"]
@@ -93,6 +95,7 @@ offset_left = 157.0
 offset_top = -66.36
 offset_right = 216.0
 offset_bottom = -35.36
+focus_mode = 0
 text = "Delete"
 
 [node name="HUD" type="Control" parent="OverlayManager"]
@@ -191,9 +194,11 @@ position = Vector2(0, 0)
 [node name="SerializationManager" type="Node" parent="."]
 script = ExtResource("11_e6bsk")
 
+[connection signal="update_level" from="." to="SerializationManager" method="_update_persistent_level"]
 [connection signal="request_load" from="OverlayManager/MenuManager/DebugMenu" to="." method="request_debug_load"]
 [connection signal="pressed" from="OverlayManager/MenuManager/SaveLoadMenu/SaveButton" to="SerializationManager" method="_save_game"]
 [connection signal="pressed" from="OverlayManager/MenuManager/SaveLoadMenu/LoadButton" to="SerializationManager" method="_load_game"]
 [connection signal="pressed" from="OverlayManager/MenuManager/SaveLoadMenu/DeleteButton" to="SerializationManager" method="_delete_save"]
 [connection signal="pressed" from="OverlayManager/HUD/DebugButton" to="." method="_on_debug_pressed"]
 [connection signal="timeout" from="GameWorld/Clock/Timer" to="GameWorld/Clock" method="_on_timer_timeout"]
+[connection signal="load_saved_level" from="SerializationManager" to="." method="load_level"]

@@ -2,8 +2,6 @@ class_name InventoryManager
 extends Node
 
 signal inventory_updated(id: String)
-signal save_inventory
-signal load_inventory
 
 var _inventories: Dictionary
 
@@ -26,7 +24,6 @@ func _emit_update_signal(_inv: Inventory, inv_id: String) -> void:
 	inventory_updated.emit(inv_id)
 
 
-# Unsure if these will be used, placeholders
 func _load(filepath: String) -> bool:
 	_check_file_location(filepath)
 	print("loading inventory")

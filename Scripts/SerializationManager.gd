@@ -21,9 +21,6 @@ func _ready() -> void:
 	if !_check_file_path_exists():
 		_create_file_paths()
 
-	#Parent is the Driver. Tried using the instance of Driver but it doesn't work here.
-	get_parent().update_level.connect(_update_persistent_level)
-
 
 func _check_file_path_exists() -> bool:
 	var exist: bool = DirAccess.dir_exists_absolute(Utils.user_save_dir())
@@ -201,7 +198,6 @@ func _read_zip_file() -> void:
 			new_file.close()
 
 	var meta_dict: Dictionary = _read_meta_data()
-	print(meta_dict)
 	_load_saved_level(meta_dict["[level]"])
 	reader.close()
 

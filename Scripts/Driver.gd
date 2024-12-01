@@ -47,8 +47,6 @@ func _ready() -> void:
 	# do an initial build from the start state
 	_debug_refresh_inventory_ui(inventory_mgr.get_inventory(player.id))
 
-	_serialization_mgr.load_saved_level.connect(load_level)
-
 
 func _debug_refresh_inventory_ui(inventory: Inventory) -> void:
 	var items := inventory.get_items()
@@ -58,6 +56,7 @@ func _debug_refresh_inventory_ui(inventory: Inventory) -> void:
 
 func _post_ready() -> void:
 	_debug_ui_quest.setup(quest_mgr)
+	_menu_mgr.show_menu(Enums.MenuType.SAVELOAD)
 
 	if !autoload_scene_name.is_empty():
 		await _curtain.fade_in(1)
@@ -141,13 +140,12 @@ func get_current_level() -> LevelBase:
 
 
 ## TODO: We'll need to switch away  from debug load path soon
-func request_debug_load(_path: String) -> void:
+func request_debug_load(name: String) -> void:
 	var music_ready := audio_mgr.play(Enums.AudioTrack.SKETCH_2, 2)
 	await _curtain.fade_in(1)
 	_menu_mgr.hide_menu(Enums.MenuType.DEBUG)
-	_menu_mgr.show_menu(Enums.MenuType.SAVELOAD)
 	print("debug load")
-	load_level(FIRST_LEVEL_NAME, LevelBase.DEFAULT_MARKER)
+	load_level(name, LevelBase.DEFAULT_MARKER)
 	await music_ready.finished
 	await _curtain.fade_out(1)
 
