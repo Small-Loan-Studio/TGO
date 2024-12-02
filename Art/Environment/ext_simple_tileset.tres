@@ -1,7 +1,19 @@
-[gd_resource type="TileSet" load_steps=9 format=3 uid="uid://c72m3jled4jfg"]
+[gd_resource type="TileSet" load_steps=13 format=3 uid="uid://c72m3jled4jfg"]
 
 [ext_resource type="Texture2D" uid="uid://bw8g5hunfu3yq" path="res://Art/Environment/simple_tileset_ext.png" id="1_rluj2"]
 [ext_resource type="Texture2D" uid="uid://v8wedauptprb" path="res://ZZ_Scratch/GreyboxingTools/template_tileset.png" id="2_xidid"]
+
+[sub_resource type="TileMapPattern" id="TileMapPattern_f1vp3"]
+tile_data = PackedInt32Array(65536, 1, 2, 1, 1, 2, 65537, 131073, 1)
+
+[sub_resource type="TileMapPattern" id="TileMapPattern_5ikqu"]
+tile_data = PackedInt32Array(0, 131073, 2, 65536, 65537, 1, 65537, 131073, 2)
+
+[sub_resource type="TileMapPattern" id="TileMapPattern_8adh4"]
+tile_data = PackedInt32Array(0, 1, 4, 1, 131073, 0, 65537, 1, 4)
+
+[sub_resource type="TileMapPattern" id="TileMapPattern_x7xjg"]
+tile_data = PackedInt32Array(0, 65537, 0, 65536, 131073, 4, 1, 131073, 4)
 
 [sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_jit1n"]
 
@@ -236,3 +248,7 @@ occlusion_layer_0/light_mask = 2
 physics_layer_0/collision_layer = 1
 sources/0 = SubResource("TileSetAtlasSource_d3tyy")
 sources/1 = SubResource("TileSetAtlasSource_vy1vm")
+pattern_0 = SubResource("TileMapPattern_f1vp3")
+pattern_1 = SubResource("TileMapPattern_5ikqu")
+pattern_2 = SubResource("TileMapPattern_8adh4")
+pattern_3 = SubResource("TileMapPattern_x7xjg")

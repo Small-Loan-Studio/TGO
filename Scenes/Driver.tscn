@@ -167,7 +167,6 @@ position = Vector2(0, 0)
 
 [node name="Debug_Torch" parent="GameWorld/Devin" instance=ExtResource("13_kgcxt")]
 light_size = 4.0
-display_height = 0
 
 [connection signal="request_load" from="OverlayManager/MenuManager/DebugMenu" to="." method="request_debug_load"]
 [connection signal="pressed" from="OverlayManager/HUD/DebugButton" to="." method="_on_debug_pressed"]
