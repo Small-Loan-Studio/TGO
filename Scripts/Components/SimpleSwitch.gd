@@ -15,6 +15,8 @@ extends Switch
 
 
 func _ready() -> void:
+	super()
+
 	poly.color = default_color
 	var x := sensor_size.x / 2
 	var y := sensor_size.y / 2
