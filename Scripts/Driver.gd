@@ -60,7 +60,6 @@ func _debug_refresh_inventory_ui(inventory: Inventory) -> void:
 func _post_ready() -> void:
 	## wire up debug bullshit
 	_debug_ui_quest.setup(quest_mgr)
-	_menu_mgr.show_menu(Enums.MenuType.SAVELOAD)
 	_debug_dnc.setup(_day_night_cycle)
 	# let's just ignore the get_node call. it's trash but beyond temporary
 	_debug_light.setup(player, player.get_node("Debug_Torch"))

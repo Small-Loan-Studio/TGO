@@ -2,7 +2,6 @@ class_name MenuManager
 extends Control
 
 @onready var _debug_menu := $DebugMenu
-@onready var _saveload_menu := $SaveLoadMenu
 
 
 func _ready() -> void:
@@ -14,8 +13,6 @@ func _get_menu(typ: Enums.MenuType) -> Node2D:
 	match typ:
 		Enums.MenuType.DEBUG:
 			return _debug_menu
-		Enums.MenuType.SAVELOAD:
-			return _saveload_menu
 		Enums.MenuType.NONE:
 			printerr("Requesting NONE menu, this is likely a mistake")
 			return null

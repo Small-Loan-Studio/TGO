@@ -46,7 +46,7 @@ enum LightLevel {
 	SPECIAL,
 }
 
-enum MenuType { NONE, DEBUG, SAVELOAD }
+enum MenuType { NONE, DEBUG }
 
 enum AudioTrack {
 	NONE,
