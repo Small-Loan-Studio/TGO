@@ -1,4 +1,4 @@
-[gd_scene load_steps=24 format=3 uid="uid://dqus00e1w2cj6"]
+[gd_scene load_steps=20 format=3 uid="uid://dqus00e1w2cj6"]
 
 [ext_resource type="PackedScene" uid="uid://dyq8mcdsutnsa" path="res://Scenes/Components/LevelBase.tscn" id="1_ov2b1"]
 [ext_resource type="Script" path="res://ZZ_Scratch/GreyboxingTools/BadLevelA.gd" id="2_k3sre"]
@@ -14,8 +14,6 @@
 [ext_resource type="Resource" uid="uid://b7w2axnxl0fkt" path="res://Scripts/Resources/Items/Key.tres" id="12_ai8lm"]
 [ext_resource type="Script" path="res://Scripts/Resources/Effects/LevelLoadEffect.gd" id="13_mquhu"]
 [ext_resource type="PackedScene" uid="uid://b13wrl3bedjku" path="res://Scenes/Components/Torch.tscn" id="14_v6etx"]
-[ext_resource type="Script" path="res://Scripts/Components/Greyboxing/Torch.gd" id="15_sms4w"]
-[ext_resource type="Texture2D" uid="uid://boyaede1duwf4" path="res://Art/Stub/stub_torch.png" id="16_rw5a2"]
 
 [sub_resource type="Resource" id="Resource_ecxtb"]
 script = ExtResource("5_bkbnh")
@@ -40,17 +38,6 @@ target_state = 1
 script = ExtResource("13_mquhu")
 load_level_name = "BadLevelB"
 marker_name = ""
-
-[sub_resource type="Gradient" id="Gradient_pdbb4"]
-offsets = PackedFloat32Array(0, 0.820669)
-colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 1)
-
-[sub_resource type="GradientTexture2D" id="GradientTexture2D_bmn7b"]
-gradient = SubResource("Gradient_pdbb4")
-width = 32
-height = 32
-fill = 1
-fill_from = Vector2(0.5, 0.5)
 
 [node name="LevelBase" instance=ExtResource("1_ov2b1")]
 script = ExtResource("2_k3sre")
@@ -118,23 +105,17 @@ can_interact = true
 effects = Array[Resource("res://Scripts/Resources/Effect.gd")]([SubResource("Resource_o1toe")])
 y_sort_width = 104
 
-[node name="Torch" type="Node2D" parent="Objects/Lighting" index="0" instance=ExtResource("14_v6etx")]
+[node name="Torch" parent="Objects/Lighting" index="0" instance=ExtResource("14_v6etx")]
 position = Vector2(273, 156)
-script = ExtResource("15_sms4w")
 light_energy = 0.7
 light_size = 2.0
-light_texture = SubResource("GradientTexture2D_bmn7b")
 display_height = 2
-sprite_texture = ExtResource("16_rw5a2")
 
-[node name="Torch_2" type="Node2D" parent="Objects/Lighting" index="1" instance=ExtResource("14_v6etx")]
+[node name="Torch_2" parent="Objects/Lighting" index="1" instance=ExtResource("14_v6etx")]
 position = Vector2(207, 156)
-script = ExtResource("15_sms4w")
 light_energy = 0.7
 light_size = 2.0
-light_texture = SubResource("GradientTexture2D_bmn7b")
 display_height = 2
-sprite_texture = ExtResource("16_rw5a2")
 
 [node name="PlayerStart" type="Node2D" parent="Markers" index="0"]
 position = Vector2(522, 183)
