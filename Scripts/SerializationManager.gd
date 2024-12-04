@@ -66,7 +66,7 @@ func _save_game() -> void:
 
 	# Need to get the last loaded level to update and its name for meta data which lives in Driver.
 	_write_meta_data(Driver.instance().update_loaded_level())
-	Driver.instance().inventory_mgr.save_inventory.emit()
+	Driver.instance().inventory_mgr.save(Utils.user_save_dir())
 
 	_write_zip_file()
 	DirAccess.rename_absolute(

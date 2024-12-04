@@ -31,7 +31,7 @@ func _load(filepath: String) -> bool:
 	return 0
 
 
-func _save(filepath: String) -> void:
+func save(filepath: String) -> void:
 	_check_file_location(filepath + "inventory.json")
 
 
