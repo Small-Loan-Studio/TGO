@@ -1,4 +1,4 @@
-[gd_scene load_steps=25 format=3 uid="uid://d4mrsiv1l8m35"]
+[gd_scene load_steps=35 format=3 uid="uid://d4mrsiv1l8m35"]
 
 [ext_resource type="PackedScene" uid="uid://dyq8mcdsutnsa" path="res://Scenes/Components/LevelBase.tscn" id="1_iejup"]
 [ext_resource type="Script" path="res://ZZ_Scratch/GreyboxingTools/BadLevelA.gd" id="2_22a2t"]
@@ -10,11 +10,16 @@
 [ext_resource type="Script" path="res://Scripts/Resources/Effects/SetQuestStateEffect.gd" id="8_m75fk"]
 [ext_resource type="PackedScene" uid="uid://d1y25semyqxkw" path="res://Scenes/Components/Greyboxing/MoveableBlock.tscn" id="9_78gjk"]
 [ext_resource type="PackedScene" uid="uid://c2kg6apj756dw" path="res://Scenes/Components/NPC.tscn" id="10_0kwe0"]
+[ext_resource type="PackedScene" uid="uid://c3fld6my8so3p" path="res://Scenes/Components/SimpleSwitchAlt.tscn" id="10_d5o0s"]
 [ext_resource type="Script" path="res://Scripts/Resources/Effects/DialogueEffect.gd" id="11_03hvs"]
+[ext_resource type="Script" path="res://Scripts/Resources/Effects/TeleportEffect.gd" id="11_c5j4a"]
 [ext_resource type="Resource" uid="uid://0e6y5ablkqx" path="res://Scripts/Resources/NPCs/Buckley.tres" id="12_56eii"]
 [ext_resource type="Resource" path="res://ZZ_Scratch/DialogicValidation/test_timeline.dtl" id="12_lpexj"]
 [ext_resource type="PackedScene" uid="uid://rgvfsx60t2ap" path="res://Scenes/Components/Inventory/Item.tscn" id="13_1m8di"]
+[ext_resource type="Script" path="res://Scripts/Resources/Conditions/DialogicVarCondition.gd" id="13_sg6v0"]
+[ext_resource type="Script" path="res://Scripts/Resources/Effects/SetVAREffect.gd" id="14_o0d20"]
 [ext_resource type="Resource" uid="uid://b7w2axnxl0fkt" path="res://Scripts/Resources/Items/Key.tres" id="15_svqc7"]
+[ext_resource type="Script" path="res://Scripts/Resources/Effects/ConditionalEffect.gd" id="15_x1ixy"]
 [ext_resource type="PackedScene" uid="uid://b13wrl3bedjku" path="res://Scenes/Components/Torch.tscn" id="16_p267s"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_ptcao"]
@@ -36,6 +41,34 @@ size = Vector2(49, 30)
 script = ExtResource("8_m75fk")
 quest_id = "test-item-quest"
 target_state = 1
+
+[sub_resource type="Resource" id="Resource_ir05h"]
+script = ExtResource("11_c5j4a")
+dest_path = NodePath("../../../Markers/PlayerStart")
+
+[sub_resource type="Resource" id="Resource_d5ja3"]
+script = ExtResource("13_sg6v0")
+variable_name = "QuestVarConditionTest"
+check_type = 3
+check_value = "true"
+
+[sub_resource type="Resource" id="Resource_cnrmo"]
+script = ExtResource("14_o0d20")
+variable_name = "QuestVarConditionTest"
+set_type = "overwrite"
+new_value = "true"
+
+[sub_resource type="Resource" id="Resource_hni0i"]
+script = ExtResource("14_o0d20")
+variable_name = "QuestVarConditionTest"
+set_type = "overwrite"
+new_value = "false"
+
+[sub_resource type="Resource" id="Resource_bqjrh"]
+script = ExtResource("15_x1ixy")
+condition = Array[Resource("res://Scripts/Resources/TriggerCondition.gd")]([SubResource("Resource_d5ja3")])
+true_path = Array[Resource("res://Scripts/Resources/Effect.gd")]([SubResource("Resource_hni0i")])
+false_path = Array[Resource("res://Scripts/Resources/Effect.gd")]([SubResource("Resource_cnrmo")])
 
 [sub_resource type="Resource" id="Resource_dr3sh"]
 script = ExtResource("11_03hvs")
@@ -110,6 +143,21 @@ id = "block-right"
 position = Vector2(71, 171)
 id = "block-left"
 
+[node name="aoeu" parent="Objects/Switches" index="0" instance=ExtResource("10_d5o0s")]
+position = Vector2(36, 116)
+sensor_size = Vector2(20, 20)
+on_pressed_effects = Array[Resource("res://Scripts/Resources/Effect.gd")]([SubResource("Resource_ir05h")])
+
+[node name="Switch" parent="Objects/Switches" index="1" instance=ExtResource("10_d5o0s")]
+z_index = -1
+position = Vector2(598, 282)
+track_variable = "QuestVarConditionTest"
+sensor_size = Vector2(20, 20)
+feedback_enabled = true
+default_color = Color(0.61339, 0.61339, 0.61339, 1)
+active_color = Color(0.401161, 0.710938, 0.374908, 1)
+on_pressed_effects = Array[Resource("res://Scripts/Resources/Effect.gd")]([SubResource("Resource_bqjrh")])
+
 [node name="mayor_buckley" parent="Objects/Characters" index="0" instance=ExtResource("10_0kwe0")]
 position = Vector2(534, 289)
 config = ExtResource("12_56eii")
@@ -163,3 +211,5 @@ position = Vector2(522, 183)
 [node name="CanvasModulate" parent="." index="4"]
 visible = false
 color = Color(0.122252, 0.122252, 0.122252, 1)
+
+[connection signal="triggered" from="Objects/Switches/aoeu" to="." method="_on_test_a_triggered"]

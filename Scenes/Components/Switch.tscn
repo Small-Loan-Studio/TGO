@@ -1,13 +1,15 @@
-[gd_scene load_steps=2 format=3 uid="uid://bmwu7t5fqfmd5"]
+[gd_scene load_steps=3 format=3 uid="uid://bmwu7t5fqfmd5"]
 
+[ext_resource type="Script" path="res://Scripts/Components/SwitchConfig.gd" id="1_fdbxp"]
 [ext_resource type="Script" path="res://Scripts/Components/Switch.gd" id="1_rlyjj"]
 
-[node name="Switch" type="Area2D"]
-collision_layer = 0
-collision_mask = 4
+[node name="SwitchParent" type="Node2D"]
+script = ExtResource("1_fdbxp")
+
+[node name="Switch" type="Area2D" parent="."]
 script = ExtResource("1_rlyjj")
 
-[connection signal="area_entered" from="." to="." method="_on_enter"]
-[connection signal="area_exited" from="." to="." method="_on_exit"]
-[connection signal="body_entered" from="." to="." method="_on_enter_body"]
-[connection signal="body_exited" from="." to="." method="_on_exit_body"]
+[connection signal="area_entered" from="Switch" to="Switch" method="_on_enter"]
+[connection signal="area_exited" from="Switch" to="Switch" method="_on_exit"]
+[connection signal="body_entered" from="Switch" to="Switch" method="_on_enter_body"]
+[connection signal="body_exited" from="Switch" to="Switch" method="_on_exit_body"]

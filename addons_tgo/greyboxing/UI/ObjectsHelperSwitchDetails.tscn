@@ -86,7 +86,7 @@ layout_mode = 2
 
 [node name="Label1" type="Label" parent="ColorMargin/ColorHBox"]
 layout_mode = 2
-text = "Default Color"
+text = "Default"
 
 [node name="DefaultColor" type="ColorPickerButton" parent="ColorMargin/ColorHBox"]
 layout_mode = 2
@@ -96,7 +96,7 @@ color = Color(0.61339, 0.61339, 0.61339, 1)
 
 [node name="Label2" type="Label" parent="ColorMargin/ColorHBox"]
 layout_mode = 2
-text = "Active Color"
+text = "Active"
 
 [node name="ActiveColor" type="ColorPickerButton" parent="ColorMargin/ColorHBox"]
 layout_mode = 2
