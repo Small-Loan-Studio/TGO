@@ -44,7 +44,9 @@ var actions: Array[Effect]:
 		if len(actions) > 0:
 			action_map[default_verb] = actions
 		if action_map.has(default_verb):
-			return action_map[default_verb]
+			var arr_eff: Array[Effect] = []
+			arr_eff.assign(action_map[default_verb])
+			return arr_eff
 		return []
 	set(value):
 		if len(value) > 0:

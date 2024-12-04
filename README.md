@@ -43,8 +43,7 @@ the relevant leads:
   - Stephen &mdash; Technical Narrative
   - Mario &mdash; Game Design
   - Keumars &mdash; Creative Director
-  - Andrea &mdash; Lead Producer
-  - Marlo &mdash; Technical Producer (Engineering point of contact)
+  - Maki &mdash; Lead Producer
 
 ### Questions?
 If something is unclear at any point in time feel free to ask around
@@ -58,25 +57,15 @@ domains if we want to make good time.
 
 In order to maintain awareness of what's going on outside our eng focus we:
 - have a weekly sync meeting. Notes are kept [here][team-standup]
-- track active work on a [kanban board in Notion][kanban]
+- track active work on a [kanban board][gh-kanban]
 - communicate regularly in the #tgo-programming channel
 
 ### Conventions: Ownership
 
 We hint at this above but it is likely each one of us will end up being the single
-biggest voice in the room for a one or more section of the code. Currently it looks
-like that will be:
-
-- Den: UI
-- Lent: Dialogic integration
-- Luke: Level loading / implementation & grayboxing
-- Envy: Player interaction mechanics
-
-This list is neither exhaustive nor final. You will always have an opportunity to
-change this and it explicitly **does not** mean that you will have to do all the
-related work on your own.
-
-It only means you are the person most likely to have a full understanding of the
+biggest voice in the room for a one or more section of the code. Even so it
+explicitly **does not** mean that you will have to do all the related work on your
+own. It only means you are the person most likely to have a full understanding of the
 related systems and when we need more hands on a specific system it may fall to
 you to help understand how to decompose the problem or debug a particularly tricky
 issue.
@@ -90,15 +79,11 @@ As a team we should aim to:
 - GDScript should pass lint before merge. We have the repo set up to run a CI job
   and check validity using `gdlint`. More info can be found about the errors it
   reports and how to set up exclusions on [the wiki][gdlint-wiki]. To manually run
-  the linter see [docs/docker.md](./docs/docker.md).  
-  _Pre-commit hooks to run locally on merge or a docker file to run locally should be
-  coming "soon" but are not in place yet._
+  the linter see [docs/docker.md](./docs/docker.md).
 - GDScript should format tests cleanly before merge. In order to reduce merge issues
   we use an automated tool `gdformat` to ensure our code conforms to a consistent
   formatting spec. Details on this are available on [the wiki][gdformat-wiki]. To
-  manually run the linter see [docs/docker.md](./docs/docker.md).  
-  _Pre-commit / docker jobs to run these locally should be available "soon" but are
-  not in place yet._
+  manually run the linter see [docs/docker.md](./docs/docker.md).
 - We currently require [static typing][static-typing-docs] and non-typed variable
   declarations will be reported as an error. There are several benefits of this
 	- Code maintainability &mdash; static typing is a compiler-enforced contract of
@@ -121,15 +106,6 @@ As a team we should aim to:
 	  by the Godot team.
 
 ### Conventions: Git
-
-At the moment all these are guidelines and will be enforced via honor system.
-Locking the repo down would be a lot of headache and require paying to upgrade
-to GH enterprise or moving the repo to a personal account which complicates team
-management. So let's be honorable and save that effort :heart:.
-
-The most important rule, everything else we can mostly fix after the fact:
-
-**Do not force push changes to `release` or `tgo_dev`.**
 
 #### `release`
 Generally we will not be merging into the `release` branch going forward. It is
@@ -221,7 +197,7 @@ Start [here](./docs/README.md).
 
 [orgchart]: https://miro.com/app/board/uXjVK-8EE4Y=/
 [team-standup]: https://www.notion.so/najmetender/38e72706e6ce4bdeb977e9f4e70bfae0?v=0f1a78091b19463baf1c21d8987063bd&pvs=4
-[kanban]: https://www.notion.so/najmetender/ce42775084b1437d94e334a5c46bc3ad?v=57c5260f242e45729fe4ebb09089d645
+[gh-kanban]: https://github.com/orgs/Small-Loan-Studio/projects/1/views/4
 [gdlint-wiki]: https://github.com/Scony/godot-gdscript-toolkit/wiki/3.%20Linter
 [gdformat-wiki]: https://github.com/Scony/godot-gdscript-toolkit/wiki/4.%20Formatter
 [static-typing-docs]: https://docs.godotengine.org/en/stable/tutorials/scripting/gdscript/static_typing.html

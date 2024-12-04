@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://cobsc7v0oqc8l"]
+[gd_scene load_steps=17 format=3 uid="uid://d4cnh54npmjiv"]
 
 [ext_resource type="Script" path="res://Scripts/Driver.gd" id="1_agcjs"]
 [ext_resource type="Script" path="res://Scripts/AudioManager.gd" id="2_4seev"]
@@ -8,11 +8,14 @@
 [ext_resource type="Script" path="res://Scripts/UI/HUD.gd" id="4_kq6n3"]
 [ext_resource type="PackedScene" uid="uid://mqvl5162rawb" path="res://Scenes/Devin.tscn" id="6_gmy4s"]
 [ext_resource type="Script" path="res://Scripts/Components/Inventory/InventoryManager.gd" id="6_na5am"]
-[ext_resource type="Script" path="res://Scripts/Resources/Clock.gd" id="6_t80u5"]
 [ext_resource type="PackedScene" uid="uid://dukcf64qxy46o" path="res://Scenes/UI/Debug/Inventory.tscn" id="7_3yw60"]
 [ext_resource type="PackedScene" uid="uid://dqrxejwlgxsgu" path="res://Scenes/UI/Debug/QuestTracker.tscn" id="8_8e3e0"]
 [ext_resource type="Script" path="res://Scripts/Components/Quests/QuestManager.gd" id="9_4hdkn"]
+[ext_resource type="PackedScene" uid="uid://dmyrmmjngi1ts" path="res://Scenes/UI/Debug/debug_day_night.tscn" id="10_8xh8g"]
 [ext_resource type="Script" path="res://Scripts/SerializationManager.gd" id="11_e6bsk"]
+[ext_resource type="PackedScene" uid="uid://dyuykg87w5vff" path="res://Scenes/UI/Debug/devin_light_control.tscn" id="11_igd87"]
+[ext_resource type="PackedScene" uid="uid://cqin6fb282fjf" path="res://Scenes/Components/DayNightCycle.tscn" id="12_8kqo6"]
+[ext_resource type="PackedScene" uid="uid://b13wrl3bedjku" path="res://Scenes/Components/Torch.tscn" id="13_kgcxt"]
 
 [node name="Driver" type="Node2D"]
 script = ExtResource("1_agcjs")
@@ -57,49 +60,7 @@ offset_right = -300.0
 offset_bottom = -1.0
 size_flags_horizontal = 4
 
-[node name="SaveLoadMenu" type="Control" parent="OverlayManager/MenuManager"]
-anchors_preset = 0
-offset_right = 40.0
-offset_bottom = 40.0
-
-[node name="SaveButton" type="Button" parent="OverlayManager/MenuManager/SaveLoadMenu"]
-layout_mode = 1
-anchors_preset = -1
-anchor_top = 18.003
-anchor_bottom = 18.003
-offset_left = 37.0
-offset_top = -67.12
-offset_right = 85.0
-offset_bottom = -35.12
-focus_mode = 0
-text = "Save"
-
-[node name="LoadButton" type="Button" parent="OverlayManager/MenuManager/SaveLoadMenu"]
-layout_mode = 1
-anchors_preset = -1
-anchor_top = 18.0
-anchor_bottom = 18.0
-offset_left = 96.0
-offset_top = -67.0
-offset_right = 144.0
-offset_bottom = -35.0
-focus_mode = 0
-text = "Load"
-
-[node name="DeleteButton" type="Button" parent="OverlayManager/MenuManager/SaveLoadMenu"]
-layout_mode = 1
-anchors_preset = -1
-anchor_top = 17.984
-anchor_bottom = 17.984
-offset_left = 157.0
-offset_top = -66.36
-offset_right = 216.0
-offset_bottom = -35.36
-focus_mode = 0
-text = "Delete"
-
 [node name="HUD" type="Control" parent="OverlayManager"]
-visible = false
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -125,6 +86,40 @@ offset_top = 40.0
 offset_right = -40.0
 grow_horizontal = 0
 grow_vertical = 1
+
+[node name="DebugStack" type="VBoxContainer" parent="OverlayManager/HUD"]
+layout_mode = 1
+anchors_preset = -1
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_top = -66.0
+offset_right = 295.0
+grow_vertical = 0
+
+[node name="SaveLoadMenu" type="HBoxContainer" parent="OverlayManager/HUD/DebugStack"]
+layout_mode = 2
+theme_override_constants/separation = 8
+
+[node name="SaveButton" type="Button" parent="OverlayManager/HUD/DebugStack/SaveLoadMenu"]
+layout_mode = 2
+focus_mode = 0
+text = "Save"
+
+[node name="LoadButton" type="Button" parent="OverlayManager/HUD/DebugStack/SaveLoadMenu"]
+layout_mode = 2
+focus_mode = 0
+text = "Load"
+
+[node name="DeleteButton" type="Button" parent="OverlayManager/HUD/DebugStack/SaveLoadMenu"]
+layout_mode = 2
+focus_mode = 0
+text = "Delete"
+
+[node name="DevinLightControl" parent="OverlayManager/HUD/DebugStack" instance=ExtResource("11_igd87")]
+layout_mode = 2
+
+[node name="DebugDayNight" parent="OverlayManager/HUD/DebugStack" instance=ExtResource("10_8xh8g")]
+layout_mode = 2
 
 [node name="Toast" type="ColorRect" parent="OverlayManager/HUD"]
 unique_name_in_owner = true
@@ -169,6 +164,9 @@ offset_bottom = 60.0
 grow_horizontal = 0
 text = "Debug"
 
+[node name="SerializationManager" type="Node" parent="."]
+script = ExtResource("11_e6bsk")
+
 [node name="InventoryManager" type="Node" parent="."]
 script = ExtResource("6_na5am")
 
@@ -178,11 +176,7 @@ script = ExtResource("9_4hdkn")
 [node name="GameWorld" type="Node2D" parent="."]
 y_sort_enabled = true
 
-[node name="Clock" type="Node" parent="GameWorld"]
-script = ExtResource("6_t80u5")
-
-[node name="Timer" type="Timer" parent="GameWorld/Clock"]
-wait_time = 5.0
+[node name="DayNightOverlay" parent="GameWorld" instance=ExtResource("12_8kqo6")]
 
 [node name="Devin" parent="GameWorld" instance=ExtResource("6_gmy4s")]
 unique_name_in_owner = true
@@ -191,14 +185,13 @@ position = Vector2(0, 0)
 
 [node name="Camera2D" type="Camera2D" parent="GameWorld/Devin"]
 
-[node name="SerializationManager" type="Node" parent="."]
-script = ExtResource("11_e6bsk")
+[node name="Debug_Torch" parent="GameWorld/Devin" instance=ExtResource("13_kgcxt")]
+light_size = 4.0
 
 [connection signal="update_level" from="." to="SerializationManager" method="_update_persistent_level"]
 [connection signal="request_load" from="OverlayManager/MenuManager/DebugMenu" to="." method="request_debug_load"]
-[connection signal="pressed" from="OverlayManager/MenuManager/SaveLoadMenu/SaveButton" to="SerializationManager" method="_save_game"]
-[connection signal="pressed" from="OverlayManager/MenuManager/SaveLoadMenu/LoadButton" to="SerializationManager" method="_load_game"]
-[connection signal="pressed" from="OverlayManager/MenuManager/SaveLoadMenu/DeleteButton" to="SerializationManager" method="_delete_save"]
+[connection signal="pressed" from="OverlayManager/HUD/DebugStack/SaveLoadMenu/SaveButton" to="SerializationManager" method="_save_game"]
+[connection signal="pressed" from="OverlayManager/HUD/DebugStack/SaveLoadMenu/LoadButton" to="SerializationManager" method="_load_game"]
+[connection signal="pressed" from="OverlayManager/HUD/DebugStack/SaveLoadMenu/DeleteButton" to="SerializationManager" method="_delete_save"]
 [connection signal="pressed" from="OverlayManager/HUD/DebugButton" to="." method="_on_debug_pressed"]
-[connection signal="timeout" from="GameWorld/Clock/Timer" to="GameWorld/Clock" method="_on_timer_timeout"]
 [connection signal="load_saved_level" from="SerializationManager" to="." method="load_level"]

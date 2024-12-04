@@ -8,7 +8,6 @@ script = ExtResource("1_p7ajo")
 
 [node name="TileMap" type="TileMap" parent="."]
 y_sort_enabled = true
-collision_animatable = true
 format = 2
 layer_0/name = "Base Layer"
 layer_0/y_sort_enabled = true
@@ -24,19 +23,30 @@ layer_2/tile_data = PackedInt32Array()
 layer_3/name = "Placeables"
 layer_3/y_sort_enabled = true
 layer_3/tile_data = PackedInt32Array()
-layer_4/name = "Canopy"
-layer_4/y_sort_enabled = true
-layer_4/z_index = 10
-layer_4/navigation_enabled = false
-layer_4/tile_data = PackedInt32Array()
+
+[node name="CanopyMap" type="TileMap" parent="."]
+light_mask = 0
+y_sort_enabled = true
+format = 2
+layer_0/name = "Canopy"
+layer_0/y_sort_enabled = true
+layer_0/z_index = 10
 
 [node name="Objects" type="Node2D" parent="."]
 y_sort_enabled = true
 
-[node name="Switches" type="Node" parent="Objects"]
+[node name="Switches" type="Node2D" parent="Objects"]
+y_sort_enabled = true
 
-[node name="Characters" type="Node" parent="Objects"]
+[node name="Characters" type="Node2D" parent="Objects"]
+y_sort_enabled = true
 
-[node name="Items" type="Node" parent="Objects"]
+[node name="Items" type="Node2D" parent="Objects"]
+y_sort_enabled = true
+
+[node name="Lighting" type="Node2D" parent="Objects"]
+y_sort_enabled = true
 
 [node name="Markers" type="Node" parent="."]
+
+[node name="CanvasModulate" type="CanvasModulate" parent="."]
