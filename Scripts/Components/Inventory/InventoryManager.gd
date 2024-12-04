@@ -24,10 +24,20 @@ func _emit_update_signal(_inv: Inventory, inv_id: String) -> void:
 	inventory_updated.emit(inv_id)
 
 
-# Unsure if these will be used, placeholders
-func _load() -> void:
-	pass
+func _load(filepath: String) -> bool:
+	_check_file_location(filepath)
+	print("loading inventory")
+
+	return 0
 
 
-func _save() -> void:
-	pass
+func save(filepath: String) -> void:
+	_check_file_location(filepath + "inventory.json")
+
+
+func _check_file_location(filepath: String) -> void:
+	var error: int
+	if !DirAccess.dir_exists_absolute(filepath):
+		error = DirAccess.make_dir_absolute(filepath)
+		if error:
+			printerr("Could not create directory: ", filepath, " Error: ", error)
