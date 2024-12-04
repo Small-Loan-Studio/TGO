@@ -2,7 +2,7 @@
 
 [ext_resource type="PackedScene" uid="uid://bmwu7t5fqfmd5" path="res://Scenes/Components/Switch.tscn" id="1_iggi3"]
 [ext_resource type="Script" path="res://Scripts/Components/SimpleSwitchConfig.gd" id="2_krtww"]
-[ext_resource type="Script" path="res://Scenes/Components/SimpleSwitchSignalDelegate.gd" id="3_s1r7d"]
+[ext_resource type="Script" path="res://Scripts/Components/SimpleSwitchSignalDelegate.gd" id="3_s1r7d"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ayxum"]
 resource_local_to_scene = true
