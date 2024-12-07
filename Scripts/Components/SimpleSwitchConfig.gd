@@ -3,7 +3,10 @@ class_name SimpleSwitchConfig
 extends SwitchConfig
 
 @export var track_variable: String = ""
-@export var sensor_size: Vector2
+@export var sensor_size: Vector2:
+	set(value):
+		sensor_size = value
+		_sync_sensor()
 
 @export_category("Visual Feedback")
 @export var feedback_enabled := false:
@@ -29,7 +32,7 @@ func _ready() -> void:
 		_delegate.configure(self, _switch_poly)
 
 	_sync_feedback()
-
+	# finish conversion to _sync_sensor()
 	_switch_poly.color = default_color
 	var x := sensor_size.x / 2
 	var y := sensor_size.y / 2
@@ -55,3 +58,19 @@ func _process(_delta: float) -> void:
 func _sync_feedback() -> void:
 	if _switch_poly != null:
 		_switch_poly.visible = feedback_enabled
+
+
+func _sync_sensor() -> void:
+	var x := sensor_size.x / 2
+	var y := sensor_size.y / 2
+	if _switch_poly != null:
+		_switch_poly.polygon = [
+			Vector2(-x, -y),
+			Vector2(x, -y),
+			Vector2(x, y),
+			Vector2(-x, y),
+		]
+	# TODO finish conversion
+	var rs2d := RectangleShape2D.new()
+	rs2d.size = sensor_size
+	_switch_shape.shape = rs2d
