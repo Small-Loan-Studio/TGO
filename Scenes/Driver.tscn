@@ -3,7 +3,6 @@
 [ext_resource type="Script" path="res://Scripts/Driver.gd" id="1_agcjs"]
 [ext_resource type="Script" path="res://Scripts/AudioManager.gd" id="2_4seev"]
 [ext_resource type="Script" path="res://Scripts/UI/Curtain.gd" id="2_gom2g"]
-[ext_resource type="PackedScene" uid="uid://boxsp6gl8ira3" path="res://Scenes/Levels/world_overall.tscn" id="2_mi02o"]
 [ext_resource type="Script" path="res://Scripts/Menu/MenuManager.gd" id="3_h1ccd"]
 [ext_resource type="PackedScene" uid="uid://ci7ksomi5hsr5" path="res://Scenes/Menu/DebugMenu.tscn" id="3_i7nbg"]
 [ext_resource type="Script" path="res://Scripts/UI/HUD.gd" id="4_kq6n3"]
@@ -13,13 +12,14 @@
 [ext_resource type="PackedScene" uid="uid://dqrxejwlgxsgu" path="res://Scenes/UI/Debug/QuestTracker.tscn" id="8_8e3e0"]
 [ext_resource type="Script" path="res://Scripts/Components/Quests/QuestManager.gd" id="9_4hdkn"]
 [ext_resource type="PackedScene" uid="uid://dmyrmmjngi1ts" path="res://Scenes/UI/Debug/debug_day_night.tscn" id="10_8xh8g"]
+[ext_resource type="Script" path="res://Scripts/SerializationManager.gd" id="11_e6bsk"]
 [ext_resource type="PackedScene" uid="uid://dyuykg87w5vff" path="res://Scenes/UI/Debug/devin_light_control.tscn" id="11_igd87"]
 [ext_resource type="PackedScene" uid="uid://cqin6fb282fjf" path="res://Scenes/Components/DayNightCycle.tscn" id="12_8kqo6"]
 [ext_resource type="PackedScene" uid="uid://b13wrl3bedjku" path="res://Scenes/Components/Torch.tscn" id="13_kgcxt"]
 
 [node name="Driver" type="Node2D"]
 script = ExtResource("1_agcjs")
-autoload_scene = ExtResource("2_mi02o")
+autoload_scene_name = "world_overall"
 
 [node name="AudioManager" type="Node" parent="."]
 script = ExtResource("2_4seev")
@@ -98,6 +98,25 @@ offset_top = -66.0
 offset_right = 295.0
 grow_vertical = 0
 
+[node name="SaveLoadMenu" type="HBoxContainer" parent="OverlayManager/HUD/DebugStack"]
+layout_mode = 2
+theme_override_constants/separation = 8
+
+[node name="SaveButton" type="Button" parent="OverlayManager/HUD/DebugStack/SaveLoadMenu"]
+layout_mode = 2
+focus_mode = 0
+text = "Save"
+
+[node name="LoadButton" type="Button" parent="OverlayManager/HUD/DebugStack/SaveLoadMenu"]
+layout_mode = 2
+focus_mode = 0
+text = "Load"
+
+[node name="DeleteButton" type="Button" parent="OverlayManager/HUD/DebugStack/SaveLoadMenu"]
+layout_mode = 2
+focus_mode = 0
+text = "Delete"
+
 [node name="DevinLightControl" parent="OverlayManager/HUD/DebugStack" instance=ExtResource("11_igd87")]
 layout_mode = 2
 
@@ -147,6 +166,9 @@ offset_bottom = 60.0
 grow_horizontal = 0
 text = "Debug"
 
+[node name="SerializationManager" type="Node" parent="."]
+script = ExtResource("11_e6bsk")
+
 [node name="InventoryManager" type="Node" parent="."]
 script = ExtResource("6_na5am")
 
@@ -168,5 +190,10 @@ position = Vector2(0, 0)
 [node name="Debug_Torch" parent="GameWorld/Devin" instance=ExtResource("13_kgcxt")]
 light_size = 4.0
 
+[connection signal="update_level" from="." to="SerializationManager" method="_update_persistent_level"]
 [connection signal="request_load" from="OverlayManager/MenuManager/DebugMenu" to="." method="request_debug_load"]
+[connection signal="pressed" from="OverlayManager/HUD/DebugStack/SaveLoadMenu/SaveButton" to="SerializationManager" method="_save_game"]
+[connection signal="pressed" from="OverlayManager/HUD/DebugStack/SaveLoadMenu/LoadButton" to="SerializationManager" method="_load_game"]
+[connection signal="pressed" from="OverlayManager/HUD/DebugStack/SaveLoadMenu/DeleteButton" to="SerializationManager" method="_delete_save"]
 [connection signal="pressed" from="OverlayManager/HUD/DebugButton" to="." method="_on_debug_pressed"]
+[connection signal="load_saved_level" from="SerializationManager" to="." method="load_level"]

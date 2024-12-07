@@ -150,11 +150,11 @@ func build() -> Switch:
 		TMPL_SET_VAR:
 			assert(false, "Not implemented")
 
+	scn.sensor_size = Vector2(sensor_size_x.value, sensor_size_y.value)
 	scn.feedback_enabled = visible_checkbox.button_pressed
 	if visible_checkbox.button_pressed:
 		scn.default_color = default_color.color
 		scn.active_color = active_color.color
-		scn.sensor_size = Vector2(sensor_size_x.value, sensor_size_y.value)
 		scn.z_index = -1
 
 	return scn

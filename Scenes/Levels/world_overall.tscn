@@ -1,14 +1,13 @@
-[gd_scene load_steps=7 format=3 uid="uid://boxsp6gl8ira3"]
+[gd_scene load_steps=6 format=3 uid="uid://boxsp6gl8ira3"]
 
 [ext_resource type="PackedScene" uid="uid://dyq8mcdsutnsa" path="res://Scenes/Components/LevelBase.tscn" id="1_72ce8"]
 [ext_resource type="TileSet" uid="uid://c72m3jled4jfg" path="res://Art/Environment/ext_simple_tileset.tres" id="2_rogqk"]
 [ext_resource type="PackedScene" uid="uid://bx2qjlw58ci20" path="res://Scenes/Components/Greyboxing/GreyboxObject.tscn" id="3_xpn2e"]
-[ext_resource type="Script" path="res://Scripts/Components/Greyboxing/GreyboxObject.gd" id="4_642nq"]
 [ext_resource type="Script" path="res://Scripts/Resources/Effects/LevelLoadEffect.gd" id="5_5yhs8"]
 
 [sub_resource type="Resource" id="Resource_i3ken"]
 script = ExtResource("5_5yhs8")
-load_level_path = "res://Scenes/Levels/copper_kettle_interior.tscn"
+load_level_name = "copper_kettle_interior"
 marker_name = "PlayerStart_copperkettle_int"
 
 [node name="LevelBase" instance=ExtResource("1_72ce8")]
@@ -23,18 +22,15 @@ layer_2/tile_data = PackedInt32Array(-2424877, 196609, 0, -1703979, 196609, 0, -
 tile_set = ExtResource("2_rogqk")
 layer_0/tile_data = PackedInt32Array(-131085, 589825, 3, -7208907, 589825, 3, -7602128, 589825, 3, -9240623, 589825, 3, -9306164, 589825, 3, -9044016, 589825, 3, -6160430, 589825, 3, -6029365, 589825, 3, -5701679, 589825, 3, -5505076, 589825, 3, -4456503, 589825, 3, -4325424, 589825, 3, -3932208, 589825, 3, -3932212, 589825, 3, -3932221, 589825, 3, -3735605, 589825, 3, -3670079, 589825, 3, -3473469, 589825, 3, -3407927, 589825, 3, -3080247, 589825, 3, -2883645, 589825, 3, 1048523, 589825, 3, 1179600, 589825, 3, 1507276, 589825, 3, 1572819, 589825, 3, 1703888, 589825, 3, 3080124, 589825, 3, 2949044, 589825, 3, 3538867, 589825, 3, 2883469, 589825, 3, 3080070, 589825, 3, 3473292, 589825, 3, 3669902, 589825, 3, 6684618, 589825, 3, 6815697, 589825, 3, 7864374, 589825, 3, 7864366, 589825, 3, 7340080, 589825, 3, -3080309, 589825, 3, -3080316, 589825, 3, -3604604, 589825, 3, -3670134, 589825, 3, -3604595, 589825, 3, -3407990, 589825, 3, -3408000, 589825, 3, -3735686, 589825, 3, -3539082, 589825, 3, -3080334, 589825, 3, -3735571, 589825, 3, -3670037, 589825, 3, -4259858, 589825, 3, -3997707, 589825, 3)
 
-[node name="CopperKettle" type="Node2D" parent="Objects" index="4" instance=ExtResource("3_xpn2e")]
-y_sort_enabled = true
+[node name="CopperKettle" parent="Objects" index="4" instance=ExtResource("3_xpn2e")]
 position = Vector2(-1022, -225)
 rotation = -0.750215
-script = ExtResource("4_642nq")
 size = Vector2(10, 8)
 can_block_movement = true
 can_block_light = true
 can_interact = true
 effects = Array[Resource("res://Scripts/Resources/Effect.gd")]([SubResource("Resource_i3ken")])
 y_sort_width = 360
-metadata/_edit_group_ = true
 
 [node name="PlayerStart" type="Node2D" parent="Markers" index="0"]
 

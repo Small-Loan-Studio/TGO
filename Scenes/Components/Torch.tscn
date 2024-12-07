@@ -23,6 +23,7 @@ sprite_texture = ExtResource("2_lum1k")
 position = Vector2(-2.38419e-07, -5)
 texture = SubResource("GradientTexture2D_bmn7b")
 offset = Vector2(0, 16)
+texture_scale = 2.0
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture = ExtResource("2_lum1k")

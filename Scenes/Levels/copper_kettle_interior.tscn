@@ -8,7 +8,7 @@
 
 [sub_resource type="Resource" id="Resource_mcrt5"]
 script = ExtResource("4_hb84b")
-load_level_path = "res://Scenes/Levels/world_overall.tscn"
+load_level_name = "world_overall"
 marker_name = "PlayerStart_copperkettle_ext"
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_qlbcy"]
@@ -26,7 +26,7 @@ script = ExtResource("5_g2727")
 dest_path = NodePath("../../../Markers/PlayerStart_copperkettle_secondfloor")
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_lkxu5"]
-size = Vector2(87, 46)
+size = Vector2(95, 46)
 
 [node name="LevelBase" instance=ExtResource("1_3tpql")]
 
@@ -44,7 +44,7 @@ script = ExtResource("3_jnvym")
 automatic = true
 default_verb = 5
 action_map = {
-5: [SubResource("Resource_mcrt5")]
+5: Array[Resource("res://Scripts/Resources/Effect.gd")]([SubResource("Resource_mcrt5")])
 }
 actions = Array[Resource("res://Scripts/Resources/Effect.gd")]([SubResource("Resource_mcrt5")])
 
@@ -62,7 +62,7 @@ script = ExtResource("3_jnvym")
 automatic = true
 default_verb = 5
 action_map = {
-5: [SubResource("Resource_3ouwa")]
+5: Array[Resource("res://Scripts/Resources/Effect.gd")]([SubResource("Resource_3ouwa")])
 }
 actions = Array[Resource("res://Scripts/Resources/Effect.gd")]([SubResource("Resource_3ouwa")])
 
@@ -80,12 +80,12 @@ script = ExtResource("3_jnvym")
 automatic = true
 default_verb = 5
 action_map = {
-5: [SubResource("Resource_4xbpl")]
+5: Array[Resource("res://Scripts/Resources/Effect.gd")]([SubResource("Resource_4xbpl")])
 }
 actions = Array[Resource("res://Scripts/Resources/Effect.gd")]([SubResource("Resource_4xbpl")])
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Objects/ToSecondFloor/Interactable" index="0"]
-position = Vector2(-0.5, -38)
+position = Vector2(-1.5, -38)
 shape = SubResource("RectangleShape2D_lkxu5")
 
 [node name="PlayerStart_copperkettle_int" type="Node2D" parent="Markers" index="0"]
