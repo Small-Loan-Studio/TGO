@@ -70,7 +70,8 @@ func _sync_sensor() -> void:
 			Vector2(x, y),
 			Vector2(-x, y),
 		]
-	# TODO finish conversion
-	var rs2d := RectangleShape2D.new()
-	rs2d.size = sensor_size
-	_switch_shape.shape = rs2d
+	if _switch_shape != null:
+		# TODO: is conversion finished?
+		var rs2d := RectangleShape2D.new()
+		rs2d.size = sensor_size
+		_switch_shape.shape = rs2d

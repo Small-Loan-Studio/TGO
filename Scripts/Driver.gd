@@ -1,9 +1,13 @@
 class_name Driver
 extends Node2D
 
+signal update_level(level: LevelBase)
+
+const FIRST_LEVEL_NAME: String = "BadLevelA"
+
 ## This will bypass the normal menu and automatically swap to the provided
 ## scene. It [b]must[/b] be a child of LevelBase.
-@export var autoload_scene: PackedScene
+@export var autoload_scene_name: String
 
 var _last_loaded_level: LevelBase = null
 
@@ -17,13 +21,14 @@ var _last_loaded_level: LevelBase = null
 @onready var _day_night_cycle: DayNightCycle = $GameWorld/DayNightOverlay
 @onready var _hud: HUD = $OverlayManager/HUD
 @onready var _debug_ui_inventory := $OverlayManager/HUD/DebugInventoryUI
+@onready var _serialization_mgr: SerializationManager = $SerializationManager
 @onready var _debug_ui_quest: QuestTracker = $OverlayManager/HUD/DebugQuestUI
 @onready var _debug_dnc: DebugDayNight = $OverlayManager/HUD/DebugStack/DebugDayNight
 @onready var _debug_light: DevinLightControl = $OverlayManager/HUD/DebugStack/DevinLightControl
 
 
 static func instance() -> Driver:
-	return Engine.get_singleton("DriverInstance")
+	return Engine.get_singleton("DriverInstance") as Driver
 
 
 func _ready() -> void:
@@ -59,10 +64,10 @@ func _post_ready() -> void:
 	# let's just ignore the get_node call. it's trash but beyond temporary
 	_debug_light.setup(player, player.get_node("Debug_Torch"))
 
-	if autoload_scene != null:
-		var level_instance := autoload_scene.instantiate() as LevelBase
+	if !autoload_scene_name.is_empty():
 		await _curtain.fade_in(1)
-		load_level(level_instance, "")
+		print("Loading autoload level")
+		load_level(autoload_scene_name, LevelBase.DEFAULT_MARKER)
 		await _curtain.fade_out(1)
 	else:
 		_menu_mgr.show_menu(Enums.MenuType.DEBUG)
@@ -73,33 +78,65 @@ func get_hud() -> HUD:
 	return _hud
 
 
-## Loads a new level into the game world
-func load_level(tgt: LevelBase, target_name: String) -> void:
-	# first add the new level
-	_world.add_child(tgt)
+func update_loaded_level() -> String:
+	print("Updating level")
+	var level_name: String = _last_loaded_level.level_name
+	update_level.emit(_last_loaded_level)
+	return level_name
+
+
+func free_previous_level() -> void:
+	_world.remove_child(_last_loaded_level)
+	_last_loaded_level.queue_free()
+
+
+## Loads a new level into the game world. Connected to SerilizationManager.gd: load_saved_level
+func load_level(target_level_name: String, target_name: String) -> void:
+	var packed_level: PackedScene
+	var new_level: LevelBase
+
 	if _last_loaded_level != null:
-		# if we had a previous level clean it up.
-		_world.remove_child(_last_loaded_level)
-		_last_loaded_level.save_level_state()
-		_last_loaded_level.queue_free()
+		if !_serialization_mgr.is_loading_game:
+			update_loaded_level()
+		free_previous_level()
 
 	# make sure the hud is shown
 	get_hud().show()
 
-	# run any setup the level needs to do to work
-	tgt.setup(self)
+	# Load a level, either a previously saved/persisting level otherwise a new level
+	print("Target Level Name: " + target_level_name)
+	if _serialization_mgr.check_level_persistence(target_level_name):
+		packed_level = load(_serialization_mgr.get_persistent_level_dict()[target_level_name])
+		print("Loading persisting level")
+	else:
+		packed_level = load(Utils.level_to_path_text(target_level_name))
+		print("Loading non-persisting level")
 
+	if packed_level:
+		new_level = packed_level.instantiate()
+		_world.add_child(new_level, true)
+
+		## Run any setup the level needs to do to work
+		new_level.setup(self)
+
+		# update level ref
+		_last_loaded_level = new_level
+
+		_set_player(new_level, target_name)
+	else:
+		printerr("packed level is null")
+
+
+## Setup the player in the recently loaded level
+func _set_player(new_level: LevelBase, marker_name: String) -> void:
 	# TODO: get the player ready and move them to the appropriate location
 	# we'll probably want to parameterize this more eventually.
 	player.visible = true
 	player.player_controled = true
-	if target_name == null || target_name == "":
-		target_name = LevelBase.DEFAULT_MARKER
-	var location := tgt.get_named_location(target_name)
+	if marker_name == null || marker_name == "":
+		marker_name = LevelBase.DEFAULT_MARKER
+	var location := new_level.get_named_location(marker_name)
 	player.global_position = location
-
-	# update level ref
-	_last_loaded_level = tgt
 
 
 ## Returns the currently loaded level. A bit of a hack for routing things into
@@ -109,21 +146,12 @@ func get_current_level() -> LevelBase:
 
 
 ## TODO: We'll need to switch away  from debug load path soon
-func request_debug_load(path: String) -> void:
+func request_debug_load(name: String) -> void:
 	var music_ready := audio_mgr.play(Enums.AudioTrack.SKETCH_2, 2)
 	await _curtain.fade_in(1)
 	_menu_mgr.hide_menu(Enums.MenuType.DEBUG)
-
-	var new_scene_resource := load(path) as PackedScene
-	var new_scene := new_scene_resource.instantiate()
-	if new_scene is LevelBase:
-		load_level(new_scene as LevelBase, LevelBase.DEFAULT_MARKER)
-	else:
-		_world.add_child(new_scene)
-		_world.remove_child(player)
-		player.queue_free()
-		new_scene.setup(self)
-
+	print("debug load")
+	load_level(name, LevelBase.DEFAULT_MARKER)
 	await music_ready.finished
 	await _curtain.fade_out(1)
 

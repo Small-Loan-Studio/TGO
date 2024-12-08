@@ -26,6 +26,9 @@ var is_pressed: bool = false
 
 
 func _ready() -> void:
+  if Engine.is_editor_hint():
+    return
+
   _switch.set_config(self)
 
 ## Reset switch state. That means:

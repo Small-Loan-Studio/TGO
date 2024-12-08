@@ -11,7 +11,7 @@ const DEFAULT_MARKER: String = "PlayerStart"
 		return editor_overlay_color
 	set(value):
 		editor_overlay_color = value
-		if Engine.is_editor_hint():
+		if Engine.is_editor_hint() && _canvas_modulate != null:
 			_canvas_modulate.color = value
 
 ## When enabled the color overlay will be applied. When unset it will not.
@@ -20,16 +20,21 @@ const DEFAULT_MARKER: String = "PlayerStart"
 		return apply_editor_overlay
 	set(value):
 		apply_editor_overlay = value
-		if Engine.is_editor_hint():
+		if Engine.is_editor_hint() && _canvas_modulate != null:
 			_canvas_modulate.visible = apply_editor_overlay
 
 var driver: Driver
 
+var level_name: String = name
+
 var _canvas_modulate: CanvasModulate = null:
 	get:
-		# done as a property getter because we can't use @onready as part of @tool
-		# script and I don't know a better pattern
-		return get_node("CanvasModulate")
+		var path := "CanvasModulate"
+		if has_node(path):
+			# done as a property getter because we can't use @onready as part of @tool
+			# script and I don't know a better pattern
+			return get_node(path)
+		return null
 
 @onready var _marker_root := $Markers
 
@@ -37,8 +42,9 @@ var _canvas_modulate: CanvasModulate = null:
 func _ready() -> void:
 	if !Engine.is_editor_hint():
 		var ref := _canvas_modulate
-		remove_child(ref)
-		ref.queue_free()
+		if ref != null:
+			remove_child(ref)
+			ref.queue_free()
 
 
 func setup(driver_in: Driver) -> void:
@@ -64,8 +70,8 @@ func save_level_state() -> void:
 ##
 ## TODO: Currently this is just plumbing between the level and driver that
 ## may be unnecessary. Think about the wiring and what this should look like.
-func swap_to_level(tgt: LevelBase, marker_target: String) -> void:
-	driver.load_level(tgt, marker_target)
+func swap_to_level(target_level_name: String, marker_target: String) -> void:
+	driver.load_level(target_level_name, marker_target)
 
 
 ## Finds a named position under the market root. Used in conjuction with
