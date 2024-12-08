@@ -28,7 +28,6 @@ var _last_loaded_level: LevelBase = null
 @onready var _debug_inv_remove: DebugInvRemove = $OverlayManager/HUD/DebugStack/DebugInvRemove
 
 
-
 static func instance() -> Driver:
 	return Engine.get_singleton("DriverInstance") as Driver
 
@@ -65,9 +64,8 @@ func _post_ready() -> void:
 	_debug_dnc.setup(_day_night_cycle)
 	# let's just ignore the get_node call. it's trash but beyond temporary
 	_debug_light.setup(player, player.get_node("Debug_Torch"))
-	
 	_debug_inv_remove.setup(inventory_mgr.get_inventory(player.id))
-	
+
 	if !autoload_scene_name.is_empty():
 		await _curtain.fade_in(1)
 		print("Loading autoload level")

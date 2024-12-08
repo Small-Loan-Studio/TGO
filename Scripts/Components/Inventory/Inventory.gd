@@ -73,7 +73,7 @@ func remove_by_id(item_id: String, count: int = 1) -> bool:
 					print(str(count) + " " + item_id + " removed from inventory ")
 					count = 0
 					break
-					
+
 				elif _items[index].quantity <= count:
 					## exact amount to remove, delete whole stack
 					count = count - _items[index].quantity
@@ -82,8 +82,9 @@ func remove_by_id(item_id: String, count: int = 1) -> bool:
 					break
 	inventory_updated.emit(self)
 	return true
-	
-func remove(item: Item, count: int = 1) ->bool:
+
+
+func remove(item: Item, count: int = 1) -> bool:
 	return remove_by_id(item.id, count)
 
 
