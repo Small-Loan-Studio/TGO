@@ -57,8 +57,34 @@ func insert(item: ItemStack) -> bool:
 	return false
 
 
-func remove(_item: ItemStack) -> void:
-	pass
+func remove_by_id(item_id: String, count: int = 1) -> bool:
+	if not has_item_by_id(item_id):
+		printerr("Item does not exist in inventory")
+		return false
+	if count_item_by_id(item_id) < count:
+		printerr("Attempting to remove more items than present in inventory")
+		return false
+	while count > 0:
+		for index in _items.size():
+			if _items[index].item.id == item_id:
+				if _items[index].quantity > count:
+					## Bigger stack than needed, decrement quantity
+					_items[index].quantity = _items[index].quantity - count
+					print(str(count) + " " + item_id + " removed from inventory ")
+					count = 0
+					break
+					
+				elif _items[index].quantity <= count:
+					## exact amount to remove, delete whole stack
+					count = count - _items[index].quantity
+					print(str(_items[index].quantity) + " " + item_id + " removed from inventory ")
+					_items.remove_at(index)
+					break
+	inventory_updated.emit(self)
+	return true
+	
+func remove(item: Item, count: int = 1) ->bool:
+	return remove_by_id(item.id, count)
 
 
 func set_size(new_size: int) -> void:
