@@ -12,7 +12,7 @@ var _interactable_plugin: EditorInspectorPlugin
 func _enter_tree() -> void:
 	_load_scene()
 	_editor = get_editor_interface()
-	_interactable_plugin = preload("res://addons_tgo/editors/tgo_inspector_interactable.gd").new()
+	_interactable_plugin = load("res://addons_tgo/editors/tgo_inspector_interactable.gd").new()
 	add_inspector_plugin(_interactable_plugin)
 
 

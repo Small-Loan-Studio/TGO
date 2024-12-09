@@ -92,6 +92,8 @@ func free_previous_level() -> void:
 
 ## Loads a new level into the game world. Connected to SerilizationManager.gd: load_saved_level
 func load_level(target_level_name: String, target_name: String) -> void:
+	assert(target_level_name != "", "Level to load must not be empty")
+
 	var packed_level: PackedScene
 	var new_level: LevelBase
 

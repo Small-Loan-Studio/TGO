@@ -91,6 +91,13 @@ static func _angle_to_direction_4(angle_rad: float) -> Enums.Direction:
 	return Enums.Direction.SOUTH
 
 
+static func level_path_to_name(path: String) -> String:
+	if path.begins_with("res://"):
+		path = path.substr(0, Utils.LEVEL_DIR.length())
+	path = path.substr(0, path.length() - 5)
+	return path
+
+
 ## Used for getting persistent levels and loading saved levels [b]NOT[/b] the original levels
 static func level_to_path_binary(level_name: String) -> String:
 	return USER_DATA_DIR + SAVE_FOLDER + LEVEL_FOLDER + level_name + LEVEL_EXT_BIN
@@ -115,3 +122,22 @@ static func user_level_dir() -> String:
 
 static func user_inventory_dir() -> String:
 	return USER_DATA_DIR + SAVE_FOLDER + INVENTORY_FOLDER
+
+
+static func walk_directory(root: String, pred_fn: Callable) -> Array[String]:
+	var da := DirAccess.open(root)
+	if da == null:
+		printerr("Unable to open %s: %s", [root, DirAccess.get_open_error()])
+		return []
+
+	var results: Array[String] = []
+
+	da.list_dir_begin()
+	var file_name := da.get_next()
+	while file_name != "":
+		if pred_fn == null || pred_fn.call(file_name):
+			results.append(file_name)
+		file_name = da.get_next()
+	da.list_dir_end()
+
+	return results

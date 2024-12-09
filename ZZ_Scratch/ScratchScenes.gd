@@ -15,4 +15,13 @@ const SCENES = {"Greyboxing": "BadLevelA"}
 ## [br]
 ## For details of how this works see Driver.request_debug_load
 static func get_scenes() -> Dictionary:
-	return SCENES
+	var opts := Utils.walk_directory(
+		Utils.LEVEL_DIR, func(s: String) -> bool: return s.ends_with(".tscn")
+	)
+
+	var result := {}
+	for a in opts:
+		var v := Utils.level_path_to_name(a)
+		result[v] = v
+
+	return result
