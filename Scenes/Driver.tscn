@@ -19,7 +19,6 @@
 
 [node name="Driver" type="Node2D"]
 script = ExtResource("1_agcjs")
-autoload_scene_name = "world_overall"
 
 [node name="AudioManager" type="Node" parent="."]
 script = ExtResource("2_4seev")

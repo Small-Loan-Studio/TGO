@@ -22,4 +22,4 @@ mono_crash.*.json
 .vscode/
 
 #Builds Folder
-Builds/
+builds/
