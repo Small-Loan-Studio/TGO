@@ -29,23 +29,12 @@ func _ready() -> void:
 	_switch_poly = $Switch/Polygon2D
 	_switch_shape = $Switch/CollisionShape2D
 	_delegate = $SignalDelegate
+
 	if !Engine.is_editor_hint():
 		_delegate.configure(self, _switch_poly)
 
 	_sync_feedback()
-	# finish conversion to _sync_sensor()
-	_switch_poly.color = default_color
-	var x := sensor_size.x / 2
-	var y := sensor_size.y / 2
-	_switch_poly.polygon = [
-		Vector2(-x, -y),
-		Vector2(x, -y),
-		Vector2(x, y),
-		Vector2(-x, y),
-	]
-	var rs2d := RectangleShape2D.new()
-	rs2d.size = sensor_size
-	_switch_shape.shape = rs2d
+	_sync_sensor()
 
 
 func _process(_delta: float) -> void:

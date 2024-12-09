@@ -19,8 +19,9 @@ signal failed_trigger(id: String, reason: Enums.TriggerFailure)
 ## A list of effects to perform when a switch is released
 @export var on_released_effects: Array[Effect] = []
 
-## This is set when the switch has been pressed by one or more actors
-var is_pressed: bool = false
+## This is set when the switch has been pressed by one or more actors.
+## Do not set directly, @exported to get this data saved.
+@export var is_pressed: bool = false
 
 @onready var _switch: Switch = $Switch
 
