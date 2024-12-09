@@ -14,6 +14,7 @@ func configure(cfg: SimpleSwitchConfig, switch_poly: Polygon2D) -> void:
 	## set initial pressed state based on the current state of the switch
 	set_activation(cfg.is_pressed)
 
+
 func _on_triggered(_id: String, state: bool) -> void:
 	set_activation(state)
 
