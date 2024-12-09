@@ -21,6 +21,7 @@ var _delegate: Node
 var _switch_poly: Polygon2D
 var _switch_shape: CollisionShape2D
 
+
 func _ready() -> void:
 	super()
 
@@ -46,6 +47,7 @@ func _ready() -> void:
 	rs2d.size = sensor_size
 	_switch_shape.shape = rs2d
 
+
 func _process(_delta: float) -> void:
 	if Engine.is_editor_hint():
 		_switch_poly.visible = feedback_enabled
@@ -53,7 +55,8 @@ func _process(_delta: float) -> void:
 
 	if track_variable != "":
 		# TODO: this is probably not super performant but good enough for now
-		_delegate._set_activation(Dialogic.VAR.get_variable(track_variable))
+		_delegate.set_activation(Dialogic.VAR.get_variable(track_variable))
+
 
 func _sync_feedback() -> void:
 	if _switch_poly != null:

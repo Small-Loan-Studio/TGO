@@ -26,10 +26,11 @@ var is_pressed: bool = false
 
 
 func _ready() -> void:
-  if Engine.is_editor_hint():
-    return
+	if Engine.is_editor_hint():
+		return
 
-  _switch.set_config(self)
+	_switch.set_config(self)
+
 
 ## Reset switch state. That means:
 ##    a. clears the activation stack
@@ -37,5 +38,5 @@ func _ready() -> void:
 ## Does not emit triggered(false) or activate on_released_effects chain. If a
 ## switch was previously single_fire it remains single_fire after a reset.
 func reset() -> void:
-  _switch._activation_stack.clear()
-  is_pressed = false
+	_switch._activation_stack.clear()
+	is_pressed = false

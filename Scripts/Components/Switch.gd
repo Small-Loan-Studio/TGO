@@ -31,6 +31,7 @@ var _cur_level: LevelBase
 
 var _config: SwitchConfig
 
+
 func _ready() -> void:
 	_cur_level = Utils.get_level_parent(self)
 
