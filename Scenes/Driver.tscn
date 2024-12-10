@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3 uid="uid://d4cnh54npmjiv"]
+[gd_scene load_steps=17 format=3 uid="uid://cobsc7v0oqc8l"]
 
 [ext_resource type="Script" path="res://Scripts/Driver.gd" id="1_agcjs"]
 [ext_resource type="Script" path="res://Scripts/AudioManager.gd" id="2_4seev"]
