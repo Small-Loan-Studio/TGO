@@ -22,27 +22,6 @@
 class_name Switch
 extends Area2D
 
-signal triggered(id: String, state: bool)
-signal failed_trigger(id: String, reason: Enums.TriggerFailure)
-
-## Checked as part of an evaluation if some actor can press a switch
-@export var conditions: Array[TriggerCondition] = []
-
-## If set a switch may only be triggered once and will not be released when
-## the trigger actors are removed. May be reset only via [reset].
-@export var single_fire: bool = false
-
-## If set only an actor with one of the listed IDs can activate a switch.
-@export var id_mask: Array[String] = []
-
-## A list of effects to perform when a switch is pressed
-@export var on_pressed_effects: Array[Effect] = []
-## A list of effects to perform when a switch is released
-@export var on_released_effects: Array[Effect] = []
-
-## This is set when the switch has been pressed by one or more actors
-var is_pressed: bool = false
-
 ## Tracks the full set of ids that are present in this switch area and have
 ## triggered an activation (or can keep it activated)
 var _activation_stack: Array[String]
@@ -50,19 +29,15 @@ var _activation_stack: Array[String]
 ## Tracks the level that the action is taking place in
 var _cur_level: LevelBase
 
+var _config: SwitchConfig
+
 
 func _ready() -> void:
 	_cur_level = Utils.get_level_parent(self)
 
 
-## Reset switch state. That means:
-##    a. clears the activation stack
-##    b. sets is_pressed to false.
-## Does not emit triggered(false) or activate on_released_effects chain. If a
-## switch was previously single_fire it remains single_fire after a reset.
-func reset() -> void:
-	_activation_stack.clear()
-	is_pressed = false
+func set_config(cfg: SwitchConfig) -> void:
+	_config = cfg
 
 
 func _on_enter(area: Area2D) -> void:
@@ -94,26 +69,26 @@ func _on_exit_body(body: Node2D) -> void:
 
 
 func _on_enter_id(id: String) -> void:
-	if id_mask != null && id_mask.size() > 0:
-		if !(id in id_mask):
+	if _config.id_mask != null && _config.id_mask.size() > 0:
+		if !(id in _config.id_mask):
 			# Because the switch is already pressed this activation didn't really
 			# fail to press it so much it didn't get into the activation stack.
-			if !is_pressed:
-				failed_trigger.emit(id, Enums.TriggerFailure.ID_MASK)
+			if !_config.is_pressed:
+				_config.failed_trigger.emit(id, Enums.TriggerFailure.ID_MASK)
 			return
 
 	if id in _activation_stack:
 		printerr("%s: ID %s attempting to activate but already in stack" % [name, id])
 		return
 
-	for c in conditions:
+	for c in _config.conditions:
 		if !c.evaluate(id):
-			failed_trigger.emit(id, Enums.TriggerFailure.CONDITIONS)
+			_config.failed_trigger.emit(id, Enums.TriggerFailure.CONDITIONS)
 			return
 
 	_activation_stack.push_back(id)
 
-	if !is_pressed:
+	if !_config.is_pressed:
 		_do_press(id)
 
 
@@ -131,11 +106,11 @@ func _on_exit_id(id: String) -> void:
 ## internal state, emits triggered signals, and fires any configured effects.
 ## If a switch is already pressed bails without any changes / side effects.
 func _do_press(id: String) -> void:
-	if is_pressed:
+	if _config.is_pressed:
 		return
-	is_pressed = true
-	triggered.emit(id, true)
-	for e in on_pressed_effects:
+	_config.is_pressed = true
+	_config.triggered.emit(id, true)
+	for e in _config.on_pressed_effects:
 		e.act(id, _cur_level)
 
 
@@ -143,10 +118,10 @@ func _do_press(id: String) -> void:
 ## emits a triggered signal, and fires any configured effects. If a switch is
 ## single_fire then it does not make any changes.
 func _do_release(id: String) -> void:
-	if single_fire:
+	if _config.single_fire:
 		return
 
-	is_pressed = false
-	triggered.emit(id, false)
-	for e in on_released_effects:
+	_config.is_pressed = false
+	_config.triggered.emit(id, false)
+	for e in _config.on_released_effects:
 		e.act(id, _cur_level)

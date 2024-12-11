@@ -10,6 +10,8 @@ var _editor: EditorInterface = null
 var _interactable_plugin: EditorInspectorPlugin
 
 func _enter_tree() -> void:
+	if !Engine.is_editor_hint():
+		return
 	_load_scene()
 	_editor = get_editor_interface()
 	_interactable_plugin = load("res://addons_tgo/editors/tgo_inspector_interactable.gd").new()
@@ -17,7 +19,9 @@ func _enter_tree() -> void:
 
 
 func _load_scene() -> void:
-	var control_scene_res := preload("res://addons_tgo/greyboxing/UI/TGOControlDock.tscn")
+	if !Engine.is_editor_hint():
+		return
+	var control_scene_res := load("res://addons_tgo/greyboxing/UI/TGOControlDock.tscn")
 	_control_scene = control_scene_res.instantiate() as TGOControlDock
 	add_control_to_dock(DOCK_SLOT_LEFT_BR, _control_scene)
 	_control_scene.setup(self)
