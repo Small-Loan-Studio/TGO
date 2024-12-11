@@ -7,6 +7,8 @@
 script = ExtResource("1_fdbxp")
 
 [node name="Switch" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 4
 script = ExtResource("1_rlyjj")
 
 [connection signal="area_entered" from="Switch" to="Switch" method="_on_enter"]

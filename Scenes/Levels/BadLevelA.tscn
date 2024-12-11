@@ -118,6 +118,7 @@ id = "block-left"
 [node name="aoeu" parent="Objects/Switches" index="0" instance=ExtResource("10_d5o0s")]
 position = Vector2(36, 116)
 sensor_size = Vector2(20, 20)
+feedback_enabled = true
 on_pressed_effects = Array[Resource("res://Scripts/Resources/Effect.gd")]([SubResource("Resource_ir05h")])
 
 [node name="Switch" parent="Objects/Switches" index="1" instance=ExtResource("10_d5o0s")]
@@ -142,12 +143,13 @@ on_released_effects = Array[Resource("res://Scripts/Resources/Effect.gd")]([SubR
 
 [node name="Switch_3" parent="Objects/Switches" index="3" instance=ExtResource("10_d5o0s")]
 z_index = -1
-position = Vector2(521.614, 336.838)
+position = Vector2(-12, 171)
 sensor_size = Vector2(20, 20)
 feedback_enabled = true
 default_color = Color(0.61339, 0.61339, 0.61339, 1)
 active_color = Color(0.878906, 0.0274658, 0.3268, 1)
 single_fire = true
+id_mask = Array[String](["block-left"])
 
 [node name="mayor_buckley" parent="Objects/Characters" index="0" instance=ExtResource("10_0kwe0")]
 position = Vector2(534, 289)
