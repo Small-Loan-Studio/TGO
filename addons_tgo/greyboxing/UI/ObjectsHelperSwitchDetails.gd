@@ -2,7 +2,7 @@
 class_name ObjectsHelperSwitchDetails
 extends VBoxContainer
 
-const SWITCH_SCENE = preload("res://Scenes/Components/SimpleSwitchAlt.tscn")
+const SWITCH_SCENE = preload("res://Scenes/Components/SimpleSwitch.tscn")
 const TMPL_NONE = "None"
 const TMPL_TOGGLE_BOOL = "Toggle Boolean"
 const TMPL_INSTANT_BOOL = "Autorelease Boolean"

@@ -8,7 +8,7 @@
 [ext_resource type="Script" path="res://Scripts/Resources/Effects/SetQuestStateEffect.gd" id="8_m75fk"]
 [ext_resource type="PackedScene" uid="uid://d1y25semyqxkw" path="res://Scenes/Components/Greyboxing/MoveableBlock.tscn" id="9_78gjk"]
 [ext_resource type="PackedScene" uid="uid://c2kg6apj756dw" path="res://Scenes/Components/NPC.tscn" id="10_0kwe0"]
-[ext_resource type="PackedScene" uid="uid://c3fld6my8so3p" path="res://Scenes/Components/SimpleSwitchAlt.tscn" id="10_d5o0s"]
+[ext_resource type="PackedScene" uid="uid://c3fld6my8so3p" path="res://Scenes/Components/SimpleSwitch.tscn" id="10_d5o0s"]
 [ext_resource type="Script" path="res://Scripts/Resources/Effects/DialogueEffect.gd" id="11_03hvs"]
 [ext_resource type="Script" path="res://Scripts/Resources/Effects/TeleportEffect.gd" id="11_c5j4a"]
 [ext_resource type="Resource" uid="uid://0e6y5ablkqx" path="res://Scripts/Resources/NPCs/Buckley.tres" id="12_56eii"]
