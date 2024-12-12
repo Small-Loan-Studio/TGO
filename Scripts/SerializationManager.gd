@@ -241,8 +241,6 @@ func _unzip_save() -> bool:
 
 
 func _write_dialogic_data() -> bool:
-	var slot_name := "tgo_world"
-	var dlg_file := "state.txt"
 	var err := Dialogic.Save.save(DIALGOIC_SLOT)
 	if err != OK:
 		printerr("Failed to save world state: %d" % [err])
