@@ -93,7 +93,7 @@ static func _angle_to_direction_4(angle_rad: float) -> Enums.Direction:
 
 static func level_path_to_name(path: String) -> String:
 	if path.begins_with("res://"):
-		path = path.substr(0, Utils.LEVEL_DIR.length())
+		path = path.substr(Utils.LEVEL_DIR.length())
 	path = path.substr(0, path.length() - 5)
 	return path
 
@@ -124,7 +124,7 @@ static func user_inventory_dir() -> String:
 	return USER_DATA_DIR + SAVE_FOLDER + INVENTORY_FOLDER
 
 
-static func walk_directory(root: String, pred_fn: Callable) -> Array[String]:
+static func walk_directory(root: String, pred_fn: Callable, recursive: bool = true) -> Array[String]:
 	var da := DirAccess.open(root)
 	if da == null:
 		printerr("Unable to open %s: %s", [root, DirAccess.get_open_error()])
@@ -132,9 +132,16 @@ static func walk_directory(root: String, pred_fn: Callable) -> Array[String]:
 
 	var results: Array[String] = []
 
+	da.include_navigational = false
 	da.list_dir_begin()
+
 	var file_name := da.get_next()
 	while file_name != "":
+		if da.current_is_dir():
+			var nested := walk_directory("%s/%s" % [root, file_name], pred_fn)
+			for e in nested:
+				results.append("%s/%s" % [file_name, e])
+
 		if pred_fn == null || pred_fn.call(file_name):
 			results.append(file_name)
 		file_name = da.get_next()

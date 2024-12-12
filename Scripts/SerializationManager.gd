@@ -59,13 +59,22 @@ func _create_file_paths() -> int:
 
 ## Saves everything necessary in the game and creates a .sav file recording this data.
 ## Connected to Driver.gd signal: save_level
-func _save_game() -> void:
+func save_game() -> void:
 	print("Saving Game")
 	if !_check_file_path_exists():
 		_create_file_paths()
 
 	# Need to get the last loaded level to update and its name for meta data which lives in Driver.
-	_write_meta_data(Driver.instance().update_loaded_level())
+	var last_level := Driver.instance().get_current_level()
+
+	var meta_data := SaveFileMeta.new()
+
+	if last_level != null:
+		update_level(last_level)
+		meta_data.level_name = last_level.level_name
+		# _write_meta_data(last_level.level_name)
+
+	_write_meta(meta_data)
 	Driver.instance().inventory_mgr.save(Utils.user_save_dir())
 
 	_write_zip_file()
@@ -76,7 +85,7 @@ func _save_game() -> void:
 
 
 ## Loads a previously saved game. Connected to Driver.gd signal: load_save
-func _load_game() -> void:
+func load_game() -> void:
 	print("Loading Game")
 
 	if _check_save_exists():
@@ -98,7 +107,7 @@ func _load_game() -> void:
 ## Deletes the save folder where persisted data exists and the TGO.sav file if they exist.
 ## NOTE: These should probably be seperated in the future because we will always want to clear
 ## the persisted data folder when the game closes not necessarily delete any save files.
-func _delete_save() -> void:
+func delete_save() -> void:
 	print("Deleting Save...")
 	if FileAccess.file_exists("user://" + SAVE_FILE_NAME):
 		OS.move_to_trash(ProjectSettings.globalize_path(Utils.user_data_dir() + SAVE_FILE_NAME))
@@ -122,8 +131,8 @@ func check_level_persistence(target_level_name: String) -> bool:
 	return _persistent_levels.has(target_level_name)
 
 
-## Overwrites an existing persisted level on disk. Connected to Driver.gd: update_level
-func _update_persistent_level(level: LevelBase) -> void:
+## Overwrites an existing persisted level on disk.
+func update_level(level: LevelBase) -> void:
 	print("Updating persistent level dictionary")
 
 	var file_path: String = Utils.level_to_path_binary(level.level_name)
@@ -134,7 +143,7 @@ func _update_persistent_level(level: LevelBase) -> void:
 
 	var error: int = ResourceSaver.save(package, file_path)
 	if error != OK:
-		printerr("Error saving previous level: ", error)
+		printerr("Error saving previous level to %s: %s" % [file_path, error])
 		return
 
 	_persistent_levels[level.level_name] = Utils.level_to_path_binary(level.level_name)
@@ -197,36 +206,63 @@ func _read_zip_file() -> void:
 
 			new_file.close()
 
-	var meta_dict: Dictionary = _read_meta_data()
-	_load_saved_level(meta_dict["[level]"])
+	var meta_data := _read_meta()
+	_load_saved_level(meta_data.level_name)
 	reader.close()
 
 
-func _write_meta_data(level_name: String) -> void:
-	var new_file: FileAccess = FileAccess.open(
-		Utils.user_save_dir() + META_FILE_NAME, FileAccess.WRITE_READ
-	)
-	if !new_file:
-		printerr("Meta file could not be created")
-		return
+func _write_meta(data: SaveFileMeta) -> bool:
+	var path := Utils.user_save_dir() + META_FILE_NAME
+	var file := FileAccess.open( path, FileAccess.WRITE_READ )
+	if !file:
+		printerr("Unable to write metadata %s: %s" % [path, FileAccess.get_open_error()])
+		return false
 
-	new_file.store_string("[level]\n")
-	new_file.store_string(level_name + "\n")
-	new_file.close()
+	file.store_string(data.marshal())
+
+	file.close()
+	return true
 
 
-func _read_meta_data() -> Dictionary:
-	var meta_file: FileAccess = FileAccess.open(
-		Utils.user_save_dir() + META_FILE_NAME, FileAccess.READ
-	)
-	var meta_dict: Dictionary
-	if meta_file:
-		while meta_file.get_position() < meta_file.get_length():
-			var key: String = meta_file.get_line()
-			meta_dict[key] = meta_file.get_line()
+func _read_meta() -> SaveFileMeta:
+	var path := Utils.user_save_dir() + META_FILE_NAME
+	var file := FileAccess.open(path, FileAccess.READ)
 
-		meta_file.close()
-	else:
-		printerr("Meta file could not be read")
+	if !file:
+		printerr("Unable to read metadata %s: %d" % [path, FileAccess.get_open_error()])
+		return null
 
-	return meta_dict
+	var meta_string := file.get_as_text(true)
+	file.close()
+
+	return SaveFileMeta.unmarshal(meta_string)
+
+
+class SaveFileMeta:
+	extends RefCounted
+
+	var level_name: String
+
+	func marshal() -> String:
+		var data := {
+			"meta_version": 0,
+			"level": level_name,
+		}
+
+		return JSON.stringify(data, "\t")
+
+	static func unmarshal(input_str: String) -> SaveFileMeta:
+		var sf := SaveFileMeta.new()
+
+		var json := JSON.new()
+		var err := json.parse(input_str)
+		if err != OK:
+			printerr("Failed to parse save data. Line: %d, error: %s" % [json.get_error_line(), json.get_error_message()])
+			return null
+
+		if json.data["meta_version"] != 0:
+			assert(false, "Unknown meta file format")
+
+		sf.level_name = json.data["level"]
+
+		return sf

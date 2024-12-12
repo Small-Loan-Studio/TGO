@@ -1,4 +1,4 @@
-[gd_scene load_steps=32 format=3 uid="uid://d4mrsiv1l8m35"]
+[gd_scene load_steps=34 format=3 uid="uid://d4mrsiv1l8m35"]
 
 [ext_resource type="PackedScene" uid="uid://dyq8mcdsutnsa" path="res://Scenes/Components/LevelBase.tscn" id="1_iejup"]
 [ext_resource type="Script" path="res://ZZ_Scratch/GreyboxingTools/BadLevelA.gd" id="2_22a2t"]
@@ -19,6 +19,7 @@
 [ext_resource type="Resource" uid="uid://b7w2axnxl0fkt" path="res://Scripts/Resources/Items/Key.tres" id="15_svqc7"]
 [ext_resource type="Script" path="res://Scripts/Resources/Effects/ConditionalEffect.gd" id="15_x1ixy"]
 [ext_resource type="PackedScene" uid="uid://b13wrl3bedjku" path="res://Scenes/Components/Torch.tscn" id="16_p267s"]
+[ext_resource type="Script" path="res://Scripts/Components/Greyboxing/GreyboxObject.gd" id="20_mq1s0"]
 
 [sub_resource type="Resource" id="Resource_ecxtb"]
 script = ExtResource("8_m75fk")
@@ -84,8 +85,14 @@ script = ExtResource("7_7tyl1")
 load_level_name = "BadLevelB"
 marker_name = ""
 
+[sub_resource type="Resource" id="Resource_1tsfc"]
+script = ExtResource("7_7tyl1")
+load_level_name = "Test Folder/nested level"
+marker_name = ""
+
 [node name="LevelBase" instance=ExtResource("1_iejup")]
 script = ExtResource("2_22a2t")
+_name = ""
 
 [node name="TileMap" parent="." index="0"]
 tile_set = ExtResource("2_nrxue")
@@ -108,7 +115,6 @@ y_sort_width = 104
 
 [node name="MoveableBlock" parent="Objects" index="1" instance=ExtResource("9_78gjk")]
 position = Vector2(138, 172)
-collision_layer = 5
 id = "block-right"
 
 [node name="MoveableBlock2" parent="Objects" index="2" instance=ExtResource("9_78gjk")]
@@ -197,6 +203,16 @@ position = Vector2(207, 156)
 light_energy = 0.7
 light_size = 2.0
 display_height = 2
+
+[node name="WarpToTestLevel" type="Node2D" parent="Objects" index="10" instance=ExtResource("7_ipcqk")]
+y_sort_enabled = true
+position = Vector2(313, -10)
+script = ExtResource("20_mq1s0")
+can_interact = true
+tint = Color(0.988281, 0.92591, 0.262512, 1)
+effects = Array[Resource("res://Scripts/Resources/Effect.gd")]([SubResource("Resource_1tsfc")])
+y_sort_width = 72
+metadata/_edit_group_ = true
 
 [node name="PlayerStart" type="Node2D" parent="Markers" index="0"]
 position = Vector2(522, 183)

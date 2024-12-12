@@ -25,7 +25,15 @@ const DEFAULT_MARKER: String = "PlayerStart"
 
 var driver: Driver
 
-var level_name: String = name
+@export
+var _name: String
+var level_name: String:
+	get:
+		if _name == "":
+			_name = Utils.level_path_to_name(get_scene_file_path())
+		return _name
+	set(value):
+		printerr("Unable to assign level_name to: ", level_name)
 
 var _canvas_modulate: CanvasModulate = null:
 	get:
