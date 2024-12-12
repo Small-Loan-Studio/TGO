@@ -31,9 +31,10 @@ func _check_file_path_exists() -> bool:
 
 
 func _check_save_exists() -> bool:
-	var exist: bool = FileAccess.file_exists(Utils.USER_DATA_DIR + SAVE_FILE_NAME)
+	var path := Utils.USER_DATA_DIR + SAVE_FILE_NAME
+	var exist: bool = FileAccess.file_exists(path)
 	if !exist:
-		printerr("Save file does not exist")
+		printerr("Save file (%s) does not exist" % [path])
 	return exist
 
 
@@ -49,11 +50,13 @@ func _create_file_paths() -> int:
 		error = DirAccess.make_dir_absolute(Utils.user_level_dir())
 		if error != OK:
 			printerr("Could not create directory: ", Utils.user_level_dir(), " Error: ", error)
+			return error
 
 	if !DirAccess.dir_exists_absolute(Utils.user_inventory_dir()):
 		error = DirAccess.make_dir_absolute(Utils.user_inventory_dir())
 		if error != OK:
 			printerr("Could not create directory: ", Utils.user_inventory_dir(), " Error: ", error)
+
 	return error
 
 
@@ -72,10 +75,10 @@ func save_game() -> void:
 	if last_level != null:
 		update_level(last_level)
 		meta_data.level_name = last_level.level_name
-		# _write_meta_data(last_level.level_name)
+
+	Driver.instance().inventory_mgr.save(Utils.user_save_dir())
 
 	_write_meta(meta_data)
-	Driver.instance().inventory_mgr.save(Utils.user_save_dir())
 
 	_write_zip_file()
 	DirAccess.rename_absolute(
@@ -97,7 +100,14 @@ func load_game() -> void:
 			return
 
 	is_loading_game = true
-	_read_zip_file()
+	if !_unzip_save():
+		printerr("Unable to decompress save file.")
+		return
+
+	var save_meta := _read_meta()
+	if save_meta != null:
+		_load_saved_level(save_meta.level_name)
+
 	DirAccess.rename_absolute(
 		Utils.user_data_dir() + ZIP_FILE_NAME, Utils.user_data_dir() + SAVE_FILE_NAME
 	)
@@ -136,6 +146,15 @@ func update_level(level: LevelBase) -> void:
 	print("Updating persistent level dictionary")
 
 	var file_path: String = Utils.level_to_path_binary(level.level_name)
+	var level_basedir := file_path.get_base_dir()
+
+	var create_err := DirAccess.make_dir_recursive_absolute(level_basedir)
+	if create_err != OK:
+		printerr("Failed to create level directory '%s' for %s: %d" % [
+			level_basedir, level.level_name,
+		])
+		return
+
 	var package: PackedScene = PackedScene.new()
 	for node in level.get_children():
 		node.set_owner(level)
@@ -162,41 +181,33 @@ func _write_zip_file() -> void:
 		return
 
 	# Saves the files inside the save folder
-	var directory: DirAccess = DirAccess.open(Utils.user_save_dir())
-	for file_name: String in directory.get_files():
+	var file_list := Utils.walk_directory(Utils.user_save_dir())
+	for file_name: String in file_list:
 		writer.start_file(file_name)
 		writer.write_file(FileAccess.get_file_as_bytes(Utils.user_save_dir() + file_name))
-
-	# Saves files in sub directories in the save folder
-	for dir_name: String in directory.get_directories():
-		var subdir: DirAccess = DirAccess.open(Utils.user_save_dir() + dir_name + "/")
-		for file: String in subdir.get_files():
-			writer.start_file(dir_name + "/" + file)
-			writer.write_file(
-				FileAccess.get_file_as_bytes(Utils.user_save_dir() + dir_name + "/" + file)
-			)
 
 	writer.close_file()
 	writer.close()
 
 
-func _read_zip_file() -> void:
+func _unzip_save() -> bool:
 	var reader: ZIPReader = ZIPReader.new()
 	var error := reader.open(Utils.user_data_dir() + ZIP_FILE_NAME)
 	if error != OK:
 		printerr("Could not open zip: ", error)
-		return
+		return false
 
 	# file_name includes the whole directory path within the zip file for example,
 	# the filename for a level would be level/level_name.scn
 	for file_name: String in reader.get_files():
-		if file_name.contains(".scn") or file_name.contains(".tscn"):
+		if file_name.ends_with(".scn") or file_name.ends_with(".tscn"):
 			var file: PackedByteArray = reader.read_file(file_name, true)
 			var new_file: FileAccess = FileAccess.open(
 				Utils.user_save_dir() + file_name, FileAccess.WRITE_READ
 			)
 			if !new_file:
 				printerr("newfile is null: ", FileAccess.get_open_error())
+				return false
 
 			new_file.store_buffer(file)
 
@@ -206,9 +217,8 @@ func _read_zip_file() -> void:
 
 			new_file.close()
 
-	var meta_data := _read_meta()
-	_load_saved_level(meta_data.level_name)
 	reader.close()
+	return true
 
 
 func _write_meta(data: SaveFileMeta) -> bool:
