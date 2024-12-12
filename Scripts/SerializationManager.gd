@@ -3,10 +3,11 @@ extends Node
 
 signal load_saved_level(level_name: String, marker: String)
 
-const INVENTORY_FOLDER: String = "inventory/"
-const SAVE_FILE_NAME: String = "TGO.sav"
-const ZIP_FILE_NAME: String = "TGO.zip"
-const META_FILE_NAME: String = "TGO.meta"
+const INVENTORY_FOLDER := "inventory/"
+const WORLD_STATE_FILE := "world_state.bin"
+const SAVE_FILE_NAME := "TGO.sav"
+const ZIP_FILE_NAME := "TGO.zip"
+const META_FILE_NAME := "TGO.meta"
 
 @export var is_loading_game: bool = false
 
@@ -79,6 +80,7 @@ func save_game() -> void:
 	Driver.instance().inventory_mgr.save(Utils.user_save_dir())
 
 	_write_meta(meta_data)
+	_write_dialogic_data()
 
 	_write_zip_file()
 	DirAccess.rename_absolute(
@@ -103,6 +105,8 @@ func load_game() -> void:
 	if !_unzip_save():
 		printerr("Unable to decompress save file.")
 		return
+
+	_restore_dialogic()
 
 	var save_meta := _read_meta()
 	if save_meta != null:
@@ -220,6 +224,37 @@ func _unzip_save() -> bool:
 	reader.close()
 	return true
 
+
+func _write_dialogic_data() -> bool:
+	var slot_name := "tgo_world"
+	var dlg_file := "state.txt"
+	var err := Dialogic.Save.save(slot_name)
+	if err != OK:
+		printerr("Failed to save world state: %d" % [err])
+		return false
+	DirAccess.copy_absolute(
+		Dialogic.Save.SAVE_SLOTS_DIR.path_join(slot_name).path_join(dlg_file),
+		Utils.user_save_dir().path_join(WORLD_STATE_FILE),
+	)
+	DirAccess.copy_absolute(
+		Dialogic.Save.SAVE_SLOTS_DIR.path_join(slot_name).path_join("thumbnail.png"),
+		Utils.user_save_dir().path_join("thumbnail.png"),
+	)
+
+	return true
+
+func _restore_dialogic() -> bool:
+	var slot_name := "tgo_world"
+	var dlg_file := "state.txt"
+	DirAccess.make_dir_absolute(Dialogic.Save.SAVE_SLOTS_DIR.path_join(slot_name))
+	DirAccess.copy_absolute(
+		Utils.user_save_dir().path_join(WORLD_STATE_FILE),
+		Dialogic.Save.SAVE_SLOTS_DIR.path_join(slot_name).path_join(dlg_file),
+	)
+
+	Dialogic.Save.load(slot_name)
+
+	return true
 
 func _write_meta(data: SaveFileMeta) -> bool:
 	var path := Utils.user_save_dir() + META_FILE_NAME
