@@ -4,10 +4,15 @@ extends Node
 signal load_saved_level(level_name: String, marker: String)
 
 const INVENTORY_FOLDER := "inventory/"
-const WORLD_STATE_FILE := "world_state.bin"
+const TGO_SCREENSHOT_FILE_NAME := "thumbnail.png"
 const SAVE_FILE_NAME := "TGO.sav"
 const ZIP_FILE_NAME := "TGO.zip"
 const META_FILE_NAME := "TGO.meta"
+
+const WORLD_STATE_FILE := "world_state.bin"
+const DIALGOIC_SLOT := "tgo_world"
+const DIALOGIC_FILENAME := "state.txt"
+const DIALOGIC_THUMBNAIL := "thumbnail.png"
 
 @export var is_loading_game: bool = false
 
@@ -80,7 +85,10 @@ func save_game() -> void:
 	Driver.instance().inventory_mgr.save(Utils.user_save_dir())
 
 	_write_meta(meta_data)
-	_write_dialogic_data()
+	if !_write_dialogic_data():
+		printerr("Unable to save world game state")
+		return
+
 
 	_write_zip_file()
 	DirAccess.rename_absolute(
@@ -106,7 +114,9 @@ func load_game() -> void:
 		printerr("Unable to decompress save file.")
 		return
 
-	_restore_dialogic()
+	if !_restore_dialogic():
+		printerr("Unable to restore world state")
+		return
 
 	var save_meta := _read_meta()
 	if save_meta != null:
@@ -228,31 +238,46 @@ func _unzip_save() -> bool:
 func _write_dialogic_data() -> bool:
 	var slot_name := "tgo_world"
 	var dlg_file := "state.txt"
-	var err := Dialogic.Save.save(slot_name)
+	var err := Dialogic.Save.save(DIALGOIC_SLOT)
 	if err != OK:
 		printerr("Failed to save world state: %d" % [err])
 		return false
-	DirAccess.copy_absolute(
-		Dialogic.Save.SAVE_SLOTS_DIR.path_join(slot_name).path_join(dlg_file),
+	err = DirAccess.copy_absolute(
+		Dialogic.Save.SAVE_SLOTS_DIR.path_join(DIALGOIC_SLOT).path_join(DIALOGIC_FILENAME),
 		Utils.user_save_dir().path_join(WORLD_STATE_FILE),
 	)
-	DirAccess.copy_absolute(
-		Dialogic.Save.SAVE_SLOTS_DIR.path_join(slot_name).path_join("thumbnail.png"),
-		Utils.user_save_dir().path_join("thumbnail.png"),
+	if err != OK:
+		printerr("Failed to copy dialogic state: %d" % [err])
+		return false
+
+	err = DirAccess.copy_absolute(
+		Dialogic.Save.SAVE_SLOTS_DIR.path_join(DIALGOIC_SLOT).path_join(DIALOGIC_THUMBNAIL),
+		Utils.user_save_dir().path_join(TGO_SCREENSHOT_FILE_NAME),
 	)
+	if err != OK:
+		printerr("Failed to copy over save state screenshot: %d" % [err])
+		return false
 
 	return true
 
 func _restore_dialogic() -> bool:
-	var slot_name := "tgo_world"
-	var dlg_file := "state.txt"
-	DirAccess.make_dir_absolute(Dialogic.Save.SAVE_SLOTS_DIR.path_join(slot_name))
-	DirAccess.copy_absolute(
-		Utils.user_save_dir().path_join(WORLD_STATE_FILE),
-		Dialogic.Save.SAVE_SLOTS_DIR.path_join(slot_name).path_join(dlg_file),
-	)
+	var err := DirAccess.make_dir_absolute(Dialogic.Save.SAVE_SLOTS_DIR.path_join(DIALGOIC_SLOT))
+	if err != OK:
+		printerr("Failed to make Dialogic save state dir: %d" %[err])
+		return false
 
-	Dialogic.Save.load(slot_name)
+	err = DirAccess.copy_absolute(
+		Utils.user_save_dir().path_join(WORLD_STATE_FILE),
+		Dialogic.Save.SAVE_SLOTS_DIR.path_join(DIALGOIC_SLOT).path_join(DIALOGIC_FILENAME),
+	)
+	if err != OK:
+		printerr("Failed to move world state into place: %d" %[err])
+		return false
+
+	err = Dialogic.Save.load(DIALGOIC_SLOT)
+	if err != OK:
+		printerr("Failed to restore world state in Dialogic: %d" %[err])
+		return false
 
 	return true
 
