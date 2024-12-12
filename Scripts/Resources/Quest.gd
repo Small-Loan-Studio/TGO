@@ -257,6 +257,7 @@ func set_state(new_state: Enums.QuestState) -> void:
 		state = new_state
 		state_change.emit(id, old_state, new_state)
 
+
 func _to_string() -> String:
 	var next_ids: Array = next.map(func(e: Quest) -> String: return e.id)
 	var parent_ids: Array = _parent.map(func(e: Quest) -> String: return e.id)

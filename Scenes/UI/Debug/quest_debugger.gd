@@ -3,7 +3,6 @@ extends HBoxContainer
 
 var _mgr: QuestManager
 
-
 @onready var _status_group := $QuestStatus
 @onready var _quest_dropdown: OptionButton = $QuestOption
 @onready var _current_status: Label = $QuestStatus/CurrentQuestState

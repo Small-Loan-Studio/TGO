@@ -186,7 +186,9 @@ func _on_quest_state_changed(
 	var canonicalized_id := quest_id.to_lower()
 	match new_state:
 		Enums.QuestState.DORMANT:
-			printerr("QuestState has changed to dormant, this is unexpected if not explicitly triggered.")
+			printerr(
+				"QuestState has changed to dormant, this is unexpected if not explicitly triggered."
+			)
 			_active_quests.erase(canonicalized_id)
 
 		Enums.QuestState.ACTIVE:
