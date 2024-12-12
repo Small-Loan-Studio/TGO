@@ -150,9 +150,10 @@ static func walk_directory(
 	var file_name := da.get_next()
 	while file_name != "":
 		if da.current_is_dir():
-			var nested := walk_directory("%s/%s" % [root, file_name], pred_fn)
-			for e in nested:
-				results.append("%s/%s" % [file_name, e])
+			if recursive:
+				var nested := walk_directory("%s/%s" % [root, file_name], pred_fn)
+				for e in nested:
+					results.append("%s/%s" % [file_name, e])
 		else:
 			if pred_fn == null || pred_fn.call(file_name):
 				results.append(file_name)

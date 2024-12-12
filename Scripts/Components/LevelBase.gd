@@ -4,6 +4,11 @@ extends Node2D
 
 const DEFAULT_MARKER: String = "PlayerStart"
 
+## Not for normal use -- explicitly paired with level_name to cache the
+## the res:// path on initial load. Nested save state basically depends
+## on not touching this.
+@export var _name: String
+
 ## Set this to a color to get an overlay and rough simulation of how your
 ## lighting will look in that setting
 @export var editor_overlay_color: Color = Color.DIM_GRAY:
@@ -25,8 +30,6 @@ const DEFAULT_MARKER: String = "PlayerStart"
 
 var driver: Driver
 
-@export
-var _name: String
 var level_name: String:
 	get:
 		if _name == "":

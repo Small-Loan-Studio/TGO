@@ -91,7 +91,6 @@ marker_name = ""
 
 [node name="LevelBase" instance=ExtResource("1_iejup")]
 script = ExtResource("2_22a2t")
-_name = ""
 
 [node name="TileMap" parent="." index="0"]
 tile_set = ExtResource("2_nrxue")

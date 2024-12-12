@@ -48,7 +48,7 @@ func _create_file_paths() -> int:
 	print("Creating file path")
 	var error: int
 	error = DirAccess.make_dir_recursive_absolute(Utils.user_save_dir())
-	if error != OK:
+	if error != OK && error != ERR_ALREADY_EXISTS:
 		printerr("Could not create directory: ", Utils.user_save_dir(), " Error: ", error)
 		return error
 
@@ -88,7 +88,6 @@ func save_game() -> void:
 	if !_write_dialogic_data():
 		printerr("Unable to save world game state")
 		return
-
 
 	_write_zip_file()
 	DirAccess.rename_absolute(
@@ -163,10 +162,16 @@ func update_level(level: LevelBase) -> void:
 	var level_basedir := file_path.get_base_dir()
 
 	var create_err := DirAccess.make_dir_recursive_absolute(level_basedir)
-	if create_err != OK:
-		printerr("Failed to create level directory '%s' for %s: %d" % [
-			level_basedir, level.level_name,
-		])
+	if create_err != OK && create_err != ERR_ALREADY_EXISTS:
+		printerr(
+			(
+				"Failed to create level directory '%s' for %s: %d"
+				% [
+					level_basedir,
+					level.level_name,
+				]
+			)
+		)
 		return
 
 	var package: PackedScene = PackedScene.new()
@@ -242,17 +247,23 @@ func _write_dialogic_data() -> bool:
 	if err != OK:
 		printerr("Failed to save world state: %d" % [err])
 		return false
-	err = DirAccess.copy_absolute(
-		Dialogic.Save.SAVE_SLOTS_DIR.path_join(DIALGOIC_SLOT).path_join(DIALOGIC_FILENAME),
-		Utils.user_save_dir().path_join(WORLD_STATE_FILE),
+	err = (
+		DirAccess
+		. copy_absolute(
+			Dialogic.Save.SAVE_SLOTS_DIR.path_join(DIALGOIC_SLOT).path_join(DIALOGIC_FILENAME),
+			Utils.user_save_dir().path_join(WORLD_STATE_FILE),
+		)
 	)
 	if err != OK:
 		printerr("Failed to copy dialogic state: %d" % [err])
 		return false
 
-	err = DirAccess.copy_absolute(
-		Dialogic.Save.SAVE_SLOTS_DIR.path_join(DIALGOIC_SLOT).path_join(DIALOGIC_THUMBNAIL),
-		Utils.user_save_dir().path_join(TGO_SCREENSHOT_FILE_NAME),
+	err = (
+		DirAccess
+		. copy_absolute(
+			Dialogic.Save.SAVE_SLOTS_DIR.path_join(DIALGOIC_SLOT).path_join(DIALOGIC_THUMBNAIL),
+			Utils.user_save_dir().path_join(TGO_SCREENSHOT_FILE_NAME),
+		)
 	)
 	if err != OK:
 		printerr("Failed to copy over save state screenshot: %d" % [err])
@@ -260,30 +271,35 @@ func _write_dialogic_data() -> bool:
 
 	return true
 
+
 func _restore_dialogic() -> bool:
 	var err := DirAccess.make_dir_absolute(Dialogic.Save.SAVE_SLOTS_DIR.path_join(DIALGOIC_SLOT))
-	if err != OK:
-		printerr("Failed to make Dialogic save state dir: %d" %[err])
+	if err != OK && err != ERR_ALREADY_EXISTS:
+		printerr("Failed to make Dialogic save state dir: %d" % [err])
 		return false
 
-	err = DirAccess.copy_absolute(
-		Utils.user_save_dir().path_join(WORLD_STATE_FILE),
-		Dialogic.Save.SAVE_SLOTS_DIR.path_join(DIALGOIC_SLOT).path_join(DIALOGIC_FILENAME),
+	err = (
+		DirAccess
+		. copy_absolute(
+			Utils.user_save_dir().path_join(WORLD_STATE_FILE),
+			Dialogic.Save.SAVE_SLOTS_DIR.path_join(DIALGOIC_SLOT).path_join(DIALOGIC_FILENAME),
+		)
 	)
 	if err != OK:
-		printerr("Failed to move world state into place: %d" %[err])
+		printerr("Failed to move world state into place: %d" % [err])
 		return false
 
 	err = Dialogic.Save.load(DIALGOIC_SLOT)
 	if err != OK:
-		printerr("Failed to restore world state in Dialogic: %d" %[err])
+		printerr("Failed to restore world state in Dialogic: %d" % [err])
 		return false
 
 	return true
 
+
 func _write_meta(data: SaveFileMeta) -> bool:
 	var path := Utils.user_save_dir() + META_FILE_NAME
-	var file := FileAccess.open( path, FileAccess.WRITE_READ )
+	var file := FileAccess.open(path, FileAccess.WRITE_READ)
 	if !file:
 		printerr("Unable to write metadata %s: %s" % [path, FileAccess.get_open_error()])
 		return false
@@ -327,7 +343,15 @@ class SaveFileMeta:
 		var json := JSON.new()
 		var err := json.parse(input_str)
 		if err != OK:
-			printerr("Failed to parse save data. Line: %d, error: %s" % [json.get_error_line(), json.get_error_message()])
+			printerr(
+				(
+					"Failed to parse save data. Line: %d, error: %s"
+					% [
+						json.get_error_line(),
+						json.get_error_message(),
+					]
+				),
+			)
 			return null
 
 		if json.data["meta_version"] != 0:
