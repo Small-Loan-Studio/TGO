@@ -1,0 +1,46 @@
+[gd_scene load_steps=2 format=3 uid="uid://my7v0l0el1dj"]
+
+[ext_resource type="Script" path="res://Scenes/UI/Debug/quest_debugger.gd" id="1_jo3ej"]
+
+[node name="QuestDebugger" type="HBoxContainer"]
+theme_override_constants/separation = 8
+script = ExtResource("1_jo3ej")
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 2
+text = "Quest"
+
+[node name="QuestOption" type="OptionButton" parent="."]
+layout_mode = 2
+focus_mode = 0
+item_count = 1
+selected = 0
+popup/item_0/text = ""
+popup/item_0/id = 0
+
+[node name="QuestStatus" type="HBoxContainer" parent="."]
+visible = false
+layout_mode = 2
+
+[node name="CurrentQuestState" type="Label" parent="QuestStatus"]
+layout_mode = 2
+text = "{state}"
+
+[node name="MarginContainer" type="MarginContainer" parent="QuestStatus"]
+layout_mode = 2
+theme_override_constants/margin_left = 8
+
+[node name="HBoxContainer" type="HBoxContainer" parent="QuestStatus/MarginContainer"]
+layout_mode = 2
+
+[node name="NewQuestState" type="OptionButton" parent="QuestStatus/MarginContainer/HBoxContainer"]
+layout_mode = 2
+focus_mode = 0
+
+[node name="SetStateBtn" type="Button" parent="QuestStatus/MarginContainer/HBoxContainer"]
+layout_mode = 2
+focus_mode = 0
+text = "Set State"
+
+[connection signal="item_selected" from="QuestOption" to="." method="_on_quest_option_item_selected"]
+[connection signal="pressed" from="QuestStatus/MarginContainer/HBoxContainer/SetStateBtn" to="." method="_on_set_state_btn_pressed"]
