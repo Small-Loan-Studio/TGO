@@ -94,7 +94,10 @@ static func _angle_to_direction_4(angle_rad: float) -> Enums.Direction:
 static func level_path_to_name(path: String) -> String:
 	if path.begins_with("res://"):
 		path = path.substr(Utils.LEVEL_DIR.length())
-	path = path.substr(0, path.length() - 5)
+	if path.ends_with(".tscn"):
+		path = path.substr(0, path.length() - 5)
+	if path.ends_with(".scn"):
+		path = path.substr(0, path.length() - 4)
 	return path
 
 
