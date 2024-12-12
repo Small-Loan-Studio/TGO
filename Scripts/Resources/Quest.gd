@@ -139,7 +139,7 @@ func evaluate() -> bool:
 				Enums.QuestState.ACTIVE:
 					return false
 				Enums.QuestState.FAILED:
-					if !q.may_fail:
+					if !qp.may_fail:
 						return self.mark_failed()
 				Enums.QuestState.COMPLETED:
 					if !chain_completed(q):
@@ -231,6 +231,31 @@ func mark_completed() -> bool:
 	state_change.emit(id, old_state, state)
 	return true
 
+
+## Forces the quest into the desired; will use the normal mark_<state> path
+## but will also explicitly set the state and emit the state change signal
+## itself if normal guard rails prevented the change.
+##
+## Generally this shouldn't be called in the normal flow of gameplay and
+## should be used in utility code or similar.
+func set_state(new_state: Enums.QuestState) -> void:
+	var success := false
+	match new_state:
+		Enums.QuestState.DORMANT:
+			# there is no mark_dormant
+			pass
+		Enums.QuestState.ACTIVE:
+			success = mark_active()
+		Enums.QuestState.FAILED:
+			success = mark_failed()
+		Enums.QuestState.COMPLETED:
+			success = mark_completed()
+		_:
+			assert(false, "Unexpected quest state: " + Enums.quest_state_name(new_state))
+	if !success:
+		var old_state := state
+		state = new_state
+		state_change.emit(id, old_state, new_state)
 
 func _to_string() -> String:
 	var next_ids: Array = next.map(func(e: Quest) -> String: return e.id)
