@@ -295,7 +295,7 @@ func _validate_variable_refs() -> void:
 			var c := q.conditions[c_idx]
 			if c is QuestConditionVariable:
 					if !Dialogic.VAR.has(c.variable):
-						printerr("Misconfigured quest: %s has condition referencing invalid variable. Condition %d: '%s'" % [q.id, c_idx, c.variable])
+						printerr("Misconfigured quest (id: %s) has condition referencing invalid variable. Condition %d: '%s'" % [q.id, c_idx, c.variable])
 
 
 func debug_print() -> void:
