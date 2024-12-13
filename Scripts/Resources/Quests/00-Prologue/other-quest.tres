@@ -1,7 +1,15 @@
-[gd_resource type="Resource" script_class="Quest" load_steps=3 format=3 uid="uid://bxdn0h0w2ebqk"]
+[gd_resource type="Resource" script_class="Quest" load_steps=5 format=3 uid="uid://bxdn0h0w2ebqk"]
 
 [ext_resource type="Script" path="res://Scripts/Resources/Quest.gd" id="1_hcm75"]
 [ext_resource type="Resource" uid="uid://df2nc62jm1bw1" path="res://Scripts/Resources/Quests/01-ActOne/quest.tres" id="1_o2lpw"]
+[ext_resource type="Script" path="res://Scripts/Resources/QuestConditionVariable.gd" id="1_w8ix7"]
+
+[sub_resource type="Resource" id="Resource_recap"]
+script = ExtResource("1_w8ix7")
+variable = "aoeuaoeua"
+check_type = 3
+target_value = "1234"
+invert_result = false
 
 [resource]
 script = ExtResource("1_hcm75")
@@ -10,7 +18,7 @@ title = ""
 description = ""
 manual_start = false
 state = 0
-conditions = Array[Resource("res://Scripts/Resources/QuestCondition.gd")]([])
+conditions = Array[Resource("res://Scripts/Resources/QuestCondition.gd")]([SubResource("Resource_recap")])
 phases = Array[Resource("res://Scripts/QuestPhase.gd")]([])
 next = Array[ExtResource("1_hcm75")]([ExtResource("1_o2lpw")])
 results = Array[Resource("res://Scripts/Resources/Effect.gd")]([])
