@@ -13,6 +13,8 @@ signal quest_updated(id: String)
 const QUEST_IDX = 0
 const PATH_IDX = 1
 
+var run_validation: bool = true
+
 # maps from quest id to the quest and resource path
 # Map<String, [Quest, path]>
 var _quest_dict: Dictionary = {}
@@ -21,7 +23,6 @@ var _quest_dict: Dictionary = {}
 # Map<String, null>
 var _active_quests: Dictionary = {}
 
-
 func _ready() -> void:
 	_load_quests()
 
@@ -29,6 +30,9 @@ func _ready() -> void:
 	# been set up. Could work around this via setup() call to explicitly inject
 	# dependencies if needed. That wolud be the more designed way to do this...
 	Callable(_connect_post_ready).call_deferred()
+
+	if run_validation:
+		_validate_variable_refs()
 
 
 ## Connect to external data sources, should be run via deferred call so that it
@@ -282,6 +286,16 @@ func _process_completed_quest(id: String) -> void:
 			var next_quest_phase := phase_parent.phases[idx]
 			if next_quest_phase.quest.state != Enums.QuestState.ACTIVE:
 				next_quest_phase.quest.mark_active()
+
+
+func _validate_variable_refs() -> void:
+	for quest_id: String in get_all_quest_ids():
+		var q := quest_by_id(quest_id)
+		for c_idx in len(q.conditions):
+			var c := q.conditions[c_idx]
+			if c is QuestConditionVariable:
+					if !Dialogic.VAR.has(c.variable):
+						printerr("Misconfigured quest: %s has condition referencing invalid variable. Condition %d: '%s'" % [q.id, c_idx, c.variable])
 
 
 func debug_print() -> void:
