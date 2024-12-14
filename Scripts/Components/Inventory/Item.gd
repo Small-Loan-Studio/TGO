@@ -31,33 +31,37 @@ func _to_string() -> String:
 
 static func all_ids() -> Array[String]:
 	var r: Array[String] = []
-	var paths := Utils.walk_directory(ITEM_PATH, func(s: String) -> bool: return s.ends_with(".tres"))
+	var paths := Utils.walk_directory(
+		ITEM_PATH, func(s: String) -> bool: return s.ends_with(".tres")
+	)
 	for p in paths:
 		var item := ResourceLoader.load(ITEM_PATH.path_join(p)) as Item
 		if item != null:
 			r.append(item.id)
 	return r
 
+
 static func tool_from_id(id: String) -> Item:
 	if !Engine.is_editor_hint():
 		return null
 
-	var item_paths := Utils.walk_directory(
-		ITEM_PATH,
-		func(s: String) -> bool: return s.ends_with(".tres"),
+	var item_paths := (
+		Utils
+		. walk_directory(
+			ITEM_PATH,
+			func(s: String) -> bool: return s.ends_with(".tres"),
+		)
 	)
 
 	var items := []
 	for p in item_paths:
-			var item := ResourceLoader.load(ITEM_PATH.path_join(p)) as Item
-			if item != null:
-				if item.id == id:
-					items.append(item)
+		var item := ResourceLoader.load(ITEM_PATH.path_join(p)) as Item
+		if item != null:
+			if item.id == id:
+				items.append(item)
 
 	if len(items) != 1:
-		assert(false, "Unable to determine which item '%s' is associated with: %s" % [
-			id, items
-		])
+		assert(false, "Unable to determine which item '%s' is associated with: %s" % [id, items])
 		return null
 
 	return items[0]

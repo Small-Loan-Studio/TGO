@@ -9,7 +9,7 @@ extends TriggerCondition
 func evaluate(_actor_id: String) -> bool:
 	var quest := Driver.instance().quest_mgr.quest_by_id(quest_id)
 
-  # We consider a quest to "exist" if it's not dormant
+	# We consider a quest to "exist" if it's not dormant
 	if check_type == Enums.CheckOp.EXISTS:
 		return quest.state != Enums.QuestState.DORMANT
 

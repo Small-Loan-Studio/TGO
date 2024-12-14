@@ -238,13 +238,13 @@ func build() -> SimpleSwitchConfig:
 
 
 func _new_inv_check(inv_id: String, item_id: String) -> TriggerCondition:
-			var inv_cond := InventoryCheckCondition.new()
-			inv_cond.inventory_id = inv_id
-			if item_id != "":
-				inv_cond.target_item = Item.tool_from_id(item_id)
-			inv_cond.check_type = Enums.CheckOp.EXISTS
-			inv_cond.check_value = 1
-			return inv_cond
+	var inv_cond := InventoryCheckCondition.new()
+	inv_cond.inventory_id = inv_id
+	if item_id != "":
+		inv_cond.target_item = Item.tool_from_id(item_id)
+	inv_cond.check_type = Enums.CheckOp.EXISTS
+	inv_cond.check_value = 1
+	return inv_cond
 
 
 func _configure_cond_variable() -> Array[TriggerCondition]:
@@ -345,7 +345,7 @@ func _setup_cond_quest() -> void:
 	condition_margin.show()
 
 
-func _on_condition_selected(index:int) -> void:
+func _on_condition_selected(index: int) -> void:
 	match index:
 		COND_NONE:
 			_setup_cond_none()
@@ -378,8 +378,8 @@ func _populate_cond_variable_list() -> void:
 	condition_var_dropdown.clear()
 	condition_var_dropdown.add_item("")
 	for kv: Array in _list_variables_and_type():
-				var k: String = kv[0]
-				condition_var_dropdown.add_item(k)
+		var k: String = kv[0]
+		condition_var_dropdown.add_item(k)
 	condition_var_dropdown.select(0)
 
 
@@ -426,14 +426,15 @@ func _on_condition_var_selected(index: int) -> void:
 	condition_var_value_type.text = ("[Type: %s]" % [var_type_string])
 	var_value_group.show()
 
-func _on_condition_var_bool_value_toggle(toggled_on:bool) -> void:
+
+func _on_condition_var_bool_value_toggle(toggled_on: bool) -> void:
 	if toggled_on:
 		condition_var_value_bool_string.text = "(True)"
 	else:
 		condition_var_value_bool_string.text = "(False)"
 
 
-func _on_condition_quest_selected(index:int) -> void:
+func _on_condition_quest_selected(index: int) -> void:
 	var quest_id := condition_quest_id_dropdown.get_item_text(index)
 	if quest_id == "":
 		quest_state_group.hide()
