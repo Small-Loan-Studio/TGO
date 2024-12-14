@@ -42,17 +42,22 @@ static func tool_from_id(id: String) -> Item:
 	if !Engine.is_editor_hint():
 		return null
 
-	var path := Utils.walk_directory(
+	var item_paths := Utils.walk_directory(
 		ITEM_PATH,
-		func(s: String) -> bool:
-			var item := ResourceLoader.load(ITEM_PATH.path_join(s)) as Item
-			if item == null:
-				return false
-			return item.id == id,
+		func(s: String) -> bool: return s.ends_with(".tres"),
 	)
-	if len(path) != 1:
+
+	var items := []
+	for p in item_paths:
+			var item := ResourceLoader.load(ITEM_PATH.path_join(p)) as Item
+			if item != null:
+				if item.id == id:
+					items.append(item)
+
+	if len(items) != 1:
 		assert(false, "Unable to determine which item '%s' is associated with: %s" % [
-			id, path
+			id, items
 		])
 		return null
-	return ResourceLoader.load(ITEM_PATH.path_join(path[0])) as Item
+
+	return items[0]

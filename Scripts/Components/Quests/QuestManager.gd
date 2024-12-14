@@ -316,7 +316,10 @@ static func tool_all_ids() -> Array[String]:
 		return []
 
 	var q_ids: Array[String] = []
-	var quest_paths := Utils.walk_directory(Utils.QUEST_DIR, func(s: String) -> bool: return s.ends_with(".tres"))
+	var quest_paths := Utils.walk_directory(
+		Utils.QUEST_DIR,
+		func(s: String) -> bool: return s.ends_with(".tres"),
+	)
 
 	for path in quest_paths:
 		var q := ResourceLoader.load(Utils.QUEST_DIR.path_join(path)) as Quest
