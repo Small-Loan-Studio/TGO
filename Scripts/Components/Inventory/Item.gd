@@ -1,6 +1,8 @@
 class_name Item
 extends Resource
 
+const ITEM_PATH = "res://Scripts/Resources/Items"
+
 @export var id: String = ""
 @export var name: String = ""
 ## Unused property currently, will be necessary later on probably
@@ -25,3 +27,13 @@ extends Resource
 
 func _to_string() -> String:
 	return name
+
+
+static func all_ids() -> Array[String]:
+	var r: Array[String] = []
+	var paths := Utils.walk_directory(ITEM_PATH, func(s: String) -> bool: return s.ends_with(".tres"))
+	for p in paths:
+		var item := ResourceLoader.load(ITEM_PATH.path_join(p)) as Item
+		if item != null:
+			r.append(item.id)
+	return r
