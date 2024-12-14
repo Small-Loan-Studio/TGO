@@ -13,8 +13,6 @@ const COND_OTHER_HAS_ITEM = 2
 const COND_VARIABLE = 3
 const COND_QUEST = 4
 
-var _all_condition_elements: Array[Control]
-
 @onready var switch_name: LineEdit = $NameHBox/Margin/Name
 @onready var sensor_size_x: SpinBox = $SizeHBox/Margin/SwitchSizeX
 @onready var sensor_size_y: SpinBox = $SizeHBox/Margin3/SwitchSizeY
@@ -45,14 +43,15 @@ var _all_condition_elements: Array[Control]
 @onready var condition_var_value_bool: CheckButton = %ConditionVarBoolValue
 @onready var condition_var_value_bool_string: Label = %ConditionVarBoolString
 @onready var condition_var_value_generic: LineEdit = %ConditionVarGenericValue
+@onready var condition_var_value_type: Label = %ConditionVarTypeLabel
 @onready var condition_quest_id_dropdown: OptionButton = %QuestIDDropdown
 @onready var condition_quest_state: OptionButton = %QuestStateDropdown
 
 
 func _ready() -> void:
-	_all_condition_elements = [
-
-	]
+	condition_quest_state.clear()
+	for qs_v: Enums.QuestState in Enums.QuestState.values():
+		condition_quest_state.add_item(Enums.quest_state_name(qs_v))
 
 
 func _on_visual_toggled(is_on: bool) -> void:
@@ -65,6 +64,10 @@ func _on_visual_toggled(is_on: bool) -> void:
 func _get_template() -> String:
 	var index := template_dropdown.selected
 	return template_dropdown.get_item_text(index)
+
+
+func _get_condition_template() -> int:
+	return condition_dropdown.selected
 
 
 func _get_variable() -> String:
@@ -195,6 +198,32 @@ func build() -> SimpleSwitchConfig:
 		TMPL_SET_VAR:
 			assert(false, "Not implemented")
 
+	var conditions_to_set: Array[TriggerCondition] = []
+
+	match _get_condition_template():
+		COND_NONE:
+			pass
+
+		COND_PLAYER_HAS_ITEM:
+			var item_id := item_select_dropdown.get_item_text(item_select_dropdown.selected)
+			var inv_cond := _new_inv_check(Utils.PLAYER_ID, item_id)
+			conditions_to_set = [inv_cond]
+
+		COND_OTHER_HAS_ITEM:
+			var item_id := item_select_dropdown.get_item_text(item_select_dropdown.selected)
+			var inv_id := inventory_id.text.strip_edges()
+			var inv_cond := _new_inv_check(inv_id, item_id)
+			conditions_to_set = [inv_cond]
+
+		COND_VARIABLE:
+			conditions_to_set = _configure_cond_variable()
+
+		COND_QUEST:
+			conditions_to_set = _configure_cond_quest()
+
+		_:
+			assert(false, "Unexpected condition template")
+
 	scn.sensor_size = Vector2(sensor_size_x.value, sensor_size_y.value)
 	scn.feedback_enabled = visible_checkbox.button_pressed
 	if visible_checkbox.button_pressed:
@@ -202,7 +231,54 @@ func build() -> SimpleSwitchConfig:
 		scn.active_color = active_color.color
 		scn.z_index = -1
 
+	if len(conditions_to_set) > 0:
+		scn.conditions = conditions_to_set
+
 	return scn
+
+
+func _new_inv_check(inv_id: String, item_id: String) -> TriggerCondition:
+			var inv_cond := InventoryCheckCondition.new()
+			inv_cond.inventory_id = inv_id
+			if item_id != "":
+				inv_cond.target_item = Item.tool_from_id(item_id)
+			inv_cond.check_type = Enums.CheckOp.EXISTS
+			inv_cond.check_value = 1
+			return inv_cond
+
+
+func _configure_cond_variable() -> Array[TriggerCondition]:
+	var var_name := condition_var_dropdown.get_item_text(condition_var_dropdown.selected)
+	var var_type: int = _ersatz_dialogic_get_var(var_name)[1]
+
+	var cond := DialogicVarCondition.new()
+	cond.variable_name = var_name
+	cond.check_type = Enums.CheckOp.EQ
+
+	var check_value := ""
+
+	if TYPE_BOOL == var_type:
+		if condition_var_value_bool.toggle_mode:
+			check_value = "true"
+		else:
+			check_value = "false"
+	else:
+		check_value = condition_var_value_generic.text
+
+	cond.check_value = check_value
+	return [cond]
+
+
+func _configure_cond_quest() -> Array[TriggerCondition]:
+	var quest_id := condition_quest_id_dropdown.get_item_text(condition_quest_id_dropdown.selected)
+	var quest_state := condition_quest_state.get_item_text(condition_quest_state.selected)
+
+	var cond := QuestStateCondition.new()
+	cond.quest_id = quest_id
+	cond.check_type = Enums.CheckOp.EQ
+	cond.check_value = Enums.quest_state_from_str(quest_state)
+
+	return [cond]
 
 
 func reset() -> void:
@@ -213,6 +289,7 @@ func reset() -> void:
 	behavior_var_dropdown.clear()
 	visible_checkbox.button_pressed = false
 	color_margin.hide()
+	condition_dropdown.select(0)
 	condition_margin.hide()
 
 
@@ -250,11 +327,21 @@ func _setup_other_has_item() -> void:
 
 func _setup_cond_variable() -> void:
 	_hide_all_cond_groups()
+	var_value_group.hide()
 
 	_populate_cond_variable_list()
 
 	var_group.show()
-	var_value_group.hide()
+	condition_margin.show()
+
+
+func _setup_cond_quest() -> void:
+	_hide_all_cond_groups()
+	quest_state_group.hide()
+
+	_populate_quest_list()
+
+	quest_group.show()
 	condition_margin.show()
 
 
@@ -273,7 +360,7 @@ func _on_condition_selected(index:int) -> void:
 			_setup_cond_variable()
 
 		COND_QUEST:
-			pass
+			_setup_cond_quest()
 
 		_:
 			printerr("Hit unexpected condition case: ", index)
@@ -293,9 +380,21 @@ func _populate_cond_variable_list() -> void:
 	for kv: Array in _list_variables_and_type():
 				var k: String = kv[0]
 				condition_var_dropdown.add_item(k)
-	condition_dropdown.select(0)
+	condition_var_dropdown.select(0)
+
+
+func _populate_quest_list() -> void:
+	condition_quest_id_dropdown.clear()
+	condition_quest_id_dropdown.add_item("")
+	for id in QuestManager.tool_all_ids():
+		condition_quest_id_dropdown.add_item(id)
+
+	condition_quest_id_dropdown.select(0)
+
 
 func _on_condition_var_selected(index: int) -> void:
+	condition_var_value_generic.text = ""
+
 	var var_name := condition_var_dropdown.get_item_text(index).strip_edges()
 	if var_name == "":
 		var_value_group.hide()
@@ -303,12 +402,42 @@ func _on_condition_var_selected(index: int) -> void:
 
 	var var_info: Variant = _ersatz_dialogic_get_var(var_name)
 
+	var var_type_string := "Unknown"
+
 	match var_info[1]:
 		TYPE_STRING:
-			print("string")
+			condition_var_value_bool.hide()
+			condition_var_value_bool_string.hide()
+			condition_var_value_generic.show()
+			var_type_string = "String"
 
 		TYPE_BOOL:
-			print("bool")
+			condition_var_value_bool.show()
+			condition_var_value_bool_string.show()
+			condition_var_value_generic.hide()
+			var_type_string = "Bool"
 
 		TYPE_FLOAT:
-			print("float")
+			condition_var_value_bool.hide()
+			condition_var_value_bool_string.hide()
+			condition_var_value_generic.show()
+			var_type_string = "Float"
+
+	condition_var_value_type.text = ("[Type: %s]" % [var_type_string])
+	var_value_group.show()
+
+func _on_condition_var_bool_value_toggle(toggled_on:bool) -> void:
+	if toggled_on:
+		condition_var_value_bool_string.text = "(True)"
+	else:
+		condition_var_value_bool_string.text = "(False)"
+
+
+func _on_condition_quest_selected(index:int) -> void:
+	var quest_id := condition_quest_id_dropdown.get_item_text(index)
+	if quest_id == "":
+		quest_state_group.hide()
+		return
+
+	condition_quest_state.select(0)
+	quest_state_group.show()
