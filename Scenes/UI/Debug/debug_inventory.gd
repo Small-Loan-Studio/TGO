@@ -6,7 +6,7 @@ extends HBoxContainer
 @onready var QuantityPicker: OptionButton = $QuantityPicker
 @onready var item_dict: Dictionary = {}
 
-var itemStack : ItemStack = ItemStack.new()
+var itemStack : ItemStack
 var itemId: int
 var quantityId: int = -1
 var item: Item
@@ -57,6 +57,7 @@ func add_item() -> void:
 	if int(QuantityPicker.get_item_text(quantityId)) > item.stack_size:
 		printerr("Trying to add more than allowable stack size")
 		return
+	itemStack = ItemStack.new()
 	itemStack.item = item
 	itemStack.quantity = int(QuantityPicker.get_item_text(quantityId))
 	_inventory.insert(itemStack)
