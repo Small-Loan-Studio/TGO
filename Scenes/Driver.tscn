@@ -14,8 +14,8 @@
 [ext_resource type="PackedScene" uid="uid://dmyrmmjngi1ts" path="res://Scenes/UI/Debug/debug_day_night.tscn" id="10_8xh8g"]
 [ext_resource type="Script" path="res://Scripts/SerializationManager.gd" id="11_e6bsk"]
 [ext_resource type="PackedScene" uid="uid://dyuykg87w5vff" path="res://Scenes/UI/Debug/devin_light_control.tscn" id="11_igd87"]
-[ext_resource type="PackedScene" uid="uid://bud7qhb4chi3f" path="res://Scenes/UI/Debug/debug_inv_remove.tscn" id="11_y74ye"]
 [ext_resource type="PackedScene" uid="uid://cqin6fb282fjf" path="res://Scenes/Components/DayNightCycle.tscn" id="12_8kqo6"]
+[ext_resource type="PackedScene" uid="uid://bwx0yr616ip1g" path="res://Scenes/UI/Debug/debug_inventory.tscn" id="12_w3otq"]
 [ext_resource type="PackedScene" uid="uid://b13wrl3bedjku" path="res://Scenes/Components/Torch.tscn" id="13_kgcxt"]
 
 [node name="Driver" type="Node2D"]
@@ -123,7 +123,7 @@ layout_mode = 2
 [node name="DebugDayNight" parent="OverlayManager/HUD/DebugStack" instance=ExtResource("10_8xh8g")]
 layout_mode = 2
 
-[node name="DebugInvRemove" parent="OverlayManager/HUD/DebugStack" instance=ExtResource("11_y74ye")]
+[node name="DebugInventory" parent="OverlayManager/HUD/DebugStack" instance=ExtResource("12_w3otq")]
 layout_mode = 2
 
 [node name="Toast" type="ColorRect" parent="OverlayManager/HUD"]

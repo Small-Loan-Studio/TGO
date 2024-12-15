@@ -9,6 +9,7 @@ script = ExtResource("1_db8xf")
 
 [node name="DebugInvRemove" type="Button" parent="."]
 layout_mode = 2
+focus_mode = 0
 text = "Remove Inventory"
 
 [connection signal="pressed" from="DebugInvRemove" to="." method="_on_button_pressed"]

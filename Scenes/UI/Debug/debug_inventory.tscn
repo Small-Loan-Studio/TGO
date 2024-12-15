@@ -1,0 +1,44 @@
+[gd_scene load_steps=2 format=3 uid="uid://bwx0yr616ip1g"]
+
+[ext_resource type="Script" path="res://Scenes/UI/Debug/debug_inventory.gd" id="1_3nea3"]
+
+[node name="DebugInventory" type="HBoxContainer"]
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("1_3nea3")
+
+[node name="ItemPicker" type="OptionButton" parent="."]
+layout_mode = 2
+focus_mode = 0
+item_count = 2
+popup/item_0/text = "QUEST_KEY"
+popup/item_0/id = 0
+popup/item_1/text = "HEALTH_POTION"
+popup/item_1/id = 1
+
+[node name="QuantityPicker" type="OptionButton" parent="."]
+layout_mode = 2
+item_count = 5
+popup/item_0/text = "1"
+popup/item_0/id = 0
+popup/item_1/text = "2"
+popup/item_1/id = 1
+popup/item_2/text = "3"
+popup/item_2/id = 2
+popup/item_3/text = "4"
+popup/item_3/id = 3
+popup/item_4/text = "5"
+popup/item_4/id = 4
+
+[node name="AddInv" type="Button" parent="."]
+layout_mode = 2
+focus_mode = 0
+text = "Add Item"
+
+[node name="RemoveInv" type="Button" parent="."]
+layout_mode = 2
+focus_mode = 0
+text = "Remove Item"
+
+[connection signal="pressed" from="AddInv" to="." method="add_item"]
+[connection signal="pressed" from="RemoveInv" to="." method="remove_item"]
