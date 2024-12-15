@@ -311,6 +311,9 @@ func debug_print() -> void:
 		print("  %s -> %s" % [k, Enums.quest_state_name(quest_by_id(k).state)])
 
 
+## Walks quest directory in the resource pack returning all ids for discovered
+## Quest resources. Necessary (and works) only in the editor, if needed at
+## runtime use non-static [all_ids] which returns all loaded quest ids instead.
 static func tool_all_ids() -> Array[String]:
 	if !Engine.is_editor_hint():
 		return []

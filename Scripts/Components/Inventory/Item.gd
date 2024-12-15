@@ -29,7 +29,12 @@ func _to_string() -> String:
 	return name
 
 
-static func all_ids() -> Array[String]:
+## walks the item directory and returns the id of all Item resources. This is
+## intended only for use in the editor.
+static func tool_all_ids() -> Array[String]:
+	if !Engine.is_editor_hint():
+		return []
+
 	var r: Array[String] = []
 	var paths := Utils.walk_directory(
 		ITEM_PATH, func(s: String) -> bool: return s.ends_with(".tres")
@@ -41,6 +46,9 @@ static func all_ids() -> Array[String]:
 	return r
 
 
+## Walk item directory to find a resource with the provided ID. Some validation
+## is done and we error if we find not exactly one item. Intended for use in the
+## editor only.
 static func tool_from_id(id: String) -> Item:
 	if !Engine.is_editor_hint():
 		return null

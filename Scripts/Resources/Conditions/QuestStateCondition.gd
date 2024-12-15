@@ -1,3 +1,6 @@
+## Checks if a quest is in a specific state. The only operators that work here
+## are EQ (checks for exact state match) and EXISTS (checks for any state
+## except DORMANT.
 class_name QuestStateCondition
 extends TriggerCondition
 

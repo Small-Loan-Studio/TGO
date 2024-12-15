@@ -123,6 +123,11 @@ func _get_bool_variables() -> Array[String]:
 	return res
 
 
+## returns dialogic variable info as parsed from ProjectSettings; this
+## is approximately the same process Dialogic uses at runtime but we
+## can't use that during editing because it hasn't loaded VAR subsystem.
+## As such this can only interact with variables that are defined through
+## the UI and not anything created at runtime.
 func _ersatz_dialogic_get_var(path: String) -> Variant:
 	var parts := path.split(".")
 
@@ -131,6 +136,10 @@ func _ersatz_dialogic_get_var(path: String) -> Variant:
 		var dict_name: String = parts[0]
 		parts = parts.slice(1)
 		folder = folder[dict_name]
+
+	if len(parts) != 1:
+		printerr("Error looking for dialogic variable '%s'" % [path])
+		return []
 
 	var v: Variant = folder[parts[0]]
 	return [v, typeof(v)]
@@ -206,14 +215,12 @@ func build() -> SimpleSwitchConfig:
 
 		COND_PLAYER_HAS_ITEM:
 			var item_id := item_select_dropdown.get_item_text(item_select_dropdown.selected)
-			var inv_cond := _new_inv_check(Utils.PLAYER_ID, item_id)
-			conditions_to_set = [inv_cond]
+			conditions_to_set = [_new_inv_check(Utils.PLAYER_ID, item_id)]
 
 		COND_OTHER_HAS_ITEM:
 			var item_id := item_select_dropdown.get_item_text(item_select_dropdown.selected)
 			var inv_id := inventory_id.text.strip_edges()
-			var inv_cond := _new_inv_check(inv_id, item_id)
-			conditions_to_set = [inv_cond]
+			conditions_to_set = [_new_inv_check(inv_id, item_id)]
 
 		COND_VARIABLE:
 			conditions_to_set = _configure_cond_variable()
@@ -368,7 +375,7 @@ func _on_condition_selected(index: int) -> void:
 
 
 func _populate_item_ids() -> void:
-	var item_ids := Item.all_ids()
+	var item_ids := Item.tool_all_ids()
 	item_select_dropdown.clear()
 	for id in item_ids:
 		item_select_dropdown.add_item(id)
