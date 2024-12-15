@@ -11,7 +11,7 @@ const DEFAULT_MARKER: String = "PlayerStart"
 		return editor_overlay_color
 	set(value):
 		editor_overlay_color = value
-		if Engine.is_editor_hint():
+		if Engine.is_editor_hint() && _canvas_modulate != null:
 			_canvas_modulate.color = value
 
 ## When enabled the color overlay will be applied. When unset it will not.
@@ -20,7 +20,7 @@ const DEFAULT_MARKER: String = "PlayerStart"
 		return apply_editor_overlay
 	set(value):
 		apply_editor_overlay = value
-		if Engine.is_editor_hint():
+		if Engine.is_editor_hint() && _canvas_modulate != null:
 			_canvas_modulate.visible = apply_editor_overlay
 
 var driver: Driver
@@ -29,11 +29,11 @@ var level_name: String = name
 
 var _canvas_modulate: CanvasModulate = null:
 	get:
-		var path := "CanwasModulate"
+		var path := "CanvasModulate"
 		if has_node(path):
 			# done as a property getter because we can't use @onready as part of @tool
 			# script and I don't know a better pattern
-			return get_node("CanvasModulate")
+			return get_node(path)
 		return null
 
 @onready var _marker_root := $Markers

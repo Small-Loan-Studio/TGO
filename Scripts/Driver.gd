@@ -26,6 +26,8 @@ var _last_loaded_level: LevelBase = null
 @onready var _debug_dnc: DebugDayNight = $OverlayManager/HUD/DebugStack/DebugDayNight
 @onready var _debug_light: DevinLightControl = $OverlayManager/HUD/DebugStack/DevinLightControl
 @onready var _debug_inventory: DebugInventory = $OverlayManager/HUD/DebugStack/DebugInventory
+@onready var _debug_quests: QuestDebugger = $OverlayManager/HUD/DebugStack/QuestDebugger
+
 
 static func instance() -> Driver:
 	return Engine.get_singleton("DriverInstance") as Driver
@@ -61,6 +63,7 @@ func _post_ready() -> void:
 	## wire up debug bullshit
 	_debug_ui_quest.setup(quest_mgr)
 	_debug_dnc.setup(_day_night_cycle)
+	_debug_quests.setup(quest_mgr)
 	# let's just ignore the get_node call. it's trash but beyond temporary
 	_debug_light.setup(player, player.get_node("Debug_Torch"))
 	_debug_inventory.setup(inventory_mgr.get_inventory(player.id))
@@ -93,6 +96,8 @@ func free_previous_level() -> void:
 
 ## Loads a new level into the game world. Connected to SerilizationManager.gd: load_saved_level
 func load_level(target_level_name: String, target_name: String) -> void:
+	assert(target_level_name != "", "Level to load must not be empty")
+
 	var packed_level: PackedScene
 	var new_level: LevelBase
 

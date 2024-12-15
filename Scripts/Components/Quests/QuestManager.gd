@@ -13,6 +13,8 @@ signal quest_updated(id: String)
 const QUEST_IDX = 0
 const PATH_IDX = 1
 
+var run_validation: bool = true
+
 # maps from quest id to the quest and resource path
 # Map<String, [Quest, path]>
 var _quest_dict: Dictionary = {}
@@ -30,12 +32,21 @@ func _ready() -> void:
 	# dependencies if needed. That wolud be the more designed way to do this...
 	Callable(_connect_post_ready).call_deferred()
 
+	if run_validation:
+		_validate_variable_refs()
+
 
 ## Connect to external data sources, should be run via deferred call so that it
 ## can use anything in driver that gets set up during _ready
 func _connect_post_ready() -> void:
 	Dialogic.VAR.variable_changed.connect(_on_dialogic_var_changed)
 	Driver.instance().inventory_mgr.inventory_updated.connect(_on_inventory_changed)
+
+
+func get_all_quest_ids() -> Array[String]:
+	var arr: Array[String] = []
+	arr.assign(_quest_dict.keys())
+	return arr
 
 
 ## saves a loaded set of quests to a target file; if the quests haven't been
@@ -179,6 +190,12 @@ func _on_quest_state_changed(
 ) -> void:
 	var canonicalized_id := quest_id.to_lower()
 	match new_state:
+		Enums.QuestState.DORMANT:
+			printerr(
+				"QuestState has changed to dormant, this is unexpected if not explicitly triggered."
+			)
+			_active_quests.erase(canonicalized_id)
+
 		Enums.QuestState.ACTIVE:
 			_add_active_quest(canonicalized_id)
 
@@ -270,6 +287,21 @@ func _process_completed_quest(id: String) -> void:
 			var next_quest_phase := phase_parent.phases[idx]
 			if next_quest_phase.quest.state != Enums.QuestState.ACTIVE:
 				next_quest_phase.quest.mark_active()
+
+
+func _validate_variable_refs() -> void:
+	for quest_id: String in get_all_quest_ids():
+		var q := quest_by_id(quest_id)
+		for c_idx in len(q.conditions):
+			var c := q.conditions[c_idx]
+			if c is QuestConditionVariable:
+				if !Dialogic.VAR.has(c.variable):
+					printerr(
+						(
+							"Misconfigured quest (id: %s) has condition referencing invalid variable. Condition %d: '%s'"
+							% [q.id, c_idx, c.variable]
+						)
+					)
 
 
 func debug_print() -> void:

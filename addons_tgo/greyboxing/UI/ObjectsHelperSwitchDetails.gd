@@ -109,8 +109,8 @@ func _list_variables_and_type_helper(path_prefix: String, var_dict: Dictionary) 
 	return res
 
 
-func build() -> Switch:
-	var scn: SimpleSwitch = SWITCH_SCENE.instantiate()
+func build() -> SimpleSwitchConfig:
+	var scn: SimpleSwitchConfig = SWITCH_SCENE.instantiate()
 
 	scn.single_fire = single_fire.button_pressed
 	match _get_template():

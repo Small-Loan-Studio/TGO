@@ -20,3 +20,6 @@ mono_crash.*.json
 
 # personal configs
 .vscode/
+
+#Builds Folder
+builds/
