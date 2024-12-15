@@ -45,12 +45,9 @@ static func tool_from_id(id: String) -> Item:
 	if !Engine.is_editor_hint():
 		return null
 
-	var item_paths := (
-		Utils
-		. walk_directory(
-			ITEM_PATH,
-			func(s: String) -> bool: return s.ends_with(".tres"),
-		)
+	var item_paths := Utils.walk_directory(
+		ITEM_PATH,
+		func(s: String) -> bool: return s.ends_with(".tres"),
 	)
 
 	var items := []
