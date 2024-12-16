@@ -41,7 +41,7 @@ Basically the way we reference a level in the editor have changed. We no longer 
 pick the tscn file or provide a full filepath. Instead each level is implicitly named based
 on it's path relative to `Scenes/Level`. In other words if the file tree looks like this:
 
-![](docs/imgs/errata-level-ref-file-tree.png)
+![](./imgs/errata-level-ref-file-tree.png)
 
 And we wanted to reference `nested level.tscn` we would specify it as: `Test Folder/nested level`.
 Note that we exclude the `.tscn` extension as well as the original folder path.
