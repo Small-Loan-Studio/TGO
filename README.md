@@ -32,9 +32,6 @@ with your lead to understand any discipline specific guidance.
 
 If you or your lead have any questions drop by #tgo-programming. We're friendly and
 would love to help.
-
-> TODO: Does it make sense to break stuff&mdash;including all the eng-focused
-> commentary&mdash;into pillar specific onboarding docs at this point?
  
 ## People
 This is a large project! a full org chart is [available here][orgchart] but some
@@ -80,7 +77,7 @@ As a team we should aim to:
   and check validity using `gdlint`. More info can be found about the errors it
   reports and how to set up exclusions on [the wiki][gdlint-wiki]. To manually run
   the linter see [docs/docker.md](./docs/docker.md).
-- GDScript should format tests cleanly before merge. In order to reduce merge issues
+- GDScript should format test cleanly before merge. In order to reduce merge issues
   we use an automated tool `gdformat` to ensure our code conforms to a consistent
   formatting spec. Details on this are available on [the wiki][gdformat-wiki]. To
   manually run the linter see [docs/docker.md](./docs/docker.md).

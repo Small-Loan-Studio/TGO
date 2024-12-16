@@ -149,15 +149,14 @@ func get_persistent_level_dict() -> Dictionary:
 	return _persistent_levels
 
 
-## Checks the dictionary if the requested level is already in the dictionary
+## Checks the dictionary if the requested level is already in the the working set.
 func check_level_persistence(target_level_name: String) -> bool:
 	return _persistent_levels.has(target_level_name)
 
 
-## Overwrites an existing persisted level on disk.
+## Overwrites an existing persisted level on disk. This can be thought of as
+## checkpointing the level until we revisit.
 func update_level(level: LevelBase) -> void:
-	print("Updating persistent level dictionary")
-
 	var file_path: String = Utils.level_to_path_binary(level.level_name)
 	var level_basedir := file_path.get_base_dir()
 
