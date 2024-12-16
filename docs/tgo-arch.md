@@ -30,6 +30,7 @@ sure to check the changelog and the farther in the past it is the more likely
 it's hiding dragons.
 
 ## Changelog
+- 2024-12-15: True up to recent changes; mostly minor edits.
 - 2024-09-07: Minor update to match the state of the world.
 - 2024-07-09: Initial draft. Wish us luck.
 
@@ -61,15 +62,18 @@ Driver
 │  ├─ Journal
 │  ├─ Dialogue
 │  └─ Menus
+├─ <X>Manager
 └─ GameWorld
-   ├─ Clock
-   ├─ InventoryManager
+   ├─ DayNightOverlay
    ├─ Player
    │  ├─ Camera2D
    │  └─ <OtherItems>
    └─ LevelBase
+      ├─ TileMap
       ├─ Objects
-      │  └─ Characters
+      │  ├─ Lights
+      │  ├─ Switches
+      │  └─ etc...
       └─ Markers
 ```
 
@@ -124,25 +128,24 @@ A non exhaustive list of things I expect will be added to a UI overlay:
 - **Dialogue**: interaction point for triggering conversations
 - **Menus**: A catch-all for whatever menus we'll have available. May be a top-level MenuManager or we may have entries for each menu. TBD
 
+### <X>Managers
+Catch all for the various state tracing objects we'll introduce. These are
+things not closely tied to the "physical" world that the player exists in and
+track more abstract things QuestState or handle operations that touch multiple
+systems like driving saving/loading game state.
+
+At the time of this update we have included: InventoryManager,
+SerializationManager, and QuestManager.
+
 ### GameWorld
 
-Stores all durable state about the game world. Anything that needs to persist
-between specific levels/maps being loaded should have representation here.
+Contains state about the interactive game environment. Anything that Devin will
+interact with "physically" goes here.
 
-Likely contains majority of game save/load logic.
+#### DayNightCycle
 
-#### Clock
-
-In the event we run a day/night cycle this will handle the world clock's tick
-rate and contain signals indicating important times (day, dusk, night) as well
-as any global color grading/overlays associated with time of day.
-
-#### InventoryManager
-
-Data model for what the Player has available to them. De-coupled from the UI
-representation but can fire signals as state changes.
-
-Plausibly covers gear / equipment state.
+Handles the global color overlay, configuration on what constitutes day/night
+and drives the game world's time of day.
 
 #### Player
 
@@ -164,11 +167,10 @@ the player. Currently level loading and dispatch lives in Driver which provides
 a reference it itself to all loaded levels. For more information on level
 loading see [tgo-levels.md](./tgo-levels.md) and [tgo-level-loading.md](./tgo-level-loading.md).
 
-##### Objects / Characters / Markers
+##### Objects / Characters / Markers / etc
 
-NPCs, objects, buildings. Things that Devin interacts with. We probably
-won't have a Node of type Placeable or even one that inherits from
-Placeable. Instead this is representative of a class of Nodes that will
-likely exist.
+NPCs, objects, buildings. Things that Devin interacts with. Documentation for
+things in this bucket will likely be broken out into their own section or
+referenced indirectly in LevelBase docs.
 
-Probably.
+Broadly though you can think of them "the things in the game world."
