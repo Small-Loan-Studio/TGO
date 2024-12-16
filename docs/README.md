@@ -9,3 +9,4 @@ or design decisions.
 ### [Audio](./tgo-audio.md)
 ### [Game State Persistence](./tgo-save-load.md)
 ### [Maps, Levels, and Objects. Oh My!](./tgo-levels.md)
+### [TGO Video Docs Errata](./tgo-errata.md)
