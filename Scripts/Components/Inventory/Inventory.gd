@@ -60,7 +60,7 @@ func insert(new_item: ItemStack) -> bool:
 
 
 func _can_grow(delta: int = 1) -> bool:
-	return size == -1 || (_items.size() + delta) <=  size
+	return size == -1 || (_items.size() + delta) <= size
 
 
 func remove(_item: ItemStack) -> void:
