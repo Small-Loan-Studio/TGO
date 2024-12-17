@@ -34,7 +34,7 @@ const COND_QUEST = 4
 @onready var var_group := $ConditionConfig/VBox/Variable
 @onready var var_value_group := $ConditionConfig/VBox/Variable/ValueHBox
 @onready var quest_group := $ConditionConfig/VBox/Quest
-@onready var quest_state_group := $ConditionConfig/VBox/Quest/StateHBox
+@onready var quest_state_group := %QuestCheckType
 
 @onready var condition_dropdown: OptionButton = %ConditionDropdown
 @onready var inventory_id: LineEdit = %InventoryIDEdit
@@ -46,6 +46,9 @@ const COND_QUEST = 4
 @onready var condition_var_value_type: Label = %ConditionVarTypeLabel
 @onready var condition_quest_id_dropdown: OptionButton = %QuestIDDropdown
 @onready var condition_quest_state: OptionButton = %QuestStateDropdown
+@onready var condition_quest_exactly: CheckBox = %QuestIsExactly
+@onready var condition_quest_exists: CheckBox = %QuestExists
+@onready var condition_quest_done: CheckBox = %QuestCompleted
 
 
 func _ready() -> void:
@@ -282,8 +285,27 @@ func _configure_cond_quest() -> Array[TriggerCondition]:
 
 	var cond := QuestStateCondition.new()
 	cond.quest_id = quest_id
-	cond.check_type = Enums.CheckOp.EQ
-	cond.check_value = Enums.quest_state_from_str(quest_state)
+
+	if condition_quest_exactly.button_pressed:
+		cond.check_type = Enums.CheckOp.EQ
+		cond.check_value = Enums.quest_state_from_str(quest_state)
+
+	if condition_quest_exists.button_pressed:
+		cond.check_type = Enums.CheckOp.EXISTS
+
+	if condition_quest_done.button_pressed:
+		var completed_cond := QuestStateCondition.new()
+		completed_cond.quest_id = quest_id
+		completed_cond.check_type = Enums.CheckOp.EQ
+		completed_cond.check_value = Enums.QuestState.COMPLETED
+
+		var failed_cond := QuestStateCondition.new()
+		failed_cond.quest_id = quest_id
+		failed_cond.check_type = Enums.CheckOp.EQ
+		failed_cond.check_value = Enums.QuestState.FAILED
+
+		cond = OrCondition.new()
+		cond.clauses = [completed_cond, failed_cond]
 
 	return [cond]
 
@@ -448,4 +470,6 @@ func _on_condition_quest_selected(index: int) -> void:
 		return
 
 	condition_quest_state.select(0)
+	condition_quest_exactly.button_pressed = true
+
 	quest_state_group.show()
