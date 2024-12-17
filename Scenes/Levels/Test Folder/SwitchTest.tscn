@@ -249,3 +249,4 @@ item = ExtResource("6_euqsn")
 quantity = 1
 
 [node name="PlayerStart" type="Node2D" parent="Markers" index="0"]
+position = Vector2(195, 197)
