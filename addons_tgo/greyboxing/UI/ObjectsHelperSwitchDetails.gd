@@ -304,8 +304,9 @@ func _configure_cond_quest() -> Array[TriggerCondition]:
 		failed_cond.check_type = Enums.CheckOp.EQ
 		failed_cond.check_value = Enums.QuestState.FAILED
 
-		cond = OrCondition.new()
-		cond.clauses = [completed_cond, failed_cond]
+		var or_cond := OrCondition.new()
+		or_cond.clauses = [completed_cond, failed_cond]
+		return [or_cond]
 
 	return [cond]
 
