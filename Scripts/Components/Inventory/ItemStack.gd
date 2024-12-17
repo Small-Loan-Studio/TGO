@@ -5,7 +5,7 @@ extends Resource
 @export var quantity: int
 
 
-## returns whother or not some other item stack can be fully added to this
+## returns whether or not some other item stack can be fully added to this
 ## stack
 func can_stack(other: ItemStack) -> bool:
 	return item.stackable and item == other.item and quantity + other.quantity <= item.stack_size
