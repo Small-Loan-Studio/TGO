@@ -5,50 +5,36 @@ extends Resource
 @export var quantity: int
 
 
+## returns whether or not some other item stack can be fully added to this
+## stack
 func can_stack(other: ItemStack) -> bool:
 	return item.stackable and item == other.item and quantity + other.quantity <= item.stack_size
 
 
+## returns whether some of another item stack can be added to this stack
 func can_partially_stack(other: ItemStack) -> bool:
 	return item.stackable and item == other.item and quantity < item.stack_size
 
 
+## Adds some other item stack to this one
 func stack(other: ItemStack) -> void:
 	quantity += other.quantity
+	quantity = clampi(quantity, 1, item.stack_size)
 
 
+## Takes as many as this stack can handle from some other stack and returns
+## a new stack containing whatever was unable to be held
 func partially_stack(other: ItemStack) -> ItemStack:
-	var stack := ItemStack.new()
-	stack.item = item
+	var rem_stack := ItemStack.new()
+	rem_stack.item = item
 	if other.quantity > item.stack_size:
 		printerr("Found a stack size in the world that was more than the allowed max_stack size")
-	stack.quantity = (quantity + other.quantity) % item.stack_size
+
+	var transfer := item.stack_size - quantity
+
 	quantity = item.stack_size
-	return stack
-
-	## NOTE: Revisit this if we deem necessary. This code was used for
-	## determining how many stacks we needed to create if the ItemStack was more than stack_size
-	## In situations where that is a multiple ((1 + i) * stack_size), we need to
-	## create i stacks and insert them sequentially into the inventory
-
-	#var stack_count := (quantity + oItemStack.quantity) / item.stack_size - 1
-	#if stack_count < 2:
-	#var stack := ItemStack.new()
-	#stack.item = item
-	#stack.quantity = (quantity + oItemStack.quantity) % item.stack_size
-	#quantity = item.stack_size
-	#return [stack]
-	#else:
-	#var stacks: Array[ItemStack] = []
-	#for i in range(stack_count):
-	#var stack := ItemStack.new()
-	#stack.item = item
-	#if (quantity + oItemStack.quantity) % item.stack_size == 0:
-	#stack.quantity = item.stack_size
-	#else:
-	#stack.quantity = (quantity + oItemStack.quantity) % item.stack_size
-	#stacks.append(stack)
-	#return stacks
+	rem_stack.quantity = other.quantity - transfer
+	return rem_stack
 
 
 func _to_string() -> String:
