@@ -3,6 +3,7 @@ extends TriggerCondition
 
 @export var clauses: Array[TriggerCondition]
 
+
 func evaluate(actor_id: String) -> bool:
 	if len(clauses) == 0:
 		return true
