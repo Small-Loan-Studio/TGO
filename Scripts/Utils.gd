@@ -93,8 +93,11 @@ static func _angle_to_direction_4(angle_rad: float) -> Enums.Direction:
 
 static func level_path_to_name(path: String) -> String:
 	if path.begins_with("res://"):
-		path = path.substr(0, Utils.LEVEL_DIR.length())
-	path = path.substr(0, path.length() - 5)
+		path = path.substr(Utils.LEVEL_DIR.length())
+	if path.ends_with(".tscn"):
+		path = path.substr(0, path.length() - 5)
+	if path.ends_with(".scn"):
+		path = path.substr(0, path.length() - 4)
 	return path
 
 
@@ -124,7 +127,19 @@ static func user_inventory_dir() -> String:
 	return USER_DATA_DIR + SAVE_FOLDER + INVENTORY_FOLDER
 
 
-static func walk_directory(root: String, pred_fn: Callable) -> Array[String]:
+## Visits all files starting from some root directory calling the provided
+## predicat function to determin if the should be included in the resulting
+## fileset.
+##
+## Can be configured to recurse or not, if recursing the sub-dir files will
+## have relative paths to the root.
+##
+## the predicate function, if not specified will include all files.
+static func walk_directory(
+	root: String,
+	pred_fn: Callable = func(s: String) -> bool: return true,
+	recursive: bool = true,
+) -> Array[String]:
 	var da := DirAccess.open(root)
 	if da == null:
 		printerr("Unable to open %s: %s", [root, DirAccess.get_open_error()])
@@ -132,11 +147,19 @@ static func walk_directory(root: String, pred_fn: Callable) -> Array[String]:
 
 	var results: Array[String] = []
 
+	da.include_navigational = false
 	da.list_dir_begin()
+
 	var file_name := da.get_next()
 	while file_name != "":
-		if pred_fn == null || pred_fn.call(file_name):
-			results.append(file_name)
+		if da.current_is_dir():
+			if recursive:
+				var nested := walk_directory("%s/%s" % [root, file_name], pred_fn)
+				for e in nested:
+					results.append("%s/%s" % [file_name, e])
+		else:
+			if pred_fn == null || pred_fn.call(file_name):
+				results.append(file_name)
 		file_name = da.get_next()
 	da.list_dir_end()
 

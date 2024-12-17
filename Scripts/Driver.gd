@@ -1,8 +1,6 @@
 class_name Driver
 extends Node2D
 
-signal update_level(level: LevelBase)
-
 const FIRST_LEVEL_NAME: String = "BadLevelA"
 
 ## This will bypass the normal menu and automatically swap to the provided
@@ -80,13 +78,6 @@ func get_hud() -> HUD:
 	return _hud
 
 
-func update_loaded_level() -> String:
-	print("Updating level")
-	var level_name: String = _last_loaded_level.level_name
-	update_level.emit(_last_loaded_level)
-	return level_name
-
-
 func free_previous_level() -> void:
 	_world.remove_child(_last_loaded_level)
 	_last_loaded_level.queue_free()
@@ -101,7 +92,10 @@ func load_level(target_level_name: String, target_name: String) -> void:
 
 	if _last_loaded_level != null:
 		if !_serialization_mgr.is_loading_game:
-			update_loaded_level()
+			# before unloading save the state of the current level into working
+			# serialization cache
+			_serialization_mgr.update_level(_last_loaded_level)
+
 		free_previous_level()
 
 	# make sure the hud is shown
