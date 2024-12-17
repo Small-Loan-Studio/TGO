@@ -1,6 +1,7 @@
-[gd_scene load_steps=2 format=3 uid="uid://efk1feabjm8y"]
+[gd_scene load_steps=3 format=3 uid="uid://efk1feabjm8y"]
 
 [ext_resource type="Script" path="res://addons_tgo/greyboxing/UI/ObjectsHelperSwitchDetails.gd" id="1_sb5xf"]
+[ext_resource type="ButtonGroup" uid="uid://b2eqhr8u6tc50" path="res://addons_tgo/editors/QuestCheckTypeBG.tres" id="2_sdkja"]
 
 [node name="SwitchDetails" type="VBoxContainer"]
 anchors_preset = 15
@@ -104,14 +105,21 @@ size_flags_horizontal = 3
 size_flags_stretch_ratio = 5.0
 color = Color(0.401161, 0.710938, 0.374908, 1)
 
-[node name="TemplateHBox" type="HBoxContainer" parent="."]
+[node name="HSeparator" type="HSeparator" parent="."]
 layout_mode = 2
 
-[node name="Label" type="Label" parent="TemplateHBox"]
+[node name="Label" type="Label" parent="."]
 layout_mode = 2
-text = "Template"
+text = "Templates"
 
-[node name="OptionButton" type="OptionButton" parent="TemplateHBox"]
+[node name="BehaviorHBox" type="HBoxContainer" parent="."]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="BehaviorHBox"]
+layout_mode = 2
+text = "Behavior"
+
+[node name="OptionButton" type="OptionButton" parent="BehaviorHBox"]
 layout_mode = 2
 size_flags_horizontal = 3
 item_count = 4
@@ -140,7 +148,7 @@ layout_mode = 2
 layout_mode = 2
 text = "Variable"
 
-[node name="VariableDropdown" type="OptionButton" parent="VariableMargin/VariableVBox/HBoxContainer"]
+[node name="BehaviorVariableDropdown" type="OptionButton" parent="VariableMargin/VariableVBox/HBoxContainer"]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 3
@@ -161,5 +169,171 @@ text = "Autorelease Boolean: When this switch is pressed the selected variable w
 When moving off this switch the variable will be set to false."
 autowrap_mode = 3
 
+[node name="ConditionHBox" type="HBoxContainer" parent="."]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="ConditionHBox"]
+layout_mode = 2
+text = "Condition"
+
+[node name="ConditionDropdown" type="OptionButton" parent="ConditionHBox"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+item_count = 5
+selected = 0
+popup/item_0/text = "None"
+popup/item_0/id = 0
+popup/item_1/text = "Player Has Item"
+popup/item_1/id = 1
+popup/item_2/text = "Container/NPC Has Item"
+popup/item_2/id = 2
+popup/item_3/text = "Variable is X"
+popup/item_3/id = 3
+popup/item_4/text = "Quest State is X"
+popup/item_4/id = 4
+
+[node name="ConditionConfig" type="MarginContainer" parent="."]
+layout_mode = 2
+theme_override_constants/margin_left = 32
+
+[node name="VBox" type="VBoxContainer" parent="ConditionConfig"]
+layout_mode = 2
+
+[node name="InventoryID" type="HBoxContainer" parent="ConditionConfig/VBox"]
+layout_mode = 2
+theme_override_constants/separation = 8
+
+[node name="Label" type="Label" parent="ConditionConfig/VBox/InventoryID"]
+layout_mode = 2
+text = "Inventory ID"
+
+[node name="InventoryIDEdit" type="LineEdit" parent="ConditionConfig/VBox/InventoryID"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Item" type="HBoxContainer" parent="ConditionConfig/VBox"]
+layout_mode = 2
+theme_override_constants/separation = 8
+
+[node name="Label" type="Label" parent="ConditionConfig/VBox/Item"]
+layout_mode = 2
+text = "Item"
+
+[node name="ItemSelectDropdown" type="OptionButton" parent="ConditionConfig/VBox/Item"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Variable" type="VBoxContainer" parent="ConditionConfig/VBox"]
+layout_mode = 2
+
+[node name="VariableHBox" type="HBoxContainer" parent="ConditionConfig/VBox/Variable"]
+layout_mode = 2
+theme_override_constants/separation = 8
+
+[node name="Label" type="Label" parent="ConditionConfig/VBox/Variable/VariableHBox"]
+layout_mode = 2
+text = "Variable"
+
+[node name="ConditionVariableDropdown" type="OptionButton" parent="ConditionConfig/VBox/Variable/VariableHBox"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="ValueHBox" type="HBoxContainer" parent="ConditionConfig/VBox/Variable"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="ConditionConfig/VBox/Variable/ValueHBox"]
+layout_mode = 2
+text = "Is Value"
+
+[node name="ConditionVarBoolValue" type="CheckButton" parent="ConditionConfig/VBox/Variable/ValueHBox"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 0
+
+[node name="ConditionVarBoolString" type="Label" parent="ConditionConfig/VBox/Variable/ValueHBox"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+text = "(False)"
+
+[node name="ConditionVarGenericValue" type="LineEdit" parent="ConditionConfig/VBox/Variable/ValueHBox"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="ConditionVarTypeLabel" type="Label" parent="ConditionConfig/VBox/Variable/ValueHBox"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 8
+text = "[Type: ]"
+
+[node name="Quest" type="VBoxContainer" parent="ConditionConfig/VBox"]
+layout_mode = 2
+
+[node name="QuestHBox" type="HBoxContainer" parent="ConditionConfig/VBox/Quest"]
+layout_mode = 2
+theme_override_constants/separation = 8
+
+[node name="Label" type="Label" parent="ConditionConfig/VBox/Quest/QuestHBox"]
+layout_mode = 2
+text = "Quest"
+
+[node name="QuestIDDropdown" type="OptionButton" parent="ConditionConfig/VBox/Quest/QuestHBox"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="QuestCheckType" type="MarginContainer" parent="ConditionConfig/VBox/Quest"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_constants/margin_left = 16
+
+[node name="VBox" type="VBoxContainer" parent="ConditionConfig/VBox/Quest/QuestCheckType"]
+layout_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="ConditionConfig/VBox/Quest/QuestCheckType/VBox"]
+layout_mode = 2
+
+[node name="QuestIsExactly" type="CheckBox" parent="ConditionConfig/VBox/Quest/QuestCheckType/VBox/HBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+button_group = ExtResource("2_sdkja")
+text = "... is exactly"
+
+[node name="QuestStateDropdown" type="OptionButton" parent="ConditionConfig/VBox/Quest/QuestCheckType/VBox/HBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+item_count = 4
+selected = 0
+popup/item_0/text = "dormant"
+popup/item_0/id = 0
+popup/item_1/text = "active"
+popup/item_1/id = 1
+popup/item_2/text = "failed"
+popup/item_2/id = 2
+popup/item_3/text = "completed"
+popup/item_3/id = 3
+
+[node name="QuestExists" type="CheckBox" parent="ConditionConfig/VBox/Quest/QuestCheckType/VBox"]
+unique_name_in_owner = true
+layout_mode = 2
+button_group = ExtResource("2_sdkja")
+text = "... is active, failed, or complete"
+
+[node name="QuestCompleted" type="CheckBox" parent="ConditionConfig/VBox/Quest/QuestCheckType/VBox"]
+unique_name_in_owner = true
+layout_mode = 2
+button_group = ExtResource("2_sdkja")
+text = "... is failed or complete"
+
 [connection signal="toggled" from="Visual" to="." method="_on_visual_toggled"]
-[connection signal="item_selected" from="TemplateHBox/OptionButton" to="." method="_on_template_selected"]
+[connection signal="item_selected" from="BehaviorHBox/OptionButton" to="." method="_on_template_selected"]
+[connection signal="item_selected" from="ConditionHBox/ConditionDropdown" to="." method="_on_condition_selected"]
+[connection signal="item_selected" from="ConditionConfig/VBox/Variable/VariableHBox/ConditionVariableDropdown" to="." method="_on_condition_var_selected"]
+[connection signal="toggled" from="ConditionConfig/VBox/Variable/ValueHBox/ConditionVarBoolValue" to="." method="_on_condition_var_bool_value_toggle"]
+[connection signal="item_selected" from="ConditionConfig/VBox/Quest/QuestHBox/QuestIDDropdown" to="." method="_on_condition_quest_selected"]

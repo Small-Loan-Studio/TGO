@@ -267,9 +267,10 @@ func _process_completed_quest(id: String) -> void:
 		return
 
 	# if we didn't have further quests in that chain to activate look for
-	# additional quests in a potential phased parent
+	# additional quests in a potential phased parent but only do so if the
+	# phase parent is active
 
-	if phase_parent != null:
+	if phase_parent != null && phase_parent.state == Enums.QuestState.ACTIVE:
 		var idx := 0
 		# look through all phases from the parent until we find one that isn't
 		# completed or we run off the end of the list -- we can get away with only
@@ -308,3 +309,26 @@ func debug_print() -> void:
 	print("Quest Status:")
 	for k: String in _quest_dict.keys():
 		print("  %s -> %s" % [k, Enums.quest_state_name(quest_by_id(k).state)])
+
+
+## Walks quest directory in the resource pack returning all ids for discovered
+## Quest resources. Necessary (and works) only in the editor, if needed at
+## runtime use non-static [all_ids] which returns all loaded quest ids instead.
+static func tool_all_ids() -> Array[String]:
+	if !Engine.is_editor_hint():
+		return []
+
+	var q_ids: Array[String] = []
+	var quest_paths := Utils.walk_directory(
+		Utils.QUEST_DIR,
+		func(s: String) -> bool: return s.ends_with(".tres"),
+	)
+
+	for path in quest_paths:
+		var q := ResourceLoader.load(Utils.QUEST_DIR.path_join(path)) as Quest
+		if q != null:
+			q_ids.append(q.id)
+
+	q_ids.sort()
+
+	return q_ids

@@ -1,0 +1,251 @@
+[gd_scene load_steps=27 format=3 uid="uid://dmuwq7snsoc5k"]
+
+[ext_resource type="PackedScene" uid="uid://dyq8mcdsutnsa" path="res://Scenes/Components/LevelBase.tscn" id="1_4dm30"]
+[ext_resource type="TileSet" uid="uid://c5vrjt6pkv26m" path="res://ZZ_Scratch/GreyboxingTools/test_tileset.tres" id="2_q6jla"]
+[ext_resource type="PackedScene" uid="uid://c3fld6my8so3p" path="res://Scenes/Components/SimpleSwitch.tscn" id="3_ie0od"]
+[ext_resource type="Script" path="res://Scripts/Resources/Effects/SetVAREffect.gd" id="4_nw5as"]
+[ext_resource type="Script" path="res://Scripts/Resources/Conditions/InventoryCheckCondition.gd" id="5_i1tf7"]
+[ext_resource type="Resource" uid="uid://b7w2axnxl0fkt" path="res://Scripts/Resources/Items/Key.tres" id="6_euqsn"]
+[ext_resource type="Script" path="res://Scripts/Resources/Conditions/QuestStateCondition.gd" id="7_rexjt"]
+[ext_resource type="Script" path="res://Scripts/Resources/Effects/SetQuestStateEffect.gd" id="8_4rcih"]
+[ext_resource type="Script" path="res://Scripts/Resources/Conditions/OrCondition.gd" id="10_681ba"]
+[ext_resource type="PackedScene" uid="uid://rgvfsx60t2ap" path="res://Scenes/Components/Inventory/Item.tscn" id="11_k0w30"]
+
+[sub_resource type="Resource" id="Resource_83ios"]
+script = ExtResource("4_nw5as")
+variable_name = "QuestVarConditionTest"
+set_type = "overwrite"
+new_value = "true"
+
+[sub_resource type="Resource" id="Resource_shpca"]
+script = ExtResource("4_nw5as")
+variable_name = "QuestVarConditionTest"
+set_type = "overwrite"
+new_value = "false"
+
+[sub_resource type="Resource" id="Resource_3p7ar"]
+script = ExtResource("5_i1tf7")
+inventory_id = "Devin"
+target_item = ExtResource("6_euqsn")
+check_type = 0
+check_value = 1
+
+[sub_resource type="Resource" id="Resource_4fv1a"]
+script = ExtResource("4_nw5as")
+variable_name = "QuestVarConditionTest"
+set_type = "overwrite"
+new_value = "true"
+
+[sub_resource type="Resource" id="Resource_l5v2j"]
+script = ExtResource("4_nw5as")
+variable_name = "QuestVarConditionTest"
+set_type = "overwrite"
+new_value = "false"
+
+[sub_resource type="Resource" id="Resource_6bmbo"]
+script = ExtResource("7_rexjt")
+quest_id = "test-item-quest"
+check_type = 3
+check_value = 0
+
+[sub_resource type="Resource" id="Resource_rv3hc"]
+script = ExtResource("8_4rcih")
+quest_id = "test-item-quest"
+target_state = 1
+
+[sub_resource type="Resource" id="Resource_nl2vc"]
+script = ExtResource("7_rexjt")
+quest_id = "test-item-quest"
+check_type = 3
+check_value = 3
+
+[sub_resource type="Resource" id="Resource_naegr"]
+script = ExtResource("4_nw5as")
+variable_name = "QuestVarConditionTest"
+set_type = "overwrite"
+new_value = "true"
+
+[sub_resource type="Resource" id="Resource_ht2do"]
+script = ExtResource("4_nw5as")
+variable_name = "QuestVarConditionTest"
+set_type = "overwrite"
+new_value = "false"
+
+[sub_resource type="Resource" id="Resource_2116w"]
+script = ExtResource("7_rexjt")
+quest_id = "test-item-quest"
+check_type = 3
+check_value = 1
+
+[sub_resource type="Resource" id="Resource_vrfaj"]
+script = ExtResource("8_4rcih")
+quest_id = "test-item-quest"
+target_state = 2
+
+[sub_resource type="Resource" id="Resource_r7axw"]
+script = ExtResource("7_rexjt")
+quest_id = "test-item-quest"
+check_type = 0
+check_value = 0
+
+[sub_resource type="Resource" id="Resource_l005h"]
+script = ExtResource("7_rexjt")
+quest_id = "test-item-quest"
+check_type = 3
+check_value = 3
+
+[sub_resource type="Resource" id="Resource_awojm"]
+script = ExtResource("7_rexjt")
+quest_id = "test-item-quest"
+check_type = 3
+check_value = 2
+
+[sub_resource type="Resource" id="Resource_o4j27"]
+script = ExtResource("10_681ba")
+clauses = Array[Resource("res://Scripts/Resources/TriggerCondition.gd")]([SubResource("Resource_l005h"), SubResource("Resource_awojm")])
+
+[node name="SwitchTest" instance=ExtResource("1_4dm30")]
+
+[node name="TileMap" parent="." index="0"]
+tile_set = ExtResource("2_q6jla")
+layer_0/tile_data = PackedInt32Array(0, 196608, 2, 65536, 196608, 3, 131072, 196608, 4, 1, 262144, 2, 65537, 262144, 3, 131073, 262144, 4, 2, 327680, 2, 65538, 327680, 3, 131074, 327680, 4, 196608, 196608, 2, 262144, 196608, 3, 327680, 196608, 4, 196609, 262144, 2, 262145, 262144, 3, 327681, 262144, 4, 196610, 327680, 2, 262146, 327680, 3, 327682, 327680, 4, 393216, 196608, 2, 458752, 196608, 3, 524288, 196608, 4, 393217, 262144, 2, 458753, 262144, 3, 524289, 262144, 4, 393218, 327680, 2, 458754, 327680, 3, 524290, 327680, 4, 589824, 196608, 2, 655360, 196608, 3, 589825, 262144, 2, 655361, 262144, 3, 589826, 327680, 2, 655362, 327680, 3, 3, 196608, 2, 65539, 196608, 3, 131075, 196608, 4, 4, 262144, 2, 65540, 262144, 3, 131076, 262144, 4, 5, 327680, 2, 65541, 327680, 3, 131077, 327680, 4, 196611, 196608, 2, 262147, 196608, 3, 327683, 196608, 4, 196612, 262144, 2, 262148, 262144, 3, 327684, 262144, 4, 196613, 327680, 2, 262149, 327680, 3, 327685, 327680, 4, 393219, 196608, 2, 458755, 196608, 3, 524291, 196608, 4, 393220, 262144, 2, 458756, 262144, 3, 524292, 262144, 4, 393221, 327680, 2, 458757, 327680, 3, 524293, 327680, 4, 589827, 196608, 2, 655363, 196608, 3, 589828, 262144, 2, 655364, 262144, 3, 589829, 327680, 2, 655365, 327680, 3, 6, 196608, 2, 65542, 196608, 3, 131078, 196608, 4, 7, 262144, 2, 65543, 262144, 3, 131079, 262144, 4, 8, 327680, 2, 65544, 327680, 3, 131080, 327680, 4, 196614, 196608, 2, 262150, 196608, 3, 327686, 196608, 4, 196615, 262144, 2, 262151, 262144, 3, 327687, 262144, 4, 196616, 327680, 2, 262152, 327680, 3, 327688, 327680, 4, 393222, 196608, 2, 458758, 196608, 3, 524294, 196608, 4, 393223, 262144, 2, 458759, 262144, 3, 524295, 262144, 4, 393224, 327680, 2, 458760, 327680, 3, 524296, 327680, 4, 589830, 196608, 2, 655366, 196608, 3, 589831, 262144, 2, 655367, 262144, 3, 589832, 327680, 2, 655368, 327680, 3, 9, 196608, 2, 65545, 196608, 3, 131081, 196608, 4, 10, 262144, 2, 65546, 262144, 3, 131082, 262144, 4, 11, 327680, 2, 65547, 327680, 3, 131083, 327680, 4, 196617, 196608, 2, 262153, 196608, 3, 327689, 196608, 4, 196618, 262144, 2, 262154, 262144, 3, 327690, 262144, 4, 196619, 327680, 2, 262155, 327680, 3, 327691, 327680, 4, 393225, 196608, 2, 458761, 196608, 3, 524297, 196608, 4, 393226, 262144, 2, 458762, 262144, 3, 524298, 262144, 4, 393227, 327680, 2, 458763, 327680, 3, 524299, 327680, 4, 589833, 196608, 2, 655369, 196608, 3, 589834, 262144, 2, 655370, 262144, 3, 589835, 327680, 2, 655371, 327680, 3, 12, 196608, 2, 65548, 196608, 3, 131084, 196608, 4, 13, 262144, 2, 65549, 262144, 3, 131085, 262144, 4, 14, 327680, 2, 65550, 327680, 3, 131086, 327680, 4, 196620, 196608, 2, 262156, 196608, 3, 327692, 196608, 4, 196621, 262144, 2, 262157, 262144, 3, 327693, 262144, 4, 196622, 327680, 2, 262158, 327680, 3, 327694, 327680, 4, 393228, 196608, 2, 458764, 196608, 3, 524300, 196608, 4, 393229, 262144, 2, 458765, 262144, 3, 524301, 262144, 4, 393230, 327680, 2, 458766, 327680, 3, 524302, 327680, 4, 589836, 196608, 2, 655372, 196608, 3, 589837, 262144, 2, 655373, 262144, 3, 589838, 327680, 2, 655374, 327680, 3, 15, 196608, 2, 65551, 196608, 3, 131087, 196608, 4, 16, 262144, 2, 65552, 262144, 3, 131088, 262144, 4, 17, 327680, 2, 65553, 327680, 3, 131089, 327680, 4, 196623, 196608, 2, 262159, 196608, 3, 327695, 196608, 4, 196624, 262144, 2, 262160, 262144, 3, 327696, 262144, 4, 196625, 327680, 2, 262161, 327680, 3, 327697, 327680, 4, 393231, 196608, 2, 458767, 196608, 3, 524303, 196608, 4, 393232, 262144, 2, 458768, 262144, 3, 524304, 262144, 4, 393233, 327680, 2, 458769, 327680, 3, 524305, 327680, 4, 589839, 196608, 2, 655375, 196608, 3, 589840, 262144, 2, 655376, 262144, 3, 589841, 327680, 2, 655377, 327680, 3, 18, 196608, 2, 65554, 196608, 3, 131090, 196608, 4, 196626, 196608, 2, 262162, 196608, 3, 327698, 196608, 4, 393234, 196608, 2, 458770, 196608, 3, 524306, 196608, 4, 589842, 196608, 2, 655378, 196608, 3, 720896, 196608, 4, 720897, 262144, 4, 720898, 327680, 4, 720899, 196608, 4, 720900, 262144, 4, 720901, 327680, 4, 720902, 196608, 4, 720903, 262144, 4, 720904, 327680, 4, 720905, 196608, 4, 720906, 262144, 4, 720907, 327680, 4, 720908, 196608, 4, 720909, 262144, 4, 720910, 327680, 4, 720911, 196608, 4, 720912, 262144, 4, 720913, 327680, 4, 19, 262144, 2, 65555, 262144, 3, 131091, 262144, 4, 20, 327680, 2, 65556, 327680, 3, 131092, 327680, 4, 196627, 262144, 2, 262163, 262144, 3, 327699, 262144, 4, 196628, 327680, 2, 262164, 327680, 3, 327700, 327680, 4, 393235, 262144, 2, 458771, 262144, 3, 524307, 262144, 4, 393236, 327680, 2, 458772, 327680, 3, 524308, 327680, 4, 720914, 196608, 4, 589843, 262144, 2, 655379, 262144, 3, 720915, 262144, 4, 589844, 327680, 2, 655380, 327680, 3, 720916, 327680, 4)
+
+[node name="OnlyVisibleFeedback" parent="Objects/Switches" index="0" instance=ExtResource("3_ie0od")]
+z_index = -1
+position = Vector2(48, 142)
+sensor_size = Vector2(20, 20)
+feedback_enabled = true
+default_color = Color(0.61339, 0.61339, 0.61339, 1)
+active_color = Color(1, 0, 0, 1)
+
+[node name="Label" type="Label" parent="Objects/Switches/OnlyVisibleFeedback" index="2"]
+offset_left = -177.0
+offset_top = -13.0
+offset_right = -17.0
+offset_bottom = 10.0
+text = "OnlyVisibleFeedback"
+
+[node name="AutoRelease" parent="Objects/Switches" index="1" instance=ExtResource("3_ie0od")]
+z_index = -1
+position = Vector2(46.8871, 238.818)
+sensor_size = Vector2(20, 20)
+feedback_enabled = true
+default_color = Color(0.61339, 0.61339, 0.61339, 1)
+active_color = Color(1, 0, 0, 1)
+on_pressed_effects = Array[Resource("res://Scripts/Resources/Effect.gd")]([SubResource("Resource_83ios")])
+on_released_effects = Array[Resource("res://Scripts/Resources/Effect.gd")]([SubResource("Resource_shpca")])
+
+[node name="Label" type="Label" parent="Objects/Switches/AutoRelease" index="2"]
+offset_left = -112.887
+offset_top = -15.818
+offset_right = -15.8871
+offset_bottom = 7.18201
+text = "AutoRelease"
+
+[node name="AutoReleaseWithKey" parent="Objects/Switches" index="2" instance=ExtResource("3_ie0od")]
+position = Vector2(48, 334)
+sensor_size = Vector2(20, 20)
+feedback_enabled = true
+active_color = Color(1, 0, 0, 1)
+conditions = Array[Resource("res://Scripts/Resources/TriggerCondition.gd")]([SubResource("Resource_3p7ar")])
+on_pressed_effects = Array[Resource("res://Scripts/Resources/Effect.gd")]([SubResource("Resource_4fv1a")])
+on_released_effects = Array[Resource("res://Scripts/Resources/Effect.gd")]([SubResource("Resource_l5v2j")])
+
+[node name="Label" type="Label" parent="Objects/Switches/AutoReleaseWithKey" index="2"]
+offset_left = -178.0
+offset_top = -11.0
+offset_right = -17.0
+offset_bottom = 12.0
+text = "AutoReleaseWithKey"
+
+[node name="NoneWithQuestStateDormant" parent="Objects/Switches" index="3" instance=ExtResource("3_ie0od")]
+z_index = -1
+position = Vector2(143.213, 47.3557)
+sensor_size = Vector2(20, 20)
+feedback_enabled = true
+default_color = Color(0.61339, 0.61339, 0.61339, 1)
+active_color = Color(0.992188, 1, 0, 1)
+conditions = Array[Resource("res://Scripts/Resources/TriggerCondition.gd")]([SubResource("Resource_6bmbo")])
+on_pressed_effects = Array[Resource("res://Scripts/Resources/Effect.gd")]([SubResource("Resource_rv3hc")])
+
+[node name="Label" type="Label" parent="Objects/Switches/NoneWithQuestStateDormant" index="2"]
+offset_left = 9.78711
+offset_top = -24.3557
+offset_right = 243.787
+offset_bottom = -1.35571
+rotation = -0.742844
+text = "NoneWithStartQuestEffect"
+
+[node name="AutoReleaseWithCompletedQuest" parent="Objects/Switches" index="4" instance=ExtResource("3_ie0od")]
+z_index = -1
+position = Vector2(144.402, 141.303)
+sensor_size = Vector2(20, 20)
+feedback_enabled = true
+default_color = Color(0.61339, 0.61339, 0.61339, 1)
+active_color = Color(1, 0, 0, 1)
+conditions = Array[Resource("res://Scripts/Resources/TriggerCondition.gd")]([SubResource("Resource_nl2vc")])
+on_pressed_effects = Array[Resource("res://Scripts/Resources/Effect.gd")]([SubResource("Resource_naegr")])
+on_released_effects = Array[Resource("res://Scripts/Resources/Effect.gd")]([SubResource("Resource_ht2do")])
+
+[node name="Label" type="Label" parent="Objects/Switches/AutoReleaseWithCompletedQuest" index="2"]
+offset_left = 8.5979
+offset_top = -22.303
+offset_right = 271.598
+offset_bottom = 0.69696
+rotation = -0.742282
+text = "AutoReleaseWithCompletedQuest"
+
+[node name="FailStartedQuest" parent="Objects/Switches" index="5" instance=ExtResource("3_ie0od")]
+position = Vector2(337, 144)
+sensor_size = Vector2(20, 20)
+feedback_enabled = true
+active_color = Color(0.27054, 0.440678, 0.893742, 1)
+conditions = Array[Resource("res://Scripts/Resources/TriggerCondition.gd")]([SubResource("Resource_2116w")])
+on_pressed_effects = Array[Resource("res://Scripts/Resources/Effect.gd")]([SubResource("Resource_vrfaj")])
+
+[node name="Label" type="Label" parent="Objects/Switches/FailStartedQuest" index="2"]
+offset_left = 6.0
+offset_top = -25.0
+offset_right = 269.0
+offset_bottom = -2.0
+rotation = -0.742282
+text = "FailStartedQuest"
+
+[node name="QuestExists_2" parent="Objects/Switches" index="6" instance=ExtResource("3_ie0od")]
+z_index = -1
+position = Vector2(337, 46)
+sensor_size = Vector2(20, 20)
+feedback_enabled = true
+default_color = Color(0.61339, 0.61339, 0.61339, 1)
+active_color = Color(0.231094, 0.353113, 0.910156, 1)
+conditions = Array[Resource("res://Scripts/Resources/TriggerCondition.gd")]([SubResource("Resource_r7axw")])
+
+[node name="Label" type="Label" parent="Objects/Switches/QuestExists_2" index="2"]
+offset_left = 6.0
+offset_top = -22.0
+offset_right = 97.0
+offset_bottom = 1.0
+rotation = -0.703666
+text = "QuestExists"
+
+[node name="QuestIsDone_2" parent="Objects/Switches" index="7" instance=ExtResource("3_ie0od")]
+position = Vector2(339, 239)
+sensor_size = Vector2(20, 20)
+feedback_enabled = true
+active_color = Color(0.274841, 0.371058, 0.890625, 1)
+conditions = Array[Resource("res://Scripts/Resources/TriggerCondition.gd")]([SubResource("Resource_o4j27")])
+
+[node name="Label2" type="Label" parent="Objects/Switches/QuestIsDone_2" index="2"]
+offset_left = 9.07938
+offset_top = -22.0248
+offset_right = 109.079
+offset_bottom = 0.975174
+rotation = -0.703666
+text = "QuestIsDone"
+
+[node name="QUEST_KEY" parent="Objects/Items" index="0" instance=ExtResource("11_k0w30")]
+position = Vector2(48.0763, 44.9773)
+item = ExtResource("6_euqsn")
+quantity = 1
+
+[node name="PlayerStart" type="Node2D" parent="Markers" index="0"]

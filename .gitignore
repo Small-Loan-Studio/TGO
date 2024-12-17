@@ -23,3 +23,6 @@ mono_crash.*.json
 
 #Builds Folder
 builds/
+
+gdlint.sh
+gdformat.sh

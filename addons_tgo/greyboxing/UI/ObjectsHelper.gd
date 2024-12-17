@@ -16,7 +16,6 @@ const TORCH_KEY = "torch"
 const CHARACTERS_CHILD_NODE = "Characters"
 const ITEMS_CHILD_NODE = "Items"
 const NPC_PATH = "res://Scripts/Resources/NPCs"
-const ITEM_PATH = "res://Scripts/Resources/Items"
 const BUTTON_IDX = 0
 const DETAIL_IDX = 1
 const RESET_IDX = 2
@@ -427,7 +426,7 @@ func _item_detail_visibility_changed() -> void:
 	if !_item_detail.visible:
 		return
 
-	var dir := DirAccess.open(ITEM_PATH)
+	var dir := DirAccess.open(Item.ITEM_PATH)
 	if dir == null:
 		printerr("Failed to open item resource path:", DirAccess.get_open_error())
 		return
@@ -438,7 +437,7 @@ func _item_detail_visibility_changed() -> void:
 	# TODO: doesn't traverse subdirs
 	while item_file != "":
 		if item_file.ends_with(".tres"):
-			var config := ResourceLoader.load(ITEM_PATH + "/" + item_file) as Item
+			var config := ResourceLoader.load(Item.ITEM_PATH + "/" + item_file) as Item
 			if config != null:
 				var key := config.id
 				_item_dict[key] = config
