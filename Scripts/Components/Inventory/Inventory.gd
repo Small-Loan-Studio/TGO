@@ -33,28 +33,34 @@ func count_item(item: Item) -> int:
 	return count_item_by_id(item.id)
 
 
-func insert(item: ItemStack) -> bool:
-	## Iterate over our inventory and stack items if available
-	for index in _items.size():
-		if _items[index].can_stack(item):
-			_items[index].stack(item)
-			inventory_updated.emit(self)
-			inventory_item_inserted.emit(item)
-			return true
-		if _items[index].can_partially_stack(item) && _items.size() + 1 <= size:
-			var stack := _items[index].partially_stack(item)
-			_items.append(stack)
-			inventory_item_inserted.emit(item)
-			inventory_updated.emit(self)
-			return true
+func insert(new_item: ItemStack) -> bool:
+	var inserted := false
 
-	## We cannot stack, so let's insert the new ItemStack if there is an available slot
-	if size == -1 || (_items.size() < size):
-		_items.append(item)
-		inventory_item_inserted.emit(item)
+	for slot in _items:
+		if slot.can_stack(new_item):
+			slot.stack(new_item)
+			inserted = true
+			break
+
+		if slot.can_partially_stack(new_item) && _can_grow():
+			var remaining := slot.partially_stack(new_item)
+			_items.append(remaining)
+			inserted = true
+			break
+
+	if !inserted && _can_grow():
+		_items.append(new_item)
+		inserted = true
+
+	if inserted:
 		inventory_updated.emit(self)
-		return true
-	return false
+		inventory_item_inserted.emit(new_item)
+
+	return inserted
+
+
+func _can_grow(delta: int = 1) -> bool:
+	return size == -1 || (_items.size() + delta) <=  size
 
 
 func remove(_item: ItemStack) -> void:
