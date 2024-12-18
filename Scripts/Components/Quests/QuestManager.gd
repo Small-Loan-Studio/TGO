@@ -49,28 +49,48 @@ func get_all_quest_ids() -> Array[String]:
 	return arr
 
 
-## saves a loaded set of quests to a target file; if the quests haven't been
-## loaded prints an error and bails
+## Checkpoints the state of all quests into a
+##     Dictionary[quest_state_name: String, Array[quest_id: String]]
 ##
-## TODO: not implemented
-func save_to_path(_dest: String) -> void:
-	if len(_quest_dict.keys) == 0:
+## XXX: we write the quest state as a name bc it gets serialized as a string
+## and that's the cleanest way to keep everything consistent on the save/load
+## paths even though it's kinda meh :shrug:
+func save() -> Dictionary:
+	var data_dict := {}
+	if len(_quest_dict.keys()) == 0:
 		printerr("Attempting to save an empty quest structure what are you doing")
-		return
-	assert(false, "Not yet implemented")
+
+	for v: Enums.QuestState in Enums.QuestState.values():
+		data_dict[Enums.quest_state_name(v)] = []
+
+	for quest_id: String in _quest_dict:
+		var q: Quest = _quest_dict[quest_id][QUEST_IDX]
+		data_dict[Enums.quest_state_name(q.state)].append(q.id)
 
 
-## loads quest data from a file and sets up the manager data structures + any
-## necessary post-load linkages
-##
-## TODO: not implemented
-func load_from_path(_src: String) -> void:
-	# TODO: when implmenting make sure that we end up in a state where we've
-	# done any necessary post hoc quest linkages are set up. In theory this
-	# should be as simple as leading _quest_dict up then calling _link_quests().
-	# Make sure before calling link quest you've cleared out any old quests that
-	# might've been loaded incorrectly by default in the _ready path.
-	assert(false, "Not yet implemented")
+	for v: Enums.QuestState in Enums.QuestState.values():
+		data_dict[Enums.quest_state_name(v)].sort()
+
+	return data_dict
+
+
+## Restore the state of all quests from a checkpoint
+##     Dictionary[quest_state_name: String, Array[quest_id: String]]
+func load(data: Dictionary) -> void:
+	_active_quests.clear()
+
+	# TODO: handle quest shift
+
+	for quest_state_name: String in data:
+		for quest_id: String in data[quest_state_name]:
+			var quest: Quest = _quest_dict[quest_id][QUEST_IDX]
+			quest.state = Enums.quest_state_from_str(quest_state_name)
+			if quest.state == Enums.QuestState.ACTIVE:
+				_active_quests[quest_id] = null
+
+	# signal state changes on all the newly marked active quests
+	for quest_id: String in _active_quests:
+		quest_updated.emit(quest_id)
 
 
 ## Gets a quest by its id, id will be converted into a canonical format
@@ -204,6 +224,7 @@ func _on_quest_state_changed(
 			_process_completed_quest(canonicalized_id)
 
 		Enums.QuestState.FAILED:
+			# TODO: when evaluating a failed quest we seem to advance the phase parent even if !may_fail
 			_active_quests.erase(canonicalized_id)
 			_process_completed_quest(canonicalized_id)
 

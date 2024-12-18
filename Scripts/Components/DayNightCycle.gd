@@ -36,17 +36,22 @@ func _get_target(time: int) -> Color:
 	return Color(.5, .5, .5)  #this shouldn't be reached
 
 
-func set_hour(time: int) -> void:
+func set_hour(time: int, immediate: bool = false) -> void:
 	print("DayNightCycle.set_hour(%d)" % [time])
 	if time > 23:
 		return
 	var tweener := get_tree().create_tween()
+
+	var tween_speed := 2
+	if immediate:
+		tween_speed = 0
+
 	if time >= day_start && time < dusk_start:
-		tweener.tween_property(_modulate, "color", day_color, 2)
+			tweener.tween_property(_modulate, "color", day_color, tween_speed)
 	elif (time >= dusk_start && time < night_start) || (time >= dawn_start && time < day_start):
-		tweener.tween_property(_modulate, "color", dusk_color, 2)
+		tweener.tween_property(_modulate, "color", dusk_color, tween_speed)
 	elif time >= night_start || time < dawn_start:
-		tweener.tween_property(_modulate, "color", night_color, 2)
+		tweener.tween_property(_modulate, "color", night_color, tween_speed)
 	else:
 		return
 
