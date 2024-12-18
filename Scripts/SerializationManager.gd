@@ -371,7 +371,7 @@ class SaveFileMeta:
 			assert(false, "Unknown meta file format")
 
 		sf.level_name = json.data["level"]
-		if sf. version >= 1:
+		if sf.version >= 1:
 			sf.quest_info = json.data["quest_info"]
 			sf.time_of_day = json.data["time_of_day"]
 

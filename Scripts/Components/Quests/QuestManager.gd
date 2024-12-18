@@ -67,7 +67,6 @@ func save() -> Dictionary:
 		var q: Quest = _quest_dict[quest_id][QUEST_IDX]
 		data_dict[Enums.quest_state_name(q.state)].append(q.id)
 
-
 	for v: Enums.QuestState in Enums.QuestState.values():
 		data_dict[Enums.quest_state_name(v)].sort()
 

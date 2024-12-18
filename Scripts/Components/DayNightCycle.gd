@@ -47,7 +47,7 @@ func set_hour(time: int, immediate: bool = false) -> void:
 		tween_speed = 0
 
 	if time >= day_start && time < dusk_start:
-			tweener.tween_property(_modulate, "color", day_color, tween_speed)
+		tweener.tween_property(_modulate, "color", day_color, tween_speed)
 	elif (time >= dusk_start && time < night_start) || (time >= dawn_start && time < day_start):
 		tweener.tween_property(_modulate, "color", dusk_color, tween_speed)
 	elif time >= night_start || time < dawn_start:
