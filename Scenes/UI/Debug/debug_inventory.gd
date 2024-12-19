@@ -11,6 +11,7 @@ var _item_dict: Dictionary = {}
 @onready var _item_picker: OptionButton = $ItemPicker
 @onready var _quantity_picker: SpinBox = $QuantityRange
 
+
 func update_inv_options() -> void:
 	#Loads configured items into the ItemPicker list
 	_item_dict.clear()
@@ -40,20 +41,19 @@ func setup(inv: Inventory) -> void:
 
 
 func remove_item() -> void:
-	var _item_id: int = _item_picker.get_selected_id()
-	if _item_id == -1:
+	var item_id: int = _item_picker.get_selected_id()
+	if item_id == -1:
 		printerr("No item or quantity selected")
 		return
-	_inventory.remove_by_id(
-		_item_picker.get_item_text(_item_id), _quantity_picker.value)
+	_inventory.remove_by_id(_item_picker.get_item_text(item_id), _quantity_picker.value)
 
 
 func add_item() -> void:
-	var _item_id: int = _item_picker.get_selected_id()
-	if _item_id == -1:
+	var item_id: int = _item_picker.get_selected_id()
+	if item_id == -1:
 		printerr("No item or quantity selected")
 		return
-	_item = _item_dict[_item_picker.get_item_text(_item_id)]
+	_item = _item_dict[_item_picker.get_item_text(item_id)]
 	if _quantity_picker.value > _item.stack_size:
 		printerr("Trying to add more than allowable stack size")
 		return

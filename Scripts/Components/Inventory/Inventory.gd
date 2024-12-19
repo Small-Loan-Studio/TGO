@@ -64,7 +64,7 @@ func remove_by_id(item_id: String, count: int = 1) -> bool:
 	if count_item_by_id(item_id) < count:
 		printerr("Attempting to remove more items than present in inventory")
 		return false
-	while count > 0: # While there are still items to remove
+	while count > 0:  # While there are still items to remove
 		var size: int = _items.size() - 1
 		for index in range(size, -1, -1):
 			if _items[index].item.id == item_id:
