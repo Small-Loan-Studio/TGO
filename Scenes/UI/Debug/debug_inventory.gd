@@ -4,15 +4,12 @@ extends HBoxContainer
 const ITEM_PATH = "res://Scripts/Resources/Items"
 
 var _item_stack: ItemStack
-var _item_id: int
-var _quantity_id: int = -1
 var _item: Item
+var _inventory: Inventory
+var _item_dict: Dictionary = {}
 
-@onready var _inventory: Inventory
 @onready var _item_picker: OptionButton = $ItemPicker
-@onready var _quantity_picker: OptionButton = $QuantityPicker
-@onready var _item_dict: Dictionary = {}
-
+@onready var _quantity_picker: SpinBox = $QuantityRange
 
 func update_inv_options() -> void:
 	#Loads configured items into the ItemPicker list
@@ -43,27 +40,27 @@ func setup(inv: Inventory) -> void:
 
 
 func remove_item() -> void:
-	_item_id = _item_picker.get_selected_id()
-	_quantity_id = _quantity_picker.get_selected_id()
-	if _item_id == -1 or _quantity_id == -1:
+	var _item_id: int = _item_picker.get_selected_id()
+	if _item_id == -1:
 		printerr("No item or quantity selected")
 		return
 	_inventory.remove_by_id(
-		_item_picker.get_item_text(_item_id), int(_quantity_picker.get_item_text(_quantity_id))
-	)
+		_item_picker.get_item_text(_item_id), _quantity_picker.value)
 
 
 func add_item() -> void:
-	_item_id = _item_picker.get_selected_id()
-	_quantity_id = _quantity_picker.get_selected_id()
-	if _item_id == -1 or _quantity_id == -1:
+	var _item_id: int = _item_picker.get_selected_id()
+	if _item_id == -1:
 		printerr("No item or quantity selected")
 		return
 	_item = _item_dict[_item_picker.get_item_text(_item_id)]
-	if int(_quantity_picker.get_item_text(_quantity_id)) > _item.stack_size:
+	if _quantity_picker.value > _item.stack_size:
 		printerr("Trying to add more than allowable stack size")
+		return
+	if _quantity_picker.value == 0:
+		printerr("Trying to add zero items to inventory")
 		return
 	_item_stack = ItemStack.new()
 	_item_stack.item = _item
-	_item_stack.quantity = int(_quantity_picker.get_item_text(_quantity_id))
+	_item_stack.quantity = _quantity_picker.value
 	_inventory.insert(_item_stack)
