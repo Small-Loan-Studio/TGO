@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=3 uid="uid://cobsc7v0oqc8l"]
+[gd_scene load_steps=19 format=3 uid="uid://d4cnh54npmjiv"]
 
 [ext_resource type="Script" path="res://Scripts/Driver.gd" id="1_agcjs"]
 [ext_resource type="Script" path="res://Scripts/AudioManager.gd" id="2_4seev"]
@@ -16,6 +16,7 @@
 [ext_resource type="PackedScene" uid="uid://my7v0l0el1dj" path="res://Scenes/UI/Debug/quest_debugger.tscn" id="11_g6nlc"]
 [ext_resource type="PackedScene" uid="uid://dyuykg87w5vff" path="res://Scenes/UI/Debug/devin_light_control.tscn" id="11_igd87"]
 [ext_resource type="PackedScene" uid="uid://cqin6fb282fjf" path="res://Scenes/Components/DayNightCycle.tscn" id="12_8kqo6"]
+[ext_resource type="PackedScene" uid="uid://bwx0yr616ip1g" path="res://Scenes/UI/Debug/debug_inventory.tscn" id="12_w3otq"]
 [ext_resource type="PackedScene" uid="uid://b13wrl3bedjku" path="res://Scenes/Components/Torch.tscn" id="13_kgcxt"]
 
 [node name="Driver" type="Node2D"]
@@ -121,6 +122,9 @@ text = "Delete"
 layout_mode = 2
 
 [node name="DebugDayNight" parent="OverlayManager/HUD/DebugStack" instance=ExtResource("10_8xh8g")]
+layout_mode = 2
+
+[node name="DebugInventory" parent="OverlayManager/HUD/DebugStack" instance=ExtResource("12_w3otq")]
 layout_mode = 2
 
 [node name="QuestDebugger" parent="OverlayManager/HUD/DebugStack" instance=ExtResource("11_g6nlc")]
