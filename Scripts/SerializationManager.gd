@@ -83,6 +83,8 @@ func save_game() -> void:
 		meta_data.level_name = last_level.level_name
 
 	Driver.instance().inventory_mgr.save(Utils.user_save_dir())
+	meta_data.quest_info = Driver.instance().quest_mgr.save()
+	meta_data.time_of_day = Driver.instance()._day_night_cycle.current_time
 
 	_write_meta(meta_data)
 	if !_write_dialogic_data():
@@ -120,6 +122,9 @@ func load_game() -> void:
 	var save_meta := _read_meta()
 	if save_meta != null:
 		_load_saved_level(save_meta.level_name)
+		Driver.instance().quest_mgr.load(save_meta.quest_info)
+		if save_meta.version >= 1:
+			Driver.instance()._day_night_cycle.set_hour(save_meta.time_of_day, true)
 
 	DirAccess.rename_absolute(
 		Utils.user_data_dir() + ZIP_FILE_NAME, Utils.user_data_dir() + SAVE_FILE_NAME
@@ -324,12 +329,21 @@ func _read_meta() -> SaveFileMeta:
 class SaveFileMeta:
 	extends RefCounted
 
+	var version: int = 0
+
 	var level_name: String
+
+	var time_of_day: int
+
+	# Map[QuestState, Array[quest_id: String]]
+	var quest_info: Dictionary
 
 	func marshal() -> String:
 		var data := {
-			"meta_version": 0,
+			"meta_version": 1,
 			"level": level_name,
+			"quest_info": quest_info,
+			"time_of_day": time_of_day,
 		}
 
 		return JSON.stringify(data, "\t")
@@ -351,9 +365,14 @@ class SaveFileMeta:
 			)
 			return null
 
-		if json.data["meta_version"] != 0:
+		sf.version = json.data["meta_version"]
+
+		if sf.version > 1:
 			assert(false, "Unknown meta file format")
 
 		sf.level_name = json.data["level"]
+		if sf.version >= 1:
+			sf.quest_info = json.data["quest_info"]
+			sf.time_of_day = json.data["time_of_day"]
 
 		return sf
