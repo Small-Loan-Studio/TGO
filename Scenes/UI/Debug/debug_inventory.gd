@@ -3,9 +3,9 @@ extends HBoxContainer
 
 const ITEM_PATH = "res://Scripts/Resources/Items"
 
-var _item_stack: ItemStack
-var _item: Item
-var _inventory: Inventory
+var _mgr: InventoryManager
+var _tgt_id: String
+# Dictionary[String, Item]
 var _item_dict: Dictionary = {}
 
 @onready var _item_picker: OptionButton = $ItemPicker
@@ -35,17 +35,21 @@ func update_inv_options() -> void:
 		item_file = dir.get_next()
 
 
-func setup(inv: Inventory) -> void:
-	_inventory = inv
+func setup(mgr: InventoryManager, inv_id: String) -> void:
+	_mgr = mgr
+	_tgt_id = inv_id
 	update_inv_options()
 
 
 func remove_item() -> void:
+	var inventory := _mgr.get_inventory(_tgt_id)
 	var item_id: int = _item_picker.get_selected_id()
 	if item_id == -1:
 		printerr("No item or quantity selected")
 		return
-	_inventory.remove_by_id(_item_picker.get_item_text(item_id), _quantity_picker.value)
+	inventory.remove_by_id(_item_picker.get_item_text(item_id), _quantity_picker.value)
+	_quantity_picker.hide()
+	_quantity_picker.show()
 
 
 func add_item() -> void:
@@ -53,14 +57,17 @@ func add_item() -> void:
 	if item_id == -1:
 		printerr("No item or quantity selected")
 		return
-	_item = _item_dict[_item_picker.get_item_text(item_id)]
+	var _item := _item_dict[_item_picker.get_item_text(item_id)] as Item
 	if _quantity_picker.value > _item.stack_size:
 		printerr("Trying to add more than allowable stack size")
 		return
 	if _quantity_picker.value == 0:
 		printerr("Trying to add zero items to inventory")
 		return
-	_item_stack = ItemStack.new()
-	_item_stack.item = _item
-	_item_stack.quantity = _quantity_picker.value
-	_inventory.insert(_item_stack)
+
+	var item_stack := ItemStack.new()
+	item_stack.item = _item
+	item_stack.quantity = _quantity_picker.value
+	_mgr.get_inventory(_tgt_id).insert(item_stack)
+	_quantity_picker.hide()
+	_quantity_picker.show()

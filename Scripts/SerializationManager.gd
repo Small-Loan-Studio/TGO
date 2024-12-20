@@ -3,7 +3,7 @@ extends Node
 
 signal load_saved_level(level_name: String, marker: String)
 
-const INVENTORY_FOLDER := "inventory/"
+const INVENTORY_FILE_NAME := "inventory.json"
 const TGO_SCREENSHOT_FILE_NAME := "thumbnail.png"
 const SAVE_FILE_NAME := "TGO.sav"
 const ZIP_FILE_NAME := "TGO.zip"
@@ -37,11 +37,11 @@ func _check_file_path_exists() -> bool:
 
 
 func _check_save_exists() -> bool:
-	var path := Utils.USER_DATA_DIR + SAVE_FILE_NAME
-	var exist: bool = FileAccess.file_exists(path)
-	if !exist:
+	var path := Utils.USER_DATA_DIR.path_join(SAVE_FILE_NAME)
+	if !FileAccess.file_exists(path):
 		printerr("Save file (%s) does not exist" % [path])
-	return exist
+		return false
+	return true
 
 
 func _create_file_paths() -> int:
@@ -57,11 +57,6 @@ func _create_file_paths() -> int:
 		if error != OK:
 			printerr("Could not create directory: ", Utils.user_level_dir(), " Error: ", error)
 			return error
-
-	if !DirAccess.dir_exists_absolute(Utils.user_inventory_dir()):
-		error = DirAccess.make_dir_absolute(Utils.user_inventory_dir())
-		if error != OK:
-			printerr("Could not create directory: ", Utils.user_inventory_dir(), " Error: ", error)
 
 	return error
 
@@ -82,13 +77,17 @@ func save_game() -> void:
 		update_level(last_level)
 		meta_data.level_name = last_level.level_name
 
-	Driver.instance().inventory_mgr.save(Utils.user_save_dir())
 	meta_data.quest_info = Driver.instance().quest_mgr.save()
 	meta_data.time_of_day = Driver.instance()._day_night_cycle.current_time
-
+	meta_data.location = Driver.instance().player.global_position
 	_write_meta(meta_data)
+
 	if !_write_dialogic_data():
 		printerr("Unable to save world game state")
+		return
+	
+	if !_write_inventory_data():
+		printerr("Unable to save inventory data")
 		return
 
 	_write_zip_file()
@@ -102,33 +101,45 @@ func save_game() -> void:
 func load_game() -> void:
 	print("Loading Game")
 
-	if _check_save_exists():
-		var error: int = DirAccess.rename_absolute(
-			Utils.user_data_dir() + SAVE_FILE_NAME, Utils.user_data_dir() + ZIP_FILE_NAME
-		)
-		if error != OK:
-			printerr("Could not open sav file: ", error)
-			return
+	if !_check_save_exists():
+		return
+
+	var error: int = DirAccess.copy_absolute(
+		Utils.user_data_dir().path_join(SAVE_FILE_NAME),
+		Utils.user_data_dir().path_join(ZIP_FILE_NAME),
+	)
+	if error != OK:
+		printerr("Could not open sav file: ", error)
+		return
 
 	is_loading_game = true
 	if !_unzip_save():
 		printerr("Unable to decompress save file.")
 		return
 
-	if !_restore_dialogic():
-		printerr("Unable to restore world state")
+	var save_meta := _read_meta()
+
+	if save_meta == null:
+		printerr("Failed to load save metadata")
 		return
 
-	var save_meta := _read_meta()
-	if save_meta != null:
-		_load_saved_level(save_meta.level_name)
-		Driver.instance().quest_mgr.load(save_meta.quest_info)
-		if save_meta.version >= 1:
-			Driver.instance()._day_night_cycle.set_hour(save_meta.time_of_day, true)
+	if save_meta.version >= 2:
+		if !_restore_inventory():
+			printerr("Failed to restore inventory data")
+			return
+		Driver.instance().player.global_position = save_meta.location
 
-	DirAccess.rename_absolute(
-		Utils.user_data_dir() + ZIP_FILE_NAME, Utils.user_data_dir() + SAVE_FILE_NAME
-	)
+	if save_meta.version >= 1:
+		if !_restore_dialogic():
+			printerr("Unable to restore world state")
+			return
+
+	_load_saved_level(save_meta.level_name)
+	Driver.instance().quest_mgr.load(save_meta.quest_info)
+	if save_meta.version >= 1:
+		Driver.instance()._day_night_cycle.set_hour(save_meta.time_of_day, true)
+
+	DirAccess.remove_absolute(Utils.user_data_dir() + ZIP_FILE_NAME)
 	print("Loaded Game")
 
 
@@ -215,7 +226,7 @@ func _write_zip_file() -> void:
 
 func _unzip_save() -> bool:
 	var reader: ZIPReader = ZIPReader.new()
-	var error := reader.open(Utils.user_data_dir() + ZIP_FILE_NAME)
+	var error := reader.open(Utils.user_data_dir().path_join(ZIP_FILE_NAME))
 	if error != OK:
 		printerr("Could not open zip: ", error)
 		return false
@@ -223,26 +234,70 @@ func _unzip_save() -> bool:
 	# file_name includes the whole directory path within the zip file for example,
 	# the filename for a level would be level/level_name.scn
 	for file_name: String in reader.get_files():
-		if file_name.ends_with(".scn") or file_name.ends_with(".tscn"):
-			var file: PackedByteArray = reader.read_file(file_name, true)
-			var new_file: FileAccess = FileAccess.open(
-				Utils.user_save_dir() + file_name, FileAccess.WRITE_READ
-			)
-			if !new_file:
-				printerr("newfile is null: ", FileAccess.get_open_error())
+		var file: PackedByteArray = reader.read_file(file_name, true)
+		var file_path := Utils.user_save_dir().path_join(file_name)
+
+		# ensure the path to the file exists
+		if !DirAccess.dir_exists_absolute(file_path.get_base_dir()):
+			var mk_err := DirAccess.make_dir_recursive_absolute(file_path.get_base_dir())
+			if mk_err != OK:
+				printerr("Failed to make necessary directory '%s': %d" % [file_path, mk_err])
 				return false
 
-			new_file.store_buffer(file)
+		# write the file into the save dir
+		var new_file: FileAccess = FileAccess.open(file_path, FileAccess.WRITE_READ)
+		if !new_file:
+			printerr("Failed writing %s: " % [file_path], FileAccess.get_open_error())
+			return false
 
+		new_file.store_buffer(file)
+
+		# special case to load our working set lookup for scene files
+		if file_name.ends_with(".scn") or file_name.ends_with(".tscn"):
 			var map_name: String = file_name.substr(Utils.LEVEL_FOLDER.length()).split(".")[0]
-
 			_persistent_levels[map_name] = Utils.user_save_dir() + file_name
 
-			new_file.close()
+		new_file.close()
 
 	reader.close()
 	return true
 
+
+func _write_inventory_data() -> bool:
+	var inv_data := Driver.instance().inventory_mgr.save()
+	var inv_file: FileAccess = FileAccess.open(
+		Utils.user_save_dir().path_join(INVENTORY_FILE_NAME), FileAccess.WRITE_READ,
+	)
+	if !inv_file:
+		printerr("Failed to open inventory data: ", FileAccess.get_open_error())
+		return false
+
+	inv_file.store_string(JSON.stringify(inv_data, "\t"))
+	inv_file.close()
+	return true
+
+
+func _restore_inventory() -> bool:
+	var inv_data: String = FileAccess.get_file_as_string(
+		Utils.user_save_dir().path_join(INVENTORY_FILE_NAME),
+	)
+
+	if FileAccess.get_open_error() != OK:
+		printerr("Failed to load inventory: ", FileAccess.get_open_error())
+		return false
+	
+	var json := JSON.new()
+	var parse_result := json.parse(inv_data)
+	if parse_result != OK:
+		printerr("Failed to parse inventory file: %d / %s" % [parse_result, json.get_error_message()])
+		return false
+
+	if typeof(json.data) != TYPE_DICTIONARY:
+		printerr("Unexpected data format in inventory file: ", typeof(json.data))
+		return false
+
+	Driver.instance().inventory_mgr.load(json.data as Dictionary)
+	return true
 
 func _write_dialogic_data() -> bool:
 	var err := Dialogic.Save.save(DIALGOIC_SLOT)
@@ -335,15 +390,18 @@ class SaveFileMeta:
 
 	var time_of_day: int
 
+	var location: Vector2
+
 	# Map[QuestState, Array[quest_id: String]]
 	var quest_info: Dictionary
 
 	func marshal() -> String:
 		var data := {
-			"meta_version": 1,
+			"meta_version": 2,
 			"level": level_name,
 			"quest_info": quest_info,
 			"time_of_day": time_of_day,
+			"pc_location": [location[0], location[1]],
 		}
 
 		return JSON.stringify(data, "\t")
@@ -367,12 +425,18 @@ class SaveFileMeta:
 
 		sf.version = json.data["meta_version"]
 
-		if sf.version > 1:
+		if sf.version > 2:
 			assert(false, "Unknown meta file format")
 
 		sf.level_name = json.data["level"]
 		if sf.version >= 1:
 			sf.quest_info = json.data["quest_info"]
 			sf.time_of_day = json.data["time_of_day"]
+
+		if sf.version >= 2:
+			sf.location = Vector2(
+				json.data["pc_location"][0],
+				json.data["pc_location"][1],
+			)
 
 		return sf

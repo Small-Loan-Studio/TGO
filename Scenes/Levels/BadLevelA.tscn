@@ -166,6 +166,11 @@ position = Vector2(170.04, 350.165)
 item = ExtResource("15_svqc7")
 quantity = 1
 
+[node name="QUEST_KEY_2" parent="Objects/Items" index="1" instance=ExtResource("13_1m8di")]
+position = Vector2(200.161, 351.11)
+item = ExtResource("15_svqc7")
+quantity = 1
+
 [node name="variable-quest-giver" parent="Objects" index="6" instance=ExtResource("7_ipcqk")]
 position = Vector2(325.779, 327.512)
 can_block_movement = true

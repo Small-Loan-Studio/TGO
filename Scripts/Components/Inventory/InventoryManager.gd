@@ -3,6 +3,7 @@ extends Node
 
 signal inventory_updated(id: String)
 
+# Dictionary[String, Inventory]
 var _inventories: Dictionary
 
 
@@ -24,15 +25,24 @@ func _emit_update_signal(_inv: Inventory, inv_id: String) -> void:
 	inventory_updated.emit(inv_id)
 
 
-func _load(filepath: String) -> bool:
-	_check_file_location(filepath)
-	print("loading inventory")
+func load(data: Dictionary) -> void:
+	# TODO - how to disconnect Callable?
+	print(get_inventory(Utils.PLAYER_ID).get_signal_connection_list("inventory_updated"))
+	_inventories.clear()
+	for inv_id: String in data:
+		var inv := get_inventory(inv_id)
+		inv.load(data[inv_id] as Dictionary)
+		inventory_updated.emit(inv_id)
 
-	return 0
 
+func save() -> Dictionary:
+	var mgr_state := {}
 
-func save(filepath: String) -> void:
-	_check_file_location(filepath + "inventory.json")
+	for inv_id: String in _inventories:
+		var inv: Inventory = _inventories[inv_id]
+		mgr_state[inv_id] = inv.save()
+
+	return mgr_state
 
 
 func _check_file_location(filepath: String) -> void:

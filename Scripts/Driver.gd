@@ -46,13 +46,15 @@ func _ready() -> void:
 	# TODO: we probably don't want to use this as a way to wire up the inventory
 	# replace eventually with a more principled method that can be used for more
 	# than just one-offs
-	inventory_mgr.get_inventory(player.id).inventory_updated.connect(_debug_refresh_inventory_ui)
+	inventory_mgr.inventory_updated.connect(_debug_refresh_inventory_ui)
 	# do an initial build from the start state
-	_debug_refresh_inventory_ui(inventory_mgr.get_inventory(player.id))
+	_debug_refresh_inventory_ui(player.id)
 
 
-func _debug_refresh_inventory_ui(inventory: Inventory) -> void:
-	var items := inventory.get_items()
+func _debug_refresh_inventory_ui(inventory_id: String) -> void:
+	if inventory_id != Utils.PLAYER_ID.to_lower():
+		return
+	var items := inventory_mgr.get_inventory(inventory_id).get_items()
 	_debug_ui_inventory.visible = items.size() > 0
 	_debug_ui_inventory.build(items)
 
@@ -64,7 +66,7 @@ func _post_ready() -> void:
 	_debug_quests.setup(quest_mgr)
 	# let's just ignore the get_node call. it's trash but beyond temporary
 	_debug_light.setup(player, player.get_node("Debug_Torch"))
-	_debug_inventory.setup(inventory_mgr.get_inventory(player.id))
+	_debug_inventory.setup(inventory_mgr, player.id)
 
 	if !autoload_scene_name.is_empty():
 		await _curtain.fade_in(1)
@@ -122,7 +124,10 @@ func load_level(target_level_name: String, target_name: String) -> void:
 		# update level ref
 		_last_loaded_level = new_level
 
-		_set_player(new_level, target_name)
+		if _serialization_mgr.is_loading_game:
+			_set_player_from_save()
+		else:
+			_set_player(new_level, target_name)
 	else:
 		printerr("packed level is null")
 
@@ -137,6 +142,13 @@ func _set_player(new_level: LevelBase, marker_name: String) -> void:
 		marker_name = LevelBase.DEFAULT_MARKER
 	var location := new_level.get_named_location(marker_name)
 	player.global_position = location
+
+
+func _set_player_from_save() -> void:
+	# TODO: get the player ready and move them to the appropriate location
+	# we'll probably want to parameterize this more eventually.
+	player.visible = true
+	player.player_controled = true
 
 
 ## Returns the currently loaded level. A bit of a hack for routing things into

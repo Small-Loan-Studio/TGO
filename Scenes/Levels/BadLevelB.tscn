@@ -41,7 +41,7 @@ dlg = SubResource("Resource_ql4ne")
 id = "mayor_buckley"
 
 [node name="QUEST_KEY" parent="Objects/Items" index="0" instance=ExtResource("8_shpqy")]
-position = Vector2(84, 241)
+position = Vector2(218, 307)
 item = ExtResource("9_ewmie")
 quantity = 1
 
