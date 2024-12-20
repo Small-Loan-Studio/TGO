@@ -1,0 +1,10 @@
+[gd_scene load_steps=3 format=3 uid="uid://dhno83kekio4x"]
+
+[ext_resource type="PackedScene" uid="uid://dyq8mcdsutnsa" path="res://Scenes/Components/LevelBase.tscn" id="1_ydny0"]
+[ext_resource type="TileSet" uid="uid://c72m3jled4jfg" path="res://Art/Environment/ext_simple_tileset.tres" id="2_hvg8l"]
+
+[node name="LevelBase" instance=ExtResource("1_ydny0")]
+
+[node name="TileMap" parent="." index="0"]
+tile_set = ExtResource("2_hvg8l")
+layer_0/tile_data = PackedInt32Array(-1, 0, 0, -65536, 0, 0, 0, 0, 0, 65535, 0, 0)
