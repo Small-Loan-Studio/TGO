@@ -85,7 +85,7 @@ func save_game() -> void:
 	if !_write_dialogic_data():
 		printerr("Unable to save world game state")
 		return
-	
+
 	if !_write_inventory_data():
 		printerr("Unable to save inventory data")
 		return
@@ -104,9 +104,12 @@ func load_game() -> void:
 	if !_check_save_exists():
 		return
 
-	var error: int = DirAccess.copy_absolute(
-		Utils.user_data_dir().path_join(SAVE_FILE_NAME),
-		Utils.user_data_dir().path_join(ZIP_FILE_NAME),
+	var error: int = (
+		DirAccess
+		. copy_absolute(
+			Utils.user_data_dir().path_join(SAVE_FILE_NAME),
+			Utils.user_data_dir().path_join(ZIP_FILE_NAME),
+		)
 	)
 	if error != OK:
 		printerr("Could not open sav file: ", error)
@@ -265,8 +268,12 @@ func _unzip_save() -> bool:
 
 func _write_inventory_data() -> bool:
 	var inv_data := Driver.instance().inventory_mgr.save()
-	var inv_file: FileAccess = FileAccess.open(
-		Utils.user_save_dir().path_join(INVENTORY_FILE_NAME), FileAccess.WRITE_READ,
+	var inv_file: FileAccess = (
+		FileAccess
+		. open(
+			Utils.user_save_dir().path_join(INVENTORY_FILE_NAME),
+			FileAccess.WRITE_READ,
+		)
 	)
 	if !inv_file:
 		printerr("Failed to open inventory data: ", FileAccess.get_open_error())
@@ -278,18 +285,23 @@ func _write_inventory_data() -> bool:
 
 
 func _restore_inventory() -> bool:
-	var inv_data: String = FileAccess.get_file_as_string(
-		Utils.user_save_dir().path_join(INVENTORY_FILE_NAME),
+	var inv_data: String = (
+		FileAccess
+		. get_file_as_string(
+			Utils.user_save_dir().path_join(INVENTORY_FILE_NAME),
+		)
 	)
 
 	if FileAccess.get_open_error() != OK:
 		printerr("Failed to load inventory: ", FileAccess.get_open_error())
 		return false
-	
+
 	var json := JSON.new()
 	var parse_result := json.parse(inv_data)
 	if parse_result != OK:
-		printerr("Failed to parse inventory file: %d / %s" % [parse_result, json.get_error_message()])
+		printerr(
+			"Failed to parse inventory file: %d / %s" % [parse_result, json.get_error_message()]
+		)
 		return false
 
 	if typeof(json.data) != TYPE_DICTIONARY:
@@ -298,6 +310,7 @@ func _restore_inventory() -> bool:
 
 	Driver.instance().inventory_mgr.load(json.data as Dictionary)
 	return true
+
 
 func _write_dialogic_data() -> bool:
 	var err := Dialogic.Save.save(DIALGOIC_SLOT)

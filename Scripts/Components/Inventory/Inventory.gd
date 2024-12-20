@@ -121,7 +121,7 @@ func save() -> Dictionary:
 	var slots: Array[String] = []
 	for slot in _items:
 		slots.append("%d:%s" % [slot.quantity, slot.item.resource_path])
-	
+
 	inv["size"] = size
 	inv["contains"] = slots
 
@@ -137,7 +137,7 @@ func load(data: Dictionary) -> void:
 		var parts := ele.split(":", true, 1)
 		var qty := int(parts[0])
 		var item_path := parts[1]
-		
+
 		var item := ResourceLoader.load(item_path) as Item
 		if item == null:
 			print("Failed to load item ", item_path)
