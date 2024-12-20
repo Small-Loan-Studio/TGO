@@ -57,8 +57,8 @@ func add_item() -> void:
 	if item_id == -1:
 		printerr("No item or quantity selected")
 		return
-	var _item := _item_dict[_item_picker.get_item_text(item_id)] as Item
-	if _quantity_picker.value > _item.stack_size:
+	var item := _item_dict[_item_picker.get_item_text(item_id)] as Item
+	if _quantity_picker.value > item.stack_size:
 		printerr("Trying to add more than allowable stack size")
 		return
 	if _quantity_picker.value == 0:
@@ -66,7 +66,7 @@ func add_item() -> void:
 		return
 
 	var item_stack := ItemStack.new()
-	item_stack.item = _item
+	item_stack.item = item
 	item_stack.quantity = _quantity_picker.value
 	_mgr.get_inventory(_tgt_id).insert(item_stack)
 	_quantity_picker.hide()
