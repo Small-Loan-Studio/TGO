@@ -27,7 +27,7 @@ func _emit_update_signal(_inv: Inventory, inv_id: String) -> void:
 
 func load(data: Dictionary) -> void:
 	# TODO - how to disconnect Callable?
-	print(get_inventory(Utils.PLAYER_ID).get_signal_connection_list("inventory_updated"))
+	# TODO - maybe just reuse existing inventory objs and clear them individually
 	_inventories.clear()
 	for inv_id: String in data:
 		var inv := get_inventory(inv_id)
