@@ -114,3 +114,35 @@ func _to_string() -> String:
 	for item in _items:
 		string_rep.append(str(item))
 	return "[" + ",".join(string_rep) + "]"
+
+
+func save() -> Dictionary:
+	var inv := {}
+	var slots: Array[String] = []
+	for slot in _items:
+		slots.append("%d:%s" % [slot.quantity, slot.item.resource_path])
+
+	inv["size"] = size
+	inv["contains"] = slots
+
+	return inv
+
+
+func load(data: Dictionary) -> void:
+	_items.clear()
+
+	size = data["size"]
+
+	for ele: String in data["contains"]:
+		var parts := ele.split(":", true, 1)
+		var qty := int(parts[0])
+		var item_path := parts[1]
+
+		var item := ResourceLoader.load(item_path) as Item
+		if item == null:
+			print("Failed to load item ", item_path)
+			continue
+		var stack := ItemStack.new()
+		stack.item = item
+		stack.quantity = qty
+		_items.append(stack)

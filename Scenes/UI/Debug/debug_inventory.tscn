@@ -18,6 +18,7 @@ popup/item_1/id = 1
 
 [node name="QuantityRange" type="SpinBox" parent="."]
 layout_mode = 2
+value = 1.0
 rounded = true
 
 [node name="AddInv" type="Button" parent="."]
