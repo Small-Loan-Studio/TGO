@@ -9,6 +9,10 @@ func get_vector() -> Vector2:
 	return Vector2.ZERO
 
 
+func get_just_pressed() -> Array[Enums.InputAction]:
+	return []
+
+
 func get_button_pressed() -> Array[Enums.InputAction]:
 	return []
 
