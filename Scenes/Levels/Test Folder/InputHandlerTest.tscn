@@ -1,0 +1,11 @@
+[gd_scene load_steps=3 format=3 uid="uid://bh2linqm7g25b"]
+
+[ext_resource type="PackedScene" uid="uid://dyq8mcdsutnsa" path="res://Scenes/Components/LevelBase.tscn" id="1_7ubmy"]
+[ext_resource type="Script" path="res://Scripts/Components/CharacaterControl/InputController.gd" id="2_4drch"]
+
+[node name="InputHandlerTest" instance=ExtResource("1_7ubmy")]
+
+[node name="Node" type="Node" parent="Objects" index="4"]
+script = ExtResource("2_4drch")
+
+[node name="PlayerStart" type="Node2D" parent="Markers" index="0"]

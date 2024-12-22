@@ -52,7 +52,7 @@ func _ready() -> void:
 
 
 func _debug_refresh_inventory_ui(inventory_id: String) -> void:
-	if inventory_id != Utils.PLAYER_ID.to_lower():
+	if inventory_id.to_lower() != Utils.PLAYER_ID.to_lower():
 		return
 	var items := inventory_mgr.get_inventory(inventory_id).get_items()
 	_debug_ui_inventory.visible = items.size() > 0
