@@ -11,61 +11,80 @@ const PRESSED = 1
 const JUST_RELEASED = 2
 const UNPRESSED = 3
 
-var deadzone := .05
+@export var deadzone := .05
 
 var _movement: Array[String]
 var _actions: Array[String]
 
 var _dir_vector: Vector2
 
+var _setup: bool = false
 var _action_state: Dictionary
 var _always_unpressed: InputController.ActionState
 var _input: InputWrapper
 
-func _init(
-	movement_actions: Array[Enums.InputAction],
-	actions_to_watch: Array[Enums.InputAction],
+func setup(
+	movement_actions: Array,
+	actions_to_watch: Array,
 	input_src: Variant = null,
 ) -> void:
-	for ele in movement_actions:
+	for ele: Enums.InputAction in movement_actions:
 		_movement.append(Enums.input_action_name(ele))
-	for ele in actions_to_watch:
-		_actions.append(Enums.input_action_name(ele))
+	for ele: Enums.InputAction in actions_to_watch:
+		var name := Enums.input_action_name(ele)
+		_actions.append(name)
+		_action_state[name] = InputController.ActionState.new()
 	_always_unpressed = InputController.ActionState.new()
 
 	_input = InputWrapper.new(input_src)
+
+	_setup = true
 
 func _ready() -> void:
 	pass
 
 
 func _unhandled_input(event: InputEvent) -> void:
+	if !_setup:
+		return
+
 	process_input(event)
 	
 
 
 func process_input(_event: InputEvent) -> void:
+	if !_setup:
+		return
+
 	_dir_vector = _input.get_vector(
 		_movement[DIR_NEG_X], _movement[DIR_POS_X], _movement[DIR_NEG_Y], _movement[DIR_POS_Y], deadzone)
 	_dir_vector = _dir_vector.normalized()
+	
+	if _dir_vector.length() < deadzone:
+		_dir_vector = Vector2.ZERO
 
-	for action_name in _actions:
+	for action_name: String in _action_state:
 		if _input.is_action_pressed(action_name):
-			_action_state[action].state = PRESSED
+			_action_state.get(action_name).state = PRESSED
 			if _input.is_action_just_pressed(action_name):
-				_action_state[action].state = JUST_PRESSED
+				_action_state.get(action_name).state = JUST_PRESSED
 		elif _input.is_action_just_released(action_name):
-			_action_state[action].state = JUST_RELEASED
+			_action_state.get(action_name).state = JUST_RELEASED
 		else:
-			_action_state[action].state = UNPRESSED
+			_action_state.get(action_name).state = UNPRESSED
 
 
 func action(input: Enums.InputAction) -> InputController.ActionState:
-	if _action_state.has(input):
-		return _action_state[input]
+	var name := Enums.input_action_name(input)
+	if _action_state.has(name):
+		return _action_state.get(name)
 	
 	printerr("InputController doesn't know about %s" % [Enums.input_action_name(input)])
 	return _always_unpressed
+
+
+func get_vector() -> Vector2:
+	return _dir_vector
 
 
 class ActionState:

@@ -53,11 +53,30 @@ var _target: CharacterTarget = CharacterTarget.none()
 @onready var _interaction_sensor: Area2D = $SensorSet/InteractionSensor
 @onready var _push_pull_sensor: Area2D = $SensorSet/PushPullSensor
 @onready var _pinjoint: PinJoint2D = $PinJoint2D
+@onready var _state_machine: StateMachine = $StateMachine
+
+@export var _controller: ControllerBase
 
 
 func _ready() -> void:
-	_target.target_changed.connect(Callable(self, "_handle_target_changed"))
 	queue_redraw()
+	if Engine.is_editor_hint():
+		return
+	_target.target_changed.connect(Callable(self, "_handle_target_changed"))
+	var ctx := StateMachine.CharacterContext.new()
+	ctx.character = self
+	ctx.controller = _controller
+	_controller.setup(
+		[ Enums.InputAction.LEFT,
+			Enums.InputAction.RIGHT,
+			Enums.InputAction.UP,
+			Enums.InputAction.DOWN,
+		],
+		[
+			Enums.InputAction.INTERACT,
+		],
+	)
+	_state_machine.setup(ctx)
 
 
 func _draw() -> void:
@@ -120,11 +139,12 @@ func _unhandled_input(_event: InputEvent) -> void:
 				_start_pushpull()
 
 
-func _physics_process(_delta: float) -> void:
+func _physics_process(delta: float) -> void:
 	if Engine.is_editor_hint():
 		# gross. but here we are
 		return
 
+	_state_machine.run_physics(delta)
 	if _impulse == Vector2.ZERO:
 		# TODO: plausible we'll want a directional idle state to switch into
 		_sprite.stop()
@@ -159,6 +179,13 @@ func _physics_process(_delta: float) -> void:
 				collider.apply_central_force(_impulse * push_force)
 				# we can only push one item so bail
 				break
+
+
+func _process(delta: float) -> void:
+	if Engine.is_editor_hint():
+		return
+
+	_state_machine.run_tick(delta)
 
 
 func _on_interaction_sensor_entered(area: Area2D) -> void:
@@ -217,21 +244,28 @@ func _handle_target_changed() -> void:
 
 
 func _get_configuration_warnings() -> PackedStringArray:
+	var errs := []
 	if _sprite.sprite_frames == null:
-		return ["No sprite frames have been set on AnimatedSprite2D"]
+		errs.append("No sprite frames have been set on AnimatedSprite2D")
+	else:
+		var animations := _sprite.sprite_frames.get_animation_names()
+		var missing_anims: Array[String] = []
 
-	var animations := _sprite.sprite_frames.get_animation_names()
-	var missing_anims: Array[String] = []
+		for da: Enums.Direction in Enums.Direction.values():
+			var want_name := Enums.direction_name(da)
+			if not want_name in animations:
+				missing_anims.append(want_name)
 
-	for da: Enums.Direction in Enums.Direction.values():
-		var want_name := Enums.direction_name(da)
-		if not want_name in animations:
-			missing_anims.append(want_name)
+		if missing_anims.size() > 0:
+			errs.append("Missing expected animations in child sprite: " + str(missing_anims))
 
-	if missing_anims.size() > 0:
-		return ["Missing expected animations in child sprite: " + str(missing_anims)]
+	var controller := get_children().filter(func (c: Node) -> bool: return c is ControllerBase)
+	if len(controller) < 1:
+		errs.append("No character controller: no way to respond to input")
+	if len(controller) > 1:
+		errs.append("Multiple controllers found as children, ambiguous control path")
 
-	return []
+	return errs
 
 
 func _is_push(v: Vector2, push_direction: Enums.Direction) -> bool:
