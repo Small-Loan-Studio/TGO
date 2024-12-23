@@ -1,6 +1,4 @@
-extends State
-
-var _ctx: StateMachine.CharacterContext
+extends CharacterState
 
 @export var idle_state: State
 

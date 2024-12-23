@@ -1,7 +1,4 @@
-extends State
-
-var _ctx: StateMachine.CharacterContext
-var _animated_sprite: AnimatedSprite2D
+extends CharacterState
 
 @export var walk_state: State
 @export var _animation_name: String
