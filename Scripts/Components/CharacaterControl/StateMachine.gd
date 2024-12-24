@@ -3,6 +3,7 @@ extends Node
 
 var _states: Dictionary = {}
 var _cur_state: State
+var _setup_complete: bool = false
 
 var _next_state: State = null
 var _next_state_ctx: Variant = null
@@ -32,6 +33,8 @@ func setup(ctx: Variant = null) -> void:
 	else:
 		printerr("No initial state provided")
 
+	_setup_complete = true
+
 
 func _maybe_enter_state() -> void:
 	if _next_state == null:
@@ -45,18 +48,27 @@ func _maybe_enter_state() -> void:
 
 
 func run_input(event: InputEvent) -> void:
+	if !_setup_complete:
+		return
+
 	_next_state = null
 	_cur_state.run_input(event)
 	_maybe_enter_state()
 
 
 func run_physics(delta: float) -> void:
+	if !_setup_complete:
+		return
+
 	_next_state = null
 	_cur_state.run_physics(delta)
 	_maybe_enter_state()
 
 
 func run_tick(delta: float) -> void:
+	if !_setup_complete:
+		return
+
 	_next_state = null
 	_cur_state.run_tick(delta)
 	_maybe_enter_state()

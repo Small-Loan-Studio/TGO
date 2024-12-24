@@ -7,6 +7,9 @@ func _local_setup() -> void:
 	_ctx = _setup_args as StateMachine.CharacterContext
 	_animated_sprite = _ctx.character._sprite
 
+func run_input(_event: InputEvent) -> void:
+	maybe_interact()
+
 func enter(_ctx: Variant) -> void:
 	if _animation_name != "":
 		_animated_sprite.play(_animation_name)

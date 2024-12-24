@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://mqvl5162rawb"]
+[gd_scene load_steps=8 format=3 uid="uid://mqvl5162rawb"]
 
 [ext_resource type="Script" path="res://Scripts/Devin.gd" id="1_coq4s"]
 [ext_resource type="PackedScene" uid="uid://cx703e8t27grh" path="res://Scenes/Components/Character.tscn" id="1_kp6oq"]
@@ -6,6 +6,7 @@
 [ext_resource type="Script" path="res://Scripts/Components/CharacaterControl/States/Idle.gd" id="4_8rjkv"]
 [ext_resource type="Script" path="res://Scripts/Components/CharacaterControl/InputController.gd" id="4_lf63b"]
 [ext_resource type="Script" path="res://Scripts/Components/CharacaterControl/States/Walk.gd" id="5_nwgb5"]
+[ext_resource type="Script" path="res://Scripts/Components/CharacaterControl/States/Interact.gd" id="6_oeb5l"]
 
 [node name="Devin" node_paths=PackedStringArray("_controller") instance=ExtResource("1_kp6oq")]
 script = ExtResource("1_coq4s")
@@ -20,12 +21,18 @@ animation = &"east"
 [node name="StateMachine" parent="." index="4" node_paths=PackedStringArray("_initial_state")]
 _initial_state = NodePath("Idle")
 
-[node name="Idle" type="Node" parent="StateMachine" index="0" node_paths=PackedStringArray("walk_state")]
+[node name="Idle" type="Node" parent="StateMachine" index="0" node_paths=PackedStringArray("walk_state", "interact_state")]
 script = ExtResource("4_8rjkv")
 walk_state = NodePath("../Walk")
+interact_state = NodePath("../Interact")
 
-[node name="Walk" type="Node" parent="StateMachine" index="1" node_paths=PackedStringArray("idle_state")]
+[node name="Walk" type="Node" parent="StateMachine" index="1" node_paths=PackedStringArray("idle_state", "interact_state")]
 script = ExtResource("5_nwgb5")
+idle_state = NodePath("../Idle")
+interact_state = NodePath("../Interact")
+
+[node name="Interact" type="Node" parent="StateMachine" index="2" node_paths=PackedStringArray("idle_state")]
+script = ExtResource("6_oeb5l")
 idle_state = NodePath("../Idle")
 
 [node name="InputController" type="Node" parent="." index="5"]
