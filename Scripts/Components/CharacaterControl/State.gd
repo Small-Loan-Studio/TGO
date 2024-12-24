@@ -2,24 +2,27 @@ class_name State
 extends Node
 
 var _state_machine: StateMachine
-var _generic_ctx: Variant
+var _setup_args: Variant
 
-func setup(machine: StateMachine, ctx: Variant = {}) -> void:
+func setup(machine: StateMachine, setup_args: Variant = {}) -> void:
 	_state_machine = machine
-	_generic_ctx = ctx
+	_setup_args = setup_args
 	_local_setup()
 
 func _local_setup() -> void:
 	pass
 
-func enter() -> void:
+func enter(_ctx: Variant) -> void:
 	pass
 
 func exit() -> void:
 	pass
 
-func run_physics(_delta: float) -> State:
-	return null
+func run_input(_event: InputEvent) -> void:
+	pass
 
-func run_tick(_delta: float) -> State:
-	return null
+func run_physics(_delta: float) -> void:
+	pass
+
+func run_tick(_delta: float) -> void:
+	pass

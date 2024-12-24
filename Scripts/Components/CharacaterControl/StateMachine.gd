@@ -4,6 +4,9 @@ extends Node
 var _states: Dictionary = {}
 var _cur_state: State
 
+var _next_state: State = null
+var _next_state_ctx: Variant = null
+
 @export var _initial_state: State
 
 func _ready() -> void:
@@ -24,32 +27,48 @@ func setup(ctx: Variant = null) -> void:
 		st.setup(self, ctx)
 
 	if _initial_state != null:
-		_enter_state(_initial_state)
+		_next_state = _initial_state
+		_maybe_enter_state()
 	else:
 		printerr("No initial state provided")
 
 
-func _enter_state(tgt: State) -> void:
+func _maybe_enter_state() -> void:
+	if _next_state == null:
+		return
+
 	_cur_state.exit()
-	print("%s -> %s" % [_cur_state.name, tgt.name])
-	_cur_state = tgt
-	tgt.enter()
+	print("%s -> %s" % [_cur_state.name, _next_state.name])
+	_cur_state = _next_state
+	_next_state = null
+	_cur_state.enter(_next_state_ctx)
+
+
+func run_input(event: InputEvent) -> void:
+	_next_state = null
+	_cur_state.run_input(event)
+	_maybe_enter_state()
 
 
 func run_physics(delta: float) -> void:
-	var next_state := _cur_state.run_physics(delta)
-	if next_state != null:
-		_enter_state(next_state)
+	_next_state = null
+	_cur_state.run_physics(delta)
+	_maybe_enter_state()
 
 
 func run_tick(delta: float) -> void:
-	var next_state := _cur_state.run_tick(delta)
-	if next_state != null:
-		_enter_state(next_state)
+	_next_state = null
+	_cur_state.run_tick(delta)
+	_maybe_enter_state()
 
 
 func cur_state() -> State:
 	return _cur_state
+
+
+func queue_state_change(next_state: State, context: Variant = null) -> void:
+	_next_state = next_state
+	_next_state_ctx = context
 
 
 class CharacterContext:

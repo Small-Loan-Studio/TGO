@@ -23,7 +23,6 @@ _initial_state = NodePath("Idle")
 [node name="Idle" type="Node" parent="StateMachine" index="0" node_paths=PackedStringArray("walk_state")]
 script = ExtResource("4_8rjkv")
 walk_state = NodePath("../Walk")
-_animation_name = "east"
 
 [node name="Walk" type="Node" parent="StateMachine" index="1" node_paths=PackedStringArray("idle_state")]
 script = ExtResource("5_nwgb5")

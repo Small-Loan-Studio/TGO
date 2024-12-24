@@ -84,7 +84,10 @@ func _draw() -> void:
 		draw_circle(Vector2.ZERO, 3, Color.GREEN)
 
 
-func _unhandled_input(_event: InputEvent) -> void:
+func _unhandled_input(event: InputEvent) -> void:
+	_state_machine.run_input(event)
+
+func _unhandled_input_old(event: InputEvent) -> void:
 	if !player_controled:
 		_raw_input = Vector2.ZERO
 		_impulse = Vector2.ZERO
@@ -128,7 +131,7 @@ func _unhandled_input(_event: InputEvent) -> void:
 
 	_sensor_group.rotation = _facing
 
-	if _event.is_action_pressed(Enums.input_action_name(Enums.InputAction.INTERACT)):
+	if event.is_action_pressed(Enums.input_action_name(Enums.InputAction.INTERACT)):
 		if _target.is_interactable():
 			_target.get_interactable().trigger(self)
 
@@ -145,6 +148,8 @@ func _physics_process(delta: float) -> void:
 		return
 
 	_state_machine.run_physics(delta)
+
+func _physics_process_old(delta: float) -> void:
 	if _impulse == Vector2.ZERO:
 		# TODO: plausible we'll want a directional idle state to switch into
 		_sprite.stop()

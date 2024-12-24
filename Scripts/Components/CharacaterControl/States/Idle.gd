@@ -4,18 +4,16 @@ extends CharacterState
 @export var _animation_name: String
 
 func _local_setup() -> void:
-	_ctx = _generic_ctx as StateMachine.CharacterContext
+	_ctx = _setup_args as StateMachine.CharacterContext
 	_animated_sprite = _ctx.character._sprite
 
-func enter() -> void:
+func enter(_ctx: Variant) -> void:
 	if _animation_name != "":
 		_animated_sprite.play(_animation_name)
+	else:
+		_animated_sprite.stop()
 
-func exit() -> void:
-	pass
-
-func run_tick(_delta: float) -> State:
-	if _ctx.controller.get_vector() != Vector2.ZERO:
-		return walk_state
-
-	return null
+func run_tick(_delta: float) -> void:
+	var vect := _ctx.controller.get_vector()
+	if vect != Vector2.ZERO:
+		_state_machine.queue_state_change(walk_state, walk_state.mk_args(vect))
