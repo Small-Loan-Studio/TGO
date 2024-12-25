@@ -40,6 +40,7 @@ push_pull_state = NodePath("../PushPull")
 [node name="PushPull" type="Node" parent="StateMachine" index="3" node_paths=PackedStringArray("idle_state", "interact_state")]
 script = ExtResource("7_kw264")
 idle_state = NodePath("../Idle")
+move_speed = null
 interact_state = NodePath("../Interact")
 
 [node name="InputController" type="Node" parent="." index="5"]

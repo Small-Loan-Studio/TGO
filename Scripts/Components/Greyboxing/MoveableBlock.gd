@@ -1,6 +1,6 @@
 @tool
 class_name MoveableBlock
-extends RigidBody2D
+extends CharacterBody2D
 
 ## The id of this moveable block if it needs to be referenced in the level
 @export var id: String = ""

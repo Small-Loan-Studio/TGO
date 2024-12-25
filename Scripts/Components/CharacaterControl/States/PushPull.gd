@@ -47,11 +47,21 @@ func run_input(_event: InputEvent) -> void:
 		_animated_sprite.play(want_animation)
 
 func run_physics(_delta: float) -> void:
-	_ctx.character.velocity = _projected_impulse * move_speed / 2
-	var pushable: CharacterBody2D = _ctx.character
+	var push_velocity := _projected_impulse * move_speed / 3
+	if push_velocity == Vector2.ZERO:
+		return
+
+	var pusher: CharacterBody2D = _target
+	var push_target: CharacterBody2D = _ctx.character
 	if _is_push(_projected_impulse, _push_direction):
-		pushable = _target
-	_ctx.character.move_and_slide()
+		push_target = _target
+		pusher = _ctx.character
+
+	push_target.velocity = push_velocity
+	push_target.move_and_slide()
+	pusher.move_and_collide(push_velocity * _delta)
+
+
 
 
 func _is_push(v: Vector2, push_direction: Enums.Direction) -> bool:
