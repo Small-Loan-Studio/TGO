@@ -109,30 +109,29 @@ func _process(delta: float) -> void:
 	_state_machine.run_tick(delta)
 
 
+# region sensor / target management
+# TODO: post state machine rewrite we lose the ability to trivially check
+# the current state and not switch target when the character is in a push_pull
+# mode (beacuse that exists as a function of the state machine which isn't
+# available at this abstraction level). As a result it means we have a bug where
+# the target shifts mid-push/pull and we can get kicked out surprisingly.
+# In order to fix we'll likely need to rework the target system to not be a
+# single target and let the state transation logic handle precedence. As it
+# stands though the new bug is better than the old state that had push/pull
+# bugs _and_ was a shitty factoring for state management in the Character.
+
 func _on_interaction_sensor_entered(area: Area2D) -> void:
 	if area is Interactable:
-		var i := area as Interactable
-		if i.automatic:
-			_target.update(area)
-		else:
 			_target.update(area)
 
 
 func _on_interaction_sensor_exited(area: Area2D) -> void:
-	# while we're pushing and pulling don't let our focus change
-	if _move_mode == Enums.MoveMode.PUSH_PULL:
-		return
-
 	if area is Interactable:
 		if _target.get_interactable() == area:
 			_target.reset()
 
 
 func _on_pushpull_sensor_entered(area: Area2D) -> void:
-	# while we're pushing and pulling don't let our focus change
-	if _move_mode == Enums.MoveMode.PUSH_PULL:
-		return
-
 	if area.get_parent() is MoveableBlock:
 		_target.update(area.get_parent())
 
@@ -140,14 +139,10 @@ func _on_pushpull_sensor_entered(area: Area2D) -> void:
 func _on_pushpull_sensor_exited(area: Area2D) -> void:
 	if area.get_parent() is MoveableBlock:
 		if _target.get_moveable_block() == area.get_parent():
-			_stop_pushpull()
 			_target.reset()
 
 
 func _handle_target_changed() -> void:
-	if !player_controled:
-		return
-
 	# print("%s - _handle_target_changed -> %s" % [name, _target])
 	# TODO(envy) - better toast management
 	var hud := Driver.instance().get_hud()
@@ -159,6 +154,7 @@ func _handle_target_changed() -> void:
 	else:
 		hud.clear_toast()
 
+# end region sensor / target management
 
 func _get_configuration_warnings() -> PackedStringArray:
 	var errs := []
@@ -183,37 +179,6 @@ func _get_configuration_warnings() -> PackedStringArray:
 		errs.append("Multiple controllers found as children, ambiguous control path")
 
 	return errs
-
-
-func _is_push(v: Vector2, push_direction: Enums.Direction) -> bool:
-	var axis := Enums.direction_push_pull_axis(push_direction)
-	var push_vec := Enums.direction_vector(push_direction)
-	# normalize direction to the axis
-	v = (v * axis).normalized()
-	return v == push_vec
-
-
-func _start_pushpull() -> void:
-	if _move_mode == Enums.MoveMode.PUSH_PULL:
-		return
-
-	# start push/pull, set the push direction for subsequent logic
-	_move_mode = Enums.MoveMode.PUSH_PULL
-	_push_direction = Utils.angle_to_direction(_facing, Enums.DirectionMode.FOUR)
-	_target.get_moveable_block().freeze = false
-	# TODO(envy) - better toast management
-	Driver.instance().get_hud().set_toast(Enums.action_verb_name(Enums.ActionVerb.RELEASE))
-
-
-func _stop_pushpull() -> void:
-	if _move_mode != Enums.MoveMode.PUSH_PULL:
-		return
-
-	_move_mode = Enums.MoveMode.WALK
-	_pinjoint.node_b = ""
-	_target.get_moveable_block().set_deferred("freeze", true)
-	# TODO(envy) - better toast management
-	Driver.instance().get_hud().clear_toast()
 
 
 func _set_activate_external_sensors(value: bool) -> void:
