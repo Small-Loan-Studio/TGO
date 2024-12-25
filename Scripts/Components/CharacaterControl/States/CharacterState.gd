@@ -13,9 +13,16 @@ func _local_setup() -> void:
 func maybe_interact() -> bool:
 	var just_pressed := _ctx.controller.get_just_pressed()
 
-	if Enums.InputAction.INTERACT in just_pressed:
-		if _ctx.character._target.is_set():
+	if !_ctx.character._target.is_set():
+		return false
+
+	if _ctx.character._target.get_interactable():
+		if _ctx.character._target.get_interactable().automatic:
 			_state_machine.queue_state_change(interact_state)
 			return true
+
+	if Enums.InputAction.INTERACT in just_pressed:
+		_state_machine.queue_state_change(interact_state)
+		return true
 
 	return false

@@ -95,103 +95,11 @@ func _draw() -> void:
 func _unhandled_input(event: InputEvent) -> void:
 	_state_machine.run_input(event)
 
-func _unhandled_input_old(event: InputEvent) -> void:
-	if !player_controled:
-		_raw_input = Vector2.ZERO
-		_impulse = Vector2.ZERO
-		return
-
-	if Dialogic.current_timeline != null:
-		return
-
-	# TODO: may need to guard under Input.is_action_pressed for these or
-	# handling input won't prevent movement in the face of non-propagating
-	# input events
-	_raw_input = (
-		Input
-		. get_vector(
-			Enums.input_action_name(Enums.InputAction.LEFT),
-			Enums.input_action_name(Enums.InputAction.RIGHT),
-			Enums.input_action_name(Enums.InputAction.UP),
-			Enums.input_action_name(Enums.InputAction.DOWN),
-		)
-		. normalized()
-	)
-
-	_impulse = _raw_input
-	if _impulse != Vector2.ZERO:
-		# figure out what the final impulse is based on the push/pull walk state
-
-		if _move_mode == Enums.MoveMode.PUSH_PULL:
-			# not changing the facing or direction because we're moving something and
-			# those remain fixed until state change
-			var axis := Enums.direction_push_pull_axis(_push_direction)
-			_impulse = _impulse * axis
-
-			if _is_push(_impulse, _push_direction):
-				_pinjoint.node_b = ""
-			else:
-				_pinjoint.node_b = _target.get_moveable_block().get_path()
-
-		else:
-			_facing = Vector2.UP.angle_to(_impulse)
-			_direction = Utils.angle_to_direction(_facing)
-
-	_sensor_group.rotation = _facing
-
-	if event.is_action_pressed(Enums.input_action_name(Enums.InputAction.INTERACT)):
-		if _target.is_interactable():
-			_target.get_interactable().trigger(self)
-
-		if _target.is_moveable_block():
-			if _move_mode == Enums.MoveMode.PUSH_PULL:
-				_stop_pushpull()
-			else:
-				_start_pushpull()
-
-
 func _physics_process(delta: float) -> void:
 	if Engine.is_editor_hint():
-		# gross. but here we are
 		return
 
 	_state_machine.run_physics(delta)
-
-func _physics_process_old(delta: float) -> void:
-	if _impulse == Vector2.ZERO:
-		# TODO: plausible we'll want a directional idle state to switch into
-		_sprite.stop()
-		return
-
-	var want_anim := Enums.direction_name(_direction)
-	var animation_correct := _sprite.animation == want_anim
-
-	if !animation_correct || !_sprite.is_playing():
-		_sprite.play(want_anim)
-
-	var scale := move_speed
-	if _move_mode == Enums.MoveMode.PUSH_PULL:
-		if !_is_push(_impulse, _push_direction):
-			scale = move_speed / 2
-
-	velocity = _impulse * scale
-	move_and_slide()
-
-	# janky push/pull logic
-	if _move_mode == Enums.MoveMode.PUSH_PULL:
-		var collision_count := get_slide_collision_count()
-		for c in range(0, collision_count):
-			var cdata := get_slide_collision(c)
-			var collider := cdata.get_collider()
-
-			# if we're handling collision with the target and it's not frozen then
-			# we should apply force. We unfreeze outside the physics loop when we
-			# determine movement direction because it worked better (or maybe at
-			# all, I don't recall at this point)
-			if collider == _target.get_moveable_block() && !collider.freeze:
-				collider.apply_central_force(_impulse * push_force)
-				# we can only push one item so bail
-				break
 
 
 func _process(delta: float) -> void:
@@ -202,14 +110,10 @@ func _process(delta: float) -> void:
 
 
 func _on_interaction_sensor_entered(area: Area2D) -> void:
-	# while we're pushing and pulling don't let our focus change
-	if _move_mode == Enums.MoveMode.PUSH_PULL:
-		return
-
 	if area is Interactable:
 		var i := area as Interactable
 		if i.automatic:
-			i.trigger(self)
+			_target.update(area)
 		else:
 			_target.update(area)
 

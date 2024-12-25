@@ -10,7 +10,9 @@ func enter(_enter_ctx: Variant) -> void:
 
 	if _tgt.is_interactable():
 		_animated_sprite.stop()
-		_tgt.get_interactable().trigger(_ctx.character)
+		var interactable := _tgt.get_interactable()
+		interactable.trigger(_ctx.character)
+		await interactable.triggered
 
 func run_tick(_delta: float) -> void:
 	if _tgt.is_moveable_block():

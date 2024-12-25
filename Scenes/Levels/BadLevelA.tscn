@@ -1,4 +1,4 @@
-[gd_scene load_steps=33 format=3 uid="uid://d4mrsiv1l8m35"]
+[gd_scene load_steps=40 format=3 uid="uid://d4mrsiv1l8m35"]
 
 [ext_resource type="PackedScene" uid="uid://dyq8mcdsutnsa" path="res://Scenes/Components/LevelBase.tscn" id="1_iejup"]
 [ext_resource type="Script" path="res://ZZ_Scratch/GreyboxingTools/BadLevelA.gd" id="2_22a2t"]
@@ -19,6 +19,9 @@
 [ext_resource type="Resource" uid="uid://b7w2axnxl0fkt" path="res://Scripts/Resources/Items/Key.tres" id="15_svqc7"]
 [ext_resource type="Script" path="res://Scripts/Resources/Effects/ConditionalEffect.gd" id="15_x1ixy"]
 [ext_resource type="PackedScene" uid="uid://b13wrl3bedjku" path="res://Scenes/Components/Torch.tscn" id="16_p267s"]
+[ext_resource type="Script" path="res://Scripts/Components/Greyboxing/GreyboxObject.gd" id="20_odwfd"]
+[ext_resource type="Texture2D" uid="uid://c0504hqd3q12y" path="res://ZZ_Scratch/MarioDemo/simple_tileset.png" id="21_li46b"]
+[ext_resource type="Script" path="res://Scripts/Components/Interactable.gd" id="22_s68f6"]
 
 [sub_resource type="Resource" id="Resource_ecxtb"]
 script = ExtResource("8_m75fk")
@@ -88,6 +91,20 @@ marker_name = ""
 script = ExtResource("7_7tyl1")
 load_level_name = "Test Folder/nested level"
 marker_name = ""
+
+[sub_resource type="Resource" id="Resource_ct8mu"]
+script = ExtResource("11_c5j4a")
+dest_path = NodePath("../../Markers/PlayerStart")
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_a3en3"]
+atlas = ExtResource("21_li46b")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_g1jlx"]
+size = Vector2(32, 32)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_oml6y"]
+size = Vector2(32, 32)
 
 [node name="LevelBase" instance=ExtResource("1_iejup")]
 script = ExtResource("2_22a2t")
@@ -213,6 +230,40 @@ can_interact = true
 tint = Color(0.988281, 0.92591, 0.262512, 1)
 effects = Array[Resource("res://Scripts/Resources/Effect.gd")]([SubResource("Resource_1tsfc")])
 
+[node name="Automatic Interactable" parent="Objects" index="11" instance=ExtResource("7_ipcqk")]
+y_sort_enabled = true
+position = Vector2(-25.3339, 33.4692)
+script = ExtResource("20_odwfd")
+can_block_movement = true
+can_interact = true
+tint = Color(0.878906, 0.0789642, 0.0789642, 1)
+effects = Array[Resource("res://Scripts/Resources/Effect.gd")]([SubResource("Resource_ct8mu")])
+y_sort_width = 72
+metadata/_edit_group_ = true
+
+[node name="Display" parent="Objects/Automatic Interactable" index="0"]
+modulate = Color(0.878906, 0.0789642, 0.0789642, 1)
+texture = SubResource("AtlasTexture_a3en3")
+offset = Vector2(0, -16)
+
+[node name="Physics" parent="Objects/Automatic Interactable" index="1"]
+collision_mask = 0
+
+[node name="Shape" parent="Objects/Automatic Interactable/Physics" index="0"]
+position = Vector2(0, -16)
+shape = SubResource("RectangleShape2D_g1jlx")
+
+[node name="Interactable" parent="Objects/Automatic Interactable" index="2"]
+collision_layer = 2
+collision_mask = 0
+script = ExtResource("22_s68f6")
+automatic = true
+actions = Array[Resource("res://Scripts/Resources/Effect.gd")]([])
+
+[node name="Shape" parent="Objects/Automatic Interactable/Interactable" index="0"]
+position = Vector2(0, -16)
+shape = SubResource("RectangleShape2D_oml6y")
+
 [node name="PlayerStart" type="Node2D" parent="Markers" index="0"]
 position = Vector2(522, 183)
 
@@ -221,3 +272,5 @@ visible = false
 color = Color(0.411765, 0.411765, 0.411765, 1)
 
 [connection signal="triggered" from="Objects/Switches/aoeu" to="." method="_on_test_a_triggered"]
+
+[editable path="Objects/Automatic Interactable"]
