@@ -25,16 +25,20 @@ func enter(ctx: Variant) -> void:
 	var ctx_dict := ctx as Dictionary
 	_push_direction = ctx_dict["push_direction"]
 	_movement_axis = Enums.direction_push_pull_axis(_push_direction)
-
 	_target = ctx_dict["target"]
-	run_input(null)
+	_hud.set_toast(Enums.action_verb_name(Enums.ActionVerb.RELEASE))
+	_handle_animation()
 
 func run_input(_event: InputEvent) -> void:
 	if Enums.InputAction.INTERACT in _ctx.controller.get_just_pressed():
 		_state_machine.queue_state_change(idle_state)
-		# TODO: Undo toast
+		_hud.set_toast(Enums.action_verb_name(Enums.ActionVerb.PUSH_PULL))
 		return
 
+	_handle_animation()
+
+
+func _handle_animation() -> void:
 	_impulse = _ctx.controller.get_vector()
 	_projected_impulse = _impulse * _movement_axis
 	if _projected_impulse == Vector2.ZERO:
@@ -62,8 +66,6 @@ func run_physics(_delta: float) -> void:
 	pusher.move_and_collide(push_velocity * _delta)
 
 
-
-
 func _is_push(v: Vector2, push_direction: Enums.Direction) -> bool:
 	var axis := Enums.direction_push_pull_axis(push_direction)
 	var push_vec := Enums.direction_vector(push_direction)
@@ -71,6 +73,10 @@ func _is_push(v: Vector2, push_direction: Enums.Direction) -> bool:
 	v = (v * axis).normalized()
 	return v == push_vec
 
+
+func run_tick(_delta: float) -> void:
+	if !_ctx.character._target.is_moveable_block():
+		_state_machine.queue_state_change(idle_state)
 
 
 static func mk_args(facing: float, tgt: MoveableBlock) -> Dictionary:

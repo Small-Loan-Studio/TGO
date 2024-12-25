@@ -1,4 +1,6 @@
 @tool
+## ControllerBase impl that pulls all control inputs from input devices
+## (kb/m, controller, etc)
 class_name InputController
 extends ControllerBase
 

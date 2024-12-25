@@ -138,9 +138,15 @@ layout_mode = 2
 layout_mode = 2
 text = "Devin State"
 
-[node name="Label2" type="Label" parent="OverlayManager/HUD/DebugStack/HBoxContainer"]
+[node name="CurrentState" type="Label" parent="OverlayManager/HUD/DebugStack/HBoxContainer"]
+custom_minimum_size = Vector2(128, 0)
 layout_mode = 2
 script = ExtResource("13_gfaub")
+
+[node name="OutputChanges" type="CheckBox" parent="OverlayManager/HUD/DebugStack/HBoxContainer"]
+layout_mode = 2
+focus_mode = 0
+text = "Output Changes"
 
 [node name="Toast" type="ColorRect" parent="OverlayManager/HUD"]
 unique_name_in_owner = true
@@ -214,5 +220,6 @@ light_size = 4.0
 [connection signal="pressed" from="OverlayManager/HUD/DebugStack/SaveLoadMenu/SaveButton" to="SerializationManager" method="save_game"]
 [connection signal="pressed" from="OverlayManager/HUD/DebugStack/SaveLoadMenu/LoadButton" to="SerializationManager" method="load_game"]
 [connection signal="pressed" from="OverlayManager/HUD/DebugStack/SaveLoadMenu/DeleteButton" to="SerializationManager" method="delete_save"]
+[connection signal="toggled" from="OverlayManager/HUD/DebugStack/HBoxContainer/OutputChanges" to="OverlayManager/HUD/DebugStack/HBoxContainer/CurrentState" method="_on_toggle_track_state_changes"]
 [connection signal="pressed" from="OverlayManager/HUD/DebugButton" to="." method="_on_debug_pressed"]
 [connection signal="load_saved_level" from="SerializationManager" to="." method="load_level"]

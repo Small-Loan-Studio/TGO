@@ -7,7 +7,6 @@ var _tgt: CharacterTarget
 
 func enter(_enter_ctx: Variant) -> void:
 	_tgt = _ctx.character._target
-	print(_tgt)
 
 	if _tgt.is_interactable():
 		_animated_sprite.stop()

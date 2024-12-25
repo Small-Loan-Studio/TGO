@@ -55,6 +55,7 @@ var _target: CharacterTarget = CharacterTarget.none()
 @onready var _pinjoint: PinJoint2D = $PinJoint2D
 @onready var _state_machine: StateMachine = $StateMachine
 
+# Character.gd - assigned to specify what controls this character
 @export var _controller: ControllerBase
 
 
@@ -67,17 +68,23 @@ func _ready() -> void:
 	ctx.character = self
 	if _controller != null:
 		ctx.controller = _controller
-		_controller.setup(
-			[ Enums.InputAction.LEFT,
-				Enums.InputAction.RIGHT,
-				Enums.InputAction.UP,
-				Enums.InputAction.DOWN,
-			],
-			[
-				Enums.InputAction.INTERACT,
-			],
-		)
-		_state_machine.setup(ctx)
+	else:
+		if id == Utils.PLAYER_ID:
+			printerr("_controller is null, potentially unexpected, using noop fallback")
+		_controller = ControllerBase.new()
+		ctx.controller = _controller
+
+	_controller.setup(
+		[ Enums.InputAction.LEFT,
+			Enums.InputAction.RIGHT,
+			Enums.InputAction.UP,
+			Enums.InputAction.DOWN,
+		],
+		[
+			Enums.InputAction.INTERACT,
+		],
+	)
+	_state_machine.setup(ctx)
 
 
 func _draw() -> void:
@@ -237,7 +244,7 @@ func _handle_target_changed() -> void:
 	if !player_controled:
 		return
 
-	print("%s - _handle_target_changed -> %s" % [name, _target])
+	# print("%s - _handle_target_changed -> %s" % [name, _target])
 	# TODO(envy) - better toast management
 	var hud := Driver.instance().get_hud()
 	if _target.is_set():

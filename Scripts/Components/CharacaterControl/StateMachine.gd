@@ -1,6 +1,8 @@
 class_name StateMachine
 extends Node
 
+var print_state_changes: bool = false
+
 var _states: Dictionary = {}
 var _cur_state: State
 var _setup_complete: bool = false
@@ -41,7 +43,8 @@ func _maybe_enter_state() -> void:
 		return
 
 	_cur_state.exit()
-	print("%s -> %s" % [_cur_state.name, _next_state.name])
+	if print_state_changes:
+		print("%s -> %s" % [_cur_state.name, _next_state.name])
 	_cur_state = _next_state
 	_next_state = null
 	_cur_state.enter(_next_state_ctx)
@@ -79,6 +82,7 @@ func cur_state() -> State:
 
 
 func queue_state_change(next_state: State, context: Variant = null) -> void:
+	# print("%s / StateMachine.queue_state_change(%s)" % [_cur_state.name, next_state.name])
 	_next_state = next_state
 	_next_state_ctx = context
 
