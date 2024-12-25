@@ -4,7 +4,6 @@ extends CharacterState
 @export var move_speed: int = 250
 
 var _impulse: Vector2
-var _facing: float
 var _direction: Enums.Direction
 
 
@@ -14,10 +13,10 @@ func enter(ctx: Variant) -> void:
 
 func run_input(_event: InputEvent) -> void:
 	_impulse = _ctx.controller.get_vector()
-	_facing = Vector2.UP.angle_to(_impulse)
-	_direction = Utils.angle_to_direction(_facing)
 
 	if _ctx.controller.get_vector() != Vector2.ZERO:
+		_ctx.character._facing = Vector2.UP.angle_to(_impulse)
+		_direction = Utils.angle_to_direction(_ctx.character._facing)
 		var want_animation := Enums.direction_name(_direction)
 		var animation_correct := _animated_sprite.animation == want_animation
 		if !animation_correct || !_animated_sprite.is_playing():
@@ -28,7 +27,7 @@ func run_input(_event: InputEvent) -> void:
 	maybe_interact()
 
 func run_physics(delta: float) -> void:
-	_ctx.character._sensor_group.rotation = _facing
+	_ctx.character._sensor_group.rotation = _ctx.character._facing
 	_ctx.character.velocity = _impulse * move_speed
 	_ctx.character.move_and_slide()
 

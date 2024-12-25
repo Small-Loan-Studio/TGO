@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://mqvl5162rawb"]
+[gd_scene load_steps=9 format=3 uid="uid://mqvl5162rawb"]
 
 [ext_resource type="Script" path="res://Scripts/Devin.gd" id="1_coq4s"]
 [ext_resource type="PackedScene" uid="uid://cx703e8t27grh" path="res://Scenes/Components/Character.tscn" id="1_kp6oq"]
@@ -7,11 +7,16 @@
 [ext_resource type="Script" path="res://Scripts/Components/CharacaterControl/InputController.gd" id="4_lf63b"]
 [ext_resource type="Script" path="res://Scripts/Components/CharacaterControl/States/Walk.gd" id="5_nwgb5"]
 [ext_resource type="Script" path="res://Scripts/Components/CharacaterControl/States/Interact.gd" id="6_oeb5l"]
+[ext_resource type="Script" path="res://Scripts/Components/CharacaterControl/States/PushPull.gd" id="7_kw264"]
 
 [node name="Devin" node_paths=PackedStringArray("_controller") instance=ExtResource("1_kp6oq")]
 script = ExtResource("1_coq4s")
+_debug_draw_origin = null
 id = "Devin"
+player_controled = null
 move_speed = 175
+push_force = null
+activate_external_sensors = null
 _controller = NodePath("InputController")
 
 [node name="AnimatedSprite2D" parent="." index="0"]
@@ -31,9 +36,15 @@ script = ExtResource("5_nwgb5")
 idle_state = NodePath("../Idle")
 interact_state = NodePath("../Interact")
 
-[node name="Interact" type="Node" parent="StateMachine" index="2" node_paths=PackedStringArray("idle_state")]
+[node name="Interact" type="Node" parent="StateMachine" index="2" node_paths=PackedStringArray("idle_state", "push_pull_state")]
 script = ExtResource("6_oeb5l")
 idle_state = NodePath("../Idle")
+push_pull_state = NodePath("../PushPull")
+
+[node name="PushPull" type="Node" parent="StateMachine" index="3" node_paths=PackedStringArray("idle_state", "interact_state")]
+script = ExtResource("7_kw264")
+idle_state = NodePath("../Idle")
+interact_state = NodePath("../Interact")
 
 [node name="InputController" type="Node" parent="." index="5"]
 script = ExtResource("4_lf63b")

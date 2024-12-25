@@ -65,18 +65,19 @@ func _ready() -> void:
 	_target.target_changed.connect(Callable(self, "_handle_target_changed"))
 	var ctx := StateMachine.CharacterContext.new()
 	ctx.character = self
-	ctx.controller = _controller
-	_controller.setup(
-		[ Enums.InputAction.LEFT,
-			Enums.InputAction.RIGHT,
-			Enums.InputAction.UP,
-			Enums.InputAction.DOWN,
-		],
-		[
-			Enums.InputAction.INTERACT,
-		],
-	)
-	_state_machine.setup(ctx)
+	if _controller != null:
+		ctx.controller = _controller
+		_controller.setup(
+			[ Enums.InputAction.LEFT,
+				Enums.InputAction.RIGHT,
+				Enums.InputAction.UP,
+				Enums.InputAction.DOWN,
+			],
+			[
+				Enums.InputAction.INTERACT,
+			],
+		)
+		_state_machine.setup(ctx)
 
 
 func _draw() -> void:
