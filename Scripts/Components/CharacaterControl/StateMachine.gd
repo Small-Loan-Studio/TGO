@@ -79,7 +79,6 @@ func cur_state() -> State:
 
 
 func queue_state_change(next_state: State, context: Variant = null) -> void:
-	print("%s / StateMachine.queue_state_change(%s, ...)" % [_cur_state.name, next_state.name])
 	_next_state = next_state
 	_next_state_ctx = context
 

@@ -11,12 +11,8 @@
 
 [node name="Devin" node_paths=PackedStringArray("_controller") instance=ExtResource("1_kp6oq")]
 script = ExtResource("1_coq4s")
-_debug_draw_origin = null
 id = "Devin"
-player_controled = null
 move_speed = 175
-push_force = null
-activate_external_sensors = null
 _controller = NodePath("InputController")
 
 [node name="AnimatedSprite2D" parent="." index="0"]
