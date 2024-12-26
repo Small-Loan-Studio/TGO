@@ -3,12 +3,15 @@
 class_name Character
 extends CharacterBody2D
 
-## When set to true the game will have a circle drawn at the character's origin
-@export var _debug_draw_origin: bool = false
-var _controller: ControllerBase
-
 ## Unique ID used in our design systems
 @export var id: String = ""
+
+## When set to true the game will have a circle drawn at the character's origin
+@export var _debug_draw_origin: bool = false
+
+## Set to specify what controls this character's behavior, if none specified
+## a default noop controller will be used.
+@export var _controller_node_path: NodePath
 
 ## When set to false this will disable the monitoring state of the sensors
 ## a character uses to interact with the exterior world, e.g., use items /
@@ -17,16 +20,15 @@ var _controller: ControllerBase
 @export var activate_external_sensors: bool = true:
 	set = _set_activate_external_sensors
 
-## Set to specify what controls this character's behavior, if none specified
-## a default noop controller will be used
-@export var _controller_node_path: NodePath
-
 ## direction represented as an angle off Vector2.UP; in radians / [-TAU, TAU]
 var facing: float = 0
 
 ## target is a type safe container for anything that the player may focus to
 ## interact with
 var target: CharacterTarget = CharacterTarget.none()
+
+## resolved node from _controller_node_path
+var _controller: ControllerBase
 
 # component cache
 @onready var _sprite: AnimatedSprite2D = $AnimatedSprite2D
@@ -45,6 +47,8 @@ func _ready() -> void:
 	ctx.character = self
 	if _controller_node_path != null:
 		_controller = get_node(_controller_node_path)
+		# TODO: .setup here isn't in the ControllerBase interface, need better
+		# config process; for now rely on duck typing
 		ctx.controller = _controller
 		(
 			_controller
@@ -158,11 +162,10 @@ func _get_configuration_warnings() -> PackedStringArray:
 		if missing_anims.size() > 0:
 			errs.append("Missing expected animations in child sprite: " + str(missing_anims))
 
-	var controller := get_children().filter(func(c: Node) -> bool: return c is ControllerBase)
-	if len(controller) < 1:
-		errs.append("No character controller: no way to respond to input")
-	if len(controller) > 1:
-		errs.append("Multiple controllers found as children, ambiguous control path")
+	if _controller_node_path == null || !has_node(_controller_node_path):
+		errs.append("Controller Node Path must be set to respond to input or use State Machines")
+	elif !(get_node(_controller_node_path) is ControllerBase):
+		errs.append("Controller Node Path must reference a ControllerBase or subclass")
 
 	return errs
 
