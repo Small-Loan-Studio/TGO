@@ -4,11 +4,16 @@ extends Node
 @export var _initial_state: State
 var print_state_changes: bool = false
 
-var _states: Dictionary = {}
-var _cur_state: State
+# Set after setup is called
 var _setup_complete: bool = false
-
+# Dictionary of node name -> State object
+#     Map[String, State]
+var _states: Dictionary = {}
+# The state currently being run
+var _cur_state: State
+# When a new state has been queued this gets set
 var _next_state: State = null
+# Any context that should be passed into the next state's enter call
 var _next_state_ctx: Variant = null
 
 
@@ -82,8 +87,16 @@ func cur_state() -> State:
 	return _cur_state
 
 
+## TODO: the current model is not thread safe and I think we're basically
+## daring race conditions between physics, main, and input thread (caveat:
+## physics only runs in its own thread if we configure it iirc so we're probably
+## okayish, idk about input event processing)
 func queue_state_change(next_state: State, context: Variant = null) -> void:
 	# print("%s / StateMachine.queue_state_change(%s)" % [_cur_state.name, next_state.name])
+	if _next_state != null:
+		printerr(
+			"Warning: Overwriting _next_state %s with %s" % [_next_state.name, next_state.name]
+		)
 	_next_state = next_state
 	_next_state_ctx = context
 
