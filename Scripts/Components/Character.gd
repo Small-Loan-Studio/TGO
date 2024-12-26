@@ -25,45 +25,31 @@ extends CharacterBody2D
 @export var activate_external_sensors: bool = true:
 	set = _set_activate_external_sensors
 
-## the most recent directional input as a vector
-var _raw_input: Vector2 = Vector2.ZERO
-
-## player input after any processing done ot the input
-var _impulse: Vector2 = Vector2.ZERO
+## Set to specify what controls this character's behavior, if none specified
+## a default noop controller will be used
+@export var _controller: ControllerBase
 
 ## _impulse represented as an angle off Vector2.UP; in radians / [-TAU, TAU]
-var _facing: float = 0
+var facing: float = 0
 
-## _facing reified into a direction
-var _direction: Enums.Direction
-
-## when pushing or pulling which direction is "forward"
-var _push_direction: Enums.Direction
-
-## how the character should be moving. This may impact speed or how input is interpreted
-var _move_mode: Enums.MoveMode = Enums.MoveMode.WALK
-
-## _target is a type safe container for anything that the player may focus to
+## target is a type safe container for anything that the player may focus to
 ## interact with
-var _target: CharacterTarget = CharacterTarget.none()
+var target: CharacterTarget = CharacterTarget.none()
+
 
 # component cache
 @onready var _sprite: AnimatedSprite2D = $AnimatedSprite2D
 @onready var _sensor_group: Node2D = $SensorSet
 @onready var _interaction_sensor: Area2D = $SensorSet/InteractionSensor
 @onready var _push_pull_sensor: Area2D = $SensorSet/PushPullSensor
-@onready var _pinjoint: PinJoint2D = $PinJoint2D
 @onready var _state_machine: StateMachine = $StateMachine
-
-# Character.gd - assigned to specify what controls this character
-@export var _controller: ControllerBase
 
 
 func _ready() -> void:
 	queue_redraw()
 	if Engine.is_editor_hint():
 		return
-	_target.target_changed.connect(Callable(self, "_handle_target_changed"))
+	target.target_changed.connect(Callable(self, "_handle_target_changed"))
 	var ctx := StateMachine.CharacterContext.new()
 	ctx.character = self
 	if _controller != null:
@@ -122,34 +108,34 @@ func _process(delta: float) -> void:
 
 func _on_interaction_sensor_entered(area: Area2D) -> void:
 	if area is Interactable:
-			_target.update(area)
+			target.update(area)
 
 
 func _on_interaction_sensor_exited(area: Area2D) -> void:
 	if area is Interactable:
-		if _target.get_interactable() == area:
-			_target.reset()
+		if target.get_interactable() == area:
+			target.reset()
 
 
 func _on_pushpull_sensor_entered(area: Area2D) -> void:
 	if area.get_parent() is MoveableBlock:
-		_target.update(area.get_parent())
+		target.update(area.get_parent())
 
 
 func _on_pushpull_sensor_exited(area: Area2D) -> void:
 	if area.get_parent() is MoveableBlock:
-		if _target.get_moveable_block() == area.get_parent():
-			_target.reset()
+		if target.get_moveable_block() == area.get_parent():
+			target.reset()
 
 
 func _handle_target_changed() -> void:
-	# print("%s - _handle_target_changed -> %s" % [name, _target])
+	# print("%s - _handle_target_changed -> %s" % [name, target])
 	# TODO(envy) - better toast management
 	var hud := Driver.instance().get_hud()
-	if _target.is_set():
-		if _target.is_interactable():
-			hud.set_toast(_target.get_interactable().verb_name())
-		if _target.is_moveable_block():
+	if target.is_set():
+		if target.is_interactable():
+			hud.set_toast(target.get_interactable().verb_name())
+		if target.is_moveable_block():
 			hud.set_toast(Enums.action_verb_name(Enums.ActionVerb.PUSH_PULL))
 	else:
 		hud.clear_toast()

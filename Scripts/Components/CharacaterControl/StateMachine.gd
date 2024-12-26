@@ -1,6 +1,7 @@
 class_name StateMachine
 extends Node
 
+@export var _initial_state: State
 var print_state_changes: bool = false
 
 var _states: Dictionary = {}
@@ -10,7 +11,6 @@ var _setup_complete: bool = false
 var _next_state: State = null
 var _next_state_ctx: Variant = null
 
-@export var _initial_state: State
 
 func _ready() -> void:
 	print("Discovering states:")

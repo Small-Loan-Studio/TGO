@@ -75,7 +75,7 @@ func _is_push(v: Vector2, push_direction: Enums.Direction) -> bool:
 
 
 func run_tick(_delta: float) -> void:
-	if !_ctx.character._target.is_moveable_block():
+	if !_ctx.character.target.is_moveable_block():
 		_state_machine.queue_state_change(idle_state)
 
 

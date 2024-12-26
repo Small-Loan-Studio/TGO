@@ -6,7 +6,7 @@ extends CharacterState
 var _tgt: CharacterTarget
 
 func enter(_enter_ctx: Variant) -> void:
-	_tgt = _ctx.character._target
+	_tgt = _ctx.character.target
 
 	if _tgt.is_interactable():
 		_animated_sprite.stop()
@@ -19,7 +19,7 @@ func run_tick(_delta: float) -> void:
 		_animated_sprite.stop()
 		_state_machine.queue_state_change(
 			push_pull_state,
-			push_pull_state.mk_args(_ctx.character._facing, _tgt.get_moveable_block()),
+			push_pull_state.mk_args(_ctx.character.facing, _tgt.get_moveable_block()),
 		)
 		return
 

@@ -13,11 +13,11 @@ func _local_setup() -> void:
 func maybe_interact() -> bool:
 	var just_pressed := _ctx.controller.get_just_pressed()
 
-	if !_ctx.character._target.is_set():
+	if !_ctx.character.target.is_set():
 		return false
 
-	if _ctx.character._target.get_interactable():
-		if _ctx.character._target.get_interactable().automatic:
+	if _ctx.character.target.get_interactable():
+		if _ctx.character.target.get_interactable().automatic:
 			_state_machine.queue_state_change(interact_state)
 			return true
 
