@@ -1,14 +1,47 @@
-[gd_scene load_steps=4 format=3 uid="uid://mqvl5162rawb"]
+[gd_scene load_steps=9 format=3 uid="uid://mqvl5162rawb"]
 
 [ext_resource type="Script" path="res://Scripts/Devin.gd" id="1_coq4s"]
 [ext_resource type="PackedScene" uid="uid://cx703e8t27grh" path="res://Scenes/Components/Character.tscn" id="1_kp6oq"]
 [ext_resource type="SpriteFrames" uid="uid://b750bqc5psnhh" path="res://Art/Characters/bart_sheet.tres" id="3_0y874"]
+[ext_resource type="Script" path="res://Scripts/Components/CharacterControl/States/Idle.gd" id="4_3ac8w"]
+[ext_resource type="Script" path="res://Scripts/Components/CharacterControl/States/Walk.gd" id="5_uh8u1"]
+[ext_resource type="Script" path="res://Scripts/Components/CharacterControl/States/Interact.gd" id="6_0katj"]
+[ext_resource type="Script" path="res://Scripts/Components/CharacterControl/States/PushPull.gd" id="7_wksnu"]
+[ext_resource type="Script" path="res://Scripts/Components/CharacterControl/InputController.gd" id="8_1w5au"]
 
 [node name="Devin" instance=ExtResource("1_kp6oq")]
 script = ExtResource("1_coq4s")
 id = "Devin"
-move_speed = 175
+_controller_node_path = NodePath("InputController")
 
 [node name="AnimatedSprite2D" parent="." index="0"]
 sprite_frames = ExtResource("3_0y874")
 animation = &"east"
+
+[node name="StateMachine" parent="." index="3" node_paths=PackedStringArray("_initial_state")]
+_initial_state = NodePath("Idle")
+
+[node name="Idle" type="Node" parent="StateMachine" index="0" node_paths=PackedStringArray("walk_state", "interact_state")]
+script = ExtResource("4_3ac8w")
+walk_state = NodePath("../Walk")
+interact_state = NodePath("../Interact")
+
+[node name="Walk" type="Node" parent="StateMachine" index="1" node_paths=PackedStringArray("idle_state", "interact_state")]
+script = ExtResource("5_uh8u1")
+idle_state = NodePath("../Idle")
+move_speed = 175
+interact_state = NodePath("../Interact")
+
+[node name="Interact" type="Node" parent="StateMachine" index="2" node_paths=PackedStringArray("idle_state", "push_pull_state")]
+script = ExtResource("6_0katj")
+idle_state = NodePath("../Idle")
+push_pull_state = NodePath("../PushPull")
+
+[node name="PushPull" type="Node" parent="StateMachine" index="3" node_paths=PackedStringArray("idle_state", "interact_state")]
+script = ExtResource("7_wksnu")
+idle_state = NodePath("../Idle")
+move_speed = 175
+interact_state = NodePath("../Interact")
+
+[node name="InputController" type="Node" parent="." index="4"]
+script = ExtResource("8_1w5au")

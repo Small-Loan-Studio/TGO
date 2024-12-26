@@ -3,20 +3,15 @@
 class_name Character
 extends CharacterBody2D
 
-## When set to true the game will have a circle drawn at the character's origin
-@export var _debug_draw_origin: bool = false
-
 ## Unique ID used in our design systems
 @export var id: String = ""
 
-## Set this to make the character be controlled by player input
-@export var player_controled: bool = false
+## When set to true the game will have a circle drawn at the character's origin
+@export var _debug_draw_origin: bool = false
 
-## This controls player movement speed in pixels/sec
-@export var move_speed: int = 250
-
-## The amonut of force the character has to push objects
-@export var push_force: int = 200
+## Set to specify what controls this character's behavior, if none specified
+## a default noop controller will be used.
+@export var _controller_node_path: NodePath
 
 ## When set to false this will disable the monitoring state of the sensors
 ## a character uses to interact with the exterior world, e.g., use items /
@@ -25,39 +20,57 @@ extends CharacterBody2D
 @export var activate_external_sensors: bool = true:
 	set = _set_activate_external_sensors
 
-## the most recent directional input as a vector
-var _raw_input: Vector2 = Vector2.ZERO
+## direction represented as an angle off Vector2.UP; in radians / [-TAU, TAU]
+var facing: float = 0
 
-## player input after any processing done ot the input
-var _impulse: Vector2 = Vector2.ZERO
-
-## _impulse represented as an angle off Vector2.UP; in radians / [-TAU, TAU]
-var _facing: float = 0
-
-## _facing reified into a direction
-var _direction: Enums.Direction
-
-## when pushing or pulling which direction is "forward"
-var _push_direction: Enums.Direction
-
-## how the character should be moving. This may impact speed or how input is interpreted
-var _move_mode: Enums.MoveMode = Enums.MoveMode.WALK
-
-## _target is a type safe container for anything that the player may focus to
+## target is a type safe container for anything that the player may focus to
 ## interact with
-var _target: CharacterTarget = CharacterTarget.none()
+var target: CharacterTarget = CharacterTarget.none()
+
+## resolved node from _controller_node_path
+var _controller: ControllerBase
 
 # component cache
 @onready var _sprite: AnimatedSprite2D = $AnimatedSprite2D
 @onready var _sensor_group: Node2D = $SensorSet
 @onready var _interaction_sensor: Area2D = $SensorSet/InteractionSensor
 @onready var _push_pull_sensor: Area2D = $SensorSet/PushPullSensor
-@onready var _pinjoint: PinJoint2D = $PinJoint2D
+@onready var _state_machine: StateMachine = $StateMachine
 
 
 func _ready() -> void:
-	_target.target_changed.connect(Callable(self, "_handle_target_changed"))
 	queue_redraw()
+	if Engine.is_editor_hint():
+		return
+	target.target_changed.connect(Callable(self, "_handle_target_changed"))
+	var ctx := StateMachine.CharacterContext.new()
+	ctx.character = self
+	if _controller_node_path != null:
+		_controller = get_node(_controller_node_path)
+		# TODO: .setup here isn't in the ControllerBase interface, need better
+		# config process; for now rely on duck typing
+		ctx.controller = _controller
+		(
+			_controller
+			. setup(
+				[
+					Enums.InputAction.LEFT,
+					Enums.InputAction.RIGHT,
+					Enums.InputAction.UP,
+					Enums.InputAction.DOWN,
+				],
+				[
+					Enums.InputAction.INTERACT,
+				],
+			)
+		)
+	else:
+		if id == Utils.PLAYER_ID:
+			printerr("_controller is null, potentially unexpected, using noop fallback")
+		_controller = ControllerBase.new()
+		ctx.controller = _controller
+
+	_state_machine.setup(ctx)
 
 
 func _draw() -> void:
@@ -65,204 +78,96 @@ func _draw() -> void:
 		draw_circle(Vector2.ZERO, 3, Color.GREEN)
 
 
-func _unhandled_input(_event: InputEvent) -> void:
-	if !player_controled:
-		_raw_input = Vector2.ZERO
-		_impulse = Vector2.ZERO
-		return
-
-	if Dialogic.current_timeline != null:
-		return
-
-	# TODO: may need to guard under Input.is_action_pressed for these or
-	# handling input won't prevent movement in the face of non-propagating
-	# input events
-	_raw_input = (
-		Input
-		. get_vector(
-			Enums.input_action_name(Enums.InputAction.LEFT),
-			Enums.input_action_name(Enums.InputAction.RIGHT),
-			Enums.input_action_name(Enums.InputAction.UP),
-			Enums.input_action_name(Enums.InputAction.DOWN),
-		)
-		. normalized()
-	)
-
-	_impulse = _raw_input
-	if _impulse != Vector2.ZERO:
-		# figure out what the final impulse is based on the push/pull walk state
-
-		if _move_mode == Enums.MoveMode.PUSH_PULL:
-			# not changing the facing or direction because we're moving something and
-			# those remain fixed until state change
-			var axis := Enums.direction_push_pull_axis(_push_direction)
-			_impulse = _impulse * axis
-
-			if _is_push(_impulse, _push_direction):
-				_pinjoint.node_b = ""
-			else:
-				_pinjoint.node_b = _target.get_moveable_block().get_path()
-
-		else:
-			_facing = Vector2.UP.angle_to(_impulse)
-			_direction = Utils.angle_to_direction(_facing)
-
-	_sensor_group.rotation = _facing
-
-	if _event.is_action_pressed(Enums.input_action_name(Enums.InputAction.INTERACT)):
-		if _target.is_interactable():
-			_target.get_interactable().trigger(self)
-
-		if _target.is_moveable_block():
-			if _move_mode == Enums.MoveMode.PUSH_PULL:
-				_stop_pushpull()
-			else:
-				_start_pushpull()
+func _unhandled_input(event: InputEvent) -> void:
+	_state_machine.run_input(event)
 
 
-func _physics_process(_delta: float) -> void:
+func _physics_process(delta: float) -> void:
 	if Engine.is_editor_hint():
-		# gross. but here we are
 		return
 
-	if _impulse == Vector2.ZERO:
-		# TODO: plausible we'll want a directional idle state to switch into
-		_sprite.stop()
+	_state_machine.run_physics(delta)
+
+
+func _process(delta: float) -> void:
+	if Engine.is_editor_hint():
 		return
 
-	var want_anim := Enums.direction_name(_direction)
-	var animation_correct := _sprite.animation == want_anim
+	_state_machine.run_tick(delta)
 
-	if !animation_correct || !_sprite.is_playing():
-		_sprite.play(want_anim)
 
-	var scale := move_speed
-	if _move_mode == Enums.MoveMode.PUSH_PULL:
-		if !_is_push(_impulse, _push_direction):
-			scale = move_speed / 2
-
-	velocity = _impulse * scale
-	move_and_slide()
-
-	# janky push/pull logic
-	if _move_mode == Enums.MoveMode.PUSH_PULL:
-		var collision_count := get_slide_collision_count()
-		for c in range(0, collision_count):
-			var cdata := get_slide_collision(c)
-			var collider := cdata.get_collider()
-
-			# if we're handling collision with the target and it's not frozen then
-			# we should apply force. We unfreeze outside the physics loop when we
-			# determine movement direction because it worked better (or maybe at
-			# all, I don't recall at this point)
-			if collider == _target.get_moveable_block() && !collider.freeze:
-				collider.apply_central_force(_impulse * push_force)
-				# we can only push one item so bail
-				break
+# region sensor / target management
+# TODO: post state machine rewrite we lose the ability to trivially check
+# the current state and not switch target when the character is in a push_pull
+# mode (beacuse that exists as a function of the state machine which isn't
+# available at this abstraction level). As a result it means we have a bug where
+# the target shifts mid-push/pull and we can get kicked out surprisingly.
+# In order to fix we'll likely need to rework the target system to not be a
+# single target and let the state transation logic handle precedence. As it
+# stands though the new bug is better than the old state that had push/pull
+# bugs _and_ was a shitty factoring for state management in the Character.
 
 
 func _on_interaction_sensor_entered(area: Area2D) -> void:
-	# while we're pushing and pulling don't let our focus change
-	if _move_mode == Enums.MoveMode.PUSH_PULL:
-		return
-
 	if area is Interactable:
-		var i := area as Interactable
-		if i.automatic:
-			i.trigger(self)
-		else:
-			_target.update(area)
+		target.update(area)
 
 
 func _on_interaction_sensor_exited(area: Area2D) -> void:
-	# while we're pushing and pulling don't let our focus change
-	if _move_mode == Enums.MoveMode.PUSH_PULL:
-		return
-
 	if area is Interactable:
-		if _target.get_interactable() == area:
-			_target.reset()
+		if target.get_interactable() == area:
+			target.reset()
 
 
 func _on_pushpull_sensor_entered(area: Area2D) -> void:
-	# while we're pushing and pulling don't let our focus change
-	if _move_mode == Enums.MoveMode.PUSH_PULL:
-		return
-
 	if area.get_parent() is MoveableBlock:
-		_target.update(area.get_parent())
+		target.update(area.get_parent())
 
 
 func _on_pushpull_sensor_exited(area: Area2D) -> void:
 	if area.get_parent() is MoveableBlock:
-		if _target.get_moveable_block() == area.get_parent():
-			_stop_pushpull()
-			_target.reset()
+		if target.get_moveable_block() == area.get_parent():
+			target.reset()
 
 
 func _handle_target_changed() -> void:
-	if !player_controled:
-		return
-
-	print("%s - _handle_target_changed -> %s" % [name, _target])
+	# print("%s - _handle_target_changed -> %s" % [name, target])
 	# TODO(envy) - better toast management
 	var hud := Driver.instance().get_hud()
-	if _target.is_set():
-		if _target.is_interactable():
-			hud.set_toast(_target.get_interactable().verb_name())
-		if _target.is_moveable_block():
+	if target.is_set():
+		if target.is_interactable():
+			hud.set_toast(target.get_interactable().verb_name())
+		if target.is_moveable_block():
 			hud.set_toast(Enums.action_verb_name(Enums.ActionVerb.PUSH_PULL))
 	else:
 		hud.clear_toast()
 
 
+# end region sensor / target management
+
+
 func _get_configuration_warnings() -> PackedStringArray:
+	var errs := []
 	if _sprite.sprite_frames == null:
-		return ["No sprite frames have been set on AnimatedSprite2D"]
+		errs.append("No sprite frames have been set on AnimatedSprite2D")
+	else:
+		var animations := _sprite.sprite_frames.get_animation_names()
+		var missing_anims: Array[String] = []
 
-	var animations := _sprite.sprite_frames.get_animation_names()
-	var missing_anims: Array[String] = []
+		for da: Enums.Direction in Enums.Direction.values():
+			var want_name := Enums.direction_name(da)
+			if not want_name in animations:
+				missing_anims.append(want_name)
 
-	for da: Enums.Direction in Enums.Direction.values():
-		var want_name := Enums.direction_name(da)
-		if not want_name in animations:
-			missing_anims.append(want_name)
+		if missing_anims.size() > 0:
+			errs.append("Missing expected animations in child sprite: " + str(missing_anims))
 
-	if missing_anims.size() > 0:
-		return ["Missing expected animations in child sprite: " + str(missing_anims)]
+	if _controller_node_path == null || !has_node(_controller_node_path):
+		errs.append("Controller Node Path must be set to respond to input or use State Machines")
+	elif !(get_node(_controller_node_path) is ControllerBase):
+		errs.append("Controller Node Path must reference a ControllerBase or subclass")
 
-	return []
-
-
-func _is_push(v: Vector2, push_direction: Enums.Direction) -> bool:
-	var axis := Enums.direction_push_pull_axis(push_direction)
-	var push_vec := Enums.direction_vector(push_direction)
-	# normalize direction to the axis
-	v = (v * axis).normalized()
-	return v == push_vec
-
-
-func _start_pushpull() -> void:
-	if _move_mode == Enums.MoveMode.PUSH_PULL:
-		return
-
-	# start push/pull, set the push direction for subsequent logic
-	_move_mode = Enums.MoveMode.PUSH_PULL
-	_push_direction = Utils.angle_to_direction(_facing, Enums.DirectionMode.FOUR)
-	_target.get_moveable_block().freeze = false
-	# TODO(envy) - better toast management
-	Driver.instance().get_hud().set_toast(Enums.action_verb_name(Enums.ActionVerb.RELEASE))
-
-
-func _stop_pushpull() -> void:
-	if _move_mode != Enums.MoveMode.PUSH_PULL:
-		return
-
-	_move_mode = Enums.MoveMode.WALK
-	_pinjoint.node_b = ""
-	_target.get_moveable_block().set_deferred("freeze", true)
-	# TODO(envy) - better toast management
-	Driver.instance().get_hud().clear_toast()
+	return errs
 
 
 func _set_activate_external_sensors(value: bool) -> void:

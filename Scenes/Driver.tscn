@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=3 uid="uid://d4cnh54npmjiv"]
+[gd_scene load_steps=20 format=3 uid="uid://d4cnh54npmjiv"]
 
 [ext_resource type="Script" path="res://Scripts/Driver.gd" id="1_agcjs"]
 [ext_resource type="Script" path="res://Scripts/AudioManager.gd" id="2_4seev"]
@@ -17,6 +17,7 @@
 [ext_resource type="PackedScene" uid="uid://dyuykg87w5vff" path="res://Scenes/UI/Debug/devin_light_control.tscn" id="11_igd87"]
 [ext_resource type="PackedScene" uid="uid://cqin6fb282fjf" path="res://Scenes/Components/DayNightCycle.tscn" id="12_8kqo6"]
 [ext_resource type="PackedScene" uid="uid://bwx0yr616ip1g" path="res://Scenes/UI/Debug/debug_inventory.tscn" id="12_w3otq"]
+[ext_resource type="Script" path="res://Scenes/UI/Debug/DevinStateReport.gd" id="13_gfaub"]
 [ext_resource type="PackedScene" uid="uid://b13wrl3bedjku" path="res://Scenes/Components/Torch.tscn" id="13_kgcxt"]
 
 [node name="Driver" type="Node2D"]
@@ -63,7 +64,6 @@ offset_bottom = -1.0
 size_flags_horizontal = 4
 
 [node name="HUD" type="Control" parent="OverlayManager"]
-visible = false
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -129,6 +129,23 @@ layout_mode = 2
 
 [node name="QuestDebugger" parent="OverlayManager/HUD/DebugStack" instance=ExtResource("11_g6nlc")]
 layout_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="OverlayManager/HUD/DebugStack"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="OverlayManager/HUD/DebugStack/HBoxContainer"]
+layout_mode = 2
+text = "Devin State"
+
+[node name="CurrentState" type="Label" parent="OverlayManager/HUD/DebugStack/HBoxContainer"]
+custom_minimum_size = Vector2(128, 0)
+layout_mode = 2
+script = ExtResource("13_gfaub")
+
+[node name="OutputChanges" type="CheckBox" parent="OverlayManager/HUD/DebugStack/HBoxContainer"]
+layout_mode = 2
+focus_mode = 0
+text = "Output Changes"
 
 [node name="Toast" type="ColorRect" parent="OverlayManager/HUD"]
 unique_name_in_owner = true
@@ -202,5 +219,6 @@ light_size = 4.0
 [connection signal="pressed" from="OverlayManager/HUD/DebugStack/SaveLoadMenu/SaveButton" to="SerializationManager" method="save_game"]
 [connection signal="pressed" from="OverlayManager/HUD/DebugStack/SaveLoadMenu/LoadButton" to="SerializationManager" method="load_game"]
 [connection signal="pressed" from="OverlayManager/HUD/DebugStack/SaveLoadMenu/DeleteButton" to="SerializationManager" method="delete_save"]
+[connection signal="toggled" from="OverlayManager/HUD/DebugStack/HBoxContainer/OutputChanges" to="OverlayManager/HUD/DebugStack/HBoxContainer/CurrentState" method="_on_toggle_track_state_changes"]
 [connection signal="pressed" from="OverlayManager/HUD/DebugButton" to="." method="_on_debug_pressed"]
 [connection signal="load_saved_level" from="SerializationManager" to="." method="load_level"]

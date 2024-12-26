@@ -52,7 +52,7 @@ func _ready() -> void:
 
 
 func _debug_refresh_inventory_ui(inventory_id: String) -> void:
-	if inventory_id != Utils.PLAYER_ID.to_lower():
+	if inventory_id.to_lower() != Utils.PLAYER_ID.to_lower():
 		return
 	var items := inventory_mgr.get_inventory(inventory_id).get_items()
 	_debug_ui_inventory.visible = items.size() > 0
@@ -137,7 +137,6 @@ func _set_player(new_level: LevelBase, marker_name: String) -> void:
 	# TODO: get the player ready and move them to the appropriate location
 	# we'll probably want to parameterize this more eventually.
 	player.visible = true
-	player.player_controled = true
 	if marker_name == null || marker_name == "":
 		marker_name = LevelBase.DEFAULT_MARKER
 	var location := new_level.get_named_location(marker_name)
@@ -148,7 +147,6 @@ func _set_player_from_save() -> void:
 	# TODO: get the player ready and move them to the appropriate location
 	# we'll probably want to parameterize this more eventually.
 	player.visible = true
-	player.player_controled = true
 
 
 ## Returns the currently loaded level. A bit of a hack for routing things into
