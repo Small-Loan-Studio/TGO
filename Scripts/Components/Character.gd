@@ -5,6 +5,7 @@ extends CharacterBody2D
 
 ## When set to true the game will have a circle drawn at the character's origin
 @export var _debug_draw_origin: bool = false
+var _controller: ControllerBase
 
 ## Unique ID used in our design systems
 @export var id: String = ""
@@ -18,7 +19,7 @@ extends CharacterBody2D
 
 ## Set to specify what controls this character's behavior, if none specified
 ## a default noop controller will be used
-@export var _controller: ControllerBase
+@export var _controller_node_path: NodePath
 
 ## direction represented as an angle off Vector2.UP; in radians / [-TAU, TAU]
 var facing: float = 0
@@ -42,28 +43,29 @@ func _ready() -> void:
 	target.target_changed.connect(Callable(self, "_handle_target_changed"))
 	var ctx := StateMachine.CharacterContext.new()
 	ctx.character = self
-	if _controller != null:
+	if _controller_node_path != null:
+		_controller = get_node(_controller_node_path)
 		ctx.controller = _controller
+		(
+			_controller
+			. setup(
+				[
+					Enums.InputAction.LEFT,
+					Enums.InputAction.RIGHT,
+					Enums.InputAction.UP,
+					Enums.InputAction.DOWN,
+				],
+				[
+					Enums.InputAction.INTERACT,
+				],
+			)
+		)
 	else:
 		if id == Utils.PLAYER_ID:
 			printerr("_controller is null, potentially unexpected, using noop fallback")
 		_controller = ControllerBase.new()
 		ctx.controller = _controller
 
-	(
-		_controller
-		. setup(
-			[
-				Enums.InputAction.LEFT,
-				Enums.InputAction.RIGHT,
-				Enums.InputAction.UP,
-				Enums.InputAction.DOWN,
-			],
-			[
-				Enums.InputAction.INTERACT,
-			],
-		)
-	)
 	_state_machine.setup(ctx)
 
 

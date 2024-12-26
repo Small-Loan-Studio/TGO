@@ -9,12 +9,10 @@
 [ext_resource type="Script" path="res://Scripts/Components/CharacterControl/States/PushPull.gd" id="7_wksnu"]
 [ext_resource type="Script" path="res://Scripts/Components/CharacterControl/InputController.gd" id="8_1w5au"]
 
-[node name="Devin" node_paths=PackedStringArray("_controller") instance=ExtResource("1_kp6oq")]
+[node name="Devin" instance=ExtResource("1_kp6oq")]
 script = ExtResource("1_coq4s")
 id = "Devin"
-activate_external_sensors = Object(RefCounted,"script":Resource("res://Scripts/Components/CharacterTarget.gd"),"_typ":0,"_interactable":null,"_block":null)
-
-_controller = NodePath("InputController")
+_controller_node_path = NodePath("InputController")
 
 [node name="AnimatedSprite2D" parent="." index="0"]
 sprite_frames = ExtResource("3_0y874")
