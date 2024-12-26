@@ -29,6 +29,7 @@ var _action_state: Dictionary
 var _always_unpressed: InputController.ActionState
 var _input: InputWrapper
 
+
 func setup(
 	movement_actions: Array,
 	actions_to_watch: Array,
@@ -47,6 +48,7 @@ func setup(
 
 	_setup = true
 
+
 func _ready() -> void:
 	pass
 
@@ -58,13 +60,17 @@ func _unhandled_input(event: InputEvent) -> void:
 	process_input(event)
 
 
-
 func process_input(_event: InputEvent) -> void:
 	if !_setup:
 		return
 
 	_dir_vector = _input.get_vector(
-		_movement[DIR_NEG_X], _movement[DIR_POS_X], _movement[DIR_NEG_Y], _movement[DIR_POS_Y], deadzone)
+		_movement[DIR_NEG_X],
+		_movement[DIR_POS_X],
+		_movement[DIR_NEG_Y],
+		_movement[DIR_POS_Y],
+		deadzone
+	)
 	_dir_vector = _dir_vector.normalized()
 
 	if _dir_vector.length() < deadzone:
@@ -148,6 +154,7 @@ class ActionState:
 	func not_pressed() -> bool:
 		return state == JUST_RELEASED || state == UNPRESSED
 
+
 class InputWrapper:
 	extends RefCounted
 
@@ -156,7 +163,9 @@ class InputWrapper:
 	func _init(override: Variant) -> void:
 		_override = override
 
-	func get_vector(left: String, right: String, down: String, up: String, deadzone: float) -> Vector2:
+	func get_vector(
+		left: String, right: String, down: String, up: String, deadzone: float
+	) -> Vector2:
 		if _override != null:
 			return _override.get_vector(left, right, down, up, deadzone)
 		return Input.get_vector(left, right, down, up, deadzone)

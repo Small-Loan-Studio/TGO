@@ -29,6 +29,7 @@ func enter(ctx: Variant) -> void:
 	_hud.set_toast(Enums.action_verb_name(Enums.ActionVerb.RELEASE))
 	_handle_animation()
 
+
 func run_input(_event: InputEvent) -> void:
 	if Enums.InputAction.INTERACT in _ctx.controller.get_just_pressed():
 		_state_machine.queue_state_change(idle_state)
@@ -49,6 +50,7 @@ func _handle_animation() -> void:
 	var animation_correct := _animated_sprite.animation == want_animation
 	if !animation_correct || !_animated_sprite.is_playing():
 		_animated_sprite.play(want_animation)
+
 
 func run_physics(_delta: float) -> void:
 	var push_velocity := _projected_impulse * move_speed / 3

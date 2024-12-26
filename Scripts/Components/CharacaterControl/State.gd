@@ -4,25 +4,32 @@ extends Node
 var _state_machine: StateMachine
 var _setup_args: Variant
 
+
 func setup(machine: StateMachine, setup_args: Variant = {}) -> void:
 	_state_machine = machine
 	_setup_args = setup_args
 	_local_setup()
 
+
 func _local_setup() -> void:
 	pass
+
 
 func enter(_ctx: Variant) -> void:
 	pass
 
+
 func exit() -> void:
 	pass
+
 
 func run_input(_event: InputEvent) -> void:
 	pass
 
+
 func run_physics(_delta: float) -> void:
 	pass
+
 
 func run_tick(_delta: float) -> void:
 	pass

@@ -19,6 +19,7 @@ func _ready() -> void:
 			print("  - ", c.name)
 			_states[c.name] = c
 
+
 func setup(ctx: Variant = null) -> void:
 	var noop := State.new()
 	noop.name = "_Default"

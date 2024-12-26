@@ -26,6 +26,7 @@ func run_input(_event: InputEvent) -> void:
 
 	maybe_interact()
 
+
 func run_physics(_delta: float) -> void:
 	_ctx.character._sensor_group.rotation = _ctx.character.facing
 	_ctx.character.velocity = _impulse * move_speed
@@ -33,4 +34,4 @@ func run_physics(_delta: float) -> void:
 
 
 static func mk_args(initial_vec: Vector2) -> Dictionary:
-	return { 'impulse': initial_vec }
+	return {"impulse": initial_vec}

@@ -2,6 +2,7 @@
 class_name ControllerBase
 extends Node
 
+
 func process_input(_event: InputEvent) -> void:
 	pass
 

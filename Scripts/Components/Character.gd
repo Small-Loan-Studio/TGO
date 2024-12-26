@@ -27,7 +27,6 @@ var facing: float = 0
 ## interact with
 var target: CharacterTarget = CharacterTarget.none()
 
-
 # component cache
 @onready var _sprite: AnimatedSprite2D = $AnimatedSprite2D
 @onready var _sensor_group: Node2D = $SensorSet
@@ -51,15 +50,19 @@ func _ready() -> void:
 		_controller = ControllerBase.new()
 		ctx.controller = _controller
 
-	_controller.setup(
-		[ Enums.InputAction.LEFT,
-			Enums.InputAction.RIGHT,
-			Enums.InputAction.UP,
-			Enums.InputAction.DOWN,
-		],
-		[
-			Enums.InputAction.INTERACT,
-		],
+	(
+		_controller
+		. setup(
+			[
+				Enums.InputAction.LEFT,
+				Enums.InputAction.RIGHT,
+				Enums.InputAction.UP,
+				Enums.InputAction.DOWN,
+			],
+			[
+				Enums.InputAction.INTERACT,
+			],
+		)
 	)
 	_state_machine.setup(ctx)
 
@@ -71,6 +74,7 @@ func _draw() -> void:
 
 func _unhandled_input(event: InputEvent) -> void:
 	_state_machine.run_input(event)
+
 
 func _physics_process(delta: float) -> void:
 	if Engine.is_editor_hint():
@@ -97,9 +101,10 @@ func _process(delta: float) -> void:
 # stands though the new bug is better than the old state that had push/pull
 # bugs _and_ was a shitty factoring for state management in the Character.
 
+
 func _on_interaction_sensor_entered(area: Area2D) -> void:
 	if area is Interactable:
-			target.update(area)
+		target.update(area)
 
 
 func _on_interaction_sensor_exited(area: Area2D) -> void:
@@ -131,7 +136,9 @@ func _handle_target_changed() -> void:
 	else:
 		hud.clear_toast()
 
+
 # end region sensor / target management
+
 
 func _get_configuration_warnings() -> PackedStringArray:
 	var errs := []
@@ -149,7 +156,7 @@ func _get_configuration_warnings() -> PackedStringArray:
 		if missing_anims.size() > 0:
 			errs.append("Missing expected animations in child sprite: " + str(missing_anims))
 
-	var controller := get_children().filter(func (c: Node) -> bool: return c is ControllerBase)
+	var controller := get_children().filter(func(c: Node) -> bool: return c is ControllerBase)
 	if len(controller) < 1:
 		errs.append("No character controller: no way to respond to input")
 	if len(controller) > 1:
