@@ -24,7 +24,16 @@ extends CharacterBody2D
 var facing: float = 0
 
 ## target is a type safe container for anything that the player may focus to
-## interact with
+## interact with.
+## TODO: post state machine rewrite we lose the ability to trivially check
+## the current state and not switch target when the character is in a push_pull
+## mode (because that exists as a function of the state machine which isn't
+## available at this abstraction level). As a result it means we have a bug where
+## the target shifts mid-push/pull and we can get kicked out surprisingly.
+## In order to fix we'll likely need to rework the target system to not be a
+## single target and let the state transition logic handle precedence. As it
+## stands though the new bug is better than the old state that had push/pull
+## bugs _and_ was a shitty factoring for state management in the Character.
 var target: CharacterTarget = CharacterTarget.none()
 
 ## resolved node from _controller_node_path
@@ -97,15 +106,6 @@ func _process(delta: float) -> void:
 
 
 # region sensor / target management
-# TODO: post state machine rewrite we lose the ability to trivially check
-# the current state and not switch target when the character is in a push_pull
-# mode (beacuse that exists as a function of the state machine which isn't
-# available at this abstraction level). As a result it means we have a bug where
-# the target shifts mid-push/pull and we can get kicked out surprisingly.
-# In order to fix we'll likely need to rework the target system to not be a
-# single target and let the state transation logic handle precedence. As it
-# stands though the new bug is better than the old state that had push/pull
-# bugs _and_ was a shitty factoring for state management in the Character.
 
 
 func _on_interaction_sensor_entered(area: Area2D) -> void:
