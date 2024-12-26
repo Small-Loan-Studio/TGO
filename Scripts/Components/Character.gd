@@ -9,15 +9,6 @@ extends CharacterBody2D
 ## Unique ID used in our design systems
 @export var id: String = ""
 
-## Set this to make the character be controlled by player input
-@export var player_controled: bool = false
-
-## This controls player movement speed in pixels/sec
-@export var move_speed: int = 250
-
-## The amonut of force the character has to push objects
-@export var push_force: int = 200
-
 ## When set to false this will disable the monitoring state of the sensors
 ## a character uses to interact with the exterior world, e.g., use items /
 ## push/pull things. No checking is done to ensure it's safe to switch state
@@ -29,7 +20,7 @@ extends CharacterBody2D
 ## a default noop controller will be used
 @export var _controller: ControllerBase
 
-## _impulse represented as an angle off Vector2.UP; in radians / [-TAU, TAU]
+## direction represented as an angle off Vector2.UP; in radians / [-TAU, TAU]
 var facing: float = 0
 
 ## target is a type safe container for anything that the player may focus to

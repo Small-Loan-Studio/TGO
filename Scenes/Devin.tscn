@@ -12,14 +12,13 @@
 [node name="Devin" node_paths=PackedStringArray("_controller") instance=ExtResource("1_kp6oq")]
 script = ExtResource("1_coq4s")
 id = "Devin"
-move_speed = 175
 _controller = NodePath("InputController")
 
 [node name="AnimatedSprite2D" parent="." index="0"]
 sprite_frames = ExtResource("3_0y874")
 animation = &"east"
 
-[node name="StateMachine" parent="." index="4" node_paths=PackedStringArray("_initial_state")]
+[node name="StateMachine" parent="." index="3" node_paths=PackedStringArray("_initial_state")]
 _initial_state = NodePath("Idle")
 
 [node name="Idle" type="Node" parent="StateMachine" index="0" node_paths=PackedStringArray("walk_state", "interact_state")]
@@ -30,6 +29,7 @@ interact_state = NodePath("../Interact")
 [node name="Walk" type="Node" parent="StateMachine" index="1" node_paths=PackedStringArray("idle_state", "interact_state")]
 script = ExtResource("5_nwgb5")
 idle_state = NodePath("../Idle")
+move_speed = 175
 interact_state = NodePath("../Interact")
 
 [node name="Interact" type="Node" parent="StateMachine" index="2" node_paths=PackedStringArray("idle_state", "push_pull_state")]
@@ -40,7 +40,8 @@ push_pull_state = NodePath("../PushPull")
 [node name="PushPull" type="Node" parent="StateMachine" index="3" node_paths=PackedStringArray("idle_state", "interact_state")]
 script = ExtResource("7_kw264")
 idle_state = NodePath("../Idle")
+move_speed = 175
 interact_state = NodePath("../Interact")
 
-[node name="InputController" type="Node" parent="." index="5"]
+[node name="InputController" type="Node" parent="." index="4"]
 script = ExtResource("4_lf63b")
