@@ -148,6 +148,16 @@ func _handle_target_changed() -> void:
 
 # end region sensor / target management
 
+# region save/load
+## TODO
+func save() -> Dictionary:
+	return {}
+
+
+func load(data: Dictionary) -> void:
+	pass
+# end region save/load
+
 
 func _get_configuration_warnings() -> PackedStringArray:
 	var errs := []
