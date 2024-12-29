@@ -57,8 +57,7 @@ interact_state = NodePath("../Interact")
 script = ExtResource("8_ii0li")
 idle_state = NodePath("../Idle")
 walk_state = NodePath("../Walk")
-move_speed = 350
-stamina_drain_rate = 20
+move_speed = 260
 
 [node name="InputController" type="Node" parent="." index="4"]
 script = ExtResource("8_1w5au")
