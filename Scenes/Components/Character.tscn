@@ -1,8 +1,9 @@
-[gd_scene load_steps=7 format=3 uid="uid://cx703e8t27grh"]
+[gd_scene load_steps=8 format=3 uid="uid://cx703e8t27grh"]
 
 [ext_resource type="Script" path="res://Scripts/Components/Character.gd" id="1_tt4fa"]
 [ext_resource type="SpriteFrames" uid="uid://b3igo1ygiyl0b" path="res://Art/Characters/character_placeholder.tres" id="2_3xe5u"]
 [ext_resource type="Script" path="res://Scripts/Components/CharacterControl/StateMachine.gd" id="3_y8i3d"]
+[ext_resource type="Script" path="res://Scripts/Components/StatCollection.gd" id="4_a40ji"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_jvita"]
 size = Vector2(32.4777, 29.0933)
@@ -49,6 +50,9 @@ shape = SubResource("CircleShape2D_bo3tg")
 
 [node name="StateMachine" type="Node" parent="."]
 script = ExtResource("3_y8i3d")
+
+[node name="Stats" type="Node" parent="."]
+script = ExtResource("4_a40ji")
 
 [connection signal="area_entered" from="SensorSet/InteractionSensor" to="." method="_on_interaction_sensor_entered"]
 [connection signal="area_exited" from="SensorSet/InteractionSensor" to="." method="_on_interaction_sensor_exited"]

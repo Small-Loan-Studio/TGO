@@ -39,6 +39,8 @@ var target: CharacterTarget = CharacterTarget.none()
 ## resolved node from _controller_node_path
 var _controller: ControllerBase
 
+@onready var stats: StatCollection = $Stats
+
 # component cache
 @onready var _sprite: AnimatedSprite2D = $AnimatedSprite2D
 @onready var _sensor_group: Node2D = $SensorSet
@@ -70,6 +72,7 @@ func _ready() -> void:
 				],
 				[
 					Enums.InputAction.INTERACT,
+					Enums.InputAction.SPRINT,
 				],
 			)
 		)
