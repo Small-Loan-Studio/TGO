@@ -148,6 +148,7 @@ func _handle_target_changed() -> void:
 
 # end region sensor / target management
 
+
 # region save/load
 func save() -> Dictionary:
 	return {
@@ -163,6 +164,8 @@ func load(data: Dictionary) -> void:
 	var stats_arr: Array[Dictionary] = []
 	stats_arr.assign(data["stats"])
 	stats.load(stats_arr)
+
+
 # end region save/load
 
 

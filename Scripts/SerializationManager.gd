@@ -130,7 +130,6 @@ func load_game() -> void:
 		if !_restore_inventory():
 			printerr("Failed to restore inventory data")
 			return
-		print(save_meta.player_data)
 		Driver.instance().player.load(save_meta.player_data)
 
 	if save_meta.version >= 1:

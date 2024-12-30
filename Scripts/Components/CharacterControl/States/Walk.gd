@@ -8,6 +8,7 @@ var _impulse: Vector2
 var _direction: Enums.Direction
 var _has_entered: bool
 
+
 func enter(_state: Variant) -> void:
 	run_input(null)
 	_has_entered = true
