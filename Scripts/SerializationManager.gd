@@ -79,7 +79,7 @@ func save_game() -> void:
 
 	meta_data.quest_info = Driver.instance().quest_mgr.save()
 	meta_data.time_of_day = Driver.instance()._day_night_cycle.current_time
-	meta_data.location = Driver.instance().player.global_position
+	meta_data.player_data = Driver.instance().player.save()
 	_write_meta(meta_data)
 
 	if !_write_dialogic_data():
@@ -130,7 +130,7 @@ func load_game() -> void:
 		if !_restore_inventory():
 			printerr("Failed to restore inventory data")
 			return
-		Driver.instance().player.global_position = save_meta.location
+		Driver.instance().player.load(save_meta.player_data)
 
 	if save_meta.version >= 1:
 		if !_restore_dialogic():
@@ -403,18 +403,18 @@ class SaveFileMeta:
 
 	var time_of_day: int
 
-	var location: Vector2
+	var player_data: Dictionary
 
 	# Map[QuestState, Array[quest_id: String]]
 	var quest_info: Dictionary
 
 	func marshal() -> String:
 		var data := {
-			"meta_version": 2,
+			"meta_version": 3,
 			"level": level_name,
 			"quest_info": quest_info,
 			"time_of_day": time_of_day,
-			"pc_location": [location[0], location[1]],
+			"player": player_data,
 		}
 
 		return JSON.stringify(data, "\t")
@@ -438,7 +438,7 @@ class SaveFileMeta:
 
 		sf.version = json.data["meta_version"]
 
-		if sf.version > 2:
+		if sf.version > 3:
 			assert(false, "Unknown meta file format")
 
 		sf.level_name = json.data["level"]
@@ -446,10 +446,18 @@ class SaveFileMeta:
 			sf.quest_info = json.data["quest_info"]
 			sf.time_of_day = json.data["time_of_day"]
 
-		if sf.version >= 2:
-			sf.location = Vector2(
+		if sf.version == 2:
+			# convert from version 2
+			var location := Vector2(
 				json.data["pc_location"][0],
 				json.data["pc_location"][1],
 			)
+			sf.player_data = {
+				"position": [location[0], location[1]],
+				"stats": [],
+			}
+
+		if sf.version >= 3:
+			sf.player_data = json.data["player"]
 
 		return sf

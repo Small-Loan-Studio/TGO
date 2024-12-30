@@ -37,6 +37,7 @@ enum InputAction {
 	LEFT,
 	RIGHT,
 	INTERACT,
+	SPRINT,
 }
 
 enum LightLevel {
@@ -82,6 +83,8 @@ enum ActionVerb { DEFAULT, PICK_UP, TALK, PUSH_PULL, RELEASE, USE }
 enum QuestState { DORMANT, ACTIVE, FAILED, COMPLETED }
 enum QuestConditionType { VARIABLE, INVENTORY }
 
+enum Stat { STAMINA }
+
 const AUDIO_BUS_INFO = {
 	AudioBus.MASTER: [0, "Global"],
 	AudioBus.BACKGROUND_MUSIC: [1, "Background Music"],
@@ -102,6 +105,10 @@ const QUEST_STATE_NAME = {
 	"active": QuestState.ACTIVE,
 	"failed": QuestState.FAILED,
 	"completed": QuestState.COMPLETED,
+}
+
+const STAT_NAME = {
+	"Stamina": Stat.STAMINA,
 }
 
 # gdlint:ignore=class-variable-name
@@ -170,6 +177,8 @@ static func input_action_name(ia: InputAction) -> String:
 			return "right"
 		InputAction.INTERACT:
 			return "interact"
+		InputAction.SPRINT:
+			return "sprint"
 	assert(false, "Invalid Input action: " + str(ia))
 	return ""
 
@@ -328,3 +337,15 @@ static func quest_state_from_str(str: String) -> QuestState:
 		return QUEST_STATE_NAME[str]
 	printerr("Unable to resolve quest state %s, returning default" % [str])
 	return QuestState.DORMANT
+
+
+static func stat_name(st: Stat) -> String:
+	match st:
+		Stat.STAMINA:
+			return "Stamina"
+	printerr("Unknown stat: %s" % [st])
+	return "Unknown"
+
+
+static func stat_from_name(name: String) -> Stat:
+	return STAT_NAME[name]

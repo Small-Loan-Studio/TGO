@@ -39,6 +39,8 @@ var target: CharacterTarget = CharacterTarget.none()
 ## resolved node from _controller_node_path
 var _controller: ControllerBase
 
+@onready var stats: StatCollection = $Stats
+
 # component cache
 @onready var _sprite: AnimatedSprite2D = $AnimatedSprite2D
 @onready var _sensor_group: Node2D = $SensorSet
@@ -70,6 +72,7 @@ func _ready() -> void:
 				],
 				[
 					Enums.InputAction.INTERACT,
+					Enums.InputAction.SPRINT,
 				],
 			)
 		)
@@ -144,6 +147,26 @@ func _handle_target_changed() -> void:
 
 
 # end region sensor / target management
+
+
+# region save/load
+func save() -> Dictionary:
+	return {
+		"position": [global_position.x, global_position.y],
+		"stats": stats.save(),
+	}
+
+
+func load(data: Dictionary) -> void:
+	var pos_x: float = data["position"][0]
+	var pos_y: float = data["position"][1]
+	global_position = Vector2(pos_x, pos_y)
+	var stats_arr: Array[Dictionary] = []
+	stats_arr.assign(data["stats"])
+	stats.load(stats_arr)
+
+
+# end region save/load
 
 
 func _get_configuration_warnings() -> PackedStringArray:

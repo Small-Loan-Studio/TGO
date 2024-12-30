@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=3 uid="uid://d4cnh54npmjiv"]
+[gd_scene load_steps=21 format=3 uid="uid://d4cnh54npmjiv"]
 
 [ext_resource type="Script" path="res://Scripts/Driver.gd" id="1_agcjs"]
 [ext_resource type="Script" path="res://Scripts/AudioManager.gd" id="2_4seev"]
@@ -19,6 +19,7 @@
 [ext_resource type="PackedScene" uid="uid://bwx0yr616ip1g" path="res://Scenes/UI/Debug/debug_inventory.tscn" id="12_w3otq"]
 [ext_resource type="Script" path="res://Scenes/UI/Debug/DevinStateReport.gd" id="13_gfaub"]
 [ext_resource type="PackedScene" uid="uid://b13wrl3bedjku" path="res://Scenes/Components/Torch.tscn" id="13_kgcxt"]
+[ext_resource type="Script" path="res://Scenes/UI/Debug/StatLabel.gd" id="14_feb7v"]
 
 [node name="Driver" type="Node2D"]
 script = ExtResource("1_agcjs")
@@ -64,6 +65,7 @@ offset_bottom = -1.0
 size_flags_horizontal = 4
 
 [node name="HUD" type="Control" parent="OverlayManager"]
+visible = false
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -79,16 +81,6 @@ offset_left = 40.0
 offset_top = 40.0
 offset_right = 56.0
 offset_bottom = 56.0
-
-[node name="DebugQuestUI" parent="OverlayManager/HUD" instance=ExtResource("8_8e3e0")]
-layout_mode = 1
-anchors_preset = -1
-anchor_left = 1.0
-anchor_bottom = 0.0
-offset_top = 40.0
-offset_right = -40.0
-grow_horizontal = 0
-grow_vertical = 1
 
 [node name="DebugStack" type="VBoxContainer" parent="OverlayManager/HUD"]
 layout_mode = 1
@@ -177,17 +169,26 @@ text = "Toast Text"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="DebugButton" type="Button" parent="OverlayManager/HUD"]
-visible = false
+[node name="DebugCorner" type="VBoxContainer" parent="OverlayManager/HUD"]
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 1.0
 anchor_right = 1.0
-offset_left = -100.0
-offset_top = 20.0
-offset_right = -20.0
-offset_bottom = 60.0
+offset_top = 40.0
+offset_right = -40.0
 grow_horizontal = 0
+
+[node name="StatLabel" type="Label" parent="OverlayManager/HUD/DebugCorner"]
+unique_name_in_owner = true
+layout_mode = 2
+script = ExtResource("14_feb7v")
+
+[node name="DebugQuestUI" parent="OverlayManager/HUD/DebugCorner" instance=ExtResource("8_8e3e0")]
+layout_mode = 2
+
+[node name="DebugButton" type="Button" parent="OverlayManager/HUD/DebugCorner"]
+visible = false
+layout_mode = 2
 focus_mode = 0
 text = "Debug"
 
@@ -209,6 +210,8 @@ y_sort_enabled = true
 unique_name_in_owner = true
 visible = false
 position = Vector2(0, 0)
+_debug_draw_origin = false
+activate_external_sensors = true
 
 [node name="Camera2D" type="Camera2D" parent="GameWorld/Devin"]
 
@@ -220,5 +223,5 @@ light_size = 4.0
 [connection signal="pressed" from="OverlayManager/HUD/DebugStack/SaveLoadMenu/LoadButton" to="SerializationManager" method="load_game"]
 [connection signal="pressed" from="OverlayManager/HUD/DebugStack/SaveLoadMenu/DeleteButton" to="SerializationManager" method="delete_save"]
 [connection signal="toggled" from="OverlayManager/HUD/DebugStack/HBoxContainer/OutputChanges" to="OverlayManager/HUD/DebugStack/HBoxContainer/CurrentState" method="_on_toggle_track_state_changes"]
-[connection signal="pressed" from="OverlayManager/HUD/DebugButton" to="." method="_on_debug_pressed"]
+[connection signal="pressed" from="OverlayManager/HUD/DebugCorner/DebugButton" to="." method="_on_debug_pressed"]
 [connection signal="load_saved_level" from="SerializationManager" to="." method="load_level"]
