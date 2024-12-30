@@ -18,3 +18,22 @@ func drain(n: float) -> void:
 func reduce(n: float) -> void:
   max_value = clampf(max_value - n, 0, max_value)
   value = clampf(value, 0, max_value)
+
+
+func save() -> Dictionary:
+  return {
+    "t": typ,
+    "v": value,
+    "m": max_value,
+    "d": default_max,
+  }
+
+static func from_save(data: Dictionary) -> CharacterStat:
+  var cs := CharacterStat.new()
+
+  cs.typ = data["t"]
+  cs.value = data["v"]
+  cs.max_value= data["m"]
+  cs.default_max = data["d"]
+
+  return cs

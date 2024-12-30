@@ -53,6 +53,7 @@ script = ExtResource("3_y8i3d")
 
 [node name="Stats" type="Node" parent="."]
 script = ExtResource("4_a40ji")
+stats = null
 
 [connection signal="area_entered" from="SensorSet/InteractionSensor" to="." method="_on_interaction_sensor_entered"]
 [connection signal="area_exited" from="SensorSet/InteractionSensor" to="." method="_on_interaction_sensor_exited"]

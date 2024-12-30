@@ -149,13 +149,20 @@ func _handle_target_changed() -> void:
 # end region sensor / target management
 
 # region save/load
-## TODO
 func save() -> Dictionary:
-	return {}
+	return {
+		"position": [global_position.x, global_position.y],
+		"stats": stats.save(),
+	}
 
 
 func load(data: Dictionary) -> void:
-	pass
+	var pos_x: float = data["position"][0]
+	var pos_y: float = data["position"][1]
+	global_position = Vector2(pos_x, pos_y)
+	var stats_arr: Array[Dictionary] = []
+	stats_arr.assign(data["stats"])
+	stats.load(stats_arr)
 # end region save/load
 
 
