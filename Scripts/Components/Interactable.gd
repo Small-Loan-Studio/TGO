@@ -35,36 +35,12 @@ signal triggered(actor: Character)
 
 # TODO: add conditions
 
-## A set of actions to be taken when this interactable gets triggered. Will be
-## evaluated before the signal is emitted.
-##
-## USAGE OF THIS IS DEPRECATED
-var actions: Array[Effect]:
-	get:
-		if len(actions) > 0:
-			action_map[default_verb] = actions
-		if action_map.has(default_verb):
-			var arr_eff: Array[Effect] = []
-			arr_eff.assign(action_map[default_verb])
-			return arr_eff
-		return []
-	set(value):
-		if len(value) > 0:
-			action_map[default_verb] = value
-		printerr("Should not be setting actions")
-		print_stack()
-		actions = value
-
 ## Tracks the level that the action is taking place in
 var _cur_level: LevelBase
 
 
 func _ready() -> void:
 	_cur_level = Utils.get_level_parent(self)
-	if Engine.is_editor_hint():
-		if len(actions) > 0:
-			action_map[default_verb] = actions
-			actions = []
 
 
 func trigger(actor: Character, action: Enums.ActionVerb = default_verb) -> void:
@@ -104,17 +80,7 @@ func _get_configuration_warnings() -> PackedStringArray:
 
 ## Overrides the properties that an interactable reports as available for edit.
 func _get_property_list() -> Array[Dictionary]:
-	# this should keep "actions" loading and persisting to a .tscn while hiding
-	# it from the inspector UI
-	var props: Array[Dictionary] = [
-		{
-			"name": "actions",
-			"type": TYPE_ARRAY,
-			"hint": PROPERTY_HINT_ARRAY_TYPE,
-			"hint_string": "24/17:Effect",
-			"usage": PROPERTY_USAGE_STORAGE,
-		}
-	]
+	var props: Array[Dictionary] = []
 
 	# Walk the set of actions that have entries in the action_map and generate
 	# synthetic properties for editing since the inspector-default editor for
