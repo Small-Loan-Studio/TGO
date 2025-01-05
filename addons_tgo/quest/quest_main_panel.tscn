@@ -1,0 +1,30 @@
+[gd_scene load_steps=2 format=3 uid="uid://b5nxj21hb767h"]
+
+[ext_resource type="Script" path="res://addons_tgo/quest/quest_main_panel.gd" id="1_kfwj1"]
+
+[node name="QuestMainPanel" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_kfwj1")
+
+[node name="HSplitContainer" type="HSplitContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Label" type="Label" parent="HSplitContainer"]
+layout_mode = 2
+size_flags_vertical = 1
+text = "Left"
+
+[node name="Label2" type="Label" parent="HSplitContainer"]
+layout_mode = 2
+size_flags_vertical = 1
+text = "Right"

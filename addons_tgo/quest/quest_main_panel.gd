@@ -1,0 +1,10 @@
+class_name QuestMainPanel
+extends Control
+
+
+func _ready() -> void:
+	pass
+
+
+func _process(_delta: float) -> void:
+	pass
