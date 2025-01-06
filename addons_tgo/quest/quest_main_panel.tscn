@@ -1,14 +1,19 @@
-[gd_scene load_steps=2 format=3 uid="uid://b5nxj21hb767h"]
+[gd_scene load_steps=4 format=3 uid="uid://b5nxj21hb767h"]
 
 [ext_resource type="Script" path="res://addons_tgo/quest/quest_main_panel.gd" id="1_kfwj1"]
+[ext_resource type="Script" path="res://addons_tgo/quest/QuestGraphEdit.gd" id="2_rl3x7"]
+[ext_resource type="Script" path="res://addons_tgo/quest/LintReport.gd" id="2_wfou6"]
 
 [node name="QuestMainPanel" type="Control"]
+custom_minimum_size = Vector2(100, 100)
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
 script = ExtResource("1_kfwj1")
 
 [node name="HSplitContainer" type="HSplitContainer" parent="."]
@@ -18,13 +23,31 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+split_offset = 1000
 
-[node name="Label" type="Label" parent="HSplitContainer"]
+[node name="QuestGraphEdit" type="GraphEdit" parent="HSplitContainer"]
 layout_mode = 2
-size_flags_vertical = 1
-text = "Left"
+script = ExtResource("2_rl3x7")
 
-[node name="Label2" type="Label" parent="HSplitContainer"]
+[node name="ScrollContainer" type="ScrollContainer" parent="HSplitContainer"]
 layout_mode = 2
-size_flags_vertical = 1
-text = "Right"
+
+[node name="LintReport" type="RichTextLabel" parent="HSplitContainer/ScrollContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+bbcode_enabled = true
+text = "Atque est error necessitatibus omnis alias earum vero soluta. [color=red][url={\"path\": \"aoeu/aoeu/clicked\", \"error\": \"shit's fucked, yo\"}]Dolores recusandae[/url][/color] deserunt et. Inventore aut qui nam. Delectus labore qui dolore voluptates molestiae error sint odio. Enim sit sit placeat vero quo recusandae expedita totam. Reprehenderit sed incidunt quia ratione pariatur itaque.
+
+Ipsam modi voluptatem debitis ea ullam et vero. In qui rerum illo a dolor. Provident aliquid eius natus temporibus molestias sit unde.
+
+Modi dolorem quis eos veritatis voluptas corporis ut. Molestias consequatur distinctio earum inventore vel perspiciatis. Dolorum quisquam ad delectus vitae id non.
+
+Cumque beatae amet inventore voluptatem est dolores. Non maxime aut quibusdam tenetur vitae consequatur repellendus. Eos omnis tempore illum voluptas vero doloremque. Libero voluptatem sit aut hic. Mollitia voluptatem maxime officiis blanditiis esse accusantium voluptatem.
+
+Quo fugit nihil rerum ducimus. Alias ducimus sed quisquam exercitationem. Reiciendis voluptatem mollitia dolorem illo quo est. Aut hic et tempora dolor itaque consequatur rerum. Doloribus et ducimus repellat consequatur molestiae amet. Aut ex amet quia sequi earum pariatur quia."
+script = ExtResource("2_wfou6")
+
+[connection signal="resized" from="." to="." method="_on_resized"]
+[connection signal="dragged" from="HSplitContainer" to="." method="_adjust_main_panel_ratio"]
+[connection signal="meta_clicked" from="HSplitContainer/ScrollContainer/LintReport" to="HSplitContainer/ScrollContainer/LintReport" method="_on_meta_clicked"]

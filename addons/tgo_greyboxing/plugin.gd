@@ -13,12 +13,24 @@ var _interactable_plugin: EditorInspectorPlugin
 func _enter_tree() -> void:
 	if !Engine.is_editor_hint():
 		return
-	_load_scene()
 	_editor = get_editor_interface()
-	_interactable_plugin = load("res://addons_tgo/editors/tgo_inspector_interactable.gd").new()
-	add_inspector_plugin(_interactable_plugin)
+
+	_load_scene()
 
 
+func _has_main_screen() -> bool:
+	return true
+
+func _make_visible(visible: bool) -> void:
+	_quest_editor_scene.visible = visible
+
+
+func _get_plugin_name() -> String:
+	return "Quest Manager"
+
+
+func _get_plugin_icon():
+	return EditorInterface.get_editor_theme().get_icon("Node", "EditorIcons")
 
 
 func _load_scene() -> void:
@@ -29,11 +41,23 @@ func _load_scene() -> void:
 	add_control_to_dock(DOCK_SLOT_LEFT_BR, _control_scene)
 	_control_scene.setup(self)
 
+	_quest_editor_scene = load("res://addons_tgo/quest/quest_main_panel.tscn").instantiate()
+	_editor.get_editor_main_screen().add_child(_quest_editor_scene)
+	_make_visible(false)
+
+	_interactable_plugin = TGOInspectorInteractable.new()
+	add_inspector_plugin(_interactable_plugin)
+
 
 func _unload_scene() -> void:
 	remove_control_from_docks(_control_scene)
 	_control_scene.hide()
 	_control_scene.queue_free()
+	_quest_editor_scene.queue_free()
+	_quest_editor_scene = null
+
+	# this reports nonexisting inspector plugin...?
+	# remove_inspector_plugin(_interactable_plugin)
 
 
 func reload() -> void:
