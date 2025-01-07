@@ -44,6 +44,7 @@ func _load_scene() -> void:
 	_quest_editor_scene = load("res://addons_tgo/quest/quest_main_panel.tscn").instantiate()
 	_editor.get_editor_main_screen().add_child(_quest_editor_scene)
 	_make_visible(false)
+	_quest_editor_scene.setup(_editor)
 
 	_interactable_plugin = TGOInspectorInteractable.new()
 	add_inspector_plugin(_interactable_plugin)

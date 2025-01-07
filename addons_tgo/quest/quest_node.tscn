@@ -1,0 +1,43 @@
+[gd_scene load_steps=3 format=3 uid="uid://vuxrc8n8mx0d"]
+
+[ext_resource type="Script" path="res://addons_tgo/quest/QuestNode.gd" id="1_0ivbe"]
+[ext_resource type="StyleBox" uid="uid://nwjrwqkbsbvf" path="res://addons_tgo/quest/quest_node_header_style.tres" id="2_tqgx4"]
+
+[node name="QuestNode" type="GraphNode"]
+offset_top = 1.0
+offset_right = 151.0
+offset_bottom = 114.0
+mouse_filter = 1
+title = "Quest Name"
+slot/0/left_enabled = true
+slot/0/left_type = 0
+slot/0/left_color = Color(1, 1, 1, 1)
+slot/0/left_icon = null
+slot/0/right_enabled = false
+slot/0/right_type = 0
+slot/0/right_color = Color(1, 1, 1, 1)
+slot/0/right_icon = null
+slot/0/draw_stylebox = true
+slot/1/left_enabled = false
+slot/1/left_type = 0
+slot/1/left_color = Color(1, 1, 1, 1)
+slot/1/left_icon = null
+slot/1/right_enabled = false
+slot/1/right_type = 0
+slot/1/right_color = Color(1, 1, 1, 1)
+slot/1/right_icon = null
+slot/1/draw_stylebox = true
+script = ExtResource("1_0ivbe")
+
+[node name="LabelID" type="Label" parent="."]
+layout_mode = 2
+text = "ID:"
+
+[node name="PhasesLabel" type="Label" parent="."]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_styles/normal = ExtResource("2_tqgx4")
+text = "Phase List"
+horizontal_alignment = 1
+
+[connection signal="node_selected" from="." to="." method="_on_node_selected"]

@@ -23,7 +23,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-split_offset = 1000
+split_offset = 1024
 
 [node name="QuestGraphEdit" type="GraphEdit" parent="HSplitContainer"]
 layout_mode = 2
@@ -49,5 +49,9 @@ Quo fugit nihil rerum ducimus. Alias ducimus sed quisquam exercitationem. Reicie
 script = ExtResource("2_wfou6")
 
 [connection signal="resized" from="." to="." method="_on_resized"]
+[connection signal="visibility_changed" from="." to="." method="_on_visibility_changed"]
 [connection signal="dragged" from="HSplitContainer" to="." method="_adjust_main_panel_ratio"]
+[connection signal="node_deselected" from="HSplitContainer/QuestGraphEdit" to="HSplitContainer/QuestGraphEdit" method="_node_deselected"]
+[connection signal="node_selected" from="HSplitContainer/QuestGraphEdit" to="HSplitContainer/QuestGraphEdit" method="_node_selected"]
+[connection signal="visibility_changed" from="HSplitContainer/QuestGraphEdit" to="HSplitContainer/QuestGraphEdit" method="_on_visibility_changed"]
 [connection signal="meta_clicked" from="HSplitContainer/ScrollContainer/LintReport" to="HSplitContainer/ScrollContainer/LintReport" method="_on_meta_clicked"]
