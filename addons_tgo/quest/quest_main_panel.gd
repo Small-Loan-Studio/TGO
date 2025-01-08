@@ -5,8 +5,8 @@ extends Control
 var _main_panel_ratio := .8
 var _editor: EditorInterface
 
-@onready var _split_container := $HSplitContainer
-@onready var _graph_edit := $HSplitContainer/QuestGraphEdit
+@onready var _split_container := $VBoxContainer/HSplitContainer
+@onready var _graph_edit := $VBoxContainer/HSplitContainer/QuestGraphEdit
 
 
 func _ready() -> void:

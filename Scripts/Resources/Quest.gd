@@ -17,26 +17,47 @@
 ## phase/next breakdown as all next linkages and either let a Quest specify a
 ## custom progression strategy or something. Walking the tree was non-trivial
 ## but has been shown to be workable for now so not going to touch it.
+@tool
 class_name Quest
 extends Resource
 
 signal state_change(id: String, old_state: Enums.QuestState, new_state: Enums.QuestState)
 
 ## How the quest is tracked in our internal systems. Should be unique among all quests
-@export var id: String
+@export var id: String:
+	set(value):
+		id = value
+		changed.emit()
+
 ## A short version of this quest for the user's HUD or similar
-@export var title: String
+@export var title: String:
+	set(value):
+		print("title changed")
+		title = value
+		changed.emit()
+
 ## A longer description of what the goals of this quest are.
-@export var description: String
+@export var description: String:
+	set(value):
+		description = value
+		changed.emit()
 
 ## If set when this quest is part of a next array it will not automatically
 ## transition to active when its parent is marked Completed
-@export var manual_start: bool = false
+@export var manual_start: bool = false:
+	set(value):
+		manual_start = value
+		changed.emit()
+
 ## What state is the quest in -- Dormant is untracked, Active is currently in
 ## progress, and Completed|Failed respresent a finish state
 @export var state: Enums.QuestState
+
 ## The set of conditions that will be checked to see if the quest is completed
-@export var conditions: Array[QuestCondition]
+@export var conditions: Array[QuestCondition]:
+	set(value):
+		conditions = value
+		changed.emit()
 
 @export_category("Quest line structure")
 ## A quest with phases acts as a kind of "parent" of its phase quests. When
@@ -44,13 +65,24 @@ signal state_change(id: String, old_state: Enums.QuestState, new_state: Enums.Qu
 ## and each time a phase is completed the next one will be marked active. A
 ## quest may not be finished unless all phases are completed or until one has
 ## failed.
-@export var phases: Array[QuestPhase]
+@export var phases: Array[QuestPhase]:
+	set(value):
+		phases = value
+		changed.emit()
+
 ## When this quest is Completed all the next quests will be marked as active
 ## (unless manual_start is set)
-@export var next: Array[Quest]
+@export var next: Array[Quest]:
+	set(value):
+		next = value
+		changed.emit()
+
 ## When a quest is marked completed these results will be acted upon. The Effect
 ## will receive the id of the quest acting and the current level.
-@export var results: Array[Effect]
+@export var results: Array[Effect]:
+	set(value):
+		results = value
+		changed.emit()
 
 # Set during Quest linking if this quest is directly part of a phased parent
 var _phase_parent: Quest
