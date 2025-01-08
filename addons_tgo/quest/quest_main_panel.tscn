@@ -25,13 +25,12 @@ grow_horizontal = 2
 grow_vertical = 2
 
 [node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer"]
-visible = false
 layout_mode = 2
 size_flags_horizontal = 4
 
 [node name="Button" type="Button" parent="VBoxContainer/HBoxContainer"]
 layout_mode = 2
-text = "Refresh Quest Data"
+text = "Reset State"
 
 [node name="HSplitContainer" type="HSplitContainer" parent="VBoxContainer"]
 layout_mode = 2
@@ -40,6 +39,7 @@ split_offset = 1024
 
 [node name="QuestGraphEdit" type="GraphEdit" parent="VBoxContainer/HSplitContainer"]
 layout_mode = 2
+scroll_offset = Vector2(0, -35)
 script = ExtResource("2_rl3x7")
 
 [node name="ScrollContainer" type="ScrollContainer" parent="VBoxContainer/HSplitContainer"]
@@ -63,6 +63,7 @@ script = ExtResource("2_wfou6")
 
 [connection signal="resized" from="." to="." method="_on_resized"]
 [connection signal="visibility_changed" from="." to="." method="_on_visibility_changed"]
+[connection signal="pressed" from="VBoxContainer/HBoxContainer/Button" to="VBoxContainer/HSplitContainer/QuestGraphEdit" method="full_reset"]
 [connection signal="dragged" from="VBoxContainer/HSplitContainer" to="." method="_adjust_main_panel_ratio"]
 [connection signal="node_deselected" from="VBoxContainer/HSplitContainer/QuestGraphEdit" to="VBoxContainer/HSplitContainer/QuestGraphEdit" method="_node_deselected"]
 [connection signal="node_selected" from="VBoxContainer/HSplitContainer/QuestGraphEdit" to="VBoxContainer/HSplitContainer/QuestGraphEdit" method="_node_selected"]

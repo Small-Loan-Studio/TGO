@@ -31,6 +31,21 @@ func _ready() -> void:
 	_refresh_quests()
 
 
+func _reset() -> void:
+	_quests.clear()
+	clear_connections()
+	for c in get_children():
+		if c is QuestNode:
+			remove_child(c)
+			c.queue_free()
+
+
+func full_reset() -> void:
+	_reset()
+	_refresh_quests()
+	setup(_editor)
+
+
 func setup(editor: EditorInterface) -> void:
 	_editor = editor
 
@@ -41,10 +56,12 @@ func setup(editor: EditorInterface) -> void:
 	# TODO: This doesn't seem to work for changes nested into the edited
 	# object, we may need to straight up poll instead of relying on a signal
 	# to indicate changes
-	_editor.get_inspector().property_edited.connect(_edited_object_changed)
+	if !_editor.get_inspector().property_edited.is_connected(_edited_object_changed):
+		_editor.get_inspector().property_edited.connect(_edited_object_changed)
 
 	# this is a lists of nodes to setup, we don't do this when added because
-	# it creates links to other nodes which may not tracked in the graph yet
+	# it will try to create links to other nodes which may not tracked in
+	# the graph yet
 	var to_sync := []
 	for q: Quest in _quests.values():
 		var node := QuestNode.from_quest(q)
@@ -168,3 +185,11 @@ func deselect_all_quests() -> void:
 	for c in get_children():
 		if c is QuestNode:
 			c.selected = false
+
+
+func connections_from(node: StringName) -> Array[Dictionary]:
+	var list := get_connection_list().filter(
+		func(d: Dictionary) -> bool: return d["from_node"] == node)
+	var r: Array[Dictionary] = []
+	r.assign(list)
+	return r
