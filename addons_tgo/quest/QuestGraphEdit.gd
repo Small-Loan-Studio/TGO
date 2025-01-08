@@ -28,6 +28,18 @@ var _debounce_wait_msec: int = 500
 var _editor: EditorInterface
 
 func _ready() -> void:
+	var hbox := get_menu_hbox()
+
+	var save_layout := Button.new()
+	save_layout.text = "Save Layout"
+	save_layout.pressed.connect(_save_layout)
+	hbox.add_child(save_layout)
+
+	var load_layout := Button.new()
+	load_layout.text = "Load Layout"
+	load_layout.pressed.connect(_do_layout)
+	hbox.add_child(load_layout)
+
 	_refresh_quests()
 
 
@@ -75,14 +87,24 @@ func setup(editor: EditorInterface) -> void:
 
 
 func _do_layout() -> void:
-	if false:
-		# TODO: check for persisted layout
-		pass
+	var positions_dict := QuestLayout.load()
+
+	if positions_dict.size() > 0:
+		for id: String in positions_dict.keys():
+			var quest_node := node_by_quest_id(id)
+			quest_node.set_position_offset(positions_dict[id])
 	else:
 		select_all_quests()
 		arrange_nodes()
 		deselect_all_quests()
 
+
+func _save_layout() -> void:
+	var nodes: Array[QuestNode] = []
+	for c in get_children():
+		if c is QuestNode:
+			nodes.append(c)
+	QuestLayout.save(nodes)
 
 func _force_sync_edits() -> void:
 	_debounce_mark_msec = 0
@@ -112,11 +134,13 @@ func _refresh_quests() -> void:
 		if quest != null:
 			_quests[quest.id] = quest
 
+
 func _on_visibility_changed() -> void:
 	if visible:
 		for c in get_children():
 			if c is QuestNode:
 				c._sync_width()
+
 
 func _node_selected(node: Node) -> void:
 	if node is QuestNode:
@@ -125,10 +149,12 @@ func _node_selected(node: Node) -> void:
 		_selected_nodes.push_back(node.name)
 	_update_selection()
 
+
 func _node_deselected(node: Node) -> void:
 	_selected_nodes.clear()
 	_selected_nodes.assign(get_selected_nodes().map(func(n: QuestNode) -> String: return n.name))
 	_update_selection()
+
 
 func _update_selection() -> void:
 	if _selected_nodes.size() == 1:

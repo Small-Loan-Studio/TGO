@@ -25,6 +25,7 @@ grow_horizontal = 2
 grow_vertical = 2
 
 [node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer"]
+visible = false
 layout_mode = 2
 size_flags_horizontal = 4
 
@@ -39,7 +40,10 @@ split_offset = 1024
 
 [node name="QuestGraphEdit" type="GraphEdit" parent="VBoxContainer/HSplitContainer"]
 layout_mode = 2
-scroll_offset = Vector2(0, -35)
+snapping_distance = 10
+right_disconnects = true
+show_zoom_label = true
+show_grid_buttons = false
 script = ExtResource("2_rl3x7")
 
 [node name="ScrollContainer" type="ScrollContainer" parent="VBoxContainer/HSplitContainer"]

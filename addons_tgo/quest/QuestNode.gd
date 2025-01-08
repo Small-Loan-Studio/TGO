@@ -34,7 +34,6 @@ func setup(editor: EditorInterface, qge: QuestGraphEdit) -> void:
 	sync()
 
 func sync() -> void:
-	print_stack()
 	title = _data.title
 	_id_label.text = "ID: %s" % [_data.id]
 
