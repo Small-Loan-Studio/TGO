@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://vuxrc8n8mx0d"]
 
 [ext_resource type="Script" path="res://addons_tgo/quest/QuestNode.gd" id="1_0ivbe"]
-[ext_resource type="StyleBox" uid="uid://nwjrwqkbsbvf" path="res://addons_tgo/quest/quest_node_header_style.tres" id="2_tqgx4"]
+[ext_resource type="PackedScene" uid="uid://besqyi7gvfq7o" path="res://addons_tgo/quest/quest_node_header.tscn" id="2_ue4wm"]
 
 [node name="QuestNode" type="GraphNode"]
 offset_top = 1.0
@@ -33,11 +33,8 @@ script = ExtResource("1_0ivbe")
 layout_mode = 2
 text = "ID:"
 
-[node name="LabelPhases" type="Label" parent="."]
+[node name="LabelPhases" parent="." instance=ExtResource("2_ue4wm")]
 layout_mode = 2
-theme_override_colors/font_color = Color(0, 0, 0, 1)
-theme_override_styles/normal = ExtResource("2_tqgx4")
-text = "Phase List"
-horizontal_alignment = 1
+text = "Phases"
 
 [connection signal="node_selected" from="." to="." method="_on_node_selected"]
