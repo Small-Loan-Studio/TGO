@@ -8,7 +8,7 @@ var _control_scene: TGOControlDock = null
 var _quest_editor_scene: QuestMainPanel = null
 var _editor: EditorInterface = null
 
-var _interactable_plugin: EditorInspectorPlugin
+var _interactable_plugin: Variant
 
 func _enter_tree() -> void:
 	if !Engine.is_editor_hint():
@@ -36,6 +36,7 @@ func _get_plugin_icon():
 func _load_scene() -> void:
 	if !Engine.is_editor_hint():
 		return
+
 	var control_scene_res := load("res://addons_tgo/greyboxing/UI/TGOControlDock.tscn")
 	_control_scene = control_scene_res.instantiate() as TGOControlDock
 	add_control_to_dock(DOCK_SLOT_LEFT_BR, _control_scene)
@@ -46,7 +47,7 @@ func _load_scene() -> void:
 	_make_visible(false)
 	_quest_editor_scene.setup(_editor)
 
-	_interactable_plugin = TGOInspectorInteractable.new()
+	_interactable_plugin = load("res://addons_tgo/editors/tgo_inspector_interactable.gd").new()
 	add_inspector_plugin(_interactable_plugin)
 
 
@@ -58,7 +59,7 @@ func _unload_scene() -> void:
 	_quest_editor_scene = null
 
 	# this reports nonexisting inspector plugin...?
-	# remove_inspector_plugin(_interactable_plugin)
+	remove_inspector_plugin(_interactable_plugin)
 
 
 func reload() -> void:
@@ -71,4 +72,3 @@ func reload() -> void:
 
 func _exit_tree() -> void:
 	_unload_scene()
-	remove_inspector_plugin(_interactable_plugin)
