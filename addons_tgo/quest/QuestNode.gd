@@ -28,6 +28,13 @@ func sync() -> void:
 	var to_remove := []
 
 	clear_all_slots()
+
+	# TODO: clearing a connection between two nodes is a trash fire, we have no
+	# way to easily look up an connection given source and port so we need to
+	# track that in the GraphNode itself... which we need to do to resync the
+	# connections in the event an edit removed a linkage between this node and
+	# some other quest. jfc
+
 	for c in get_children():
 		if c.name == "LabelID":
 			continue

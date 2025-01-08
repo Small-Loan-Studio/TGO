@@ -18,7 +18,11 @@ var _last_edited_id: String
 # this is the currently edited node, null if no node is being edited
 var _edited_node: QuestNode
 
+# nominally a debounce marker but really we're setting this on selection and
+# immediately after a sync bc of a property_edited thing
 var _debounce_mark_msec: int = 0
+# how long to wait before forcing a sync after an edit has been made... sorta
+# see above
 var _debounce_wait_msec: int = 500
 
 var _editor: EditorInterface
@@ -114,6 +118,9 @@ func _update_selection() -> void:
 		var quest_node: QuestNode = get_node(_selected_nodes[0])
 		_edited_node = quest_node
 		_last_edited_id = _edited_node.id
+		# workaround to handle property_edited signal not triggering for nested
+		# objects
+		_debounce_mark_msec = Time.get_ticks_msec()
 		_editor.edit_resource(_quests[quest_node._data.id])
 	else:
 		_editor.edit_node(null)
@@ -124,11 +131,13 @@ func _update_selection() -> void:
 
 
 func _process(_delta: float) -> void:
-	var now := Time.get_ticks_msec()
 	if _edited_node != null && _debounce_mark_msec != 0:
-		var del := now - _debounce_mark_msec
-		if del > _debounce_wait_msec:
+		var now := Time.get_ticks_msec()
+		if (now - _debounce_mark_msec) > _debounce_wait_msec:
 			_force_sync_edits()
+			# workaround to handle property_edited signal doesn't trigger for
+			# nested objects
+			_debounce_mark_msec = now
 
 
 func get_selected_nodes() -> Array[QuestNode]:
