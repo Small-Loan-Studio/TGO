@@ -69,6 +69,8 @@ script = ExtResource("2_wfou6")
 [connection signal="visibility_changed" from="." to="." method="_on_visibility_changed"]
 [connection signal="pressed" from="VBoxContainer/HBoxContainer/Button" to="VBoxContainer/HSplitContainer/QuestGraphEdit" method="full_reset"]
 [connection signal="dragged" from="VBoxContainer/HSplitContainer" to="." method="_adjust_main_panel_ratio"]
+[connection signal="connection_request" from="VBoxContainer/HSplitContainer/QuestGraphEdit" to="VBoxContainer/HSplitContainer/QuestGraphEdit" method="_on_connect_request"]
+[connection signal="disconnection_request" from="VBoxContainer/HSplitContainer/QuestGraphEdit" to="VBoxContainer/HSplitContainer/QuestGraphEdit" method="_on_disconnect_request"]
 [connection signal="node_deselected" from="VBoxContainer/HSplitContainer/QuestGraphEdit" to="VBoxContainer/HSplitContainer/QuestGraphEdit" method="_node_deselected"]
 [connection signal="node_selected" from="VBoxContainer/HSplitContainer/QuestGraphEdit" to="VBoxContainer/HSplitContainer/QuestGraphEdit" method="_node_selected"]
 [connection signal="visibility_changed" from="VBoxContainer/HSplitContainer/QuestGraphEdit" to="VBoxContainer/HSplitContainer/QuestGraphEdit" method="_on_visibility_changed"]

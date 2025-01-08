@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="QuestLayout" load_steps=2 format=3 uid="uid://ypncex5lb1dk"]
+
+[ext_resource type="Script" path="res://addons_tgo/quest/LayoutResource.gd" id="1_cbpjs"]
+
+[resource]
+script = ExtResource("1_cbpjs")
+positions = {
+"other-quest": Vector2(580, 400),
+"phase-parent-test": Vector2(290, 190),
+"quest": Vector2(820, 420),
+"test-item-quest": Vector2(570, 180),
+"test-var-quest": Vector2(580, 300)
+}

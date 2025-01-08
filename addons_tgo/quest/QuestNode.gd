@@ -2,10 +2,9 @@
 class_name QuestNode
 extends GraphNode
 
-# How many slots are used to track meta data
-const HEADER_SLOT_OFFSET := 1
+const PHASE_MARGIN_LEFT := 15
 const RES_PATH := "res://addons_tgo/quest/quest_node.tscn"
-const LABEL_SCENE := "res://addons_tgo/quest/quest_node_header.tscn"
+const HEADER_SCENE := "res://addons_tgo/quest/quest_node_header.tscn"
 
 var _editor: EditorInterface
 var _graph_edit: QuestGraphEdit
@@ -13,8 +12,14 @@ var _data: Quest
 
 var _id_port := 0
 
+# How many slots are we using to track non-connectable metadata in the
+# header of the node
+var _dynamic_slot_start := -1
+
 var _phase_label: Label
 var _phase_slot_start := -1
+# index: phase indexd
+# value: output port id
 var _phase_output_ports: Array[int] = []
 
 var _next_label: Label
@@ -33,9 +38,12 @@ func setup(editor: EditorInterface, qge: QuestGraphEdit) -> void:
 	_graph_edit = qge
 	sync()
 
-func sync() -> void:
-	title = _data.title
-	_id_label.text = "ID: %s" % [_data.id]
+
+func reset() -> void:
+	if _dynamic_slot_start == -1:
+		# we can return here because this -1 indicates we haven't added any
+		# slot contents yet
+		return
 
 	var to_remove := []
 
@@ -58,7 +66,7 @@ func sync() -> void:
 	# connections in the event an edit removed a linkage between this node and
 	# some other quest. jfc
 
-	for c: Control in get_children().slice(HEADER_SLOT_OFFSET):
+	for c: Control in get_children().slice(_dynamic_slot_start):
 		to_remove.append(c)
 
 	for c: Control in to_remove:
@@ -67,6 +75,14 @@ func sync() -> void:
 
 	_next_label = null
 	_phase_label = null
+	_dynamic_slot_start = -1
+
+func sync() -> void:
+	title = _data.title
+	_id_label.text = "ID: %s" % [_data.id]
+
+	reset()
+	_dynamic_slot_start = 1
 
 	# enable id input port
 	set_slot_enabled_left(0, true)
@@ -79,7 +95,7 @@ func sync() -> void:
 			_phase_slot_start = -1
 	else:
 		# adds the phase label and sets up port offset
-		_phase_label = load(LABEL_SCENE).instantiate() as Label
+		_phase_label = load(HEADER_SCENE).instantiate() as Label
 		_phase_label.name = "LabelPhases"
 		_phase_label.text = "Phases"
 		add_child(_phase_label)
@@ -88,24 +104,34 @@ func sync() -> void:
 
 		var phase_step := 0
 		for qp: QuestPhase in _data.phases:
-			if qp == null || qp.quest == null:
-				# skip trying to handle an empty phase
-				continue
+			var empty_phase := qp == null || qp.quest == null
+			# if qp == null || qp.quest == null:
+			# 	# skip trying to handle an empty phase
+			# 	continue
 
 			var label := Label.new()
-			label.text = qp.quest.id
-			if qp.may_fail:
-				label.text += " (may fail)"
-			add_child(label)
+			if empty_phase:
+				label.text = "UNCONNECTED"
+			else:
+				label.text = qp.quest.id
+				if qp.may_fail:
+					label.text += " (may fail)"
+			
+			var margin := MarginContainer.new()
+			margin.add_theme_constant_override("margin_left", PHASE_MARGIN_LEFT)
+			margin.add_child(label)
+			add_child(margin)
+
 			set_slot_enabled_right(_phase_slot_start + phase_step, true)
 			_phase_output_ports.append(phase_step)
 
-			_graph_edit.connect_node(
-				name, phase_step, _graph_edit.node_by_quest_id(qp.quest.id).name, _id_port)
+			if !empty_phase:
+				_graph_edit.connect_node(
+					name, phase_step, _graph_edit.node_by_quest_id(qp.quest.id).name, _id_port)
 
 			phase_step = phase_step + 1
 
-	_next_label = load(LABEL_SCENE).instantiate() as Label
+	_next_label = load(HEADER_SCENE).instantiate() as Label
 	_next_label.name = "LabelNext"
 	_next_label.text = "Next Quest"
 	add_child(_next_label)
@@ -122,6 +148,51 @@ func sync() -> void:
 
 func _sync_width() -> void:
 	queue_redraw()
+
+
+func port_phase_index(port: int) -> int:
+	return _phase_output_ports.find(port)
+
+
+func next_port() -> int:
+	return _next_output_port
+
+
+func connect_quest(tgt_node: QuestNode, from_port: int) -> void:
+	var phase_idx := port_phase_index(from_port)
+	if phase_idx != -1:
+		# check to see if the quest is already a phase
+		var matches := _data.phases.filter(func (qp: QuestPhase) -> bool: return qp != null && qp.quest.id == tgt_node.id)
+		if matches.size() > 0:
+			printerr("Attempting to connect a quest already in phases list")
+			return
+
+		var qp := QuestPhase.new()
+		qp.quest = tgt_node._data
+		_data.phases[phase_idx] = qp
+	elif from_port == _next_output_port:
+		if _data.next.find(tgt_node._data) == -1:
+			_data.next.append(tgt_node._data)
+		else:
+			printerr("Attempting to connect a quest already in next list")
+
+	sync()
+
+func disconnect_quest(node: QuestNode, port: int) -> void:
+	var phase_idx := port_phase_index(port)
+	if phase_idx != -1:
+		_data.phases[phase_idx] = null
+	elif port == _next_output_port:
+		var next_idx: int = _data.next.find(node._data)
+		if next_idx == -1:
+			printerr("Could not find expected quest in next list: ", node.id)
+			return
+		_data.next.remove_at(next_idx)
+	else:
+		printerr("Unexpected from/output port: %s.%d" % [node.id, port])
+		return
+	
+	sync()
 
 
 static func from_quest(q: Quest) -> QuestNode:

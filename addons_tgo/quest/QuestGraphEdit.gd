@@ -219,3 +219,27 @@ func connections_from(node: StringName) -> Array[Dictionary]:
 	var r: Array[Dictionary] = []
 	r.assign(list)
 	return r
+
+
+func _on_connect_request(from_node :StringName, from_port :int, to_node:StringName, to_port:int) -> void:
+	var from: QuestNode = get_node(str(from_node))
+	var to: QuestNode = get_node(str(to_node))
+	# print("_on_connect_request: %s.%d -> %s.%d" % [ from.id, from_port, to.id, to_port])
+
+	if to_port != 0:
+		printerr("Unexpected port pair %d -> %d" % [from, to_port])
+		return
+
+	from.connect_quest(to, from_port)
+
+
+func _on_disconnect_request(src_node:StringName, src_port:int, tgt_node:StringName, tgt_port:int) -> void:
+	var src: QuestNode = get_node(str(src_node))
+	var tgt: QuestNode = get_node(str(tgt_node))
+	# print("_on_disconnect_request: %s.%d -> %s.%d" % [src.id, src_port, tgt.id, tgt_port])
+
+	if tgt_port != 0:
+		printerr("Unexpected port pair %d -> %d" % [src_port, tgt_port])
+		return
+
+	src.disconnect_quest(tgt, src_port)
