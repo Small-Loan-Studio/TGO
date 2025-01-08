@@ -1,3 +1,4 @@
+@tool
 ## This functions the same as a DialogicVarCondition in how it lets you build
 ## checks against the value of a variable held in Dialogic. It adds on an
 ## inversion for simplicity.
@@ -47,3 +48,18 @@ func _construct_condition() -> DialogicVarCondition:
 func eval() -> bool:
 	var dvc := _construct_condition()
 	return dvc.evaluate("")
+
+
+func lint() -> Array[String]:
+	var errs: Array[String] = []
+	if target_value.strip_edges() == "":
+		errs.append("E: target value is empty")
+	if variable.strip_edges() == "":
+		errs.append("E: variable is empty")
+
+	var var_info: Variant = Utils.ersatz_dialogic_get_var(variable)
+	if var_info.size() == 0:
+		errs.append("E: invalid variable specified (%s)" % [variable])
+
+	# TODO: check type of target value and var_info[1] type data
+	return errs

@@ -278,3 +278,35 @@ func _to_string() -> String:
 			parent_ids,
 		]
 	)
+
+## checks this quest for configuration issues, returns Array[String] of errors
+func lint() -> Array[String]:
+	var errs: Array[String] = []
+	if id.strip_edges() == "":
+		errs.append("E: Core: id is not set")
+	if title.strip_edges() == "":
+		errs.append("W: Core: title is empty")
+	if description.strip_edges() == "":
+		errs.append("W: Core: description is empty")
+
+	for i in range(phases.size()):
+		var qp := phases[i]
+		if qp == null:
+			errs.append("W: Phase.%d: null phase" % [i])
+			continue
+		if qp.quest == null:
+			errs.append("W: Phase.%d: phase quest is not set" % [i])
+			continue
+
+	for i in range(conditions.size()):
+		var c: QuestCondition = conditions[i]
+		if c == null:
+			errs.append("W: Condition.%d: null condition" % [i])
+			continue
+		var c_lint: Array[String] = c.lint()
+		for c_i in range(c_lint.size()):
+			var lint_msg := c_lint[c_i]
+			var parts := lint_msg.split(":", true, 1)
+			errs.append("%s: Condition.%d:%s" % [parts[0], i, parts[1]])
+
+	return errs

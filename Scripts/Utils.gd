@@ -1,3 +1,4 @@
+@tool
 class_name Utils
 extends RefCounted
 
@@ -164,3 +165,28 @@ static func walk_directory(
 	da.list_dir_end()
 
 	return results
+
+
+## returns dialogic variable info as parsed from ProjectSettings; this
+## is approximately the same process Dialogic uses at runtime but we
+## can't use that during editing because it hasn't loaded VAR subsystem.
+## As such this can only interact with variables that are defined through
+## the UI and not anything created at runtime.
+static func ersatz_dialogic_get_var(path: String) -> Variant:
+	var parts := path.split(".")
+
+	var folder: Dictionary = ProjectSettings.get_setting("dialogic/variables", {}).duplicate(true)
+	while len(parts) > 1:
+		var dict_name: String = parts[0]
+		parts = parts.slice(1)
+		folder = folder[dict_name]
+
+	if len(parts) != 1:
+		printerr("Error looking for dialogic variable '%s'" % [path])
+		return []
+
+	if !folder.has(parts[0]):
+		return []
+
+	var v: Variant = folder[parts[0]]
+	return [v, typeof(v)]

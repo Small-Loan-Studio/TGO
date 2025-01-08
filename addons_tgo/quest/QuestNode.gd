@@ -78,22 +78,19 @@ func reset() -> void:
 	_dynamic_slot_start = -1
 
 func sync() -> void:
+	# fully reset/remove everything so that our sync logic can approximate simple
+	reset()
+
 	title = _data.title
 	_id_label.text = "ID: %s" % [_data.id]
 
-	reset()
-	_dynamic_slot_start = 1
-
 	# enable id input port
 	set_slot_enabled_left(0, true)
+	_dynamic_slot_start = 1
 
-	if _data.phases.size() == 0:
-		if _phase_label != null:
-			remove_child(_phase_label)
-			_phase_label.queue_free()
-			_phase_label = null
-			_phase_slot_start = -1
-	else:
+	_add_condition_label()
+
+	if _data.phases.size() > 0:
 		# adds the phase label and sets up port offset
 		_phase_label = load(HEADER_SCENE).instantiate() as Label
 		_phase_label.name = "LabelPhases"
@@ -144,6 +141,33 @@ func sync() -> void:
 			continue
 		_graph_edit.connect_node(
 			name, _next_output_port, _graph_edit.node_by_quest_id(next_quest.id).name, _id_port)
+
+	print(_data.lint())
+
+
+func _add_condition_label() -> void:
+	var item_conditions := _data.conditions.filter(func(c: QuestCondition) -> bool: return c is QuestConditionInventory).size()
+	var var_conditions := _data.conditions.filter(func(c: QuestCondition) -> bool: return c is QuestConditionVariable).size()
+	var other_conditions := _data.conditions.size() - item_conditions - var_conditions
+
+	var cond_text := []
+	if item_conditions > 0:
+		cond_text.append("item")
+	if var_conditions > 0:
+		cond_text.append("variable")
+	if other_conditions > 0:
+		cond_text.append("other")
+
+	var cond_label := Label.new()
+	if cond_text.size() == 0:
+		cond_label.text = "Conditions: None"
+	else:
+		cond_label.text = "Conditions: "
+		for i in range(cond_text.size()):
+			cond_label.text += cond_text[i]
+			if i < cond_text.size() - 1:
+				cond_label.text += ", "
+	add_child(cond_label)
 
 
 func _sync_width() -> void:
