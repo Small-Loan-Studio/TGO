@@ -3,21 +3,21 @@ extends Resource
 
 const RESOURCE_PATH := "res://addons_tgo/quest/layout.tres"
 
+@export var scroll_offset: Vector2
 @export var positions: Dictionary = {}
 
 
-static func save(nodes: Array[QuestNode]) -> void:
+static func save(offset: Vector2, nodes: Array[QuestNode]) -> void:
 	var res := QuestLayout.new()
 	for n in nodes:
 		res.positions[n.id] = n.position_offset
+	res.scroll_offset = offset
 	ResourceSaver.save(res, RESOURCE_PATH)
 
 
-static func load() -> Dictionary:
+static func load() -> QuestLayout:
 	if !FileAccess.file_exists(RESOURCE_PATH):
-		return {}
+		return null
 
 	var res := ResourceLoader.load(RESOURCE_PATH) as QuestLayout
-	if res == null:
-		res = null
-	return res.positions
+	return res

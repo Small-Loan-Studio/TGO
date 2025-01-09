@@ -26,7 +26,7 @@ var _dynamic_slot_start := -1
 var _phase_label: Label
 var _phase_slot_start := -1
 
-# index: phase indexd
+# index: phase index
 # value: output port id
 var _phase_output_ports: Array[int] = []
 
@@ -38,7 +38,7 @@ var _next_output_port: int = -1
 
 
 func _process(_delta: float) -> void:
-	# this is fucking deranged but i just want to get this done by now.
+	# this is somewhat deranged but i just want to get it working at this point.
 	# I welcome some future cleanup and usage of the actual theme editing
 	# to make this work
 	var want_color := title_font_color
@@ -56,6 +56,9 @@ func setup(editor: EditorInterface, qge: QuestGraphEdit) -> void:
 	sync()
 
 
+## This removes anything that was added dynamically to the node leaving
+## only the ID label behind. It also clears all slot configs and removes
+## any connections originating from this node.
 func reset() -> void:
 	if _dynamic_slot_start == -1:
 		# we can return here because this -1 indicates we haven't added any
@@ -75,12 +78,6 @@ func reset() -> void:
 	_phase_output_ports.clear()
 	_next_output_port = -1
 
-	# TODO: clearing a connection between two nodes is a trash fire, we have no
-	# way to easily look up an connection given source and port so we need to
-	# track that in the GraphNode itself... which we need to do to resync the
-	# connections in the event an edit removed a linkage between this node and
-	# some other quest. jfc
-
 	for c: Control in get_children().slice(_dynamic_slot_start):
 		to_remove.append(c)
 
@@ -93,6 +90,8 @@ func reset() -> void:
 	_dynamic_slot_start = -1
 
 
+## Reconstruct this GraphNode from scratch and have it reflect the current state
+## of the quest
 func sync() -> void:
 	# fully reset/remove everything so that our sync logic can approximate simple
 	reset()
@@ -165,6 +164,7 @@ func sync() -> void:
 	spacer.custom_minimum_size.y = 5
 	add_child(spacer)
 
+	# TODO: we should probably just relint locally and report new values up :shrug:
 	_graph_edit.lint()
 
 
@@ -212,18 +212,24 @@ func _add_effects_label() -> void:
 	add_child(effect_label)
 
 
-func _sync_width() -> void:
-	queue_redraw()
-
-
+## Given a port number return which phase index it's associated with, if none
+## returns -1
 func port_phase_index(port: int) -> int:
 	return _phase_output_ports.find(port)
 
 
+## returns the port associated with the next quest connection
 func next_port() -> int:
 	return _next_output_port
 
 
+## Update the underlying Quest to add a connection to the Quest represented by tgt_node.
+## from_port is used to differentiate between connecting a phase step and next quest.
+## Once the data structure is updated we resync this node to it which handles creating
+## relevant connections for the graph.
+##
+## Some validation is done to ensure you can't connect multiple quests in the same phase
+## sequence or next array.
 func connect_quest(tgt_node: QuestNode, from_port: int) -> void:
 	var phase_idx := port_phase_index(from_port)
 	if phase_idx != -1:
@@ -247,6 +253,10 @@ func connect_quest(tgt_node: QuestNode, from_port: int) -> void:
 	sync()
 
 
+## Break a connection between this Quest and the one represented by node. port is
+## used to determine if this is a phase or next disconnection. Once the data structure
+## is updated we resync the GraphNode and that handles ensuring the connection gets
+## removed.
 func disconnect_quest(node: QuestNode, port: int) -> void:
 	var phase_idx := port_phase_index(port)
 	if phase_idx != -1:
@@ -264,6 +274,7 @@ func disconnect_quest(node: QuestNode, port: int) -> void:
 	sync()
 
 
+## Runs lint on the underlying Quest and returns any errors
 func lint() -> Array[String]:
 	if _data != null:
 		return _data.lint()
@@ -271,6 +282,7 @@ func lint() -> Array[String]:
 	return []
 
 
+## Constructs a new QuestNode  from a quest.
 static func from_quest(q: Quest) -> QuestNode:
 	var node := load(RES_PATH).instantiate() as QuestNode
 	node._data = q

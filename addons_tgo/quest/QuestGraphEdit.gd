@@ -27,6 +27,7 @@ var _debounce_mark_msec: int = 0
 # see above
 var _debounce_wait_msec: int = 500
 
+# captures lint errors not associated with a single node
 var _global_errs: Array[String] = []
 
 var _editor: EditorInterface
@@ -53,6 +54,7 @@ func _ready() -> void:
 	_global_errs = _refresh_quests()
 
 
+# dump all quest state, all corresponding nodes, and any registered connections
 func _reset() -> void:
 	_quests.clear()
 	clear_connections()
@@ -63,10 +65,12 @@ func _reset() -> void:
 	lint()
 
 
+# dump internal state and reload / re-lint to capture changes made that we
+# didn't catch via signal or whatever
 func full_reset() -> void:
 	_reset()
 	_global_errs = _refresh_quests()
-	setup(_editor)
+	_setup()
 
 
 func setup(editor: EditorInterface) -> void:
@@ -82,10 +86,17 @@ func setup(editor: EditorInterface) -> void:
 	if !_editor.get_inspector().property_edited.is_connected(_edited_object_changed):
 		_editor.get_inspector().property_edited.connect(_edited_object_changed)
 
-	# this is a lists of nodes to setup, we don't do this when added because
+	_setup()
+
+
+# adds known quests to the graph container, sets up the QuestNode (c.f.
+# [[QuestNode.setup]]), and then initiaties a layout
+func _setup() -> void:
+	# this is a list of nodes to setup, we don't do this when added because
 	# it will try to create links to other nodes which may not tracked in
 	# the graph yet
 	var to_sync := []
+
 	for q: Quest in _quests.values():
 		var node := QuestNode.from_quest(q)
 		add_child(node)
@@ -97,8 +108,17 @@ func setup(editor: EditorInterface) -> void:
 	_do_layout()
 
 
+# checks teh resource path for a saved layout and use it if found.
+# if none exists, and for nodes that are not included uses the default
+# algo
 func _do_layout() -> void:
-	var positions_dict := QuestLayout.load()
+	var layout := QuestLayout.load()
+	var positions_dict := {}
+	var last_offset := Vector2(0, 0)
+
+	if layout != null:
+		positions_dict = layout.positions
+		last_offset = layout.scroll_offset
 
 	if positions_dict.size() > 0:
 		for id: String in positions_dict.keys():
@@ -107,10 +127,16 @@ func _do_layout() -> void:
 				printerr("Skipping position for deleted quest: ", id)
 				continue
 			quest_node.set_position_offset(positions_dict[id])
-	else:
-		select_all_quests()
+
+	# only do this if there are un-positioned nodes or it'll do a full layout
+	if positions_dict.size() < _quests.size():
+		for c in get_children():
+			if c is QuestNode:
+				c.selected = !positions_dict.has(c.id)
 		arrange_nodes()
 		deselect_all_quests()
+
+	scroll_offset = last_offset
 
 
 func _save_layout() -> void:
@@ -118,7 +144,7 @@ func _save_layout() -> void:
 	for c in get_children():
 		if c is QuestNode:
 			nodes.append(c)
-	QuestLayout.save(nodes)
+	QuestLayout.save(scroll_offset, nodes)
 
 
 func _force_sync_edits() -> void:
@@ -129,6 +155,15 @@ func _force_sync_edits() -> void:
 		if _last_edited_id != "":
 			_quests.erase(_last_edited_id)
 		if _edited_node.id != "":
+			if _quests.has(_edited_node.id) && _quests[_edited_node.id] != _edited_node._data:
+				# TODO: it is probably not too hard to *not* do this but I don't
+				# have cycles to think about it rn
+				printerr(
+					(
+						"You're overwriting an existing node in quest state tracking, things"
+						+ "will be weird. Suggest change to a unique ID and reload."
+					)
+				)
 			_quests[_edited_node.id] = _edited_node._data
 		_last_edited_id = _edited_node.id
 
@@ -165,13 +200,6 @@ func _refresh_quests() -> Array[String]:
 			else:
 				_quests[quest.id] = quest
 	return errs
-
-
-func _on_visibility_changed() -> void:
-	if visible:
-		for c in get_children():
-			if c is QuestNode:
-				c._sync_width()
 
 
 func _node_selected(node: Node) -> void:
@@ -245,6 +273,8 @@ func deselect_all_quests() -> void:
 			c.selected = false
 
 
+## Query connection list and return all outbound connections from the
+## specified node.
 func connections_from(node: StringName) -> Array[Dictionary]:
 	var list := get_connection_list().filter(
 		func(d: Dictionary) -> bool: return d["from_node"] == node
@@ -312,6 +342,9 @@ func _on_connection_to_empty(
 	get_node(str(from_node)).connect_quest(node, from_port)
 
 
+## runs lint on all known quests and refreshes the list report with that data.
+## Notably tihs does *not* re-run global lint errors since that is mostly checking
+## for id collisions which we can really only tell when loading from disk
 func lint() -> void:
 	_lint_report.lint_clear()
 	_lint_report.global_errs = _global_errs
@@ -320,10 +353,11 @@ func lint() -> void:
 	_lint_report.update_display()
 
 
+## centers the display on a specific node looked up by quest id
 func _focus_node(quest_id: String) -> void:
 	var node := node_by_quest_id(quest_id)
 	if node == null:
-		printerr("Unable to focus quest ", quest_id)
+		printerr("Unable to find quest for focus: ", quest_id)
 		return
 	deselect_all_quests()
 	node.selected = true

@@ -119,7 +119,6 @@ layout_mode = 2
 text = "Create"
 
 [connection signal="resized" from="." to="." method="_on_resized"]
-[connection signal="visibility_changed" from="." to="." method="_on_visibility_changed"]
 [connection signal="pressed" from="VBoxContainer/HBoxContainer/Button" to="VBoxContainer/HSplitContainer/QuestGraphEdit" method="full_reset"]
 [connection signal="dragged" from="VBoxContainer/HSplitContainer" to="." method="_adjust_main_panel_ratio"]
 [connection signal="connection_request" from="VBoxContainer/HSplitContainer/QuestGraphEdit" to="VBoxContainer/HSplitContainer/QuestGraphEdit" method="_on_connect_request"]
@@ -127,7 +126,6 @@ text = "Create"
 [connection signal="disconnection_request" from="VBoxContainer/HSplitContainer/QuestGraphEdit" to="VBoxContainer/HSplitContainer/QuestGraphEdit" method="_on_disconnect_request"]
 [connection signal="node_deselected" from="VBoxContainer/HSplitContainer/QuestGraphEdit" to="VBoxContainer/HSplitContainer/QuestGraphEdit" method="_node_deselected"]
 [connection signal="node_selected" from="VBoxContainer/HSplitContainer/QuestGraphEdit" to="VBoxContainer/HSplitContainer/QuestGraphEdit" method="_node_selected"]
-[connection signal="visibility_changed" from="VBoxContainer/HSplitContainer/QuestGraphEdit" to="VBoxContainer/HSplitContainer/QuestGraphEdit" method="_on_visibility_changed"]
 [connection signal="select_node" from="VBoxContainer/HSplitContainer/ScrollContainer/LintReport" to="VBoxContainer/HSplitContainer/QuestGraphEdit" method="_focus_node"]
 [connection signal="text_changed" from="QuestIDPanel/MarginContainer/VBoxContainer/HBoxContainer/IDEdit" to="QuestIDPanel" method="_on_id_edit_text_changed"]
 [connection signal="text_submitted" from="QuestIDPanel/MarginContainer/VBoxContainer/HBoxContainer/IDEdit" to="QuestIDPanel" method="_on_id_edit_text_submitted"]

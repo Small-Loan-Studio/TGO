@@ -6,6 +6,9 @@ const SCENE := preload("res://addons_tgo/quest/lint_node_report.tscn")
 
 var _report: LintReport
 
+# all the accessors below use this style instead of @onready bc we need it
+# to work reliably in @tool mode.
+
 var _node_label: RichTextLabel:
 	get:
 		return $NodeLabel
