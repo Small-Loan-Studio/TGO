@@ -310,4 +310,8 @@ func lint() -> Array[String]:
 			var parts := lint_msg.split(":", true, 1)
 			errs.append("%s: Condition.%d:%s" % [parts[0], i, parts[1]])
 
+	for i in range(results.size()):
+		if results[i] == null:
+			errs.append("W: Result.%d: null effect" % [i])
+
 	return errs

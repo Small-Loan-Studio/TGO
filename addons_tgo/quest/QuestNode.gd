@@ -105,6 +105,7 @@ func sync() -> void:
 	_dynamic_slot_start = 1
 
 	_add_condition_label()
+	_add_effects_label()
 
 	if _data.phases.size() > 0:
 		# adds the phase label and sets up port offset
@@ -200,6 +201,15 @@ func _add_condition_label() -> void:
 			if i < cond_text.size() - 1:
 				cond_label.text += ", "
 	add_child(cond_label)
+
+
+func _add_effects_label() -> void:
+	var effect_label := Label.new()
+	if _data.results.size() > 0:
+		effect_label.text = "Effects: Yes"
+	else:
+		effect_label.text = "No Effects"
+	add_child(effect_label)
 
 
 func _sync_width() -> void:

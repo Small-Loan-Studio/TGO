@@ -31,7 +31,6 @@ slot/0/right_icon = null
 slot/0/draw_stylebox = true
 script = ExtResource("1_0ivbe")
 title_font_color = Color(0.977165, 0.947864, 0.953586, 1)
-title_font_color_selected = Color(0, 0, 0, 1)
 
 [node name="LabelID" type="Label" parent="."]
 layout_mode = 2
