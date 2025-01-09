@@ -1,0 +1,73 @@
+@tool
+class_name QuestIDPanel
+extends PanelContainer
+
+## Fired when either the create or cancel button is pressed. Create will send
+## a non-empty quest_id to use, cancel will send an empty string.
+signal completed(quest_id: String)
+
+var _in_err := false
+var _all_ids: Array[String] = []
+
+@onready var _id_edit := %IDEdit
+@onready var _create_button := %QuestIDCreate
+@onready var _err_label := %QuestIDErrLabel
+
+
+func display(at_pos: Vector2) -> void:
+	_all_ids = QuestManager.tool_all_ids()
+	_id_edit.text = ""
+	_check_err("")
+	_id_edit.grab_focus()
+
+	var x_off := size.x / 2
+	var y_off := size.y / 2
+	global_position = at_pos - Vector2(x_off, y_off)
+	show()
+
+
+func _on_cancel_pressed() -> void:
+	completed.emit("")
+	hide()
+
+
+func _on_create_pressed() -> void:
+	if _in_err:
+		return
+
+	completed.emit(_id_edit.text.strip_edges())
+	hide()
+
+
+func _on_id_edit_text_changed(prospective_id: String) -> void:
+	_check_err(prospective_id)
+
+
+
+func _on_id_edit_text_submitted(new_text: String) -> void:
+	if !_check_err(new_text):
+		_on_create_pressed()
+
+
+func _check_err(prospective_id: String) -> bool:
+	var txt := ""
+	if prospective_id in _all_ids:
+		txt = "ID already in use"
+		_in_err = true
+	elif prospective_id.strip_edges() == "":
+		txt = "ID may not be empty"
+		_in_err = true
+	else:
+		txt = ""
+		_in_err = false
+	_err_label.text = txt
+	_create_button.disabled = _in_err
+	return _in_err
+
+
+func _process(_delta: float) -> void:
+	if !visible:
+		return
+	if Input.is_action_just_pressed("ui_cancel"):
+		_on_cancel_pressed()
+		return

@@ -3,6 +3,7 @@ class_name QuestGraphEdit
 extends GraphEdit
 
 @export var _lint_report: LintReport
+@export var _quest_id_dlg: QuestIDPanel
 
 # Map[Quest.id, Quest]
 var _quests := {}
@@ -33,6 +34,11 @@ var _editor: EditorInterface
 
 func _ready() -> void:
 	var hbox := get_menu_hbox()
+
+	var refresh := Button.new()
+	refresh.text = "Reload"
+	refresh.pressed.connect(full_reset)
+	hbox.add_child(refresh)
 
 	var save_layout := Button.new()
 	save_layout.text = "Save Layout"
@@ -97,6 +103,9 @@ func _do_layout() -> void:
 	if positions_dict.size() > 0:
 		for id: String in positions_dict.keys():
 			var quest_node := node_by_quest_id(id)
+			if quest_node == null:
+				printerr("Skipping position for deleted quest: ", id)
+				continue
 			quest_node.set_position_offset(positions_dict[id])
 	else:
 		select_all_quests()
@@ -272,6 +281,35 @@ func _on_disconnect_request(
 
 	src.disconnect_quest(tgt, src_port)
 
+
+# TODO: this needs cleanup but ~works so I'm leaving it in
+func _on_connection_to_empty(
+	from_node: StringName, from_port: int, release_position: Vector2
+) -> void:
+	_quest_id_dlg.display(get_global_mouse_position())
+	var new_quest_id: String = await _quest_id_dlg.completed
+	if new_quest_id == "":
+		return
+
+	var tag_count := 0
+	var path := Utils.QUEST_DIR.path_join("%s%s.tres" % [new_quest_id, ""])
+	while true:
+		if !FileAccess.file_exists(path):
+			break
+		tag_count += 1
+		path = Utils.QUEST_DIR.path_join("%s_%d.tres" % [new_quest_id, tag_count])
+
+	var q := Quest.new()
+	q.id = new_quest_id
+	ResourceSaver.save(q, path)
+
+	_quests[new_quest_id] = q
+	var node := QuestNode.from_quest(q)
+	add_child(node)
+	node.setup(_editor, self)
+	node.set_position_offset(release_position)
+
+	get_node(str(from_node)).connect_quest(node, from_port)
 
 func lint() -> void:
 	_lint_report.lint_clear()
