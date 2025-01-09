@@ -18,6 +18,7 @@ var _dynamic_slot_start := -1
 
 var _phase_label: Label
 var _phase_slot_start := -1
+
 # index: phase indexd
 # value: output port id
 var _phase_output_ports: Array[int] = []
@@ -113,7 +114,7 @@ func sync() -> void:
 				label.text = qp.quest.id
 				if qp.may_fail:
 					label.text += " (may fail)"
-			
+
 			var margin := MarginContainer.new()
 			margin.add_theme_constant_override("margin_left", PHASE_MARGIN_LEFT)
 			margin.add_child(label)
@@ -142,7 +143,7 @@ func sync() -> void:
 		_graph_edit.connect_node(
 			name, _next_output_port, _graph_edit.node_by_quest_id(next_quest.id).name, _id_port)
 
-	print(_data.lint())
+	_graph_edit.lint()
 
 
 func _add_condition_label() -> void:
@@ -215,8 +216,14 @@ func disconnect_quest(node: QuestNode, port: int) -> void:
 	else:
 		printerr("Unexpected from/output port: %s.%d" % [node.id, port])
 		return
-	
+
 	sync()
+
+func lint() -> Array[String]:
+	if _data != null:
+		return _data.lint()
+
+	return []
 
 
 static func from_quest(q: Quest) -> QuestNode:

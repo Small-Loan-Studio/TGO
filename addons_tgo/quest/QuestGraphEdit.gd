@@ -25,7 +25,11 @@ var _debounce_mark_msec: int = 0
 # see above
 var _debounce_wait_msec: int = 500
 
+var _global_errs: Array[String] = []
+
 var _editor: EditorInterface
+
+@export var _lint_report: RichTextLabel
 
 func _ready() -> void:
 	var hbox := get_menu_hbox()
@@ -40,7 +44,7 @@ func _ready() -> void:
 	load_layout.pressed.connect(_do_layout)
 	hbox.add_child(load_layout)
 
-	_refresh_quests()
+	_global_errs = _refresh_quests()
 
 
 func _reset() -> void:
@@ -50,11 +54,11 @@ func _reset() -> void:
 		if c is QuestNode:
 			remove_child(c)
 			c.queue_free()
-
+	lint()
 
 func full_reset() -> void:
 	_reset()
-	_refresh_quests()
+	_global_errs = _refresh_quests()
 	setup(_editor)
 
 
@@ -127,12 +131,19 @@ func _edited_object_changed(prop: String) -> void:
 	_debounce_mark_msec = Time.get_ticks_msec()
 
 
-func _refresh_quests() -> void:
+# loads quests from disk, returns an array of errors
+func _refresh_quests() -> Array[String]:
+	var errs: Array[String] = []
+
 	var quest_paths := Utils.walk_directory(Utils.QUEST_DIR, func(s: String) -> bool: return s.ends_with(".tres"))
 	for path in quest_paths:
 		var quest := ResourceLoader.load(Utils.QUEST_DIR.path_join(path)) as Quest
 		if quest != null:
-			_quests[quest.id] = quest
+			if _quests.has(quest.id):
+				errs.append("E: Global (%s): multiple quests with ID '%s', only the first was registered" % [path, quest.id])
+			else:
+				_quests[quest.id] = quest
+	return errs
 
 
 func _on_visibility_changed() -> void:
@@ -243,3 +254,11 @@ func _on_disconnect_request(src_node:StringName, src_port:int, tgt_node:StringNa
 		return
 
 	src.disconnect_quest(tgt, src_port)
+
+
+func lint() -> void:
+	_lint_report.lint_clear()
+	_lint_report.global_errs = _global_errs
+	for q_id: String in _quests.keys():
+		_lint_report.add_quest_lint(q_id, _quests[q_id].lint())
+	_lint_report.update_display()

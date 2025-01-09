@@ -38,13 +38,14 @@ layout_mode = 2
 size_flags_vertical = 3
 split_offset = 1024
 
-[node name="QuestGraphEdit" type="GraphEdit" parent="VBoxContainer/HSplitContainer"]
+[node name="QuestGraphEdit" type="GraphEdit" parent="VBoxContainer/HSplitContainer" node_paths=PackedStringArray("_lint_report")]
 layout_mode = 2
 snapping_distance = 10
 right_disconnects = true
 show_zoom_label = true
 show_grid_buttons = false
 script = ExtResource("2_rl3x7")
+_lint_report = NodePath("../ScrollContainer/LintReport")
 
 [node name="ScrollContainer" type="ScrollContainer" parent="VBoxContainer/HSplitContainer"]
 layout_mode = 2
@@ -54,15 +55,6 @@ layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 bbcode_enabled = true
-text = "Atque est error necessitatibus omnis alias earum vero soluta. [color=red][url={\"path\": \"aoeu/aoeu/clicked\", \"error\": \"shit's fucked, yo\"}]Dolores recusandae[/url][/color] deserunt et. Inventore aut qui nam. Delectus labore qui dolore voluptates molestiae error sint odio. Enim sit sit placeat vero quo recusandae expedita totam. Reprehenderit sed incidunt quia ratione pariatur itaque.
-
-Ipsam modi voluptatem debitis ea ullam et vero. In qui rerum illo a dolor. Provident aliquid eius natus temporibus molestias sit unde.
-
-Modi dolorem quis eos veritatis voluptas corporis ut. Molestias consequatur distinctio earum inventore vel perspiciatis. Dolorum quisquam ad delectus vitae id non.
-
-Cumque beatae amet inventore voluptatem est dolores. Non maxime aut quibusdam tenetur vitae consequatur repellendus. Eos omnis tempore illum voluptas vero doloremque. Libero voluptatem sit aut hic. Mollitia voluptatem maxime officiis blanditiis esse accusantium voluptatem.
-
-Quo fugit nihil rerum ducimus. Alias ducimus sed quisquam exercitationem. Reiciendis voluptatem mollitia dolorem illo quo est. Aut hic et tempora dolor itaque consequatur rerum. Doloribus et ducimus repellat consequatur molestiae amet. Aut ex amet quia sequi earum pariatur quia."
 script = ExtResource("2_wfou6")
 
 [connection signal="resized" from="." to="." method="_on_resized"]
