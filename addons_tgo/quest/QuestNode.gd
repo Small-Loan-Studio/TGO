@@ -6,12 +6,16 @@ const PHASE_MARGIN_LEFT := 15
 const RES_PATH := "res://addons_tgo/quest/quest_node.tscn"
 const HEADER_SCENE := "res://addons_tgo/quest/quest_node_header.tscn"
 
+@export var title_font_color: Color = Color.ANTIQUE_WHITE
+@export var title_font_color_selected: Color = Color.BLACK
+
+var id: String:
+	get:
+		return _data.id
+
 var _editor: EditorInterface
 var _graph_edit: QuestGraphEdit
 var _data: Quest
-
-@export var title_font_color: Color = Color.ANTIQUE_WHITE
-@export var title_font_color_selected: Color = Color.BLACK
 
 var _id_port := 0
 
@@ -29,10 +33,6 @@ var _phase_output_ports: Array[int] = []
 var _next_label: Label
 var _next_slot := -1
 var _next_output_port: int = -1
-
-var id: String:
-	get:
-		return _data.id
 
 @onready var _id_label := $LabelID
 

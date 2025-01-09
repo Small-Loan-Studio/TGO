@@ -2,6 +2,8 @@
 class_name QuestGraphEdit
 extends GraphEdit
 
+@export var _lint_report: LintReport
+
 # Map[Quest.id, Quest]
 var _quests := {}
 
@@ -27,8 +29,6 @@ var _debounce_wait_msec: int = 500
 var _global_errs: Array[String] = []
 
 var _editor: EditorInterface
-
-@export var _lint_report: LintReport
 
 
 func _ready() -> void:
@@ -126,7 +126,7 @@ func _force_sync_edits() -> void:
 	_edited_node.sync()
 
 
-func _edited_object_changed(prop: String) -> void:
+func _edited_object_changed(_prop: String) -> void:
 	if !visible:
 		# don't worry about things if the quest visualization isn't focused
 		return
@@ -173,7 +173,7 @@ func _node_selected(node: Node) -> void:
 	_update_selection()
 
 
-func _node_deselected(node: Node) -> void:
+func _node_deselected(_node: Node) -> void:
 	_selected_nodes.clear()
 	_selected_nodes.assign(get_selected_nodes().map(func(n: QuestNode) -> String: return n.name))
 	_update_selection()

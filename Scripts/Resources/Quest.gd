@@ -279,6 +279,7 @@ func _to_string() -> String:
 		]
 	)
 
+
 ## checks this quest for configuration issues, returns Array[String] of errors
 func lint() -> Array[String]:
 	var errs: Array[String] = []

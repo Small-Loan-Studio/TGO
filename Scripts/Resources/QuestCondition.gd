@@ -10,6 +10,7 @@ func eval() -> bool:
 	assert(false, "A base QuestCondition has no way to evaluate to true")
 	return false
 
+
 ## checks validity of this quest condition, should probably only be run in
 ## tool mode. Used in Quest.lint()
 func lint() -> Array[String]:
