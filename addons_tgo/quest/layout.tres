@@ -5,9 +5,9 @@
 [resource]
 script = ExtResource("1_cbpjs")
 positions = {
-"other-quest": Vector2(790, 180),
+"other-quest": Vector2(560, 410),
 "phase-parent-test": Vector2(240, 140),
-"quest": Vector2(1020, 210),
-"test-item-quest": Vector2(570, 180),
-"test-var-quest": Vector2(550, 330)
+"quest": Vector2(770, 430),
+"test-item-quest": Vector2(570, 110),
+"test-var-quest": Vector2(550, 260)
 }

@@ -1,0 +1,60 @@
+[gd_scene load_steps=4 format=3 uid="uid://ydb7of5wblin"]
+
+[ext_resource type="Script" path="res://addons_tgo/quest/lint_node_report.gd" id="1_ltaus"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_my32d"]
+bg_color = Color(0.839216, 0.0431372, 0.0431372, 1)
+border_width_left = 8
+border_width_top = 4
+border_width_bottom = 4
+border_color = Color(0.839216, 0.0431372, 0.0431372, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_qr3pn"]
+bg_color = Color(0.839216, 0.768627, 0.0431373, 1)
+border_width_left = 8
+border_width_top = 4
+border_width_bottom = 4
+border_color = Color(0.839216, 0.768627, 0.0431373, 1)
+
+[node name="NodeReport" type="VBoxContainer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+script = ExtResource("1_ltaus")
+
+[node name="NodeLabel" type="RichTextLabel" parent="."]
+layout_mode = 2
+bbcode_enabled = true
+text = "Quest Node"
+fit_content = true
+
+[node name="ErrorsHeader" type="Label" parent="."]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_styles/normal = SubResource("StyleBoxFlat_my32d")
+text = "Errors"
+
+[node name="ErrorsMargin" type="MarginContainer" parent="."]
+layout_mode = 2
+theme_override_constants/margin_left = 16
+
+[node name="VBox" type="VBoxContainer" parent="ErrorsMargin"]
+layout_mode = 2
+
+[node name="WarningsHeader" type="Label" parent="."]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_styles/normal = SubResource("StyleBoxFlat_qr3pn")
+text = "Warnings"
+
+[node name="WarningsMargin" type="MarginContainer" parent="."]
+layout_mode = 2
+theme_override_constants/margin_left = 16
+
+[node name="VBox" type="VBoxContainer" parent="WarningsMargin"]
+layout_mode = 2
+
+[connection signal="meta_clicked" from="NodeLabel" to="." method="_on_node_clicked"]

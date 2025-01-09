@@ -10,6 +10,9 @@ var _editor: EditorInterface
 var _graph_edit: QuestGraphEdit
 var _data: Quest
 
+@export var title_font_color: Color = Color.ANTIQUE_WHITE
+@export var title_font_color_selected: Color = Color.BLACK
+
 var _id_port := 0
 
 # How many slots are we using to track non-connectable metadata in the
@@ -32,6 +35,18 @@ var id: String:
 		return _data.id
 
 @onready var _id_label := $LabelID
+
+func _process(_delta: float) -> void:
+	# this is fucking deranged but i just want to get this done by now.
+	# I welcome some future cleanup and usage of the actual theme editing
+	# to make this work
+	var want_color := title_font_color
+	if selected:
+		want_color = title_font_color_selected
+	if get_titlebar_hbox().get_child_count() > 0:
+		var title_label := get_titlebar_hbox().get_child(0)
+		if title_label is Label:
+			title_label.add_theme_color_override("font_color", want_color)
 
 
 func setup(editor: EditorInterface, qge: QuestGraphEdit) -> void:
@@ -82,7 +97,7 @@ func sync() -> void:
 	# fully reset/remove everything so that our sync logic can approximate simple
 	reset()
 
-	title = _data.title
+	title = "  " + _data.title
 	_id_label.text = "ID: %s" % [_data.id]
 
 	# enable id input port
@@ -142,6 +157,10 @@ func sync() -> void:
 			continue
 		_graph_edit.connect_node(
 			name, _next_output_port, _graph_edit.node_by_quest_id(next_quest.id).name, _id_port)
+
+	var spacer := Container.new()
+	spacer.custom_minimum_size.y = 5
+	add_child(spacer)
 
 	_graph_edit.lint()
 

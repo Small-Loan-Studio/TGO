@@ -29,7 +29,7 @@ var _global_errs: Array[String] = []
 
 var _editor: EditorInterface
 
-@export var _lint_report: RichTextLabel
+@export var _lint_report: LintReport
 
 func _ready() -> void:
 	var hbox := get_menu_hbox()
@@ -262,3 +262,16 @@ func lint() -> void:
 	for q_id: String in _quests.keys():
 		_lint_report.add_quest_lint(q_id, _quests[q_id].lint())
 	_lint_report.update_display()
+
+func _focus_node(quest_id:String) -> void:
+	var node := node_by_quest_id(quest_id)
+	if node == null:
+		printerr("Unable to focus quest ", quest_id)
+		return
+	deselect_all_quests()
+	node.selected = true
+
+	var width := get_rect().size.x / 2
+	var height := get_rect().size.y / 2
+
+	scroll_offset = node.get_position_offset() - Vector2(width, height)

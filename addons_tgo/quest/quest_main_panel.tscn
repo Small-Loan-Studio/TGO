@@ -50,11 +50,10 @@ _lint_report = NodePath("../ScrollContainer/LintReport")
 [node name="ScrollContainer" type="ScrollContainer" parent="VBoxContainer/HSplitContainer"]
 layout_mode = 2
 
-[node name="LintReport" type="RichTextLabel" parent="VBoxContainer/HSplitContainer/ScrollContainer"]
+[node name="LintReport" type="VBoxContainer" parent="VBoxContainer/HSplitContainer/ScrollContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
-bbcode_enabled = true
 script = ExtResource("2_wfou6")
 
 [connection signal="resized" from="." to="." method="_on_resized"]
@@ -66,4 +65,4 @@ script = ExtResource("2_wfou6")
 [connection signal="node_deselected" from="VBoxContainer/HSplitContainer/QuestGraphEdit" to="VBoxContainer/HSplitContainer/QuestGraphEdit" method="_node_deselected"]
 [connection signal="node_selected" from="VBoxContainer/HSplitContainer/QuestGraphEdit" to="VBoxContainer/HSplitContainer/QuestGraphEdit" method="_node_selected"]
 [connection signal="visibility_changed" from="VBoxContainer/HSplitContainer/QuestGraphEdit" to="VBoxContainer/HSplitContainer/QuestGraphEdit" method="_on_visibility_changed"]
-[connection signal="meta_clicked" from="VBoxContainer/HSplitContainer/ScrollContainer/LintReport" to="VBoxContainer/HSplitContainer/ScrollContainer/LintReport" method="_on_meta_clicked"]
+[connection signal="select_node" from="VBoxContainer/HSplitContainer/ScrollContainer/LintReport" to="VBoxContainer/HSplitContainer/QuestGraphEdit" method="_focus_node"]
