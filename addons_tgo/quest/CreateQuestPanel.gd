@@ -43,7 +43,6 @@ func _on_id_edit_text_changed(prospective_id: String) -> void:
 	_check_err(prospective_id)
 
 
-
 func _on_id_edit_text_submitted(new_text: String) -> void:
 	if !_check_err(new_text):
 		_on_create_pressed()

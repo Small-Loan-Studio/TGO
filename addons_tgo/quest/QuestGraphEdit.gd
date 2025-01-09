@@ -311,6 +311,7 @@ func _on_connection_to_empty(
 
 	get_node(str(from_node)).connect_quest(node, from_port)
 
+
 func lint() -> void:
 	_lint_report.lint_clear()
 	_lint_report.global_errs = _global_errs
