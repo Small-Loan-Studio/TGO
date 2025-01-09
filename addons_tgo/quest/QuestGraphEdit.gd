@@ -2,7 +2,6 @@
 class_name QuestGraphEdit
 extends GraphEdit
 
-
 # Map[Quest.id, Quest]
 var _quests := {}
 
@@ -31,6 +30,7 @@ var _editor: EditorInterface
 
 @export var _lint_report: LintReport
 
+
 func _ready() -> void:
 	var hbox := get_menu_hbox()
 
@@ -55,6 +55,7 @@ func _reset() -> void:
 			remove_child(c)
 			c.queue_free()
 	lint()
+
 
 func full_reset() -> void:
 	_reset()
@@ -110,6 +111,7 @@ func _save_layout() -> void:
 			nodes.append(c)
 	QuestLayout.save(nodes)
 
+
 func _force_sync_edits() -> void:
 	_debounce_mark_msec = 0
 
@@ -135,12 +137,22 @@ func _edited_object_changed(prop: String) -> void:
 func _refresh_quests() -> Array[String]:
 	var errs: Array[String] = []
 
-	var quest_paths := Utils.walk_directory(Utils.QUEST_DIR, func(s: String) -> bool: return s.ends_with(".tres"))
+	var quest_paths := Utils.walk_directory(
+		Utils.QUEST_DIR, func(s: String) -> bool: return s.ends_with(".tres")
+	)
 	for path in quest_paths:
 		var quest := ResourceLoader.load(Utils.QUEST_DIR.path_join(path)) as Quest
 		if quest != null:
 			if _quests.has(quest.id):
-				errs.append("E: Global (%s): multiple quests with ID '%s', only the first was registered" % [path, quest.id])
+				(
+					errs
+					. append(
+						(
+							"E: Global (%s): multiple quests with ID '%s', only the first was registered"
+							% [path, quest.id]
+						)
+					)
+				)
 			else:
 				_quests[quest.id] = quest
 	return errs
@@ -226,13 +238,16 @@ func deselect_all_quests() -> void:
 
 func connections_from(node: StringName) -> Array[Dictionary]:
 	var list := get_connection_list().filter(
-		func(d: Dictionary) -> bool: return d["from_node"] == node)
+		func(d: Dictionary) -> bool: return d["from_node"] == node
+	)
 	var r: Array[Dictionary] = []
 	r.assign(list)
 	return r
 
 
-func _on_connect_request(from_node :StringName, from_port :int, to_node:StringName, to_port:int) -> void:
+func _on_connect_request(
+	from_node: StringName, from_port: int, to_node: StringName, to_port: int
+) -> void:
 	var from: QuestNode = get_node(str(from_node))
 	var to: QuestNode = get_node(str(to_node))
 	# print("_on_connect_request: %s.%d -> %s.%d" % [ from.id, from_port, to.id, to_port])
@@ -244,7 +259,9 @@ func _on_connect_request(from_node :StringName, from_port :int, to_node:StringNa
 	from.connect_quest(to, from_port)
 
 
-func _on_disconnect_request(src_node:StringName, src_port:int, tgt_node:StringName, tgt_port:int) -> void:
+func _on_disconnect_request(
+	src_node: StringName, src_port: int, tgt_node: StringName, tgt_port: int
+) -> void:
 	var src: QuestNode = get_node(str(src_node))
 	var tgt: QuestNode = get_node(str(tgt_node))
 	# print("_on_disconnect_request: %s.%d -> %s.%d" % [src.id, src_port, tgt.id, tgt_port])
@@ -263,7 +280,8 @@ func lint() -> void:
 		_lint_report.add_quest_lint(q_id, _quests[q_id].lint())
 	_lint_report.update_display()
 
-func _focus_node(quest_id:String) -> void:
+
+func _focus_node(quest_id: String) -> void:
 	var node := node_by_quest_id(quest_id)
 	if node == null:
 		printerr("Unable to focus quest ", quest_id)

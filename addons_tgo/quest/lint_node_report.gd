@@ -30,10 +30,10 @@ var _warnings_section: VBoxContainer:
 func _on_node_clicked(meta: Variant) -> void:
 	_report.select_node.emit(meta as String)
 
+
 static func from_errors(
-	report_ref: LintReport,
-	name: String,
-	errors: Array[String]) -> LintNodeReport:
+	report_ref: LintReport, name: String, errors: Array[String]
+) -> LintNodeReport:
 	var report := SCENE.instantiate() as LintNodeReport
 
 	report._report = report_ref
@@ -42,7 +42,6 @@ static func from_errors(
 	report._errors_section.hide()
 	report._warnings_header.hide()
 	report._warnings_section.hide()
-
 
 	for err in errors:
 		var parts := err.split(":", false, 1)

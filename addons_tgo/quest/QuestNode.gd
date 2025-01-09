@@ -36,6 +36,7 @@ var id: String:
 
 @onready var _id_label := $LabelID
 
+
 func _process(_delta: float) -> void:
 	# this is fucking deranged but i just want to get this done by now.
 	# I welcome some future cleanup and usage of the actual theme editing
@@ -68,10 +69,8 @@ func reset() -> void:
 	# disconnect all edges
 	for conn: Dictionary in _graph_edit.connections_from(name):
 		_graph_edit.disconnect_node(
-			conn["from_node"],
-			conn["from_port"],
-			conn["to_node"],
-			conn["to_port"])
+			conn["from_node"], conn["from_port"], conn["to_node"], conn["to_port"]
+		)
 	# clear internal tracking start for ports
 	_phase_output_ports.clear()
 	_next_output_port = -1
@@ -92,6 +91,7 @@ func reset() -> void:
 	_next_label = null
 	_phase_label = null
 	_dynamic_slot_start = -1
+
 
 func sync() -> void:
 	# fully reset/remove everything so that our sync logic can approximate simple
@@ -140,7 +140,8 @@ func sync() -> void:
 
 			if !empty_phase:
 				_graph_edit.connect_node(
-					name, phase_step, _graph_edit.node_by_quest_id(qp.quest.id).name, _id_port)
+					name, phase_step, _graph_edit.node_by_quest_id(qp.quest.id).name, _id_port
+				)
 
 			phase_step = phase_step + 1
 
@@ -156,7 +157,8 @@ func sync() -> void:
 		if next_quest == null || next_quest.id == "":
 			continue
 		_graph_edit.connect_node(
-			name, _next_output_port, _graph_edit.node_by_quest_id(next_quest.id).name, _id_port)
+			name, _next_output_port, _graph_edit.node_by_quest_id(next_quest.id).name, _id_port
+		)
 
 	var spacer := Container.new()
 	spacer.custom_minimum_size.y = 5
@@ -166,8 +168,18 @@ func sync() -> void:
 
 
 func _add_condition_label() -> void:
-	var item_conditions := _data.conditions.filter(func(c: QuestCondition) -> bool: return c is QuestConditionInventory).size()
-	var var_conditions := _data.conditions.filter(func(c: QuestCondition) -> bool: return c is QuestConditionVariable).size()
+	var item_conditions := (
+		_data
+		. conditions
+		. filter(func(c: QuestCondition) -> bool: return c is QuestConditionInventory)
+		. size()
+	)
+	var var_conditions := (
+		_data
+		. conditions
+		. filter(func(c: QuestCondition) -> bool: return c is QuestConditionVariable)
+		. size()
+	)
 	var other_conditions := _data.conditions.size() - item_conditions - var_conditions
 
 	var cond_text := []
@@ -206,7 +218,9 @@ func connect_quest(tgt_node: QuestNode, from_port: int) -> void:
 	var phase_idx := port_phase_index(from_port)
 	if phase_idx != -1:
 		# check to see if the quest is already a phase
-		var matches := _data.phases.filter(func (qp: QuestPhase) -> bool: return qp != null && qp.quest.id == tgt_node.id)
+		var matches := _data.phases.filter(
+			func(qp: QuestPhase) -> bool: return qp != null && qp.quest.id == tgt_node.id
+		)
 		if matches.size() > 0:
 			printerr("Attempting to connect a quest already in phases list")
 			return
@@ -221,6 +235,7 @@ func connect_quest(tgt_node: QuestNode, from_port: int) -> void:
 			printerr("Attempting to connect a quest already in next list")
 
 	sync()
+
 
 func disconnect_quest(node: QuestNode, port: int) -> void:
 	var phase_idx := port_phase_index(port)
@@ -237,6 +252,7 @@ func disconnect_quest(node: QuestNode, port: int) -> void:
 		return
 
 	sync()
+
 
 func lint() -> Array[String]:
 	if _data != null:
