@@ -1,0 +1,15 @@
+[gd_resource type="Resource" script_class="QuestLayout" load_steps=2 format=3 uid="uid://ypncex5lb1dk"]
+
+[ext_resource type="Script" path="res://addons_tgo/quest/LayoutResource.gd" id="1_cbpjs"]
+
+[resource]
+script = ExtResource("1_cbpjs")
+scroll_offset = Vector2(-475, 61)
+positions = {
+"aoeu1234": Vector2(-320, 200),
+"other-quest": Vector2(-70, 140),
+"phase-parent-test": Vector2(-120, 360),
+"quest": Vector2(190, 130),
+"test-item-quest": Vector2(120, 390),
+"test-var-quest": Vector2(120, 570)
+}

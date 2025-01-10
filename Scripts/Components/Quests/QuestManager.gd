@@ -33,7 +33,10 @@ func _ready() -> void:
 	Callable(_connect_post_ready).call_deferred()
 
 	if run_validation:
-		_validate_variable_refs()
+		for k: String in _quest_dict.keys():
+			var errs: Array[String] = _quest_dict[k][QUEST_IDX].lint()
+			if errs.size() > 0:
+				printerr("%s: %s" % [k, errs])
 
 
 ## Connect to external data sources, should be run via deferred call so that it
@@ -308,21 +311,6 @@ func _process_completed_quest(id: String) -> void:
 			var next_quest_phase := phase_parent.phases[idx]
 			if next_quest_phase.quest.state != Enums.QuestState.ACTIVE:
 				next_quest_phase.quest.mark_active()
-
-
-func _validate_variable_refs() -> void:
-	for quest_id: String in get_all_quest_ids():
-		var q := quest_by_id(quest_id)
-		for c_idx in len(q.conditions):
-			var c := q.conditions[c_idx]
-			if c is QuestConditionVariable:
-				if !Dialogic.VAR.has(c.variable):
-					printerr(
-						(
-							"Misconfigured quest (id: %s) has condition referencing invalid variable. Condition %d: '%s'"
-							% [q.id, c_idx, c.variable]
-						)
-					)
 
 
 func debug_print() -> void:

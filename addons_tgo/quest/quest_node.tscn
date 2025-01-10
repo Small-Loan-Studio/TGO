@@ -1,0 +1,39 @@
+[gd_scene load_steps=5 format=3 uid="uid://vuxrc8n8mx0d"]
+
+[ext_resource type="Script" path="res://addons_tgo/quest/QuestNode.gd" id="1_0ivbe"]
+[ext_resource type="StyleBox" uid="uid://dbw81og4xhjhq" path="res://addons_tgo/quest/titlebar_selected.tres" id="1_7wp7y"]
+[ext_resource type="StyleBox" uid="uid://dc0cctp6yq5nw" path="res://addons_tgo/quest/titlebar.tres" id="1_28xiu"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_5e61j"]
+bg_color = Color(0.0980392, 0.113725, 0.137255, 1)
+border_width_left = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(1, 0.91148, 0, 1)
+
+[node name="QuestNode" type="GraphNode"]
+offset_right = 105.0
+offset_bottom = 78.0
+rotation = -0.00082078
+mouse_filter = 1
+theme_override_styles/panel_selected = SubResource("StyleBoxFlat_5e61j")
+theme_override_styles/titlebar = ExtResource("1_28xiu")
+theme_override_styles/titlebar_selected = ExtResource("1_7wp7y")
+title = "Quest Name"
+slot/0/left_enabled = true
+slot/0/left_type = 0
+slot/0/left_color = Color(1, 1, 1, 1)
+slot/0/left_icon = null
+slot/0/right_enabled = false
+slot/0/right_type = 0
+slot/0/right_color = Color(1, 1, 1, 1)
+slot/0/right_icon = null
+slot/0/draw_stylebox = true
+script = ExtResource("1_0ivbe")
+title_font_color = Color(0.977165, 0.947864, 0.953586, 1)
+
+[node name="LabelID" type="Label" parent="."]
+layout_mode = 2
+text = "ID:"
+
+[connection signal="node_selected" from="." to="." method="_on_node_selected"]

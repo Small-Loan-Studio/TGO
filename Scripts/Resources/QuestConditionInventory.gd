@@ -1,3 +1,4 @@
+@tool
 ## Allows quests to have completion conditions based on inventory state.
 ## Inventory ID is the name of the container, e.g. 'Devin' for the PC.
 class_name QuestConditionInventory
@@ -30,3 +31,10 @@ func eval() -> bool:
 
 	printerr("Unexpected check type: ", check)
 	return false
+
+
+func lint() -> Array[String]:
+	var errs: Array[String] = []
+	if inventory_id.strip_edges() == "":
+		errs.append("E: inventory id is empty")
+	return errs

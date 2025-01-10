@@ -17,6 +17,7 @@
 ## phase/next breakdown as all next linkages and either let a Quest specify a
 ## custom progression strategy or something. Walking the tree was non-trivial
 ## but has been shown to be workable for now so not going to touch it.
+@tool
 class_name Quest
 extends Resource
 
@@ -24,17 +25,21 @@ signal state_change(id: String, old_state: Enums.QuestState, new_state: Enums.Qu
 
 ## How the quest is tracked in our internal systems. Should be unique among all quests
 @export var id: String
+
 ## A short version of this quest for the user's HUD or similar
 @export var title: String
+
 ## A longer description of what the goals of this quest are.
 @export var description: String
 
 ## If set when this quest is part of a next array it will not automatically
 ## transition to active when its parent is marked Completed
 @export var manual_start: bool = false
+
 ## What state is the quest in -- Dormant is untracked, Active is currently in
 ## progress, and Completed|Failed respresent a finish state
 @export var state: Enums.QuestState
+
 ## The set of conditions that will be checked to see if the quest is completed
 @export var conditions: Array[QuestCondition]
 
@@ -45,9 +50,11 @@ signal state_change(id: String, old_state: Enums.QuestState, new_state: Enums.Qu
 ## quest may not be finished unless all phases are completed or until one has
 ## failed.
 @export var phases: Array[QuestPhase]
+
 ## When this quest is Completed all the next quests will be marked as active
 ## (unless manual_start is set)
 @export var next: Array[Quest]
+
 ## When a quest is marked completed these results will be acted upon. The Effect
 ## will receive the id of the quest acting and the current level.
 @export var results: Array[Effect]
@@ -271,3 +278,40 @@ func _to_string() -> String:
 			parent_ids,
 		]
 	)
+
+
+## checks this quest for configuration issues, returns Array[String] of errors
+func lint() -> Array[String]:
+	var errs: Array[String] = []
+	if id.strip_edges() == "":
+		errs.append("E: Core: id is not set")
+	if title.strip_edges() == "":
+		errs.append("W: Core: title is empty")
+	if description.strip_edges() == "":
+		errs.append("W: Core: description is empty")
+
+	for i in range(phases.size()):
+		var qp := phases[i]
+		if qp == null:
+			errs.append("W: Phase.%d: null phase" % [i])
+			continue
+		if qp.quest == null:
+			errs.append("W: Phase.%d: phase quest is not set" % [i])
+			continue
+
+	for i in range(conditions.size()):
+		var c: QuestCondition = conditions[i]
+		if c == null:
+			errs.append("W: Condition.%d: null condition" % [i])
+			continue
+		var c_lint: Array[String] = c.lint()
+		for c_i in range(c_lint.size()):
+			var lint_msg := c_lint[c_i]
+			var parts := lint_msg.split(":", true, 1)
+			errs.append("%s: Condition.%d:%s" % [parts[0], i, parts[1]])
+
+	for i in range(results.size()):
+		if results[i] == null:
+			errs.append("W: Result.%d: null effect" % [i])
+
+	return errs

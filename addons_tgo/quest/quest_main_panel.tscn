@@ -1,0 +1,133 @@
+[gd_scene load_steps=6 format=3 uid="uid://b5nxj21hb767h"]
+
+[ext_resource type="Script" path="res://addons_tgo/quest/quest_main_panel.gd" id="1_kfwj1"]
+[ext_resource type="Script" path="res://addons_tgo/quest/QuestGraphEdit.gd" id="2_rl3x7"]
+[ext_resource type="Script" path="res://addons_tgo/quest/LintReport.gd" id="2_wfou6"]
+[ext_resource type="Script" path="res://addons_tgo/quest/CreateQuestPanel.gd" id="4_o3qkp"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_5coyk"]
+border_width_left = 3
+border_width_top = 3
+border_width_right = 3
+border_width_bottom = 3
+border_color = Color(1, 1, 1, 1)
+
+[node name="QuestMainPanel" type="Control"]
+custom_minimum_size = Vector2(100, 100)
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+script = ExtResource("1_kfwj1")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer"]
+visible = false
+layout_mode = 2
+size_flags_horizontal = 4
+
+[node name="Button" type="Button" parent="VBoxContainer/HBoxContainer"]
+layout_mode = 2
+text = "Reset State"
+
+[node name="HSplitContainer" type="HSplitContainer" parent="VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+split_offset = 1024
+
+[node name="QuestGraphEdit" type="GraphEdit" parent="VBoxContainer/HSplitContainer" node_paths=PackedStringArray("_lint_report", "_quest_id_dlg")]
+layout_mode = 2
+snapping_distance = 10
+right_disconnects = true
+show_zoom_label = true
+show_grid_buttons = false
+script = ExtResource("2_rl3x7")
+_lint_report = NodePath("../ScrollContainer/LintReport")
+_quest_id_dlg = NodePath("../../../QuestIDPanel")
+
+[node name="ScrollContainer" type="ScrollContainer" parent="VBoxContainer/HSplitContainer"]
+layout_mode = 2
+
+[node name="LintReport" type="VBoxContainer" parent="VBoxContainer/HSplitContainer/ScrollContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+script = ExtResource("2_wfou6")
+
+[node name="QuestIDPanel" type="PanelContainer" parent="."]
+visible = false
+custom_minimum_size = Vector2(300, 0)
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_5coyk")
+script = ExtResource("4_o3qkp")
+
+[node name="MarginContainer" type="MarginContainer" parent="QuestIDPanel"]
+layout_mode = 2
+theme_override_constants/margin_left = 15
+theme_override_constants/margin_top = 15
+theme_override_constants/margin_right = 15
+theme_override_constants/margin_bottom = 15
+
+[node name="VBoxContainer" type="VBoxContainer" parent="QuestIDPanel/MarginContainer"]
+layout_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="QuestIDPanel/MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="QuestIDPanel/MarginContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.864675, 0.864675, 0.864675, 1)
+text = "Quest ID :"
+
+[node name="IDEdit" type="LineEdit" parent="QuestIDPanel/MarginContainer/VBoxContainer/HBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="QuestIDErrLabel" type="Label" parent="QuestIDPanel/MarginContainer/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_colors/font_color = Color(0.713726, 0, 0, 1)
+text = "That ID is already in use"
+horizontal_alignment = 1
+
+[node name="ButtonHBox" type="HBoxContainer" parent="QuestIDPanel/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 8
+theme_override_constants/separation = 15
+
+[node name="Cancel" type="Button" parent="QuestIDPanel/MarginContainer/VBoxContainer/ButtonHBox"]
+layout_mode = 2
+text = "Cancel"
+
+[node name="QuestIDCreate" type="Button" parent="QuestIDPanel/MarginContainer/VBoxContainer/ButtonHBox"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Create"
+
+[connection signal="resized" from="." to="." method="_on_resized"]
+[connection signal="pressed" from="VBoxContainer/HBoxContainer/Button" to="VBoxContainer/HSplitContainer/QuestGraphEdit" method="full_reset"]
+[connection signal="dragged" from="VBoxContainer/HSplitContainer" to="." method="_adjust_main_panel_ratio"]
+[connection signal="connection_request" from="VBoxContainer/HSplitContainer/QuestGraphEdit" to="VBoxContainer/HSplitContainer/QuestGraphEdit" method="_on_connect_request"]
+[connection signal="connection_to_empty" from="VBoxContainer/HSplitContainer/QuestGraphEdit" to="VBoxContainer/HSplitContainer/QuestGraphEdit" method="_on_connection_to_empty"]
+[connection signal="disconnection_request" from="VBoxContainer/HSplitContainer/QuestGraphEdit" to="VBoxContainer/HSplitContainer/QuestGraphEdit" method="_on_disconnect_request"]
+[connection signal="node_deselected" from="VBoxContainer/HSplitContainer/QuestGraphEdit" to="VBoxContainer/HSplitContainer/QuestGraphEdit" method="_node_deselected"]
+[connection signal="node_selected" from="VBoxContainer/HSplitContainer/QuestGraphEdit" to="VBoxContainer/HSplitContainer/QuestGraphEdit" method="_node_selected"]
+[connection signal="select_node" from="VBoxContainer/HSplitContainer/ScrollContainer/LintReport" to="VBoxContainer/HSplitContainer/QuestGraphEdit" method="_focus_node"]
+[connection signal="text_changed" from="QuestIDPanel/MarginContainer/VBoxContainer/HBoxContainer/IDEdit" to="QuestIDPanel" method="_on_id_edit_text_changed"]
+[connection signal="text_submitted" from="QuestIDPanel/MarginContainer/VBoxContainer/HBoxContainer/IDEdit" to="QuestIDPanel" method="_on_id_edit_text_submitted"]
+[connection signal="pressed" from="QuestIDPanel/MarginContainer/VBoxContainer/ButtonHBox/Cancel" to="QuestIDPanel" method="_on_cancel_pressed"]
+[connection signal="pressed" from="QuestIDPanel/MarginContainer/VBoxContainer/ButtonHBox/QuestIDCreate" to="QuestIDPanel" method="_on_create_pressed"]

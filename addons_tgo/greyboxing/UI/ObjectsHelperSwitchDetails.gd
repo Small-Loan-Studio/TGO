@@ -126,28 +126,6 @@ func _get_bool_variables() -> Array[String]:
 	return res
 
 
-## returns dialogic variable info as parsed from ProjectSettings; this
-## is approximately the same process Dialogic uses at runtime but we
-## can't use that during editing because it hasn't loaded VAR subsystem.
-## As such this can only interact with variables that are defined through
-## the UI and not anything created at runtime.
-func _ersatz_dialogic_get_var(path: String) -> Variant:
-	var parts := path.split(".")
-
-	var folder: Dictionary = ProjectSettings.get_setting("dialogic/variables", {}).duplicate(true)
-	while len(parts) > 1:
-		var dict_name: String = parts[0]
-		parts = parts.slice(1)
-		folder = folder[dict_name]
-
-	if len(parts) != 1:
-		printerr("Error looking for dialogic variable '%s'" % [path])
-		return []
-
-	var v: Variant = folder[parts[0]]
-	return [v, typeof(v)]
-
-
 func _list_variables_and_type() -> Array[Array]:
 	var var_dict: Dictionary = ProjectSettings.get_setting("dialogic/variables", {}).duplicate(true)
 	return _list_variables_and_type_helper("", var_dict)
@@ -259,7 +237,7 @@ func _new_inv_check(inv_id: String, item_id: String) -> TriggerCondition:
 
 func _configure_cond_variable() -> Array[TriggerCondition]:
 	var var_name := condition_var_dropdown.get_item_text(condition_var_dropdown.selected)
-	var var_type: int = _ersatz_dialogic_get_var(var_name)[1]
+	var var_type: int = Utils.ersatz_dialogic_get_var(var_name)[1]
 
 	var cond := DialogicVarCondition.new()
 	cond.variable_name = var_name
@@ -430,7 +408,7 @@ func _on_condition_var_selected(index: int) -> void:
 		var_value_group.hide()
 		return
 
-	var var_info: Variant = _ersatz_dialogic_get_var(var_name)
+	var var_info: Variant = Utils.ersatz_dialogic_get_var(var_name)
 
 	var var_type_string := "Unknown"
 

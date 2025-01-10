@@ -1,0 +1,11 @@
+[gd_scene load_steps=2 format=3 uid="uid://besqyi7gvfq7o"]
+
+[ext_resource type="StyleBox" uid="uid://nwjrwqkbsbvf" path="res://addons_tgo/quest/quest_node_header_style.tres" id="1_wtqav"]
+
+[node name="Header" type="Label"]
+offset_right = 105.0
+offset_bottom = 33.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_styles/normal = ExtResource("1_wtqav")
+text = "Header Text"
+horizontal_alignment = 1

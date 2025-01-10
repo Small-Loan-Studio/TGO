@@ -5,32 +5,61 @@ extends EditorPlugin
 const PLUGIN_NAME = "tgo_greyboxing"
 
 var _control_scene: TGOControlDock = null
+var _quest_editor_scene: QuestMainPanel = null
 var _editor: EditorInterface = null
 
-var _interactable_plugin: EditorInspectorPlugin
+var _interactable_plugin: Variant
 
 func _enter_tree() -> void:
 	if !Engine.is_editor_hint():
 		return
-	_load_scene()
 	_editor = get_editor_interface()
-	_interactable_plugin = load("res://addons_tgo/editors/tgo_inspector_interactable.gd").new()
-	add_inspector_plugin(_interactable_plugin)
+
+	_load_scene()
+
+
+func _has_main_screen() -> bool:
+	return true
+
+func _make_visible(visible: bool) -> void:
+	_quest_editor_scene.visible = visible
+
+
+func _get_plugin_name() -> String:
+	return "Quest Manager"
+
+
+func _get_plugin_icon():
+	return EditorInterface.get_editor_theme().get_icon("Node", "EditorIcons")
 
 
 func _load_scene() -> void:
 	if !Engine.is_editor_hint():
 		return
+
 	var control_scene_res := load("res://addons_tgo/greyboxing/UI/TGOControlDock.tscn")
 	_control_scene = control_scene_res.instantiate() as TGOControlDock
 	add_control_to_dock(DOCK_SLOT_LEFT_BR, _control_scene)
 	_control_scene.setup(self)
+
+	_quest_editor_scene = load("res://addons_tgo/quest/quest_main_panel.tscn").instantiate()
+	_editor.get_editor_main_screen().add_child(_quest_editor_scene)
+	_make_visible(false)
+	_quest_editor_scene.setup(_editor)
+
+	_interactable_plugin = load("res://addons_tgo/editors/tgo_inspector_interactable.gd").new()
+	add_inspector_plugin(_interactable_plugin)
 
 
 func _unload_scene() -> void:
 	remove_control_from_docks(_control_scene)
 	_control_scene.hide()
 	_control_scene.queue_free()
+	_quest_editor_scene.queue_free()
+	_quest_editor_scene = null
+
+	# this reports nonexisting inspector plugin...?
+	remove_inspector_plugin(_interactable_plugin)
 
 
 func reload() -> void:
@@ -43,4 +72,3 @@ func reload() -> void:
 
 func _exit_tree() -> void:
 	_unload_scene()
-	remove_inspector_plugin(_interactable_plugin)
