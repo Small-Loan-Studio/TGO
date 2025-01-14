@@ -1,0 +1,42 @@
+Testing Dialog
+label Choices
+- Player Inventory .has
+	[text_input text="Enter item ID" var="UserInputString" placeholder="ID"]
+	[text_input text="Enter item count" var="UserInputNum" placeholder="Count"]
+	if {TGO.player_inventory.has(Dialogic.VAR.UserInputString, Dialogic.VAR.UserInputNum)} == true:
+		{Dialogic.VAR.UserInputNum} {Dialogic.VAR.UserInputString} is/are in inventory
+	else:
+		{Dialogic.VAR.UserInputNum} {Dialogic.VAR.UserInputString} is/are not in inventory
+	jump Choices
+- Player Inventory add_item
+	[text_input text="Enter item ID" var="UserInputString" placeholder="ID"]
+	[text_input text="Enter item quantity" var="UserInputNum" placeholder="Quantity"]
+	if {TGO.player_inventory.add_item(Dialogic.VAR.UserInputString, Dialogic.VAR.UserInputNum)} == true:
+		Sucessfully added {Dialogic.VAR.UserInputNum} {Dialogic.VAR.UserInputString} to player inventory
+	else:
+		Failed to add {Dialogic.VAR.UserInputNum} {Dialogic.VAR.UserInputString} to player inventory
+	jump Choices
+- Player Inventory remove_item
+	[text_input text="Enter item ID" var="UserInputString" placeholder="ID"]
+	[text_input text="Enter item count" var="UserInputNum" placeholder="Count"]
+	if {TGO.player_inventory.remove_item(Dialogic.VAR.UserInputString, Dialogic.VAR.UserInputNum)} == true:
+		Sucessfully removed {Dialogic.VAR.UserInputNum} {Dialogic.VAR.UserInputString}
+	else:
+		Failed to remove {Dialogic.VAR.UserInputNum} {Dialogic.VAR.UserInputString}
+	jump Choices
+- Player Inventory has_room
+	[text_input text="Enter item ID" var="UserInputString" placeholder="ID"]
+	[text_input text="Enter item count" var="UserInputNum" placeholder="Count"]
+	if {TGO.player_inventory.has_room(Dialogic.VAR.UserInputString, Dialogic.VAR.UserInputNum)} == true:
+		Inventory has room for {Dialogic.VAR.UserInputNum} {Dialogic.VAR.UserInputString}
+	else:
+		Inventory does not have room for {Dialogic.VAR.UserInputNum} {Dialogic.VAR.UserInputString}
+	jump Choices
+
+- Quest Check
+	if {TGO.quest("Temp").is_finished()} == true:
+		Sucess
+	else:
+		Fail
+	jump Choices
+- End Dialogic Debugging

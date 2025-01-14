@@ -62,6 +62,17 @@ func insert(new_item: ItemStack) -> bool:
 func _can_grow(delta: int = 1) -> bool:
 	return size == -1 || (_items.size() + delta) <= size
 
+func _has_room(item: ItemStack) -> bool:
+	var new_stacks: int = 1
+	for slot in _items:
+		if slot.can_stack(item):
+			new_stacks = 0
+			break
+
+		if slot.can_partially_stack(item):
+			new_stacks = 1
+			break
+	return _can_grow(new_stacks)
 
 func remove_by_id(item_id: String, count: int = 1) -> bool:
 	if not has_item_by_id(item_id):
