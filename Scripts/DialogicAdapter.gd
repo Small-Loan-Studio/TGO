@@ -14,11 +14,10 @@ class InventoryAdapter:
 
 	var _id: String
 	var _item_dict: Dictionary = {}
-
+	
 	func update_inv_options() -> void:
 		#Loads configured items into item dictionary
 		_item_dict.clear()
-
 		var dir := DirAccess.open(ITEM_PATH)
 		if dir == null:
 			printerr("Failed to open item resource path:", DirAccess.get_open_error())
@@ -95,11 +94,11 @@ class InventoryAdapter:
 		var item_stack := ItemStack.new()
 		item_stack.item = item
 		item_stack.quantity = count
-		return inv._has_room(item_stack)
+		return inv.has_room(item_stack)
 
 class QuestAdapter:
 	var _id: String
-	
+
 	func _init(id: String) -> void:
 		_id = id
 
