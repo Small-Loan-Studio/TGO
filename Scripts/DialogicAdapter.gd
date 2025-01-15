@@ -14,7 +14,7 @@ class InventoryAdapter:
 
 	var _id: String
 	var _item_dict: Dictionary = {}
-	
+
 	func update_inv_options() -> void:
 		#Loads configured items into item dictionary
 		_item_dict.clear()
@@ -37,7 +37,7 @@ class InventoryAdapter:
 		_id = id
 		update_inv_options()
 
-	func has(item_name: String, count: int = 1) -> bool:
+	func has(item_name: String, count: int) -> bool:
 		# TODO(envy): file issue that will validate item_name as a real item id
 		var inv := Driver.instance().inventory_mgr.get_inventory(_id)
 		if count == 1:
