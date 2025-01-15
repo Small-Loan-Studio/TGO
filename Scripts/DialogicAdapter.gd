@@ -6,6 +6,9 @@ static var player_inventory := InventoryAdapter.new(Utils.PLAYER_ID)
 static func character_inventory(name: String) -> InventoryAdapter:
 	return InventoryAdapter.new(name)
 
+static func quest(quest_id: String) -> QuestAdapter:
+	return QuestAdapter.new(quest_id)
+
 class InventoryAdapter:
 	const ITEM_PATH = "res://Scripts/Resources/Items"
 
@@ -94,26 +97,32 @@ class InventoryAdapter:
 		item_stack.quantity = count
 		return inv._has_room(item_stack)
 
-class quest:
+class QuestAdapter:
 	var _id: String
 	
 	func _init(id: String) -> void:
 		_id = id
 
 	func is_finished() -> bool:
-		return true
+		var qst := Driver.instance().quest_mgr.quest_by_id(_id)
+		return qst.is_finished()
 
 	func is_completed() -> bool:
-		return false
+		var qst := Driver.instance().quest_mgr.quest_by_id(_id)
+		return qst.state == Enums.QuestState.COMPLETED
 
 	func is_failed() -> bool:
-		return false
+		var qst := Driver.instance().quest_mgr.quest_by_id(_id)
+		return qst.state == Enums.QuestState.FAILED
 
 	func start() -> bool:
-		return false
+		var qst := Driver.instance().quest_mgr.quest_by_id(_id)
+		return qst.mark_active()
 
 	func complete() -> bool:
-		return false
+		var qst := Driver.instance().quest_mgr.quest_by_id(_id)
+		return qst.mark_completed()
 
 	func fail() -> bool:
-		return false
+		var qst := Driver.instance().quest_mgr.quest_by_id(_id)
+		return qst.mark_failed()
