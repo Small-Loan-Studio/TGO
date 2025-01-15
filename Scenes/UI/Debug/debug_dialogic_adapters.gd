@@ -1,9 +1,6 @@
 class_name DebugDialogicAdapters
 extends HBoxContainer
 
-## Pressing debug should start a dialogic path that lets you test
-## the adapters functions. After starting, button should change
-## to let you end the dialog and go back
 var _debug_active: bool = false
 @onready var _button: Button = $Button
 
