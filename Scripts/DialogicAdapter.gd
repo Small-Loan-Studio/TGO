@@ -42,7 +42,7 @@ class InventoryAdapter:
 		var inv := Driver.instance().inventory_mgr.get_inventory(_id)
 		if count == 1:
 			return inv.has_item_by_id(item_name)
-		elif inv.count_item_by_id(item_name) == count:
+		if inv.count_item_by_id(item_name) == count:
 			return true
 		return false
 
