@@ -58,6 +58,7 @@ func insert(new_item: ItemStack) -> bool:
 
 	return inserted
 
+
 func _can_grow(delta: int = 1) -> bool:
 	return size == -1 || (_items.size() + delta) <= size
 

@@ -6,7 +6,7 @@ var _debug_active: bool = false
 
 
 func toggle_dialog() -> void:
-	if(_debug_active):
+	if _debug_active:
 		printerr("Unable to begin debugging")
 	Dialogic.timeline_ended.connect(_on_timeline_ended)
 	_debug_active = true
