@@ -42,11 +42,9 @@ class InventoryAdapter:
 		var inv := Driver.instance().inventory_mgr.get_inventory(_id)
 		if count == 1:
 			return inv.has_item_by_id(item_name)
-		else:
-			if inv.count_item_by_id(item_name) == count:
-				return true
-			else:
-				return false
+		elif inv.count_item_by_id(item_name) == count:
+			return true
+		return false
 
 	func add_item(item_id: String, count: int = 1) -> bool:
 		var inv := Driver.instance().inventory_mgr.get_inventory(_id)
