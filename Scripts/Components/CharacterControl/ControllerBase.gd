@@ -30,3 +30,11 @@ func get_just_released() -> Array[Enums.InputAction]:
 func get_button_released() -> Array[Enums.InputAction]:
 	printerr("Using unimplemented code from base clase")
 	return []
+
+
+func just_pressed(action: Enums.InputAction) -> bool:
+	return action in get_just_pressed()
+
+
+func just_released(action: Enums.InputAction) -> bool:
+	return action in get_just_released()

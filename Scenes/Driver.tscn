@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=3 uid="uid://d4cnh54npmjiv"]
+[gd_scene load_steps=22 format=3 uid="uid://d4cnh54npmjiv"]
 
 [ext_resource type="Script" path="res://Scripts/Driver.gd" id="1_agcjs"]
 [ext_resource type="Script" path="res://Scripts/AudioManager.gd" id="2_4seev"]
@@ -8,6 +8,7 @@
 [ext_resource type="Script" path="res://Scripts/UI/HUD.gd" id="4_kq6n3"]
 [ext_resource type="PackedScene" uid="uid://mqvl5162rawb" path="res://Scenes/Devin.tscn" id="6_gmy4s"]
 [ext_resource type="Script" path="res://Scripts/Components/Inventory/InventoryManager.gd" id="6_na5am"]
+[ext_resource type="PackedScene" uid="uid://g47folm6bh5u" path="res://Scenes/Menu/InGameOverlay.tscn" id="6_oncv5"]
 [ext_resource type="PackedScene" uid="uid://dukcf64qxy46o" path="res://Scenes/UI/Debug/Inventory.tscn" id="7_3yw60"]
 [ext_resource type="PackedScene" uid="uid://dqrxejwlgxsgu" path="res://Scenes/UI/Debug/QuestTracker.tscn" id="8_8e3e0"]
 [ext_resource type="Script" path="res://Scripts/Components/Quests/QuestManager.gd" id="9_4hdkn"]
@@ -23,6 +24,7 @@
 
 [node name="Driver" type="Node2D"]
 script = ExtResource("1_agcjs")
+autoload_scene_name = "BadLevelA"
 
 [node name="AudioManager" type="Node" parent="."]
 script = ExtResource("2_4seev")
@@ -54,6 +56,7 @@ grow_vertical = 2
 script = ExtResource("3_h1ccd")
 
 [node name="DebugMenu" parent="OverlayManager/MenuManager" instance=ExtResource("3_i7nbg")]
+visible = false
 layout_mode = 1
 anchors_preset = -1
 anchor_top = 0.5
@@ -63,6 +66,10 @@ offset_top = -1.0
 offset_right = -300.0
 offset_bottom = -1.0
 size_flags_horizontal = 4
+
+[node name="InGameOverlay" parent="OverlayManager/MenuManager" instance=ExtResource("6_oncv5")]
+visible = false
+layout_mode = 1
 
 [node name="HUD" type="Control" parent="OverlayManager"]
 visible = false
@@ -210,8 +217,6 @@ y_sort_enabled = true
 unique_name_in_owner = true
 visible = false
 position = Vector2(0, 0)
-_debug_draw_origin = false
-activate_external_sensors = true
 
 [node name="Camera2D" type="Camera2D" parent="GameWorld/Devin"]
 

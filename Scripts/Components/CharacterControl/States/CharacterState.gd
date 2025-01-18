@@ -2,6 +2,7 @@ class_name CharacterState
 extends State
 
 @export var interact_state: State
+@export var menu_state: State
 
 var _ctx: StateMachine.CharacterContext
 var _animated_sprite: AnimatedSprite2D
@@ -28,3 +29,14 @@ func maybe_interact() -> bool:
 		return true
 
 	return false
+
+func maybe_menu() -> bool:
+	var just_pressed := _ctx.controller.get_just_pressed()
+	if menu_state == null || !_ctx.controller.just_pressed(Enums.InputAction.MENU):
+		return false
+
+	_state_machine.queue_state_change(
+		menu_state,
+		menu_state.mk_args(Enums.MenuType.GAMEPLAY),
+	)
+	return true

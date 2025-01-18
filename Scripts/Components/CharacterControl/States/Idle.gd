@@ -9,15 +9,15 @@ func _local_setup() -> void:
 	_animated_sprite = _ctx.character._sprite
 
 
-func run_input(_event: InputEvent) -> void:
-	maybe_interact()
-
-
 func enter(_ctx: Variant) -> void:
 	if _animation_name != "":
 		_animated_sprite.play(_animation_name)
 	else:
 		_animated_sprite.stop()
+
+
+func run_input(_event: InputEvent) -> void:
+	maybe_menu() ||	maybe_interact()
 
 
 func run_tick(_delta: float) -> void:

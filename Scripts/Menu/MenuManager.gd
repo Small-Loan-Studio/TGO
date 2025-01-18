@@ -2,6 +2,7 @@ class_name MenuManager
 extends Control
 
 @onready var _debug_menu := $DebugMenu
+@onready var _gameplay := $InGameOverlay
 
 
 func _ready() -> void:
@@ -16,6 +17,8 @@ func _get_menu(typ: Enums.MenuType) -> Node2D:
 		Enums.MenuType.NONE:
 			printerr("Requesting NONE menu, this is likely a mistake")
 			return null
+		Enums.MenuType.GAMEPLAY:
+			return _gameplay
 		_:
 			assert(false, "Bad menu type provided: " + str(typ))
 	return null

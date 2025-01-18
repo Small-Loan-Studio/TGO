@@ -73,6 +73,7 @@ func _ready() -> void:
 				[
 					Enums.InputAction.INTERACT,
 					Enums.InputAction.SPRINT,
+					Enums.InputAction.MENU,
 				],
 			)
 		)

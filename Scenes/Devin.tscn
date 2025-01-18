@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://mqvl5162rawb"]
+[gd_scene load_steps=13 format=3 uid="uid://mqvl5162rawb"]
 
 [ext_resource type="Script" path="res://Scripts/Devin.gd" id="1_coq4s"]
 [ext_resource type="PackedScene" uid="uid://cx703e8t27grh" path="res://Scenes/Components/Character.tscn" id="1_kp6oq"]
@@ -9,6 +9,7 @@
 [ext_resource type="Script" path="res://Scripts/Components/CharacterControl/States/PushPull.gd" id="7_wksnu"]
 [ext_resource type="Script" path="res://Scripts/Components/CharacterControl/InputController.gd" id="8_1w5au"]
 [ext_resource type="Script" path="res://Scripts/Components/CharacterControl/States/Sprint.gd" id="8_ii0li"]
+[ext_resource type="Script" path="res://Scripts/Components/CharacterControl/States/Menu.gd" id="9_ac1aa"]
 [ext_resource type="Script" path="res://Scripts/Resources/CharacterStat.gd" id="9_fybv6"]
 
 [sub_resource type="Resource" id="Resource_b1u10"]
@@ -30,10 +31,11 @@ animation = &"east"
 [node name="StateMachine" parent="." index="3" node_paths=PackedStringArray("_initial_state")]
 _initial_state = NodePath("Idle")
 
-[node name="Idle" type="Node" parent="StateMachine" index="0" node_paths=PackedStringArray("walk_state", "interact_state")]
+[node name="Idle" type="Node" parent="StateMachine" index="0" node_paths=PackedStringArray("walk_state", "interact_state", "menu_state")]
 script = ExtResource("4_3ac8w")
 walk_state = NodePath("../Walk")
 interact_state = NodePath("../Interact")
+menu_state = NodePath("../Menu")
 
 [node name="Walk" type="Node" parent="StateMachine" index="1" node_paths=PackedStringArray("idle_state", "sprint_state", "interact_state")]
 script = ExtResource("5_uh8u1")
@@ -58,6 +60,10 @@ script = ExtResource("8_ii0li")
 idle_state = NodePath("../Idle")
 walk_state = NodePath("../Walk")
 move_speed = 260
+
+[node name="Menu" type="Node" parent="StateMachine" index="5" node_paths=PackedStringArray("idle_state")]
+script = ExtResource("9_ac1aa")
+idle_state = NodePath("../Idle")
 
 [node name="InputController" type="Node" parent="." index="4"]
 script = ExtResource("8_1w5au")

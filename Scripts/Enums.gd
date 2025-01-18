@@ -38,6 +38,7 @@ enum InputAction {
 	RIGHT,
 	INTERACT,
 	SPRINT,
+	MENU,
 }
 
 enum LightLevel {
@@ -47,7 +48,11 @@ enum LightLevel {
 	SPECIAL,
 }
 
-enum MenuType { NONE, DEBUG }
+enum MenuType {
+	NONE,
+	DEBUG,
+	GAMEPLAY,
+}
 
 enum AudioTrack {
 	NONE,
@@ -179,6 +184,8 @@ static func input_action_name(ia: InputAction) -> String:
 			return "interact"
 		InputAction.SPRINT:
 			return "sprint"
+		InputAction.MENU:
+			return "load_menu"
 	assert(false, "Invalid Input action: " + str(ia))
 	return ""
 
