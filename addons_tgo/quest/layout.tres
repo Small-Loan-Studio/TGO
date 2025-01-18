@@ -4,9 +4,9 @@
 
 [resource]
 script = ExtResource("1_cbpjs")
-scroll_offset = Vector2(-475, 61)
+zoom = 0.683013
+scroll_offset = Vector2(-679.962, 9)
 positions = {
-"aoeu1234": Vector2(-320, 200),
 "other-quest": Vector2(-70, 140),
 "phase-parent-test": Vector2(-120, 360),
 "quest": Vector2(190, 130),

@@ -119,6 +119,7 @@ layout_mode = 2
 text = "Create"
 
 [connection signal="resized" from="." to="." method="_on_resized"]
+[connection signal="visibility_changed" from="." to="." method="_on_visibility_changed"]
 [connection signal="pressed" from="VBoxContainer/HBoxContainer/Button" to="VBoxContainer/HSplitContainer/QuestGraphEdit" method="full_reset"]
 [connection signal="dragged" from="VBoxContainer/HSplitContainer" to="." method="_adjust_main_panel_ratio"]
 [connection signal="connection_request" from="VBoxContainer/HSplitContainer/QuestGraphEdit" to="VBoxContainer/HSplitContainer/QuestGraphEdit" method="_on_connect_request"]
