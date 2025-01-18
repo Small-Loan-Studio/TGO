@@ -48,7 +48,7 @@ func _ready() -> void:
 
 	var load_layout := Button.new()
 	load_layout.text = "Load Layout"
-	load_layout.pressed.connect(_do_layout)
+	load_layout.pressed.connect(do_layout)
 	hbox.add_child(load_layout)
 
 	_global_errs = _refresh_quests()
@@ -105,18 +105,19 @@ func _setup() -> void:
 	for qn: QuestNode in to_sync:
 		qn.setup(_editor, self)
 
-	_do_layout()
+	do_layout()
 
 
 # checks teh resource path for a saved layout and use it if found.
 # if none exists, and for nodes that are not included uses the default
 # algo
-func _do_layout() -> void:
+func do_layout() -> void:
 	var layout := QuestLayout.load()
 	var positions_dict := {}
 	var last_offset := Vector2(0, 0)
 
 	if layout != null:
+		zoom = layout.zoom
 		positions_dict = layout.positions
 		last_offset = layout.scroll_offset
 
@@ -144,7 +145,7 @@ func _save_layout() -> void:
 	for c in get_children():
 		if c is QuestNode:
 			nodes.append(c)
-	QuestLayout.save(scroll_offset, nodes)
+	QuestLayout.save(zoom, scroll_offset, nodes)
 
 
 func _force_sync_edits() -> void:
@@ -337,7 +338,7 @@ func _on_connection_to_empty(
 	var node := QuestNode.from_quest(q)
 	add_child(node)
 	node.setup(_editor, self)
-	node.set_position_offset(release_position)
+	node.set_position_offset((scroll_offset + release_position) / zoom)
 
 	get_node(str(from_node)).connect_quest(node, from_port)
 
