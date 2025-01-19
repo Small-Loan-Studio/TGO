@@ -60,9 +60,36 @@ func _unhandled_input(event: InputEvent) -> void:
 	process_input(event)
 
 
-func process_input(_event: InputEvent) -> void:
+func process_input(event: InputEvent) -> void:
 	if !_setup:
 		return
+
+	# headed toward debounce
+	# _dir_vector = _input.get_vector(
+	# 		_movement[DIR_NEG_X],
+	# 		_movement[DIR_POS_X],
+	# 		_movement[DIR_NEG_Y],
+	# 		_movement[DIR_POS_Y],
+	# 		deadzone
+	# )
+	# _dir_vector = _dir_vector.normalized()
+
+	# if _dir_vector.length() < deadzone:
+	# 		_dir_vector = Vector2.ZERO
+
+	# var str := ""
+	# for action_name: String in _action_state:
+	# 	str += "%s, " % [event.is_action_pressed(action_name)]
+	# 	var action_state: ActionState = _action_state.get(action_name)
+	# 	if event.is_action_pressed(action_name):
+	# 		if action_state.state == UNPRESSED:
+	# 			action_state.state = JUST_PRESSED
+	# 		else:
+	# 			action_state.state = PRESSED
+	# 	elif event.is_action_released(action_name):
+	# 		action_state.state = JUST_RELEASED
+	# 	else:
+	# 				action_state.state = UNPRESSED
 
 	_dir_vector = _input.get_vector(
 		_movement[DIR_NEG_X],

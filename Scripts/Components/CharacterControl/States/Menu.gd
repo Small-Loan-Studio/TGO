@@ -10,7 +10,12 @@ func enter(_ctx: Variant) -> void:
 
 
 func run_input(_event: InputEvent) -> void:
+  if _event is InputEventJoypadButton:
+    print("Menu.run_input(%s)" % [_event])
+
   var just_pressed := _ctx.controller.get_just_pressed()
+  print("    ", just_pressed)
+
   if _ctx.controller.just_pressed(Enums.InputAction.MENU):
     _state_machine.queue_state_change(idle_state)
 

@@ -33,6 +33,7 @@ func get_button_released() -> Array[Enums.InputAction]:
 
 
 func just_pressed(action: Enums.InputAction) -> bool:
+	print("checking: ", get_just_pressed())
 	return action in get_just_pressed()
 
 
