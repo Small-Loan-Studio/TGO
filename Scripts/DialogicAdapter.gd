@@ -3,7 +3,6 @@ extends Node
 
 static var player_inventory := InventoryAdapter.new(Utils.PLAYER_ID)
 
-
 static func character_inventory(name: String) -> InventoryAdapter:
 	return InventoryAdapter.new(name)
 
@@ -13,37 +12,35 @@ static func quest(quest_id: String) -> QuestAdapter:
 
 
 class InventoryAdapter:
-	const ITEM_PATH = "res://Scripts/Resources/Items"
-
 	var _id: String
-	var _item_dict: Dictionary = {}
+	static var _item_dict_loaded: bool = false
+	static var _item_dict: Dictionary = {}
 
-	func update_inv_options() -> void:
-		#Loads configured items into item dictionary
-		_item_dict.clear()
-		var dir := DirAccess.open(ITEM_PATH)
-		if dir == null:
-			printerr("Failed to open item resource path:", DirAccess.get_open_error())
-			return
-		dir.list_dir_begin()
-		var item_file := dir.get_next()
-		# walks the Item resource path and gets the configured resources
-		while item_file != "":
-			if item_file.ends_with(".tres"):
-				var config := ResourceLoader.load(ITEM_PATH + "/" + item_file) as Item
-				if config != null:
-					var key := config.id
-					_item_dict[key] = config
-			item_file = dir.get_next()
+	func fill_item_dict() -> Dictionary:
+		if _item_dict_loaded:
+			#print("Item dictionary already exists")
+			return _item_dict
+		#print("Item dict does not exist")
+
+		var paths  := Utils.walk_directory(Item.ITEM_PATH, func(s: String) -> bool: return s.ends_with(".tres"))
+		var temp_dict : Dictionary
+
+		for p in paths:
+			var item := ResourceLoader.load(Item.ITEM_PATH.path_join(p)) as Item
+			if item != null:
+				temp_dict[item.id] = item
+		_item_dict_loaded = true
+		return temp_dict
+
 
 	func _init(id: String) -> void:
 		_id = id
-		update_inv_options()
+		_item_dict = fill_item_dict()
 
-	func has(item_name: String, count: int) -> bool:
+	func has(item_name: String, count: int = -1) -> bool:
 		# TODO(envy): file issue that will validate item_name as a real item id
 		var inv := Driver.instance().inventory_mgr.get_inventory(_id)
-		if count == 1:
+		if count == -1:
 			return inv.has_item_by_id(item_name)
 		if inv.count_item_by_id(item_name) == count:
 			return true

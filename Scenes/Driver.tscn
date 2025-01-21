@@ -141,6 +141,7 @@ focus_mode = 0
 text = "Output Changes"
 
 [node name="DebugDialogicAdapters" parent="OverlayManager/HUD/DebugStack" instance=ExtResource("13_bn7mq")]
+visible = false
 layout_mode = 2
 
 [node name="Toast" type="ColorRect" parent="OverlayManager/HUD"]
