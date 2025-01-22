@@ -3,6 +3,7 @@ extends Node
 
 static var player_inventory := InventoryAdapter.new(Utils.PLAYER_ID)
 
+
 static func character_inventory(name: String) -> InventoryAdapter:
 	return InventoryAdapter.new(name)
 
@@ -12,30 +13,24 @@ static func quest(quest_id: String) -> QuestAdapter:
 
 
 class InventoryAdapter:
+	
 	var _id: String
-	static var _item_dict_loaded: bool = false
 	static var _item_dict: Dictionary = {}
 
-	func fill_item_dict() -> Dictionary:
-		if _item_dict_loaded:
-			#print("Item dictionary already exists")
-			return _item_dict
-		#print("Item dict does not exist")
 
+	static func _static_init() -> void:
 		var paths  := Utils.walk_directory(Item.ITEM_PATH, func(s: String) -> bool: return s.ends_with(".tres"))
-		var temp_dict : Dictionary
 
 		for p in paths:
 			var item := ResourceLoader.load(Item.ITEM_PATH.path_join(p)) as Item
 			if item != null:
-				temp_dict[item.id] = item
-		_item_dict_loaded = true
-		return temp_dict
+				_item_dict[item.id] = item
+				pass
 
 
 	func _init(id: String) -> void:
 		_id = id
-		_item_dict = fill_item_dict()
+
 
 	func has(item_name: String, count: int = -1) -> bool:
 		# TODO(envy): file issue that will validate item_name as a real item id
