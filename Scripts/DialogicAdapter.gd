@@ -13,23 +13,23 @@ static func quest(quest_id: String) -> QuestAdapter:
 
 
 class InventoryAdapter:
-	
-	var _id: String
+
 	static var _item_dict: Dictionary = {}
+	var _id: String
+
+
+	func _init(id: String) -> void:
+		_id = id
 
 
 	static func _static_init() -> void:
-		var paths  := Utils.walk_directory(Item.ITEM_PATH, func(s: String) -> bool: return s.ends_with(".tres"))
+		var paths  := Utils.walk_directory(Item.ITEM_PATH, 
+		func(s: String) -> bool: return s.ends_with(".tres"))
 
 		for p in paths:
 			var item := ResourceLoader.load(Item.ITEM_PATH.path_join(p)) as Item
 			if item != null:
 				_item_dict[item.id] = item
-				pass
-
-
-	func _init(id: String) -> void:
-		_id = id
 
 
 	func has(item_name: String, count: int = -1) -> bool:
