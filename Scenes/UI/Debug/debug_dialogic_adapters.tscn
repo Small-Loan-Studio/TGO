@@ -1,0 +1,15 @@
+[gd_scene load_steps=2 format=3 uid="uid://dk572i6hv5rqn"]
+
+[ext_resource type="Script" path="res://Scenes/UI/Debug/debug_dialogic_adapters.gd" id="1_rd0kh"]
+
+[node name="DebugDialogicAdapters" type="HBoxContainer"]
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("1_rd0kh")
+
+[node name="Button" type="Button" parent="."]
+layout_mode = 2
+focus_mode = 0
+text = "Debug Dialogic"
+
+[connection signal="pressed" from="Button" to="." method="toggle_dialog"]

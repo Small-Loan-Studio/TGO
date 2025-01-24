@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=3 uid="uid://d4cnh54npmjiv"]
+[gd_scene load_steps=22 format=3 uid="uid://d4cnh54npmjiv"]
 
 [ext_resource type="Script" path="res://Scripts/Driver.gd" id="1_agcjs"]
 [ext_resource type="Script" path="res://Scripts/AudioManager.gd" id="2_4seev"]
@@ -17,6 +17,7 @@
 [ext_resource type="PackedScene" uid="uid://dyuykg87w5vff" path="res://Scenes/UI/Debug/devin_light_control.tscn" id="11_igd87"]
 [ext_resource type="PackedScene" uid="uid://cqin6fb282fjf" path="res://Scenes/Components/DayNightCycle.tscn" id="12_8kqo6"]
 [ext_resource type="PackedScene" uid="uid://bwx0yr616ip1g" path="res://Scenes/UI/Debug/debug_inventory.tscn" id="12_w3otq"]
+[ext_resource type="PackedScene" uid="uid://dk572i6hv5rqn" path="res://Scenes/UI/Debug/debug_dialogic_adapters.tscn" id="13_bn7mq"]
 [ext_resource type="Script" path="res://Scenes/UI/Debug/DevinStateReport.gd" id="13_gfaub"]
 [ext_resource type="PackedScene" uid="uid://b13wrl3bedjku" path="res://Scenes/Components/Torch.tscn" id="13_kgcxt"]
 [ext_resource type="Script" path="res://Scenes/UI/Debug/StatLabel.gd" id="14_feb7v"]
@@ -139,6 +140,10 @@ layout_mode = 2
 focus_mode = 0
 text = "Output Changes"
 
+[node name="DebugDialogicAdapters" parent="OverlayManager/HUD/DebugStack" instance=ExtResource("13_bn7mq")]
+visible = false
+layout_mode = 2
+
 [node name="Toast" type="ColorRect" parent="OverlayManager/HUD"]
 unique_name_in_owner = true
 visible = false
@@ -210,8 +215,6 @@ y_sort_enabled = true
 unique_name_in_owner = true
 visible = false
 position = Vector2(0, 0)
-_debug_draw_origin = false
-activate_external_sensors = true
 
 [node name="Camera2D" type="Camera2D" parent="GameWorld/Devin"]
 
