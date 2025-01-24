@@ -1,0 +1,89 @@
+Testing Dialog
+label Choices
+- Inventory 
+	label InventoryChoices
+	- Player Inventory .has
+		[text_input text="Enter item ID" var="UserInputString" placeholder="ID"]
+		[text_input text="Enter item count" var="UserInputNum" placeholder="Count"]
+		if {TGO.player_inventory.has(Dialogic.VAR.UserInputString, Dialogic.VAR.UserInputNum)} == true:
+			{Dialogic.VAR.UserInputNum} {Dialogic.VAR.UserInputString} is/are in inventory
+		else:
+			{Dialogic.VAR.UserInputNum} {Dialogic.VAR.UserInputString} is/are not in inventory
+		jump InventoryChoices
+	- Player Inventory add_item
+		[text_input text="Enter item ID" var="UserInputString" placeholder="ID"]
+		[text_input text="Enter item quantity" var="UserInputNum" placeholder="Quantity"]
+		if {TGO.player_inventory.add_item(Dialogic.VAR.UserInputString, Dialogic.VAR.UserInputNum)} == true:
+			Sucessfully added {Dialogic.VAR.UserInputNum} {Dialogic.VAR.UserInputString} to player inventory
+		else:
+			Failed to add {Dialogic.VAR.UserInputNum} {Dialogic.VAR.UserInputString} to player inventory
+		jump InventoryChoices
+
+	- Player Inventory remove_item
+		[text_input text="Enter item ID" var="UserInputString" placeholder="ID"]
+		[text_input text="Enter item count" var="UserInputNum" placeholder="Count"]
+		if {TGO.player_inventory.remove_item(Dialogic.VAR.UserInputString, Dialogic.VAR.UserInputNum)} == true:
+			Sucessfully removed {Dialogic.VAR.UserInputNum} {Dialogic.VAR.UserInputString}
+		else:
+			Failed to remove {Dialogic.VAR.UserInputNum} {Dialogic.VAR.UserInputString}
+		jump InventoryChoices
+
+	- Player Inventory has_room
+		[text_input text="Enter item ID" var="UserInputString" placeholder="ID"]
+		[text_input text="Enter item count" var="UserInputNum" placeholder="Count"]
+		if {TGO.player_inventory.has_room(Dialogic.VAR.UserInputString, Dialogic.VAR.UserInputNum)} == true:
+			Inventory has room for {Dialogic.VAR.UserInputNum} {Dialogic.VAR.UserInputString}
+		else:
+			Inventory does not have room for {Dialogic.VAR.UserInputNum} {Dialogic.VAR.UserInputString}
+		jump InventoryChoices
+	- Back
+		jump Choices
+- Quest
+	label QuestChoices
+	- Quest is_finished
+		[text_input text="Enter quest ID" var="UserInputString" placeholder="ID"]
+		if {TGO.quest(Dialogic.VAR.UserInputString).is_finished()} == true:
+			{Dialogic.VAR.UserInputString} is finished
+		else:
+			{Dialogic.VAR.UserInputString} is not finished
+		jump QuestChoices
+	- Quest is_failed
+		[text_input text="Enter quest ID" var="UserInputString" placeholder="ID"]
+		if {TGO.quest(Dialogic.VAR.UserInputString).is_failed()} == true:
+			{Dialogic.VAR.UserInputString} was failed
+		else:
+			{Dialogic.VAR.UserInputString} is not currently failed
+		jump QuestChoices
+	- Quest is_completed
+		[text_input text="Enter quest ID" var="UserInputString" placeholder="ID"]
+		if {TGO.quest(Dialogic.VAR.UserInputString).is_completed()} == true:
+			{Dialogic.VAR.UserInputString} is complete
+		else:
+			{Dialogic.VAR.UserInputString} is not complete
+		jump QuestChoices
+	- Quest start
+		[text_input text="Enter quest ID" var="UserInputString" placeholder="ID"]
+		if {TGO.quest(Dialogic.VAR.UserInputString).start()} == true:
+			{Dialogic.VAR.UserInputString} was started
+		else:
+			{Dialogic.VAR.UserInputString} failed to start
+		jump QuestChoices
+	- Quest complete
+		[text_input text="Enter quest ID" var="UserInputString" placeholder="ID"]
+		if {TGO.quest(Dialogic.VAR.UserInputString).complete()} == true:
+			{Dialogic.VAR.UserInputString} was marked as complete
+		else:
+			{Dialogic.VAR.UserInputString} could not be marked as complete
+		jump QuestChoices
+	- Quest fail
+		[text_input text="Enter quest ID" var="UserInputString" placeholder="ID"]
+		if {TGO.quest(Dialogic.VAR.UserInputString).fail()} == true:
+			{Dialogic.VAR.UserInputString} was marked as failed
+		else:
+			{Dialogic.VAR.UserInputString} could not be marked as failed
+		jump QuestChoices
+	- Back
+		jump Choices
+
+- End Debug
+
