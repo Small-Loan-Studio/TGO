@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=3 uid="uid://d4cnh54npmjiv"]
+[gd_scene load_steps=23 format=3 uid="uid://d4cnh54npmjiv"]
 
 [ext_resource type="Script" path="res://Scripts/Driver.gd" id="1_agcjs"]
 [ext_resource type="Script" path="res://Scripts/AudioManager.gd" id="2_4seev"]
@@ -217,6 +217,7 @@ script = ExtResource("9_4hdkn")
 y_sort_enabled = true
 
 [node name="DayNightOverlay" parent="GameWorld" instance=ExtResource("12_8kqo6")]
+day_length_seconds = 50
 
 [node name="Devin" parent="GameWorld" instance=ExtResource("6_gmy4s")]
 unique_name_in_owner = true

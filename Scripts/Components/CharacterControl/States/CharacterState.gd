@@ -32,7 +32,6 @@ func maybe_interact() -> bool:
 
 func maybe_menu() -> bool:
 	var just_pressed := _ctx.controller.get_just_pressed()
-	print("just_pressed: ", just_pressed)
 	if menu_state == null || !_ctx.controller.just_pressed(Enums.InputAction.MENU):
 		return false
 
