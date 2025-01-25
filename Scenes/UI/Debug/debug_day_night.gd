@@ -9,11 +9,11 @@ var _dncycle: DayNightCycle
 
 func setup(dnc: DayNightCycle) -> void:
 	_dncycle = dnc
-	_dncycle.clock.time_changed.connect(_on_time_change)
+	_dncycle.time_changed.connect(_on_time_change)
 
 
 func _on_time_change() -> void:
-	_clock.text = "HR: %02d" % [_dncycle.clock.get_current_time()]
+	_clock.text = "HR: %s" % [_dncycle.time_str()]
 
 
 func _on_pause_pressed() -> void:
@@ -26,12 +26,12 @@ func _on_pause_pressed() -> void:
 
 
 func _on_day_pressed() -> void:
-	_dncycle.set_hour(_dncycle.day_start)
+	_dncycle.set_hour(_dncycle.day_start_h, true)
 
 
 func _on_dusk_pressed() -> void:
-	_dncycle.set_hour(_dncycle.dusk_start)
+	_dncycle.set_hour(_dncycle.dusk_start_h, true)
 
 
 func _on_night_pressed() -> void:
-	_dncycle.set_hour(_dncycle.night_start)
+	_dncycle.set_hour(_dncycle.night_start_h, true)

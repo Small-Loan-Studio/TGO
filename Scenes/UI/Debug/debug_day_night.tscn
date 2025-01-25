@@ -8,7 +8,8 @@ script = ExtResource("1_rbikb")
 [node name="PauseTime" type="Button" parent="."]
 layout_mode = 2
 focus_mode = 0
-text = "Pause Time"
+toggle_mode = true
+text = "Unpause"
 
 [node name="Clock" type="Label" parent="."]
 layout_mode = 2

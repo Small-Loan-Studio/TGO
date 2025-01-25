@@ -3,8 +3,9 @@ extends Node
 
 signal time_changed
 
-# time of a day, in seconds
+## time of a day, in seconds
 @export var length_of_day: int = 50
+
 var length_of_hour: int = length_of_day / 24
 
 # keep track of current time
