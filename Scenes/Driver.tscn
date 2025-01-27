@@ -8,7 +8,7 @@
 [ext_resource type="Script" path="res://Scripts/UI/HUD.gd" id="4_kq6n3"]
 [ext_resource type="PackedScene" uid="uid://mqvl5162rawb" path="res://Scenes/Devin.tscn" id="6_gmy4s"]
 [ext_resource type="Script" path="res://Scripts/Components/Inventory/InventoryManager.gd" id="6_na5am"]
-[ext_resource type="PackedScene" uid="uid://g47folm6bh5u" path="res://Scenes/Menu/InGameOverlay.tscn" id="6_oncv5"]
+[ext_resource type="PackedScene" uid="uid://g47folm6bh5u" path="res://Scenes/Menu/AudioSettings.tscn" id="6_oncv5"]
 [ext_resource type="PackedScene" uid="uid://dukcf64qxy46o" path="res://Scenes/UI/Debug/Inventory.tscn" id="7_3yw60"]
 [ext_resource type="PackedScene" uid="uid://dqrxejwlgxsgu" path="res://Scenes/UI/Debug/QuestTracker.tscn" id="8_8e3e0"]
 [ext_resource type="Script" path="res://Scripts/Components/Quests/QuestManager.gd" id="9_4hdkn"]
@@ -28,6 +28,7 @@ script = ExtResource("1_agcjs")
 autoload_scene_name = "BadLevelA"
 
 [node name="AudioManager" type="Node" parent="."]
+process_mode = 3
 script = ExtResource("2_4seev")
 
 [node name="BGPlayer" type="AudioStreamPlayer2D" parent="AudioManager"]
@@ -48,6 +49,7 @@ color = Color(0, 0, 0, 1)
 script = ExtResource("2_gom2g")
 
 [node name="MenuManager" type="Control" parent="OverlayManager"]
+process_mode = 3
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -71,6 +73,7 @@ size_flags_horizontal = 4
 [node name="InGameOverlay" parent="OverlayManager/MenuManager" instance=ExtResource("6_oncv5")]
 visible = false
 layout_mode = 1
+menu_type = null
 
 [node name="HUD" type="Control" parent="OverlayManager"]
 visible = false
@@ -217,7 +220,7 @@ script = ExtResource("9_4hdkn")
 y_sort_enabled = true
 
 [node name="DayNightOverlay" parent="GameWorld" instance=ExtResource("12_8kqo6")]
-day_length_seconds = 50
+day_length_seconds = 900
 
 [node name="Devin" parent="GameWorld" instance=ExtResource("6_gmy4s")]
 unique_name_in_owner = true

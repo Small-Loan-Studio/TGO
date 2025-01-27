@@ -18,7 +18,7 @@ var _next_state_ctx: Variant = null
 
 
 func _ready() -> void:
-	print("Discovering states:")
+	print("%s Discovering states:" % [get_parent().name])
 	for c in get_children():
 		if c is State:
 			print("  - ", c.name)

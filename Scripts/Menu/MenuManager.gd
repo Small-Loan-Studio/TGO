@@ -1,16 +1,21 @@
 class_name MenuManager
 extends Control
 
-@onready var _debug_menu := $DebugMenu
-@onready var _gameplay := $InGameOverlay
+@onready var _debug_menu: Control = $DebugMenu
+@onready var _gameplay: Control = $InGameOverlay
 
 
 func _ready() -> void:
+	# TODO:....
+	#   - get all children
+	#   - validate menu API on each control
+	#   - build enum->control map
+	#   - alert on errors
 	for c in get_children():
 		c.visible = false
 
 
-func _get_menu(typ: Enums.MenuType) -> Node2D:
+func _get_menu(typ: Enums.MenuType) -> Menu:
 	match typ:
 		Enums.MenuType.DEBUG:
 			return _debug_menu
@@ -27,8 +32,13 @@ func _get_menu(typ: Enums.MenuType) -> Node2D:
 func hide_menu(menu_type: Enums.MenuType) -> void:
 	var menu := _get_menu(menu_type)
 	menu.visible = false
+	if menu.should_pause:
+		Driver.instance().pause(false)
 
 
-func show_menu(menu_type: Enums.MenuType) -> void:
+func show_menu(menu_type: Enums.MenuType) -> Menu:
 	var menu := _get_menu(menu_type)
-	menu.visible = true
+	menu.open_menu()
+	if menu.should_pause:
+		Driver.instance().pause()
+	return menu
