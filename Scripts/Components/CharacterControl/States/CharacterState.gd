@@ -30,13 +30,17 @@ func maybe_interact() -> bool:
 
 	return false
 
+
 func maybe_menu() -> bool:
 	var just_pressed := _ctx.controller.get_just_pressed()
 	if menu_state == null || !_ctx.controller.just_pressed(Enums.InputAction.MENU):
 		return false
 
-	_state_machine.queue_state_change(
-		menu_state,
-		menu_state.mk_args(Enums.MenuType.GAMEPLAY),
+	(
+		_state_machine
+		. queue_state_change(
+			menu_state,
+			menu_state.mk_args(Enums.MenuType.GAMEPLAY),
+		)
 	)
 	return true

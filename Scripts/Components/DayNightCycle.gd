@@ -28,7 +28,6 @@ var current_time: int:
 	get:
 		return _time.get_time()
 
-
 @onready var _modulate: CanvasModulate = $CanvasModulate
 
 var _time: DNClock
@@ -47,6 +46,7 @@ var _txn_wall_sec: int:
 @onready var dusk_start_s := DNClock.hms_to_sec(dusk_start_h, 0, 0)
 @onready var night_start_s := DNClock.hms_to_sec(night_start_h, 0, 0)
 
+
 func _ready() -> void:
 	_time = DNClock.new()
 	_time.set_time_hm(day_start_h, 0)
@@ -64,6 +64,7 @@ func _process(_delta: float) -> void:
 	# print(_timer.paused)
 	pass
 
+
 func setup(_driver: Driver) -> void:
 	pass
 
@@ -77,14 +78,14 @@ func _update_tick_time() -> void:
 func _day_segment() -> String:
 	var ts := _time.get_time()
 	if ts < dawn_start_s:
-		return 'night'
+		return "night"
 	if ts < day_start_s:
-		return 'dawn'
+		return "dawn"
 	if ts < dusk_start_s:
-		return 'day'
+		return "day"
 	if ts < night_start_s:
-		return 'dusk'
-	return 'night'
+		return "dusk"
+	return "night"
 
 
 func _get_target_color(time: int) -> Color:
@@ -120,6 +121,7 @@ func _begin_tween(immediate: bool = false) -> void:
 	_overlay_tween = get_tree().create_tween()
 	_overlay_tween.tween_property(_modulate, "color", tgt, tween_speed)
 
+
 func pause(should_pause: bool) -> void:
 	if should_pause:
 		_timer.paused = true
@@ -132,8 +134,10 @@ func pause(should_pause: bool) -> void:
 		if _overlay_tween != null && !_overlay_tween.is_running():
 			_overlay_tween.play()
 
+
 func is_paused() -> bool:
 	return _timer.paused || _timer.is_stopped()
+
 
 func _on_tick() -> void:
 	var old_s := _day_segment()
@@ -147,6 +151,7 @@ func _on_tick() -> void:
 
 func time_str() -> String:
 	return _time.hmTime()
+
 
 class DNClock:
 	extends RefCounted
@@ -166,16 +171,16 @@ class DNClock:
 		s -= (hours * _sec_per_hour)
 		if hours > 0:
 			hms[0] = hours
-			
+
 		if s > 0:
 			var minutes := s / _sec_per_min
 			s -= (minutes * _sec_per_min)
 			if minutes > 0:
 				hms[1] = minutes
-		
+
 		if s > 0:
 			hms[2] = s
-		
+
 		if hms[2] > 59:
 			hms[2] -= 60
 			hms[1] += 1
@@ -195,10 +200,9 @@ class DNClock:
 		if _tally > 24 * _sec_per_hour:
 			_tally -= 24 * _sec_per_hour
 
-
 	func set_time_hm(hour: int, minute: int) -> void:
 		set_time_sec(hour * _sec_per_hour + minute * _sec_per_min)
-	
+
 	func set_time_sec(sec: int) -> void:
 		_tally = 0
 		advance_secs(sec)

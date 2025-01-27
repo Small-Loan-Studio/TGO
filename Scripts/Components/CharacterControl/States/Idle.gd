@@ -17,7 +17,7 @@ func enter(_ctx: Variant) -> void:
 
 
 func run_input(_event: InputEvent) -> void:
-	maybe_menu() ||	maybe_interact()
+	maybe_menu() || maybe_interact()
 
 
 func run_tick(_delta: float) -> void:

@@ -19,6 +19,7 @@ func _sync_pause_ui() -> void:
 	else:
 		_pause_btn.text = "Pause"
 
+
 func _on_time_change() -> void:
 	_clock.text = "HR: %s" % [_dncycle.time_str()]
 
@@ -29,6 +30,7 @@ func _on_pause_pressed() -> void:
 	else:
 		_dncycle.pause(true)
 	_sync_pause_ui()
+
 
 func _on_day_pressed() -> void:
 	_dncycle.set_time_sec(_dncycle.day_start_s, true)

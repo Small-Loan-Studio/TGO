@@ -9,10 +9,12 @@ extends MarginContainer
 
 var _am: AudioManager
 
+
 func init(am: AudioManager) -> void:
 	_am = am
 	_slider.value = _am.get_level(bus)
 	_slider.value_changed.connect(_update_level.unbind(1))
+
 
 var is_active: bool = false:
 	set(v):
@@ -37,8 +39,10 @@ func _process(_delta: float) -> void:
 	if Input.is_action_just_pressed("ui_left"):
 		level_down()
 
+
 func label_width() -> int:
 	return _label.size.x
+
 
 func set_label_width(x: int) -> void:
 	_label.custom_minimum_size.x = x

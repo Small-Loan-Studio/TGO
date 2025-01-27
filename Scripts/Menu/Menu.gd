@@ -12,11 +12,12 @@ extends Control
 ## menu state or the eventual result of a close_menu call.
 signal menu_closed(has_result: bool)
 
+
 func open_menu() -> void:
-    visible = true
+	visible = true
+
 
 ## Called when an external actor wants to close the menu; should result in
 ## emitting menu_closed when any necessary shutdown is completed
 func close_menu() -> void:
-    pass
-
+	pass

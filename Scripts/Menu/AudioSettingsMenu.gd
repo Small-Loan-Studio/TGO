@@ -15,6 +15,7 @@ var _active_bus := 0:
 			_active_bus = len(_sliders) - 1
 		_sync_sliders_state()
 
+
 func open_menu() -> void:
 	for c in _sliders:
 		c.init(Driver.instance().audio_mgr)
@@ -28,13 +29,14 @@ func _ready() -> void:
 			_sliders.append(c)
 			if max_width < c.label_width():
 				max_width = c.label_width()
-	
+
 	for c in _sliders:
 		c.set_label_width(max_width)
 		c.is_active = false
-	_sliders[0].is_active= true
+	_sliders[0].is_active = true
 
 	_active_bus = 0
+
 
 ## Called when an external actor wants to close the menu; should result in
 ## emitting menu_closed when any necessary shutdown is completed
@@ -49,8 +51,11 @@ func _process(_delta: float) -> void:
 	if !visible:
 		return
 
-	if Input.is_action_just_pressed(
-		Enums.input_action_name(Enums.InputAction.MENU),
+	if (
+		Input
+		. is_action_just_pressed(
+			Enums.input_action_name(Enums.InputAction.MENU),
+		)
 	):
 		close_menu()
 		return
@@ -59,7 +64,8 @@ func _process(_delta: float) -> void:
 		_active_bus -= 1
 	if Input.is_action_just_pressed(Enums.input_action_name(Enums.InputAction.DOWN)):
 		_active_bus += 1
-	
+
+
 func _sync_sliders_state() -> void:
 	for i in range(len(_sliders)):
 		_sliders[i].is_active = i == _active_bus
