@@ -64,33 +64,9 @@ func process_input(event: InputEvent) -> void:
 	if !_setup:
 		return
 
-	# headed toward debounce
-	# _dir_vector = _input.get_vector(
-	# 		_movement[DIR_NEG_X],
-	# 		_movement[DIR_POS_X],
-	# 		_movement[DIR_NEG_Y],
-	# 		_movement[DIR_POS_Y],
-	# 		deadzone
-	# )
-	# _dir_vector = _dir_vector.normalized()
-
-	# if _dir_vector.length() < deadzone:
-	# 		_dir_vector = Vector2.ZERO
-
-	# var str := ""
-	# for action_name: String in _action_state:
-	# 	str += "%s, " % [event.is_action_pressed(action_name)]
-	# 	var action_state: ActionState = _action_state.get(action_name)
-	# 	if event.is_action_pressed(action_name):
-	# 		if action_state.state == UNPRESSED:
-	# 			action_state.state = JUST_PRESSED
-	# 		else:
-	# 			action_state.state = PRESSED
-	# 	elif event.is_action_released(action_name):
-	# 		action_state.state = JUST_RELEASED
-	# 	else:
-	# 				action_state.state = UNPRESSED
-
+	# headed toward debounce, c.f. https://github.com/Small-Loan-Studio/TGO/issues/176
+	# Also might end up ditching InputController entirely as the concept seems
+	# like it might be a mostly failed experiment
 	_dir_vector = _input.get_vector(
 		_movement[DIR_NEG_X],
 		_movement[DIR_POS_X],
@@ -104,14 +80,16 @@ func process_input(event: InputEvent) -> void:
 		_dir_vector = Vector2.ZERO
 
 	for action_name: String in _action_state:
-		if _input.is_action_pressed(action_name):
-			_action_state.get(action_name).state = PRESSED
-			if _input.is_action_just_pressed(action_name):
-				_action_state.get(action_name).state = JUST_PRESSED
-		elif _input.is_action_just_released(action_name):
-			_action_state.get(action_name).state = JUST_RELEASED
+		var action_state: ActionState = _action_state.get(action_name)
+		if event.is_action_pressed(action_name):
+			if action_state.state == UNPRESSED:
+				action_state.state = JUST_PRESSED
+			else:
+				action_state.state = PRESSED
+		elif event.is_action_released(action_name):
+			action_state.state = JUST_RELEASED
 		else:
-			_action_state.get(action_name).state = UNPRESSED
+			action_state.state = UNPRESSED
 
 
 func action(input: Enums.InputAction) -> InputController.ActionState:

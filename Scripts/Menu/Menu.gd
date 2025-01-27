@@ -1,18 +1,20 @@
 class_name Menu
 extends Control
 
+## fired when the menu wants to close itself, includes a bool to indicate if
+## there is some result that can be retrieved. May be triggered by internal
+## menu state or the eventual result of a close_menu call.
+signal menu_closed(has_result: bool)
+
 ## How should we reference this menu
 @export var menu_type: Enums.MenuType
 
 ## should this menu pause the game while open
 @export var should_pause := true
 
-## fired when the menu wants to close itself, includes a bool to indicate if
-## there is some result that can be retrieved. May be triggered by internal
-## menu state or the eventual result of a close_menu call.
-signal menu_closed(has_result: bool)
 
-
+## Called when something requests this menu get opened; at the end the
+## menu should be visible and usable
 func open_menu() -> void:
 	visible = true
 

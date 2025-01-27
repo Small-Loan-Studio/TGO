@@ -1,8 +1,6 @@
 class_name AudioSettings
 extends Menu
 
-@onready var _levels_container := $VBoxContainer
-
 var _sliders: Array[AudioSlider] = []
 var _active_bus := 0:
 	set(v):
@@ -14,6 +12,8 @@ var _active_bus := 0:
 		if _active_bus < 0:
 			_active_bus = len(_sliders) - 1
 		_sync_sliders_state()
+
+@onready var _levels_container := $VBoxContainer
 
 
 func open_menu() -> void:

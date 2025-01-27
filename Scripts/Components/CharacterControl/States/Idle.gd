@@ -17,7 +17,9 @@ func enter(_ctx: Variant) -> void:
 
 
 func run_input(_event: InputEvent) -> void:
-	maybe_menu() || maybe_interact()
+	if maybe_menu() || maybe_interact():
+		# this is a noop but here to quiet lint
+		return
 
 
 func run_tick(_delta: float) -> void:

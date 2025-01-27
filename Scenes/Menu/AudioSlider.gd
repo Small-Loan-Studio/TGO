@@ -1,13 +1,19 @@
 class_name AudioSlider
 extends MarginContainer
 
+## Which audio bus does this slider bind
 @export var bus: Enums.AudioBus
+
+var is_active: bool = false:
+	set(v):
+		is_active = v
+		_update_active(v)
+
+var _am: AudioManager
 
 @onready var _label: Label = $HBoxContainer/Label
 @onready var _slider: HSlider = $HBoxContainer/BusSlider
 @onready var _marker: TextureRect = $HBoxContainer/TextureRect
-
-var _am: AudioManager
 
 
 func init(am: AudioManager) -> void:
@@ -16,13 +22,7 @@ func init(am: AudioManager) -> void:
 	_slider.value_changed.connect(_update_level.unbind(1))
 
 
-var is_active: bool = false:
-	set(v):
-		is_active = v
-		update_active(v)
-
-
-func update_active(active: bool) -> void:
+func _update_active(active: bool) -> void:
 	if active:
 		_marker.modulate = Color.WHITE
 	else:
@@ -41,7 +41,7 @@ func _process(_delta: float) -> void:
 
 
 func label_width() -> int:
-	return _label.size.x
+	return int(_label.size.x)
 
 
 func set_label_width(x: int) -> void:

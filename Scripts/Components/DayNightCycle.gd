@@ -28,8 +28,6 @@ var current_time: int:
 	get:
 		return _time.get_time()
 
-@onready var _modulate: CanvasModulate = $CanvasModulate
-
 var _time: DNClock
 var _timer: Timer
 var _overlay_tween: Tween
@@ -45,6 +43,7 @@ var _txn_wall_sec: int:
 @onready var day_start_s := DNClock.hms_to_sec(day_start_h, 0, 0)
 @onready var dusk_start_s := DNClock.hms_to_sec(dusk_start_h, 0, 0)
 @onready var night_start_s := DNClock.hms_to_sec(night_start_h, 0, 0)
+@onready var _modulate: CanvasModulate = $CanvasModulate
 
 
 func _ready() -> void:
@@ -150,16 +149,15 @@ func _on_tick() -> void:
 
 
 func time_str() -> String:
-	return _time.hmTime()
+	return _time.get_hm_time()
 
 
 class DNClock:
 	extends RefCounted
 
-	var _tally := 0
-
 	static var _sec_per_hour := 60 * 60
 	static var _sec_per_min := 60
+	var _tally := 0
 
 	static func sec_to_hms(s: int) -> Array[int]:
 		var hms: Array[int] = [0, 0, 0]
@@ -213,7 +211,7 @@ class DNClock:
 	func get_time_hms() -> Array[int]:
 		return DNClock.sec_to_hms(_tally)
 
-	func hmTime() -> String:
+	func get_hm_time() -> String:
 		var hms := DNClock.sec_to_hms(_tally)
 		return "%02d:%02d" % [hms[0], hms[1]]
 
