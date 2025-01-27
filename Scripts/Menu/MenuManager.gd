@@ -6,13 +6,27 @@ var _menu_map: Dictionary = {}
 
 @onready var _debug_menu := $DebugMenu
 
+
 func _ready() -> void:
 	for c in get_children():
 		c.visible = false
 		if c is Menu:
 			var mt: Enums.MenuType = c.menu_type
 			if mt in _menu_map:
-				printerr("Duplicate menu entry for %d. Previously: %s. Found: %s. Ignoring new entry" % [mt, _menu_map[mt].name, c.name])
+				printerr(
+					(
+						"Duplicate menu entry for %d. "
+						+ "Previously: %s. "
+						+ (
+							"Found: %s. Ignoring new entry"
+							% [
+								mt,
+								_menu_map[mt].name,
+								c.name,
+							]
+						)
+					)
+				)
 				continue
 			print("Adding Menu: Type(%d): %s" % [mt, c.name])
 			_menu_map[c.menu_type] = c
@@ -21,7 +35,7 @@ func _ready() -> void:
 
 func get_menu(typ: Enums.MenuType) -> Menu:
 	if typ == Enums.MenuType.NONE:
-		printerr("You probably didn't want to get the \"NONE\" menu")
+		printerr('You probably didn\'t want to get the "NONE" menu')
 		return null
 
 	if !typ in _menu_map:
