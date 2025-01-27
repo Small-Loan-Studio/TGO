@@ -81,12 +81,7 @@ func process_input(event: InputEvent) -> void:
 
 	for action_name: String in _action_state:
 		var action_state: ActionState = _action_state.get(action_name)
-		if action_name == 'load_menu':
-			print("%s -> %s" % [action_name, action_state.state])
-			print("pressed: %s; released: %s" % [event.is_action_pressed(action_name), event.is_action_pressed(action_name)])
 		if event.is_action_pressed(action_name):
-			if action_name == 'load_menu':
-				print(event)
 			if action_state.state == UNPRESSED:
 				action_state.state = JUST_PRESSED
 			else:

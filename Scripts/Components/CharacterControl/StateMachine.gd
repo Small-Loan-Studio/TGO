@@ -92,7 +92,6 @@ func cur_state() -> State:
 ## physics only runs in its own thread if we configure it iirc so we're probably
 ## okayish, idk about input event processing)
 func queue_state_change(next_state: State, context: Variant = null) -> void:
-	print("%s / StateMachine.queue_state_change(%s)" % [_cur_state.name, next_state.name])
 	if _next_state != null:
 		printerr(
 			"Warning: Overwriting _next_state %s with %s" % [_next_state.name, next_state.name]
