@@ -28,7 +28,6 @@ script = ExtResource("1_agcjs")
 autoload_scene_name = "BadLevelA"
 
 [node name="AudioManager" type="Node" parent="."]
-process_mode = 3
 script = ExtResource("2_4seev")
 
 [node name="BGPlayer" type="AudioStreamPlayer2D" parent="AudioManager"]
@@ -221,6 +220,7 @@ y_sort_enabled = true
 
 [node name="DayNightOverlay" parent="GameWorld" instance=ExtResource("12_8kqo6")]
 day_length_seconds = 900
+day_autostart = true
 
 [node name="Devin" parent="GameWorld" instance=ExtResource("6_gmy4s")]
 unique_name_in_owner = true

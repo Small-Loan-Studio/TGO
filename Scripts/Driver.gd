@@ -155,6 +155,10 @@ func get_current_level() -> LevelBase:
 	return _last_loaded_level
 
 
+func pause(should_pause: bool = true) -> void:
+	get_tree().paused = should_pause
+
+
 ## TODO: We'll need to switch away  from debug load path soon
 func request_debug_load(name: String) -> void:
 	var music_ready := audio_mgr.play(Enums.AudioTrack.SKETCH_2, 2)

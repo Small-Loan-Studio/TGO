@@ -21,6 +21,13 @@ signal time_changed
 ## When we hit a time-of-day boundary how many in-game hours should we take
 ## to transition the lighting; 0 is instant, 2 is 2 hours, e.g. 4p to 6p
 @export var transition_time_game_hours := 1.5
+@export var day_autostart: bool
+
+## returns time in seconds
+var current_time: int:
+	get:
+		return _time.get_time()
+
 
 @onready var _modulate: CanvasModulate = $CanvasModulate
 
@@ -41,14 +48,21 @@ var _txn_wall_sec: int:
 @onready var night_start_s := DNClock.hms_to_sec(night_start_h, 0, 0)
 
 func _ready() -> void:
-	_timer = Timer.new()
-	add_child(_timer)
-	_timer.wait_time = _tick_rate
-	_timer.timeout.connect(_on_tick)
-
 	_time = DNClock.new()
 	_time.set_time(day_start_h, 0)
 
+	_timer = Timer.new()
+	_timer.wait_time = _tick_rate
+	_timer.timeout.connect(_on_tick)
+	_timer.autostart = day_autostart
+	_timer.paused = false
+	add_child(_timer)
+
+
+func _process(_delta: float) -> void:
+	# print(_timer.is_stopped())
+	# print(_timer.paused)
+	pass
 
 func setup(_driver: Driver) -> void:
 	pass
@@ -85,8 +99,8 @@ func _get_target_color(time: int) -> Color:
 	return night_color
 
 
-func set_hour(time: int, immediate: bool = false) -> void:
-	_time.set_time(time, 0)
+func set_time(time: int, immediate: bool = false) -> void:
+	_time.set_time_sec(time)
 	_begin_tween(immediate)
 
 

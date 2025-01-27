@@ -10,7 +10,14 @@ var _dncycle: DayNightCycle
 func setup(dnc: DayNightCycle) -> void:
 	_dncycle = dnc
 	_dncycle.time_changed.connect(_on_time_change)
+	_sync_pause_ui()
 
+
+func _sync_pause_ui() -> void:
+	if _dncycle.is_paused():
+		_pause_btn.text = "Unpause"
+	else:
+		_pause_btn.text = "Pause"
 
 func _on_time_change() -> void:
 	_clock.text = "HR: %s" % [_dncycle.time_str()]
@@ -19,11 +26,9 @@ func _on_time_change() -> void:
 func _on_pause_pressed() -> void:
 	if _dncycle.is_paused():
 		_dncycle.pause(false)
-		_pause_btn.text = "Pause"
 	else:
 		_dncycle.pause(true)
-		_pause_btn.text = "Unpause"
-
+	_sync_pause_ui()
 
 func _on_day_pressed() -> void:
 	_dncycle.set_hour(_dncycle.day_start_h, true)
