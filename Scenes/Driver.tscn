@@ -28,6 +28,7 @@ script = ExtResource("1_agcjs")
 autoload_scene_name = "BadLevelA"
 
 [node name="AudioManager" type="Node" parent="."]
+process_mode = 3
 script = ExtResource("2_4seev")
 
 [node name="BGPlayer" type="AudioStreamPlayer2D" parent="AudioManager"]
@@ -68,11 +69,12 @@ offset_top = -1.0
 offset_right = -300.0
 offset_bottom = -1.0
 size_flags_horizontal = 4
+menu_type = 1
 
 [node name="InGameOverlay" parent="OverlayManager/MenuManager" instance=ExtResource("6_oncv5")]
 visible = false
 layout_mode = 1
-menu_type = null
+should_pause = true
 
 [node name="HUD" type="Control" parent="OverlayManager"]
 visible = false

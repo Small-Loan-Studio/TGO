@@ -36,6 +36,7 @@ func play(tgt_track: Enums.AudioTrack, fade_in: float = 0) -> Tween:
 
 	# either playing the current track on not playing
 	var tween := get_tree().create_tween()
+	tween.set_pause_mode(2)
 
 	var tgt_vol := bgm_player.volume_db
 
@@ -67,6 +68,7 @@ func play(tgt_track: Enums.AudioTrack, fade_in: float = 0) -> Tween:
 func crossfade_to(tgt_track: Enums.AudioTrack, fade_time: float) -> Tween:
 	var tgt_vol := bgm_player.volume_db
 	var tween := get_tree().create_tween()
+	tween.set_pause_mode(2)
 	var stream: AudioStream = ResourceLoader.load(Enums.audio_track_path(tgt_track))
 	tween.tween_property(bgm_player, "volume_db", -80, fade_time / 2)
 	tween.tween_callback(func() -> void: cur_track = tgt_track)
@@ -84,6 +86,7 @@ func stop(fade_time: float = 0) -> Tween:
 		return null
 
 	var tween := get_tree().create_tween()
+	tween.set_pause_mode(2)
 	tween.tween_property(bgm_player, "volume_db", 1.5 * DB_MIN, fade_time)
 	tween.tween_callback(bgm_player.stop)
 	tween.tween_callback(func() -> void: bgm_player.volume_db = 0)

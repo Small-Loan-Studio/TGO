@@ -75,7 +75,7 @@ func _post_ready() -> void:
 		await _curtain.fade_out(1)
 	else:
 		_menu_mgr.show_menu(Enums.MenuType.DEBUG)
-		await _curtain.fade_out(1)
+		await _curtain.fade_out(1, false)
 
 
 func get_hud() -> HUD:
@@ -162,12 +162,11 @@ func pause(should_pause: bool = true) -> void:
 ## TODO: We'll need to switch away  from debug load path soon
 func request_debug_load(name: String) -> void:
 	var music_ready := audio_mgr.play(Enums.AudioTrack.SKETCH_2, 2)
-	await _curtain.fade_in(1)
+	await _curtain.fade_in(1, false)
 	_menu_mgr.hide_menu(Enums.MenuType.DEBUG)
-	print("debug load")
 	load_level(name, LevelBase.DEFAULT_MARKER)
 	await music_ready.finished
-	await _curtain.fade_out(1)
+	await _curtain.fade_out(1, false)
 
 
 func _on_debug_pressed() -> void:

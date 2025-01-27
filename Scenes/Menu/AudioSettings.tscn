@@ -15,7 +15,6 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_0roww")
 menu_type = 2
-should_pause = null
 
 [node name="ColorRect" type="ColorRect" parent="."]
 layout_mode = 1

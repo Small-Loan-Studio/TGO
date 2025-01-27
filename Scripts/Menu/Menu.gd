@@ -12,14 +12,27 @@ signal menu_closed(has_result: bool)
 ## should this menu pause the game while open
 @export var should_pause := true
 
+var _menu_mgr: MenuManager
+
+
+func open_menu() -> void:
+	_open_menu()
+
+
+func close_menu() -> void:
+	_close_menu()
+	_menu_mgr.post_menu_closed(self)
+
 
 ## Called when something requests this menu get opened; at the end the
 ## menu should be visible and usable
-func open_menu() -> void:
+func _open_menu() -> void:
 	visible = true
 
 
 ## Called when an external actor wants to close the menu; should result in
-## emitting menu_closed when any necessary shutdown is completed
-func close_menu() -> void:
-	pass
+## emitting menu_closed when any necessary shutdown is completed and leave
+## the menu not visible
+func _close_menu() -> void:
+	visible = false
+	menu_closed.emit(false)

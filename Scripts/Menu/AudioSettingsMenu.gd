@@ -16,10 +16,10 @@ var _active_bus := 0:
 @onready var _levels_container := $VBoxContainer
 
 
-func open_menu() -> void:
+func _open_menu() -> void:
 	for c in _sliders:
 		c.init(Driver.instance().audio_mgr)
-	super.open_menu()
+	visible = true
 
 
 func _ready() -> void:
@@ -38,11 +38,9 @@ func _ready() -> void:
 	_active_bus = 0
 
 
-## Called when an external actor wants to close the menu; should result in
-## emitting menu_closed when any necessary shutdown is completed
-func close_menu() -> void:
-	Driver.instance()._menu_mgr.hide_menu(menu_type)
+func _close_menu() -> void:
 	Driver.instance().audio_mgr.save_levels()
+	visible = false
 	menu_closed.emit(false)
 
 
