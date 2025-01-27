@@ -31,12 +31,12 @@ func _on_pause_pressed() -> void:
 	_sync_pause_ui()
 
 func _on_day_pressed() -> void:
-	_dncycle.set_hour(_dncycle.day_start_h, true)
+	_dncycle.set_time_sec(_dncycle.day_start_s, true)
 
 
 func _on_dusk_pressed() -> void:
-	_dncycle.set_hour(_dncycle.dusk_start_h, true)
+	_dncycle.set_time_sec(_dncycle.dusk_start_s, true)
 
 
 func _on_night_pressed() -> void:
-	_dncycle.set_hour(_dncycle.night_start_h, true)
+	_dncycle.set_time_sec(_dncycle.night_start_s, true)

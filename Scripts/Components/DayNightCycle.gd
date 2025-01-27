@@ -49,7 +49,7 @@ var _txn_wall_sec: int:
 
 func _ready() -> void:
 	_time = DNClock.new()
-	_time.set_time(day_start_h, 0)
+	_time.set_time_hm(day_start_h, 0)
 
 	_timer = Timer.new()
 	_timer.wait_time = _tick_rate
@@ -99,7 +99,8 @@ func _get_target_color(time: int) -> Color:
 	return night_color
 
 
-func set_time(time: int, immediate: bool = false) -> void:
+## sets the game time in seconds since start of the day
+func set_time_sec(time: int, immediate: bool = false) -> void:
 	_time.set_time_sec(time)
 	_begin_tween(immediate)
 
@@ -194,7 +195,8 @@ class DNClock:
 		if _tally > 24 * _sec_per_hour:
 			_tally -= 24 * _sec_per_hour
 
-	func set_time(hour: int, minute: int) -> void:
+
+	func set_time_hm(hour: int, minute: int) -> void:
 		set_time_sec(hour * _sec_per_hour + minute * _sec_per_min)
 	
 	func set_time_sec(sec: int) -> void:
