@@ -16,10 +16,13 @@ var _am: AudioManager
 @onready var _marker: TextureRect = $HBoxContainer/TextureRect
 
 
+func _ready() -> void:
+	_slider.value_changed.connect(_update_level.unbind(1))
+
+
 func init(am: AudioManager) -> void:
 	_am = am
 	_slider.value = _am.get_level(bus)
-	_slider.value_changed.connect(_update_level.unbind(1))
 
 
 func _update_active(active: bool) -> void:
