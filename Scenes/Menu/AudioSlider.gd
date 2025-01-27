@@ -17,6 +17,8 @@ var _am: AudioManager
 
 
 func _ready() -> void:
+	# start disabled and let our embedding control handle when we react to changes
+	process_mode = Node.PROCESS_MODE_DISABLED
 	_slider.value_changed.connect(_update_level.unbind(1))
 
 
@@ -35,11 +37,9 @@ func _update_active(active: bool) -> void:
 
 
 func _process(_delta: float) -> void:
-	if !is_active:
-		return
-	if Input.is_action_just_pressed("ui_right"):
+	if Input.is_action_just_pressed(Enums.input_action_name(Enums.InputAction.RIGHT)):
 		level_up()
-	if Input.is_action_just_pressed("ui_left"):
+	if Input.is_action_just_pressed(Enums.input_action_name(Enums.InputAction.LEFT)):
 		level_down()
 
 

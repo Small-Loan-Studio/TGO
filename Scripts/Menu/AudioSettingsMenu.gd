@@ -19,6 +19,8 @@ var _active_bus := 0:
 func _open_menu() -> void:
 	for c in _sliders:
 		c.init(Driver.instance().audio_mgr)
+		c.process_mode = Node.PROCESS_MODE_INHERIT
+	_sliders[0].is_active = true
 	visible = true
 
 
@@ -33,7 +35,6 @@ func _ready() -> void:
 	for c in _sliders:
 		c.set_label_width(max_width)
 		c.is_active = false
-	_sliders[0].is_active = true
 
 	_active_bus = 0
 
@@ -41,14 +42,12 @@ func _ready() -> void:
 func _close_menu() -> void:
 	Driver.instance().audio_mgr.save_levels()
 	visible = false
+	for c in _sliders:
+		c.process_mode = Node.PROCESS_MODE_DISABLED
 	menu_closed.emit(false)
 
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(_delta: float) -> void:
-	if !visible:
-		return
-
+func _menu_process() -> void:
 	if (
 		Input
 		. is_action_just_pressed(

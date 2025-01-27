@@ -24,6 +24,18 @@ func close_menu() -> void:
 	_menu_mgr.post_menu_closed(self)
 
 
+func _process(_delta: float) -> void:
+	if !_menu_mgr.active_menu == self:
+		return
+	_menu_process()
+
+
+## Called when the menu is visible. First call will not occur until after
+## _open_menu is complete. Last call happens before _close_menu is called.
+func _menu_process() -> void:
+	pass
+
+
 ## Called when something requests this menu get opened; at the end the
 ## menu should be visible and usable
 func _open_menu() -> void:

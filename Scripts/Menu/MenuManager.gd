@@ -1,10 +1,11 @@
 class_name MenuManager
 extends Control
 
+## Holds a reference to the currently active menu
+var active_menu: Menu
+
 ## stores a map from menu type to the Menu object
 var _menu_map: Dictionary = {}
-
-@onready var _debug_menu := $DebugMenu
 
 
 func _ready() -> void:
@@ -45,8 +46,9 @@ func get_menu(typ: Enums.MenuType) -> Menu:
 
 func hide_menu(menu_type: Enums.MenuType) -> void:
 	var menu := get_menu(menu_type)
-	if !menu.visible:
+	if menu != active_menu:
 		return
+	active_menu = null
 	menu.close_menu()
 
 
@@ -55,6 +57,7 @@ func show_menu(menu_type: Enums.MenuType) -> Menu:
 	if menu.should_pause:
 		Driver.instance().pause()
 	menu.open_menu()
+	active_menu = menu
 	return menu
 
 
