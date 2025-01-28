@@ -20,7 +20,8 @@ func _open_menu() -> void:
 	for c in _sliders:
 		c.init(Driver.instance().audio_mgr)
 		c.process_mode = Node.PROCESS_MODE_INHERIT
-	_sliders[0].is_active = true
+		c.is_active = false
+	_active_bus = 0
 	visible = true
 
 

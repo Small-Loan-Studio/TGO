@@ -37,6 +37,9 @@ func _update_active(active: bool) -> void:
 
 
 func _process(_delta: float) -> void:
+	if !is_active:
+		return
+
 	if Input.is_action_just_pressed(Enums.input_action_name(Enums.InputAction.RIGHT)):
 		level_up()
 	if Input.is_action_just_pressed(Enums.input_action_name(Enums.InputAction.LEFT)):

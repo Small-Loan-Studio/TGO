@@ -80,16 +80,14 @@ func process_input(event: InputEvent) -> void:
 		_dir_vector = Vector2.ZERO
 
 	for action_name: String in _action_state:
-		var action_state: ActionState = _action_state.get(action_name)
-		if event.is_action_pressed(action_name):
-			if action_state.state == UNPRESSED:
-				action_state.state = JUST_PRESSED
-			else:
-				action_state.state = PRESSED
-		elif event.is_action_released(action_name):
-			action_state.state = JUST_RELEASED
+		if _input.is_action_pressed(action_name):
+			_action_state.get(action_name).state = PRESSED
+			if _input.is_action_just_pressed(action_name):
+				_action_state.get(action_name).state = JUST_PRESSED
+		elif _input.is_action_just_released(action_name):
+			_action_state.get(action_name).state = JUST_RELEASED
 		else:
-			action_state.state = UNPRESSED
+			_action_state.get(action_name).state = UNPRESSED
 
 
 func action(input: Enums.InputAction) -> InputController.ActionState:
