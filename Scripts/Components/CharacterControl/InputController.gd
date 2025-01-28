@@ -64,6 +64,9 @@ func process_input(_event: InputEvent) -> void:
 	if !_setup:
 		return
 
+	# headed toward debounce, c.f. https://github.com/Small-Loan-Studio/TGO/issues/176
+	# Also might end up ditching InputController entirely as the concept seems
+	# like it might be a mostly failed experiment
 	_dir_vector = _input.get_vector(
 		_movement[DIR_NEG_X],
 		_movement[DIR_POS_X],
@@ -140,7 +143,7 @@ class ActionState:
 	extends RefCounted
 
 	var action: Enums.InputAction
-	var state: int
+	var state: int = UNPRESSED
 
 	func just_pressed() -> bool:
 		return state == JUST_PRESSED

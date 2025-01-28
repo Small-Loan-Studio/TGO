@@ -1,5 +1,5 @@
 class_name DebugMenu
-extends Control
+extends Menu
 
 signal request_load(path: String)
 

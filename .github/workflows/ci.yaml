@@ -21,7 +21,7 @@ jobs:
           fetch-depth: 0
 
       - name: Setup gdtoolkit
-        uses: Scony/godot-gdscript-toolkit@master
+        uses: Scony/godot-gdscript-toolkit@e9ec1f52d9c837dba440987ba50540f14beb7cad
 
       - name: Lint
         run: find . -iname *.gd -not -ipath './addons/*' | xargs gdlint
@@ -36,7 +36,7 @@ jobs:
           fetch-depth: 0
 
       - name: Setup gdtoolkit
-        uses: Scony/godot-gdscript-toolkit@master
+        uses: Scony/godot-gdscript-toolkit@e9ec1f52d9c837dba440987ba50540f14beb7cad
 
       - name: Check formatting
         run: find . -iname *.gd -not -ipath './addons/*' | xargs gdformat --check

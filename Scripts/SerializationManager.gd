@@ -140,7 +140,7 @@ func load_game() -> void:
 	_load_saved_level(save_meta.level_name)
 	Driver.instance().quest_mgr.load(save_meta.quest_info)
 	if save_meta.version >= 1:
-		Driver.instance()._day_night_cycle.set_hour(save_meta.time_of_day, true)
+		Driver.instance()._day_night_cycle.set_time_sec(save_meta.time_of_day, true)
 
 	DirAccess.remove_absolute(Utils.user_data_dir() + ZIP_FILE_NAME)
 	print("Loaded Game")

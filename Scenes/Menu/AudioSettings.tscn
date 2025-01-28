@@ -1,0 +1,181 @@
+[gd_scene load_steps=5 format=3 uid="uid://g47folm6bh5u"]
+
+[ext_resource type="Script" path="res://Scripts/Menu/AudioSettingsMenu.gd" id="1_0roww"]
+[ext_resource type="Texture2D" uid="uid://mq3lrx2q74h4" path="res://Art/Stub/arrow_decorative_e.png" id="2_15y86"]
+[ext_resource type="Script" path="res://Scenes/Menu/AudioSlider.gd" id="2_v28y3"]
+[ext_resource type="StyleBox" uid="uid://c1ypkpgvj62ga" path="res://Scenes/Menu/AudioSlider.tres" id="4_7i0t7"]
+
+[node name="AudioSettings" type="Control"]
+layout_mode = 3
+anchor_left = 0.15
+anchor_top = 0.15
+anchor_right = 0.85
+anchor_bottom = 0.85
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_0roww")
+menu_type = 2
+
+[node name="ColorRect" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.537011, 0.537011, 0.537011, 0.780392)
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.1
+anchor_top = 0.2
+anchor_right = 0.9
+anchor_bottom = 0.8
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 16
+
+[node name="Label" type="Label" parent="VBoxContainer"]
+layout_mode = 2
+text = "Audio Levels"
+
+[node name="MainLevels" type="MarginContainer" parent="VBoxContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 20
+script = ExtResource("2_v28y3")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/MainLevels"]
+layout_mode = 2
+theme_override_constants/separation = 8
+
+[node name="TextureRect" type="TextureRect" parent="VBoxContainer/MainLevels/HBoxContainer"]
+layout_mode = 2
+texture = ExtResource("2_15y86")
+expand_mode = 3
+
+[node name="Label" type="Label" parent="VBoxContainer/MainLevels/HBoxContainer"]
+layout_mode = 2
+text = "Main"
+
+[node name="BusSlider" type="HSlider" parent="VBoxContainer/MainLevels/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 4
+theme_override_styles/slider = ExtResource("4_7i0t7")
+max_value = 1.0
+step = 0.1
+value = 0.5
+
+[node name="BGMLevels" type="MarginContainer" parent="VBoxContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 20
+script = ExtResource("2_v28y3")
+bus = 1
+
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/BGMLevels"]
+layout_mode = 2
+theme_override_constants/separation = 8
+
+[node name="TextureRect" type="TextureRect" parent="VBoxContainer/BGMLevels/HBoxContainer"]
+layout_mode = 2
+texture = ExtResource("2_15y86")
+expand_mode = 3
+
+[node name="Label" type="Label" parent="VBoxContainer/BGMLevels/HBoxContainer"]
+layout_mode = 2
+text = "Background Music"
+
+[node name="BusSlider" type="HSlider" parent="VBoxContainer/BGMLevels/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 4
+theme_override_styles/slider = ExtResource("4_7i0t7")
+max_value = 1.0
+step = 0.1
+value = 0.5
+
+[node name="Ambient" type="MarginContainer" parent="VBoxContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 20
+script = ExtResource("2_v28y3")
+bus = 3
+
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/Ambient"]
+layout_mode = 2
+theme_override_constants/separation = 8
+
+[node name="TextureRect" type="TextureRect" parent="VBoxContainer/Ambient/HBoxContainer"]
+layout_mode = 2
+texture = ExtResource("2_15y86")
+expand_mode = 3
+
+[node name="Label" type="Label" parent="VBoxContainer/Ambient/HBoxContainer"]
+layout_mode = 2
+text = "Ambient
+"
+
+[node name="BusSlider" type="HSlider" parent="VBoxContainer/Ambient/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 4
+theme_override_styles/slider = ExtResource("4_7i0t7")
+max_value = 1.0
+step = 0.1
+value = 0.5
+
+[node name="SFX" type="MarginContainer" parent="VBoxContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 20
+script = ExtResource("2_v28y3")
+bus = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/SFX"]
+layout_mode = 2
+theme_override_constants/separation = 8
+
+[node name="TextureRect" type="TextureRect" parent="VBoxContainer/SFX/HBoxContainer"]
+layout_mode = 2
+texture = ExtResource("2_15y86")
+expand_mode = 3
+
+[node name="Label" type="Label" parent="VBoxContainer/SFX/HBoxContainer"]
+layout_mode = 2
+text = "Sound Effects"
+
+[node name="BusSlider" type="HSlider" parent="VBoxContainer/SFX/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 4
+theme_override_styles/slider = ExtResource("4_7i0t7")
+max_value = 1.0
+step = 0.1
+value = 0.5
+
+[node name="MenuFX" type="MarginContainer" parent="VBoxContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 20
+script = ExtResource("2_v28y3")
+bus = 4
+
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/MenuFX"]
+layout_mode = 2
+theme_override_constants/separation = 8
+
+[node name="TextureRect" type="TextureRect" parent="VBoxContainer/MenuFX/HBoxContainer"]
+layout_mode = 2
+texture = ExtResource("2_15y86")
+expand_mode = 3
+
+[node name="Label" type="Label" parent="VBoxContainer/MenuFX/HBoxContainer"]
+layout_mode = 2
+text = "Menu Effects"
+
+[node name="BusSlider" type="HSlider" parent="VBoxContainer/MenuFX/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 4
+theme_override_styles/slider = ExtResource("4_7i0t7")
+max_value = 1.0
+step = 0.1
+value = 0.5
