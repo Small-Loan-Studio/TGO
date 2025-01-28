@@ -28,6 +28,8 @@ var current_time: int:
 	get:
 		return _time.get_time()
 
+static var _day_in_sec := 24 * 60 * 60
+
 var _time: DNClock
 var _timer: Timer
 var _overlay_tween: Tween
@@ -58,19 +60,8 @@ func _ready() -> void:
 	add_child(_timer)
 
 
-func _process(_delta: float) -> void:
-	# print(_timer.is_stopped())
-	# print(_timer.paused)
-	pass
-
-
-func setup(_driver: Driver) -> void:
-	pass
-
-
 func _update_tick_time() -> void:
-	var day_in_sec := 24 * 60 * 60
-	var day_secs_per_tick := float(day_in_sec) / day_length_seconds
+	var day_secs_per_tick := float(DayNightCycle._day_in_sec) / day_length_seconds
 	_dilated_secs_per_tick = int(_tick_rate * day_secs_per_tick)
 
 
@@ -195,7 +186,7 @@ class DNClock:
 
 	func advance_secs(count: int) -> void:
 		_tally += count
-		if _tally > 24 * _sec_per_hour:
+		if _tally >= 24 * _sec_per_hour:
 			_tally -= 24 * _sec_per_hour
 
 	func set_time_hm(hour: int, minute: int) -> void:

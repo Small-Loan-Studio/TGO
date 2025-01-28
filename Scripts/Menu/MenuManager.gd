@@ -48,7 +48,6 @@ func hide_menu(menu_type: Enums.MenuType) -> void:
 	var menu := get_menu(menu_type)
 	if menu != active_menu:
 		return
-	active_menu = null
 	menu.close_menu()
 
 
@@ -62,5 +61,6 @@ func show_menu(menu_type: Enums.MenuType) -> Menu:
 
 
 func post_menu_closed(which_menu: Menu) -> void:
+	active_menu = null
 	if which_menu.should_pause:
 		Driver.instance().pause(false)
