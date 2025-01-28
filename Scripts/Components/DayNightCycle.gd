@@ -3,6 +3,8 @@ extends Node
 
 signal time_changed
 
+static var _day_in_sec := 24 * 60 * 60
+
 @export var dawn_start_h: int = 6
 @export var day_start_h: int = 8
 @export var dusk_start_h: int = 16
@@ -27,8 +29,6 @@ signal time_changed
 var current_time: int:
 	get:
 		return _time.get_time()
-
-static var _day_in_sec := 24 * 60 * 60
 
 var _time: DNClock
 var _timer: Timer

@@ -60,7 +60,7 @@ func _unhandled_input(event: InputEvent) -> void:
 	process_input(event)
 
 
-func process_input(event: InputEvent) -> void:
+func process_input(_event: InputEvent) -> void:
 	if !_setup:
 		return
 
