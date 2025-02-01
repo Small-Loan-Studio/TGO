@@ -1,12 +1,6 @@
 class_name Driver
 extends Node2D
 
-const FIRST_LEVEL_NAME: String = "BadLevelA"
-
-## This will bypass the normal menu and automatically swap to the provided
-## scene. It [b]must[/b] be a child of LevelBase.
-@export var autoload_scene_name: String
-
 var _last_loaded_level: LevelBase = null
 
 @onready var audio_mgr: AudioManager = $AudioManager
@@ -25,7 +19,7 @@ var _last_loaded_level: LevelBase = null
 @onready var _debug_light: DevinLightControl = $OverlayManager/HUD/DebugStack/DevinLightControl
 @onready var _debug_inventory: DebugInventory = $OverlayManager/HUD/DebugStack/DebugInventory
 @onready var _debug_quests: QuestDebugger = $OverlayManager/HUD/DebugStack/QuestDebugger
-
+@onready var _personal_config := $PersonalDevConfig
 
 static func instance() -> Driver:
 	return Engine.get_singleton("DriverInstance") as Driver
@@ -68,10 +62,10 @@ func _post_ready() -> void:
 	_debug_light.setup(player, player.get_node("Debug_Torch"))
 	_debug_inventory.setup(inventory_mgr, player.id)
 
-	if !autoload_scene_name.is_empty():
+	if !_personal_config.autoload_level.is_empty():
 		await _curtain.fade_in(1)
 		print("Loading autoload level")
-		load_level(autoload_scene_name, LevelBase.DEFAULT_MARKER)
+		load_level(_personal_config.autoload_level, LevelBase.DEFAULT_MARKER)
 		await _curtain.fade_out(1)
 	else:
 		_menu_mgr.show_menu(Enums.MenuType.DEBUG)

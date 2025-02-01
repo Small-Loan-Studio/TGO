@@ -26,3 +26,5 @@ builds/
 
 gdlint.sh
 gdformat.sh
+
+ZZ_Scratch/launch_config.tscn
