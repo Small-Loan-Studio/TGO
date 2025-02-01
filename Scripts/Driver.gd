@@ -21,6 +21,7 @@ var _last_loaded_level: LevelBase = null
 @onready var _debug_quests: QuestDebugger = $OverlayManager/HUD/DebugStack/QuestDebugger
 @onready var _personal_config := $PersonalDevConfig
 
+
 static func instance() -> Driver:
 	return Engine.get_singleton("DriverInstance") as Driver
 
