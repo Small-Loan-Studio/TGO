@@ -36,7 +36,7 @@ jobs:
         with:
           name: windows
           path: build/windows
-          error: Failed to build windows binary
+          if-no-files-found: error
 
   export-linux:
     name: Linux Export
@@ -65,7 +65,7 @@ jobs:
         with:
           name: linux
           path: build/linux
-          error: Failed to build linux binary
+          if-no-files-found: error
   
   export-macos:
     name: MacOS Export
@@ -94,4 +94,4 @@ jobs:
         with:
           name: macos
           path: build/macos
-          info: Failed to build mac binary
+          if-no-files-found: error
