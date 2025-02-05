@@ -68,30 +68,30 @@ jobs:
           error: Failed to build linux binary
   
     export-macos:
-    name: MacOS Export
-    runs-on: ubuntu-20.04
-    container:
-      image: barichello/godot-ci:4.2.2
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v2
-        with:
-          lfs: true
-      - name: Issue 120
-        run: |
-          mkdir -p /github/home/.config/godot
-          cp /root/.config/godot/editor_settings-4.tres /github/home/.config/godot/
-      - name: Setup
-        run: |
-          mkdir -v -p ~/.local/share/godot/export_templates/
-          mv /root/.local/share/godot/export_templates/${GODOT_VERSION}.stable ~/.local/share/godot/export_templates/${GODOT_VERSION}.stable
-      - name: Windows Build
-        run: |
-          mkdir -v -p build/macos
-          godot --headless --verbose --export-release "macOS" ./build/windows/$EXPORT_NAME.zip
-      - name: Upload Artifact
-        uses: actions/upload-artifact@v4
-        with:
-          name: macos
-          path: build/macos
-          error: Failed to build mac binary
+      name: MacOS Export
+      runs-on: ubuntu-20.04
+      container:
+        image: barichello/godot-ci:4.2.2
+      steps:
+        - name: Checkout
+          uses: actions/checkout@v2
+          with:
+            lfs: true
+        - name: Issue 120
+          run: |
+            mkdir -p /github/home/.config/godot
+            cp /root/.config/godot/editor_settings-4.tres /github/home/.config/godot/
+        - name: Setup
+          run: |
+            mkdir -v -p ~/.local/share/godot/export_templates/
+            mv /root/.local/share/godot/export_templates/${GODOT_VERSION}.stable ~/.local/share/godot/export_templates/${GODOT_VERSION}.stable
+        - name: Windows Build
+          run: |
+            mkdir -v -p build/macos
+            godot --headless --verbose --export-release "macOS" ./build/windows/$EXPORT_NAME.zip
+        - name: Upload Artifact
+          uses: actions/upload-artifact@v4
+          with:
+            name: macos
+            path: build/macos
+            error: Failed to build mac binary
