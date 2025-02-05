@@ -46,7 +46,6 @@ default_verb = 5
 action_map = {
 5: Array[Resource("res://Scripts/Resources/Effect.gd")]([SubResource("Resource_mcrt5")])
 }
-actions = Array[Resource("res://Scripts/Resources/Effect.gd")]([SubResource("Resource_mcrt5")])
 
 [node name="collision_copperkettle_exit" type="CollisionShape2D" parent="Objects/Exit/interactable_copperkettle_exit" index="0"]
 position = Vector2(-0.5, 28.5)
@@ -64,7 +63,6 @@ default_verb = 5
 action_map = {
 5: Array[Resource("res://Scripts/Resources/Effect.gd")]([SubResource("Resource_3ouwa")])
 }
-actions = Array[Resource("res://Scripts/Resources/Effect.gd")]([SubResource("Resource_3ouwa")])
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Objects/ToFirstFloor/Interactable" index="0"]
 position = Vector2(-1.5, 37.5)
@@ -82,7 +80,6 @@ default_verb = 5
 action_map = {
 5: Array[Resource("res://Scripts/Resources/Effect.gd")]([SubResource("Resource_4xbpl")])
 }
-actions = Array[Resource("res://Scripts/Resources/Effect.gd")]([SubResource("Resource_4xbpl")])
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Objects/ToSecondFloor/Interactable" index="0"]
 position = Vector2(-1.5, -38)
