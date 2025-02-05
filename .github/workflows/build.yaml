@@ -3,7 +3,7 @@ on:
   push:
     branches:
       - tgo_dev
-
+  workflow_dispatch:
 env:
   GODOT_VERSION: 4.2.2
   EXPORT_NAME: TGO_dev
