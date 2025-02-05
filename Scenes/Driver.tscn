@@ -8,7 +8,7 @@
 [ext_resource type="Script" path="res://Scripts/UI/HUD.gd" id="4_kq6n3"]
 [ext_resource type="PackedScene" uid="uid://mqvl5162rawb" path="res://Scenes/Devin.tscn" id="6_gmy4s"]
 [ext_resource type="Script" path="res://Scripts/Components/Inventory/InventoryManager.gd" id="6_na5am"]
-[ext_resource type="PackedScene" uid="uid://g47folm6bh5u" path="res://Scenes/Menu/AudioSettings.tscn" id="6_oncv5"]
+[ext_resource type="PackedScene" path="res://Scenes/Menu/AudioSettings.tscn" id="6_oncv5"]
 [ext_resource type="PackedScene" uid="uid://dukcf64qxy46o" path="res://Scenes/UI/Debug/Inventory.tscn" id="7_3yw60"]
 [ext_resource type="PackedScene" uid="uid://dqrxejwlgxsgu" path="res://Scenes/UI/Debug/QuestTracker.tscn" id="8_8e3e0"]
 [ext_resource type="Script" path="res://Scripts/Components/Quests/QuestManager.gd" id="9_4hdkn"]
@@ -18,11 +18,11 @@
 [ext_resource type="PackedScene" uid="uid://dyuykg87w5vff" path="res://Scenes/UI/Debug/devin_light_control.tscn" id="11_igd87"]
 [ext_resource type="PackedScene" uid="uid://cqin6fb282fjf" path="res://Scenes/Components/DayNightCycle.tscn" id="12_8kqo6"]
 [ext_resource type="PackedScene" uid="uid://bwx0yr616ip1g" path="res://Scenes/UI/Debug/debug_inventory.tscn" id="12_w3otq"]
-[ext_resource type="PackedScene" uid="uid://dk572i6hv5rqn" path="res://Scenes/UI/Debug/debug_dialogic_adapters.tscn" id="13_bn7mq"]
+[ext_resource type="PackedScene" path="res://Scenes/UI/Debug/debug_dialogic_adapters.tscn" id="13_bn7mq"]
 [ext_resource type="Script" path="res://Scenes/UI/Debug/DevinStateReport.gd" id="13_gfaub"]
 [ext_resource type="PackedScene" uid="uid://b13wrl3bedjku" path="res://Scenes/Components/Torch.tscn" id="13_kgcxt"]
 [ext_resource type="Script" path="res://Scenes/UI/Debug/StatLabel.gd" id="14_feb7v"]
-[ext_resource type="PackedScene" uid="uid://cr0chtmfakeyg" path="res://ZZ_Scratch/launch_config.tscn" id="23_ff22a"]
+[ext_resource type="PackedScene" uid="uid://fdf7my2e5l7y" path="res://ZZ_Scratch/launch_config.tscn" id="23_ff22a"]
 
 [node name="Driver" type="Node2D"]
 script = ExtResource("1_agcjs")

@@ -28,7 +28,7 @@ dest_path = NodePath("../../../Markers/PlayerStart_copperkettle_secondfloor")
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_lkxu5"]
 size = Vector2(95, 46)
 
-[node name="LevelBase" instance=ExtResource("1_3tpql")]
+[node name="LevelBase2" instance=ExtResource("1_3tpql")]
 
 [node name="TileMap" parent="." index="0"]
 tile_set = ExtResource("2_by0xm")
