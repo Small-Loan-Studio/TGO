@@ -5,7 +5,7 @@ build/
 
 # Godot-specific ignores
 .import/
-export_presets.cfg
+export.cfg
 
 # Imported translations (automatically generated from CSV files)
 *.translation
