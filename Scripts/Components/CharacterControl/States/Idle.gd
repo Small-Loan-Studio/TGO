@@ -1,6 +1,7 @@
 extends CharacterState
 
 @export var walk_state: State
+@export var sprint_state: State
 @export var _animation_name: String
 
 
@@ -25,4 +26,7 @@ func run_input(_event: InputEvent) -> void:
 func run_tick(_delta: float) -> void:
 	var vect := _ctx.controller.get_vector()
 	if vect != Vector2.ZERO:
-		_state_machine.queue_state_change(walk_state, walk_state.mk_args(vect))
+		if Enums.InputAction.SPRINT in _ctx.controller.get_button_pressed():
+			_state_machine.queue_state_change(sprint_state, sprint_state.mk_args(vect))
+		else:
+			_state_machine.queue_state_change(walk_state, walk_state.mk_args(vect))

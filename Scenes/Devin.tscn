@@ -31,9 +31,10 @@ animation = &"east"
 [node name="StateMachine" parent="." index="3" node_paths=PackedStringArray("_initial_state")]
 _initial_state = NodePath("Idle")
 
-[node name="Idle" type="Node" parent="StateMachine" index="0" node_paths=PackedStringArray("walk_state", "interact_state", "menu_state")]
+[node name="Idle" type="Node" parent="StateMachine" index="0" node_paths=PackedStringArray("walk_state", "sprint_state", "interact_state", "menu_state")]
 script = ExtResource("4_3ac8w")
 walk_state = NodePath("../Walk")
+sprint_state = NodePath("../Sprint")
 interact_state = NodePath("../Interact")
 menu_state = NodePath("../Menu")
 
