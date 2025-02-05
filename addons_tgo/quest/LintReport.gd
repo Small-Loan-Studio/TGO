@@ -24,6 +24,7 @@ func lint_clear() -> void:
 	quest_errs.clear()
 	for c in get_children():
 		remove_child(c)
+		c.queue_free()
 
 
 ## refresh the displayed errors with whatever the we're currently tracking in
@@ -31,6 +32,7 @@ func lint_clear() -> void:
 func update_display() -> void:
 	for c in get_children():
 		remove_child(c)
+		c.queue_free()
 
 	if global_errs.size() > 0:
 		add_child(LintNodeReport.from_errors(self, "Global", global_errs))
