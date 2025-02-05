@@ -85,6 +85,10 @@ window/dpi/allow_hidpi=false
 
 project/assembly_name="TGO"
 
+[editor]
+
+export/convert_text_resources_to_binary=false
+
 [editor_plugins]
 
 enabled=PackedStringArray("res://addons/dialogic/plugin.cfg", "res://addons/resources_spreadsheet_view/plugin.cfg", "res://addons/tgo_greyboxing/plugin.cfg")
