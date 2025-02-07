@@ -1,4 +1,4 @@
-[gd_scene load_steps=27 format=3 uid="uid://dmuwq7snsoc5k"]
+[gd_scene load_steps=29 format=3 uid="uid://dmuwq7snsoc5k"]
 
 [ext_resource type="PackedScene" uid="uid://dyq8mcdsutnsa" path="res://Scenes/Components/LevelBase.tscn" id="1_4dm30"]
 [ext_resource type="TileSet" uid="uid://c5vrjt6pkv26m" path="res://ZZ_Scratch/GreyboxingTools/test_tileset.tres" id="2_q6jla"]
@@ -9,6 +9,7 @@
 [ext_resource type="Script" path="res://Scripts/Resources/Conditions/QuestStateCondition.gd" id="7_rexjt"]
 [ext_resource type="Script" path="res://Scripts/Resources/Effects/SetQuestStateEffect.gd" id="8_4rcih"]
 [ext_resource type="Script" path="res://Scripts/Resources/Conditions/OrCondition.gd" id="10_681ba"]
+[ext_resource type="Script" path="res://Scripts/Resources/Effects/TeleportEffect.gd" id="11_4uiaj"]
 [ext_resource type="PackedScene" uid="uid://rgvfsx60t2ap" path="res://Scenes/Components/Inventory/Item.tscn" id="11_k0w30"]
 
 [sub_resource type="Resource" id="Resource_83ios"]
@@ -103,6 +104,10 @@ check_value = 2
 [sub_resource type="Resource" id="Resource_o4j27"]
 script = ExtResource("10_681ba")
 clauses = Array[Resource("res://Scripts/Resources/TriggerCondition.gd")]([SubResource("Resource_l005h"), SubResource("Resource_awojm")])
+
+[sub_resource type="Resource" id="Resource_j8upe"]
+script = ExtResource("11_4uiaj")
+dest_path = NodePath("../../../Markers/SwitchDest")
 
 [node name="SwitchTest" instance=ExtResource("1_4dm30")]
 
@@ -243,6 +248,21 @@ offset_bottom = 0.975174
 rotation = -0.703666
 text = "QuestIsDone"
 
+[node name="TeleportSwitch" parent="Objects/Switches" index="8" instance=ExtResource("3_ie0od")]
+position = Vector2(240, 242)
+sensor_size = Vector2(20, 20)
+feedback_enabled = true
+on_pressed_effects = Array[Resource("res://Scripts/Resources/Effect.gd")]([SubResource("Resource_j8upe")])
+
+[node name="Label3" type="Label" parent="Objects/Switches/TeleportSwitch" index="2"]
+offset_left = 6.0
+offset_top = -25.0248
+offset_right = 122.0
+offset_bottom = -2.0248
+rotation = -0.441732
+text = "TeleportSwitch
+"
+
 [node name="QUEST_KEY" parent="Objects/Items" index="0" instance=ExtResource("11_k0w30")]
 position = Vector2(48.0763, 44.9773)
 item = ExtResource("6_euqsn")
@@ -250,3 +270,6 @@ quantity = 1
 
 [node name="PlayerStart" type="Node2D" parent="Markers" index="0"]
 position = Vector2(195, 197)
+
+[node name="SwitchDest" type="Node2D" parent="Markers" index="1"]
+position = Vector2(625, 337)
