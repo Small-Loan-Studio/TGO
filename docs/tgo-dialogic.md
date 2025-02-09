@@ -1,5 +1,30 @@
 # TGO & Dialogic
 
+- [TGO \& Dialogic](#tgo--dialogic)
+  - [Introduction](#introduction)
+  - [Survey Video](#survey-video)
+  - [Using Supported Exressions](#using-supported-exressions)
+    - [In conditionals](#in-conditionals)
+    - [Outside conditionals](#outside-conditionals)
+  - [Available Logic](#available-logic)
+    - [Inventory state](#inventory-state)
+      - [Getting a specific inventory](#getting-a-specific-inventory)
+      - [Getting Devin's inventory](#getting-devins-inventory)
+      - [Has Exactly N items](#has-exactly-n-items)
+      - [Has At Least N items](#has-at-least-n-items)
+      - [Add an item to an inventory](#add-an-item-to-an-inventory)
+      - [Remove an item from an inventory](#remove-an-item-from-an-inventory)
+      - [Check if an inventory has room for an item](#check-if-an-inventory-has-room-for-an-item)
+    - [Quests](#quests)
+      - [Accessing a specific quest](#accessing-a-specific-quest)
+      - [Check if a quest is finished](#check-if-a-quest-is-finished)
+      - [Check if a quest is completed](#check-if-a-quest-is-completed)
+      - [Check if a quest is failed](#check-if-a-quest-is-failed)
+      - [Start a quest](#start-a-quest)
+      - [Complete a quest](#complete-a-quest)
+      - [Fail a quest](#fail-a-quest)
+    - [Time of Day](#time-of-day)
+
 ## Introduction
 
 We use Dialogic 2 to support our in-game dialog and to store game state. It's
