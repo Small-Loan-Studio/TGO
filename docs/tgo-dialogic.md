@@ -53,8 +53,8 @@ In the video I show the basic expression structure:
     - I want to use `TGO` specific logic, and then
     - I want to interact with the `player_inventory`, and then
     - I want to check if it `has` some item
-4. Use `(` `)` to indicate the specifics of our request, e.g., from our video example `TGO.player_inventory.has("ALTER_POTION")` is checking if `"ALTER_POTION"` is in our inventory.
-    - If you have multiple things you need to specify break them up with `,`: `TGO.player_inventory.has("ALTER_POTION", 3)` will check if the player is carrying at least 3 ALTER_POTIONS
+4. Use `(` `)` to indicate the specifics of our request, e.g., from our video example `TGO.player_inventory.has("ALTAR_POTION")` is checking if `"ALTAR_POTION"` is in our inventory.
+    - If you have multiple things you need to specify break them up with `,`: `TGO.player_inventory.has("ALTAR_POTION", 3)` will check if the player is carrying at least 3 ALTAR_POTIONS
 5. Each of these questions may return some answer. That answer depends on the question being asked and is documented below.
 
 ### Outside conditionals
