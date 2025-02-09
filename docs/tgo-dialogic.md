@@ -1,107 +1,46 @@
-# Dialogic2
+# TGO & Dialogic
 
-- [Dialogic2](#dialogic2)
-	- [Demo code](#demo-code)
-	- [Q\&A](#qa)
-		- [1. How to structure dialogue](#1-how-to-structure-dialogue)
-		- [2. Triggering conversations](#2-triggering-conversations)
-		- [3. Interacting with state](#3-interacting-with-state)
-		- [4. How to test](#4-how-to-test)
-		- [5. Custom UI](#5-custom-ui)
-			- [TODO](#todo)
-		- [6. Input: Masking Input](#6-input-masking-input)
-		- [7. Input: Choices](#7-input-choices)
-			- [TODO](#todo-1)
-		- [8. Translation](#8-translation)
-			- [TODO](#todo-2)
-		- [9. Engine-External Dialogue?](#9-engine-external-dialogue)
-			- [TODO](#todo-3)
+## Introduction
+
+We use Dialogic 2 to support our in-game dialog and to store game state. It's
+a widely adopted system within the Godot-community which is good! There are a
+lot of community provided tutorials on how to use it, e.g., [Learn Dialogic Fast!][ldf]
+and [How to use Dialogic 2][htdl2].
+
+For general introductory material we'll rely on those tutorials. However there are
+several custom integrations that we will use to allow the TGO Narrative team to
+interact with the state of the game world.
+
+## Survey Video
+
+To start let's review the [TGO Dialogic video][tdlv] where we start to expolre using
+TGO specific additions. In the segment I've linked to you can see that we are using a
+custom expression to check inventory state.
+
+## Using Supported Exressions
+
+In the video I show the basic expression structure:
+1. Surround by braces `{` & `}`
+2. Use `TGO` to indicate you're using our custom logic
+3. Use `.` to indicate you're moving on to the next part of your request, e.g., `TGO.player_inventory.has` can be read as:
+    - I want to use `TGO` specific logic, and then
+    - I want to interact with the `player_inventory`, and then
+    - I want to check if it `has` some item
+4. Use `(` `)` to indicate the specifics of our request, e.g., from our video example `TGO.player_inventory.has("ALTER_POTION")` is checking if `"ALTER_POTION"` is in our inventory.
+    - If you have multiple things you need to specify break them up with `,`: `TGO.player_inventory.has("ALTER_POTION", 3)` will check if the player is carrying at least 3 ALTER_POTIONS
+5. Each of these questions may return some answer. That answer depends on the question being asked.
+
+### Inventory
+
+#### 
+#### Access the player's inventory
+#### Access an arbitrary inventory
+
+### Quests
+
+### Time of Day
 
 
-The following are the results of an initial survey into Dialogic 2.
-
-## Demo code
-We have a test project that does some basic experimentation with Dialogic 2 here:
-https://github.com/Small-Loan-Studio/dl2-demo
-
-## Q&A
-
-### 1. How to structure dialogue
-> We need an opinion for how to structure dialogue -- Dialogic2 uses a thing
-> called timelines to represent the flow of a conversation. do we write one
-> timeline per conversation, one per character, one per character/per act
-
-We should use one timeline per conversation.
-
-**Follow ups**:  
-How does that work in a situation where we have one NPC that has different
-“phases” of dialogue during a quest? Presumably we don't want to have to
-track which timeline to launch from non-dialogue code?
-
-### 2. Triggering conversations
-> How do we trigger conversations from code?
-
-- To launch a new conversation: `Dialogic.start(’conversation’)`
-- To check for active conversations: `if Dialogic.current_timeline != null:`
-
-### 3. Interacting with state
-> How do we specify the variables / functions available to be used in conversation?
-> Is there any kind of syntax checking (e.g. if we have a signal to emit/function
-> to call/variable to check during a conversation how many times will a typo fuck
-> us over)
-
-Dialogic has a variable system in place. `Set Variable` allows us to change this from
-within Dialogic timelines. [`Signal`][signal-link] allows us to exfiltrate state from within the
-conversation
-
-`Dialogic.VAR.<variable_name>` also allows outside code to access timeline state.
-Documentation [here][dot-var-link]
-
-There doesn't seem to be autocompletion or syntax checking. We could be missing it, but
-will make variable, function, signal typos will be difficult to catch automatically.
-
-[signal-link]: https://docs.dialogic.pro/dialogic-signals.html#1-signal-event
-[dot-var-link]: https://docs.dialogic.pro/variables.html
-
-### 4. How to test
-> When making changes to a timeline what's the best way to test those changes?
-> Can we construct a custom scene that makes it easy to set variables that are
-> needed to get to a specific point in time
->
-> Do we have to start at the top or can we kick that test scene / conversation
-> off wherever we want
-
-Specific timelines can be tested with Play Timeline, which runs the current
-timeline. No obvious out-of-the-box ways to identify necessary variables to
-set but doing it manually in shouldn't be too bad. It can be done in the
-timeline directly or edited in the variables tab.
-
-> if the narrative team is the one testing can we make it simple for our
-> non-technical folks
-
-It's likely we'll want to build some test infrastructure for narrative here.
-
-### 5. Custom UI
-> How does UI customization work for Dialogic? Can we do speech bubbles?
-
-#### TODO
-
-### 6. Input: Masking Input
-> Does Dialogic keep our character from walking around randomly when in conversation?
-
-There does not seem to be any input masking with the default UI.
-    
-### 7. Input: Choices 
-> Do we get keyboard/controller and mouse interaction by default?
-#### TODO
-
-### 8. Translation
-> Is there a translation story / how is that handled?
-#### TODO
-
-### 9. Engine-External Dialogue?
-> can we export conversations and make it so that we can edit them then load at
-> runtime? The goal would be to enable narrative team to make changes without
-> rebuilding the whole game
-
-#### TODO
+[ldf]: https://www.youtube.com/watch?v=7PuPU0Mrl_g
+[htdl2]: https://www.youtube.com/watch?v=0JPNmQ27uwA&list=PLPwlXx18zF7EKPb4sVu4gZ9S7XS0-ad_a
+[tdlv]: https://youtu.be/uX23Jbmh7WU?t=722
