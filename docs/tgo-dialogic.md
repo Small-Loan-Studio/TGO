@@ -132,7 +132,7 @@ Once you have an inventory these are the things you can do:
 - `.remove_item(<item_id>, <count>)` -> remove `<count>` `<item_id>` from the inventory
 
 **Examples:**
-- `{TGO.use_inventory.remove_item("tree_stump", "WEIRD_FUNGI")}` -> Take one weird fungi from the tree stump
+- `{TGO.use_inventory.("tree_stump").remove_item("WEIRD_FUNGI")}` -> Take one weird fungi from the tree stump
 - `{TGO.player_inventory.remove_item("MAGIC_BEAN", 3)}` -> Devin has 3 magic beans removed from his inventory
 ---
 
