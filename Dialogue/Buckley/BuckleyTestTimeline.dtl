@@ -1,7 +1,9 @@
 if {HasSpoken} == true:
 	I don't have anything more to say.
 	[end_timeline]
-Devin! Welcome to the bad place.
+Devin! Welcome to the bad place.\
+Take this potion, you'll need it!
+[tgo_expr expr="{TGO.player_inventory.add_item("HEALTH_POTION", 2)}"]
 My name is Buckley. I'm the mayor around these parts.
 - How are you doing?
 	Oh you know. Making do.

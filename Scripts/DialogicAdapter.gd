@@ -4,7 +4,7 @@ extends Node
 static var player_inventory := InventoryAdapter.new(Utils.PLAYER_ID)
 
 
-static func character_inventory(name: String) -> InventoryAdapter:
+static func use_inventory(name: String) -> InventoryAdapter:
 	return InventoryAdapter.new(name)
 
 
@@ -38,6 +38,18 @@ class InventoryAdapter:
 			return true
 		return false
 
+	func at_least(item_name: String, count: int) -> bool:
+		var inv := Driver.instance().inventory_mgr.get_inventory(_id)
+		if count < 1:
+			printerr("Checking if inventory has a 0 or negative value doesn't make sense")
+			return true
+		if inv.count_item_by_id(item_name) >= count:
+			return true
+		return false
+
+	func add(item_id: String, count: int = 1) -> bool:
+		return add_item(item_id, count)
+
 	func add_item(item_id: String, count: int = 1) -> bool:
 		var inv := Driver.instance().inventory_mgr.get_inventory(_id)
 		var item: Item
@@ -59,6 +71,9 @@ class InventoryAdapter:
 		item_stack.item = item
 		item_stack.quantity = count
 		return inv.insert(item_stack)
+
+	func remove(item_id: String, count: int = 1) -> bool:
+		return remove_item(item_id, count)
 
 	func remove_item(item_id: String, count: int = 1) -> bool:
 		var inv := Driver.instance().inventory_mgr.get_inventory(_id)
