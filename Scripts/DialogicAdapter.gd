@@ -4,8 +4,12 @@ extends Node
 static var player_inventory := InventoryAdapter.new(Utils.PLAYER_ID)
 
 
-static func use_inventory(name: String) -> InventoryAdapter:
-	return InventoryAdapter.new(name)
+static func character_inventory(inv_name: String) -> InventoryAdapter:
+	return use_inventory(inv_name)
+
+
+static func use_inventory(inv_name: String) -> InventoryAdapter:
+	return InventoryAdapter.new(inv_name)
 
 
 static func quest(quest_id: String) -> QuestAdapter:
