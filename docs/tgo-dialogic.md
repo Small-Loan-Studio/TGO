@@ -244,9 +244,9 @@ The valid options for the time of day are:
 
 #### Is the current time after HH:MM
 > returns: bool (true/false) - returns true if the current time is after the provided time
-`.is_after(<HH:MM>>)`
+- `.is_after(<HH:MM>>)`
 
-##Examples:**
+**Examples:**
 
 - `{TGO.time_of_day.is_after("12:00")}` -> returns true if the current time is after 12 noon
 - `{TGO.time_of_day.is_after("22:00")}` -> returns true if the current time is after 10pm
