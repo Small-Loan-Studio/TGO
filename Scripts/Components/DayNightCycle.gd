@@ -65,17 +65,17 @@ func _update_tick_time() -> void:
 	_dilated_secs_per_tick = int(_tick_rate * day_secs_per_tick)
 
 
-func _day_segment() -> String:
+func day_segment() -> Enums.TimeOfDay:
 	var ts := _time.get_time()
 	if ts < dawn_start_s:
-		return "night"
+		return Enums.TimeOfDay.NIGHT
 	if ts < day_start_s:
-		return "dawn"
+		return Enums.TimeOfDay.DAWN
 	if ts < dusk_start_s:
-		return "day"
+		return Enums.TimeOfDay.DAY
 	if ts < night_start_s:
-		return "dusk"
-	return "night"
+		return Enums.TimeOfDay.DUSK
+	return Enums.TimeOfDay.NIGHT
 
 
 func _get_target_color(time: int) -> Color:
@@ -130,9 +130,9 @@ func is_paused() -> bool:
 
 
 func _on_tick() -> void:
-	var old_s := _day_segment()
+	var old_s := day_segment()
 	_time.advance_secs(_dilated_secs_per_tick)
-	var new_s := _day_segment()
+	var new_s := day_segment()
 	if old_s != new_s:
 		_begin_tween()
 
@@ -141,6 +141,10 @@ func _on_tick() -> void:
 
 func time_str() -> String:
 	return _time.get_hm_time()
+
+
+func get_time_sec() -> int:
+	return _time.get_time()
 
 
 class DNClock:

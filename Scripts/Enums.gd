@@ -48,6 +48,13 @@ enum LightLevel {
 	SPECIAL,
 }
 
+enum TimeOfDay {
+	DAWN,
+	DAY,
+	DUSK,
+	NIGHT,
+}
+
 enum MenuType {
 	NONE,
 	DEBUG,
@@ -202,6 +209,36 @@ static func light_level_name(ll: LightLevel) -> String:
 			return "special"
 	assert(false, "Invalid light level: " + str(ll))
 	return ""
+
+
+static func time_of_day_name(tod: TimeOfDay) -> String:
+	match tod:
+		TimeOfDay.DAWN:
+			return "dawn"
+		TimeOfDay.DAY:
+			return "day"
+		TimeOfDay.DUSK:
+			return "dusk"
+		TimeOfDay.NIGHT:
+			return "night"
+	assert(false, "Invalid time of day: " + str(tod))
+	return ""
+
+
+static func time_of_day_from_str(str: String) -> TimeOfDay:
+	str = str.to_lower().strip_edges()
+	match str:
+		"dawn":
+			return TimeOfDay.DAWN
+		"day":
+			return TimeOfDay.DAY
+		"dusk":
+			return TimeOfDay.DUSK
+		"night":
+			return TimeOfDay.NIGHT
+		_:
+			printerr("Invalid time of tay: %s" % [str])
+			return TimeOfDay.DAY
 
 
 static func audio_track_path(track: AudioTrack) -> String:

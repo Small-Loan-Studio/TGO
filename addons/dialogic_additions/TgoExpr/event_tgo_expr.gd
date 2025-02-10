@@ -7,9 +7,9 @@ class_name DialogicTgoExprEvent
 var expr: String = ""
 
 func _execute() -> void:
-	print(expr)
+	print("TgoExpr._execute(%s)" % [expr])
 	if expr.begins_with('{TGO.'):
-		dialogic.Expressions.execute_string(expr)
+		dialogic.Expressions.execute_string(expr, null, true)
 	else:
 		printerr('[Dialogic] TGO call does not begin with TGO.')
 	finish()
