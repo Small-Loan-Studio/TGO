@@ -4,6 +4,9 @@ extends Node
 static var player_inventory := InventoryAdapter.new(Utils.PLAYER_ID)
 
 
+static var time_of_day := TimeOfDayAdapter.new()
+
+
 static func character_inventory(inv_name: String) -> InventoryAdapter:
 	return use_inventory(inv_name)
 
@@ -135,3 +138,49 @@ class QuestAdapter:
 	func fail() -> bool:
 		var qst := Driver.instance().quest_mgr.quest_by_id(_id)
 		return qst.mark_failed()
+
+
+class TimeOfDayAdapter:
+	var _dnc_cache: DayNightCycle
+	var _dnc: DayNightCycle:
+		get:
+			if _dnc_cache == null:
+				_dnc_cache = Driver.instance()._day_night_cycle
+			return _dnc_cache
+
+	func is_time_of_day(segment_name: String) -> bool:
+		var tod := Enums.time_of_day_from_str(segment_name)
+		return tod == _dnc.day_segment()
+
+	func _time_str_to_sec(ts: String) -> int:
+		var parts := ts.split(":")
+		var hr := parts[0].to_int()
+		var min := parts[1].to_int()
+		if hr < 0 || hr > 23 || min < 0 || min > 59:
+			printerr("Bad time check: %s" % [ts])
+			return 0
+		return DayNightCycle.DNClock.hms_to_sec(hr, min, 0)
+
+
+	func is_before(time_str: String) -> bool:
+		var sec_check := _time_str_to_sec(time_str)
+		var sec_cur := _dnc.get_time_sec()
+
+		return sec_cur < sec_check
+
+	func is_after(time_str: String) -> bool:
+		var sec_check := _time_str_to_sec(time_str)
+		var sec_cur := _dnc.get_time_sec()
+
+		return sec_cur > sec_check
+
+	func is_between(start: String, end: String) -> bool:
+		var sec_start := _time_str_to_sec(start)
+		var sec_stop := _time_str_to_sec(end)
+		var sec_cur := _dnc.get_time_sec()
+
+		return sec_cur < sec_stop && sec_cur > sec_start
+
+	func set_time(time_str: String) -> void:
+		var want_sec := _time_str_to_sec(time_str)
+		_dnc.set_time_sec(want_sec)

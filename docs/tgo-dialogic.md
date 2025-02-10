@@ -3,7 +3,7 @@
 - [TGO \& Dialogic](#tgo--dialogic)
   - [Introduction](#introduction)
   - [Survey Video](#survey-video)
-  - [Using Supported Exressions](#using-supported-exressions)
+  - [Using Supported Expressions](#using-supported-expressions)
     - [In conditionals](#in-conditionals)
     - [Outside conditionals](#outside-conditionals)
   - [Available Logic](#available-logic)
@@ -24,7 +24,11 @@
       - [Complete a quest](#complete-a-quest)
       - [Fail a quest](#fail-a-quest)
     - [Time of Day](#time-of-day)
-      - [Coming soon](#coming-soon)
+      - [Is it a specific segment of the day?](#is-it-a-specific-segment-of-the-day)
+      - [Is the current time before HH:MM](#is-the-current-time-before-hhmm)
+      - [Is the current time after HH:MM](#is-the-current-time-after-hhmm)
+      - [Is the current time between HH:MM and HH:MM](#is-the-current-time-between-hhmm-and-hhmm)
+      - [Set the time](#set-the-time)
 
 ## Introduction
 
@@ -43,7 +47,7 @@ To start let's review the [TGO Dialogic video][tdlv] where we start to expolre u
 TGO specific additions. In the segment I've linked to you can see that we are using a
 custom expression to check inventory state.
 
-## Using Supported Exressions
+## Using Supported Expressions
 
 ### In conditionals
 In the video I show the basic expression structure:
@@ -206,7 +210,73 @@ Similar to inventories each quest has an ID that's used to interact with it:
 ---
 
 ### Time of Day
-#### Coming soon
+
+In addition to quests and inventory management we can query and change the
+Time in Oakshaw using `{TGO.time_of_day.<action>}`
+
+#### Is it a specific segment of the day?
+> returns bool (true/false) - true when the current time is in the segment requested
+- `.is_time_of_day(<time_of_day>)`
+
+The valid options for the time of day are:
+- `dawn`
+- `day`
+- `dusk`
+- `night`
+
+**Examples:**
+- `{TGO.time_of_day.is_time_of_day("dusk")}` -> checks if it is dusk
+- `{TGO.time_of_day.is_time_of_day("dawn")}` -> checks if it is dawn
+
+---
+
+#### Is the current time before HH:MM
+> returns : bool (true/false) - returns true if the current time is before the provided time
+- `.is_before(<HH:MM>)`
+
+**Examples:**
+
+- `{TGO.time_of_day.is_before("9:30")}` -> checks if the current time is before 9:30 am
+- `{TGO.time_of_day.is_before("14:00")}` -> checks if the current time is before 2pm. Note
+  
+> Note that time is specified in 24h format and the only valid values are `00:00` to `23:59`
+---
+
+#### Is the current time after HH:MM
+> returns: bool (true/false) - returns true if the current time is after the provided time
+`.is_after(<HH:MM>>)`
+
+##Examples:**
+
+- `{TGO.time_of_day.is_after("12:00")}` -> returns true if the current time is after 12 noon
+- `{TGO.time_of_day.is_after("22:00")}` -> returns true if the current time is after 10pm
+
+> Note that time is specified in 24h format and the only valid values are `00:00` to `23:59`
+---
+
+#### Is the current time between HH:MM and HH:MM
+> returns: bool (true/false) - returns true if the current time is between two specified times
+- `.is_between(<start_time_HH:MM>, <stop_time_HH:MM>)`
+
+**Examples:**
+
+- `{TGO.time_of_day.is_between("00:00", "06:30")}` -> returns true if the current time is between midnight and 6:30am
+- `{TGO.time_of_day.is_between("18:00", "23:59")}` -> returns true if the current time is 6pm and (almost) midnight
+
+> Notes:
+> 1. time is specified in 24h format  
+> 2. the earlier time is assumed to be provided first
+> 3. this does not handle time "wrapping around" into a new day, in other words `is_between("19:00", "06:00")` does **not** mean between 7pm and 6am. Rather it has no meaning
+---
+
+#### Set the time
+> returns: nothing
+- `.set_time(<HH:MM>)`
+
+**Examples:**
+
+- `{TGO.time_of_day.set_time("06:00")}` -> set the time to 6am
+- `{TGO.time_of_day.set_time("19:00")}` -> set the time to 7pm
 
 [ldf]: https://www.youtube.com/watch?v=7PuPU0Mrl_g
 [htdl2]: https://www.youtube.com/watch?v=0JPNmQ27uwA&list=PLPwlXx18zF7EKPb4sVu4gZ9S7XS0-ad_a
