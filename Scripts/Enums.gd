@@ -237,7 +237,7 @@ static func time_of_day_from_str(str: String) -> TimeOfDay:
 		"night":
 			return TimeOfDay.NIGHT
 		_:
-			printerr("Invalid time of tay: %s" %[str])
+			printerr("Invalid time of tay: %s" % [str])
 			return TimeOfDay.DAY
 
 

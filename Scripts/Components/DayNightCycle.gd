@@ -146,6 +146,7 @@ func time_str() -> String:
 func get_time_sec() -> int:
 	return _time.get_time()
 
+
 class DNClock:
 	extends RefCounted
 

@@ -3,7 +3,6 @@ extends Node
 
 static var player_inventory := InventoryAdapter.new(Utils.PLAYER_ID)
 
-
 static var time_of_day := TimeOfDayAdapter.new()
 
 
@@ -160,7 +159,6 @@ class TimeOfDayAdapter:
 			printerr("Bad time check: %s" % [ts])
 			return 0
 		return DayNightCycle.DNClock.hms_to_sec(hr, min, 0)
-
 
 	func is_before(time_str: String) -> bool:
 		var sec_check := _time_str_to_sec(time_str)
