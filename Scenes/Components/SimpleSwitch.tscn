@@ -4,8 +4,7 @@
 [ext_resource type="Script" path="res://Scripts/Components/SimpleSwitchConfig.gd" id="2_l3rma"]
 [ext_resource type="Script" path="res://Scripts/Components/SimpleSwitchSignalDelegate.gd" id="3_lnafs"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_ytkac"]
-resource_local_to_scene = true
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_gc3fn"]
 size = Vector2(0, 0)
 
 [node name="SimpleSwitchParent" instance=ExtResource("1_8we76")]
@@ -25,4 +24,4 @@ color = Color(0.745098, 0.745098, 0.745098, 1)
 polygon = PackedVector2Array(0, 0, 0, 0, 0, 0, 0, 0)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Switch" index="1"]
-shape = SubResource("RectangleShape2D_ytkac")
+shape = SubResource("RectangleShape2D_gc3fn")
