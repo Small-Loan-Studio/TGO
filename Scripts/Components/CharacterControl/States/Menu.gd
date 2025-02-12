@@ -14,10 +14,10 @@ func enter(_ctx: Variant) -> void:
 	_done_waiting = false
 
 
-func run_tick(_delta: float) -> void:
+func run_tick(_delta: float, _change_state := func(state:State, ctx:Variant) -> void: pass) -> void:
 	if _waiting:
 		if _done_waiting:
-			_state_machine.queue_state_change(idle_state)
+			_change_state.call(idle_state)
 		return
 
 	_waiting = true

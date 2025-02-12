@@ -23,13 +23,13 @@ func exit() -> void:
 	pass
 
 
-func run_input(_event: InputEvent) -> void:
+func run_input(_event: InputEvent, _change_state := func(state:State, ctx:Variant) -> void: pass) -> void:
 	pass
 
 
-func run_physics(_delta: float) -> void:
+func run_physics(_delta: float, _change_state := func(state:State, ctx:Variant) -> void: pass) -> void:
 	pass
 
 
-func run_tick(_delta: float) -> void:
+func run_tick(_delta: float, _change_state := func(state:State, ctx:Variant) -> void: pass) -> void:
 	pass
