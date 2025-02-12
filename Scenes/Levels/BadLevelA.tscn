@@ -99,13 +99,13 @@ dest_path = NodePath("../../Markers/PlayerStart")
 atlas = ExtResource("21_li46b")
 region = Rect2(0, 0, 32, 32)
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_alxrd"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_tvsh0"]
 size = Vector2(32, 32)
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_p2ldv"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_t5unw"]
 size = Vector2(32, 32)
 
-[node name="LevelBase" instance=ExtResource("1_iejup")]
+[node name="LevelBase2" instance=ExtResource("1_iejup")]
 script = ExtResource("2_22a2t")
 
 [node name="TileMap" parent="." index="0"]
@@ -245,7 +245,7 @@ collision_mask = 0
 
 [node name="Shape" parent="Objects/Automatic Interactable/Physics" index="0"]
 position = Vector2(0, -16)
-shape = SubResource("RectangleShape2D_alxrd")
+shape = SubResource("RectangleShape2D_tvsh0")
 
 [node name="Interactable" parent="Objects/Automatic Interactable" index="2"]
 position = Vector2(0, -1)
@@ -259,7 +259,7 @@ action_map = {
 
 [node name="Shape" parent="Objects/Automatic Interactable/Interactable" index="0"]
 position = Vector2(0, -16)
-shape = SubResource("RectangleShape2D_p2ldv")
+shape = SubResource("RectangleShape2D_t5unw")
 
 [node name="PlayerStart" type="Node2D" parent="Markers" index="0"]
 position = Vector2(522, 183)
