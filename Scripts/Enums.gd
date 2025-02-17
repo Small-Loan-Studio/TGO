@@ -84,6 +84,11 @@ enum ItemType {
 	EQUIPPABLE,
 }
 
+enum GearSlot {
+	LEFT,
+	RIGHT,
+}
+
 enum TargetType {
 	NONE,
 	INTERACTABLE,

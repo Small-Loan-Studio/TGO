@@ -1,3 +1,4 @@
+@tool
 class_name Item
 extends Resource
 
@@ -23,6 +24,9 @@ const ITEM_PATH = "res://Scripts/Resources/Items"
 			stack_size = value
 
 @export var icon: Texture2D
+
+## For equippable item types this configures what it does.
+@export var gear_spec: Array[GearSpec]
 
 
 func _to_string() -> String:

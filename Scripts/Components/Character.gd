@@ -13,6 +13,10 @@ extends CharacterBody2D
 ## a default noop controller will be used.
 @export var _controller_node_path: NodePath
 
+## What items does this character have equipped?
+## Map[Enums.GearSlot, Item]
+@export var _equipment: Dictionary
+
 ## When set to false this will disable the monitoring state of the sensors
 ## a character uses to interact with the exterior world, e.g., use items /
 ## push/pull things. No checking is done to ensure it's safe to switch state
@@ -155,6 +159,7 @@ func save() -> Dictionary:
 	return {
 		"position": [global_position.x, global_position.y],
 		"stats": stats.save(),
+		# TODO equipment
 	}
 
 
@@ -169,6 +174,28 @@ func load(data: Dictionary) -> void:
 
 # end region save/load
 
+func equip(slot: Enums.GearSlot, item: Item) -> bool:
+	# TODO: we should let equipping something unequip the previous item
+	if _equipment.has(slot):
+		return false
+
+	if item.type != Enums.ItemType.EQUIPPABLE:
+		return false
+
+	_equipment[slot] = item
+	if item.gear_spec != null:
+		item.gear_spec.on_equip(self)
+	return true
+
+func unequip(slot: Enums.GearSlot) -> void:
+	if !slot in _equipment:
+		return
+	var old_gear := _equipment[slot]
+	var spec := old_gear.gear_spec
+	_equipment.erase(slot)
+
+	if spec != null:
+		spec.on_remove(self)
 
 func _get_configuration_warnings() -> PackedStringArray:
 	var errs := []
