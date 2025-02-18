@@ -175,6 +175,7 @@ func load(data: Dictionary) -> void:
 # end region save/load
 
 func equip(slot: Enums.GearSlot, item: Item) -> bool:
+	print("equip(%s, %s) - Current equip load: %s" % [slot, item.id, _equipment])
 	# TODO: we should let equipping something unequip the previous item
 	if _equipment.has(slot):
 		return false
@@ -189,8 +190,10 @@ func equip(slot: Enums.GearSlot, item: Item) -> bool:
 	return true
 
 func unequip(slot: Enums.GearSlot) -> void:
-	if !slot in _equipment:
+	print("unequip(%s) - Current equip load: %s" % [slot, _equipment])
+	if !_equipment.has(slot):
 		return
+
 	var old_gear: Item = _equipment[slot]
 	var spec := old_gear.gear_spec
 	_equipment.erase(slot)

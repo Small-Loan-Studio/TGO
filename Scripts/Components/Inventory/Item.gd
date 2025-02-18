@@ -29,11 +29,6 @@ const ITEM_PATH = "res://Scripts/Resources/Items"
 @export var gear_spec: Array[GearSpec]
 
 
-func _ready() -> void:
-	for g: GearSpec in gear_spec:
-		g.parent_item = self
-
-
 func _to_string() -> String:
 	return name
 
