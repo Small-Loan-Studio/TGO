@@ -1,0 +1,39 @@
+[gd_scene load_steps=2 format=3 uid="uid://c0kelgau5kji2"]
+
+[ext_resource type="Script" path="res://Scripts/UI/Debug/debug_equipment.gd" id="1_2cus4"]
+
+[node name="DebugEquipment" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+script = ExtResource("1_2cus4")
+
+[node name="Grid" type="GridContainer" parent="."]
+custom_minimum_size = Vector2(128, 0)
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+columns = 2
+
+[node name="Label" type="Label" parent="Grid"]
+layout_mode = 2
+text = "Left"
+
+[node name="LeftOption" type="OptionButton" parent="Grid"]
+layout_mode = 2
+size_flags_horizontal = 3
+focus_mode = 0
+
+[node name="Label2" type="Label" parent="Grid"]
+layout_mode = 2
+text = "Right"
+
+[node name="RightOption" type="OptionButton" parent="Grid"]
+layout_mode = 2
+
+[connection signal="item_selected" from="Grid/LeftOption" to="." method="_equip_change" binds= ["left"]]
+[connection signal="item_selected" from="Grid/RightOption" to="." method="_equip_change" binds= ["right"]]

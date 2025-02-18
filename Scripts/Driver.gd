@@ -12,8 +12,9 @@ var _last_loaded_level: LevelBase = null
 @onready var _world := $GameWorld
 @onready var _day_night_cycle: DayNightCycle = $GameWorld/DayNightOverlay
 @onready var _hud: HUD = $OverlayManager/HUD
-@onready var _debug_ui_inventory := $OverlayManager/HUD/DebugInventoryUI
 @onready var _serialization_mgr: SerializationManager = $SerializationManager
+@onready var _debug_ui_inventory := $OverlayManager/HUD/DebugInventoryUI
+@onready var _debug_ui_equipment: DebugEquipment = $OverlayManager/HUD/RightDebug/DebugEquipment
 @onready var _debug_ui_quest: QuestTracker = $OverlayManager/HUD/DebugCorner/DebugQuestUI
 @onready var _debug_dnc: DebugDayNight = $OverlayManager/HUD/DebugStack/DebugDayNight
 @onready var _debug_light: DevinLightControl = $OverlayManager/HUD/DebugStack/DevinLightControl
@@ -62,6 +63,9 @@ func _post_ready() -> void:
 	# let's just ignore the get_node call. it's trash but beyond temporary
 	_debug_light.setup(player, player.get_node("Debug_Torch"))
 	_debug_inventory.setup(inventory_mgr, player.id)
+	inventory_mgr.get_inventory("Devin").inventory_updated.connect(
+		_debug_ui_equipment.update_available.unbind(1))
+	_debug_ui_equipment.update_available()
 
 	if !_personal_config.autoload_level.is_empty():
 		await _curtain.fade_in(1)

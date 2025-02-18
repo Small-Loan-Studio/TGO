@@ -1,4 +1,4 @@
-[gd_scene load_steps=24 format=3 uid="uid://d4cnh54npmjiv"]
+[gd_scene load_steps=25 format=3 uid="uid://d4cnh54npmjiv"]
 
 [ext_resource type="Script" path="res://Scripts/Driver.gd" id="1_agcjs"]
 [ext_resource type="Script" path="res://Scripts/AudioManager.gd" id="2_4seev"]
@@ -12,6 +12,7 @@
 [ext_resource type="PackedScene" uid="uid://dukcf64qxy46o" path="res://Scenes/UI/Debug/Inventory.tscn" id="7_3yw60"]
 [ext_resource type="PackedScene" uid="uid://dqrxejwlgxsgu" path="res://Scenes/UI/Debug/QuestTracker.tscn" id="8_8e3e0"]
 [ext_resource type="Script" path="res://Scripts/Components/Quests/QuestManager.gd" id="9_4hdkn"]
+[ext_resource type="PackedScene" uid="uid://c0kelgau5kji2" path="res://Scenes/UI/Debug/debug_equipment.tscn" id="9_n1ypf"]
 [ext_resource type="PackedScene" uid="uid://dmyrmmjngi1ts" path="res://Scenes/UI/Debug/debug_day_night.tscn" id="10_8xh8g"]
 [ext_resource type="Script" path="res://Scripts/SerializationManager.gd" id="11_e6bsk"]
 [ext_resource type="PackedScene" uid="uid://my7v0l0el1dj" path="res://Scenes/UI/Debug/quest_debugger.tscn" id="11_g6nlc"]
@@ -76,7 +77,6 @@ visible = false
 layout_mode = 1
 
 [node name="HUD" type="Control" parent="OverlayManager"]
-visible = false
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -92,6 +92,23 @@ offset_left = 40.0
 offset_top = 40.0
 offset_right = 56.0
 offset_bottom = 56.0
+
+[node name="RightDebug" type="VBoxContainer" parent="OverlayManager/HUD"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -200.0
+offset_top = -62.0
+offset_right = -200.0
+offset_bottom = -62.0
+grow_horizontal = 0
+grow_vertical = 0
+
+[node name="DebugEquipment" parent="OverlayManager/HUD/RightDebug" instance=ExtResource("9_n1ypf")]
+layout_mode = 2
 
 [node name="DebugStack" type="VBoxContainer" parent="OverlayManager/HUD"]
 layout_mode = 1
@@ -227,6 +244,9 @@ day_autostart = true
 unique_name_in_owner = true
 visible = false
 position = Vector2(0, 0)
+_debug_draw_origin = false
+_equipment = {}
+activate_external_sensors = true
 
 [node name="Camera2D" type="Camera2D" parent="GameWorld/Devin"]
 

@@ -7,5 +7,5 @@ func on_equip(c: Character) -> void:
 func on_remove(c: Character) -> void:
   pass
 
-func on_use() -> void:
+func on_use(c: Character) -> void:
   pass

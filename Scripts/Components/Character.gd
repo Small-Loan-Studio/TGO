@@ -184,18 +184,20 @@ func equip(slot: Enums.GearSlot, item: Item) -> bool:
 
 	_equipment[slot] = item
 	if item.gear_spec != null:
-		item.gear_spec.on_equip(self)
+		for gs in item.gear_spec:
+			gs.on_equip(self)
 	return true
 
 func unequip(slot: Enums.GearSlot) -> void:
 	if !slot in _equipment:
 		return
-	var old_gear := _equipment[slot]
+	var old_gear: Item = _equipment[slot]
 	var spec := old_gear.gear_spec
 	_equipment.erase(slot)
 
 	if spec != null:
-		spec.on_remove(self)
+		for gs in spec:
+			gs.on_remove(self)
 
 func _get_configuration_warnings() -> PackedStringArray:
 	var errs := []

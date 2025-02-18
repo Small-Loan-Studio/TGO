@@ -22,7 +22,10 @@ default_max = 100.0
 [node name="Devin" instance=ExtResource("1_kp6oq")]
 script = ExtResource("1_coq4s")
 id = "Devin"
+_debug_draw_origin = null
 _controller_node_path = NodePath("InputController")
+_equipment = null
+activate_external_sensors = null
 
 [node name="AnimatedSprite2D" parent="." index="0"]
 sprite_frames = ExtResource("3_0y874")
