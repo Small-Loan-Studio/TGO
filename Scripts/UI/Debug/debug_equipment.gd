@@ -11,9 +11,9 @@ func update_available() -> void:
 
 
 func _equip_change(_idx: int, slot: String) -> void:
-	print('equip_change(%s, %s)' % [_idx, slot])
 	var btn := _get_button(slot)
 	var selected_id := btn.get_item_text(btn.get_selected_id())
+	print("selected_id: ", selected_id)
 	if selected_id == "<empty>":
 		Driver.instance().player.unequip(_get_slot(slot))
 		return
@@ -21,10 +21,11 @@ func _equip_change(_idx: int, slot: String) -> void:
 	var inv := Driver.instance().inventory_mgr.get_inventory(Utils.PLAYER_ID)
 	var inv_stack: Array[ItemStack] = inv.get_items().filter(
 		func(i: ItemStack) -> bool: return i.item.id == selected_id)
-
+	print("inv_stack: ", inv_stack)
 	if len(inv_stack) < 1:
 		return
 
+	print("calling equip")
 	Driver.instance().player.equip(_get_slot(slot), inv_stack[0].item)
 
 

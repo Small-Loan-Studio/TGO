@@ -4,3 +4,4 @@
 
 [node name="LaunchConfig" type="Node"]
 script = ExtResource("1_f3vut")
+autoload_level = "BadLevelA"
