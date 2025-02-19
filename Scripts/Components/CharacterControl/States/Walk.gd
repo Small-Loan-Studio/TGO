@@ -18,7 +18,9 @@ func exit() -> void:
 	_has_entered = false
 
 
-func run_input(_event: InputEvent, _change_state := func(state:State, ctx:Variant) -> void: pass) -> void:
+func run_input(
+	_event: InputEvent, _change_state := func(state: State, ctx: Variant) -> void: pass
+) -> void:
 	_impulse = _ctx.controller.get_vector()
 
 	if _impulse != Vector2.ZERO:
@@ -39,7 +41,9 @@ func run_input(_event: InputEvent, _change_state := func(state:State, ctx:Varian
 	maybe_interact()
 
 
-func run_physics(_delta: float, _change_state := func(state:State, ctx:Variant) -> void: pass) -> void:
+func run_physics(
+	_delta: float, _change_state := func(state: State, ctx: Variant) -> void: pass
+) -> void:
 	if !_has_entered:
 		return
 	_ctx.character._sensor_group.rotation = _ctx.character.facing

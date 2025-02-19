@@ -22,7 +22,9 @@ func exit() -> void:
 	_has_entered = false
 
 
-func run_input(_event: InputEvent, _change_state := func(state:State, ctx:Variant) -> void: pass) -> void:
+func run_input(
+	_event: InputEvent, _change_state := func(state: State, ctx: Variant) -> void: pass
+) -> void:
 	_impulse = _ctx.controller.get_vector()
 
 	if _impulse != Vector2.ZERO:
@@ -40,7 +42,9 @@ func run_input(_event: InputEvent, _change_state := func(state:State, ctx:Varian
 		_change_state.call(walk_state, walk_state.mk_args(_impulse))
 
 
-func run_physics(_delta: float, _change_state := func(state:State, ctx:Variant) -> void: pass) -> void:
+func run_physics(
+	_delta: float, _change_state := func(state: State, ctx: Variant) -> void: pass
+) -> void:
 	if !_has_entered:
 		return
 	_ctx.character._sensor_group.rotation = _ctx.character.facing
@@ -52,7 +56,9 @@ func _get_stam() -> CharacterStat:
 	return _ctx.character.stats.get_stat(Enums.Stat.STAMINA)
 
 
-func run_tick(delta: float, _change_state := func(state:State, ctx:Variant) -> void: pass) -> void:
+func run_tick(
+	delta: float, _change_state := func(state: State, ctx: Variant) -> void: pass
+) -> void:
 	if _get_stam().value < stamina_drain_rate:
 		_change_state.call(idle_state)
 		return
