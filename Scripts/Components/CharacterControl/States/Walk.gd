@@ -18,13 +18,15 @@ func exit() -> void:
 	_has_entered = false
 
 
-func run_input(_event: InputEvent) -> void:
+func run_input(
+	_event: InputEvent, _change_state := func(state: State, ctx: Variant) -> void: pass
+) -> void:
 	_impulse = _ctx.controller.get_vector()
 
 	if _impulse != Vector2.ZERO:
 		_ctx.character.facing = Vector2.UP.angle_to(_impulse)
 		if Enums.InputAction.SPRINT in _ctx.controller.get_button_pressed():
-			_state_machine.queue_state_change(sprint_state, sprint_state.mk_args(_impulse))
+			_change_state.call(sprint_state, sprint_state.mk_args(_impulse))
 			_impulse = Vector2.ZERO
 			return
 
@@ -34,12 +36,14 @@ func run_input(_event: InputEvent) -> void:
 		if !animation_correct || !_animated_sprite.is_playing():
 			_animated_sprite.play(want_animation)
 	else:
-		_state_machine.queue_state_change(idle_state)
+		_change_state.call(idle_state)
 
 	maybe_interact()
 
 
-func run_physics(_delta: float) -> void:
+func run_physics(
+	_delta: float, _change_state := func(state: State, ctx: Variant) -> void: pass
+) -> void:
 	if !_has_entered:
 		return
 	_ctx.character._sensor_group.rotation = _ctx.character.facing

@@ -16,12 +16,14 @@ func enter(_enter_ctx: Variant) -> void:
 		await interactable.triggered
 
 
-func run_tick(_delta: float) -> void:
+func run_tick(
+	_delta: float, _change_state := func(state: State, ctx: Variant) -> void: pass
+) -> void:
 	if _tgt.is_moveable_block():
 		_animated_sprite.stop()
 		(
-			_state_machine
-			. queue_state_change(
+			_change_state
+			. call(
 				push_pull_state,
 				push_pull_state.mk_args(_ctx.character.facing, _tgt.get_moveable_block()),
 			)
@@ -29,4 +31,4 @@ func run_tick(_delta: float) -> void:
 		return
 
 	if Dialogic.current_timeline == null:
-		_state_machine.queue_state_change(idle_state)
+		_change_state.call(idle_state)

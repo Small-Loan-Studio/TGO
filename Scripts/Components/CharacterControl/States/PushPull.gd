@@ -30,7 +30,9 @@ func enter(ctx: Variant) -> void:
 	_handle_animation()
 
 
-func run_input(_event: InputEvent) -> void:
+func run_input(
+	_event: InputEvent, _change_state := func(state: State, ctx: Variant) -> void: pass
+) -> void:
 	if Enums.InputAction.INTERACT in _ctx.controller.get_just_pressed():
 		_state_machine.queue_state_change(idle_state)
 		_hud.set_toast(Enums.action_verb_name(Enums.ActionVerb.PUSH_PULL))
@@ -52,7 +54,9 @@ func _handle_animation() -> void:
 		_animated_sprite.play(want_animation)
 
 
-func run_physics(_delta: float) -> void:
+func run_physics(
+	_delta: float, _change_state := func(state: State, ctx: Variant) -> void: pass
+) -> void:
 	var push_velocity := _projected_impulse * move_speed / 3
 	if push_velocity == Vector2.ZERO:
 		return
@@ -76,9 +80,11 @@ func _is_push(v: Vector2, push_direction: Enums.Direction) -> bool:
 	return v == push_vec
 
 
-func run_tick(_delta: float) -> void:
+func run_tick(
+	_delta: float, _change_state := func(state: State, ctx: Variant) -> void: pass
+) -> void:
 	if !_ctx.character.target.is_moveable_block():
-		_state_machine.queue_state_change(idle_state)
+		_change_state.call(idle_state)
 
 
 static func mk_args(facing: float, tgt: MoveableBlock) -> Dictionary:

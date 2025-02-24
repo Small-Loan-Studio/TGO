@@ -61,7 +61,7 @@ func run_input(event: InputEvent) -> void:
 		return
 
 	_next_state = null
-	_cur_state.run_input(event)
+	_cur_state.run_input(event, queue_state_change)
 	_maybe_enter_state()
 
 
@@ -70,7 +70,7 @@ func run_physics(delta: float) -> void:
 		return
 
 	_next_state = null
-	_cur_state.run_physics(delta)
+	_cur_state.run_physics(delta, queue_state_change)
 	_maybe_enter_state()
 
 
@@ -79,7 +79,7 @@ func run_tick(delta: float) -> void:
 		return
 
 	_next_state = null
-	_cur_state.run_tick(delta)
+	_cur_state.run_tick(delta, queue_state_change)
 	_maybe_enter_state()
 
 
