@@ -60,6 +60,21 @@ func lint() -> Array[String]:
 	var var_info: Variant = Utils.ersatz_dialogic_get_var(variable)
 	if var_info.size() == 0:
 		errs.append("E: invalid variable specified (%s)" % [variable])
+	else:
+		var var_type: Variant.Type = var_info[1]
+		match var_type:
+			TYPE_INT:
+				if int(target_value) == null:
+					errs.append("E: target value must be of type INT: %s" % [target_value])
+			TYPE_FLOAT:
+				if float(target_value) == null:
+					errs.append("E: target value must be of type FLOAT: %s" % [target_value])
+			TYPE_BOOL:
+				if Utils.str_to_bool(target_value) == null:
+					errs.append("E: target value must be of type BOOL: %s" % [target_value])
+			TYPE_STRING:
+				pass
+			_:
+				errs.append("E: unsupported variable type %s: %s" % [var_info[0], var_type])
 
-	# TODO: check type of target value and var_info[1] type data
 	return errs
