@@ -1,0 +1,15 @@
+[gd_scene load_steps=2 format=3 uid="uid://bpqy2l0t41kaa"]
+
+[ext_resource type="PackedScene" uid="uid://dyq8mcdsutnsa" path="res://Scenes/Components/LevelBase.tscn" id="1_oacxt"]
+
+[node name="LevelBase" instance=ExtResource("1_oacxt")]
+
+[node name="TextEdit" type="TextEdit" parent="." index="5"]
+offset_left = 27.0
+offset_top = 16.0
+offset_right = 525.0
+offset_bottom = 181.0
+text = "Level Designer, you can delete this later.
+
+This level has \"Rows of terraced housing. Some houses are Puss & Mew distributors.\" Assume approximately 30 tiles by any length of terrace house strip."
+wrap_mode = 1
