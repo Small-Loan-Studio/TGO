@@ -37,4 +37,9 @@ func lint() -> Array[String]:
 	var errs: Array[String] = []
 	if inventory_id.strip_edges() == "":
 		errs.append("E: inventory id is empty")
+	if target_item == null:
+		errs.append("E: target item is not set")
+	if Item.tool_from_id(target_item.id) == null:
+		errs.append("E: target item does not exist")
+
 	return errs

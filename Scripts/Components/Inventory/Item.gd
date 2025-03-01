@@ -53,7 +53,7 @@ static func tool_all_ids() -> Array[String]:
 ## Walk item directory to find a resource with the provided ID. Some validation
 ## is done and we error if we find not exactly one item. Intended for use in the
 ## editor only.
-static func tool_from_id(id: String) -> Item:
+static func tool_from_id(item_id: String) -> Item:
 	if !Engine.is_editor_hint():
 		return null
 
@@ -66,11 +66,13 @@ static func tool_from_id(id: String) -> Item:
 	for p in item_paths:
 		var item := ResourceLoader.load(ITEM_PATH.path_join(p)) as Item
 		if item != null:
-			if item.id == id:
+			if item.id == item_id:
 				items.append(item)
 
 	if len(items) != 1:
-		assert(false, "Unable to determine which item '%s' is associated with: %s" % [id, items])
+		assert(
+			false, "Unable to determine which item '%s' is associated with: %s" % [item_id, items]
+		)
 		return null
 
 	return items[0]
