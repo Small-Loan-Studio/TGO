@@ -78,6 +78,8 @@ func _ready() -> void:
 					Enums.InputAction.INTERACT,
 					Enums.InputAction.SPRINT,
 					Enums.InputAction.MENU,
+					Enums.InputAction.LEFT_ITEM,
+					Enums.InputAction.RIGHT_ITEM,
 				],
 			)
 		)
@@ -111,6 +113,13 @@ func _process(delta: float) -> void:
 		return
 
 	_state_machine.run_tick(delta)
+	if _controller != null:
+		if _controller.just_pressed(Enums.InputAction.LEFT_ITEM):
+			print("left_item pressed")
+		if _controller.just_released(Enums.InputAction.LEFT_ITEM):
+			print("left_item released")
+		if _controller.just_pressed(Enums.InputAction.RIGHT_ITEM):
+			print("right_item")
 
 
 # region sensor / target management

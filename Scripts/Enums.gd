@@ -39,6 +39,8 @@ enum InputAction {
 	INTERACT,
 	SPRINT,
 	MENU,
+	LEFT_ITEM,
+	RIGHT_ITEM,
 }
 
 enum LightLevel {
@@ -198,6 +200,10 @@ static func input_action_name(ia: InputAction) -> String:
 			return "sprint"
 		InputAction.MENU:
 			return "load_menu"
+		InputAction.LEFT_ITEM:
+			return "left_item"
+		InputAction.RIGHT_ITEM:
+			return "right_item"
 	assert(false, "Invalid Input action: " + str(ia))
 	return ""
 
