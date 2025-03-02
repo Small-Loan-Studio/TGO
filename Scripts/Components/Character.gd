@@ -113,18 +113,16 @@ func _process(delta: float) -> void:
 		return
 
 	_state_machine.run_tick(delta)
-	if _controller != null:
-		if _controller.just_pressed(Enums.InputAction.LEFT_ITEM):
-			print("left_item pressed")
-		if _controller.just_released(Enums.InputAction.LEFT_ITEM):
-			print("left_item released")
-		if _controller.just_pressed(Enums.InputAction.RIGHT_ITEM):
-			print("right_item")
+
+	if !_state_machine.input_exclusive():
+		if _controller != null:
+			if _controller.just_pressed(Enums.InputAction.LEFT_ITEM):
+				use_item(Enums.GearSlot.LEFT)
+			if _controller.just_pressed(Enums.InputAction.RIGHT_ITEM):
+				use_item(Enums.GearSlot.RIGHT)
 
 
-# region sensor / target management
-
-
+#region sensor / target managementregion
 func _on_interaction_sensor_entered(area: Area2D) -> void:
 	if area is Interactable:
 		target.update(area)
@@ -160,7 +158,7 @@ func _handle_target_changed() -> void:
 		hud.clear_toast()
 
 
-# end region sensor / target management
+#endregion
 
 
 # region save/load
@@ -179,10 +177,9 @@ func load(data: Dictionary) -> void:
 	var stats_arr: Array[Dictionary] = []
 	stats_arr.assign(data["stats"])
 	stats.load(stats_arr)
+# endregion
 
-
-# end region save/load
-
+#region equipment
 func equip(slot: Enums.GearSlot, item: Item) -> bool:
 	print("equip(%s, %s) - Current equip load: %s" % [slot, item.id, _equipment])
 	# TODO: we should let equipping something unequip the previous item
@@ -211,6 +208,19 @@ func unequip(slot: Enums.GearSlot) -> void:
 		for gs in spec:
 			gs.on_remove(self)
 
+
+func use_item(slot: Enums.GearSlot) -> void:
+	var equipment: Item = _equipment.get(slot, null)
+	if equipment == null:
+		printerr("Nothing equipped in %s" % [Enums.gear_slot_name(slot)])
+		return
+	if len(equipment.gear_spec) == 0:
+		printerr("Gear has no specs attached")
+		return
+	for gs in equipment.gear_spec:
+		gs.on_use(self)
+
+#endregion
 func _get_configuration_warnings() -> PackedStringArray:
 	var errs := []
 	if _sprite.sprite_frames == null:

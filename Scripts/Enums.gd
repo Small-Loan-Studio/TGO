@@ -311,6 +311,15 @@ static func action_verb_from_str(str: String) -> Enums.ActionVerb:
 	return v
 
 
+static func gear_slot_name(slot: GearSlot) -> String:
+	match slot:
+		GearSlot.LEFT:
+			return "left"
+		GearSlot.RIGHT:
+			return "right"
+	return "unknown"
+
+
 static func check_op_eval_int(op: CheckOp, x: int, y: int) -> bool:
 	var res := false
 	match op:

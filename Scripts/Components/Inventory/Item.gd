@@ -26,7 +26,7 @@ const ITEM_PATH = "res://Scripts/Resources/Items"
 @export var icon: Texture2D
 
 ## For equippable item types this configures what it does.
-@export var gear_spec: Array[GearSpec]
+@export var gear_spec: Array[GearSpec] = []
 
 
 func _to_string() -> String:

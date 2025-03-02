@@ -87,6 +87,12 @@ func cur_state() -> State:
 	return _cur_state
 
 
+func input_exclusive() -> bool:
+	if _cur_state == null:
+		return false
+	return _cur_state._input_exclusive
+
+
 ## TODO: the current model is not thread safe and I think we're basically
 ## daring race conditions between physics, main, and input thread (caveat:
 ## physics only runs in its own thread if we configure it iirc so we're probably

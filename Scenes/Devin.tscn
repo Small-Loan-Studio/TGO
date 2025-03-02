@@ -68,6 +68,7 @@ move_speed = 260
 [node name="Menu" type="Node" parent="StateMachine" index="5" node_paths=PackedStringArray("idle_state")]
 script = ExtResource("9_ac1aa")
 idle_state = NodePath("../Idle")
+_input_exclusive = true
 
 [node name="InputController" type="Node" parent="." index="4"]
 script = ExtResource("8_1w5au")
