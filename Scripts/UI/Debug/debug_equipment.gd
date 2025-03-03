@@ -10,7 +10,7 @@ var _in_sync := false
 func update_available() -> void:
 	_populate(_left_option)
 	_populate(_right_option)
-	# _sync(Driver.instance().player._equipment)
+	_sync(Driver.instance().player._equipment)
 
 
 func _sync(gear: Dictionary) -> void:

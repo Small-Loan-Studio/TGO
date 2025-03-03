@@ -257,6 +257,7 @@ func _load_gear(data: Dictionary) -> void:
 			continue
 		equip(slot, item)
 		item.restore_state(self, data_array.slice(1))
+		equipment_changed.emit(id)
 
 
 #endregion
