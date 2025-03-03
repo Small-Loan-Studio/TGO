@@ -66,9 +66,7 @@ func _populate(btn: OptionButton) -> void:
 
 	var is_equippable := func(i: ItemStack) -> bool: return i.item.type == Enums.ItemType.EQUIPPABLE
 
-	var gear := items.filter(is_equippable).map(
-		func(i: ItemStack) -> String: return i.item.id
-	)
+	var gear := items.filter(is_equippable).map(func(i: ItemStack) -> String: return i.item.id)
 
 	btn.clear()
 	var idx := 0
