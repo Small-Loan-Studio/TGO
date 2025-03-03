@@ -1,15 +1,14 @@
 class_name State
 extends Node
 
-var _state_machine: StateMachine
-var _setup_args: Variant
-
 ## Janky way to specify that if this state is running the state machine owner
 ## should (probably) not allow other things to handle input. Mostly for
 ## menu overlays. Probably better handled through understanding the UI event
 ## propagation model but alas.
 @export var _input_exclusive: bool = false
 
+var _state_machine: StateMachine
+var _setup_args: Variant
 
 
 func setup(machine: StateMachine, setup_args: Variant = {}) -> void:

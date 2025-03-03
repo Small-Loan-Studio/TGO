@@ -1,17 +1,18 @@
 class_name DebugEquipment
 extends Control
 
+var _in_sync := false
 
 @onready var _left_option: OptionButton = $Grid/LeftOption
 @onready var _right_option: OptionButton = $Grid/RightOption
 
+
 func update_available() -> void:
 	_populate(_left_option)
 	_populate(_right_option)
-	_sync(Driver.instance().player._equipment)
+	# _sync(Driver.instance().player._equipment)
 
 
-var _in_sync := false
 func _sync(gear: Dictionary) -> void:
 	_in_sync = true
 	if gear.has(Enums.GearSlot.LEFT):
@@ -62,27 +63,28 @@ func _populate(btn: OptionButton) -> void:
 	var inv := Driver.instance().inventory_mgr.get_inventory(
 		Driver.instance().player.id)
 	var items := inv.get_items()
-	var gear := items.filter(
-		func(i: ItemStack)->bool:
-			return i.item.type == Enums.ItemType.EQUIPPABLE
-			).map(
-				func(i: ItemStack)->String: return i.item.id)
+
+	var is_equippable := func(i: ItemStack) -> bool:
+		return i.item.type == Enums.ItemType.EQUIPPABLE
+
+	var gear: String = items.filter(is_equippable).map(
+		func(i: ItemStack)->String: return i.item.id)
 
 	btn.clear()
 	var idx := 0
 	btn.add_item("<empty>", idx)
 
-	var idToValue := {}
+	var id_to_value := {}
 
 	for gear_id: String in gear:
 		idx += 1
 		btn.add_item(gear_id, idx)
-		idToValue[gear_id] = idx
+		id_to_value[gear_id] = idx
 
 	if btn == _left_option:
 		var cur: Item = Driver.instance().player._equipment.get(Enums.GearSlot.LEFT)
 		if cur != null:
-			btn.select(idToValue[cur.id])
+			btn.select(id_to_value[cur.id])
 
 
 func _get_button(slot: String) -> OptionButton:

@@ -2,21 +2,21 @@ class_name GearSpec
 extends Resource
 
 
-func on_equip(c: Character) -> void:
+func on_equip(_c: Character) -> void:
   pass
 
 
-func on_remove(c: Character) -> void:
+func on_remove(_c: Character) -> void:
   pass
 
 
-func on_use(c: Character) -> void:
+func on_use(_c: Character) -> void:
   pass
 
 
-func save_state(c: Character) -> Dictionary:
+func save_state(_c: Character) -> Dictionary:
   return {}
 
 
-func load_state(c: Character, data: Variant) -> void:
+func load_state(_c: Character, _data: Variant) -> void:
   pass
