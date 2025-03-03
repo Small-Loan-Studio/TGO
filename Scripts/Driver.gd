@@ -62,9 +62,9 @@ func _post_ready() -> void:
 	# let's just ignore the get_node call. it's trash but beyond temporary
 	_debug_inventory.setup(inventory_mgr, player.id)
 	inventory_mgr.get_inventory("Devin").inventory_updated.connect(
-		_debug_ui_equipment.update_available.unbind(1))
-	player.equipment_changed.connect(
-		_debug_ui_equipment.update_available.unbind(1))
+		_debug_ui_equipment.update_available.unbind(1)
+	)
+	player.equipment_changed.connect(_debug_ui_equipment.update_available.unbind(1))
 	_debug_ui_equipment.update_available()
 
 	if !_personal_config.autoload_level.is_empty():

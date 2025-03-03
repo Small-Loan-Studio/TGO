@@ -183,6 +183,8 @@ func load(data: Dictionary) -> void:
 	stats_arr.assign(data["stats"])
 	stats.load(stats_arr)
 	_load_gear(data["gear"])
+
+
 # endregion
 
 
@@ -202,6 +204,7 @@ func equip(slot: Enums.GearSlot, item: Item) -> bool:
 			gs.on_equip(self)
 	equipment_changed.emit(id)
 	return true
+
 
 func unequip(slot: Enums.GearSlot) -> void:
 	print("unequip(%s) - Current equip load: %s" % [slot, _equipment])
@@ -254,6 +257,8 @@ func _load_gear(data: Dictionary) -> void:
 			continue
 		equip(slot, item)
 		item.restore_state(self, data_array.slice(1))
+
+
 #endregion
 
 

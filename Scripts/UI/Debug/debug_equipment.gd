@@ -50,7 +50,8 @@ func _equip_change(_idx: int, slot: String) -> void:
 
 	var inv := Driver.instance().inventory_mgr.get_inventory(Utils.PLAYER_ID)
 	var inv_stack: Array[ItemStack] = inv.get_items().filter(
-		func(i: ItemStack) -> bool: return i.item.id == selected_id)
+		func(i: ItemStack) -> bool: return i.item.id == selected_id
+	)
 	print("inv_stack: ", inv_stack)
 	if len(inv_stack) < 1:
 		return
@@ -60,15 +61,14 @@ func _equip_change(_idx: int, slot: String) -> void:
 
 
 func _populate(btn: OptionButton) -> void:
-	var inv := Driver.instance().inventory_mgr.get_inventory(
-		Driver.instance().player.id)
+	var inv := Driver.instance().inventory_mgr.get_inventory(Driver.instance().player.id)
 	var items := inv.get_items()
 
-	var is_equippable := func(i: ItemStack) -> bool:
-		return i.item.type == Enums.ItemType.EQUIPPABLE
+	var is_equippable := func(i: ItemStack) -> bool: return i.item.type == Enums.ItemType.EQUIPPABLE
 
 	var gear: String = items.filter(is_equippable).map(
-		func(i: ItemStack)->String: return i.item.id)
+		func(i: ItemStack) -> String: return i.item.id
+	)
 
 	btn.clear()
 	var idx := 0
@@ -95,6 +95,7 @@ func _get_button(slot: String) -> OptionButton:
 		return _right_option
 	printerr("Invalid slot %s" % [slot])
 	return null
+
 
 func _get_slot(slot: String) -> Enums.GearSlot:
 	slot = slot.to_lower()

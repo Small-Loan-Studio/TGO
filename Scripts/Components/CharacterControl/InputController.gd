@@ -4,7 +4,6 @@
 class_name InputController
 extends ControllerBase
 
-
 const DIR_NEG_X := 0
 const DIR_POS_X := 1
 const DIR_NEG_Y := 2
@@ -91,9 +90,9 @@ func process_input(_event: InputEvent) -> void:
 			continue
 
 		# if action_name == "left_item":
-			# print("-> %s" % [state])
+		# print("-> %s" % [state])
 		var cur_pressed := _input.is_action_pressed(action_name)
-		match ([prev_state, cur_pressed]):
+		match [prev_state, cur_pressed]:
 			[JUST_PRESSED, true]:
 				state.state = PRESSED
 			[JUST_PRESSED, false]:
@@ -113,7 +112,6 @@ func process_input(_event: InputEvent) -> void:
 		state.entered_state = _frame_count
 		# if action_name == "left_item":
 		# 	print("<- %s" % [state])
-
 
 		# if _input.is_action_pressed(action_name):
 		# 	# _action_states.get(action_name).state = PRESSED
@@ -174,6 +172,7 @@ func get_button_released() -> Array[Enums.InputAction]:
 		if state.not_pressed():
 			r.append(state.action)
 	return r
+
 
 func _process(_delta: float) -> void:
 	_frame_count += 1
