@@ -10,11 +10,16 @@ var _light: Torch
 func setup(devin: Devin, torch: Torch) -> void:
 	_devin = devin
 	_light = torch
+	if !_light:
+		return
 	if !_light.is_lit():
 		_toggle_btn.text = "Off"
 
 
 func _on_toggle_light() -> void:
+	if !_light:
+		return
+
 	if _light.is_lit():
 		_light.toggle(false)
 		_toggle_btn.text = "Off"

@@ -166,17 +166,37 @@ func save() -> Dictionary:
 	return {
 		"position": [global_position.x, global_position.y],
 		"stats": stats.save(),
-		# TODO equipment
+		"gear": _save_equipment(),
 	}
 
 
 func load(data: Dictionary) -> void:
+	# clear all equipment before loading
+	for slot: Enums.GearSlot in _equipment:
+		unequip(slot)
 	var pos_x: float = data["position"][0]
 	var pos_y: float = data["position"][1]
 	global_position = Vector2(pos_x, pos_y)
 	var stats_arr: Array[Dictionary] = []
 	stats_arr.assign(data["stats"])
 	stats.load(stats_arr)
+	_load_gear(data["gear"])
+
+
+func _load_gear(data: Dictionary) -> void:
+	if data == null:
+		return
+
+	for slot_name: String in data:
+		var slot := Enums.gear_slot_from_str(slot_name)
+		var data_array: Array[Variant] = data[slot_name]
+		var path: String = data_array[0]
+		var item := ResourceLoader.load(path) as Item
+		if item == null:
+			printerr("Unable to create equipment from: %s" % [path])
+			continue
+		equip(slot, item)
+		item.restore_state(self, data_array.slice(1))
 # endregion
 
 #region equipment
@@ -220,7 +240,21 @@ func use_item(slot: Enums.GearSlot) -> void:
 	for gs in equipment.gear_spec:
 		gs.on_use(self)
 
+
+# returns Map[GearSlot_name:String, item_state:Array[Variant]]
+func _save_equipment() -> Dictionary:
+	var eq_state := {}
+	for slot: Enums.GearSlot in _equipment:
+		var item: Item = _equipment[slot]
+		eq_state[Enums.gear_slot_name(slot)] = item.save_state(self)
+	return eq_state
+
+
+func _restore_equipment(data: Dictionary) -> void:
+	printerr('TODO: implement _restore_equipment')
 #endregion
+
+
 func _get_configuration_warnings() -> PackedStringArray:
 	var errs := []
 	if _sprite.sprite_frames == null:

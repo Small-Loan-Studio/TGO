@@ -1,4 +1,4 @@
-[gd_scene load_steps=25 format=3 uid="uid://d4cnh54npmjiv"]
+[gd_scene load_steps=24 format=3 uid="uid://d4cnh54npmjiv"]
 
 [ext_resource type="Script" path="res://Scripts/Driver.gd" id="1_agcjs"]
 [ext_resource type="Script" path="res://Scripts/AudioManager.gd" id="2_4seev"]
@@ -21,7 +21,6 @@
 [ext_resource type="PackedScene" uid="uid://bwx0yr616ip1g" path="res://Scenes/UI/Debug/debug_inventory.tscn" id="12_w3otq"]
 [ext_resource type="PackedScene" uid="uid://dk572i6hv5rqn" path="res://Scenes/UI/Debug/debug_dialogic_adapters.tscn" id="13_bn7mq"]
 [ext_resource type="Script" path="res://Scenes/UI/Debug/DevinStateReport.gd" id="13_gfaub"]
-[ext_resource type="PackedScene" uid="uid://b13wrl3bedjku" path="res://Scenes/Components/Torch.tscn" id="13_kgcxt"]
 [ext_resource type="Script" path="res://Scenes/UI/Debug/StatLabel.gd" id="14_feb7v"]
 [ext_resource type="PackedScene" uid="uid://cr0chtmfakeyg" path="res://ZZ_Scratch/launch_config.tscn" id="23_ff22a"]
 
@@ -249,9 +248,6 @@ _equipment = {}
 activate_external_sensors = true
 
 [node name="Camera2D" type="Camera2D" parent="GameWorld/Devin"]
-
-[node name="Debug_Torch" parent="GameWorld/Devin" instance=ExtResource("13_kgcxt")]
-light_size = 4.0
 
 [node name="PersonalDevConfig" parent="." instance=ExtResource("23_ff22a")]
 

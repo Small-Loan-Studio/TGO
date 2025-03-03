@@ -320,6 +320,18 @@ static func gear_slot_name(slot: GearSlot) -> String:
 	return "unknown"
 
 
+static func gear_slot_from_str(name: String) -> GearSlot:
+	var gs: GearSlot
+	match name:
+		"left":
+			gs = GearSlot.LEFT
+		"right":
+			gs = GearSlot.RIGHT
+		_:
+			printerr("Unknown gear slot: %s" % [name])
+	return gs
+
+
 static func check_op_eval_int(op: CheckOp, x: int, y: int) -> bool:
 	var res := false
 	match op:
