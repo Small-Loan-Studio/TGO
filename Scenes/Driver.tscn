@@ -1,4 +1,4 @@
-[gd_scene load_steps=24 format=3 uid="uid://d4cnh54npmjiv"]
+[gd_scene load_steps=23 format=3 uid="uid://d4cnh54npmjiv"]
 
 [ext_resource type="Script" path="res://Scripts/Driver.gd" id="1_agcjs"]
 [ext_resource type="Script" path="res://Scripts/AudioManager.gd" id="2_4seev"]
@@ -16,7 +16,6 @@
 [ext_resource type="PackedScene" uid="uid://dmyrmmjngi1ts" path="res://Scenes/UI/Debug/debug_day_night.tscn" id="10_8xh8g"]
 [ext_resource type="Script" path="res://Scripts/SerializationManager.gd" id="11_e6bsk"]
 [ext_resource type="PackedScene" uid="uid://my7v0l0el1dj" path="res://Scenes/UI/Debug/quest_debugger.tscn" id="11_g6nlc"]
-[ext_resource type="PackedScene" uid="uid://dyuykg87w5vff" path="res://Scenes/UI/Debug/devin_light_control.tscn" id="11_igd87"]
 [ext_resource type="PackedScene" uid="uid://cqin6fb282fjf" path="res://Scenes/Components/DayNightCycle.tscn" id="12_8kqo6"]
 [ext_resource type="PackedScene" uid="uid://bwx0yr616ip1g" path="res://Scenes/UI/Debug/debug_inventory.tscn" id="12_w3otq"]
 [ext_resource type="PackedScene" uid="uid://dk572i6hv5rqn" path="res://Scenes/UI/Debug/debug_dialogic_adapters.tscn" id="13_bn7mq"]
@@ -137,9 +136,6 @@ layout_mode = 2
 focus_mode = 0
 text = "Delete"
 
-[node name="DevinLightControl" parent="OverlayManager/HUD/DebugStack" instance=ExtResource("11_igd87")]
-layout_mode = 2
-
 [node name="DebugDayNight" parent="OverlayManager/HUD/DebugStack" instance=ExtResource("10_8xh8g")]
 layout_mode = 2
 
@@ -243,9 +239,6 @@ day_autostart = true
 unique_name_in_owner = true
 visible = false
 position = Vector2(0, 0)
-_debug_draw_origin = false
-_equipment = {}
-activate_external_sensors = true
 
 [node name="Camera2D" type="Camera2D" parent="GameWorld/Devin"]
 

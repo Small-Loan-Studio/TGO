@@ -8,9 +8,38 @@ extends Control
 func update_available() -> void:
 	_populate(_left_option)
 	_populate(_right_option)
+	_sync(Driver.instance().player._equipment)
+
+
+var _in_sync := false
+func _sync(gear: Dictionary) -> void:
+	_in_sync = true
+	if gear.has(Enums.GearSlot.LEFT):
+		var gear_id: String = gear[Enums.GearSlot.LEFT].id
+		var idx := _index_of(_left_option, gear_id)
+		if idx != -1:
+			_left_option.selected = idx
+	if gear.has(Enums.GearSlot.RIGHT):
+		var gear_id: String = gear[Enums.GearSlot.RIGHT].id
+		var idx := _index_of(_right_option, gear_id)
+		if idx != -1:
+			_right_option.selected = idx
+	_in_sync = false
+
+
+func _index_of(list: OptionButton, id: String) -> int:
+	for i in range(list.item_count):
+		var entry_text := list.get_item_text(i)
+		if id == entry_text:
+			return i
+	return -1
 
 
 func _equip_change(_idx: int, slot: String) -> void:
+	if _in_sync:
+		# don't try to change equipment if this is driven by a sync to the
+		# actual state of the world
+		return
 	var btn := _get_button(slot)
 	var selected_id := btn.get_item_text(btn.get_selected_id())
 	print("selected_id: ", selected_id)

@@ -3,6 +3,8 @@
 class_name Character
 extends CharacterBody2D
 
+signal equipment_changed(id: String)
+
 ## Unique ID used in our design systems
 @export var id: String = ""
 
@@ -15,7 +17,7 @@ extends CharacterBody2D
 
 ## What items does this character have equipped?
 ## Map[Enums.GearSlot, Item]
-@export var _equipment: Dictionary
+@export var _equipment: Dictionary = {}
 
 ## When set to false this will disable the monitoring state of the sensors
 ## a character uses to interact with the exterior world, e.g., use items /
@@ -213,6 +215,7 @@ func equip(slot: Enums.GearSlot, item: Item) -> bool:
 	if item.gear_spec != null:
 		for gs in item.gear_spec:
 			gs.on_equip(self)
+	equipment_changed.emit(id)
 	return true
 
 func unequip(slot: Enums.GearSlot) -> void:
@@ -227,6 +230,8 @@ func unequip(slot: Enums.GearSlot) -> void:
 	if spec != null:
 		for gs in spec:
 			gs.on_remove(self)
+
+	equipment_changed.emit(id)
 
 
 func use_item(slot: Enums.GearSlot) -> void:
