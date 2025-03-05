@@ -1,17 +1,9 @@
-FROM ubuntu:noble
+FROM python:slim
 
-RUN apt-get update
-RUN apt-get install -y less python3-full python3-pip
-RUN apt-get install -y git
+RUN apt-get update && apt-get install -y git less && rm -rf /var/lib/apt/lists/*
 
-RUN mkdir /TGO
-WORKDIR /TGO
-RUN python3 -m venv ./venv/
-RUN ./venv/bin/pip install git+https://github.com/Scony/godot-gdscript-toolkit.git@master
-
-RUN
-COPY support/ .
-RUN chmod +x gdformat.sh
-RUN chmod +x gdlint.sh
-
-VOLUME ./TGO/repo
+WORKDIR /tgo
+ENV PATH=/tgo:$PATH
+RUN python -m pip install git+https://github.com/Scony/godot-gdscript-toolkit.git@e9ec1f52d9c837dba440987ba50540f14beb7cad
+COPY gdformat.sh gdformat
+COPY gdlint.sh gdlint
