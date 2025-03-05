@@ -17,8 +17,8 @@ func enter(_ctx: Variant) -> void:
 		_animated_sprite.stop()
 
 
-func run_input(_event: InputEvent, _change_state: Callable) -> void:
-	if maybe_menu() || maybe_interact():
+func run_input(_event: InputEvent, change_state: Callable) -> void:
+	if maybe_menu(change_state) || maybe_interact(change_state):
 		# this is a noop but here to quiet lint
 		return
 

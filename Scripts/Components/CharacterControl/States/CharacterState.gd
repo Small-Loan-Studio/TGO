@@ -13,7 +13,7 @@ func _local_setup() -> void:
 	_animated_sprite = _ctx.character._sprite
 
 
-func maybe_interact() -> bool:
+func maybe_interact(change_state: Callable) -> bool:
 	var just_pressed := _ctx.controller.get_just_pressed()
 
 	if !_ctx.character.target.is_set():
@@ -21,24 +21,24 @@ func maybe_interact() -> bool:
 
 	if _ctx.character.target.get_interactable():
 		if _ctx.character.target.get_interactable().automatic:
-			_state_machine.queue_state_change(interact_state)
+			change_state.call(interact_state)
 			return true
 
 	if Enums.InputAction.INTERACT in just_pressed:
-		_state_machine.queue_state_change(interact_state)
+		change_state.call(interact_state)
 		return true
 
 	return false
 
 
-func maybe_menu() -> bool:
+func maybe_menu(change_state: Callable) -> bool:
 	var just_pressed := _ctx.controller.get_just_pressed()
 	if menu_state == null || !_ctx.controller.just_pressed(Enums.InputAction.MENU):
 		return false
 
 	(
-		_state_machine
-		. queue_state_change(
+		change_state
+		. call(
 			menu_state,
 			menu_state.mk_args(Enums.MenuType.GAMEPLAY),
 		)

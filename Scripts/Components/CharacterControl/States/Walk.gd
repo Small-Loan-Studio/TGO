@@ -36,7 +36,7 @@ func run_input(_event: InputEvent, change_state: Callable) -> void:
 	else:
 		change_state.call(idle_state)
 
-	maybe_interact()
+	maybe_interact(change_state)
 
 
 func run_physics(_delta: float, _change_state: Callable) -> void:

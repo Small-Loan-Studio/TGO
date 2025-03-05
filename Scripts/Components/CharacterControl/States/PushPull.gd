@@ -30,9 +30,9 @@ func enter(ctx: Variant) -> void:
 	_handle_animation()
 
 
-func run_input(_event: InputEvent, _change_state: Callable) -> void:
+func run_input(_event: InputEvent, change_state: Callable) -> void:
 	if Enums.InputAction.INTERACT in _ctx.controller.get_just_pressed():
-		_state_machine.queue_state_change(idle_state)
+		change_state.call(idle_state)
 		_hud.set_toast(Enums.action_verb_name(Enums.ActionVerb.PUSH_PULL))
 		return
 
