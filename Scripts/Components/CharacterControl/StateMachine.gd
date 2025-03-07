@@ -44,16 +44,27 @@ func setup(ctx: Variant = null) -> void:
 	_setup_complete = true
 
 
-func _maybe_enter_state() -> void:
+func _maybe_enter_state(depth: int = 0) -> void:
 	if _next_state == null:
+		return
+
+	if depth > 4:
+		# Sometimes we make poor decisions in life like infinite state loops.
+		# Don't let them be the end, just face plant and move on.
+		printerr(
+			"StateMachine having a bad time enter state depth of %d. Aborting transitions" % [depth]
+		)
 		return
 
 	_cur_state.exit()
 	if print_state_changes:
-		print("%s -> %s" % [_cur_state.name, _next_state.name])
+		print("(%d) %s -> %s" % [depth, _cur_state.name, _next_state.name])
 	_cur_state = _next_state
 	_next_state = null
-	_cur_state.enter(_next_state_ctx)
+	_cur_state.enter(_next_state_ctx, queue_state_change)
+	# sometimes a state can immediately defer to a subsequent state;
+	# it's not elegant but eat that here
+	_maybe_enter_state(depth + 1)
 
 
 func run_input(event: InputEvent) -> void:

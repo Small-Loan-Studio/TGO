@@ -10,12 +10,12 @@ var _direction: Enums.Direction
 var _has_entered: bool
 
 
-func enter(_state: Variant) -> void:
+func enter(_state: Variant, change_state: Callable) -> void:
 	if _get_stam().value < stamina_drain_rate:
-		_state_machine.queue_state_change(idle_state)
+		change_state.call(idle_state)
 		return
 	_has_entered = true
-	run_input(null, _state_machine.queue_state_change)
+	run_input(null, change_state)
 
 
 func exit() -> void:
