@@ -10,7 +10,7 @@ func _local_setup() -> void:
 	_animated_sprite = _ctx.character._sprite
 
 
-func enter(_ctx: Variant) -> void:
+func enter(_ctx: Variant, _change_state: Callable) -> void:
 	if _animation_name != "":
 		_animated_sprite.play(_animation_name)
 	else:

@@ -6,7 +6,7 @@ extends CharacterState
 var _tgt: CharacterTarget
 
 
-func enter(_enter_ctx: Variant) -> void:
+func enter(_enter_ctx: Variant, _change_state: Callable) -> void:
 	_tgt = _ctx.character.target
 
 	if _tgt.is_interactable():

@@ -59,7 +59,7 @@ func _maybe_enter_state(depth: int = 0) -> void:
 		print("(%d) %s -> %s" % [depth, _cur_state.name, _next_state.name])
 	_cur_state = _next_state
 	_next_state = null
-	_cur_state.enter(_next_state_ctx)
+	_cur_state.enter(_next_state_ctx, queue_state_change)
 	# sometimes a state can immediately defer to a subsequent state;
 	# it's not elegant but eat that here
 	_maybe_enter_state(depth + 1)

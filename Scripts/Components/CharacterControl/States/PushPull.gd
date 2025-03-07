@@ -21,7 +21,7 @@ var _impulse: Vector2
 var _projected_impulse: Vector2
 
 
-func enter(ctx: Variant) -> void:
+func enter(ctx: Variant, _change_state: Callable) -> void:
 	var ctx_dict := ctx as Dictionary
 	_push_direction = ctx_dict["push_direction"]
 	_movement_axis = Enums.direction_push_pull_axis(_push_direction)

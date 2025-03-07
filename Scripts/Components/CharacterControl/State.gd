@@ -15,7 +15,7 @@ func _local_setup() -> void:
 	pass
 
 
-func enter(_ctx: Variant) -> void:
+func enter(_ctx: Variant, _change_state: Callable) -> void:
 	pass
 
 
