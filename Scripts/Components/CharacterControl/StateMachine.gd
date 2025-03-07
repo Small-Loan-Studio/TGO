@@ -51,7 +51,9 @@ func _maybe_enter_state(depth: int = 0) -> void:
 	if depth > 4:
 		# Sometimes we make poor decisions in life like infinite state loops.
 		# Don't let them be the end, just face plant and move on.
-		printerr("StateMachine having a bad time enter state depth of %d. Aborting transitions" % [depth])
+		printerr(
+			"StateMachine having a bad time enter state depth of %d. Aborting transitions" % [depth]
+		)
 		return
 
 	_cur_state.exit()
