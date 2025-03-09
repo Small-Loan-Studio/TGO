@@ -39,15 +39,6 @@ I strongly recommend anyone who is going to be working with these files a lot to
 - Stack_size: int - The amount this can stack to if stackable is true
 - Icon: Texture2D (Image file) - The icon of the item. Used in displaying the item in UIs mostly.
 
-# Other Considerations
+# Equip & Use items
 
-- Do we want a slot-limited container, or slot-less (unlimited)?
-- Do we want to be able to increase the size of the container through upgrades or otherwise?
-- Do we want a Resident Evil-like central storage that can hold more items than the Players Inventory?
-- Do we want to stub out stat-affecting items that can easily be created via the Editor?
-- Do we want to stub out time-sensitive buffs and effects for easy Editor access as well?
-- Do we want the player to have key items be apart of the normal inventory, or a special one? Should they be able to discard items, and if so should we automatically send those items to their storage, or should they have to find the item in the world again?
-- Do we want an ItemStub scene that can dynamically load the resource we tell it to? Or should we create a scene for each item that we want to have. *This will need to be thought about a lot, there might be more implications to this than meets the eye.*
-- How should we uniquely indentify inventories within the Manager, and how do we take that a step further to create a system that can be saved/loaded back into the game. Should we give containers unique IDs manually, or should we create them automatically via some deterministic way?
-- How do we want to do a hotbar system? Should we take inspiration from Resident Evil where Hotbar slots exist as part of the normal inventory, or should we create a separate Hotbar inventory that people will drag items onto.
-- ^ Same thing but for equipment (if we have equipment). How do we want to handle an equipment section?
+See PR where this was added: [#190](https://github.com/Small-Loan-Studio/TGO/pull/190).

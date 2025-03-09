@@ -82,6 +82,12 @@ func _sync_light() -> void:
 
 
 func _sync_visuals() -> void:
+	# start by assuming no visuals
+	if _sprite_2d:
+		_sprite_2d.hide()
+	if _animated_sprite:
+		_animated_sprite.hide()
+
 	if sprite_texture != null && _sprite_2d != null:
 		_sprite_2d.texture = (sprite_texture as Texture2D)
 		_sprite_2d.show()

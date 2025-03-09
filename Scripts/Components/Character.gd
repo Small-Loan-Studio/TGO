@@ -3,6 +3,9 @@
 class_name Character
 extends CharacterBody2D
 
+# emitted when this character equips or unequips an item in any GearSlot
+signal equipment_changed(id: String)
+
 ## Unique ID used in our design systems
 @export var id: String = ""
 
@@ -12,6 +15,10 @@ extends CharacterBody2D
 ## Set to specify what controls this character's behavior, if none specified
 ## a default noop controller will be used.
 @export var _controller_node_path: NodePath
+
+## What items does this character have equipped?
+## Map[Enums.GearSlot, Item]
+@export var _equipment: Dictionary = {}
 
 ## When set to false this will disable the monitoring state of the sensors
 ## a character uses to interact with the exterior world, e.g., use items /
@@ -74,6 +81,8 @@ func _ready() -> void:
 					Enums.InputAction.INTERACT,
 					Enums.InputAction.SPRINT,
 					Enums.InputAction.MENU,
+					Enums.InputAction.LEFT_ITEM,
+					Enums.InputAction.RIGHT_ITEM,
 				],
 			)
 		)
@@ -108,10 +117,15 @@ func _process(delta: float) -> void:
 
 	_state_machine.run_tick(delta)
 
+	if !_state_machine.input_exclusive():
+		if _controller != null:
+			if _controller.just_pressed(Enums.InputAction.LEFT_ITEM):
+				use_item(Enums.GearSlot.LEFT)
+			if _controller.just_pressed(Enums.InputAction.RIGHT_ITEM):
+				use_item(Enums.GearSlot.RIGHT)
 
-# region sensor / target management
 
-
+#region sensor / target managementregion
 func _on_interaction_sensor_entered(area: Area2D) -> void:
 	if area is Interactable:
 		target.update(area)
@@ -147,7 +161,7 @@ func _handle_target_changed() -> void:
 		hud.clear_toast()
 
 
-# end region sensor / target management
+#endregion
 
 
 # region save/load
@@ -155,19 +169,102 @@ func save() -> Dictionary:
 	return {
 		"position": [global_position.x, global_position.y],
 		"stats": stats.save(),
+		"gear": _save_gear(),
 	}
 
 
 func load(data: Dictionary) -> void:
+	# clear all equipment before loading
+	for slot: Enums.GearSlot in _equipment:
+		unequip(slot)
 	var pos_x: float = data["position"][0]
 	var pos_y: float = data["position"][1]
 	global_position = Vector2(pos_x, pos_y)
 	var stats_arr: Array[Dictionary] = []
 	stats_arr.assign(data["stats"])
 	stats.load(stats_arr)
+	_load_gear(data["gear"])
 
 
-# end region save/load
+# endregion
+
+
+#region equipment
+# attempts to equip some item into some gear slot. Returns true on success
+# and false on failure.
+func equip(slot: Enums.GearSlot, item: Item) -> bool:
+	print("equip(%s, %s) - Current equip load: %s" % [slot, item.id, _equipment])
+	# TODO: we should let equipping something unequip the previous item
+	if _equipment.has(slot):
+		return false
+
+	if item.type != Enums.ItemType.EQUIPPABLE:
+		return false
+
+	_equipment[slot] = item
+	if item.gear_spec != null:
+		for gs in item.gear_spec:
+			gs.on_equip(self)
+	equipment_changed.emit(id)
+	return true
+
+
+# removes equipment from slot, if any is present.
+func unequip(slot: Enums.GearSlot) -> void:
+	print("unequip(%s) - Current equip load: %s" % [slot, _equipment])
+	if !_equipment.has(slot):
+		return
+
+	var old_gear: Item = _equipment[slot]
+	var spec := old_gear.gear_spec
+	_equipment.erase(slot)
+
+	if spec != null:
+		for gs in spec:
+			gs.on_remove(self)
+
+	equipment_changed.emit(id)
+
+
+func use_item(slot: Enums.GearSlot) -> void:
+	var equipment: Item = _equipment.get(slot, null)
+	if equipment == null:
+		printerr("Nothing equipped in %s" % [Enums.gear_slot_name(slot)])
+		return
+	if len(equipment.gear_spec) == 0:
+		printerr("Gear has no specs attached")
+		return
+	for gs in equipment.gear_spec:
+		gs.on_use(self)
+
+
+# returns Map[GearSlot_name:String, item_state:Array[Variant]]
+func _save_gear() -> Dictionary:
+	var eq_state := {}
+	for slot: Enums.GearSlot in _equipment:
+		var item: Item = _equipment[slot]
+		eq_state[Enums.gear_slot_name(slot)] = item.save_state(self)
+	return eq_state
+
+
+func _load_gear(data: Dictionary) -> void:
+	if data == null:
+		return
+
+	for slot_name: String in data:
+		var slot := Enums.gear_slot_from_str(slot_name)
+		var data_array: Array[Variant] = data[slot_name]
+		var path: String = data_array[0]
+		var item := ResourceLoader.load(path) as Item
+		if item == null:
+			printerr("Unable to create equipment from: %s" % [path])
+			continue
+		equip(slot, item)
+		item.restore_state(self, data_array.slice(1))
+		equipment_changed.emit(id)
+
+
+#endregion
 
 
 func _get_configuration_warnings() -> PackedStringArray:

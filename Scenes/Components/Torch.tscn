@@ -3,25 +3,23 @@
 [ext_resource type="Script" path="res://Scripts/Components/Greyboxing/Torch.gd" id="1_fjyou"]
 [ext_resource type="Texture2D" uid="uid://boyaede1duwf4" path="res://Art/Stub/stub_torch.png" id="2_lum1k"]
 
-[sub_resource type="Gradient" id="Gradient_pdbb4"]
-offsets = PackedFloat32Array(0, 0.820669)
+[sub_resource type="Gradient" id="Gradient_l6m7m"]
 colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 1)
 
-[sub_resource type="GradientTexture2D" id="GradientTexture2D_bmn7b"]
-gradient = SubResource("Gradient_pdbb4")
-width = 32
-height = 32
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_54etw"]
+gradient = SubResource("Gradient_l6m7m")
 fill = 1
 fill_from = Vector2(0.5, 0.5)
+fill_to = Vector2(0, 0.5)
 
 [node name="Torch" type="Node2D"]
 script = ExtResource("1_fjyou")
-light_texture = SubResource("GradientTexture2D_bmn7b")
+light_texture = SubResource("GradientTexture2D_54etw")
 sprite_texture = ExtResource("2_lum1k")
 
 [node name="PointLight2D" type="PointLight2D" parent="."]
 position = Vector2(-2.38419e-07, -5)
-texture = SubResource("GradientTexture2D_bmn7b")
+texture = SubResource("GradientTexture2D_54etw")
 offset = Vector2(0, 16)
 texture_scale = 2.0
 
