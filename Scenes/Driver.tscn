@@ -229,6 +229,7 @@ visible = false
 position = Vector2(0, 0)
 
 [node name="Camera2D" type="Camera2D" parent="GameWorld/Devin"]
+zoom = Vector2(1.2, 1.2)
 
 [node name="Debug_Torch" parent="GameWorld/Devin" instance=ExtResource("13_kgcxt")]
 light_size = 4.0
