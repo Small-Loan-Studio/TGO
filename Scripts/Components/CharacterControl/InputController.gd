@@ -89,8 +89,6 @@ func process_input(_event: InputEvent) -> void:
 		if !state._is_new_frame(_frame_count):
 			continue
 
-		# if action_name == "left_item":
-		# print("-> %s" % [state])
 		var cur_pressed := _input.is_action_pressed(action_name)
 		match [prev_state, cur_pressed]:
 			[JUST_PRESSED, true]:
@@ -110,19 +108,6 @@ func process_input(_event: InputEvent) -> void:
 			[UNPRESSED, false]:
 				state.state = UNPRESSED
 		state.entered_state = _frame_count
-		# if action_name == "left_item":
-		# 	print("<- %s" % [state])
-
-		# if _input.is_action_pressed(action_name):
-		# 	# _action_states.get(action_name).state = PRESSED
-		# 	state.state = PRESSED
-		# 	if _input.is_action_just_pressed(action_name):
-		# 		_action_states.get(action_name).state = JUST_PRESSED
-		# 		_state.state = JUST_PRESSED
-		# elif _input.is_action_just_released(action_name):
-		# 	_action_states.get(action_name).state = JUST_RELEASED
-		# else:
-		# 	_action_states.get(action_name).state = UNPRESSED
 
 
 func action(input: Enums.InputAction) -> InputController.ActionState:

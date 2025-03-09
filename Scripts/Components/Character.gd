@@ -3,6 +3,7 @@
 class_name Character
 extends CharacterBody2D
 
+# emitted when this character equips or unequips an item in any GearSlot
 signal equipment_changed(id: String)
 
 ## Unique ID used in our design systems
@@ -189,6 +190,8 @@ func load(data: Dictionary) -> void:
 
 
 #region equipment
+# attempts to equip some item into some gear slot. Returns true on success
+# and false on failure.
 func equip(slot: Enums.GearSlot, item: Item) -> bool:
 	print("equip(%s, %s) - Current equip load: %s" % [slot, item.id, _equipment])
 	# TODO: we should let equipping something unequip the previous item
@@ -206,6 +209,7 @@ func equip(slot: Enums.GearSlot, item: Item) -> bool:
 	return true
 
 
+# removes equipment from slot, if any is present.
 func unequip(slot: Enums.GearSlot) -> void:
 	print("unequip(%s) - Current equip load: %s" % [slot, _equipment])
 	if !_equipment.has(slot):

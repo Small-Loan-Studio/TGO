@@ -8,9 +8,11 @@
 		- [Level cache / working set](#level-cache--working-set)
 		- [Saving](#saving)
 		- [Loading](#loading)
+- [Items & Equipment](#items-and-equipment)
 
 
 ## Revision History
+- 2025-03-09 Added pointer to equipment/items note
 - 2024-12-15 Initial incomplete snapshot
 
 # SerializationManager
@@ -95,3 +97,8 @@ This tracks for other systems as well. Once it's all done we then emit a
 
 When we begin loading a level we set `SerializationManager.is_loading_game`
 to true and after emitting `load_saved_level` we set it to false.
+
+
+# Items and Equipment
+
+See PR where this was added: [#190](https://github.com/Small-Loan-Studio/TGO/pull/190).
