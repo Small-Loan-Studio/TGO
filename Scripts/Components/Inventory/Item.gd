@@ -1,3 +1,4 @@
+@tool
 class_name Item
 extends Resource
 
@@ -24,9 +25,37 @@ const ITEM_PATH = "res://Scripts/Resources/Items"
 
 @export var icon: Texture2D
 
+## For equippable item types this configures what it does.
+@export var gear_spec: Array[GearSpec] = []
+
 
 func _to_string() -> String:
 	return name
+
+
+func save_state(c: Character) -> Array[Variant]:
+	var state := [resource_path]
+	for gs in gear_spec:
+		# Relying on order is fragile af, probably need to plumb an ID, can't
+		# rely on classname/typeof() <4.3, c.f., https://github.com/godotengine/godot/issues/21789
+		state.append(gs.save_state(c))
+	return state
+
+
+func restore_state(c: Character, gs_data: Array[Variant]) -> void:
+	if len(gs_data) != len(gear_spec):
+		printerr("saved gearspec state and item config mismatch, trying anyway")
+
+	# TODO: fragile! see note in save_state
+	for i: int in range(len(gear_spec)):
+		if i >= len(gear_spec):
+			return
+		var gs: GearSpec = gear_spec[i]
+		var data: Variant = gs_data[i]
+		gs.load_state(c, data)
+
+
+#region utility functions for @tool usage
 
 
 ## walks the item directory and returns the id of all Item resources. This is
@@ -72,3 +101,5 @@ static func tool_from_id(item_id: String) -> Item:
 		return null
 
 	return items[0]
+
+#endregion

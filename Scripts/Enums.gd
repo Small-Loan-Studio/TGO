@@ -39,6 +39,8 @@ enum InputAction {
 	INTERACT,
 	SPRINT,
 	MENU,
+	LEFT_ITEM,
+	RIGHT_ITEM,
 }
 
 enum LightLevel {
@@ -82,6 +84,11 @@ enum ItemType {
 	CONSUMABLE,
 	# This might be stubbed out further in the future Items.Helmet, Items.Gloves, if we have those
 	EQUIPPABLE,
+}
+
+enum GearSlot {
+	LEFT,
+	RIGHT,
 }
 
 enum TargetType {
@@ -193,6 +200,10 @@ static func input_action_name(ia: InputAction) -> String:
 			return "sprint"
 		InputAction.MENU:
 			return "load_menu"
+		InputAction.LEFT_ITEM:
+			return "left_item"
+		InputAction.RIGHT_ITEM:
+			return "right_item"
 	assert(false, "Invalid Input action: " + str(ia))
 	return ""
 
@@ -298,6 +309,27 @@ static func action_verb_from_str(str: String) -> Enums.ActionVerb:
 		_:
 			printerr("Unknown action verb: ", str)
 	return v
+
+
+static func gear_slot_name(slot: GearSlot) -> String:
+	match slot:
+		GearSlot.LEFT:
+			return "left"
+		GearSlot.RIGHT:
+			return "right"
+	return "unknown"
+
+
+static func gear_slot_from_str(name: String) -> GearSlot:
+	var gs: GearSlot
+	match name:
+		"left":
+			gs = GearSlot.LEFT
+		"right":
+			gs = GearSlot.RIGHT
+		_:
+			printerr("Unknown gear slot: %s" % [name])
+	return gs
 
 
 static func check_op_eval_int(op: CheckOp, x: int, y: int) -> bool:

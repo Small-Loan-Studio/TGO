@@ -9,8 +9,8 @@ var _direction: Enums.Direction
 var _has_entered: bool
 
 
-func enter(_state: Variant) -> void:
-	run_input(null, _state_machine.queue_state_change)
+func enter(_state: Variant, change_state: Callable) -> void:
+	run_input(null, change_state)
 	_has_entered = true
 
 
@@ -36,7 +36,7 @@ func run_input(_event: InputEvent, change_state: Callable) -> void:
 	else:
 		change_state.call(idle_state)
 
-	maybe_interact()
+	maybe_interact(change_state)
 
 
 func run_physics(_delta: float, _change_state: Callable) -> void:

@@ -7,8 +7,9 @@
 script = ExtResource("2_t5glm")
 id = "HEALTH_POTION"
 name = "Potion"
-type = 0
+type = 1
 description = "A lovely little red vial of liquid!"
 stackable = true
 stack_size = 3
 icon = ExtResource("1_hx2b7")
+gear_spec = Array[Resource("res://Scripts/Resources/GearSpec.gd")]([])

@@ -20,9 +20,9 @@ and all the flavors of Linux?!"
 ## Setup
 
 1. Download & Install the Docker Desktop platform for your machine: https://www.docker.com/
-2. Once installed build the container for TGO in a shell from within the TGO repo checkout:  
+2. Once installed build the container for TGO in a shell from within the TGO repo checkout:
    ```
-   ~/Projects/TGO (envy-format-ci) $ docker build -t tgo:check -f support/Dockerfile .
+   ~/Projects/TGO (envy-format-ci) $ docker build -t tgo:check support
    ```
    The initial build will take quite a while because it needs to:
    1. download a full linux install
@@ -37,16 +37,16 @@ Run the following commands from the root of your TGO checkout...
 ### gdlint
 
 ```
-$ docker run -v .:/TGO/repo -ti tgo:check ./gdlint.sh
+$ docker run -v .:/repo -ti tgo:check gdlint
 Success: no problems found
 ```
 
 ### gdformat
 
 ```
-$ docker run -v .:/TGO/repo -ti tgo:check ./gdformat.sh
+$ docker run -v .:/repo -ti tgo:check gdformat
 # the above works in windows powershell, for mac os / linux you may need:
-# docker run -v "$(pwd)":/TGO/repo -ti tgo:check ./gdformat.sh
+# docker run -v "$(pwd)":/repo -ti tgo:check gdformat
 would reformat ./repo/Scripts/Components/Character.gd
 would reformat ./repo/Scripts/Components/Detectable.gd
 would reformat ./repo/Scripts/Components/Lamp.gd
@@ -66,9 +66,9 @@ If you'd like to apply the changes you can run it with `--apply`.
 > changes break something.
 
 ```
-$ docker run -v .:/TGO/repo -ti tgo:check ./gdformat.sh --apply
+$ docker run -v .:/repo -ti tgo:check gdformat --apply
 # the above works in windows powershell, for mac os / linux you may need:
-# docker run -v "$(pwd)":/TGO/repo -ti tgo:check ./gdlint.sh
+# docker run -v "$(pwd)":/repo -ti tgo:check gdlint
 reformatted ./repo/Scripts/Components/Character.gd
 reformatted ./repo/Scripts/Components/Detectable.gd
 reformatted ./repo/Scripts/Components/Lamp.gd
@@ -87,8 +87,8 @@ If you want we can take a second to understand what's being run:
 
 - `docker` &mdash; this tells docker that we're about to request it to take some action with a container (virtual computer)
 - `run` &mdash; the command that we want docker to do is "run" something with the container
-- `-v .:/TGO/repo` &mdash; a special directory in the container has been declared as a `VOLUME`. This means we can configure, at execution, a directory from our computer to be reflected within the container.  
-  The `-v` flag is saying "map the first directory to the second in the container." In this case `.` is "the current directory" and `/TGO/repo` is telling docker that we should make the contents of the current directory available at `/TGO/repo`
+- `-v .:/repo` &mdash; a special directory in the container has been declared as a `VOLUME`. This means we can configure, at execution, a directory from our computer to be reflected within the container.
+  The `-v` flag is saying "map the first directory to the second in the container." In this case `.` is "the current directory" and `/repo` is telling docker that we should make the contents of the current directory available at `/repo`
 - `-ti` &mdash; not strictly necessary but if you wanted to run `bash` or anything that required interactivity you would need this so I'll often include it out of habit
 - `tgo:check` &mdash; This is the name of the container to use. It should match the name given in `docker build`
-- `./gdlint.sh`, `./gdformat.sh` &mdash; this is the command to run in the container. In this case these commands are specific to our TGO project and you can find what they do in [`gdlint.sh`](../support/gdlint.sh) and [`gdformat.sh`](../support/gdformat.sh). You can see where they get copied into the container in the [`Dockerfile`](../support/Dockerfile).
+- `gdlint`, `gdformat` &mdash; this is the command to run in the container. In this case these commands are specific to our TGO project and you can find what they do in [`gdlint.sh`](../support/gdlint.sh) and [`gdformat.sh`](../support/gdformat.sh). You can see where they get copied into the container in the [`Dockerfile`](../support/Dockerfile).
