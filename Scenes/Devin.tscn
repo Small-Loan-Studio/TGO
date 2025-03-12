@@ -26,7 +26,7 @@ _controller_node_path = NodePath("InputController")
 
 [node name="AnimatedSprite2D" parent="." index="0"]
 sprite_frames = ExtResource("3_3e0sk")
-animation = &"north"
+animation = &"west"
 
 [node name="StateMachine" parent="." index="3" node_paths=PackedStringArray("_initial_state")]
 _initial_state = NodePath("Idle")

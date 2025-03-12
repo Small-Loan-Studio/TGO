@@ -9,6 +9,10 @@
 [ext_resource type="Texture2D" uid="uid://dc33cuobxfrqr" path="res://Art/Characters/Devin/devinUp-Sheet.png" id="7_2jova"]
 [ext_resource type="Texture2D" uid="uid://ek56kcnkdkfy" path="res://Art/Characters/Devin/devinSide-Sheet.png" id="8_47cek"]
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_gbafx"]
+atlas = ExtResource("2_ay4wl")
+region = Rect2(38, 0, 19, 40)
+
 [sub_resource type="AtlasTexture" id="AtlasTexture_qpcug"]
 atlas = ExtResource("2_ay4wl")
 region = Rect2(0, 0, 19, 40)
@@ -16,10 +20,6 @@ region = Rect2(0, 0, 19, 40)
 [sub_resource type="AtlasTexture" id="AtlasTexture_010g1"]
 atlas = ExtResource("2_ay4wl")
 region = Rect2(19, 0, 19, 40)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_gbafx"]
-atlas = ExtResource("2_ay4wl")
-region = Rect2(38, 0, 19, 40)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_1367r"]
 atlas = ExtResource("7_2jova")
@@ -129,13 +129,16 @@ region = Rect2(38, 0, 19, 40)
 animations = [{
 "frames": [{
 "duration": 1.0,
+"texture": SubResource("AtlasTexture_gbafx")
+}, {
+"duration": 1.0,
 "texture": SubResource("AtlasTexture_qpcug")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_010g1")
+"texture": SubResource("AtlasTexture_gbafx")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_gbafx")
+"texture": SubResource("AtlasTexture_010g1")
 }],
 "loop": true,
 "name": &"east",
@@ -147,6 +150,9 @@ animations = [{
 }, {
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_ss6h1")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1367r")
 }, {
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_tc22h")
@@ -246,6 +252,9 @@ animations = [{
 }, {
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_a4bhf")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_o0s2j")
 }, {
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_02dab")
