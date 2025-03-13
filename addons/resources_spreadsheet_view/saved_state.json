@@ -4,6 +4,14 @@
       "resource_local_to_scene": true,
       "resource_name": true
     },
+    "res://Scripts/Resources/NP/": {
+      "resource_local_to_scene": true,
+      "resource_name": true
+    },
+    "res://Scripts/Resources/NPC/": {
+      "resource_local_to_scene": true,
+      "resource_name": true
+    },
     "res://Scripts/Resources/NPCs/": {
       "resource_local_to_scene": true,
       "resource_name": true
@@ -11,7 +19,9 @@
   },
   "recent_paths": [
     "res://Scripts/Resources/Items/",
-    "res://Scripts/Resources/NPCs/"
+    "res://Scripts/Resources/NPCs/",
+    "res://Scripts/Resources/NPC/",
+    "res://Scripts/Resources/NP/"
   ],
   "table_functions": {
     "filter": [

@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="NPCConfig" load_steps=3 format=3 uid="uid://ntk1ufb2rysx"]
+
+[ext_resource type="Script" path="res://Scripts/Resources/NpcConfig.gd" id="1_vvnyn"]
+[ext_resource type="SpriteFrames" uid="uid://602xb41y0tak" path="res://Art/Characters/stub_animated_sprite.tres" id="2_p0r0g"]
+
+[resource]
+script = ExtResource("1_vvnyn")
+character_id = "ransomNPC"
+sprite_sheet = ExtResource("2_p0r0g")
+valid_timelines = Array[String]([])

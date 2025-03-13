@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://bu1vpanrcrar3"]
+[gd_scene load_steps=15 format=3 uid="uid://bu1vpanrcrar3"]
 
 [ext_resource type="PackedScene" uid="uid://dyq8mcdsutnsa" path="res://Scenes/Components/LevelBase.tscn" id="1_bbrpm"]
 [ext_resource type="TileSet" uid="uid://c72m3jled4jfg" path="res://Art/Environment/ext_simple_tileset.tres" id="2_svd0s"]
@@ -6,10 +6,18 @@
 [ext_resource type="PackedScene" uid="uid://c3fld6my8so3p" path="res://Scenes/Components/SimpleSwitch.tscn" id="3_vl6rl"]
 [ext_resource type="Script" path="res://Scripts/Resources/Effects/DialogueEffect.gd" id="5_mniuv"]
 [ext_resource type="Resource" path="res://Dialogue/PlaceableInteractive/juniper_bush_full.dtl" id="6_md8hq"]
+[ext_resource type="PackedScene" uid="uid://c2kg6apj756dw" path="res://Scenes/Components/NPC.tscn" id="6_xyhsa"]
+[ext_resource type="Script" path="res://Scripts/Components/NPC.gd" id="7_u06v7"]
+[ext_resource type="Resource" uid="uid://ntk1ufb2rysx" path="res://Scripts/Resources/NPCs/ransomNPC.tres" id="8_y80n3"]
+[ext_resource type="Resource" path="res://Dialogue/RansomNPC/RansomNPC_greeting.dtl" id="10_lkbku"]
 
 [sub_resource type="Resource" id="Resource_fnqoc"]
 script = ExtResource("5_mniuv")
 timeline = ExtResource("6_md8hq")
+
+[sub_resource type="Resource" id="Resource_rlipb"]
+script = ExtResource("5_mniuv")
+timeline = ExtResource("10_lkbku")
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_lqpd0"]
 size = Vector2(24, 32)
@@ -31,6 +39,16 @@ position = Vector2(-295, 368)
 scale = Vector2(6.7797, 4.39945)
 sensor_size = Vector2(20, 20)
 on_pressed_effects = Array[Resource("res://Scripts/Resources/Effect.gd")]([SubResource("Resource_fnqoc")])
+
+[node name="ransomNPC" type="CharacterBody2D" parent="Objects/Characters" index="0" groups=["NodesWithID"] instance=ExtResource("6_xyhsa")]
+position = Vector2(52.8947, 263.862)
+collision_layer = 5
+motion_mode = 1
+script = ExtResource("7_u06v7")
+config = ExtResource("8_y80n3")
+dlg = SubResource("Resource_rlipb")
+id = "ransomNPC"
+activate_external_sensors = false
 
 [node name="Tombstone_Style1" type="Sprite2D" parent="Objects" index="4"]
 position = Vector2(-983, 239)

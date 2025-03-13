@@ -1,0 +1,5 @@
+if {RansomNPCvar.HasSpoken} == false:
+	Greetigs! For the first time.
+	set {RansomNPCvar.HasSpoken} = true
+else:
+	Greetigs! Again

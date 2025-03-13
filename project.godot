@@ -41,6 +41,7 @@ gdscript/warnings/untyped_declaration=2
 directories/dch_directory={}
 directories/dtl_directory={
 "BuckleyTestTimeline": "res://Dialogue/Buckley/BuckleyTestTimeline.dtl",
+"RansomNPC_greeting": "res://Dialogue/RansomNPC/RansomNPC_greeting.dtl",
 "debugging_timeline": "res://ZZ_Scratch/DialogicValidation/debugging_timeline.dtl",
 "juniper_bush_full": "res://Dialogue/PlaceableInteractive/juniper_bush_full.dtl",
 "npc_test_dialogue": "res://ZZ_Scratch/NPCDialogue/npc_test_dialogue.dtl",
@@ -65,6 +66,9 @@ save/encryption_on_exports_only=true
 text/autopauses={}
 variables={
 "QuestVarConditionTest": false,
+"RansomNPCvar": {
+"HasSpoken": false
+},
 "UserInputNum": 0,
 "UserInputString": ""
 }
