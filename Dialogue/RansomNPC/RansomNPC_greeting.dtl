@@ -1,5 +1,32 @@
 if {RansomNPCvar.HasSpoken} == false:
-	Greetigs! For the first time.
+	Alia: Greetigs! For the first time.
+	if {TGO.player_inventory.has("HEALTH_POTION")} == false:
+		Alia: Let me tell you about this potion I want from cousin Billybob.
+		- Ok...
+			Alia: Billybob has been hoging all the potions. Can you ask him for me? He won't even talk to me since I keep asking.
+			- Sure.
+			- No.
+		- Please don't.
+			Alia: So Billybob, or BillBill ask I sometimes call him--
+			"The Faceless": I just said--
+			Alia: --and as much as I expalin why I need the potion. There he goes again!--
+			"The Faceless": Why are you still taling??
+			Alia: And then, I'm just like well if feel that way, maybe Mom would've--
+			"The Faceless": Oh my God, please!
+			Alia: So, long story short. Can you ask him for the potion for me?
+			- If you never talk to me again.
+			- NO! Why would I help you?
+			- Fine.
+		Alia: Sweet! Let me know how it goes!
+		set {RansomNPCvar.HasSpoken} = true
+		[end_timeline]
+	else:
+		Alia: Let me tell you about this potion... wait, you already have it?! Neat.
 	set {RansomNPCvar.HasSpoken} = true
-else:
-	Greetigs! Again
+	[end_timeline]
+if {RansomNPCvar.HasSpoken} == true:
+	Alia: Greetigs! Again.
+	if {TGO.player_inventory.has("HEALTH_POTION")} == true:
+		Alia: You have the potion!
+	else:
+		Alia: You don't have the potion...

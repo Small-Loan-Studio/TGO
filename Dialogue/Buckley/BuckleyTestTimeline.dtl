@@ -1,5 +1,5 @@
-if {HasSpoken} == true:
-	I don't have anything more to say.
+if {RansomNPCvar.HasSpoken} == true:
+	Whoops delted this
 	[end_timeline]
 Devin! Welcome to the bad place.\
 Take this potion, you'll need it!

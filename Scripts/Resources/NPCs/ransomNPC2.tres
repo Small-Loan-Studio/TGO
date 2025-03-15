@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="NPCConfig" load_steps=3 format=3 uid="uid://lnn3oget6fhs"]
+
+[ext_resource type="Script" path="res://Scripts/Resources/NpcConfig.gd" id="1_xioch"]
+[ext_resource type="SpriteFrames" uid="uid://602xb41y0tak" path="res://Art/Characters/stub_animated_sprite.tres" id="2_whb6u"]
+
+[resource]
+script = ExtResource("1_xioch")
+character_id = "Billybob"
+sprite_sheet = ExtResource("2_whb6u")
+valid_timelines = Array[String](["res://Dialogue/RansomNPC2/billybob1.dtl"])

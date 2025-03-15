@@ -7,4 +7,5 @@
 script = ExtResource("1_vvnyn")
 character_id = "ransomNPC"
 sprite_sheet = ExtResource("2_p0r0g")
-valid_timelines = Array[String]([])
+valid_timelines = Array[String](["res://Dialogue/RansomNPC/RansomNPC_greeting.dtl
+"])

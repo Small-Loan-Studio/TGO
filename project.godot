@@ -38,10 +38,15 @@ gdscript/warnings/untyped_declaration=2
 
 [dialogic]
 
-directories/dch_directory={}
+directories/dch_directory={
+"Alia": "res://Scripts/Resources/NPCs/DialogicCharacters/Alia.dch",
+"Billybob": "res://Scripts/Resources/NPCs/DialogicCharacters/Billybob.dch",
+"The Faceless": "res://Scripts/Resources/NPCs/DialogicCharacters/The Faceless.dch"
+}
 directories/dtl_directory={
 "BuckleyTestTimeline": "res://Dialogue/Buckley/BuckleyTestTimeline.dtl",
 "RansomNPC_greeting": "res://Dialogue/RansomNPC/RansomNPC_greeting.dtl",
+"billybob1": "res://Dialogue/RansomNPC2/billybob1.dtl",
 "debugging_timeline": "res://ZZ_Scratch/DialogicValidation/debugging_timeline.dtl",
 "juniper_bush_full": "res://Dialogue/PlaceableInteractive/juniper_bush_full.dtl",
 "npc_test_dialogue": "res://ZZ_Scratch/NPCDialogue/npc_test_dialogue.dtl",

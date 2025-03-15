@@ -1,0 +1,17 @@
+Billybob: Did she ask you to talk to me?
+if {RansomNPCvar.HasSpoken} == true:
+	- [lie] uh.. no
+	- Yeah.
+		Billybob: Well, I'm not giving her the potion.
+		label investegate potion hog
+		- Please?
+			Billybob: For you? Sure, fine.
+		- Why.
+			Billybob: It mine.
+			jump investegate potion hog
+		- I demand it!
+			Billybob: Yeah, not going to work.
+			jump investegate potion hog
+		[end_timeline]
+else:
+	- uh.. no

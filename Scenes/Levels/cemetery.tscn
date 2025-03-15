@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://bu1vpanrcrar3"]
+[gd_scene load_steps=19 format=3 uid="uid://bu1vpanrcrar3"]
 
 [ext_resource type="PackedScene" uid="uid://dyq8mcdsutnsa" path="res://Scenes/Components/LevelBase.tscn" id="1_bbrpm"]
 [ext_resource type="TileSet" uid="uid://c72m3jled4jfg" path="res://Art/Environment/ext_simple_tileset.tres" id="2_svd0s"]
@@ -7,17 +7,24 @@
 [ext_resource type="Script" path="res://Scripts/Resources/Effects/DialogueEffect.gd" id="5_mniuv"]
 [ext_resource type="Resource" path="res://Dialogue/PlaceableInteractive/juniper_bush_full.dtl" id="6_md8hq"]
 [ext_resource type="PackedScene" uid="uid://c2kg6apj756dw" path="res://Scenes/Components/NPC.tscn" id="6_xyhsa"]
-[ext_resource type="Script" path="res://Scripts/Components/NPC.gd" id="7_u06v7"]
 [ext_resource type="Resource" uid="uid://ntk1ufb2rysx" path="res://Scripts/Resources/NPCs/ransomNPC.tres" id="8_y80n3"]
+[ext_resource type="PackedScene" uid="uid://rgvfsx60t2ap" path="res://Scenes/Components/Inventory/Item.tscn" id="9_a8yri"]
 [ext_resource type="Resource" path="res://Dialogue/RansomNPC/RansomNPC_greeting.dtl" id="10_lkbku"]
+[ext_resource type="Resource" uid="uid://lnn3oget6fhs" path="res://Scripts/Resources/NPCs/ransomNPC2.tres" id="10_nd4s1"]
+[ext_resource type="Resource" uid="uid://but4ranqswen" path="res://Scripts/Resources/Items/Potion.tres" id="11_gh61p"]
+[ext_resource type="Resource" path="res://Dialogue/RansomNPC2/billybob1.dtl" id="11_p4uih"]
 
 [sub_resource type="Resource" id="Resource_fnqoc"]
 script = ExtResource("5_mniuv")
 timeline = ExtResource("6_md8hq")
 
-[sub_resource type="Resource" id="Resource_rlipb"]
+[sub_resource type="Resource" id="Resource_k2d6i"]
 script = ExtResource("5_mniuv")
 timeline = ExtResource("10_lkbku")
+
+[sub_resource type="Resource" id="Resource_sf656"]
+script = ExtResource("5_mniuv")
+timeline = ExtResource("11_p4uih")
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_lqpd0"]
 size = Vector2(24, 32)
@@ -35,20 +42,27 @@ layer_1/tile_data = PackedInt32Array(655289, 262148, 2, 720825, 262148, 1, 78636
 layer_2/tile_data = PackedInt32Array(-196676, 196612, 0, -720964, 131076, 0, 589755, 131076, 0, 655303, 327681, 5, -917564, 4, 6, -852028, 65540, 6, 851964, 65537, 3, 851965, 65537, 3, 786429, 65537, 3, 786430, 65537, 3, 720894, 65537, 3, 655359, 65537, 3, 589823, 65537, 3, 524287, 65537, 3, 458751, 65537, 3, 393215, 65537, 3, 327679, 65537, 3, 262143, 65537, 3, 196607, 65537, 3, 131072, 65537, 3, 65536, 65537, 3, 0, 65537, 3, -65536, 65537, 3, 720839, 65540, 6, 786375, 65537, 3, 786376, 65537, 3, 851913, 65537, 3, 851914, 65537, 3, 851915, 65537, 3, 851916, 65537, 3, 851917, 65537, 3, 851918, 65537, 3, 851919, 65537, 3, 851920, 65537, 3, 851921, 65537, 3, 851922, 65537, 3, 851923, 65537, 3, 851924, 65537, 3, 851925, 65537, 3, 851926, 65537, 3, 851927, 65537, 3, 851928, 65537, 3, 851929, 65537, 3, 851930, 65537, 3, 851931, 65537, 3, 851932, 65537, 3, 851933, 65537, 3, 851934, 65537, 3, 851935, 65537, 3, 851936, 65537, 3, 851937, 65537, 3, 851938, 65537, 3, 917475, 65537, 3, 917476, 65537, 3, 917477, 65537, 3, 917478, 65537, 3, 917479, 65537, 3, 917480, 65537, 3, 917481, 65537, 3, 917482, 65537, 3, 917483, 65537, 3, 917484, 65537, 3, 917485, 65537, 3, 917486, 65537, 3, 917487, 65537, 3, 917488, 65537, 3, 917489, 65537, 3, 917490, 65537, 3, 917491, 65537, 3, 917492, 65537, 3, 917493, 65537, 3, 917494, 65537, 3, 917495, 65537, 3, 917496, 65537, 3, 851961, 65537, 3, 851962, 65537, 3, 851963, 65537, 3, -262206, 196612, 0, 131010, 196612, 0, -786492, 4, 6, -720956, 65540, 6, -655420, 65540, 5, -589884, 4, 6, -524348, 4, 6, -458812, 65540, 6, -393276, 65540, 5, -327740, 65540, 6, -262204, 65540, 5, -196668, 4, 5, -131132, 4, 5, -65596, 4, 6, -60, 65540, 5, 65476, 4, 6, 131012, 65540, 5, 196548, 65540, 5, 262085, 4, 6, 327621, 65540, 6, 393157, 65540, 5, 458693, 65540, 6, 524229, 65540, 5, 589765, 65540, 6, 655301, 65540, 6, 720838, 65540, 5, 786377, 65537, 3, 851976, 196609, 5, 327667, 196609, 5, 1114107, 196609, 5, 917497, 196609, 5, -786426, 196609, 5, -262158, 196609, 5, 7, 327681, 5, 2, 327681, 5, -22, 327681, 5, 131048, 327681, 5, 983003, 327681, 5, 1048543, 327681, 5, 196553, 327681, 5, -393281, 262148, 0, -786486, 131076, 0, 655335, 327681, 5, 1114093, 327681, 5, 589828, 327681, 5, 720903, 327681, 5, -851966, 327681, 5, -786444, 327681, 5, 851969, 262145, 5, 720880, 262145, 5, 524275, 262145, 5, 458754, 262145, 5, 327689, 262145, 5, -393224, 262145, 5, -786461, 262145, 5, -589850, 262145, 5, 458722, 262145, 5, 524239, 262145, 5, 851903, 131076, 0, 982982, 131076, 0, -68, 196612, 0, -393283, 262148, 0, -655417, 262148, 0, 327630, 262145, 5, 458688, 196612, 0, 524251, 262145, 5, 917465, 262145, 5, -262205, 131076, 4, -327741, 131076, 4, -393277, 131076, 4, -458813, 131076, 4, -524349, 131076, 4, -589885, 131076, 4, -196669, 131076, 4, -131133, 131076, 4, 1179598, 327684, 0, 1179599, 393220, 3, 1179600, 393220, 0, 1179601, 393220, 0, 1179602, 393220, 0, 1179597, 393220, 3, 1179596, 393220, 3, 1179595, 393220, 3, 1179594, 327684, 3, 1179593, 327684, 3, 1179592, 393220, 3, 1179591, 393220, 3, 1179590, 327684, 3, 1179587, 393220, 3, 1179588, 327684, 3, 1179589, 393220, 0, 1179586, 393220, 3, 1179585, 393220, 3, 1179584, 327684, 3, 1179583, 327684, 3, 1179582, 393220, 3, 1179581, 327684, 3, 1179580, 393220, 0, 1179577, 327684, 3, 1179578, 327684, 3, 1179579, 327684, 3, 1179576, 393220, 3, 1179603, 327684, 0, 1179604, 393220, 0, 1179605, 327684, 0, 1179606, 393220, 3, 1179607, 327684, 3)
 
 [node name="SW_Juniper_Full1" parent="Objects/Switches" index="0" instance=ExtResource("3_vl6rl")]
-position = Vector2(-295, 368)
+position = Vector2(-844, 502)
 scale = Vector2(6.7797, 4.39945)
 sensor_size = Vector2(20, 20)
 on_pressed_effects = Array[Resource("res://Scripts/Resources/Effect.gd")]([SubResource("Resource_fnqoc")])
 
-[node name="ransomNPC" type="CharacterBody2D" parent="Objects/Characters" index="0" groups=["NodesWithID"] instance=ExtResource("6_xyhsa")]
+[node name="ransomNPC" parent="Objects/Characters" index="0" instance=ExtResource("6_xyhsa")]
 position = Vector2(52.8947, 263.862)
-collision_layer = 5
-motion_mode = 1
-script = ExtResource("7_u06v7")
 config = ExtResource("8_y80n3")
-dlg = SubResource("Resource_rlipb")
+dlg = SubResource("Resource_k2d6i")
 id = "ransomNPC"
-activate_external_sensors = false
+
+[node name="Billybob" parent="Objects/Characters" index="1" instance=ExtResource("6_xyhsa")]
+position = Vector2(-723, 289)
+config = ExtResource("10_nd4s1")
+dlg = SubResource("Resource_sf656")
+id = "Billybob"
+
+[node name="HEALTH_POTION" parent="Objects/Items" index="0" instance=ExtResource("9_a8yri")]
+position = Vector2(-589, 280)
+item = ExtResource("11_gh61p")
+quantity = 1
 
 [node name="Tombstone_Style1" type="Sprite2D" parent="Objects" index="4"]
 position = Vector2(-983, 239)
@@ -57,7 +71,7 @@ region_enabled = true
 region_rect = Rect2(0, 14, 64, 50)
 
 [node name="Tombstone_Style2" type="Sprite2D" parent="Objects" index="5"]
-position = Vector2(-533, 312)
+position = Vector2(-344, 96)
 texture = ExtResource("3_pwnwo")
 region_enabled = true
 region_rect = Rect2(0, 64, 64, 128)
@@ -105,9 +119,10 @@ region_enabled = true
 region_rect = Rect2(133, 74, 116, 86)
 
 [node name="RigidBody2D" type="RigidBody2D" parent="Objects/Juniper_Full" index="0"]
+position = Vector2(5, -4)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Objects/Juniper_Full/RigidBody2D" index="0"]
-position = Vector2(3, 8)
+position = Vector2(-553, 140)
 rotation = -1.57197
 shape = SubResource("CapsuleShape2D_aw4hl")
 
