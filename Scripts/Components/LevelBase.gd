@@ -28,6 +28,27 @@ const DEFAULT_MARKER: String = "PlayerStart"
 		if Engine.is_editor_hint() && _canvas_modulate != null:
 			_canvas_modulate.visible = apply_editor_overlay
 
+@export var fixed_ambient_color: Color = Color.RED:
+	get:
+		return fixed_ambient_color
+	set(value):
+		fixed_ambient_color = value
+
+@export_enum("BLACKOUT", "CUSTOM") var use_fixed_ambient: String:
+	set(value):
+		use_fixed_ambient = value
+		if _canvas_modulate != null:
+			if value == "CUSTOM":
+				_canvas_modulate.color = fixed_ambient_color
+				_canvas_modulate.visible = true
+			elif value != '':
+				_canvas_modulate.color = interior_light[value]
+				_canvas_modulate.visible = true
+			elif value == '':
+				_canvas_modulate.visible = false
+
+var interior_light: Dictionary = {"BLACKOUT": Color.BLACK}
+
 var driver: Driver
 
 var level_name: String:
@@ -51,11 +72,12 @@ var _canvas_modulate: CanvasModulate = null:
 
 
 func _ready() -> void:
-	if !Engine.is_editor_hint():
-		var ref := _canvas_modulate
-		if ref != null:
-			remove_child(ref)
-			ref.queue_free()
+	##if !Engine.is_editor_hint():
+	##	var ref := _canvas_modulate
+	##	if ref != null:
+	##		remove_child(ref)
+	##		ref.queue_free()
+	pass
 
 
 func setup(driver_in: Driver) -> void:
