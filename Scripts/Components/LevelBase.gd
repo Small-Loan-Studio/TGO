@@ -46,12 +46,12 @@ const DEFAULT_MARKER: String = "PlayerStart"
 				_canvas_modulate.color = fixed_ambient_color
 				_canvas_modulate.visible = true
 			elif value != '':
-				_canvas_modulate.color = interior_light[value]
+				_canvas_modulate.color = _interior_light[value]
 				_canvas_modulate.visible = true
 			elif value == '':
 				_canvas_modulate.visible = false
 
-var interior_light: Dictionary = {"BLACKOUT": Color.BLACK}
+var _interior_light: Dictionary = {"BLACKOUT": Color.BLACK}
 
 var driver: Driver
 
