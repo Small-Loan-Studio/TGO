@@ -33,6 +33,10 @@ const DEFAULT_MARKER: String = "PlayerStart"
 		return fixed_ambient_color
 	set(value):
 		fixed_ambient_color = value
+		if _canvas_modulate != null:
+			if use_fixed_ambient == "CUSTOM":
+				_canvas_modulate.color = value
+				_canvas_modulate.visible = true
 
 @export_enum("BLACKOUT", "CUSTOM") var use_fixed_ambient: String:
 	set(value):
