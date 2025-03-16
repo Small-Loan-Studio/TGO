@@ -45,13 +45,11 @@ const DEFAULT_MARKER: String = "PlayerStart"
 			if value == "CUSTOM":
 				_canvas_modulate.color = fixed_ambient_color
 				_canvas_modulate.visible = true
-			elif value != '':
+			elif value != "":
 				_canvas_modulate.color = _interior_light[value]
 				_canvas_modulate.visible = true
-			elif value == '':
+			elif value == "":
 				_canvas_modulate.visible = false
-
-var _interior_light: Dictionary = {"BLACKOUT": Color.BLACK}
 
 var driver: Driver
 
@@ -62,6 +60,8 @@ var level_name: String:
 		return _name
 	set(value):
 		printerr("Unable to assign level_name to: ", level_name)
+
+var _interior_light: Dictionary = {"BLACKOUT": Color.BLACK}
 
 var _canvas_modulate: CanvasModulate = null:
 	get:
