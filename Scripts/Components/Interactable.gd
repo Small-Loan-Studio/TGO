@@ -11,6 +11,10 @@ extends Area2D
 ## Passed the triggering Character
 signal triggered(actor: Character)
 
+const InteractPanelScene: PackedScene = preload(
+	"res://Scenes/Components/interacting/interact_panel.tscn"
+)
+
 ## If set this will trigger automatically when a Character looking for
 ## interactables enters the area. This makes the interaction *not* manually
 ## triggerable through the "interact" action
@@ -33,6 +37,16 @@ signal triggered(actor: Character)
 ##   Type: Map[Enums.ActionVerb, Array[Effect]]
 @export var action_map: Dictionary = {}
 
+var examine: InteractPanel:
+	get:
+		return _examine_scene
+var interact: InteractPanel:
+	get:
+		return _interact_scene
+
+var _examine_scene: InteractPanel = null
+var _interact_scene: InteractPanel = null
+
 # TODO: add conditions
 
 ## Tracks the level that the action is taking place in
@@ -41,6 +55,59 @@ var _cur_level: LevelBase
 
 func _ready() -> void:
 	_cur_level = Utils.get_level_parent(self)
+
+
+func activate() -> void:
+	var player: Character = Driver.instance().player
+	var pmid: Vector2 = player.position
+	var tmid: Vector2 = self.owner.position
+	var tsize: Vector2 = self.owner.size
+	tmid.x -= tsize.x / 2
+	tmid.y -= tsize.y / 2
+
+	var examine_actions: Array = action_map.keys().filter(
+		func(e: Enums.ActionVerb) -> bool: return e == Enums.ActionVerb.EXAMINE
+	)
+	var interact_actions: Array = action_map.keys().filter(
+		func(e: Enums.ActionVerb) -> bool: return e != Enums.ActionVerb.EXAMINE
+	)
+
+	_examine_scene = InteractPanelScene.instantiate()
+	_examine_scene.actions.assign(examine_actions)
+	_examine_scene.input = Enums.InputAction.EXAMINE
+	_examine_scene.target = self.owner
+
+	_interact_scene = InteractPanelScene.instantiate()
+	_interact_scene.actions.assign(interact_actions)
+	_interact_scene.input = Enums.InputAction.INTERACT
+	_interact_scene.target = self.owner
+
+	if (tmid - pmid).x < 0:
+		_examine_scene.layout = InteractOption.LAYOUT_LEFT
+		_interact_scene.layout = InteractOption.LAYOUT_LEFT
+		_interact_scene.placement = InteractPanel.PLACEMENT_WEST
+	else:
+		_examine_scene.layout = InteractOption.LAYOUT_RIGHT
+		_interact_scene.layout = InteractOption.LAYOUT_RIGHT
+		_interact_scene.placement = InteractPanel.PLACEMENT_EAST
+	if (tmid - pmid).y < 0:
+		_examine_scene.placement = InteractPanel.PLACEMENT_NORTH
+	else:
+		_examine_scene.placement = InteractPanel.PLACEMENT_SOUTH
+
+	if len(examine_actions) > 0:
+		_examine_scene.present()
+	if len(interact_actions) > 0:
+		_interact_scene.present()
+
+
+func deactivate() -> void:
+	if _examine_scene:
+		_examine_scene.queue_free()
+		_examine_scene = null
+	if _interact_scene:
+		_interact_scene.queue_free()
+		_interact_scene = null
 
 
 func trigger(actor: Character, action: Enums.ActionVerb = default_verb) -> void:

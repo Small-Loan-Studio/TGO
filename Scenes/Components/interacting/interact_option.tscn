@@ -1,0 +1,173 @@
+[gd_scene load_steps=10 format=3 uid="uid://cf8dser3bm7sj"]
+
+[ext_resource type="Script" path="res://Scenes/Components/interacting/interact_option.gd" id="1_vt6dm"]
+[ext_resource type="Texture2D" uid="uid://b6ara32t33lwm" path="res://Art/interacting/raw_edge_right.png" id="2_a40ri"]
+[ext_resource type="Texture2D" uid="uid://dlp5vrsdmtfda" path="res://Art/interacting/curved_edge_left.png" id="2_k4ufr"]
+[ext_resource type="FontFile" uid="uid://8lfpcborndbe" path="res://Art/fonts/EBGaramond-Bold.ttf" id="3_ahwx5"]
+[ext_resource type="Texture2D" uid="uid://dw8a5ces4vkbd" path="res://Art/interacting/arrow_down.png" id="3_m7adq"]
+[ext_resource type="Texture2D" uid="uid://cckcndbc1e8ai" path="res://Art/interacting/button.png" id="4_ooui1"]
+[ext_resource type="Texture2D" uid="uid://c5pll2coliscq" path="res://Art/interacting/selection_right.png" id="6_g7ro6"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_u3sqe"]
+resource_local_to_scene = true
+bg_color = Color(0, 0, 0, 1)
+border_color = Color(1, 1, 1, 1)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_xqupb"]
+texture = ExtResource("4_ooui1")
+
+[node name="InteractOption" type="Control"]
+custom_minimum_size = Vector2(145, 35)
+layout_mode = 3
+anchors_preset = 0
+offset_right = 145.0
+offset_bottom = 35.0
+script = ExtResource("1_vt6dm")
+metadata/_edit_group_ = true
+
+[node name="Right" type="Control" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="LeftEdge" type="TextureRect" parent="Right"]
+custom_minimum_size = Vector2(6, 35)
+layout_mode = 2
+offset_right = 6.0
+offset_bottom = 35.0
+texture = ExtResource("2_k4ufr")
+
+[node name="Panel" type="Panel" parent="Right"]
+custom_minimum_size = Vector2(135, 35)
+layout_mode = 2
+offset_left = 6.0
+offset_right = 141.0
+offset_bottom = 35.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_u3sqe")
+
+[node name="RightEdge" type="TextureRect" parent="Right"]
+layout_mode = 2
+offset_left = 141.0
+offset_right = 145.0
+offset_bottom = 35.0
+texture = ExtResource("2_a40ri")
+stretch_mode = 2
+
+[node name="Label" type="Label" parent="Right"]
+layout_mode = 2
+offset_left = 36.5
+offset_top = 3.0
+offset_right = 136.5
+offset_bottom = 30.0
+size_flags_horizontal = 0
+size_flags_vertical = 1
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_fonts/font = ExtResource("3_ahwx5")
+theme_override_font_sizes/font_size = 20
+text = "Interact"
+vertical_alignment = 1
+
+[node name="Chevron" type="TextureRect" parent="Right"]
+layout_mode = 2
+offset_left = 120.0
+offset_right = 132.0
+offset_bottom = 35.0
+texture = ExtResource("3_m7adq")
+stretch_mode = 3
+
+[node name="Selection" type="TextureRect" parent="Right"]
+layout_mode = 2
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("6_g7ro6")
+stretch_mode = 3
+
+[node name="Left" type="Control" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -145.0
+offset_right = -145.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="LeftEdge" type="TextureRect" parent="Left"]
+layout_mode = 2
+offset_right = 4.0
+offset_bottom = 35.0
+texture = ExtResource("2_a40ri")
+stretch_mode = 2
+flip_h = true
+
+[node name="Panel" type="Panel" parent="Left"]
+custom_minimum_size = Vector2(135, 35)
+layout_mode = 2
+offset_left = 4.0
+offset_right = 139.0
+offset_bottom = 35.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_u3sqe")
+
+[node name="RightEdge" type="TextureRect" parent="Left"]
+custom_minimum_size = Vector2(6, 35)
+layout_mode = 2
+offset_left = 139.0
+offset_right = 145.0
+offset_bottom = 35.0
+texture = ExtResource("2_k4ufr")
+flip_h = true
+
+[node name="Label" type="Label" parent="Left"]
+layout_mode = 2
+offset_left = 8.5
+offset_top = 3.0
+offset_right = 108.5
+offset_bottom = 30.0
+size_flags_horizontal = 0
+size_flags_vertical = 1
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_fonts/font = ExtResource("3_ahwx5")
+theme_override_font_sizes/font_size = 20
+text = "Interact"
+horizontal_alignment = 2
+vertical_alignment = 1
+
+[node name="Chevron" type="TextureRect" parent="Left"]
+layout_mode = 2
+offset_left = 13.0
+offset_right = 25.0
+offset_bottom = 35.0
+texture = ExtResource("3_m7adq")
+stretch_mode = 3
+
+[node name="Selection" type="TextureRect" parent="Left"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("6_g7ro6")
+stretch_mode = 3
+flip_h = true
+
+[node name="SymbolContainer" type="PanelContainer" parent="."]
+clip_children = 2
+layout_mode = 2
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -21.0
+offset_top = -3.5
+offset_right = -124.0
+offset_bottom = 3.5
+theme_override_styles/panel = SubResource("StyleBoxTexture_xqupb")
+
+[node name="Symbol" type="TextureRect" parent="SymbolContainer"]
+custom_minimum_size = Vector2(18.48, 18.48)
+layout_mode = 2
+stretch_mode = 3
