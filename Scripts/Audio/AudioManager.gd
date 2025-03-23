@@ -4,15 +4,26 @@ extends Node
 const AUDIO_PREFS_PATH = "user://audio_prefs.dat"
 const DB_MIN: float = -25
 const DB_MAX: float = 8
+const 	_old_new_mapping := {
+		Enums.AudioBus.MASTER: "Main",
+		Enums.AudioBus.BACKGROUND_MUSIC: "Background Music",
+		Enums.AudioBus.SOUND_EFFECTS: "Sound Effects",
+		Enums.AudioBus.MENU_EFFECTS: "Menu",
+		Enums.AudioBus.AMBIENT: "Ambient Sounds",
+	}
 
 var cur_track: Enums.AudioTrack
+var _akhelper: AKHelper
 
 @onready var bgm_player: AudioStreamPlayer2D = %BGPlayer
 
 
 func _ready() -> void:
+	_akhelper = AKHelper.new(self)
+	Wwise.register_game_obj(self, "Audio Manager")
 	cur_track = Enums.AudioTrack.NONE
 	load_levels()
+	load_levels_wwise()
 
 
 ## starts playing a given track with some caveats:
@@ -56,6 +67,9 @@ func play(tgt_track: Enums.AudioTrack, fade_in: float = 0) -> Tween:
 	tween.tween_property(bgm_player, "volume_db", tgt_vol, fade_in)
 	return tween
 
+
+func test() -> void:
+	_akhelper.send_event(AK.EVENTS.LEVELSTART)
 
 ## fades the current track out and a second track in, does not check if the
 ## current track is the same as the target so it's possible to fade out & in
@@ -137,6 +151,34 @@ func load_levels() -> void:
 		AudioServer.set_bus_volume_db(k.to_int(), vol)
 		AudioServer.set_bus_mute(k.to_int(), vol <= DB_MIN)
 
+func load_levels_wwise() -> void:
+	if !FileAccess.file_exists(AUDIO_PREFS_PATH):
+		printerr("No data at prefs path, using defaults")
+		return
+
+	var file := FileAccess.open(AUDIO_PREFS_PATH, FileAccess.READ)
+	var json_prefs_data := file.get_as_text()
+
+	var json := JSON.new()
+	var err := json.parse(json_prefs_data)
+	if err != OK || typeof(json.data) != TYPE_DICTIONARY:
+		printerr("Failed to read prefs data: " + str(err))
+		return
+	
+	var data: Dictionary = json.data
+	# { "wwise"?: boolean, "0": -5.19999980926514, "1": -15.1000003814697, "2": 1.39999997615814, "3": 1.39999997615814, "4": 4.69999980926514 }
+	var wwise_levels := data.has("wwise") && (data["wwise"] as bool)
+
+	for key: String in data.keys():
+		if key == "wwise":
+			continue
+		var bus_id := int(key)
+		if !wwise_levels:
+			bus_id = _akhelper.get_bus_id(_old_new_mapping[bus_id])
+			_akhelper.send_param(
+				_akhelper.bus_param(bus_id),
+				100 * _db_to_volume(data[key] as float))
+
 
 func _volume_to_db(level: float) -> float:
 	level = clampf(level, 0, 1)
@@ -163,6 +205,10 @@ func set_level(bus: Enums.AudioBus, volume_pct: float) -> void:
 	var new_level := clampf(_volume_to_db(volume_pct), DB_MIN, DB_MAX)
 	AudioServer.set_bus_mute(idx, new_level <= DB_MIN)
 	AudioServer.set_bus_volume_db(idx, new_level)
+
+	if _akhelper:
+		var ak_bus_id := _akhelper.get_bus_id(_old_new_mapping[bus])
+		_akhelper.send_param(_akhelper.bus_param(ak_bus_id), 100.0 * volume_pct)
 
 
 ## returns the level of a requested audio bus in a 0->1 range.

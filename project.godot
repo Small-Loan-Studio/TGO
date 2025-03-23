@@ -189,16 +189,16 @@ textures/decals/filter=0
 
 [wwise]
 
-common_user_settings/base_path="res://GeneratedSoundBanks"
+common_user_settings/base_path="res://Audio/GeneratedSoundBanks"
 common_user_settings/startup_language="English(US)"
-common_user_settings/load_init_bank_at_startup=false
+common_user_settings/load_init_bank_at_startup=true
 common_user_settings/suspend_on_focus_loss=false
 common_user_settings/use_soundbank_names=true
 common_user_settings/engine_logging=false
 common_user_settings/maximum_number_of_positioning_paths=255
 common_user_settings/command_queue_size=262144
 common_user_settings/samples_per_frame=2
-common_user_settings/game_units_to_meters=1.0
+common_user_settings/game_units_to_meters=0.031
 common_user_settings/main_output/audio_device_shareset="System"
 common_user_settings/main_output/device_id=0
 common_user_settings/main_output/panning_rule=0

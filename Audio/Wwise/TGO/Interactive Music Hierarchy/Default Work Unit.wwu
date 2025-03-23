@@ -53,14 +53,15 @@
 																<MusicClip Name="TGO_Tavern_Gadient1" ID="{DACAC00A-B13D-4FD5-9D37-2E6FD3445549}">
 																	<PropertyList>
 																		<Property Name="EndTrimOffset" Type="Real64" Value="116898.571428571"/>
+																		<Property Name="FadeInDuration" Type="Real64" Value="5620.07137462825"/>
 																		<Property Name="FadeOutMode" Type="int16" Value="0"/>
 																	</PropertyList>
 																	<AudioSourceRef Name="TGO_Tavern_Gadient1" ID="{79A8E1B9-C7BC-40F0-9B48-9626C28BC1D8}"/>
 																	<PropertyCurveList>
-																		<PropertyCurve PropertyName="Volume">
-																			<Curve Name="" ID="{A65AF57E-E291-48AC-990F-2D7547F7A157}">
+																		<PropertyCurve PropertyName="Highpass">
+																			<Curve Name="" ID="{4AE00EF8-1A27-43F3-9E75-FB645F2C3AA3}">
 																				<PropertyList>
-																					<Property Name="Flags" Type="int32" Value="3"/>
+																					<Property Name="Flags" Type="int32" Value="1"/>
 																				</PropertyList>
 																				<PointList>
 																					<Point>
@@ -70,7 +71,45 @@
 																					</Point>
 																					<Point>
 																						<XPos>116.898571428571</XPos>
+																						<YPos>0</YPos>
+																						<Flags>37</Flags>
+																					</Point>
+																				</PointList>
+																			</Curve>
+																		</PropertyCurve>
+																		<PropertyCurve PropertyName="Lowpass">
+																			<Curve Name="" ID="{6788B88F-A662-4E49-9EFF-D10DC34D7065}">
+																				<PropertyList>
+																					<Property Name="Flags" Type="int32" Value="1"/>
+																				</PropertyList>
+																				<PointList>
+																					<Point>
+																						<XPos>0</XPos>
+																						<YPos>0</YPos>
+																						<Flags>5</Flags>
+																					</Point>
+																					<Point>
+																						<XPos>116.898571428571</XPos>
+																						<YPos>0</YPos>
+																						<Flags>37</Flags>
+																					</Point>
+																				</PointList>
+																			</Curve>
+																		</PropertyCurve>
+																		<PropertyCurve PropertyName="Volume">
+																			<Curve Name="" ID="{A65AF57E-E291-48AC-990F-2D7547F7A157}">
+																				<PropertyList>
+																					<Property Name="Flags" Type="int32" Value="3"/>
+																				</PropertyList>
+																				<PointList>
+																					<Point>
+																						<XPos>0</XPos>
 																						<YPos>-0</YPos>
+																						<Flags>5</Flags>
+																					</Point>
+																					<Point>
+																						<XPos>116.898571428571</XPos>
+																						<YPos>0</YPos>
 																						<Flags>37</Flags>
 																					</Point>
 																				</PointList>

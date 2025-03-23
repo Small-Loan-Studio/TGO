@@ -73,3 +73,5 @@ deadzone = 0.25
 
 [node name="Stats" parent="." index="5"]
 stats = Array[ExtResource("9_fybv6")]([SubResource("Resource_b1u10")])
+
+[node name="AkListener2D" type="AkListener2D" parent="." index="6"]

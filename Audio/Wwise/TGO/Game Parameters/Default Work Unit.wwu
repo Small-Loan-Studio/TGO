@@ -1,6 +1,26 @@
 <?xml version="1.0" encoding="utf-8"?>
 <WwiseDocument Type="WorkUnit" ID="{4BB587C7-F5F5-4FBE-AD3E-2AADCE4707E1}" SchemaVersion="119">
 	<GameParameters>
-		<WorkUnit Name="Default Work Unit" ID="{4BB587C7-F5F5-4FBE-AD3E-2AADCE4707E1}" PersistMode="Standalone"/>
+		<WorkUnit Name="Default Work Unit" ID="{4BB587C7-F5F5-4FBE-AD3E-2AADCE4707E1}" PersistMode="Standalone">
+			<ChildrenList>
+				<Folder Name="Volume Adjust" ID="{BEF578FF-3C14-4EDE-873D-53C7EAB8B865}" ShortID="160281272">
+					<ChildrenList>
+						<GameParameter Name="Levels_Background" ID="{68A3BB83-7B2B-4867-A29B-414DF8F9925F}">
+							<PropertyList>
+								<Property Name="InitialValue" Type="Real64" Value="80"/>
+							</PropertyList>
+						</GameParameter>
+						<GameParameter Name="Levels_Ambient" ID="{E62FE1EF-07F3-49B4-8F9F-6DFBA107ED01}"/>
+						<GameParameter Name="Levels_Menu" ID="{7ADC3B8D-CB70-4BCD-9A3D-D64A2E7DF36D}"/>
+						<GameParameter Name="Levels_Effects" ID="{A9F2EC9E-734C-4952-A717-2CFC48AD8259}"/>
+						<GameParameter Name="Levels_Main" ID="{AB0BDA09-BFDD-4754-A449-DB1D0A592CC1}">
+							<PropertyList>
+								<Property Name="InitialValue" Type="Real64" Value="80"/>
+							</PropertyList>
+						</GameParameter>
+					</ChildrenList>
+				</Folder>
+			</ChildrenList>
+		</WorkUnit>
 	</GameParameters>
 </WwiseDocument>

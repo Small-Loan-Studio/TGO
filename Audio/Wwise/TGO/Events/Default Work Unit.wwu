@@ -3,23 +3,23 @@
 	<Events>
 		<WorkUnit Name="Default Work Unit" ID="{11C986AF-0509-4F5C-82DC-A1208A5820C6}" PersistMode="Standalone">
 			<ChildrenList>
-				<Event Name="PlayBackground" ID="{2A61434C-9AC9-42E6-8E15-D3CE4E2C46A7}">
+				<Event Name="Walking" ID="{1433FAA6-4FC3-49BC-AD45-D922F37D37E0}">
 					<ChildrenList>
-						<Action Name="" ID="{94E98042-8B20-4F7F-B9F3-0CE0FC760D3C}" ShortID="238651447">
+						<Action Name="" ID="{67C9CEBC-49CA-44E7-A74C-8CE300B682F6}" ShortID="720547677">
 							<ReferenceList>
 								<Reference Name="Target">
-									<ObjectRef Name="TGO_Tavern_Gadient1" ID="{54CF1D1E-7E99-4CE9-B18A-5525A09383E0}" WorkUnitID="{B7C97FFC-28BC-44FD-84DB-11B9ABE8BC50}"/>
+									<ObjectRef Name="footsteps" ID="{8D090386-5419-4745-AA60-1334DD8832EA}" WorkUnitID="{C3D82143-02E0-43D5-BE85-96C1C6488F84}"/>
 								</Reference>
 							</ReferenceList>
 						</Action>
 					</ChildrenList>
 				</Event>
-				<Event Name="Walking" ID="{089A475A-150E-4BB1-8A46-12661627BC41}">
+				<Event Name="LevelStart" ID="{85495B08-D300-4B5D-BD4B-B341FE2D58E3}">
 					<ChildrenList>
-						<Action Name="" ID="{D7009033-B407-4D6E-B046-A3B5C99A3347}" ShortID="969957287">
+						<Action Name="" ID="{08894835-6C29-4D96-8BCE-C245467E0B54}" ShortID="758232548">
 							<ReferenceList>
 								<Reference Name="Target">
-									<ObjectRef Name="footsteps" ID="{8D090386-5419-4745-AA60-1334DD8832EA}" WorkUnitID="{C3D82143-02E0-43D5-BE85-96C1C6488F84}"/>
+									<ObjectRef Name="TGO_Tavern_Gadient1" ID="{54CF1D1E-7E99-4CE9-B18A-5525A09383E0}" WorkUnitID="{B7C97FFC-28BC-44FD-84DB-11B9ABE8BC50}"/>
 								</Reference>
 							</ReferenceList>
 						</Action>

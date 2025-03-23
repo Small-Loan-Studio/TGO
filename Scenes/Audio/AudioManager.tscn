@@ -9,3 +9,19 @@ script = ExtResource("1_7riov")
 [node name="BGPlayer" type="AudioStreamPlayer2D" parent="."]
 unique_name_in_owner = true
 bus = &"BGM"
+
+[node name="BankInit" type="AkBank" parent="."]
+bank = {
+"id": 1355168291,
+"name": "Init"
+}
+load_on = 1
+unload_on = 3
+
+[node name="BankMain" type="AkBank" parent="."]
+bank = {
+"id": 3161908922,
+"name": "Main"
+}
+load_on = 1
+unload_on = 3
