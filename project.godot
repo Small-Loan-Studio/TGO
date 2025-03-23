@@ -30,6 +30,7 @@ config/icon="res://icon.svg"
 [autoload]
 
 TGO="*res://Scripts/DialogicAdapter.gd"
+WwiseRuntimeManager="*res://addons/Wwise/runtime/wwise_runtime_manager.gd"
 Dialogic="*res://addons/dialogic/Core/DialogicGameHandler.gd"
 
 [debug]
@@ -91,7 +92,7 @@ export/convert_text_resources_to_binary=false
 
 [editor_plugins]
 
-enabled=PackedStringArray("res://addons/dialogic/plugin.cfg", "res://addons/resources_spreadsheet_view/plugin.cfg", "res://addons/tgo_greyboxing/plugin.cfg")
+enabled=PackedStringArray("res://addons/Wwise/plugin.cfg", "res://addons/dialogic/plugin.cfg", "res://addons/resources_spreadsheet_view/plugin.cfg", "res://addons/tgo_greyboxing/plugin.cfg")
 
 [input]
 
@@ -185,3 +186,55 @@ textures/canvas_textures/default_texture_filter=0
 textures/decals/filter=0
 2d/snap/snap_2d_transforms_to_pixel=true
 2d/snap/snap_2d_vertices_to_pixel=true
+
+[wwise]
+
+common_user_settings/base_path="res://GeneratedSoundBanks"
+common_user_settings/startup_language="English(US)"
+common_user_settings/load_init_bank_at_startup=false
+common_user_settings/suspend_on_focus_loss=false
+common_user_settings/use_soundbank_names=true
+common_user_settings/engine_logging=false
+common_user_settings/maximum_number_of_positioning_paths=255
+common_user_settings/command_queue_size=262144
+common_user_settings/samples_per_frame=2
+common_user_settings/game_units_to_meters=1.0
+common_user_settings/main_output/audio_device_shareset="System"
+common_user_settings/main_output/device_id=0
+common_user_settings/main_output/panning_rule=0
+common_user_settings/main_output/channel_config/channel_config_type=0
+common_user_settings/main_output/channel_config/channel_mask=0
+common_user_settings/main_output/channel_config/number_of_channels=0
+common_user_settings/streaming_look_ahead_ratio=1.0
+common_user_settings/sample_rate=4
+common_user_settings/number_of_refills_in_voice=1
+common_user_settings/spatial_audio/max_sound_propagation_depth=8.0
+common_user_settings/spatial_audio/calc_emitter_virtual_position=true
+common_user_settings/spatial_audio/movement_threshold=1.0
+common_user_settings/spatial_audio/number_of_primary_rays=100
+common_user_settings/spatial_audio/max_reflection_order=1.0
+common_user_settings/spatial_audio/max_path_length=10000.0
+common_user_settings/spatial_audio/enable_geometric_diffraction_and_transmission=true
+common_user_settings/spatial_audio/max_emitter_room_aux_sends=0
+common_advanced_settings/IO_memory_size=2097152
+common_advanced_settings/target_auto_stream_buffer_length_ms=380
+common_advanced_settings/use_stream_cache=false
+common_advanced_settings/maximum_pinned_bytes_in_cache=4294967295
+common_advanced_settings/enable_game_sync_preparation=false
+common_advanced_settings/continuous_playback_look_ahead=1
+common_advanced_settings/monitor_queue_pool_size=65536
+common_advanced_settings/maximum_hardware_timeout_ms=1000
+common_advanced_settings/debug_out_of_range_check_enabled=false
+common_advanced_settings/debug_out_of_range_limit=16.0
+communication_settings/discovery_broadcast_port=24024
+communication_settings/command_port=0
+communication_settings/initialize_system_comms=true
+communication_settings/network_name=""
+macos_advanced_settings/audio_API=3
+ios_advanced_settings/audio_API=3
+ios_advanced_settings/audio_session_category=0
+ios_advanced_settings/audio_session_category_options=13
+ios_advanced_settings/audio_session_mode=0
+android_advanced_settings/audio_API=3
+android_advanced_settings/round_frame_size_to_hw_size=true
+linux_advanced_settings/audio_API=3
