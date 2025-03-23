@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<WwiseDocument Type="WorkUnit" ID="{11C986AF-0509-4F5C-82DC-A1208A5820C6}" SchemaVersion="119">
+	<Events>
+		<WorkUnit Name="Default Work Unit" ID="{11C986AF-0509-4F5C-82DC-A1208A5820C6}" PersistMode="Standalone">
+			<ChildrenList>
+				<Event Name="PlayBackground" ID="{2A61434C-9AC9-42E6-8E15-D3CE4E2C46A7}">
+					<ChildrenList>
+						<Action Name="" ID="{94E98042-8B20-4F7F-B9F3-0CE0FC760D3C}" ShortID="238651447">
+							<ReferenceList>
+								<Reference Name="Target">
+									<ObjectRef Name="TGO_Tavern_Gadient1" ID="{54CF1D1E-7E99-4CE9-B18A-5525A09383E0}" WorkUnitID="{B7C97FFC-28BC-44FD-84DB-11B9ABE8BC50}"/>
+								</Reference>
+							</ReferenceList>
+						</Action>
+					</ChildrenList>
+				</Event>
+				<Event Name="Walking" ID="{089A475A-150E-4BB1-8A46-12661627BC41}">
+					<ChildrenList>
+						<Action Name="" ID="{D7009033-B407-4D6E-B046-A3B5C99A3347}" ShortID="969957287">
+							<ReferenceList>
+								<Reference Name="Target">
+									<ObjectRef Name="footsteps" ID="{8D090386-5419-4745-AA60-1334DD8832EA}" WorkUnitID="{C3D82143-02E0-43D5-BE85-96C1C6488F84}"/>
+								</Reference>
+							</ReferenceList>
+						</Action>
+					</ChildrenList>
+				</Event>
+			</ChildrenList>
+		</WorkUnit>
+	</Events>
+</WwiseDocument>

@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<WwiseDocument Type="WorkUnit" ID="{6C0969E1-B09C-4693-BC3C-B2E7116B2AEE}" SchemaVersion="119">
+	<Busses>
+		<WorkUnit Name="Default Work Unit" ID="{6C0969E1-B09C-4693-BC3C-B2E7116B2AEE}" PersistMode="Standalone">
+			<ChildrenList>
+				<Bus Name="Main" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}">
+					<ReferenceList>
+						<Reference Name="AudioDevice" PluginName="System" CompanyID="0" PluginID="174" PluginType="7">
+							<ObjectRef Name="System" ID="{FCA99E61-BA57-47EF-96BA-8277A8F08D3F}" WorkUnitID="{CB5B66D1-1C29-478D-B989-BB6E339AE0D3}"/>
+						</Reference>
+					</ReferenceList>
+					<ChildrenList>
+						<Bus Name="Background Music" ID="{41891CC8-0F21-43B3-A3B3-8A0D9ECA47D8}"/>
+						<Bus Name="Ambient Sounds" ID="{7AA9588E-A987-4B8E-A2F7-5CAEDA0A6BF1}"/>
+						<Bus Name="Menu" ID="{F06E810D-B10E-4761-9E42-73177807E972}"/>
+						<Bus Name="Sound Effects" ID="{B72DD3D3-0632-4D7D-8F7E-E7D2F4E10726}"/>
+					</ChildrenList>
+				</Bus>
+			</ChildrenList>
+		</WorkUnit>
+	</Busses>
+</WwiseDocument>

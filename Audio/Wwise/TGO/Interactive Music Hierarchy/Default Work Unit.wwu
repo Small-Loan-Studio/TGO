@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="utf-8"?>
+<WwiseDocument Type="WorkUnit" ID="{B7C97FFC-28BC-44FD-84DB-11B9ABE8BC50}" SchemaVersion="119">
+	<InteractiveMusic>
+		<WorkUnit Name="Default Work Unit" ID="{B7C97FFC-28BC-44FD-84DB-11B9ABE8BC50}" PersistMode="Standalone">
+			<ChildrenList>
+				<MusicSegment Name="TGO_Tavern_Gadient1" ID="{54CF1D1E-7E99-4CE9-B18A-5525A09383E0}" ShortID="632845232">
+					<PropertyList>
+						<Property Name="EndPosition" Type="Real64" Value="116898.571428571"/>
+					</PropertyList>
+					<ReferenceList>
+						<Reference Name="Conversion">
+							<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{1E13664B-E694-4203-95E7-AEB6212579F7}"/>
+						</Reference>
+						<Reference Name="OutputBus">
+							<ObjectRef Name="Background Music" ID="{41891CC8-0F21-43B3-A3B3-8A0D9ECA47D8}" WorkUnitID="{6C0969E1-B09C-4693-BC3C-B2E7116B2AEE}"/>
+						</Reference>
+					</ReferenceList>
+					<ChildrenList>
+						<MusicTrack Name="TGO_Tavern_Gadient1" ID="{BA2D81E3-0FDC-467C-9901-791736D473B2}" ShortID="188240183">
+							<ReferenceList>
+								<Reference Name="OutputBus">
+									<ObjectRef Name="Main" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{6C0969E1-B09C-4693-BC3C-B2E7116B2AEE}"/>
+								</Reference>
+								<Reference Name="TransitionRoot">
+									<Custom>
+										<MusicTransition Name="Root" ID="{CED8F18C-3E48-4E32-89AC-DA90362E6332}">
+											<PropertyList>
+												<Property Name="IsFolder" Type="bool" Value="True"/>
+											</PropertyList>
+											<TransitionInfo/>
+										</MusicTransition>
+									</Custom>
+								</Reference>
+							</ReferenceList>
+							<ChildrenList>
+								<AudioFileSource Name="TGO_Tavern_Gadient1" ID="{79A8E1B9-C7BC-40F0-9B48-9626C28BC1D8}">
+									<Language>SFX</Language>
+									<AudioFile>TGO_Tavern_Gadient1.wav</AudioFile>
+									<MediaIDList>
+										<MediaID ID="772660148"/>
+									</MediaIDList>
+								</AudioFileSource>
+							</ChildrenList>
+							<ObjectLists>
+								<ObjectList Name="Sequences">
+									<Reference>
+										<Local>
+											<MusicTrackSequence Name="" ID="{1FDE8354-DC77-4810-A114-1B407B725501}">
+												<ObjectLists>
+													<ObjectList Name="Clips">
+														<Reference>
+															<Local>
+																<MusicClip Name="TGO_Tavern_Gadient1" ID="{DACAC00A-B13D-4FD5-9D37-2E6FD3445549}">
+																	<PropertyList>
+																		<Property Name="EndTrimOffset" Type="Real64" Value="116898.571428571"/>
+																		<Property Name="FadeOutMode" Type="int16" Value="0"/>
+																	</PropertyList>
+																	<AudioSourceRef Name="TGO_Tavern_Gadient1" ID="{79A8E1B9-C7BC-40F0-9B48-9626C28BC1D8}"/>
+																	<PropertyCurveList>
+																		<PropertyCurve PropertyName="Volume">
+																			<Curve Name="" ID="{A65AF57E-E291-48AC-990F-2D7547F7A157}">
+																				<PropertyList>
+																					<Property Name="Flags" Type="int32" Value="3"/>
+																				</PropertyList>
+																				<PointList>
+																					<Point>
+																						<XPos>0</XPos>
+																						<YPos>0</YPos>
+																						<Flags>5</Flags>
+																					</Point>
+																					<Point>
+																						<XPos>116.898571428571</XPos>
+																						<YPos>-0</YPos>
+																						<Flags>37</Flags>
+																					</Point>
+																				</PointList>
+																			</Curve>
+																		</PropertyCurve>
+																	</PropertyCurveList>
+																</MusicClip>
+															</Local>
+														</Reference>
+													</ObjectList>
+												</ObjectLists>
+											</MusicTrackSequence>
+										</Local>
+									</Reference>
+								</ObjectList>
+							</ObjectLists>
+						</MusicTrack>
+					</ChildrenList>
+					<ObjectLists>
+						<ObjectList Name="Cues">
+							<Reference>
+								<Local>
+									<MusicCue Name="Entry Cue" ID="{430B571B-410C-42CA-B4FD-275C3F8FE622}"/>
+								</Local>
+							</Reference>
+							<Reference>
+								<Local>
+									<MusicCue Name="Exit Cue" ID="{C2C025D6-3C8F-4167-992F-ED3A6E9A9B15}">
+										<PropertyList>
+											<Property Name="CueType" Type="int16" Value="1"/>
+											<Property Name="TimeMs" Type="Real64" Value="116898.571428571"/>
+										</PropertyList>
+									</MusicCue>
+								</Local>
+							</Reference>
+						</ObjectList>
+					</ObjectLists>
+				</MusicSegment>
+			</ChildrenList>
+		</WorkUnit>
+	</InteractiveMusic>
+</WwiseDocument>
