@@ -1,0 +1,11 @@
+[gd_scene load_steps=2 format=3 uid="uid://tw1hy0j67l4g"]
+
+[ext_resource type="Script" path="res://Scripts/Audio/AudioManager.gd" id="1_7riov"]
+
+[node name="AudioManager" type="Node"]
+process_mode = 3
+script = ExtResource("1_7riov")
+
+[node name="BGPlayer" type="AudioStreamPlayer2D" parent="."]
+unique_name_in_owner = true
+bus = &"BGM"
