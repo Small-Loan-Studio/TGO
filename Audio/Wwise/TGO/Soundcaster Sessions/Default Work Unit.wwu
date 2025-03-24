@@ -1,35 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <WwiseDocument Type="WorkUnit" ID="{7138113D-1983-49FD-A1B4-51C38F1970FE}" SchemaVersion="119">
 	<SoundcasterSessions>
-		<WorkUnit Name="Default Work Unit" ID="{7138113D-1983-49FD-A1B4-51C38F1970FE}" PersistMode="Standalone">
-			<ChildrenList>
-				<SoundcasterSession Name="New Soundcaster Session" ID="{17E01EEC-1333-475B-929D-A87502B60C3E}">
-					<RTPCValueList ShowAll="true">
-						<RTPCValue>
-							<GameParameterRef Name="Levels_Main" ID="{AB0BDA09-BFDD-4754-A449-DB1D0A592CC1}"/>
-							<Value>80</Value>
-						</RTPCValue>
-						<RTPCValue>
-							<GameParameterRef Name="Levels_Background" ID="{68A3BB83-7B2B-4867-A29B-414DF8F9925F}"/>
-							<Value>80</Value>
-						</RTPCValue>
-						<RTPCValue>
-							<GameParameterRef Name="Levels_Effects" ID="{A9F2EC9E-734C-4952-A717-2CFC48AD8259}"/>
-							<Value>80</Value>
-						</RTPCValue>
-						<RTPCValue>
-							<GameParameterRef Name="Levels_Ambient" ID="{E62FE1EF-07F3-49B4-8F9F-6DFBA107ED01}"/>
-							<Value>80</Value>
-						</RTPCValue>
-						<RTPCValue>
-							<GameParameterRef Name="Levels_Menu" ID="{7ADC3B8D-CB70-4BCD-9A3D-D64A2E7DF36D}"/>
-							<Value>80</Value>
-						</RTPCValue>
-					</RTPCValueList>
-					<CurrentStateList ShowAll="true"/>
-					<CurrentSwitchList ShowAll="true"/>
-				</SoundcasterSession>
-			</ChildrenList>
-		</WorkUnit>
+		<WorkUnit Name="Default Work Unit" ID="{7138113D-1983-49FD-A1B4-51C38F1970FE}" PersistMode="Standalone"/>
 	</SoundcasterSessions>
 </WwiseDocument>

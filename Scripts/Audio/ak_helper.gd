@@ -36,10 +36,10 @@ func name_by_id(dict: Dictionary, id: int) -> String:
 
 func send_param(param: int, value: float) -> void:
     print("%s send rtpc %s with value %s" % [
-        null, # _target.name,
+        _target.name,
         self.name_by_id(AK.GAME_PARAMETERS._dict, param),
         value])
-    Wwise.set_rtpc_value_id(param, value, null)
+    Wwise.set_rtpc_value_id(param, value, _target)
 
 func send_event(event_id: int) -> void:
     print("%s send_event(%s)" % [

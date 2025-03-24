@@ -2,12 +2,12 @@ class_name AK
 
 class EVENTS:
 
-	const WALKING = 340271938
 	const LEVELSTART = 3372421815
+	const WALKING = 340271938
 
 	const _dict = {
-		"Walking": WALKING,
-		"LevelStart": LEVELSTART
+		"LevelStart": LEVELSTART,
+		"Walking": WALKING
 	}
 
 class STATES:
@@ -20,28 +20,28 @@ class SWITCHES:
 
 class GAME_PARAMETERS:
 
-	const LEVELS_AMBIENT = 3282086357
-	const LEVELS_EFFECTS = 2549556043
 	const LEVELS_MAIN = 1056133068
+	const LEVELS_EFFECTS = 2549556043
 	const LEVELS_BACKGROUND = 2470012347
+	const LEVELS_AMBIENT = 3282086357
 	const LEVELS_MENU = 971656466
 
 	const _dict = {
-		"Levels_Ambient": LEVELS_AMBIENT,
-		"Levels_Effects": LEVELS_EFFECTS,
 		"Levels_Main": LEVELS_MAIN,
+		"Levels_Effects": LEVELS_EFFECTS,
 		"Levels_Background": LEVELS_BACKGROUND,
+		"Levels_Ambient": LEVELS_AMBIENT,
 		"Levels_Menu": LEVELS_MENU
 	}
 
 class TRIGGERS:
 
-	const LEVELSTART = 3372421815
 	const WALKING = 340271938
+	const LEVELSTART = 3372421815
 
 	const _dict = {
-		"LevelStart": LEVELSTART,
-		"Walking": WALKING
+		"Walking": WALKING,
+		"LevelStart": LEVELSTART
 	}
 
 class BANKS:
@@ -56,18 +56,18 @@ class BANKS:
 
 class BUSSES:
 
-	const MENU = 2607556080
-	const AMBIENT_SOUNDS = 3470839321
 	const BACKGROUND_MUSIC = 4226739424
-	const MAIN = 3161908922
 	const SOUND_EFFECTS = 978636652
+	const MAIN = 3161908922
+	const AMBIENT_SOUNDS = 3470839321
+	const MENU = 2607556080
 
 	const _dict = {
-		"Menu": MENU,
-		"Ambient Sounds": AMBIENT_SOUNDS,
 		"Background Music": BACKGROUND_MUSIC,
+		"Sound Effects": SOUND_EFFECTS,
 		"Main": MAIN,
-		"Sound Effects": SOUND_EFFECTS
+		"Ambient Sounds": AMBIENT_SOUNDS,
+		"Menu": MENU
 	}
 
 class AUX_BUSSES:
@@ -76,12 +76,12 @@ class AUX_BUSSES:
 
 class AUDIO_DEVICES:
 
-	const NO_OUTPUT = 2317455096
 	const SYSTEM = 3859886410
+	const NO_OUTPUT = 2317455096
 
 	const _dict = {
-		"No_Output": NO_OUTPUT,
-		"System": SYSTEM
+		"System": SYSTEM,
+		"No_Output": NO_OUTPUT
 	}
 
 class EXTERNAL_SOURCES:
