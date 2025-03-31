@@ -28,6 +28,31 @@ const DEFAULT_MARKER: String = "PlayerStart"
 		if Engine.is_editor_hint() && _canvas_modulate != null:
 			_canvas_modulate.visible = apply_editor_overlay
 
+@export var fixed_ambient_color: Color = Color.RED:
+	get:
+		return fixed_ambient_color
+	set(value):
+		fixed_ambient_color = value
+		if _canvas_modulate != null:
+			if use_fixed_ambient == "CUSTOM":
+				_canvas_modulate.color = value
+				_canvas_modulate.visible = true
+
+@export_enum("BLACKOUT", "CUSTOM", "DISABLE") var use_fixed_ambient: String:
+	set(value):
+		use_fixed_ambient = value
+		if _canvas_modulate != null:
+			if value == "CUSTOM":
+				_canvas_modulate.color = fixed_ambient_color
+				_canvas_modulate.visible = true
+			elif value == "DISABLE":
+				_canvas_modulate.visible = false
+			elif value != "":
+				_canvas_modulate.color = _interior_light[value]
+				_canvas_modulate.visible = true
+			elif value == "":
+				_canvas_modulate.visible = false
+
 var driver: Driver
 
 var level_name: String:
@@ -37,6 +62,8 @@ var level_name: String:
 		return _name
 	set(value):
 		printerr("Unable to assign level_name to: ", level_name)
+
+var _interior_light: Dictionary = {"BLACKOUT": Color.BLACK}
 
 var _canvas_modulate: CanvasModulate = null:
 	get:
@@ -51,11 +78,7 @@ var _canvas_modulate: CanvasModulate = null:
 
 
 func _ready() -> void:
-	if !Engine.is_editor_hint():
-		var ref := _canvas_modulate
-		if ref != null:
-			remove_child(ref)
-			ref.queue_free()
+	pass
 
 
 func setup(driver_in: Driver) -> void:

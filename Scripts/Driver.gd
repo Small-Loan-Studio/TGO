@@ -120,6 +120,11 @@ func load_level(target_level_name: String, target_name: String) -> void:
 		## Run any setup the level needs to do to work
 		new_level.setup(self)
 
+		if new_level.use_fixed_ambient && new_level.use_fixed_ambient != "DISABLE":
+			_day_night_cycle._modulate.visible = false
+		else:
+			_day_night_cycle._modulate.visible = true
+
 		# update level ref
 		_last_loaded_level = new_level
 
