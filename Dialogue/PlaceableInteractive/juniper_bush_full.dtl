@@ -1,0 +1,5 @@
+Press "E" to Interact
+[text_input var="UserInputString"]
+if {UserInputString} == "E":
+	if :
+	Berries!
