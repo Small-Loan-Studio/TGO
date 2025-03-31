@@ -1,5 +1,5 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
 args="$@"
 
-find . -iname *.gd -not -ipath './repo/addons/*' | xargs ./venv/bin/gdlint $args
+find /repo -iname *.gd -not -ipath '/repo/addons/*' | xargs /usr/local/bin/gdlint $args

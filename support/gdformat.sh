@@ -1,11 +1,11 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
 args=$@
 
 if [ -z "$args" ]; then
-  find . -iname *.gd -not -ipath './repo/addons/*' | xargs ./venv/bin/gdformat --check
+  find /repo -iname *.gd -not -ipath '/repo/addons/*' | xargs /usr/local/bin/gdformat --check
 elif [ "$args" = "--apply" ]; then
-  find . -iname *.gd -not -ipath './repo/addons/*' | xargs ./venv/bin/gdformat
+  find /repo -iname *.gd -not -ipath '/repo/addons/*' | xargs /usr/local/bin/gdformat
 else
-  ./venv/bin/gdformat $args
+  /usr/local/bin/gdformat $args
 fi

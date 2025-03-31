@@ -348,10 +348,34 @@ func _on_connection_to_empty(
 ## for id collisions which we can really only tell when loading from disk
 func lint() -> void:
 	_lint_report.lint_clear()
-	_lint_report.global_errs = _global_errs
+	_lint_report.global_errs = _global_errs.duplicate()
 	for q_id: String in _quests.keys():
 		_lint_report.add_quest_lint(q_id, _quests[q_id].lint())
+	for id: String in _quests:
+		if detect_cycle(_quests[id]):
+			_lint_report.global_errs.append("E: Cycle detected in quest graph")
+			break
 	_lint_report.update_display()
+
+
+func detect_cycle(quest: Quest) -> bool:
+	var visited := {}
+	visit_nodes(quest, visited)
+	return len(visited[quest.id]) > 0
+
+
+func visit_nodes(quest: Quest, visited: Dictionary) -> void:
+	if quest.id in visited:
+		return
+	visited[quest.id] = {}
+	for q: Quest in quest.next:
+		visit_nodes(q, visited)
+		visited[q.id][quest.id] = true
+	for p: QuestPhase in quest.phases:
+		if p == null || p.quest == null:
+			continue
+		visit_nodes(p.quest, visited)
+		visited[p.quest.id][quest.id] = true
 
 
 ## centers the display on a specific node looked up by quest id

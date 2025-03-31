@@ -21,7 +21,7 @@ var _impulse: Vector2
 var _projected_impulse: Vector2
 
 
-func enter(ctx: Variant) -> void:
+func enter(ctx: Variant, _change_state: Callable) -> void:
 	var ctx_dict := ctx as Dictionary
 	_push_direction = ctx_dict["push_direction"]
 	_movement_axis = Enums.direction_push_pull_axis(_push_direction)
@@ -30,9 +30,9 @@ func enter(ctx: Variant) -> void:
 	_handle_animation()
 
 
-func run_input(_event: InputEvent, _change_state: Callable) -> void:
+func run_input(_event: InputEvent, change_state: Callable) -> void:
 	if Enums.InputAction.INTERACT in _ctx.controller.get_just_pressed():
-		_state_machine.queue_state_change(idle_state)
+		change_state.call(idle_state)
 		_hud.set_toast(Enums.action_verb_name(Enums.ActionVerb.PUSH_PULL))
 		return
 

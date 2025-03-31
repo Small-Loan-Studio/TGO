@@ -12,3 +12,4 @@ description = "A key! I wonder what it does..."
 stackable = false
 stack_size = 1
 icon = ExtResource("1_w5iq0")
+gear_spec = Array[Resource("res://Scripts/Resources/GearSpec.gd")]([])
