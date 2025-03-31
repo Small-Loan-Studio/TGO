@@ -10,11 +10,13 @@ class_name InteractPanel
 extends Container
 
 enum { PLACEMENT_NORTH, PLACEMENT_SOUTH, PLACEMENT_EAST, PLACEMENT_WEST }
+enum { PRESENTATION_GLOBAL, PRESENTATION_LOCAL }
 
 const InteractMenuScene: PackedScene = preload("./interact_menu.tscn")
 const InteractOptionScene: PackedScene = preload("./interact_option.tscn")
 
 var placement := PLACEMENT_EAST
+var presentation := PRESENTATION_GLOBAL
 
 var actions: Array[Enums.ActionVerb]
 # NOTE: Setting this is not ideal as we only allow `EXAMINE` or `INTERACT` but
@@ -47,7 +49,12 @@ func dismiss() -> void:
 
 # Present the action panel around the set target.
 func present() -> void:
-	target.add_child(self)
+	match presentation:
+		PRESENTATION_GLOBAL:
+			var world: Node2D = Driver.instance().get_world_presentation()
+			world.add_child(self)
+		PRESENTATION_LOCAL:
+			target.add_child(self)
 
 
 # Remove any selection
@@ -172,6 +179,9 @@ func _ready() -> void:
 	_container.add_child(_option)
 	if _menu:
 		_container.add_child(_menu)
+
+	if presentation == PRESENTATION_GLOBAL:
+		self.position = target.global_position + target.owner.global_position
 
 	var tsize: Vector2 = target.size
 	# NOTE: The current button size is 42x42 so if the target is smaller than

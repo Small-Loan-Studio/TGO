@@ -4,7 +4,6 @@
 
 [node name="InteractPanel" type="Container"]
 z_index = 50
-z_as_relative = false
 script = ExtResource("1_j6qec")
 
 [node name="Container" type="VBoxContainer" parent="."]
