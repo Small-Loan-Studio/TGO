@@ -179,3 +179,9 @@ theme_override_styles/slider = ExtResource("4_7i0t7")
 max_value = 1.0
 step = 0.1
 value = 0.5
+
+[connection signal="drag_started" from="VBoxContainer/MainLevels/HBoxContainer/BusSlider" to="." method="_main_drag_start"]
+[connection signal="drag_started" from="VBoxContainer/BGMLevels/HBoxContainer/BusSlider" to="." method="_bgm_drag_start"]
+[connection signal="drag_started" from="VBoxContainer/Ambient/HBoxContainer/BusSlider" to="." method="_ambient_drag_start"]
+[connection signal="drag_started" from="VBoxContainer/SFX/HBoxContainer/BusSlider" to="." method="_sfx_drag_start"]
+[connection signal="drag_started" from="VBoxContainer/MenuFX/HBoxContainer/BusSlider" to="." method="_menu_drag_start"]

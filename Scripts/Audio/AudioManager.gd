@@ -4,7 +4,7 @@ extends Node
 const AUDIO_PREFS_PATH = "user://audio_prefs.dat"
 const DB_MIN: float = -25
 const DB_MAX: float = 8
-const 	_old_new_mapping := {
+const _old_new_mapping := {
 		Enums.AudioBus.MASTER: "Main",
 		Enums.AudioBus.BACKGROUND_MUSIC: "Background Music",
 		Enums.AudioBus.SOUND_EFFECTS: "Sound Effects",

@@ -245,17 +245,6 @@
 																<SegmentShape>SCurve</SegmentShape>
 															</Point>
 															<Point>
-																<XPos>1</XPos>
-																<YPos>-10</YPos>
-																<Flags>0</Flags>
-																<SegmentShape>SCurve</SegmentShape>
-															</Point>
-															<Point>
-																<XPos>25</XPos>
-																<YPos>-2.5</YPos>
-																<Flags>0</Flags>
-															</Point>
-															<Point>
 																<XPos>75</XPos>
 																<YPos>0</YPos>
 																<Flags>0</Flags>
