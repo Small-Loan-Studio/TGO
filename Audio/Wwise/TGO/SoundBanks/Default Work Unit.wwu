@@ -5,7 +5,6 @@
 			<ChildrenList>
 				<SoundBank Name="Main" ID="{AC6FA22E-A513-4D96-9306-DAF3DB3B4167}">
 					<ObjectInclusionList>
-						<ObjectRef Name="Walking" ID="{1433FAA6-4FC3-49BC-AD45-D922F37D37E0}" WorkUnitID="{11C986AF-0509-4F5C-82DC-A1208A5820C6}" Origin="Manual" Filter="7"/>
 						<ObjectRef Name="LevelStart" ID="{85495B08-D300-4B5D-BD4B-B341FE2D58E3}" WorkUnitID="{11C986AF-0509-4F5C-82DC-A1208A5820C6}" Origin="Manual" Filter="7"/>
 					</ObjectInclusionList>
 					<ObjectExclusionList/>

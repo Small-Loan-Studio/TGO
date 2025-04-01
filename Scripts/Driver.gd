@@ -33,9 +33,6 @@ func _ready() -> void:
 	else:
 		printerr("Attempting to register a second singleton")
 
-	# TODO: [envy] sort out
-	# audio_mgr.play(Enums.AudioTrack.SKETCH_1, .75)
-	
 	# call via deferred so we don't have await in the _ready path. I'm not
 	# sure that's a bad thing to do but it felt weird so here we are.
 	call_deferred("_post_ready")
@@ -161,13 +158,11 @@ func pause(should_pause: bool = true) -> void:
 
 
 ## TODO: We'll need to switch away  from debug load path soon
-func request_debug_load(name: String) -> void:
-	# var music_ready := audio_mgr.play(Enums.AudioTrack.SKETCH_2, 2)
-	audio_mgr.test()
+func request_debug_load(level_name: String) -> void:
+	audio_mgr.send_event(AK.EVENTS.LEVELSTART)
 	await _curtain.fade_in(1, false)
 	_menu_mgr.hide_menu(Enums.MenuType.DEBUG)
-	load_level(name, LevelBase.DEFAULT_MARKER)
-	# await music_ready.finished
+	load_level(level_name, LevelBase.DEFAULT_MARKER)
 	await _curtain.fade_out(1, false)
 
 

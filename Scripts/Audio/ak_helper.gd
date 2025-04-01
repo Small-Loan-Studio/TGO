@@ -34,6 +34,9 @@ func name_by_id(dict: Dictionary, id: int) -> String:
             return key
     return "--unknown--"
 
+func get_param(param: int) -> float:
+    return Wwise.get_rtpc_value_id(param, _target)
+
 func send_param(param: int, value: float) -> void:
     print("%s send rtpc %s with value %s" % [
         _target.name,
