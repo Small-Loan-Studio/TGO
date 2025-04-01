@@ -17,7 +17,9 @@ static func none() -> CharacterTarget:
 
 func _clear() -> void:
 	_typ = Enums.TargetType.NONE
-	_interactable = null
+	if _interactable:
+		_interactable.deactivate()
+		_interactable = null
 	_block = null
 
 
@@ -39,6 +41,7 @@ func set_interactable(i: Interactable) -> void:
 	_clear()
 	_typ = Enums.TargetType.INTERACTABLE
 	_interactable = i
+	_interactable.activate()
 	target_changed.emit()
 
 

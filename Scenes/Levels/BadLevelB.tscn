@@ -40,6 +40,12 @@ config = ExtResource("5_sxgok")
 dlg = SubResource("Resource_ql4ne")
 id = "mayor_buckley"
 
+[node name="mayor_buckley2" parent="Objects/Characters" index="1" instance=ExtResource("4_j1hnh")]
+position = Vector2(43, 210)
+config = ExtResource("5_sxgok")
+dlg = SubResource("Resource_ql4ne")
+id = "mayor_buckley"
+
 [node name="QUEST_KEY" parent="Objects/Items" index="0" instance=ExtResource("8_shpqy")]
 position = Vector2(218, 307)
 item = ExtResource("9_ewmie")

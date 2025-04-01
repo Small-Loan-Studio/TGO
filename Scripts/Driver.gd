@@ -9,6 +9,7 @@ var _last_loaded_level: LevelBase = null
 @onready var quest_mgr: QuestManager = $QuestManager
 @onready var _menu_mgr: MenuManager = $OverlayManager/MenuManager
 @onready var _curtain := $OverlayManager/Curtain
+@onready var _presentation := $GameWorld/Presentation
 @onready var _world := $GameWorld
 @onready var _day_night_cycle: DayNightCycle = $GameWorld/DayNightOverlay
 @onready var _hud: HUD = $OverlayManager/HUD
@@ -79,6 +80,10 @@ func _post_ready() -> void:
 
 func get_hud() -> HUD:
 	return _hud
+
+
+func get_world_presentation() -> Node2D:
+	return _presentation
 
 
 func free_previous_level() -> void:
