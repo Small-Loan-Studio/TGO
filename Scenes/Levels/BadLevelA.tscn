@@ -1,4 +1,4 @@
-[gd_scene load_steps=39 format=3 uid="uid://d4mrsiv1l8m35"]
+[gd_scene load_steps=40 format=3 uid="uid://d4mrsiv1l8m35"]
 
 [ext_resource type="PackedScene" uid="uid://dyq8mcdsutnsa" path="res://Scenes/Components/LevelBase.tscn" id="1_iejup"]
 [ext_resource type="Script" path="res://ZZ_Scratch/GreyboxingTools/BadLevelA.gd" id="2_22a2t"]
@@ -19,6 +19,7 @@
 [ext_resource type="Resource" uid="uid://b7w2axnxl0fkt" path="res://Scripts/Resources/Items/Key.tres" id="15_svqc7"]
 [ext_resource type="Script" path="res://Scripts/Resources/Effects/ConditionalEffect.gd" id="15_x1ixy"]
 [ext_resource type="PackedScene" uid="uid://b13wrl3bedjku" path="res://Scenes/Components/Torch.tscn" id="16_p267s"]
+[ext_resource type="Resource" uid="uid://2vts34ovdlva" path="res://Scripts/Resources/Items/Torch.tres" id="19_ch306"]
 [ext_resource type="Texture2D" uid="uid://c0504hqd3q12y" path="res://ZZ_Scratch/MarioDemo/simple_tileset.png" id="21_li46b"]
 [ext_resource type="Script" path="res://Scripts/Components/Interactable.gd" id="22_s68f6"]
 
@@ -99,13 +100,13 @@ dest_path = NodePath("../../Markers/PlayerStart")
 atlas = ExtResource("21_li46b")
 region = Rect2(0, 0, 32, 32)
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_nfkrm"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_now7l"]
 size = Vector2(32, 32)
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_2npld"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_dnpv7"]
 size = Vector2(32, 32)
 
-[node name="LevelBase2" instance=ExtResource("1_iejup")]
+[node name="LevelBase" instance=ExtResource("1_iejup")]
 script = ExtResource("2_22a2t")
 
 [node name="TileMap" parent="." index="0"]
@@ -187,6 +188,11 @@ position = Vector2(200.161, 351.11)
 item = ExtResource("15_svqc7")
 quantity = 1
 
+[node name="TORCH" parent="Objects/Items" index="2" instance=ExtResource("13_1m8di")]
+position = Vector2(618, 154)
+item = ExtResource("19_ch306")
+quantity = 1
+
 [node name="variable-quest-giver" parent="Objects" index="6" instance=ExtResource("7_ipcqk")]
 position = Vector2(325.779, 327.512)
 can_block_movement = true
@@ -245,7 +251,7 @@ collision_mask = 0
 
 [node name="Shape" parent="Objects/Automatic Interactable/Physics" index="0"]
 position = Vector2(0, -16)
-shape = SubResource("RectangleShape2D_nfkrm")
+shape = SubResource("RectangleShape2D_now7l")
 
 [node name="Interactable" parent="Objects/Automatic Interactable" index="2"]
 position = Vector2(0, -1)
@@ -259,7 +265,7 @@ action_map = {
 
 [node name="Shape" parent="Objects/Automatic Interactable/Interactable" index="0"]
 position = Vector2(0, -16)
-shape = SubResource("RectangleShape2D_2npld")
+shape = SubResource("RectangleShape2D_dnpv7")
 
 [node name="PlayerStart" type="Node2D" parent="Markers" index="0"]
 position = Vector2(522, 183)
