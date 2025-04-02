@@ -1,0 +1,39 @@
+[gd_resource type="SpriteFrames" load_steps=6 format=3 uid="uid://tla7n0y5jgw5"]
+
+[ext_resource type="Texture2D" uid="uid://5oyt86rbjas7" path="res://Art/Characters/arthur_sharp_sheet.png" id="1_1ordl"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3fs1u"]
+atlas = ExtResource("1_1ordl")
+region = Rect2(0, 0, 23, 43)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_kphdu"]
+atlas = ExtResource("1_1ordl")
+region = Rect2(23, 0, 23, 43)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hnwjw"]
+atlas = ExtResource("1_1ordl")
+region = Rect2(46, 0, 23, 43)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_sq50y"]
+atlas = ExtResource("1_1ordl")
+region = Rect2(69, 0, 23, 43)
+
+[resource]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3fs1u")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_kphdu")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hnwjw")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_sq50y")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]

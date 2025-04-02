@@ -41,6 +41,7 @@ enum InputAction {
 	MENU,
 	LEFT_ITEM,
 	RIGHT_ITEM,
+	EXAMINE,
 }
 
 enum LightLevel {
@@ -97,7 +98,7 @@ enum TargetType {
 	MOVEABLE_BLOCK,
 }
 
-enum ActionVerb { DEFAULT, PICK_UP, TALK, PUSH_PULL, RELEASE, USE }
+enum ActionVerb { DEFAULT, PICK_UP, TALK, PUSH_PULL, RELEASE, USE, EXAMINE }
 
 enum QuestState { DORMANT, ACTIVE, FAILED, COMPLETED }
 enum QuestConditionType { VARIABLE, INVENTORY }
@@ -208,6 +209,16 @@ static func input_action_name(ia: InputAction) -> String:
 	return ""
 
 
+static func input_action_symbol(ia: InputAction) -> Image:
+	match ia:
+		InputAction.EXAMINE:
+			return Image.load_from_file("res://Art/interacting/symbol_square.png")
+		InputAction.INTERACT:
+			return Image.load_from_file("res://Art/interacting/symbol_cross.png")
+		_:
+			return null
+
+
 static func light_level_name(ll: LightLevel) -> String:
 	match ll:
 		LightLevel.OFF:
@@ -275,6 +286,8 @@ static func audio_bus_description(bus: AudioBus) -> String:
 
 static func action_verb_name(av: ActionVerb) -> String:
 	match av:
+		ActionVerb.EXAMINE:
+			return "Examine"
 		ActionVerb.PICK_UP:
 			return "Pick Up"
 		ActionVerb.TALK:
@@ -294,6 +307,8 @@ static func action_verb_name(av: ActionVerb) -> String:
 static func action_verb_from_str(str: String) -> Enums.ActionVerb:
 	var v: Enums.ActionVerb = ActionVerb.DEFAULT
 	match str:
+		"Examine":
+			v = ActionVerb.EXAMINE
 		"Pick Up":
 			v = ActionVerb.PICK_UP
 		"Talk":

@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" path="res://Scripts/Devin.gd" id="1_coq4s"]
 [ext_resource type="PackedScene" uid="uid://cx703e8t27grh" path="res://Scenes/Components/Character.tscn" id="1_kp6oq"]
-[ext_resource type="SpriteFrames" uid="uid://b750bqc5psnhh" path="res://Art/Characters/bart_sheet.tres" id="3_0y874"]
+[ext_resource type="SpriteFrames" uid="uid://dc1p2vqqgin32" path="res://Art/Characters/Devin/devin_spritesheet.tres" id="3_3e0sk"]
 [ext_resource type="Script" path="res://Scripts/Components/CharacterControl/States/Idle.gd" id="4_3ac8w"]
 [ext_resource type="Script" path="res://Scripts/Components/CharacterControl/States/Walk.gd" id="5_uh8u1"]
 [ext_resource type="Script" path="res://Scripts/Components/CharacterControl/States/Interact.gd" id="6_0katj"]
@@ -25,8 +25,8 @@ id = "Devin"
 _controller_node_path = NodePath("InputController")
 
 [node name="AnimatedSprite2D" parent="." index="0"]
-sprite_frames = ExtResource("3_0y874")
-animation = &"east"
+sprite_frames = ExtResource("3_3e0sk")
+animation = &"west"
 
 [node name="StateMachine" parent="." index="3" node_paths=PackedStringArray("_initial_state")]
 _initial_state = NodePath("Idle")

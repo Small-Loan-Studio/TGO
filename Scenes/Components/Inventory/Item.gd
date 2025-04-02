@@ -21,6 +21,10 @@ extends Node2D
 			_collision.shape.radius = interactable_radius
 		update_configuration_warnings()
 
+var size: Vector2:
+	get:
+		return _sprite.get_rect().size
+
 @onready var _sprite := $Sprite2D
 @onready var _interactable := $Interactable
 @onready var _collision := $Interactable/CollisionShape2D

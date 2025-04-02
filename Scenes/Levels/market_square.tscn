@@ -1,0 +1,17 @@
+[gd_scene load_steps=2 format=3 uid="uid://bvk1235jgeveg"]
+
+[ext_resource type="PackedScene" uid="uid://dyq8mcdsutnsa" path="res://Scenes/Components/LevelBase.tscn" id="1_o3401"]
+
+[node name="LevelBase" instance=ExtResource("1_o3401")]
+
+[node name="TextEdit" type="TextEdit" parent="." index="5"]
+offset_left = 53.0
+offset_top = 32.0
+offset_right = 569.0
+offset_bottom = 366.0
+text = "Level Designer, you can delete this later.
+
+This level has \"An area where local vendors set up trade. In the middle of the town of Oakshaw.\"
+
+This is currently going to be one of the largest single scenes in the game, and it also needs to include The Copper Kettle (Large, 50x50), and The Oakshaw Otter (Large, 50x50), to name two. There are definitely going to be other key buildings, so I would vary them through small (~25x25), medium (~33x33), and large (~50x50)."
+wrap_mode = 1
