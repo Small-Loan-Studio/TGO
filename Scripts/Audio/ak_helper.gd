@@ -47,14 +47,11 @@ func get_param(param: int) -> float:
 	return Wwise.get_rtpc_value_id(param, _target)
 
 func send_param(param: int, value: float) -> void:
-	print("%s send rtpc %s with value %s" % [
-		_target.name,
-		self.name_by_id(AK.GAME_PARAMETERS._dict, param),
-		value])
+	print("[Wwise] %s rtpc -> %s=%s" % [
+		_target.name, self.name_by_id(AK.GAME_PARAMETERS._dict, param), value])
 	Wwise.set_rtpc_value_id(param, value, _target)
 
 func send_event(event_id: int) -> void:
-	print("%s send_event(%s)" % [
-		_target.name,
-		self.name_by_id(AK.EVENTS._dict, event_id)])
+	print("[Wwise] %s event -> %s" % [
+		_target.name, self.name_by_id(AK.EVENTS._dict, event_id)])
 	Wwise.post_event_id(event_id, _target)

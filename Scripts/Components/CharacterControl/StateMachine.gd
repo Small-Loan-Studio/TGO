@@ -18,11 +18,12 @@ var _next_state_ctx: Variant = null
 
 
 func _ready() -> void:
-	print("%s Discovering states:" % [get_parent().name])
-	for c in get_children():
-		if c is State:
-			print("  - ", c.name)
-			_states[c.name] = c
+	# print("%s Discovering states:" % [get_parent().name])
+	# for c in get_children():
+	# 	if c is State:
+	# 		print("  - ", c.name)
+	# 		_states[c.name] = c
+	pass
 
 
 func setup(ctx: Variant = null) -> void:
