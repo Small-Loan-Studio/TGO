@@ -24,7 +24,6 @@ func _ready() -> void:
 
 func init(am: AudioManager) -> void:
 	_am = am
-	print("%s.init; setting value to: %f" %[name,_am.get_level(bus)])
 	_slider.value = _am.get_level(bus)
 
 

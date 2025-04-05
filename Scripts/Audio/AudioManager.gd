@@ -18,8 +18,10 @@ var _akhelper: AKHelper
 
 
 func _ready() -> void:
+	var success: bool = Wwise.register_game_obj(self, "Audio Manager")
+	if !success:
+		print("Failed to register AudioManager with Wwise")
 	_akhelper = AKHelper.new(self)
-	Wwise.register_game_obj(self, "Audio Manager")
 	load_levels_wwise()
 
 
@@ -31,9 +33,12 @@ func send_event(event: int) -> void:
 ## Saves the bus volume levels to disk
 func save_levels() -> void:
 	var data: Dictionary = {}
-	for i in range(0, AudioServer.bus_count):
-		var value := AudioServer.get_bus_volume_db(i)
-		data[i] = value
+	data["wwise"] = true
+	for bus_name in _akhelper.bus_names():
+		var bus_id := _akhelper.get_bus_id(bus_name)
+		var bus_param := _akhelper.bus_param(bus_id)
+		var level := _normalize_bus_level(_akhelper.get_param(bus_param))
+		data[bus_name] = level
 
 	var json_str := JSON.stringify(data)
 	var file := FileAccess.open(AUDIO_PREFS_PATH, FileAccess.WRITE)
@@ -59,19 +64,24 @@ func load_levels_wwise() -> void:
 		return
 	
 	var data: Dictionary = json.data
-	# { "wwise"?: boolean, "0": -5.19999980926514, "1": -15.1000003814697, "2": 1.39999997615814, "3": 1.39999997615814, "4": 4.69999980926514 }
 	var wwise_levels := data.has("wwise") && (data["wwise"] as bool)
 
 	for key: String in data.keys():
 		if key == "wwise":
 			continue
-		var bus_id := int(key)
+
 		if !wwise_levels:
+			var bus_id := int(key)
 			bus_id = _akhelper.get_bus_id(_old_new_mapping[bus_id])
-			print("setting %s to %f" % [key, data[key] as float])
-			_akhelper.send_param(
-				_akhelper.bus_param(bus_id),
-				100 * _db_to_volume(data[key] as float))
+			var stored_vol := data[key] as float
+			var mapped_vol := _db_to_volume(stored_vol)
+			var scaled_vol := _unnormalize_bus_level(mapped_vol)
+			_akhelper.send_param(_akhelper.bus_param(bus_id), scaled_vol)
+		else:
+			var bus_name := String(key)
+			var bus_id := _akhelper.get_bus_id(bus_name)
+			var bus_param := _akhelper.bus_param(bus_id)
+			_akhelper.send_param(bus_param, _unnormalize_bus_level(data[key]))
 
 
 func _volume_to_db(level: float) -> float:
@@ -85,15 +95,23 @@ func _db_to_volume(db_level: float) -> float:
 	return clampf(vol / (DB_MAX - DB_MIN), 0, 1)
 
 
-## Sets the volume level as a value 0->1 for a specific audio bus
+## Sets the volume level as a value 0->100 for a specific audio bus
 ## handles converting into db internally
 func set_level(bus: Enums.AudioBus, volume_pct: float) -> void:
 	if _akhelper:
 		var ak_bus_id := _akhelper.get_bus_id(_old_new_mapping[bus])
-		_akhelper.send_param(_akhelper.bus_param(ak_bus_id), 100.0 * volume_pct)
+		var rtpc_param := _akhelper.bus_param(ak_bus_id)
+		_akhelper.send_param(rtpc_param, 100.0 * volume_pct)
 
 
 ## returns the level of a requested audio bus in a 0->1 range.
 func get_level(bus: Enums.AudioBus) -> float:
-	print("%s get-param: %f" % [bus, _akhelper.get_param(_akhelper.get_bus_id(_old_new_mapping[bus]))])
-	return _akhelper.get_param(_akhelper.get_bus_id(_old_new_mapping[bus]))
+	var bus_id: Variant = _akhelper.get_bus_id(_old_new_mapping[bus])
+	var bus_rtpc_id := _akhelper.bus_param(bus_id)
+	return _normalize_bus_level(_akhelper.get_param(bus_rtpc_id))
+
+func _normalize_bus_level(wwise_level: float) -> float:
+	return wwise_level / 100
+
+func _unnormalize_bus_level(local_level: float) -> float:
+	return local_level * 100
