@@ -30,6 +30,19 @@ signal equipment_changed(id: String)
 ## direction represented as an angle off Vector2.UP; in radians / [-TAU, TAU]
 var facing: float = 0
 
+# FIXME: This is not robust...
+var size: Vector2:
+	get:
+		var sprite: Sprite2D = self.find_child("Sprite2D")
+		if sprite:
+			return sprite.get_rect().position
+		var asprite: AnimatedSprite2D = self.find_child("AnimatedSprite2D")
+		if asprite:
+			var animation_names := asprite.sprite_frames.get_animation_names()
+			if len(animation_names) > 0:
+				return asprite.sprite_frames.get_frame_texture(animation_names[0], 0).get_size()
+		return Vector2(0, 0)
+
 ## target is a type safe container for anything that the player may focus to
 ## interact with.
 ## TODO: post state machine rewrite we lose the ability to trivially check

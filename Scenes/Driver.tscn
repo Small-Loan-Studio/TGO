@@ -12,7 +12,7 @@
 [ext_resource type="PackedScene" uid="uid://dukcf64qxy46o" path="res://Scenes/UI/Debug/Inventory.tscn" id="7_3yw60"]
 [ext_resource type="PackedScene" uid="uid://dqrxejwlgxsgu" path="res://Scenes/UI/Debug/QuestTracker.tscn" id="8_8e3e0"]
 [ext_resource type="Script" path="res://Scripts/Components/Quests/QuestManager.gd" id="9_4hdkn"]
-[ext_resource type="PackedScene" uid="uid://c0kelgau5kji2" path="res://Scenes/UI/Debug/debug_equipment.tscn" id="9_n1ypf"]
+[ext_resource type="PackedScene" path="res://Scenes/UI/Debug/debug_equipment.tscn" id="9_n1ypf"]
 [ext_resource type="PackedScene" uid="uid://dmyrmmjngi1ts" path="res://Scenes/UI/Debug/debug_day_night.tscn" id="10_8xh8g"]
 [ext_resource type="Script" path="res://Scripts/SerializationManager.gd" id="11_e6bsk"]
 [ext_resource type="PackedScene" uid="uid://my7v0l0el1dj" path="res://Scenes/UI/Debug/quest_debugger.tscn" id="11_g6nlc"]
@@ -224,6 +224,9 @@ script = ExtResource("9_4hdkn")
 
 [node name="GameWorld" type="Node2D" parent="."]
 y_sort_enabled = true
+
+[node name="Presentation" type="CanvasLayer" parent="GameWorld"]
+follow_viewport_enabled = true
 
 [node name="DayNightOverlay" parent="GameWorld" instance=ExtResource("12_8kqo6")]
 day_length_seconds = 900

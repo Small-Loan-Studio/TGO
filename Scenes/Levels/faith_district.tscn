@@ -1,0 +1,20 @@
+[gd_scene load_steps=2 format=3 uid="uid://dtpdks82kmht8"]
+
+[ext_resource type="PackedScene" uid="uid://dyq8mcdsutnsa" path="res://Scenes/Components/LevelBase.tscn" id="1_tjip3"]
+
+[node name="LevelBase" instance=ExtResource("1_tjip3")]
+
+[node name="TextEdit" type="TextEdit" parent="." index="5"]
+offset_left = 66.0
+offset_top = 47.0
+offset_right = 633.0
+offset_bottom = 314.0
+text = "Level Designer, you can delete this later.
+
+This level has \"An area that includes Anglican Church, Lock-up, Oakshaw Gallows and more.\"
+
+From Documents:
+Anglican Church: Medium (~33x33)
+Lock-Up: Medium (~33x33)
+Oakshaw Gallows: Exterior, Small Space"
+wrap_mode = 1

@@ -1,0 +1,10 @@
+[gd_scene load_steps=2 format=3 uid="uid://cm3g6qolqf5ic"]
+
+[ext_resource type="Script" path="res://Scenes/Components/interacting/interact_panel.gd" id="1_j6qec"]
+
+[node name="InteractPanel" type="Container"]
+z_index = 50
+script = ExtResource("1_j6qec")
+
+[node name="Container" type="VBoxContainer" parent="."]
+layout_mode = 2
