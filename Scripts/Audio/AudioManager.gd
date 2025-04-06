@@ -112,9 +112,8 @@ func get_level(bus: Enums.AudioBus) -> float:
 	if _akhelper:
 		var bus_rtpc_id := AKHelper.bus_param_from_enum(bus)
 		return _normalize_bus_level(_akhelper.get_param(bus_rtpc_id, _levels_local))
-	else:
-		print("No _akhelper is registered, failed to get_level")
-		return 0
+	print("No _akhelper is registered, failed to get_level")
+	return 0
 
 func _normalize_bus_level(wwise_level: float) -> float:
 	return wwise_level / 100

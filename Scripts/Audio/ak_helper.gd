@@ -69,8 +69,7 @@ func get_param(param: int, local: bool = true) -> float:
 	# segfault if we don't use a bare null. :shrug:
 	if local:
 		return Wwise.get_rtpc_value_id(param, self._target)
-	else:
-		return Wwise.get_rtpc_value_id(param, null)
+	return Wwise.get_rtpc_value_id(param, null)
 
 
 func send_param(param: int, value: float, local: bool = true) -> void:
