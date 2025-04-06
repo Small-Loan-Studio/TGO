@@ -5,12 +5,12 @@ const AUDIO_PREFS_PATH = "user://audio_prefs.dat"
 const DB_MIN: float = -25
 const DB_MAX: float = 8
 const _OLD_NEW_MAPPING := {
-		Enums.AudioBus.MASTER: "Main",
-		Enums.AudioBus.BACKGROUND_MUSIC: "Background Music",
-		Enums.AudioBus.SOUND_EFFECTS: "Sound Effects",
-		Enums.AudioBus.MENU_EFFECTS: "Menu",
-		Enums.AudioBus.AMBIENT: "Ambient Sounds",
-	}
+	Enums.AudioBus.MASTER: "Main",
+	Enums.AudioBus.BACKGROUND_MUSIC: "Background Music",
+	Enums.AudioBus.SOUND_EFFECTS: "Sound Effects",
+	Enums.AudioBus.MENU_EFFECTS: "Menu",
+	Enums.AudioBus.AMBIENT: "Ambient Sounds",
+}
 
 var _akhelper: AKHelper
 var _levels_local := false
@@ -19,7 +19,7 @@ var _levels_local := false
 
 
 func _ready() -> void:
-	print('registering audio-manager')
+	print("registering audio-manager")
 	var success: bool = Wwise.register_game_obj(self, "Audio Manager")
 	if !success:
 		print("Failed to register AudioManager with Wwise")
@@ -99,9 +99,9 @@ func set_level(bus: Enums.AudioBus, volume_pct: float) -> void:
 	print("set_level(%s, %f)" % [bus, volume_pct])
 	if _akhelper:
 		var wwise_level := _unnormalize_bus_level(volume_pct)
-		print('wwise_level: %f' % [wwise_level])
+		print("wwise_level: %f" % [wwise_level])
 		var rtpc_param := AKHelper.bus_param_from_enum(bus)
-		print('param: %d' % [rtpc_param])
+		print("param: %d" % [rtpc_param])
 		_akhelper.send_param(rtpc_param, wwise_level, _levels_local)
 	else:
 		print("No _akhelper is registered, failed to set_level")
@@ -115,8 +115,10 @@ func get_level(bus: Enums.AudioBus) -> float:
 	print("No _akhelper is registered, failed to get_level")
 	return 0
 
+
 func _normalize_bus_level(wwise_level: float) -> float:
 	return wwise_level / 100
+
 
 func _unnormalize_bus_level(local_level: float) -> float:
 	return local_level * 100
