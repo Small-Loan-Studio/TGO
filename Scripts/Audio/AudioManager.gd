@@ -4,13 +4,6 @@ extends Node
 const AUDIO_PREFS_PATH = "user://audio_prefs.dat"
 const DB_MIN: float = -25
 const DB_MAX: float = 8
-const _OLD_NEW_MAPPING := {
-	Enums.AudioBus.MASTER: "Main",
-	Enums.AudioBus.BACKGROUND_MUSIC: "Background Music",
-	Enums.AudioBus.SOUND_EFFECTS: "Sound Effects",
-	Enums.AudioBus.MENU_EFFECTS: "Menu",
-	Enums.AudioBus.AMBIENT: "Ambient Sounds",
-}
 
 var _akhelper: AKHelper
 var _levels_local := false
