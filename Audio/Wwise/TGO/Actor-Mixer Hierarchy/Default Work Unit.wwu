@@ -6,11 +6,6 @@
 				<Sound Name="footsteps" ID="{8D090386-5419-4745-AA60-1334DD8832EA}" ShortID="340066017">
 					<PropertyList>
 						<Property Name="IsLoopingEnabled" Type="bool" Value="True"/>
-						<Property Name="Volume" Type="Real64">
-							<ValueList>
-								<Value>8</Value>
-							</ValueList>
-						</Property>
 					</PropertyList>
 					<ReferenceList>
 						<Reference Name="Conversion">
