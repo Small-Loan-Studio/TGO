@@ -22,7 +22,7 @@ and all the flavors of Linux?!"
 1. Download & Install the Docker Desktop platform for your machine: https://www.docker.com/
 2. Once installed build the container for TGO in a shell from within the TGO repo checkout:
    ```
-   ~/Projects/TGO (envy-format-ci) $ docker build -t tgo:check support
+   ~/Projects/TGO (envy-format-ci) $ docker build -t tgo:check support -f support/Dockerfile
    ```
    The initial build will take quite a while because it needs to:
    1. download a full linux install
