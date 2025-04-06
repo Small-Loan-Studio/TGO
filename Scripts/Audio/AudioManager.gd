@@ -8,8 +8,6 @@ const DB_MAX: float = 8
 var _akhelper: AKHelper
 var _levels_local := false
 
-@onready var bgm_player: AudioStreamPlayer2D = %BGPlayer
-
 
 func _ready() -> void:
 	var success: bool = Wwise.register_game_obj(self, "Audio Manager")
