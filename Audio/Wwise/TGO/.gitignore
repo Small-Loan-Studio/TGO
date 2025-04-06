@@ -3,6 +3,7 @@
 .backup*
 .cache*
 *.akd
+*.dat
 *.prof
 *.validationcache
 *.wsettings
