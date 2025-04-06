@@ -2,4 +2,4 @@
 
 args="$@"
 
-find /repo -iname *.gd -not -ipath '/repo/addons/*' | xargs /usr/local/bin/gdlint $args
+find /repo -iname *.gd -not -ipath '/repo/addons/*' | grep -v wwise_ids.gd | xargs /usr/local/bin/gdlint $args

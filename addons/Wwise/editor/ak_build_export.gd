@@ -1,0 +1,2 @@
+class AkBuildExport:
+	extends AkEditorExportPlugin

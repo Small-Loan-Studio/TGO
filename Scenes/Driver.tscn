@@ -1,7 +1,7 @@
 [gd_scene load_steps=23 format=3 uid="uid://d4cnh54npmjiv"]
 
 [ext_resource type="Script" path="res://Scripts/Driver.gd" id="1_agcjs"]
-[ext_resource type="Script" path="res://Scripts/AudioManager.gd" id="2_4seev"]
+[ext_resource type="PackedScene" uid="uid://tw1hy0j67l4g" path="res://Scenes/Audio/AudioManager.tscn" id="2_efjl6"]
 [ext_resource type="Script" path="res://Scripts/UI/Curtain.gd" id="2_gom2g"]
 [ext_resource type="Script" path="res://Scripts/Menu/MenuManager.gd" id="3_h1ccd"]
 [ext_resource type="PackedScene" uid="uid://ci7ksomi5hsr5" path="res://Scenes/Menu/DebugMenu.tscn" id="3_i7nbg"]
@@ -12,7 +12,7 @@
 [ext_resource type="PackedScene" uid="uid://dukcf64qxy46o" path="res://Scenes/UI/Debug/Inventory.tscn" id="7_3yw60"]
 [ext_resource type="PackedScene" uid="uid://dqrxejwlgxsgu" path="res://Scenes/UI/Debug/QuestTracker.tscn" id="8_8e3e0"]
 [ext_resource type="Script" path="res://Scripts/Components/Quests/QuestManager.gd" id="9_4hdkn"]
-[ext_resource type="PackedScene" path="res://Scenes/UI/Debug/debug_equipment.tscn" id="9_n1ypf"]
+[ext_resource type="PackedScene" uid="uid://c0kelgau5kji2" path="res://Scenes/UI/Debug/debug_equipment.tscn" id="9_n1ypf"]
 [ext_resource type="PackedScene" uid="uid://dmyrmmjngi1ts" path="res://Scenes/UI/Debug/debug_day_night.tscn" id="10_8xh8g"]
 [ext_resource type="Script" path="res://Scripts/SerializationManager.gd" id="11_e6bsk"]
 [ext_resource type="PackedScene" uid="uid://my7v0l0el1dj" path="res://Scenes/UI/Debug/quest_debugger.tscn" id="11_g6nlc"]
@@ -26,13 +26,7 @@
 [node name="Driver" type="Node2D"]
 script = ExtResource("1_agcjs")
 
-[node name="AudioManager" type="Node" parent="."]
-process_mode = 3
-script = ExtResource("2_4seev")
-
-[node name="BGPlayer" type="AudioStreamPlayer2D" parent="AudioManager"]
-unique_name_in_owner = true
-bus = &"BGM"
+[node name="AudioManager" parent="." instance=ExtResource("2_efjl6")]
 
 [node name="OverlayManager" type="CanvasLayer" parent="."]
 

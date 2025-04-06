@@ -6,4 +6,4 @@ WORKDIR /tgo
 ENV PATH=/tgo:$PATH
 RUN python -m pip install git+https://github.com/Scony/godot-gdscript-toolkit.git@e9ec1f52d9c837dba440987ba50540f14beb7cad
 COPY gdformat.sh gdformat
-COPY gdlint.sh gdlint
+COPY gdlint.sh  gdlint

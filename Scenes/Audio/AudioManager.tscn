@@ -1,0 +1,15 @@
+[gd_scene load_steps=2 format=3 uid="uid://tw1hy0j67l4g"]
+
+[ext_resource type="Script" path="res://Scripts/Audio/AudioManager.gd" id="1_7riov"]
+
+[node name="AudioManager" type="Node"]
+process_mode = 3
+script = ExtResource("1_7riov")
+
+[node name="BankMain" type="AkBank" parent="."]
+bank = {
+"id": 3161908922,
+"name": "Main"
+}
+load_on = 1
+unload_on = 3
