@@ -31,13 +31,15 @@ func _update_active(active: bool) -> void:
 	if active:
 		_marker.modulate = Color.WHITE
 	else:
+		_slider.hide()
 		var c := Color.WHITE
 		c.a = .2
 		_marker.modulate = c
+		_slider.show()
 
 
 func _process(_delta: float) -> void:
-	if !is_active:
+	if !is_active || _slider.has_focus():
 		return
 
 	if Input.is_action_just_pressed(Enums.input_action_name(Enums.InputAction.RIGHT)):
