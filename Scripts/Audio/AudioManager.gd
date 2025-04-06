@@ -19,7 +19,6 @@ var _levels_local := false
 
 
 func _ready() -> void:
-	print("registering audio-manager")
 	var success: bool = Wwise.register_game_obj(self, "Audio Manager")
 	if !success:
 		print("Failed to register AudioManager with Wwise")
@@ -96,12 +95,9 @@ func _db_to_volume(db_level: float) -> float:
 ## Sets the volume level as a value 0->1 for a specific audio bus
 ## handles converting into db internally
 func set_level(bus: Enums.AudioBus, volume_pct: float) -> void:
-	print("set_level(%s, %f)" % [bus, volume_pct])
 	if _akhelper:
 		var wwise_level := _unnormalize_bus_level(volume_pct)
-		print("wwise_level: %f" % [wwise_level])
 		var rtpc_param := AKHelper.bus_param_from_enum(bus)
-		print("param: %d" % [rtpc_param])
 		_akhelper.send_param(rtpc_param, wwise_level, _levels_local)
 	else:
 		print("No _akhelper is registered, failed to set_level")
