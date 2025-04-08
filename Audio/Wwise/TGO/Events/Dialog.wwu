@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<WwiseDocument Type="WorkUnit" ID="{998257A1-61AF-42EE-A97D-542B5B8166D9}" SchemaVersion="119">
+	<Events>
+		<WorkUnit Name="Dialog" ID="{998257A1-61AF-42EE-A97D-542B5B8166D9}" PersistMode="Standalone">
+			<PropertyList>
+				<Property Name="Color" Type="int16" Value="13"/>
+				<Property Name="OverrideColor" Type="bool" Value="True"/>
+			</PropertyList>
+		</WorkUnit>
+	</Events>
+</WwiseDocument>

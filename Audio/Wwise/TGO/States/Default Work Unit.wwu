@@ -1,6 +1,41 @@
 <?xml version="1.0" encoding="utf-8"?>
 <WwiseDocument Type="WorkUnit" ID="{DB995E18-6F10-4848-BE1D-BB4358997708}" SchemaVersion="119">
 	<States>
-		<WorkUnit Name="Default Work Unit" ID="{DB995E18-6F10-4848-BE1D-BB4358997708}" PersistMode="Standalone"/>
+		<WorkUnit Name="Default Work Unit" ID="{DB995E18-6F10-4848-BE1D-BB4358997708}" PersistMode="Standalone">
+			<ChildrenList>
+				<StateGroup Name="GameState" ID="{5BB2ED3E-221A-4454-AA49-7D72DD2C8913}">
+					<PropertyList>
+						<Property Name="Color" Type="int16" Value="16"/>
+						<Property Name="OverrideColor" Type="bool" Value="True"/>
+					</PropertyList>
+					<ChildrenList>
+						<State Name="None" ID="{9689A2A8-DBB5-414A-B12F-4EBACCBA3E31}"/>
+						<State Name="InGame" ID="{BE0DE265-61FD-49A3-A258-54CF6F07E3D0}"/>
+						<State Name="InMenu" ID="{569D328B-A4D1-496C-A141-30002E10B71F}">
+							<PropertyList>
+								<Property Name="Color" Type="int16" Value="26"/>
+								<Property Name="OverrideColor" Type="bool" Value="True"/>
+							</PropertyList>
+						</State>
+					</ChildrenList>
+				</StateGroup>
+				<StateGroup Name="PlayerState" ID="{05F9326D-47D9-413E-A060-D1BDE8682CF3}">
+					<PropertyList>
+						<Property Name="Color" Type="int16" Value="4"/>
+						<Property Name="OverrideColor" Type="bool" Value="True"/>
+					</PropertyList>
+					<ChildrenList>
+						<State Name="None" ID="{7F893D17-9EE0-4C22-A6EA-2838936E42C3}"/>
+						<State Name="Alive" ID="{FD823908-DB24-4942-9838-9DA0E421DE9F}"/>
+						<State Name="Dead" ID="{66BC7DC7-E0EF-4F7F-AE39-2CCD4DDB7A1F}">
+							<PropertyList>
+								<Property Name="Color" Type="int16" Value="10"/>
+								<Property Name="OverrideColor" Type="bool" Value="True"/>
+							</PropertyList>
+						</State>
+					</ChildrenList>
+				</StateGroup>
+			</ChildrenList>
+		</WorkUnit>
 	</States>
 </WwiseDocument>

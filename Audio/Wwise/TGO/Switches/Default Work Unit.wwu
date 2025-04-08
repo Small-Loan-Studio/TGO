@@ -1,6 +1,178 @@
 <?xml version="1.0" encoding="utf-8"?>
 <WwiseDocument Type="WorkUnit" ID="{D2DCFF4B-2190-4064-823A-184361192CBC}" SchemaVersion="119">
 	<Switches>
-		<WorkUnit Name="Default Work Unit" ID="{D2DCFF4B-2190-4064-823A-184361192CBC}" PersistMode="Standalone"/>
+		<WorkUnit Name="Default Work Unit" ID="{D2DCFF4B-2190-4064-823A-184361192CBC}" PersistMode="Standalone">
+			<ChildrenList>
+				<Folder Name="Environment" ID="{0B6ECFCC-6493-496E-90C4-445422E4A60C}" ShortID="863566668">
+					<ChildrenList>
+						<SwitchGroup Name="AmbienceAreaSwitch" ID="{8263445E-8F64-46C0-B8D3-BB6EA1D2A2F2}">
+							<PropertyList>
+								<Property Name="Color" Type="int16" Value="15"/>
+								<Property Name="OverrideColor" Type="bool" Value="True"/>
+							</PropertyList>
+							<ChildrenList>
+								<Switch Name="Cemetery" ID="{4E545059-0EE6-44C0-8172-34292D586654}"/>
+								<Switch Name="Crypt" ID="{F0964C36-D514-4390-BF82-5F29E0EDF4B1}"/>
+								<Switch Name="ManorHouse" ID="{3229B25F-247C-4177-936F-DEA6F348E804}"/>
+								<Switch Name="OakshawExt" ID="{CE41915B-BAB0-4682-947D-7C91950763AF}"/>
+								<Switch Name="OakshawInt" ID="{670BD4BC-BF1A-4EEE-AD16-285AD81BB0C6}"/>
+							</ChildrenList>
+						</SwitchGroup>
+						<SwitchGroup Name="BlackMistSwitch" ID="{A668B6F5-9EA2-4895-BF24-E9EAB9B7196F}">
+							<PropertyList>
+								<Property Name="Color" Type="int16" Value="1"/>
+								<Property Name="OverrideColor" Type="bool" Value="True"/>
+							</PropertyList>
+							<ChildrenList>
+								<Switch Name="Mist" ID="{960D6DFB-91F2-4E88-8127-F62EE2069C65}"/>
+								<Switch Name="NoMist" ID="{256B7F2D-8F2A-46C7-BD47-0A9F25848C8A}"/>
+							</ChildrenList>
+						</SwitchGroup>
+						<SwitchGroup Name="TimeOfDaySwitch" ID="{EA14E230-1DEC-4138-8A26-85179A9D1116}">
+							<PropertyList>
+								<Property Name="Color" Type="int16" Value="21"/>
+								<Property Name="OverrideColor" Type="bool" Value="True"/>
+								<Property Name="UseGameParameter" Type="bool" Value="True"/>
+							</PropertyList>
+							<ChildrenList>
+								<Switch Name="DawnDusk" ID="{AF376B19-1D42-4EAD-9670-ED6E45EA14EB}"/>
+								<Switch Name="Day" ID="{C9D89D0D-72C4-4A5E-88CC-D93E1C0B3805}"/>
+								<Switch Name="Night" ID="{EE2540A7-8CE8-46A0-9FCA-65279EE0481B}"/>
+							</ChildrenList>
+							<SwitchOnRTPC>
+								<GameParameterRef Name="TimeOfDay_RTPC" ID="{45EED032-4AC5-415E-8247-FEBA8C3C906A}"/>
+								<Curve Name="" ID="{58E84AB0-1A23-4844-99B8-AB3F43BD859D}">
+									<PropertyList>
+										<Property Name="Flags" Type="int32" Value="65537"/>
+									</PropertyList>
+									<PointList>
+										<Point>
+											<XPos>0</XPos>
+											<YPos>3</YPos>
+											<Flags>5</Flags>
+										</Point>
+										<Point>
+											<XPos>4.5</XPos>
+											<YPos>1</YPos>
+											<Flags>0</Flags>
+										</Point>
+										<Point>
+											<XPos>7</XPos>
+											<YPos>2</YPos>
+											<Flags>0</Flags>
+										</Point>
+										<Point>
+											<XPos>17</XPos>
+											<YPos>1</YPos>
+											<Flags>0</Flags>
+										</Point>
+										<Point>
+											<XPos>21</XPos>
+											<YPos>3</YPos>
+											<Flags>0</Flags>
+										</Point>
+										<Point>
+											<XPos>24</XPos>
+											<YPos>0</YPos>
+											<Flags>37</Flags>
+										</Point>
+									</PointList>
+								</Curve>
+							</SwitchOnRTPC>
+						</SwitchGroup>
+						<SwitchGroup Name="RealmSwitch" ID="{0DBBD03A-E060-4CB4-A6C8-1B4D30CDFE19}">
+							<PropertyList>
+								<Property Name="Color" Type="int16" Value="24"/>
+								<Property Name="OverrideColor" Type="bool" Value="True"/>
+							</PropertyList>
+							<ChildrenList>
+								<Switch Name="EtherealRealm" ID="{49861127-878D-415F-AF56-72478D323888}"/>
+								<Switch Name="Reality" ID="{69987109-2784-45FE-83F3-AE96FEC5F955}"/>
+							</ChildrenList>
+						</SwitchGroup>
+					</ChildrenList>
+				</Folder>
+				<Folder Name="General" ID="{B010E4D9-53AB-48F8-BFD0-5BDC38731535}" ShortID="415058027">
+					<ChildrenList>
+						<SwitchGroup Name="CombatSwitch" ID="{06BFBEEE-DFE3-43CD-803C-CCC3A33B7E91}">
+							<PropertyList>
+								<Property Name="Color" Type="int16" Value="10"/>
+								<Property Name="OverrideColor" Type="bool" Value="True"/>
+							</PropertyList>
+							<ChildrenList>
+								<Switch Name="Boss" ID="{FD40D95A-FFE2-4373-9339-FD217D66A3FA}"/>
+								<Switch Name="Combat" ID="{2118CAE6-B5D8-4A7E-8196-35D195B6D2AD}"/>
+								<Switch Name="Explore" ID="{086D7A54-63F1-4E92-A6C5-9CFC85AF883B}"/>
+							</ChildrenList>
+						</SwitchGroup>
+						<SwitchGroup Name="GroundMaterialSwitch" ID="{EB416F35-AF52-4D0B-B1CA-03E2270FAF6A}">
+							<PropertyList>
+								<Property Name="Color" Type="int16" Value="5"/>
+								<Property Name="OverrideColor" Type="bool" Value="True"/>
+							</PropertyList>
+							<ChildrenList>
+								<Switch Name="Dirt" ID="{A3A7D983-41DF-492F-BDD5-466DC98D4759}"/>
+								<Switch Name="Grass" ID="{ECEB6B52-41C0-41DF-A400-3E572C4138DA}"/>
+								<Switch Name="Gravel" ID="{CFE7E021-D7BE-4048-AB4F-2D6EB840E455}"/>
+								<Switch Name="Pavement" ID="{44A2FB08-29CF-4553-BC8F-28BC38CE6B42}"/>
+								<Switch Name="Stone" ID="{4678D85F-A338-4D56-B1C8-B1A0875C0F5B}"/>
+								<Switch Name="Wood" ID="{00F2F0FE-B5D1-4980-8A77-8665439D437C}"/>
+							</ChildrenList>
+						</SwitchGroup>
+					</ChildrenList>
+				</Folder>
+				<Folder Name="Player" ID="{7C1AFB4C-4EEA-4A8F-B096-EDA9F181BA1A}" ShortID="486347720">
+					<PropertyList>
+						<Property Name="Color" Type="int16" Value="4"/>
+						<Property Name="OverrideColor" Type="bool" Value="True"/>
+					</PropertyList>
+					<ChildrenList>
+						<SwitchGroup Name="PlayerHealthSwitch" ID="{D69B6F45-A693-4EBD-AFCE-B9A729191E36}">
+							<PropertyList>
+								<Property Name="Color" Type="int16" Value="4"/>
+								<Property Name="OverrideColor" Type="bool" Value="True"/>
+								<Property Name="UseGameParameter" Type="bool" Value="True"/>
+							</PropertyList>
+							<ChildrenList>
+								<Switch Name="DamagedHealth" ID="{26AB03F6-BB08-4A8A-9DC0-57911E7C7246}"/>
+								<Switch Name="FullHealth" ID="{FC8C87FF-A607-4449-AF89-7480E57E6711}"/>
+								<Switch Name="LowHealth" ID="{B3F16E0A-CBF6-4F23-994C-4F9237C32DDB}"/>
+								<Switch Name="NoHealth" ID="{18D9EFED-7C33-48B3-82B2-B994044569E7}"/>
+							</ChildrenList>
+							<SwitchOnRTPC>
+								<GameParameterRef Name="PlayerHealth_RTPC" ID="{78B82DD0-EBF5-48A3-9734-7BE73B627C86}"/>
+								<Curve Name="" ID="{DCEE555C-8A62-4BA3-A227-E89B642A5768}">
+									<PropertyList>
+										<Property Name="Flags" Type="int32" Value="65537"/>
+									</PropertyList>
+									<PointList>
+										<Point>
+											<XPos>0</XPos>
+											<YPos>4</YPos>
+											<Flags>5</Flags>
+										</Point>
+										<Point>
+											<XPos>0.001</XPos>
+											<YPos>3</YPos>
+											<Flags>0</Flags>
+										</Point>
+										<Point>
+											<XPos>2</XPos>
+											<YPos>2</YPos>
+											<Flags>0</Flags>
+										</Point>
+										<Point>
+											<XPos>10</XPos>
+											<YPos>1</YPos>
+											<Flags>37</Flags>
+										</Point>
+									</PointList>
+								</Curve>
+							</SwitchOnRTPC>
+						</SwitchGroup>
+					</ChildrenList>
+				</Folder>
+			</ChildrenList>
+		</WorkUnit>
 	</Switches>
 </WwiseDocument>

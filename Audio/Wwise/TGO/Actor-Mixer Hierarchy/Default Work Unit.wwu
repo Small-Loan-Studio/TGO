@@ -1,34 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <WwiseDocument Type="WorkUnit" ID="{C3D82143-02E0-43D5-BE85-96C1C6488F84}" SchemaVersion="119">
 	<AudioObjects>
-		<WorkUnit Name="Default Work Unit" ID="{C3D82143-02E0-43D5-BE85-96C1C6488F84}" PersistMode="Standalone">
-			<ChildrenList>
-				<Sound Name="footsteps" ID="{8D090386-5419-4745-AA60-1334DD8832EA}" ShortID="340066017">
-					<PropertyList>
-						<Property Name="IsLoopingEnabled" Type="bool" Value="True"/>
-					</PropertyList>
-					<ReferenceList>
-						<Reference Name="Conversion">
-							<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{1E13664B-E694-4203-95E7-AEB6212579F7}"/>
-						</Reference>
-						<Reference Name="OutputBus">
-							<ObjectRef Name="Sound Effects" ID="{B72DD3D3-0632-4D7D-8F7E-E7D2F4E10726}" WorkUnitID="{6C0969E1-B09C-4693-BC3C-B2E7116B2AEE}"/>
-						</Reference>
-					</ReferenceList>
-					<ChildrenList>
-						<AudioFileSource Name="footsteps" ID="{94250F6B-F6AE-47E5-96E0-0E9E1FD774E9}">
-							<Language>SFX</Language>
-							<AudioFile>footsteps.wav</AudioFile>
-							<MediaIDList>
-								<MediaID ID="178542138"/>
-							</MediaIDList>
-						</AudioFileSource>
-					</ChildrenList>
-					<ActiveSourceList>
-						<ActiveSource Name="footsteps" ID="{94250F6B-F6AE-47E5-96E0-0E9E1FD774E9}" Platform="Linked"/>
-					</ActiveSourceList>
-				</Sound>
-			</ChildrenList>
-		</WorkUnit>
+		<WorkUnit Name="Default Work Unit" ID="{C3D82143-02E0-43D5-BE85-96C1C6488F84}" PersistMode="Standalone"/>
 	</AudioObjects>
 </WwiseDocument>

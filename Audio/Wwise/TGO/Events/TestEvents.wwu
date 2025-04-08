@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="utf-8"?>
+<WwiseDocument Type="WorkUnit" ID="{AAA74B16-0AA3-4E80-A3C1-B701AD23C503}" SchemaVersion="119">
+	<Events>
+		<WorkUnit Name="TestEvents" ID="{AAA74B16-0AA3-4E80-A3C1-B701AD23C503}" PersistMode="Standalone">
+			<PropertyList>
+				<Property Name="Color" Type="int16" Value="27"/>
+				<Property Name="OverrideColor" Type="bool" Value="True"/>
+			</PropertyList>
+			<ChildrenList>
+				<Event Name="play_TEST_TestTone" ID="{DC68FA23-5028-45F4-85B3-1D8404626783}">
+					<ChildrenList>
+						<Action Name="" ID="{8FC25026-22C8-4693-B982-CF0940CA898C}" ShortID="1050782255">
+							<ReferenceList>
+								<Reference Name="Target">
+									<ObjectRef Name="sfx_TEST_TestTone" ID="{84982707-F114-48B2-A408-E77DA9DA86DE}" WorkUnitID="{5CF2C484-E50B-46AA-BA0D-EB63283FD37D}"/>
+								</Reference>
+							</ReferenceList>
+						</Action>
+					</ChildrenList>
+				</Event>
+				<Event Name="play_TEST_TestTone_3D" ID="{D55E5C84-7FBA-4F20-BE0C-B7CE39E33F28}">
+					<ChildrenList>
+						<Action Name="" ID="{B9BAB6F7-4F5A-45E0-B4FB-E77F1DEB41BB}" ShortID="217877765">
+							<ReferenceList>
+								<Reference Name="Target">
+									<ObjectRef Name="sfx_TEST_TestTone_3D" ID="{6675933D-9F21-4DCE-9162-ACCC683FECBD}" WorkUnitID="{5CF2C484-E50B-46AA-BA0D-EB63283FD37D}"/>
+								</Reference>
+							</ReferenceList>
+						</Action>
+					</ChildrenList>
+				</Event>
+				<Event Name="play_TEST_TestTone_lp" ID="{79A565EA-209C-45D6-8D83-743D1A53F4B9}">
+					<ChildrenList>
+						<Action Name="" ID="{BBAC1EEC-BBC2-4B03-8C1A-4154E2125811}" ShortID="596767367">
+							<ReferenceList>
+								<Reference Name="Target">
+									<ObjectRef Name="sfx_TEST_TestTone_lp" ID="{57E74514-BDB6-46C9-B1B4-5DA34FB2A03F}" WorkUnitID="{5CF2C484-E50B-46AA-BA0D-EB63283FD37D}"/>
+								</Reference>
+							</ReferenceList>
+						</Action>
+					</ChildrenList>
+				</Event>
+				<Event Name="play_TEST_TestTone_lp_3D" ID="{587FA79A-7C29-4A9E-822E-70DF0B6636CF}">
+					<ChildrenList>
+						<Action Name="" ID="{7F7AFE60-53C4-4332-A96E-C239B831F3F1}" ShortID="773424560">
+							<ReferenceList>
+								<Reference Name="Target">
+									<ObjectRef Name="sfx_TEST_TestTone_lp_3D" ID="{A3198E4B-A6DB-464E-8B23-B3952208B67B}" WorkUnitID="{5CF2C484-E50B-46AA-BA0D-EB63283FD37D}"/>
+								</Reference>
+							</ReferenceList>
+						</Action>
+					</ChildrenList>
+				</Event>
+				<Event Name="stop_TEST_TestTone_lp" ID="{C4B0799A-DD21-4F57-9085-5E80F42B4A06}">
+					<PropertyList>
+						<Property Name="OverrideColor" Type="bool" Value="True"/>
+					</PropertyList>
+					<ChildrenList>
+						<Action Name="" ID="{A6E6B015-1A20-4484-9F69-5C4733CCD1BA}" ShortID="57722457">
+							<PropertyList>
+								<Property Name="ActionType" Type="int16" Value="2"/>
+							</PropertyList>
+							<ReferenceList>
+								<Reference Name="Target">
+									<ObjectRef Name="sfx_TEST_TestTone_lp" ID="{57E74514-BDB6-46C9-B1B4-5DA34FB2A03F}" WorkUnitID="{5CF2C484-E50B-46AA-BA0D-EB63283FD37D}"/>
+								</Reference>
+							</ReferenceList>
+						</Action>
+					</ChildrenList>
+				</Event>
+				<Event Name="stop_TEST_TestTone_lp_3D" ID="{ABEEB2B7-1680-4A85-8D2D-C308C24EAA97}">
+					<PropertyList>
+						<Property Name="OverrideColor" Type="bool" Value="True"/>
+					</PropertyList>
+					<ChildrenList>
+						<Action Name="" ID="{F6FA0554-A480-4090-89B3-41CFAA0BA665}" ShortID="947844112">
+							<PropertyList>
+								<Property Name="ActionType" Type="int16" Value="2"/>
+							</PropertyList>
+							<ReferenceList>
+								<Reference Name="Target">
+									<ObjectRef Name="sfx_TEST_TestTone_lp_3D" ID="{A3198E4B-A6DB-464E-8B23-B3952208B67B}" WorkUnitID="{5CF2C484-E50B-46AA-BA0D-EB63283FD37D}"/>
+								</Reference>
+							</ReferenceList>
+						</Action>
+					</ChildrenList>
+				</Event>
+			</ChildrenList>
+		</WorkUnit>
+	</Events>
+</WwiseDocument>
