@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<WwiseDocument Type="WorkUnit" ID="{5BEA4521-003D-4306-A211-C3C2672B3990}" SchemaVersion="119">
+	<AudioObjects>
+		<WorkUnit Name="Events" ID="{5BEA4521-003D-4306-A211-C3C2672B3990}" PersistMode="Standalone">
+			<PropertyList>
+				<Property Name="Color" Type="int16" Value="17"/>
+				<Property Name="OverrideColor" Type="bool" Value="True"/>
+			</PropertyList>
+			<ChildrenList>
+				<ActorMixer Name="Events" ID="{10E65403-1AE3-4D5A-8864-153C8CB10264}" ShortID="348913126">
+					<ReferenceList>
+						<Reference Name="Conversion">
+							<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{1E13664B-E694-4203-95E7-AEB6212579F7}"/>
+						</Reference>
+						<Reference Name="OutputBus">
+							<ObjectRef Name="Events" ID="{5E544AF0-8CA4-480A-8A93-5D0D2785ED11}" WorkUnitID="{6C0969E1-B09C-4693-BC3C-B2E7116B2AEE}"/>
+						</Reference>
+					</ReferenceList>
+				</ActorMixer>
+			</ChildrenList>
+		</WorkUnit>
+	</AudioObjects>
+</WwiseDocument>

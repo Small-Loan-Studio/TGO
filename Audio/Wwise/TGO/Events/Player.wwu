@@ -6,6 +6,19 @@
 				<Property Name="Color" Type="int16" Value="4"/>
 				<Property Name="OverrideColor" Type="bool" Value="True"/>
 			</PropertyList>
+			<ChildrenList>
+				<Event Name="play_PC_foostep" ID="{1E4D5A65-A50E-4DEE-B681-2EB0FC37D85B}">
+					<ChildrenList>
+						<Action Name="" ID="{202430CE-E102-45A4-B2EE-4A0CD06E35B0}" ShortID="922727171">
+							<ReferenceList>
+								<Reference Name="Target">
+									<ObjectRef Name="PC_footstep_switch" ID="{8AD76273-D280-4050-9EB9-4FC76BC501A3}" WorkUnitID="{8650DAE4-E661-4C4E-8DE4-AAE6BB180626}"/>
+								</Reference>
+							</ReferenceList>
+						</Action>
+					</ChildrenList>
+				</Event>
+			</ChildrenList>
 		</WorkUnit>
 	</Events>
 </WwiseDocument>

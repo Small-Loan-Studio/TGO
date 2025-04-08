@@ -16,6 +16,783 @@
 							<ObjectRef Name="Ambience" ID="{8DFEFE27-A1F7-4CE8-9DAA-586C8A73ADAC}" WorkUnitID="{6C0969E1-B09C-4693-BC3C-B2E7116B2AEE}"/>
 						</Reference>
 					</ReferenceList>
+					<ChildrenList>
+						<ActorMixer Name="Cemetery" ID="{8C48E794-1B74-45C3-B541-DAFA41360DC7}" ShortID="376131737">
+							<ReferenceList>
+								<Reference Name="Conversion">
+									<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{1E13664B-E694-4203-95E7-AEB6212579F7}"/>
+								</Reference>
+								<Reference Name="OutputBus">
+									<ObjectRef Name="MASTER" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{6C0969E1-B09C-4693-BC3C-B2E7116B2AEE}"/>
+								</Reference>
+							</ReferenceList>
+							<ChildrenList>
+								<ActorMixer Name="Cemetery_2D" ID="{996C2C5B-E8E2-4F7C-9954-95125FBE92D5}" ShortID="698776950">
+									<PropertyList>
+										<Property Name="OverrideOutput" Type="bool" Value="True"/>
+									</PropertyList>
+									<ReferenceList>
+										<Reference Name="Conversion">
+											<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{1E13664B-E694-4203-95E7-AEB6212579F7}"/>
+										</Reference>
+										<Reference Name="OutputBus">
+											<ObjectRef Name="2DAmbience" ID="{1455F7EC-E3F5-41DC-B407-C8903F15F5FF}" WorkUnitID="{6C0969E1-B09C-4693-BC3C-B2E7116B2AEE}"/>
+										</Reference>
+									</ReferenceList>
+									<ChildrenList>
+										<RandomSequenceContainer Name="AM_Cemetery_crows" ID="{ABD28FBE-5BF6-4E7A-8FB0-ACA5F8477B05}" ShortID="152043399">
+											<ReferenceList>
+												<Reference Name="Conversion">
+													<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{1E13664B-E694-4203-95E7-AEB6212579F7}"/>
+												</Reference>
+												<Reference Name="OutputBus">
+													<ObjectRef Name="MASTER" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{6C0969E1-B09C-4693-BC3C-B2E7116B2AEE}"/>
+												</Reference>
+											</ReferenceList>
+											<ChildrenList>
+												<Sound Name="sfx_AM_Cemetery_crowcall_02" ID="{85D12962-DC86-4168-B6DE-E918F1785699}" ShortID="82501997">
+													<ReferenceList>
+														<Reference Name="Conversion">
+															<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{1E13664B-E694-4203-95E7-AEB6212579F7}"/>
+														</Reference>
+														<Reference Name="OutputBus">
+															<ObjectRef Name="Ambience" ID="{8DFEFE27-A1F7-4CE8-9DAA-586C8A73ADAC}" WorkUnitID="{6C0969E1-B09C-4693-BC3C-B2E7116B2AEE}"/>
+														</Reference>
+													</ReferenceList>
+													<ChildrenList>
+														<AudioFileSource Name="sfx_AM_Cemetery_crowcall_02" ID="{36946760-7828-43D2-8EB8-835501648E29}">
+															<Language>SFX</Language>
+															<AudioFile>Ambience\Cemetery\CEMETERY\sfx_AM_Cemetery_crowcall_02.wav</AudioFile>
+															<MediaIDList>
+																<MediaID ID="118022495"/>
+															</MediaIDList>
+														</AudioFileSource>
+													</ChildrenList>
+													<ActiveSourceList>
+														<ActiveSource Name="sfx_AM_Cemetery_crowcall_02" ID="{36946760-7828-43D2-8EB8-835501648E29}" Platform="Linked"/>
+													</ActiveSourceList>
+												</Sound>
+												<Sound Name="sfx_AM_Cemetery_crowcall_03" ID="{749380C4-5A89-47AA-B7B5-9475783471C6}" ShortID="290062956">
+													<ReferenceList>
+														<Reference Name="Conversion">
+															<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{1E13664B-E694-4203-95E7-AEB6212579F7}"/>
+														</Reference>
+														<Reference Name="OutputBus">
+															<ObjectRef Name="Ambience" ID="{8DFEFE27-A1F7-4CE8-9DAA-586C8A73ADAC}" WorkUnitID="{6C0969E1-B09C-4693-BC3C-B2E7116B2AEE}"/>
+														</Reference>
+													</ReferenceList>
+													<ChildrenList>
+														<AudioFileSource Name="sfx_AM_Cemetery_crowcall_03" ID="{FAF2C204-F8C6-424B-A73A-4B2127C36F66}">
+															<Language>SFX</Language>
+															<AudioFile>Ambience\Cemetery\CEMETERY\sfx_AM_Cemetery_crowcall_03.wav</AudioFile>
+															<MediaIDList>
+																<MediaID ID="912218533"/>
+															</MediaIDList>
+														</AudioFileSource>
+													</ChildrenList>
+													<ActiveSourceList>
+														<ActiveSource Name="sfx_AM_Cemetery_crowcall_03" ID="{FAF2C204-F8C6-424B-A73A-4B2127C36F66}" Platform="Linked"/>
+													</ActiveSourceList>
+												</Sound>
+												<Sound Name="sfx_AM_Cemetery_crowcall_04" ID="{47CDB35F-CCA2-44CB-AA4E-AD08BC4ED3E7}" ShortID="710024785">
+													<ReferenceList>
+														<Reference Name="Conversion">
+															<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{1E13664B-E694-4203-95E7-AEB6212579F7}"/>
+														</Reference>
+														<Reference Name="OutputBus">
+															<ObjectRef Name="Ambience" ID="{8DFEFE27-A1F7-4CE8-9DAA-586C8A73ADAC}" WorkUnitID="{6C0969E1-B09C-4693-BC3C-B2E7116B2AEE}"/>
+														</Reference>
+													</ReferenceList>
+													<ChildrenList>
+														<AudioFileSource Name="sfx_AM_Cemetery_crowcall_04" ID="{48427B9C-3FB1-4ED1-9191-1082A9B2B7E9}">
+															<Language>SFX</Language>
+															<AudioFile>Ambience\Cemetery\CEMETERY\sfx_AM_Cemetery_crowcall_04.wav</AudioFile>
+															<MediaIDList>
+																<MediaID ID="959764291"/>
+															</MediaIDList>
+														</AudioFileSource>
+													</ChildrenList>
+													<ActiveSourceList>
+														<ActiveSource Name="sfx_AM_Cemetery_crowcall_04" ID="{48427B9C-3FB1-4ED1-9191-1082A9B2B7E9}" Platform="Linked"/>
+													</ActiveSourceList>
+												</Sound>
+												<Sound Name="sfx_AM_Cemetery_crowcall_01" ID="{0AC7F663-B8B6-40B3-8E6F-347A47C320DD}" ShortID="423050154">
+													<ReferenceList>
+														<Reference Name="Conversion">
+															<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{1E13664B-E694-4203-95E7-AEB6212579F7}"/>
+														</Reference>
+														<Reference Name="OutputBus">
+															<ObjectRef Name="Ambience" ID="{8DFEFE27-A1F7-4CE8-9DAA-586C8A73ADAC}" WorkUnitID="{6C0969E1-B09C-4693-BC3C-B2E7116B2AEE}"/>
+														</Reference>
+													</ReferenceList>
+													<ChildrenList>
+														<AudioFileSource Name="sfx_AM_Cemetery_crowcall_01" ID="{543CB369-C07B-4930-B3B6-D05BAE23029B}">
+															<Language>SFX</Language>
+															<AudioFile>Ambience\Cemetery\CEMETERY\sfx_AM_Cemetery_crowcall_01.wav</AudioFile>
+															<MediaIDList>
+																<MediaID ID="897920174"/>
+															</MediaIDList>
+														</AudioFileSource>
+													</ChildrenList>
+													<ActiveSourceList>
+														<ActiveSource Name="sfx_AM_Cemetery_crowcall_01" ID="{543CB369-C07B-4930-B3B6-D05BAE23029B}" Platform="Linked"/>
+													</ActiveSourceList>
+												</Sound>
+											</ChildrenList>
+										</RandomSequenceContainer>
+									</ChildrenList>
+								</ActorMixer>
+								<Sound Name="sfx_AM_Cemetery_main_loop_01" ID="{B806F82E-99E5-4CE1-8AA2-A25A1455DC6E}" ShortID="1029824216">
+									<ReferenceList>
+										<Reference Name="Conversion">
+											<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{1E13664B-E694-4203-95E7-AEB6212579F7}"/>
+										</Reference>
+										<Reference Name="OutputBus">
+											<ObjectRef Name="Ambience" ID="{8DFEFE27-A1F7-4CE8-9DAA-586C8A73ADAC}" WorkUnitID="{6C0969E1-B09C-4693-BC3C-B2E7116B2AEE}"/>
+										</Reference>
+									</ReferenceList>
+									<ChildrenList>
+										<AudioFileSource Name="sfx_AM_Cemetery_main_loop_01" ID="{20BA6634-8BA4-4DC0-8F49-2538E7FE4D93}">
+											<Language>SFX</Language>
+											<AudioFile>Ambience\Cemetery\CEMETERY\sfx_AM_Cemetery_main_loop_01.wav</AudioFile>
+											<MediaIDList>
+												<MediaID ID="307297175"/>
+											</MediaIDList>
+										</AudioFileSource>
+									</ChildrenList>
+									<ActiveSourceList>
+										<ActiveSource Name="sfx_AM_Cemetery_main_loop_01" ID="{20BA6634-8BA4-4DC0-8F49-2538E7FE4D93}" Platform="Linked"/>
+									</ActiveSourceList>
+								</Sound>
+								<RandomSequenceContainer Name="AM_Cemetery_groans" ID="{3465843C-2C1A-4FFC-A4EB-7E3F03786F97}" ShortID="921758131">
+									<ReferenceList>
+										<Reference Name="Conversion">
+											<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{1E13664B-E694-4203-95E7-AEB6212579F7}"/>
+										</Reference>
+										<Reference Name="OutputBus">
+											<ObjectRef Name="MASTER" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{6C0969E1-B09C-4693-BC3C-B2E7116B2AEE}"/>
+										</Reference>
+									</ReferenceList>
+									<ChildrenList>
+										<Sound Name="sfx_AM_Cemetery_metal_groans_01" ID="{C3B3913F-02B1-4409-B9BC-22462340726E}" ShortID="874562313">
+											<ReferenceList>
+												<Reference Name="Conversion">
+													<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{1E13664B-E694-4203-95E7-AEB6212579F7}"/>
+												</Reference>
+												<Reference Name="OutputBus">
+													<ObjectRef Name="Ambience" ID="{8DFEFE27-A1F7-4CE8-9DAA-586C8A73ADAC}" WorkUnitID="{6C0969E1-B09C-4693-BC3C-B2E7116B2AEE}"/>
+												</Reference>
+											</ReferenceList>
+											<ChildrenList>
+												<AudioFileSource Name="sfx_AM_Cemetery_metal_groans_01" ID="{5FFA6967-15F9-44F1-9376-907DBDBF94C7}">
+													<Language>SFX</Language>
+													<AudioFile>Ambience\Cemetery\CEMETERY\sfx_AM_Cemetery_metal_groans_01.wav</AudioFile>
+													<MediaIDList>
+														<MediaID ID="488817585"/>
+													</MediaIDList>
+												</AudioFileSource>
+											</ChildrenList>
+											<ActiveSourceList>
+												<ActiveSource Name="sfx_AM_Cemetery_metal_groans_01" ID="{5FFA6967-15F9-44F1-9376-907DBDBF94C7}" Platform="Linked"/>
+											</ActiveSourceList>
+										</Sound>
+										<Sound Name="sfx_AM_Cemetery_metal_groans_05" ID="{6D525BAB-5C17-43E9-8578-D44AB8A28A3E}" ShortID="328723233">
+											<ReferenceList>
+												<Reference Name="Conversion">
+													<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{1E13664B-E694-4203-95E7-AEB6212579F7}"/>
+												</Reference>
+												<Reference Name="OutputBus">
+													<ObjectRef Name="Ambience" ID="{8DFEFE27-A1F7-4CE8-9DAA-586C8A73ADAC}" WorkUnitID="{6C0969E1-B09C-4693-BC3C-B2E7116B2AEE}"/>
+												</Reference>
+											</ReferenceList>
+											<ChildrenList>
+												<AudioFileSource Name="sfx_AM_Cemetery_metal_groans_05" ID="{78528450-32B1-46A9-87C0-01641E3A2F5B}">
+													<Language>SFX</Language>
+													<AudioFile>Ambience\Cemetery\CEMETERY\sfx_AM_Cemetery_metal_groans_05.wav</AudioFile>
+													<MediaIDList>
+														<MediaID ID="760614667"/>
+													</MediaIDList>
+												</AudioFileSource>
+											</ChildrenList>
+											<ActiveSourceList>
+												<ActiveSource Name="sfx_AM_Cemetery_metal_groans_05" ID="{78528450-32B1-46A9-87C0-01641E3A2F5B}" Platform="Linked"/>
+											</ActiveSourceList>
+										</Sound>
+										<Sound Name="sfx_AM_Cemetery_wood_groans_01" ID="{5B1E22C1-A8E6-4BFE-B5F0-615AE1990859}" ShortID="702598718">
+											<ReferenceList>
+												<Reference Name="Conversion">
+													<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{1E13664B-E694-4203-95E7-AEB6212579F7}"/>
+												</Reference>
+												<Reference Name="OutputBus">
+													<ObjectRef Name="Ambience" ID="{8DFEFE27-A1F7-4CE8-9DAA-586C8A73ADAC}" WorkUnitID="{6C0969E1-B09C-4693-BC3C-B2E7116B2AEE}"/>
+												</Reference>
+											</ReferenceList>
+											<ChildrenList>
+												<AudioFileSource Name="sfx_AM_Cemetery_wood_groans_01" ID="{3083B41E-ECCE-4310-8860-925489A1928A}">
+													<Language>SFX</Language>
+													<AudioFile>Ambience\Cemetery\CEMETERY\sfx_AM_Cemetery_wood_groans_01.wav</AudioFile>
+													<MediaIDList>
+														<MediaID ID="265512325"/>
+													</MediaIDList>
+												</AudioFileSource>
+											</ChildrenList>
+											<ActiveSourceList>
+												<ActiveSource Name="sfx_AM_Cemetery_wood_groans_01" ID="{3083B41E-ECCE-4310-8860-925489A1928A}" Platform="Linked"/>
+											</ActiveSourceList>
+										</Sound>
+										<Sound Name="sfx_AM_Cemetery_wood_groans_02" ID="{AF5530F7-A08F-48BE-9F0A-238BB5D33438}" ShortID="554828150">
+											<ReferenceList>
+												<Reference Name="Conversion">
+													<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{1E13664B-E694-4203-95E7-AEB6212579F7}"/>
+												</Reference>
+												<Reference Name="OutputBus">
+													<ObjectRef Name="Ambience" ID="{8DFEFE27-A1F7-4CE8-9DAA-586C8A73ADAC}" WorkUnitID="{6C0969E1-B09C-4693-BC3C-B2E7116B2AEE}"/>
+												</Reference>
+											</ReferenceList>
+											<ChildrenList>
+												<AudioFileSource Name="sfx_AM_Cemetery_wood_groans_02" ID="{215DFD5C-F1D2-48ED-8EE5-326D009A4DBF}">
+													<Language>SFX</Language>
+													<AudioFile>Ambience\Cemetery\CEMETERY\sfx_AM_Cemetery_wood_groans_02.wav</AudioFile>
+													<MediaIDList>
+														<MediaID ID="33142127"/>
+													</MediaIDList>
+												</AudioFileSource>
+											</ChildrenList>
+											<ActiveSourceList>
+												<ActiveSource Name="sfx_AM_Cemetery_wood_groans_02" ID="{215DFD5C-F1D2-48ED-8EE5-326D009A4DBF}" Platform="Linked"/>
+											</ActiveSourceList>
+										</Sound>
+										<Sound Name="sfx_AM_Cemetery_metal_groans_04" ID="{3944D5AD-EFF9-4C35-B052-290CF8EE77AA}" ShortID="470243840">
+											<ReferenceList>
+												<Reference Name="Conversion">
+													<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{1E13664B-E694-4203-95E7-AEB6212579F7}"/>
+												</Reference>
+												<Reference Name="OutputBus">
+													<ObjectRef Name="Ambience" ID="{8DFEFE27-A1F7-4CE8-9DAA-586C8A73ADAC}" WorkUnitID="{6C0969E1-B09C-4693-BC3C-B2E7116B2AEE}"/>
+												</Reference>
+											</ReferenceList>
+											<ChildrenList>
+												<AudioFileSource Name="sfx_AM_Cemetery_metal_groans_04" ID="{EE64BE94-C4C2-4A67-AD7C-25AE0CAB762E}">
+													<Language>SFX</Language>
+													<AudioFile>Ambience\Cemetery\CEMETERY\sfx_AM_Cemetery_metal_groans_04.wav</AudioFile>
+													<MediaIDList>
+														<MediaID ID="188514663"/>
+													</MediaIDList>
+												</AudioFileSource>
+											</ChildrenList>
+											<ActiveSourceList>
+												<ActiveSource Name="sfx_AM_Cemetery_metal_groans_04" ID="{EE64BE94-C4C2-4A67-AD7C-25AE0CAB762E}" Platform="Linked"/>
+											</ActiveSourceList>
+										</Sound>
+										<Sound Name="sfx_AM_Cemetery_metal_groans_02" ID="{BB660484-15FE-4DC2-BB8C-0888185DE6D1}" ShortID="614744441">
+											<ReferenceList>
+												<Reference Name="Conversion">
+													<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{1E13664B-E694-4203-95E7-AEB6212579F7}"/>
+												</Reference>
+												<Reference Name="OutputBus">
+													<ObjectRef Name="Ambience" ID="{8DFEFE27-A1F7-4CE8-9DAA-586C8A73ADAC}" WorkUnitID="{6C0969E1-B09C-4693-BC3C-B2E7116B2AEE}"/>
+												</Reference>
+											</ReferenceList>
+											<ChildrenList>
+												<AudioFileSource Name="sfx_AM_Cemetery_metal_groans_02" ID="{E8F89E7C-292D-4A36-A12B-893444FE9611}">
+													<Language>SFX</Language>
+													<AudioFile>Ambience\Cemetery\CEMETERY\sfx_AM_Cemetery_metal_groans_02.wav</AudioFile>
+													<MediaIDList>
+														<MediaID ID="368112873"/>
+													</MediaIDList>
+												</AudioFileSource>
+											</ChildrenList>
+											<ActiveSourceList>
+												<ActiveSource Name="sfx_AM_Cemetery_metal_groans_02" ID="{E8F89E7C-292D-4A36-A12B-893444FE9611}" Platform="Linked"/>
+											</ActiveSourceList>
+										</Sound>
+										<Sound Name="sfx_AM_Cemetery_metal_groans_03" ID="{17E9AA05-87B1-4212-B7A5-7C3F2F2CF702}" ShortID="289506141">
+											<ReferenceList>
+												<Reference Name="Conversion">
+													<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{1E13664B-E694-4203-95E7-AEB6212579F7}"/>
+												</Reference>
+												<Reference Name="OutputBus">
+													<ObjectRef Name="Ambience" ID="{8DFEFE27-A1F7-4CE8-9DAA-586C8A73ADAC}" WorkUnitID="{6C0969E1-B09C-4693-BC3C-B2E7116B2AEE}"/>
+												</Reference>
+											</ReferenceList>
+											<ChildrenList>
+												<AudioFileSource Name="sfx_AM_Cemetery_metal_groans_03" ID="{0CFE1F9D-7BA2-4E00-A2B1-03195E78B350}">
+													<Language>SFX</Language>
+													<AudioFile>Ambience\Cemetery\CEMETERY\sfx_AM_Cemetery_metal_groans_03.wav</AudioFile>
+													<MediaIDList>
+														<MediaID ID="975154704"/>
+													</MediaIDList>
+												</AudioFileSource>
+											</ChildrenList>
+											<ActiveSourceList>
+												<ActiveSource Name="sfx_AM_Cemetery_metal_groans_03" ID="{0CFE1F9D-7BA2-4E00-A2B1-03195E78B350}" Platform="Linked"/>
+											</ActiveSourceList>
+										</Sound>
+									</ChildrenList>
+								</RandomSequenceContainer>
+							</ChildrenList>
+						</ActorMixer>
+						<ActorMixer Name="Crypt" ID="{3D0A40AF-0C6F-4D13-8C3B-0430D097BC6A}" ShortID="153658349">
+							<ReferenceList>
+								<Reference Name="Conversion">
+									<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{1E13664B-E694-4203-95E7-AEB6212579F7}"/>
+								</Reference>
+								<Reference Name="OutputBus">
+									<ObjectRef Name="MASTER" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{6C0969E1-B09C-4693-BC3C-B2E7116B2AEE}"/>
+								</Reference>
+							</ReferenceList>
+							<ChildrenList>
+								<ActorMixer Name="Crypt_2D" ID="{C41F4A82-9C8D-443F-90F9-89470FF90F4E}" ShortID="469992019">
+									<PropertyList>
+										<Property Name="OverrideOutput" Type="bool" Value="True"/>
+									</PropertyList>
+									<ReferenceList>
+										<Reference Name="Conversion">
+											<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{1E13664B-E694-4203-95E7-AEB6212579F7}"/>
+										</Reference>
+										<Reference Name="OutputBus">
+											<ObjectRef Name="2DAmbience" ID="{1455F7EC-E3F5-41DC-B407-C8903F15F5FF}" WorkUnitID="{6C0969E1-B09C-4693-BC3C-B2E7116B2AEE}"/>
+										</Reference>
+									</ReferenceList>
+								</ActorMixer>
+								<ActorMixer Name="Crypt_3D" ID="{D254E72B-C56D-4DAB-976F-980E8E987625}" ShortID="360582829">
+									<PropertyList>
+										<Property Name="OverrideOutput" Type="bool" Value="True"/>
+									</PropertyList>
+									<ReferenceList>
+										<Reference Name="Conversion">
+											<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{1E13664B-E694-4203-95E7-AEB6212579F7}"/>
+										</Reference>
+										<Reference Name="OutputBus">
+											<ObjectRef Name="3DAmbience" ID="{36177B26-1772-4FCB-B236-47A03AB6A606}" WorkUnitID="{6C0969E1-B09C-4693-BC3C-B2E7116B2AEE}"/>
+										</Reference>
+									</ReferenceList>
+								</ActorMixer>
+								<Folder Name="CRYPT" ID="{7C54CBF5-08C1-4063-8E5B-032812188537}" ShortID="503836299">
+									<ChildrenList>
+										<Sound Name="sfx_AM_bell_01" ID="{8E7B6639-4C75-4691-A114-5ED016712267}" ShortID="403713505">
+											<ReferenceList>
+												<Reference Name="Conversion">
+													<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{1E13664B-E694-4203-95E7-AEB6212579F7}"/>
+												</Reference>
+												<Reference Name="OutputBus">
+													<ObjectRef Name="MASTER" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{6C0969E1-B09C-4693-BC3C-B2E7116B2AEE}"/>
+												</Reference>
+											</ReferenceList>
+											<ChildrenList>
+												<AudioFileSource Name="sfx_AM_bell_01" ID="{C7A048E3-1912-4D79-8A5C-24FE4175CB76}">
+													<Language>SFX</Language>
+													<AudioFile>Ambience\Crypt\CRYPT\sfx_AM_bell_01.wav</AudioFile>
+													<MediaIDList>
+														<MediaID ID="623422857"/>
+													</MediaIDList>
+												</AudioFileSource>
+											</ChildrenList>
+											<ActiveSourceList>
+												<ActiveSource Name="sfx_AM_bell_01" ID="{C7A048E3-1912-4D79-8A5C-24FE4175CB76}" Platform="Linked"/>
+											</ActiveSourceList>
+										</Sound>
+										<Sound Name="sfx_AM_bell_02" ID="{B56DE27B-8506-4501-B65C-C1EC642C7A44}" ShortID="143354141">
+											<ReferenceList>
+												<Reference Name="Conversion">
+													<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{1E13664B-E694-4203-95E7-AEB6212579F7}"/>
+												</Reference>
+												<Reference Name="OutputBus">
+													<ObjectRef Name="MASTER" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{6C0969E1-B09C-4693-BC3C-B2E7116B2AEE}"/>
+												</Reference>
+											</ReferenceList>
+											<ChildrenList>
+												<AudioFileSource Name="sfx_AM_bell_02" ID="{5421BEA8-EBBA-4BA7-99B6-D649C352AF8F}">
+													<Language>SFX</Language>
+													<AudioFile>Ambience\Crypt\CRYPT\sfx_AM_bell_02.wav</AudioFile>
+													<MediaIDList>
+														<MediaID ID="439327463"/>
+													</MediaIDList>
+												</AudioFileSource>
+											</ChildrenList>
+											<ActiveSourceList>
+												<ActiveSource Name="sfx_AM_bell_02" ID="{5421BEA8-EBBA-4BA7-99B6-D649C352AF8F}" Platform="Linked"/>
+											</ActiveSourceList>
+										</Sound>
+										<Sound Name="sfx_AM_bell_03" ID="{C6197B13-4AEA-4410-96A5-27D4BB9359A5}" ShortID="260479518">
+											<ReferenceList>
+												<Reference Name="Conversion">
+													<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{1E13664B-E694-4203-95E7-AEB6212579F7}"/>
+												</Reference>
+												<Reference Name="OutputBus">
+													<ObjectRef Name="MASTER" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{6C0969E1-B09C-4693-BC3C-B2E7116B2AEE}"/>
+												</Reference>
+											</ReferenceList>
+											<ChildrenList>
+												<AudioFileSource Name="sfx_AM_bell_03" ID="{1FB17DCB-6E17-41D0-9B3C-5097B0F7CA57}">
+													<Language>SFX</Language>
+													<AudioFile>Ambience\Crypt\CRYPT\sfx_AM_bell_03.wav</AudioFile>
+													<MediaIDList>
+														<MediaID ID="472378842"/>
+													</MediaIDList>
+												</AudioFileSource>
+											</ChildrenList>
+											<ActiveSourceList>
+												<ActiveSource Name="sfx_AM_bell_03" ID="{1FB17DCB-6E17-41D0-9B3C-5097B0F7CA57}" Platform="Linked"/>
+											</ActiveSourceList>
+										</Sound>
+										<Sound Name="sfx_AM_bell_04" ID="{3EB4CFDD-6DA0-4D15-9DF8-A998F0E53834}" ShortID="538354396">
+											<ReferenceList>
+												<Reference Name="Conversion">
+													<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{1E13664B-E694-4203-95E7-AEB6212579F7}"/>
+												</Reference>
+												<Reference Name="OutputBus">
+													<ObjectRef Name="MASTER" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{6C0969E1-B09C-4693-BC3C-B2E7116B2AEE}"/>
+												</Reference>
+											</ReferenceList>
+											<ChildrenList>
+												<AudioFileSource Name="sfx_AM_bell_04" ID="{232EC603-D050-4B8F-9E6B-83FF5067A588}">
+													<Language>SFX</Language>
+													<AudioFile>Ambience\Crypt\CRYPT\sfx_AM_bell_04.wav</AudioFile>
+													<MediaIDList>
+														<MediaID ID="207023111"/>
+													</MediaIDList>
+												</AudioFileSource>
+											</ChildrenList>
+											<ActiveSourceList>
+												<ActiveSource Name="sfx_AM_bell_04" ID="{232EC603-D050-4B8F-9E6B-83FF5067A588}" Platform="Linked"/>
+											</ActiveSourceList>
+										</Sound>
+										<Sound Name="sfx_AM_bell_05" ID="{305E9F5F-6A15-4287-A4F5-491AAFC67067}" ShortID="307125752">
+											<ReferenceList>
+												<Reference Name="Conversion">
+													<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{1E13664B-E694-4203-95E7-AEB6212579F7}"/>
+												</Reference>
+												<Reference Name="OutputBus">
+													<ObjectRef Name="MASTER" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{6C0969E1-B09C-4693-BC3C-B2E7116B2AEE}"/>
+												</Reference>
+											</ReferenceList>
+											<ChildrenList>
+												<AudioFileSource Name="sfx_AM_bell_05" ID="{FF70D124-FDA8-4014-8D8A-36B8A8CDCB6F}">
+													<Language>SFX</Language>
+													<AudioFile>Ambience\Crypt\CRYPT\sfx_AM_bell_05.wav</AudioFile>
+													<MediaIDList>
+														<MediaID ID="270756082"/>
+													</MediaIDList>
+												</AudioFileSource>
+											</ChildrenList>
+											<ActiveSourceList>
+												<ActiveSource Name="sfx_AM_bell_05" ID="{FF70D124-FDA8-4014-8D8A-36B8A8CDCB6F}" Platform="Linked"/>
+											</ActiveSourceList>
+										</Sound>
+										<Sound Name="sfx_AM_bell_06" ID="{80EE46FD-F3EA-4EDE-B56C-74B976AE5440}" ShortID="103279951">
+											<ReferenceList>
+												<Reference Name="Conversion">
+													<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{1E13664B-E694-4203-95E7-AEB6212579F7}"/>
+												</Reference>
+												<Reference Name="OutputBus">
+													<ObjectRef Name="MASTER" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{6C0969E1-B09C-4693-BC3C-B2E7116B2AEE}"/>
+												</Reference>
+											</ReferenceList>
+											<ChildrenList>
+												<AudioFileSource Name="sfx_AM_bell_06" ID="{995B9D84-9454-44CD-A03F-2F19C663830F}">
+													<Language>SFX</Language>
+													<AudioFile>Ambience\Crypt\CRYPT\sfx_AM_bell_06.wav</AudioFile>
+													<MediaIDList>
+														<MediaID ID="850838299"/>
+													</MediaIDList>
+												</AudioFileSource>
+											</ChildrenList>
+											<ActiveSourceList>
+												<ActiveSource Name="sfx_AM_bell_06" ID="{995B9D84-9454-44CD-A03F-2F19C663830F}" Platform="Linked"/>
+											</ActiveSourceList>
+										</Sound>
+										<Sound Name="sfx_AM_bell_07" ID="{AB2FC630-E49A-419A-B90C-23949564A52B}" ShortID="397214596">
+											<ReferenceList>
+												<Reference Name="Conversion">
+													<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{1E13664B-E694-4203-95E7-AEB6212579F7}"/>
+												</Reference>
+												<Reference Name="OutputBus">
+													<ObjectRef Name="MASTER" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{6C0969E1-B09C-4693-BC3C-B2E7116B2AEE}"/>
+												</Reference>
+											</ReferenceList>
+											<ChildrenList>
+												<AudioFileSource Name="sfx_AM_bell_07" ID="{25FB88F0-070E-4632-B009-9FDEF7FE82C4}">
+													<Language>SFX</Language>
+													<AudioFile>Ambience\Crypt\CRYPT\sfx_AM_bell_07.wav</AudioFile>
+													<MediaIDList>
+														<MediaID ID="186930816"/>
+													</MediaIDList>
+												</AudioFileSource>
+											</ChildrenList>
+											<ActiveSourceList>
+												<ActiveSource Name="sfx_AM_bell_07" ID="{25FB88F0-070E-4632-B009-9FDEF7FE82C4}" Platform="Linked"/>
+											</ActiveSourceList>
+										</Sound>
+										<Sound Name="sfx_AM_bell_08" ID="{741D6CAF-17F3-475D-82B1-28E7AE4A42EC}" ShortID="394624773">
+											<ReferenceList>
+												<Reference Name="Conversion">
+													<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{1E13664B-E694-4203-95E7-AEB6212579F7}"/>
+												</Reference>
+												<Reference Name="OutputBus">
+													<ObjectRef Name="MASTER" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{6C0969E1-B09C-4693-BC3C-B2E7116B2AEE}"/>
+												</Reference>
+											</ReferenceList>
+											<ChildrenList>
+												<AudioFileSource Name="sfx_AM_bell_08" ID="{E79B3BEF-2AA7-4DB7-961C-887D9AC434F5}">
+													<Language>SFX</Language>
+													<AudioFile>Ambience\Crypt\CRYPT\sfx_AM_bell_08.wav</AudioFile>
+													<MediaIDList>
+														<MediaID ID="438205917"/>
+													</MediaIDList>
+												</AudioFileSource>
+											</ChildrenList>
+											<ActiveSourceList>
+												<ActiveSource Name="sfx_AM_bell_08" ID="{E79B3BEF-2AA7-4DB7-961C-887D9AC434F5}" Platform="Linked"/>
+											</ActiveSourceList>
+										</Sound>
+										<Sound Name="sfx_AM_Crypt_01" ID="{6921EECD-9294-49D7-8957-7617598CE0ED}" ShortID="402988420">
+											<ReferenceList>
+												<Reference Name="Conversion">
+													<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{1E13664B-E694-4203-95E7-AEB6212579F7}"/>
+												</Reference>
+												<Reference Name="OutputBus">
+													<ObjectRef Name="MASTER" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{6C0969E1-B09C-4693-BC3C-B2E7116B2AEE}"/>
+												</Reference>
+											</ReferenceList>
+											<ChildrenList>
+												<AudioFileSource Name="sfx_AM_Crypt_01" ID="{80EE235D-87E8-4E30-9013-858F6A14C16D}">
+													<Language>SFX</Language>
+													<AudioFile>Ambience\Crypt\CRYPT\sfx_AM_Crypt_01.wav</AudioFile>
+													<MediaIDList>
+														<MediaID ID="255491628"/>
+													</MediaIDList>
+												</AudioFileSource>
+											</ChildrenList>
+											<ActiveSourceList>
+												<ActiveSource Name="sfx_AM_Crypt_01" ID="{80EE235D-87E8-4E30-9013-858F6A14C16D}" Platform="Linked"/>
+											</ActiveSourceList>
+										</Sound>
+										<Sound Name="sfx_AM_Crypt_ratSqueak01" ID="{C4B2578C-2FA6-41EF-A7AC-F633E19E9361}" ShortID="1050368207">
+											<ReferenceList>
+												<Reference Name="Conversion">
+													<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{1E13664B-E694-4203-95E7-AEB6212579F7}"/>
+												</Reference>
+												<Reference Name="OutputBus">
+													<ObjectRef Name="MASTER" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{6C0969E1-B09C-4693-BC3C-B2E7116B2AEE}"/>
+												</Reference>
+											</ReferenceList>
+											<ChildrenList>
+												<AudioFileSource Name="sfx_AM_Crypt_ratSqueak01" ID="{45DAB976-0D6D-4780-943F-593751873A93}">
+													<Language>SFX</Language>
+													<AudioFile>Ambience\Crypt\CRYPT\sfx_AM_Crypt_ratSqueak01.wav</AudioFile>
+													<MediaIDList>
+														<MediaID ID="769739513"/>
+													</MediaIDList>
+												</AudioFileSource>
+											</ChildrenList>
+											<ActiveSourceList>
+												<ActiveSource Name="sfx_AM_Crypt_ratSqueak01" ID="{45DAB976-0D6D-4780-943F-593751873A93}" Platform="Linked"/>
+											</ActiveSourceList>
+										</Sound>
+										<Sound Name="sfx_AM_Crypt_ratSqueak02" ID="{F4AC26C0-6C9A-423A-A4B6-99E94C4FF076}" ShortID="771684880">
+											<ReferenceList>
+												<Reference Name="Conversion">
+													<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{1E13664B-E694-4203-95E7-AEB6212579F7}"/>
+												</Reference>
+												<Reference Name="OutputBus">
+													<ObjectRef Name="MASTER" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{6C0969E1-B09C-4693-BC3C-B2E7116B2AEE}"/>
+												</Reference>
+											</ReferenceList>
+											<ChildrenList>
+												<AudioFileSource Name="sfx_AM_Crypt_ratSqueak02" ID="{D23DE4A1-42A5-44FC-BD42-DD668176865B}">
+													<Language>SFX</Language>
+													<AudioFile>Ambience\Crypt\CRYPT\sfx_AM_Crypt_ratSqueak02.wav</AudioFile>
+													<MediaIDList>
+														<MediaID ID="739389957"/>
+													</MediaIDList>
+												</AudioFileSource>
+											</ChildrenList>
+											<ActiveSourceList>
+												<ActiveSource Name="sfx_AM_Crypt_ratSqueak02" ID="{D23DE4A1-42A5-44FC-BD42-DD668176865B}" Platform="Linked"/>
+											</ActiveSourceList>
+										</Sound>
+										<Sound Name="sfx_AM_Crypt_ratSqueak03" ID="{F17D5FE1-BA64-443D-A3D7-CBABE3C3A4A8}" ShortID="226172092">
+											<ReferenceList>
+												<Reference Name="Conversion">
+													<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{1E13664B-E694-4203-95E7-AEB6212579F7}"/>
+												</Reference>
+												<Reference Name="OutputBus">
+													<ObjectRef Name="MASTER" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{6C0969E1-B09C-4693-BC3C-B2E7116B2AEE}"/>
+												</Reference>
+											</ReferenceList>
+											<ChildrenList>
+												<AudioFileSource Name="sfx_AM_Crypt_ratSqueak03" ID="{88E7C68C-D707-433F-A874-277DE5CB8AE1}">
+													<Language>SFX</Language>
+													<AudioFile>Ambience\Crypt\CRYPT\sfx_AM_Crypt_ratSqueak03.wav</AudioFile>
+													<MediaIDList>
+														<MediaID ID="772532785"/>
+													</MediaIDList>
+												</AudioFileSource>
+											</ChildrenList>
+											<ActiveSourceList>
+												<ActiveSource Name="sfx_AM_Crypt_ratSqueak03" ID="{88E7C68C-D707-433F-A874-277DE5CB8AE1}" Platform="Linked"/>
+											</ActiveSourceList>
+										</Sound>
+										<Sound Name="sfx_AM_Crypt_ratSqueak04" ID="{25D70BFD-37F1-44E2-AF15-0CFE3873AD23}" ShortID="365001382">
+											<ReferenceList>
+												<Reference Name="Conversion">
+													<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{1E13664B-E694-4203-95E7-AEB6212579F7}"/>
+												</Reference>
+												<Reference Name="OutputBus">
+													<ObjectRef Name="MASTER" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{6C0969E1-B09C-4693-BC3C-B2E7116B2AEE}"/>
+												</Reference>
+											</ReferenceList>
+											<ChildrenList>
+												<AudioFileSource Name="sfx_AM_Crypt_ratSqueak04" ID="{A4497510-4E73-4772-8903-35546D1E8252}">
+													<Language>SFX</Language>
+													<AudioFile>Ambience\Crypt\CRYPT\sfx_AM_Crypt_ratSqueak04.wav</AudioFile>
+													<MediaIDList>
+														<MediaID ID="539555040"/>
+													</MediaIDList>
+												</AudioFileSource>
+											</ChildrenList>
+											<ActiveSourceList>
+												<ActiveSource Name="sfx_AM_Crypt_ratSqueak04" ID="{A4497510-4E73-4772-8903-35546D1E8252}" Platform="Linked"/>
+											</ActiveSourceList>
+										</Sound>
+										<Sound Name="sfx_AM_Crypt_ratSqueak05" ID="{A0AB9ACD-7414-4555-8EDA-7A283B598664}" ShortID="664612519">
+											<ReferenceList>
+												<Reference Name="Conversion">
+													<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{1E13664B-E694-4203-95E7-AEB6212579F7}"/>
+												</Reference>
+												<Reference Name="OutputBus">
+													<ObjectRef Name="MASTER" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{6C0969E1-B09C-4693-BC3C-B2E7116B2AEE}"/>
+												</Reference>
+											</ReferenceList>
+											<ChildrenList>
+												<AudioFileSource Name="sfx_AM_Crypt_ratSqueak05" ID="{03A0A395-9E71-4C75-B61C-DB34DB227758}">
+													<Language>SFX</Language>
+													<AudioFile>Ambience\Crypt\CRYPT\sfx_AM_Crypt_ratSqueak05.wav</AudioFile>
+													<MediaIDList>
+														<MediaID ID="258238673"/>
+													</MediaIDList>
+												</AudioFileSource>
+											</ChildrenList>
+											<ActiveSourceList>
+												<ActiveSource Name="sfx_AM_Crypt_ratSqueak05" ID="{03A0A395-9E71-4C75-B61C-DB34DB227758}" Platform="Linked"/>
+											</ActiveSourceList>
+										</Sound>
+										<Sound Name="sfx_AM_Crypt_ratSqueak06" ID="{90A0D6A5-1671-41F0-B1A8-DF45DB3E48E8}" ShortID="187708187">
+											<ReferenceList>
+												<Reference Name="Conversion">
+													<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{1E13664B-E694-4203-95E7-AEB6212579F7}"/>
+												</Reference>
+												<Reference Name="OutputBus">
+													<ObjectRef Name="MASTER" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{6C0969E1-B09C-4693-BC3C-B2E7116B2AEE}"/>
+												</Reference>
+											</ReferenceList>
+											<ChildrenList>
+												<AudioFileSource Name="sfx_AM_Crypt_ratSqueak06" ID="{8E8A3172-1FDB-4136-B2CA-2F56A43E4964}">
+													<Language>SFX</Language>
+													<AudioFile>Ambience\Crypt\CRYPT\sfx_AM_Crypt_ratSqueak06.wav</AudioFile>
+													<MediaIDList>
+														<MediaID ID="614241328"/>
+													</MediaIDList>
+												</AudioFileSource>
+											</ChildrenList>
+											<ActiveSourceList>
+												<ActiveSource Name="sfx_AM_Crypt_ratSqueak06" ID="{8E8A3172-1FDB-4136-B2CA-2F56A43E4964}" Platform="Linked"/>
+											</ActiveSourceList>
+										</Sound>
+										<Sound Name="sfx_AM_Crypt_rubble_01" ID="{9C5EFA9A-B2ED-492B-A88C-9465D01B2729}" ShortID="202734663">
+											<ReferenceList>
+												<Reference Name="Conversion">
+													<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{1E13664B-E694-4203-95E7-AEB6212579F7}"/>
+												</Reference>
+												<Reference Name="OutputBus">
+													<ObjectRef Name="MASTER" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{6C0969E1-B09C-4693-BC3C-B2E7116B2AEE}"/>
+												</Reference>
+											</ReferenceList>
+											<ChildrenList>
+												<AudioFileSource Name="sfx_AM_Crypt_rubble_01" ID="{88712DC3-5341-4B81-9AEC-F5CA624AB0BB}">
+													<Language>SFX</Language>
+													<AudioFile>Ambience\Crypt\CRYPT\sfx_AM_Crypt_rubble_01.wav</AudioFile>
+													<MediaIDList>
+														<MediaID ID="887164602"/>
+													</MediaIDList>
+												</AudioFileSource>
+											</ChildrenList>
+											<ActiveSourceList>
+												<ActiveSource Name="sfx_AM_Crypt_rubble_01" ID="{88712DC3-5341-4B81-9AEC-F5CA624AB0BB}" Platform="Linked"/>
+											</ActiveSourceList>
+										</Sound>
+										<Sound Name="sfx_AM_Crypt_rubble_02" ID="{68FF8D6D-B4B2-44C4-9C6A-F94982CB5233}" ShortID="217125022">
+											<ReferenceList>
+												<Reference Name="Conversion">
+													<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{1E13664B-E694-4203-95E7-AEB6212579F7}"/>
+												</Reference>
+												<Reference Name="OutputBus">
+													<ObjectRef Name="MASTER" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{6C0969E1-B09C-4693-BC3C-B2E7116B2AEE}"/>
+												</Reference>
+											</ReferenceList>
+											<ChildrenList>
+												<AudioFileSource Name="sfx_AM_Crypt_rubble_02" ID="{53A22142-30A6-49D8-B429-7823A3794165}">
+													<Language>SFX</Language>
+													<AudioFile>Ambience\Crypt\CRYPT\sfx_AM_Crypt_rubble_02.wav</AudioFile>
+													<MediaIDList>
+														<MediaID ID="293344029"/>
+													</MediaIDList>
+												</AudioFileSource>
+											</ChildrenList>
+											<ActiveSourceList>
+												<ActiveSource Name="sfx_AM_Crypt_rubble_02" ID="{53A22142-30A6-49D8-B429-7823A3794165}" Platform="Linked"/>
+											</ActiveSourceList>
+										</Sound>
+										<Sound Name="sfx_AM_Crypt_rubble_03" ID="{32E91A94-A20E-4EE7-B2CE-F2EF0259472C}" ShortID="991901052">
+											<ReferenceList>
+												<Reference Name="Conversion">
+													<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{1E13664B-E694-4203-95E7-AEB6212579F7}"/>
+												</Reference>
+												<Reference Name="OutputBus">
+													<ObjectRef Name="MASTER" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{6C0969E1-B09C-4693-BC3C-B2E7116B2AEE}"/>
+												</Reference>
+											</ReferenceList>
+											<ChildrenList>
+												<AudioFileSource Name="sfx_AM_Crypt_rubble_03" ID="{8BF825D3-8705-4FD3-88AB-8DE2E1EA5B99}">
+													<Language>SFX</Language>
+													<AudioFile>Ambience\Crypt\CRYPT\sfx_AM_Crypt_rubble_03.wav</AudioFile>
+													<MediaIDList>
+														<MediaID ID="237439257"/>
+													</MediaIDList>
+												</AudioFileSource>
+											</ChildrenList>
+											<ActiveSourceList>
+												<ActiveSource Name="sfx_AM_Crypt_rubble_03" ID="{8BF825D3-8705-4FD3-88AB-8DE2E1EA5B99}" Platform="Linked"/>
+											</ActiveSourceList>
+										</Sound>
+										<Sound Name="sfx_AM_Crypt_rubble_04" ID="{CEE58581-E43E-43C9-8F85-0F5DDEB40466}" ShortID="491025581">
+											<ReferenceList>
+												<Reference Name="Conversion">
+													<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{1E13664B-E694-4203-95E7-AEB6212579F7}"/>
+												</Reference>
+												<Reference Name="OutputBus">
+													<ObjectRef Name="MASTER" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{6C0969E1-B09C-4693-BC3C-B2E7116B2AEE}"/>
+												</Reference>
+											</ReferenceList>
+											<ChildrenList>
+												<AudioFileSource Name="sfx_AM_Crypt_rubble_04" ID="{04B05428-B919-428B-AF84-E42C1BCF0D86}">
+													<Language>SFX</Language>
+													<AudioFile>Ambience\Crypt\CRYPT\sfx_AM_Crypt_rubble_04.wav</AudioFile>
+													<MediaIDList>
+														<MediaID ID="982019515"/>
+													</MediaIDList>
+												</AudioFileSource>
+											</ChildrenList>
+											<ActiveSourceList>
+												<ActiveSource Name="sfx_AM_Crypt_rubble_04" ID="{04B05428-B919-428B-AF84-E42C1BCF0D86}" Platform="Linked"/>
+											</ActiveSourceList>
+										</Sound>
+									</ChildrenList>
+								</Folder>
+							</ChildrenList>
+						</ActorMixer>
+					</ChildrenList>
 				</ActorMixer>
 			</ChildrenList>
 		</WorkUnit>

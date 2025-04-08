@@ -15,6 +15,46 @@
 								<Property Name="Color" Type="int16" Value="16"/>
 								<Property Name="OverrideColor" Type="bool" Value="True"/>
 							</PropertyList>
+							<ObjectLists>
+								<ObjectList Name="RTPC">
+									<Reference>
+										<Local>
+											<RTPC Name="" ID="{2F1E9BD7-AB38-42D5-AAE4-A05D6AF1947A}" ShortID="561890434">
+												<PropertyList>
+													<Property Name="PropertyName" Type="string" Value="BusVolume"/>
+												</PropertyList>
+												<ReferenceList>
+													<Reference Name="ControlInput">
+														<ObjectRef Name="MusicVol_RTPC" ID="{69C3C129-89F8-4FD7-B4BD-B74A93C9CAF1}" WorkUnitID="{4BB587C7-F5F5-4FBE-AD3E-2AADCE4707E1}"/>
+													</Reference>
+													<Reference Name="Curve">
+														<Custom>
+															<Curve Name="" ID="{7E469760-6866-4F76-8ABC-575DC412631F}">
+																<PropertyList>
+																	<Property Name="Flags" Type="int32" Value="3"/>
+																</PropertyList>
+																<PointList>
+																	<Point>
+																		<XPos>0</XPos>
+																		<YPos>-200</YPos>
+																		<Flags>5</Flags>
+																		<SegmentShape>Log1</SegmentShape>
+																	</Point>
+																	<Point>
+																		<XPos>100</XPos>
+																		<YPos>0</YPos>
+																		<Flags>37</Flags>
+																	</Point>
+																</PointList>
+															</Curve>
+														</Custom>
+													</Reference>
+												</ReferenceList>
+											</RTPC>
+										</Local>
+									</Reference>
+								</ObjectList>
+							</ObjectLists>
 						</Bus>
 						<Bus Name="SFX" ID="{7DE5626E-C0D2-4CD3-8CCC-12EEFCC9C14F}">
 							<PropertyList>
@@ -81,7 +121,53 @@
 										<Property Name="OverrideColor" Type="bool" Value="True"/>
 									</PropertyList>
 								</Bus>
+								<Bus Name="Events" ID="{5E544AF0-8CA4-480A-8A93-5D0D2785ED11}">
+									<PropertyList>
+										<Property Name="Color" Type="int16" Value="17"/>
+										<Property Name="OverrideColor" Type="bool" Value="True"/>
+									</PropertyList>
+								</Bus>
 							</ChildrenList>
+							<ObjectLists>
+								<ObjectList Name="RTPC">
+									<Reference>
+										<Local>
+											<RTPC Name="" ID="{195F7FAF-A85C-4B32-8926-B152C34C40CE}" ShortID="104766103">
+												<PropertyList>
+													<Property Name="PropertyName" Type="string" Value="BusVolume"/>
+												</PropertyList>
+												<ReferenceList>
+													<Reference Name="ControlInput">
+														<ObjectRef Name="SFXVol_RTPC" ID="{B184FAA8-76B4-4526-B060-91636C7485E6}" WorkUnitID="{4BB587C7-F5F5-4FBE-AD3E-2AADCE4707E1}"/>
+													</Reference>
+													<Reference Name="Curve">
+														<Custom>
+															<Curve Name="" ID="{DFF63133-EBF5-412C-837E-B557E66AA9F7}">
+																<PropertyList>
+																	<Property Name="Flags" Type="int32" Value="3"/>
+																</PropertyList>
+																<PointList>
+																	<Point>
+																		<XPos>0</XPos>
+																		<YPos>-200</YPos>
+																		<Flags>5</Flags>
+																		<SegmentShape>Log1</SegmentShape>
+																	</Point>
+																	<Point>
+																		<XPos>100</XPos>
+																		<YPos>0</YPos>
+																		<Flags>37</Flags>
+																	</Point>
+																</PointList>
+															</Curve>
+														</Custom>
+													</Reference>
+												</ReferenceList>
+											</RTPC>
+										</Local>
+									</Reference>
+								</ObjectList>
+							</ObjectLists>
 						</Bus>
 						<AuxBus Name="Reverbs" ID="{E2DD48B8-DF48-42FD-A5DA-08D046052454}">
 							<ChildrenList>
@@ -96,17 +182,17 @@
 						<ObjectList Name="RTPC">
 							<Reference>
 								<Local>
-									<RTPC Name="" ID="{2DFFFCA6-9DBA-49B6-B118-D8111AF6A6AF}" ShortID="1065186433">
+									<RTPC Name="" ID="{02163E70-B386-4057-9DF5-54B31A6129DE}" ShortID="236947585">
 										<PropertyList>
 											<Property Name="PropertyName" Type="string" Value="BusVolume"/>
 										</PropertyList>
 										<ReferenceList>
 											<Reference Name="ControlInput">
-												<ObjectRef Name="Levels_Main" ID="{AB0BDA09-BFDD-4754-A449-DB1D0A592CC1}" WorkUnitID="{4BB587C7-F5F5-4FBE-AD3E-2AADCE4707E1}"/>
+												<ObjectRef Name="MasterVol_RTPC" ID="{1F3AB696-B0E0-4073-9B43-E691E8ECFB4B}" WorkUnitID="{4BB587C7-F5F5-4FBE-AD3E-2AADCE4707E1}"/>
 											</Reference>
 											<Reference Name="Curve">
 												<Custom>
-													<Curve Name="" ID="{7FBE455F-CCC1-4173-97F0-0B49AFF45228}">
+													<Curve Name="" ID="{7BCB0738-7E75-424C-B6C3-53B608D97852}">
 														<PropertyList>
 															<Property Name="Flags" Type="int32" Value="3"/>
 														</PropertyList>
@@ -115,6 +201,7 @@
 																<XPos>0</XPos>
 																<YPos>-200</YPos>
 																<Flags>5</Flags>
+																<SegmentShape>Log1</SegmentShape>
 															</Point>
 															<Point>
 																<XPos>100</XPos>

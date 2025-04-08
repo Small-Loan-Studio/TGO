@@ -10,12 +10,728 @@
 				<ActorMixer Name="Interactables" ID="{27AC5797-F51F-4C7B-8590-C50C169B677C}" ShortID="723873243">
 					<ReferenceList>
 						<Reference Name="Conversion">
-							<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{1E13664B-E694-4203-95E7-AEB6212579F7}"/>
+							<ObjectRef Name="CS_PC_SFX_High" ID="{11A47DD3-D0C7-4288-A9B3-09CFC6D530CF}" WorkUnitID="{1E13664B-E694-4203-95E7-AEB6212579F7}"/>
 						</Reference>
 						<Reference Name="OutputBus">
 							<ObjectRef Name="Interactables" ID="{A3E72D92-3E4A-4EC1-96EA-196EC484C398}" WorkUnitID="{6C0969E1-B09C-4693-BC3C-B2E7116B2AEE}"/>
 						</Reference>
 					</ReferenceList>
+					<ChildrenList>
+						<RandomSequenceContainer Name="IN_PaperScraps_pickup" ID="{541FB1EE-A624-4C33-9DB7-44D8AE61F23A}" ShortID="97234125">
+							<ReferenceList>
+								<Reference Name="Conversion">
+									<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{1E13664B-E694-4203-95E7-AEB6212579F7}"/>
+								</Reference>
+								<Reference Name="OutputBus">
+									<ObjectRef Name="MASTER" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{6C0969E1-B09C-4693-BC3C-B2E7116B2AEE}"/>
+								</Reference>
+							</ReferenceList>
+							<ChildrenList>
+								<Sound Name="sfx_IN_PaperScraps_pickup_03" ID="{2DB30CE4-642A-4A01-A613-DCC20B8EC927}" ShortID="183812766">
+									<ReferenceList>
+										<Reference Name="Conversion">
+											<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{1E13664B-E694-4203-95E7-AEB6212579F7}"/>
+										</Reference>
+										<Reference Name="OutputBus">
+											<ObjectRef Name="Interactables" ID="{A3E72D92-3E4A-4EC1-96EA-196EC484C398}" WorkUnitID="{6C0969E1-B09C-4693-BC3C-B2E7116B2AEE}"/>
+										</Reference>
+									</ReferenceList>
+									<ChildrenList>
+										<AudioFileSource Name="sfx_IN_PaperScraps_pickup_03" ID="{A133B5D4-5EA5-46C4-A318-D4604624FDB6}">
+											<Language>SFX</Language>
+											<AudioFile>Interactables\sfx_IN_PaperScraps_pickup_03.wav</AudioFile>
+											<MediaIDList>
+												<MediaID ID="335546730"/>
+											</MediaIDList>
+										</AudioFileSource>
+									</ChildrenList>
+									<ActiveSourceList>
+										<ActiveSource Name="sfx_IN_PaperScraps_pickup_03" ID="{A133B5D4-5EA5-46C4-A318-D4604624FDB6}" Platform="Linked"/>
+									</ActiveSourceList>
+								</Sound>
+								<Sound Name="sfx_IN_PaperScraps_pickup_04" ID="{EDA54BD9-421F-452B-B321-041AB0E5C188}" ShortID="544108995">
+									<ReferenceList>
+										<Reference Name="Conversion">
+											<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{1E13664B-E694-4203-95E7-AEB6212579F7}"/>
+										</Reference>
+										<Reference Name="OutputBus">
+											<ObjectRef Name="Interactables" ID="{A3E72D92-3E4A-4EC1-96EA-196EC484C398}" WorkUnitID="{6C0969E1-B09C-4693-BC3C-B2E7116B2AEE}"/>
+										</Reference>
+									</ReferenceList>
+									<ChildrenList>
+										<AudioFileSource Name="sfx_IN_PaperScraps_pickup_04" ID="{6C2A2D32-F3D7-4919-8D30-A2E02FD37E0E}">
+											<Language>SFX</Language>
+											<AudioFile>Interactables\sfx_IN_PaperScraps_pickup_04.wav</AudioFile>
+											<MediaIDList>
+												<MediaID ID="424456738"/>
+											</MediaIDList>
+										</AudioFileSource>
+									</ChildrenList>
+									<ActiveSourceList>
+										<ActiveSource Name="sfx_IN_PaperScraps_pickup_04" ID="{6C2A2D32-F3D7-4919-8D30-A2E02FD37E0E}" Platform="Linked"/>
+									</ActiveSourceList>
+								</Sound>
+								<Sound Name="sfx_IN_PaperScraps_pickup_02" ID="{24795A46-E964-425A-851A-C22E4DBB90EE}" ShortID="942176519">
+									<ReferenceList>
+										<Reference Name="Conversion">
+											<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{1E13664B-E694-4203-95E7-AEB6212579F7}"/>
+										</Reference>
+										<Reference Name="OutputBus">
+											<ObjectRef Name="Interactables" ID="{A3E72D92-3E4A-4EC1-96EA-196EC484C398}" WorkUnitID="{6C0969E1-B09C-4693-BC3C-B2E7116B2AEE}"/>
+										</Reference>
+									</ReferenceList>
+									<ChildrenList>
+										<AudioFileSource Name="sfx_IN_PaperScraps_pickup_02" ID="{364A9E5C-E640-4F36-8CC5-99C5BA4C4E36}">
+											<Language>SFX</Language>
+											<AudioFile>Interactables\sfx_IN_PaperScraps_pickup_02.wav</AudioFile>
+											<MediaIDList>
+												<MediaID ID="994693825"/>
+											</MediaIDList>
+										</AudioFileSource>
+									</ChildrenList>
+									<ActiveSourceList>
+										<ActiveSource Name="sfx_IN_PaperScraps_pickup_02" ID="{364A9E5C-E640-4F36-8CC5-99C5BA4C4E36}" Platform="Linked"/>
+									</ActiveSourceList>
+								</Sound>
+								<Sound Name="sfx_IN_PaperScraps_pickup_01" ID="{A4C982C2-EEE6-4D47-96E7-7F4E92219052}" ShortID="641386266">
+									<ReferenceList>
+										<Reference Name="Conversion">
+											<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{1E13664B-E694-4203-95E7-AEB6212579F7}"/>
+										</Reference>
+										<Reference Name="OutputBus">
+											<ObjectRef Name="Interactables" ID="{A3E72D92-3E4A-4EC1-96EA-196EC484C398}" WorkUnitID="{6C0969E1-B09C-4693-BC3C-B2E7116B2AEE}"/>
+										</Reference>
+									</ReferenceList>
+									<ChildrenList>
+										<AudioFileSource Name="sfx_IN_PaperScraps_pickup_01" ID="{5F100396-00FE-42E0-AB7E-AB3FC6E55C4B}">
+											<Language>SFX</Language>
+											<AudioFile>Interactables\sfx_IN_PaperScraps_pickup_01.wav</AudioFile>
+											<MediaIDList>
+												<MediaID ID="908634692"/>
+											</MediaIDList>
+										</AudioFileSource>
+									</ChildrenList>
+									<ActiveSourceList>
+										<ActiveSource Name="sfx_IN_PaperScraps_pickup_01" ID="{5F100396-00FE-42E0-AB7E-AB3FC6E55C4B}" Platform="Linked"/>
+									</ActiveSourceList>
+								</Sound>
+								<Sound Name="sfx_IN_PaperScraps_pickup_05" ID="{23FA1AAB-D09A-4C61-81C7-B12B566DB158}" ShortID="585997038">
+									<ReferenceList>
+										<Reference Name="Conversion">
+											<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{1E13664B-E694-4203-95E7-AEB6212579F7}"/>
+										</Reference>
+										<Reference Name="OutputBus">
+											<ObjectRef Name="Interactables" ID="{A3E72D92-3E4A-4EC1-96EA-196EC484C398}" WorkUnitID="{6C0969E1-B09C-4693-BC3C-B2E7116B2AEE}"/>
+										</Reference>
+									</ReferenceList>
+									<ChildrenList>
+										<AudioFileSource Name="sfx_IN_PaperScraps_pickup_05" ID="{761CB7F7-2D04-4CBE-9093-ABCA76391C85}">
+											<Language>SFX</Language>
+											<AudioFile>Interactables\sfx_IN_PaperScraps_pickup_05.wav</AudioFile>
+											<MediaIDList>
+												<MediaID ID="909525762"/>
+											</MediaIDList>
+										</AudioFileSource>
+									</ChildrenList>
+									<ActiveSourceList>
+										<ActiveSource Name="sfx_IN_PaperScraps_pickup_05" ID="{761CB7F7-2D04-4CBE-9093-ABCA76391C85}" Platform="Linked"/>
+									</ActiveSourceList>
+								</Sound>
+							</ChildrenList>
+						</RandomSequenceContainer>
+						<RandomSequenceContainer Name="IN_SkeletalRemains_search" ID="{E2F0E520-8731-4F55-A09D-4A4912422E33}" ShortID="640350388">
+							<ReferenceList>
+								<Reference Name="Conversion">
+									<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{1E13664B-E694-4203-95E7-AEB6212579F7}"/>
+								</Reference>
+								<Reference Name="OutputBus">
+									<ObjectRef Name="MASTER" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{6C0969E1-B09C-4693-BC3C-B2E7116B2AEE}"/>
+								</Reference>
+							</ReferenceList>
+							<ChildrenList>
+								<Sound Name="sfx_IN_SkeletalRemains_search_01" ID="{7E5D1616-45D0-4473-AB7B-DEA96B54BA78}" ShortID="11836651">
+									<ReferenceList>
+										<Reference Name="Conversion">
+											<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{1E13664B-E694-4203-95E7-AEB6212579F7}"/>
+										</Reference>
+										<Reference Name="OutputBus">
+											<ObjectRef Name="Interactables" ID="{A3E72D92-3E4A-4EC1-96EA-196EC484C398}" WorkUnitID="{6C0969E1-B09C-4693-BC3C-B2E7116B2AEE}"/>
+										</Reference>
+									</ReferenceList>
+									<ChildrenList>
+										<AudioFileSource Name="sfx_IN_SkeletalRemains_search_01" ID="{06B1C6E1-D793-445E-BC57-DF77A6BE3678}">
+											<Language>SFX</Language>
+											<AudioFile>Interactables\sfx_IN_SkeletalRemains_search_01.wav</AudioFile>
+											<MediaIDList>
+												<MediaID ID="753254942"/>
+											</MediaIDList>
+										</AudioFileSource>
+									</ChildrenList>
+									<ActiveSourceList>
+										<ActiveSource Name="sfx_IN_SkeletalRemains_search_01" ID="{06B1C6E1-D793-445E-BC57-DF77A6BE3678}" Platform="Linked"/>
+									</ActiveSourceList>
+								</Sound>
+								<Sound Name="sfx_IN_SkeletalRemains_search_02" ID="{8455436F-25C2-49D1-A246-F311C7A8E11E}" ShortID="565059551">
+									<ReferenceList>
+										<Reference Name="Conversion">
+											<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{1E13664B-E694-4203-95E7-AEB6212579F7}"/>
+										</Reference>
+										<Reference Name="OutputBus">
+											<ObjectRef Name="Interactables" ID="{A3E72D92-3E4A-4EC1-96EA-196EC484C398}" WorkUnitID="{6C0969E1-B09C-4693-BC3C-B2E7116B2AEE}"/>
+										</Reference>
+									</ReferenceList>
+									<ChildrenList>
+										<AudioFileSource Name="sfx_IN_SkeletalRemains_search_02" ID="{4A0C607E-70E6-44D1-ACD7-5D94A19C9A54}">
+											<Language>SFX</Language>
+											<AudioFile>Interactables\sfx_IN_SkeletalRemains_search_02.wav</AudioFile>
+											<MediaIDList>
+												<MediaID ID="289099580"/>
+											</MediaIDList>
+										</AudioFileSource>
+									</ChildrenList>
+									<ActiveSourceList>
+										<ActiveSource Name="sfx_IN_SkeletalRemains_search_02" ID="{4A0C607E-70E6-44D1-ACD7-5D94A19C9A54}" Platform="Linked"/>
+									</ActiveSourceList>
+								</Sound>
+								<Sound Name="sfx_IN_SkeletalRemains_search_03" ID="{3C6CBB8B-0395-4554-85B2-66884C4ECB6F}" ShortID="73756045">
+									<ReferenceList>
+										<Reference Name="Conversion">
+											<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{1E13664B-E694-4203-95E7-AEB6212579F7}"/>
+										</Reference>
+										<Reference Name="OutputBus">
+											<ObjectRef Name="Interactables" ID="{A3E72D92-3E4A-4EC1-96EA-196EC484C398}" WorkUnitID="{6C0969E1-B09C-4693-BC3C-B2E7116B2AEE}"/>
+										</Reference>
+									</ReferenceList>
+									<ChildrenList>
+										<AudioFileSource Name="sfx_IN_SkeletalRemains_search_03" ID="{8B4FEF52-BD9C-4CE6-9589-AF54E1D2037B}">
+											<Language>SFX</Language>
+											<AudioFile>Interactables\sfx_IN_SkeletalRemains_search_03.wav</AudioFile>
+											<MediaIDList>
+												<MediaID ID="682301963"/>
+											</MediaIDList>
+										</AudioFileSource>
+									</ChildrenList>
+									<ActiveSourceList>
+										<ActiveSource Name="sfx_IN_SkeletalRemains_search_03" ID="{8B4FEF52-BD9C-4CE6-9589-AF54E1D2037B}" Platform="Linked"/>
+									</ActiveSourceList>
+								</Sound>
+							</ChildrenList>
+						</RandomSequenceContainer>
+						<Folder Name="Consumables" ID="{7C22C5E2-3E4F-45B0-94A8-D1523C8D2997}" ShortID="281902535">
+							<ChildrenList>
+								<RandomSequenceContainer Name="IN_hardtack_pickup" ID="{60A10CD0-93A8-4A70-A334-ED6DC6035E49}" ShortID="184013893">
+									<ReferenceList>
+										<Reference Name="Conversion">
+											<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{1E13664B-E694-4203-95E7-AEB6212579F7}"/>
+										</Reference>
+										<Reference Name="OutputBus">
+											<ObjectRef Name="Interactables" ID="{A3E72D92-3E4A-4EC1-96EA-196EC484C398}" WorkUnitID="{6C0969E1-B09C-4693-BC3C-B2E7116B2AEE}"/>
+										</Reference>
+									</ReferenceList>
+									<ChildrenList>
+										<Sound Name="sfx_IN_hardtack_pickup_04" ID="{7F2648F2-0922-4CAB-93EE-7CE84A8461D0}" ShortID="675093631">
+											<ReferenceList>
+												<Reference Name="Conversion">
+													<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{1E13664B-E694-4203-95E7-AEB6212579F7}"/>
+												</Reference>
+												<Reference Name="OutputBus">
+													<ObjectRef Name="Interactables" ID="{A3E72D92-3E4A-4EC1-96EA-196EC484C398}" WorkUnitID="{6C0969E1-B09C-4693-BC3C-B2E7116B2AEE}"/>
+												</Reference>
+											</ReferenceList>
+											<ChildrenList>
+												<AudioFileSource Name="sfx_IN_hardtack_pickup_04" ID="{70932A82-F68D-422E-93C0-5A1822DBEA91}">
+													<Language>SFX</Language>
+													<AudioFile>Interactables\sfx_IN_hardtack_pickup_04.wav</AudioFile>
+													<MediaIDList>
+														<MediaID ID="32894456"/>
+													</MediaIDList>
+												</AudioFileSource>
+											</ChildrenList>
+											<ActiveSourceList>
+												<ActiveSource Name="sfx_IN_hardtack_pickup_04" ID="{70932A82-F68D-422E-93C0-5A1822DBEA91}" Platform="Linked"/>
+											</ActiveSourceList>
+										</Sound>
+										<Sound Name="sfx_IN_hardtack_pickup_01" ID="{CB3CB500-A2AF-4607-B66E-87267007A8E5}" ShortID="845252442">
+											<ReferenceList>
+												<Reference Name="Conversion">
+													<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{1E13664B-E694-4203-95E7-AEB6212579F7}"/>
+												</Reference>
+												<Reference Name="OutputBus">
+													<ObjectRef Name="Interactables" ID="{A3E72D92-3E4A-4EC1-96EA-196EC484C398}" WorkUnitID="{6C0969E1-B09C-4693-BC3C-B2E7116B2AEE}"/>
+												</Reference>
+											</ReferenceList>
+											<ChildrenList>
+												<AudioFileSource Name="sfx_IN_hardtack_pickup_01" ID="{322A3E44-D83F-4A80-8F59-BDD3F5DFE1D0}">
+													<Language>SFX</Language>
+													<AudioFile>Interactables\sfx_IN_hardtack_pickup_01.wav</AudioFile>
+													<MediaIDList>
+														<MediaID ID="43701935"/>
+													</MediaIDList>
+												</AudioFileSource>
+											</ChildrenList>
+											<ActiveSourceList>
+												<ActiveSource Name="sfx_IN_hardtack_pickup_01" ID="{322A3E44-D83F-4A80-8F59-BDD3F5DFE1D0}" Platform="Linked"/>
+											</ActiveSourceList>
+										</Sound>
+										<Sound Name="sfx_IN_hardtack_pickup_05" ID="{5DF7530B-C061-4B50-A6AC-A1B1A8DB2AB5}" ShortID="79219949">
+											<ReferenceList>
+												<Reference Name="Conversion">
+													<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{1E13664B-E694-4203-95E7-AEB6212579F7}"/>
+												</Reference>
+												<Reference Name="OutputBus">
+													<ObjectRef Name="Interactables" ID="{A3E72D92-3E4A-4EC1-96EA-196EC484C398}" WorkUnitID="{6C0969E1-B09C-4693-BC3C-B2E7116B2AEE}"/>
+												</Reference>
+											</ReferenceList>
+											<ChildrenList>
+												<AudioFileSource Name="sfx_IN_hardtack_pickup_05" ID="{2CF63A51-60DC-42CB-B08A-30135839AB28}">
+													<Language>SFX</Language>
+													<AudioFile>Interactables\sfx_IN_hardtack_pickup_05.wav</AudioFile>
+													<MediaIDList>
+														<MediaID ID="794700476"/>
+													</MediaIDList>
+												</AudioFileSource>
+											</ChildrenList>
+											<ActiveSourceList>
+												<ActiveSource Name="sfx_IN_hardtack_pickup_05" ID="{2CF63A51-60DC-42CB-B08A-30135839AB28}" Platform="Linked"/>
+											</ActiveSourceList>
+										</Sound>
+										<Sound Name="sfx_IN_hardtack_pickup_02" ID="{BC53A096-ED60-4161-9A2A-D839683FBAC7}" ShortID="895392863">
+											<ReferenceList>
+												<Reference Name="Conversion">
+													<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{1E13664B-E694-4203-95E7-AEB6212579F7}"/>
+												</Reference>
+												<Reference Name="OutputBus">
+													<ObjectRef Name="Interactables" ID="{A3E72D92-3E4A-4EC1-96EA-196EC484C398}" WorkUnitID="{6C0969E1-B09C-4693-BC3C-B2E7116B2AEE}"/>
+												</Reference>
+											</ReferenceList>
+											<ChildrenList>
+												<AudioFileSource Name="sfx_IN_hardtack_pickup_02" ID="{D5133BCB-3AA0-472F-9F96-3ACDE386659D}">
+													<Language>SFX</Language>
+													<AudioFile>Interactables\sfx_IN_hardtack_pickup_02.wav</AudioFile>
+													<MediaIDList>
+														<MediaID ID="306168258"/>
+													</MediaIDList>
+												</AudioFileSource>
+											</ChildrenList>
+											<ActiveSourceList>
+												<ActiveSource Name="sfx_IN_hardtack_pickup_02" ID="{D5133BCB-3AA0-472F-9F96-3ACDE386659D}" Platform="Linked"/>
+											</ActiveSourceList>
+										</Sound>
+										<Sound Name="sfx_IN_hardtack_pickup_03" ID="{65B892CC-F99C-4A4A-9EAE-D9C17AE9EA9A}" ShortID="729642637">
+											<ReferenceList>
+												<Reference Name="Conversion">
+													<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{1E13664B-E694-4203-95E7-AEB6212579F7}"/>
+												</Reference>
+												<Reference Name="OutputBus">
+													<ObjectRef Name="Interactables" ID="{A3E72D92-3E4A-4EC1-96EA-196EC484C398}" WorkUnitID="{6C0969E1-B09C-4693-BC3C-B2E7116B2AEE}"/>
+												</Reference>
+											</ReferenceList>
+											<ChildrenList>
+												<AudioFileSource Name="sfx_IN_hardtack_pickup_03" ID="{810C1262-C29F-4860-B9BD-715941FF798A}">
+													<Language>SFX</Language>
+													<AudioFile>Interactables\sfx_IN_hardtack_pickup_03.wav</AudioFile>
+													<MediaIDList>
+														<MediaID ID="230963465"/>
+													</MediaIDList>
+												</AudioFileSource>
+											</ChildrenList>
+											<ActiveSourceList>
+												<ActiveSource Name="sfx_IN_hardtack_pickup_03" ID="{810C1262-C29F-4860-B9BD-715941FF798A}" Platform="Linked"/>
+											</ActiveSourceList>
+										</Sound>
+									</ChildrenList>
+								</RandomSequenceContainer>
+								<RandomSequenceContainer Name="IN_hardtack_eat" ID="{B25445F6-D0C6-4B4C-B31D-FE69D7E0F092}" ShortID="531154540">
+									<ReferenceList>
+										<Reference Name="Conversion">
+											<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{1E13664B-E694-4203-95E7-AEB6212579F7}"/>
+										</Reference>
+										<Reference Name="OutputBus">
+											<ObjectRef Name="Interactables" ID="{A3E72D92-3E4A-4EC1-96EA-196EC484C398}" WorkUnitID="{6C0969E1-B09C-4693-BC3C-B2E7116B2AEE}"/>
+										</Reference>
+									</ReferenceList>
+									<ChildrenList>
+										<Sound Name="sfx_IN_hardtack_eat_01" ID="{FB2C569B-AA03-4781-A2C5-51999B44AA67}" ShortID="474013274">
+											<ReferenceList>
+												<Reference Name="Conversion">
+													<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{1E13664B-E694-4203-95E7-AEB6212579F7}"/>
+												</Reference>
+												<Reference Name="OutputBus">
+													<ObjectRef Name="MASTER" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{6C0969E1-B09C-4693-BC3C-B2E7116B2AEE}"/>
+												</Reference>
+											</ReferenceList>
+											<ChildrenList>
+												<AudioFileSource Name="sfx_IN_hardtack_eat_01" ID="{9C88DB80-6531-401C-B2E2-8E6A673D2199}">
+													<Language>SFX</Language>
+													<AudioFile>Interactables\sfx_IN_hardtack_eat_01.wav</AudioFile>
+													<MediaIDList>
+														<MediaID ID="1065009483"/>
+													</MediaIDList>
+												</AudioFileSource>
+											</ChildrenList>
+											<ActiveSourceList>
+												<ActiveSource Name="sfx_IN_hardtack_eat_01" ID="{9C88DB80-6531-401C-B2E2-8E6A673D2199}" Platform="Linked"/>
+											</ActiveSourceList>
+										</Sound>
+										<Sound Name="sfx_IN_hardtack_eat_02" ID="{B85FFE60-DBD5-44BE-864E-23EBD70D241A}" ShortID="920000675">
+											<ReferenceList>
+												<Reference Name="Conversion">
+													<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{1E13664B-E694-4203-95E7-AEB6212579F7}"/>
+												</Reference>
+												<Reference Name="OutputBus">
+													<ObjectRef Name="MASTER" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{6C0969E1-B09C-4693-BC3C-B2E7116B2AEE}"/>
+												</Reference>
+											</ReferenceList>
+											<ChildrenList>
+												<AudioFileSource Name="sfx_IN_hardtack_eat_02" ID="{D91E2E3A-6E3B-4740-BFD6-68684F8C6B96}">
+													<Language>SFX</Language>
+													<AudioFile>Interactables\sfx_IN_hardtack_eat_02.wav</AudioFile>
+													<MediaIDList>
+														<MediaID ID="242715803"/>
+													</MediaIDList>
+												</AudioFileSource>
+											</ChildrenList>
+											<ActiveSourceList>
+												<ActiveSource Name="sfx_IN_hardtack_eat_02" ID="{D91E2E3A-6E3B-4740-BFD6-68684F8C6B96}" Platform="Linked"/>
+											</ActiveSourceList>
+										</Sound>
+										<Sound Name="sfx_IN_hardtack_eat_03" ID="{4153A47F-C4D3-4541-8265-3A872A53D12C}" ShortID="258264754">
+											<ReferenceList>
+												<Reference Name="Conversion">
+													<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{1E13664B-E694-4203-95E7-AEB6212579F7}"/>
+												</Reference>
+												<Reference Name="OutputBus">
+													<ObjectRef Name="MASTER" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{6C0969E1-B09C-4693-BC3C-B2E7116B2AEE}"/>
+												</Reference>
+											</ReferenceList>
+											<ChildrenList>
+												<AudioFileSource Name="sfx_IN_hardtack_eat_03" ID="{671BB8AA-A82F-4B5B-9162-17AE4881F410}">
+													<Language>SFX</Language>
+													<AudioFile>Interactables\sfx_IN_hardtack_eat_03.wav</AudioFile>
+													<MediaIDList>
+														<MediaID ID="344327885"/>
+													</MediaIDList>
+												</AudioFileSource>
+											</ChildrenList>
+											<ActiveSourceList>
+												<ActiveSource Name="sfx_IN_hardtack_eat_03" ID="{671BB8AA-A82F-4B5B-9162-17AE4881F410}" Platform="Linked"/>
+											</ActiveSourceList>
+										</Sound>
+										<Sound Name="sfx_IN_hardtack_eat_04" ID="{40CB3BB1-B6CB-4D34-86E9-C9FBB5454855}" ShortID="633544010">
+											<ReferenceList>
+												<Reference Name="Conversion">
+													<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{1E13664B-E694-4203-95E7-AEB6212579F7}"/>
+												</Reference>
+												<Reference Name="OutputBus">
+													<ObjectRef Name="MASTER" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{6C0969E1-B09C-4693-BC3C-B2E7116B2AEE}"/>
+												</Reference>
+											</ReferenceList>
+											<ChildrenList>
+												<AudioFileSource Name="sfx_IN_hardtack_eat_04" ID="{DEFF0FB8-28CC-4581-89CC-5D0399354122}">
+													<Language>SFX</Language>
+													<AudioFile>Interactables\sfx_IN_hardtack_eat_04.wav</AudioFile>
+													<MediaIDList>
+														<MediaID ID="757055072"/>
+													</MediaIDList>
+												</AudioFileSource>
+											</ChildrenList>
+											<ActiveSourceList>
+												<ActiveSource Name="sfx_IN_hardtack_eat_04" ID="{DEFF0FB8-28CC-4581-89CC-5D0399354122}" Platform="Linked"/>
+											</ActiveSourceList>
+										</Sound>
+										<Sound Name="sfx_IN_hardtack_eat_05" ID="{9E90C2CD-129C-42AE-BEE1-B7F8CED7F3FB}" ShortID="584045918">
+											<ReferenceList>
+												<Reference Name="Conversion">
+													<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{1E13664B-E694-4203-95E7-AEB6212579F7}"/>
+												</Reference>
+												<Reference Name="OutputBus">
+													<ObjectRef Name="MASTER" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{6C0969E1-B09C-4693-BC3C-B2E7116B2AEE}"/>
+												</Reference>
+											</ReferenceList>
+											<ChildrenList>
+												<AudioFileSource Name="sfx_IN_hardtack_eat_05" ID="{145E2D8D-57AC-49B4-9E38-1AEA06DF3D34}">
+													<Language>SFX</Language>
+													<AudioFile>Interactables\sfx_IN_hardtack_eat_05.wav</AudioFile>
+													<MediaIDList>
+														<MediaID ID="1023990449"/>
+													</MediaIDList>
+												</AudioFileSource>
+											</ChildrenList>
+											<ActiveSourceList>
+												<ActiveSource Name="sfx_IN_hardtack_eat_05" ID="{145E2D8D-57AC-49B4-9E38-1AEA06DF3D34}" Platform="Linked"/>
+											</ActiveSourceList>
+										</Sound>
+									</ChildrenList>
+								</RandomSequenceContainer>
+								<RandomSequenceContainer Name="IN_juniper_pickup" ID="{01847D39-4AC9-40EE-9DE7-B0A1B5DFFC5D}" ShortID="756766871">
+									<ReferenceList>
+										<Reference Name="Conversion">
+											<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{1E13664B-E694-4203-95E7-AEB6212579F7}"/>
+										</Reference>
+										<Reference Name="OutputBus">
+											<ObjectRef Name="Interactables" ID="{A3E72D92-3E4A-4EC1-96EA-196EC484C398}" WorkUnitID="{6C0969E1-B09C-4693-BC3C-B2E7116B2AEE}"/>
+										</Reference>
+									</ReferenceList>
+									<ChildrenList>
+										<Sound Name="sfx_IN_JuniperBerries_pickup_01" ID="{2534A367-0030-4271-87D2-3F2234A00FF0}" ShortID="863057742">
+											<ReferenceList>
+												<Reference Name="Conversion">
+													<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{1E13664B-E694-4203-95E7-AEB6212579F7}"/>
+												</Reference>
+												<Reference Name="OutputBus">
+													<ObjectRef Name="Interactables" ID="{A3E72D92-3E4A-4EC1-96EA-196EC484C398}" WorkUnitID="{6C0969E1-B09C-4693-BC3C-B2E7116B2AEE}"/>
+												</Reference>
+											</ReferenceList>
+											<ChildrenList>
+												<AudioFileSource Name="sfx_IN_JuniperBerries_pickup_01" ID="{E6867410-9CA4-43DE-BF53-863DE7A143C2}">
+													<Language>SFX</Language>
+													<AudioFile>Interactables\sfx_IN_JuniperBerries_pickup_01.wav</AudioFile>
+													<MediaIDList>
+														<MediaID ID="18559825"/>
+													</MediaIDList>
+												</AudioFileSource>
+											</ChildrenList>
+											<ActiveSourceList>
+												<ActiveSource Name="sfx_IN_JuniperBerries_pickup_01" ID="{E6867410-9CA4-43DE-BF53-863DE7A143C2}" Platform="Linked"/>
+											</ActiveSourceList>
+										</Sound>
+										<Sound Name="sfx_IN_JuniperBerries_pickup_04" ID="{AF3A7AFF-8D50-4107-AF67-37828B3CA5EF}" ShortID="262464338">
+											<ReferenceList>
+												<Reference Name="Conversion">
+													<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{1E13664B-E694-4203-95E7-AEB6212579F7}"/>
+												</Reference>
+												<Reference Name="OutputBus">
+													<ObjectRef Name="Interactables" ID="{A3E72D92-3E4A-4EC1-96EA-196EC484C398}" WorkUnitID="{6C0969E1-B09C-4693-BC3C-B2E7116B2AEE}"/>
+												</Reference>
+											</ReferenceList>
+											<ChildrenList>
+												<AudioFileSource Name="sfx_IN_JuniperBerries_pickup_04" ID="{BB6EA761-5356-4446-B6EC-605B03FCA30B}">
+													<Language>SFX</Language>
+													<AudioFile>Interactables\sfx_IN_JuniperBerries_pickup_04.wav</AudioFile>
+													<MediaIDList>
+														<MediaID ID="465539021"/>
+													</MediaIDList>
+												</AudioFileSource>
+											</ChildrenList>
+											<ActiveSourceList>
+												<ActiveSource Name="sfx_IN_JuniperBerries_pickup_04" ID="{BB6EA761-5356-4446-B6EC-605B03FCA30B}" Platform="Linked"/>
+											</ActiveSourceList>
+										</Sound>
+										<Sound Name="sfx_IN_JuniperBerries_pickup_02" ID="{5748DBC0-E755-45B4-8FB7-730A42CA7C27}" ShortID="738942345">
+											<ReferenceList>
+												<Reference Name="Conversion">
+													<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{1E13664B-E694-4203-95E7-AEB6212579F7}"/>
+												</Reference>
+												<Reference Name="OutputBus">
+													<ObjectRef Name="Interactables" ID="{A3E72D92-3E4A-4EC1-96EA-196EC484C398}" WorkUnitID="{6C0969E1-B09C-4693-BC3C-B2E7116B2AEE}"/>
+												</Reference>
+											</ReferenceList>
+											<ChildrenList>
+												<AudioFileSource Name="sfx_IN_JuniperBerries_pickup_02" ID="{E6E5B043-F138-4CB3-B475-A7B54CEF9536}">
+													<Language>SFX</Language>
+													<AudioFile>Interactables\sfx_IN_JuniperBerries_pickup_02.wav</AudioFile>
+													<MediaIDList>
+														<MediaID ID="154493138"/>
+													</MediaIDList>
+												</AudioFileSource>
+											</ChildrenList>
+											<ActiveSourceList>
+												<ActiveSource Name="sfx_IN_JuniperBerries_pickup_02" ID="{E6E5B043-F138-4CB3-B475-A7B54CEF9536}" Platform="Linked"/>
+											</ActiveSourceList>
+										</Sound>
+										<Sound Name="sfx_IN_JuniperBerries_pickup_03" ID="{7402A0E1-F0CC-433B-9ABD-B7206CEE0889}" ShortID="26383506">
+											<ReferenceList>
+												<Reference Name="Conversion">
+													<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{1E13664B-E694-4203-95E7-AEB6212579F7}"/>
+												</Reference>
+												<Reference Name="OutputBus">
+													<ObjectRef Name="Interactables" ID="{A3E72D92-3E4A-4EC1-96EA-196EC484C398}" WorkUnitID="{6C0969E1-B09C-4693-BC3C-B2E7116B2AEE}"/>
+												</Reference>
+											</ReferenceList>
+											<ChildrenList>
+												<AudioFileSource Name="sfx_IN_JuniperBerries_pickup_03" ID="{6F78455F-425B-4C1F-8A09-5422A23CB2B0}">
+													<Language>SFX</Language>
+													<AudioFile>Interactables\sfx_IN_JuniperBerries_pickup_03.wav</AudioFile>
+													<MediaIDList>
+														<MediaID ID="396747411"/>
+													</MediaIDList>
+												</AudioFileSource>
+											</ChildrenList>
+											<ActiveSourceList>
+												<ActiveSource Name="sfx_IN_JuniperBerries_pickup_03" ID="{6F78455F-425B-4C1F-8A09-5422A23CB2B0}" Platform="Linked"/>
+											</ActiveSourceList>
+										</Sound>
+										<Sound Name="sfx_IN_JuniperBerries_pickup_05" ID="{50F9202C-322D-4CFA-BACA-C2EF056414B9}" ShortID="1043972387">
+											<ReferenceList>
+												<Reference Name="Conversion">
+													<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{1E13664B-E694-4203-95E7-AEB6212579F7}"/>
+												</Reference>
+												<Reference Name="OutputBus">
+													<ObjectRef Name="Interactables" ID="{A3E72D92-3E4A-4EC1-96EA-196EC484C398}" WorkUnitID="{6C0969E1-B09C-4693-BC3C-B2E7116B2AEE}"/>
+												</Reference>
+											</ReferenceList>
+											<ChildrenList>
+												<AudioFileSource Name="sfx_IN_JuniperBerries_pickup_05" ID="{60366D5E-7793-433A-8164-1C08987449AB}">
+													<Language>SFX</Language>
+													<AudioFile>Interactables\sfx_IN_JuniperBerries_pickup_05.wav</AudioFile>
+													<MediaIDList>
+														<MediaID ID="436336368"/>
+													</MediaIDList>
+												</AudioFileSource>
+											</ChildrenList>
+											<ActiveSourceList>
+												<ActiveSource Name="sfx_IN_JuniperBerries_pickup_05" ID="{60366D5E-7793-433A-8164-1C08987449AB}" Platform="Linked"/>
+											</ActiveSourceList>
+										</Sound>
+									</ChildrenList>
+								</RandomSequenceContainer>
+								<RandomSequenceContainer Name="IN_juniper_eat" ID="{4D427E7B-B987-4AE6-B9DE-3ADFE9D4A96C}" ShortID="171630043">
+									<ReferenceList>
+										<Reference Name="Conversion">
+											<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{1E13664B-E694-4203-95E7-AEB6212579F7}"/>
+										</Reference>
+										<Reference Name="OutputBus">
+											<ObjectRef Name="Interactables" ID="{A3E72D92-3E4A-4EC1-96EA-196EC484C398}" WorkUnitID="{6C0969E1-B09C-4693-BC3C-B2E7116B2AEE}"/>
+										</Reference>
+									</ReferenceList>
+									<ChildrenList>
+										<Sound Name="sfx_IN_JuniperBerries_eat_05" ID="{2533494A-EE03-4071-AE13-70E744025B67}" ShortID="247894776">
+											<ReferenceList>
+												<Reference Name="Conversion">
+													<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{1E13664B-E694-4203-95E7-AEB6212579F7}"/>
+												</Reference>
+												<Reference Name="OutputBus">
+													<ObjectRef Name="Interactables" ID="{A3E72D92-3E4A-4EC1-96EA-196EC484C398}" WorkUnitID="{6C0969E1-B09C-4693-BC3C-B2E7116B2AEE}"/>
+												</Reference>
+											</ReferenceList>
+											<ChildrenList>
+												<AudioFileSource Name="sfx_IN_JuniperBerries_eat_05" ID="{C9AA16F0-B203-4115-B040-D741CA3AC128}">
+													<Language>SFX</Language>
+													<AudioFile>Interactables\sfx_IN_JuniperBerries_eat_05.wav</AudioFile>
+													<MediaIDList>
+														<MediaID ID="558436319"/>
+													</MediaIDList>
+												</AudioFileSource>
+											</ChildrenList>
+											<ActiveSourceList>
+												<ActiveSource Name="sfx_IN_JuniperBerries_eat_05" ID="{C9AA16F0-B203-4115-B040-D741CA3AC128}" Platform="Linked"/>
+											</ActiveSourceList>
+										</Sound>
+										<Sound Name="sfx_IN_JuniperBerries_eat_03" ID="{0DF73E9F-B234-467C-A085-EE9EDD3A24A7}" ShortID="163460231">
+											<ReferenceList>
+												<Reference Name="Conversion">
+													<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{1E13664B-E694-4203-95E7-AEB6212579F7}"/>
+												</Reference>
+												<Reference Name="OutputBus">
+													<ObjectRef Name="Interactables" ID="{A3E72D92-3E4A-4EC1-96EA-196EC484C398}" WorkUnitID="{6C0969E1-B09C-4693-BC3C-B2E7116B2AEE}"/>
+												</Reference>
+											</ReferenceList>
+											<ChildrenList>
+												<AudioFileSource Name="sfx_IN_JuniperBerries_eat_03" ID="{B9CDC069-0368-4B1D-820A-37CD19A7F840}">
+													<Language>SFX</Language>
+													<AudioFile>Interactables\sfx_IN_JuniperBerries_eat_03.wav</AudioFile>
+													<MediaIDList>
+														<MediaID ID="11564484"/>
+													</MediaIDList>
+												</AudioFileSource>
+											</ChildrenList>
+											<ActiveSourceList>
+												<ActiveSource Name="sfx_IN_JuniperBerries_eat_03" ID="{B9CDC069-0368-4B1D-820A-37CD19A7F840}" Platform="Linked"/>
+											</ActiveSourceList>
+										</Sound>
+										<Sound Name="sfx_IN_JuniperBerries_eat_04" ID="{C7E5F68B-AC35-4A99-93A4-E270ADFEA03F}" ShortID="861693628">
+											<ReferenceList>
+												<Reference Name="Conversion">
+													<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{1E13664B-E694-4203-95E7-AEB6212579F7}"/>
+												</Reference>
+												<Reference Name="OutputBus">
+													<ObjectRef Name="Interactables" ID="{A3E72D92-3E4A-4EC1-96EA-196EC484C398}" WorkUnitID="{6C0969E1-B09C-4693-BC3C-B2E7116B2AEE}"/>
+												</Reference>
+											</ReferenceList>
+											<ChildrenList>
+												<AudioFileSource Name="sfx_IN_JuniperBerries_eat_04" ID="{94B44C4C-7D54-46DE-8E1A-E10556B18EC4}">
+													<Language>SFX</Language>
+													<AudioFile>Interactables\sfx_IN_JuniperBerries_eat_04.wav</AudioFile>
+													<MediaIDList>
+														<MediaID ID="37013092"/>
+													</MediaIDList>
+												</AudioFileSource>
+											</ChildrenList>
+											<ActiveSourceList>
+												<ActiveSource Name="sfx_IN_JuniperBerries_eat_04" ID="{94B44C4C-7D54-46DE-8E1A-E10556B18EC4}" Platform="Linked"/>
+											</ActiveSourceList>
+										</Sound>
+										<Sound Name="sfx_IN_JuniperBerries_eat_01" ID="{2680CB01-FEDB-48B2-9167-BFA4E2CC2689}" ShortID="995418415">
+											<ReferenceList>
+												<Reference Name="Conversion">
+													<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{1E13664B-E694-4203-95E7-AEB6212579F7}"/>
+												</Reference>
+												<Reference Name="OutputBus">
+													<ObjectRef Name="Interactables" ID="{A3E72D92-3E4A-4EC1-96EA-196EC484C398}" WorkUnitID="{6C0969E1-B09C-4693-BC3C-B2E7116B2AEE}"/>
+												</Reference>
+											</ReferenceList>
+											<ChildrenList>
+												<AudioFileSource Name="sfx_IN_JuniperBerries_eat_01" ID="{1D070A15-6A60-41A0-953A-EE427DDE01D3}">
+													<Language>SFX</Language>
+													<AudioFile>Interactables\sfx_IN_JuniperBerries_eat_01.wav</AudioFile>
+													<MediaIDList>
+														<MediaID ID="16128709"/>
+													</MediaIDList>
+												</AudioFileSource>
+											</ChildrenList>
+											<ActiveSourceList>
+												<ActiveSource Name="sfx_IN_JuniperBerries_eat_01" ID="{1D070A15-6A60-41A0-953A-EE427DDE01D3}" Platform="Linked"/>
+											</ActiveSourceList>
+										</Sound>
+										<Sound Name="sfx_IN_JuniperBerries_eat_02" ID="{AADD0804-2095-463B-A9F8-AD354CF05D97}" ShortID="657753511">
+											<ReferenceList>
+												<Reference Name="Conversion">
+													<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{1E13664B-E694-4203-95E7-AEB6212579F7}"/>
+												</Reference>
+												<Reference Name="OutputBus">
+													<ObjectRef Name="Interactables" ID="{A3E72D92-3E4A-4EC1-96EA-196EC484C398}" WorkUnitID="{6C0969E1-B09C-4693-BC3C-B2E7116B2AEE}"/>
+												</Reference>
+											</ReferenceList>
+											<ChildrenList>
+												<AudioFileSource Name="sfx_IN_JuniperBerries_eat_02" ID="{6E5C4AB0-F9B2-41B4-A5D7-59A55C6F5CE9}">
+													<Language>SFX</Language>
+													<AudioFile>Interactables\sfx_IN_JuniperBerries_eat_02.wav</AudioFile>
+													<MediaIDList>
+														<MediaID ID="484920408"/>
+													</MediaIDList>
+												</AudioFileSource>
+											</ChildrenList>
+											<ActiveSourceList>
+												<ActiveSource Name="sfx_IN_JuniperBerries_eat_02" ID="{6E5C4AB0-F9B2-41B4-A5D7-59A55C6F5CE9}" Platform="Linked"/>
+											</ActiveSourceList>
+										</Sound>
+									</ChildrenList>
+								</RandomSequenceContainer>
+							</ChildrenList>
+						</Folder>
+						<Sound Name="sfx_IN_satchel_pickup" ID="{1828C807-0F19-4B27-A335-465B384485BD}" ShortID="721710389">
+							<ReferenceList>
+								<Reference Name="Conversion">
+									<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{1E13664B-E694-4203-95E7-AEB6212579F7}"/>
+								</Reference>
+								<Reference Name="OutputBus">
+									<ObjectRef Name="Interactables" ID="{A3E72D92-3E4A-4EC1-96EA-196EC484C398}" WorkUnitID="{6C0969E1-B09C-4693-BC3C-B2E7116B2AEE}"/>
+								</Reference>
+							</ReferenceList>
+							<ChildrenList>
+								<AudioFileSource Name="sfx_IN_satchel_pickup" ID="{E3436C48-6D22-4CA6-BE8B-3FABC1F3F546}">
+									<Language>SFX</Language>
+									<AudioFile>Interactables\sfx_IN_satchel_pickup.wav</AudioFile>
+									<MediaIDList>
+										<MediaID ID="33942947"/>
+									</MediaIDList>
+								</AudioFileSource>
+							</ChildrenList>
+							<ActiveSourceList>
+								<ActiveSource Name="sfx_IN_satchel_pickup" ID="{E3436C48-6D22-4CA6-BE8B-3FABC1F3F546}" Platform="Linked"/>
+							</ActiveSourceList>
+						</Sound>
+					</ChildrenList>
 				</ActorMixer>
 			</ChildrenList>
 		</WorkUnit>
