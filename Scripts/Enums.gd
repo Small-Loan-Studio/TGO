@@ -209,12 +209,12 @@ static func input_action_name(ia: InputAction) -> String:
 	return ""
 
 
-static func input_action_symbol(ia: InputAction) -> Image:
+static func input_action_symbol_texture(ia: InputAction) -> CompressedTexture2D:
 	match ia:
 		InputAction.EXAMINE:
-			return Image.load_from_file("res://Art/interacting/symbol_square.png")
+			return preload("res://Art/interacting/symbol_square.png")
 		InputAction.INTERACT:
-			return Image.load_from_file("res://Art/interacting/symbol_cross.png")
+			return preload("res://Art/interacting/symbol_cross.png")
 		_:
 			return null
 

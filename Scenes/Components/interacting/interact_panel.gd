@@ -147,12 +147,12 @@ func _get_label() -> String:
 			return ""
 
 
-func _get_symbol() -> Image:
+func _get_symbol() -> CompressedTexture2D:
 	match input:
 		Enums.InputAction.EXAMINE:
-			return Enums.input_action_symbol(input)
+			return Enums.input_action_symbol_texture(input)
 		Enums.InputAction.INTERACT:
-			return Enums.input_action_symbol(input)
+			return Enums.input_action_symbol_texture(input)
 		_:
 			assert(false, "ERROR: Unsupported input action selected.")
 			return null
