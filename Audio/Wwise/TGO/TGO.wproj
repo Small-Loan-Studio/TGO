@@ -33,6 +33,7 @@
 				<Property Name="GenerateMultipleBanks" Type="bool" Value="True"/>
 				<Property Name="GenerateSoundBankJSON" Type="bool" Value="True"/>
 				<Property Name="GenerateSoundBankXML" Type="bool" Value="False"/>
+				<Property Name="LicenseKey" Type="string" Value="PHByb2plY3QgaWQ9IjE5Njk1IiBtYXNrPSJGRlNCMjg4NyIgZW5jPSIwIj48bGljZW5zZSBpZD0iMSIgbmFtZT0iV3dpc2UiIHR5cGU9IjMiIHBsYXRmb3Jtcz0iNCwxMCIgZXhwaXJlcz0iMjAyNS0wOS0wMSIgIC8+PGxpY2Vuc2UgaWQ9IjIxIiBuYW1lPSJNYWludGVuYW5jZSIgdHlwZT0iMyIgcGxhdGZvcm1zPSI0LDEwIiBleHBpcmVzPSIyMDI1LTA5LTAxIiAgLz48bGljZW5zZSBpZD0iNzAiIG5hbWU9IkluZGllIExpY2Vuc2UiIHR5cGU9IjMiIHBsYXRmb3Jtcz0iNCwxMCIgZXhwaXJlcz0iMjAyNS0wOS0wMSIgIC8+PC9wcm9qZWN0Pg==|DOc7JM5lBUvLEnZdtgy0ZAAxeCaLR4fVKAUJZbZHHzqaNWlSzYp4/HZ5VacOCsOCP7AVszjLnX95Hu6J/w3eFMDyq2CTa5u0hkeDS4jvc3nxNHQw+4qu6npLpz5wKlMctWdoOhQv0sKx2wAa8wpO7nQ5BcpgSyscEFc4YaNm1OuOr+48eXLzw3cInBQJbg65zo2Ci49wPYVd7QCjiHi9J7U6TcvrFmTvijt9R30194ONjE4PmN2gGM9rCC6INfGnJWoX5ZZX4JsPXwp5r5nmtq1inH5ahLG0zGxojV7cH/E6aWKD9cRArvkHiINakFxLIv5QvPmt/gaBUWqnAgm0GQ=="/>
 				<Property Name="SoundBankGenerateEstimatedDuration" Type="bool" Value="True"/>
 				<Property Name="SoundBankGenerateHeaderFile" Type="bool" Value="True"/>
 				<Property Name="SoundBankGenerateMaxAttenuationInfo" Type="bool" Value="True"/>
