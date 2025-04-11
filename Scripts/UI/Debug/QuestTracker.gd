@@ -84,7 +84,7 @@ func _process_normal_quest(q: Quest, indent: int, force_add: bool) -> void:
 			# the current quest until things get easy (!finished) or hard (multiple
 			# children)
 			var cur := q
-			while cur.is_finished() && len(q.next) == 1:
+			while cur.is_finished() && len(cur.next) == 1:
 				cur = cur.next[0]
 
 			# which situation are we in

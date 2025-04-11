@@ -194,7 +194,7 @@ func _link_children_of(q: Quest) -> void:
 	for c: Quest in q.next:
 		print("Has children " + c.id)
 		c._parent.append(q)
-		#_link_children_of(c)
+		_link_children_of(c)
 
 
 ## Handles routing variable changes to the active quests

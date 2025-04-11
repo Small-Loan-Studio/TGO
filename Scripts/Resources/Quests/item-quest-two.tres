@@ -1,0 +1,24 @@
+[gd_resource type="Resource" script_class="Quest" load_steps=6 format=3 uid="uid://berbxowio50vg"]
+
+[ext_resource type="Script" path="res://Scripts/Resources/Quest.gd" id="1_h5xlu"]
+[ext_resource type="Script" path="res://Scripts/Resources/QuestConditionInventory.gd" id="1_oi8jr"]
+[ext_resource type="Resource" uid="uid://but4ranqswen" path="res://Scripts/Resources/Items/Potion.tres" id="2_rc4g3"]
+[ext_resource type="Resource" uid="uid://clw3cyepna6x8" path="res://Scripts/Resources/Quests/a-quest-three.tres" id="3_2qee8"]
+
+[sub_resource type="Resource" id="Resource_t57gy"]
+script = ExtResource("1_oi8jr")
+inventory_id = "devin"
+check = "has"
+target_item = ExtResource("2_rc4g3")
+
+[resource]
+script = ExtResource("1_h5xlu")
+id = "item-quest-two"
+title = "Second part of key quest"
+description = "complete test"
+manual_start = false
+state = 0
+conditions = Array[Resource("res://Scripts/Resources/QuestCondition.gd")]([SubResource("Resource_t57gy")])
+phases = Array[Resource("res://Scripts/QuestPhase.gd")]([])
+next = Array[ExtResource("1_h5xlu")]([ExtResource("3_2qee8")])
+results = Array[Resource("res://Scripts/Resources/Effect.gd")]([])
