@@ -100,6 +100,7 @@ var _parent: Array[Quest]
 ##
 ## TODO: lmao this def needs tests
 func get_phase_parent() -> Quest:
+	print(_parent)
 	var cur := self
 	while true:
 		if cur._phase_parent != null:
@@ -197,7 +198,6 @@ func mark_active() -> bool:
 
 	state = Enums.QuestState.ACTIVE
 	state_change.emit(id, Enums.QuestState.DORMANT, Enums.QuestState.ACTIVE)
-
 	return true
 
 
