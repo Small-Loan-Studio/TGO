@@ -15,7 +15,7 @@ enum LevelSection {
 const OBJECTS_HELPER_SCENE := "res://addons_tgo/greyboxing/UI/ObjectsHelper.tscn"
 const TILEMAP_SECTION_NAME := "TileMap"
 const OBJECTS_SECTION_NAME := "Objects"
-const MARKERS_SECTION_NAME := "Markers"
+const MARKERS_SECTION_NAME := Utils.MARKERS_SECTION_NAME
 
 var _plugin_ref: TGOGreyboxingToolsPlugin = null
 

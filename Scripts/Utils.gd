@@ -6,6 +6,7 @@ const ID_GROUP := "NodesWithID"
 const PLAYER_ID := "Devin"
 const QUEST_DIR := "res://Scripts/Resources/Quests"
 const USER_DATA_DIR := "user://"
+const MARKERS_SECTION_NAME = "Markers"
 ## TODO: Replace this with the official location for levels in the future
 const LEVEL_DIR := "res://Scenes/Levels/"
 const LEVEL_EXT_BIN := ".scn"

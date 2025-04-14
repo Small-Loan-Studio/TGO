@@ -24,7 +24,7 @@ jobs:
         uses: Scony/godot-gdscript-toolkit@e9ec1f52d9c837dba440987ba50540f14beb7cad
 
       - name: Lint
-        run: find . -iname *.gd -not -ipath './addons/*' | xargs gdlint
+        run: find . -iname *.gd -not -ipath './addons/*' | grep -v wwise_ids.gd | xargs gdlint
 
   formatting:
     runs-on: ubuntu-latest
@@ -39,4 +39,4 @@ jobs:
         uses: Scony/godot-gdscript-toolkit@e9ec1f52d9c837dba440987ba50540f14beb7cad
 
       - name: Check formatting
-        run: find . -iname *.gd -not -ipath './addons/*' | xargs gdformat --check
+        run: find . -iname *.gd -not -ipath './addons/*' | grep -v wwise_ids.gd | xargs gdformat --check

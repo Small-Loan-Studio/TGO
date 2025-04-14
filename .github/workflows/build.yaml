@@ -2,7 +2,7 @@ name: "godot-ci export"
 on:
   push:
     branches:
-      - tgo_dev
+      - _disabled_tgo_dev
   workflow_dispatch:
 env:
   GODOT_VERSION: 4.2.2

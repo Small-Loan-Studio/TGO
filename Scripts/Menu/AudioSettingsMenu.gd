@@ -67,3 +67,23 @@ func _menu_process() -> void:
 func _sync_sliders_state() -> void:
 	for i in range(len(_sliders)):
 		_sliders[i].is_active = i == _active_bus
+
+
+func _main_drag_start() -> void:
+	_active_bus = 0
+
+
+func _bgm_drag_start() -> void:
+	_active_bus = 1
+
+
+func _ambient_drag_start() -> void:
+	_active_bus = 2
+
+
+func _sfx_drag_start() -> void:
+	_active_bus = 3
+
+
+func _menu_drag_start() -> void:
+	_active_bus = 4

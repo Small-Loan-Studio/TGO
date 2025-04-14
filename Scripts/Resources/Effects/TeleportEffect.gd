@@ -7,7 +7,7 @@ extends Effect
 
 func act(actor_id: String, cur_level: LevelBase) -> void:
 	var refined_path := str(dest_path)
-	var idx := refined_path.find(TGOControlDock.MARKERS_SECTION_NAME + "/")
+	var idx := refined_path.find(Utils.MARKERS_SECTION_NAME + "/")
 	if idx == -1:
 		printerr("Unable to find markers section in ", dest_path)
 		return

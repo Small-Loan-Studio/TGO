@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<WwiseDocument Type="WorkUnit" ID="{DC7333F3-0BAA-4BA3-93D3-3923195D745B}" SchemaVersion="119">
+	<Triggers>
+		<WorkUnit Name="Default Work Unit" ID="{DC7333F3-0BAA-4BA3-93D3-3923195D745B}" PersistMode="Standalone">
+			<ChildrenList>
+				<Trigger Name="Walking" ID="{793C2532-62D3-49C9-915C-BDA005E64D93}"/>
+				<Trigger Name="LevelStart" ID="{B57E4C8E-1C84-4794-9E1B-77B666384D75}"/>
+			</ChildrenList>
+		</WorkUnit>
+	</Triggers>
+</WwiseDocument>
