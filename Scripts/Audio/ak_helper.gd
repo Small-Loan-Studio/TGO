@@ -36,16 +36,12 @@ static func get_bus_id(name: String) -> int:
 
 static func bus_param(bus_id: int) -> int:
 	match bus_id:
-		AK.BUSSES.MENU:
-			return AK.GAME_PARAMETERS.LEVELS_MENU
-		AK.BUSSES.AMBIENT_SOUNDS:
-			return AK.GAME_PARAMETERS.LEVELS_AMBIENT
-		AK.BUSSES.BACKGROUND_MUSIC:
-			return AK.GAME_PARAMETERS.LEVELS_BACKGROUND
-		AK.BUSSES.MAIN:
-			return AK.GAME_PARAMETERS.LEVELS_MAIN
-		AK.BUSSES.SOUND_EFFECTS:
-			return AK.GAME_PARAMETERS.LEVELS_EFFECTS
+		AK.BUSSES.MASTER:
+			return AK.GAME_PARAMETERS.MASTERVOL_RTPC
+		AK.BUSSES.MUSIC:
+			return AK.GAME_PARAMETERS.MUSICVOL_RTPC
+		AK.BUSSES.SFX:
+			return AK.GAME_PARAMETERS.SFXVOL_RTPC
 		_:
 			assert("unknown bus id %d" % [bus_id])
 			return -9999

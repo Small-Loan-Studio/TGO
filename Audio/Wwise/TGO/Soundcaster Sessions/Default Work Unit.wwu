@@ -20,6 +20,10 @@
 							<Value>50</Value>
 						</RTPCValue>
 						<RTPCValue>
+							<GameParameterRef Name="TimeOfDay_RTPC" ID="{45EED032-4AC5-415E-8247-FEBA8C3C906A}"/>
+							<Value>24</Value>
+						</RTPCValue>
+						<RTPCValue>
 							<GameParameterRef Name="SFXVol_RTPC" ID="{B184FAA8-76B4-4526-B060-91636C7485E6}"/>
 							<Value>50</Value>
 						</RTPCValue>
@@ -30,7 +34,9 @@
 					</RTPCValueList>
 					<CurrentStateList ShowAll="true"/>
 					<CurrentSwitchList ShowAll="true">
+						<CurrentSwitchRef Name="Night" ID="{EE2540A7-8CE8-46A0-9FCA-65279EE0481B}"/>
 						<CurrentSwitchRef Name="Cemetery" ID="{4E545059-0EE6-44C0-8172-34292D586654}"/>
+						<CurrentSwitchRef Name="EtherealRealm" ID="{49861127-878D-415F-AF56-72478D323888}"/>
 						<CurrentSwitchRef Name="Dirt" ID="{A3A7D983-41DF-492F-BDD5-466DC98D4759}"/>
 					</CurrentSwitchList>
 				</SoundcasterSession>

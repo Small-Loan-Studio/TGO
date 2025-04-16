@@ -68,8 +68,8 @@
 										<Property Name="OverrideColor" Type="bool" Value="True"/>
 									</PropertyList>
 									<ChildrenList>
-										<Bus Name="2DAmbience" ID="{1455F7EC-E3F5-41DC-B407-C8903F15F5FF}"/>
-										<Bus Name="3DAmbience" ID="{36177B26-1772-4FCB-B236-47A03AB6A606}"/>
+										<Bus Name="Ambience2D" ID="{1455F7EC-E3F5-41DC-B407-C8903F15F5FF}"/>
+										<Bus Name="Ambience3D" ID="{36177B26-1772-4FCB-B236-47A03AB6A606}"/>
 										<Bus Name="AmbienceBeds" ID="{619B1402-2666-4656-BBE4-5FBD29B79BB3}"/>
 									</ChildrenList>
 								</Bus>
