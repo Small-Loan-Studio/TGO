@@ -1,40 +1,40 @@
+join Groundskeeper 1
 if {HasSpoken} == true:
 	I don't have anything more to say.
-if {HasSpoken} == false:
-	I don't have anything more to say.
+elif {HasSpoken} == false:
 	Pray tell, what is happening here?
-	I’ve opened the old mausoleum, lad. Can you not see?
+	Groundskeeper: I’ve opened the old mausoleum, lad. Can you not see?
 	Damn. Another body, then.
-	Mary! Did you bathe in gin?
+	Groundskeeper: Mary! Did you bathe in gin?
 	My indulgence is mine business. But I do have questions about yours.
 label Questions
 - Whose mausoleum is this?
 	Who reposes within this tomb?
-	Don’t know and don’t care, son. Some Sharps from years gone by. Spoiled rich folk. End up worm food in their stone coffins.
+	Groundskeeper: Don’t know and don’t care, son. Some Sharps from years gone by. Spoiled rich folk. End up worm food in their stone coffins.
 	They don’t burn the bodies?
-	No. Got be all right and proper for them Sharps.
+	Groundskeeper: No. Got be all right and proper for them Sharps.
 	How do you mean?
-	Are you blind? They fancy themselves above the rest of us. The law. The way things need to be.
+	Groundskeeper: Are you blind? They fancy themselves above the rest of us. The law. The way things need to be.
 	Most struggle throwing their loved ones it a fiery pit.
-	Yet tis a sacrifice we must all make, lest our swarths rise again and damn the rest of us. But the Sharps? Proper burial. Time to grieve. Bastards.
+	Groundskeeper: Yet tis a sacrifice we must all make, lest our swarths rise again and damn the rest of us. But the Sharps? Proper burial. Time to grieve. Bastards.
 	jump Questions
 - What do you know of the death?
 	Where did they find this body?
-	Near bonny field. Tis all I know.
+	Groundskeeper: Near bonny field. Tis all I know.
 	Near that farmhouse where the Glintleys reside?
-	Aye, lad. Anything else? Work awaits.
+	Groundskeeper: Aye, lad. Anything else? Work awaits.
 	jump Questions
 - Tell me about the grave robbers.
 	I see damage, groundskeeper. Chunks cleaved off the stone. What  happened?
-	There are few  who still come here, let alone those with any respect for them Sharps. No — they come with disdain. Serves them right, ask me.
+	Groundskeeper: There are few  who still come here, let alone those with any respect for them Sharps. No — they come with disdain. Serves them right, ask me.
 	Surely you could not condonate such sacrilege?
-	Tis not my hand that cast the damag, lad. Even more questions for a busy man?
+	Groundskeeper: Tis not my hand that cast the damag, lad. Even more questions for a busy man?
 	jump Questions
 - What has happened to this tomb?
 	I see there be signs of grave robbers. Any recent activity or incidents?
-	Of course. Although those who steal from the dead need it more than the frames that once lay here.
+	Groundskeeper: Of course. Although those who steal from the dead need it more than the frames that once lay here.
 	How pragmatic of you.
-	I’ll have none of your sauce, lad. Ask your questions so I can finish my work.
+	Groundskeeper: I’ll have none of your sauce, lad. Ask your questions so I can finish my work.
 	jump Questions
 - I should be going.
-set {HasSpoken} = true
+	set {HasSpoken} = true

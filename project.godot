@@ -30,7 +30,6 @@ config/icon="res://icon.svg"
 [autoload]
 
 TGO="*res://Scripts/DialogicAdapter.gd"
-WwiseRuntimeManager="*res://addons/Wwise/runtime/wwise_runtime_manager.gd"
 Dialogic="*res://addons/dialogic/Core/DialogicGameHandler.gd"
 
 [debug]
@@ -39,7 +38,9 @@ gdscript/warnings/untyped_declaration=2
 
 [dialogic]
 
-directories/dch_directory={}
+directories/dch_directory={
+"Groundskeeper": "res://Scripts/Resources/NPCs/DialogicCharacters/Groundskeeper.dch"
+}
 directories/dtl_directory={
 "BuckleyTestTimeline": "res://Dialogue/Buckley/BuckleyTestTimeline.dtl",
 "GroundskeeperTimeline": "res://Dialogue/Groundskeeper/GroundskeeperTimeline.dtl",
