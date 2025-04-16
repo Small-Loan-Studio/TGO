@@ -40,7 +40,7 @@
 				<GameParameter Name="TimeOfDay_RTPC" ID="{45EED032-4AC5-415E-8247-FEBA8C3C906A}">
 					<PropertyList>
 						<Property Name="InitialValue" Type="Real64" Value="0"/>
-						<Property Name="Max" Type="Real64" Value="24"/>
+						<Property Name="Max" Type="Real64" Value="86400"/>
 					</PropertyList>
 				</GameParameter>
 			</ChildrenList>

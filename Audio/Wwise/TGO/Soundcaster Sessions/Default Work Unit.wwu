@@ -21,11 +21,15 @@
 						</RTPCValue>
 						<RTPCValue>
 							<GameParameterRef Name="TimeOfDay_RTPC" ID="{45EED032-4AC5-415E-8247-FEBA8C3C906A}"/>
-							<Value>24</Value>
+							<Value>0</Value>
 						</RTPCValue>
 						<RTPCValue>
 							<GameParameterRef Name="SFXVol_RTPC" ID="{B184FAA8-76B4-4526-B060-91636C7485E6}"/>
 							<Value>50</Value>
+						</RTPCValue>
+						<RTPCValue>
+							<GameParameterRef Name="PlayerHealth_RTPC" ID="{78B82DD0-EBF5-48A3-9734-7BE73B627C86}"/>
+							<Value>10</Value>
 						</RTPCValue>
 						<RTPCValue>
 							<GameParameterRef Name="MusicVol_RTPC" ID="{69C3C129-89F8-4FD7-B4BD-B74A93C9CAF1}"/>
@@ -38,6 +42,7 @@
 						<CurrentSwitchRef Name="Cemetery" ID="{4E545059-0EE6-44C0-8172-34292D586654}"/>
 						<CurrentSwitchRef Name="EtherealRealm" ID="{49861127-878D-415F-AF56-72478D323888}"/>
 						<CurrentSwitchRef Name="Dirt" ID="{A3A7D983-41DF-492F-BDD5-466DC98D4759}"/>
+						<CurrentSwitchRef Name="DamagedHealth" ID="{26AB03F6-BB08-4A8A-9DC0-57911E7C7246}"/>
 					</CurrentSwitchList>
 				</SoundcasterSession>
 			</ChildrenList>
