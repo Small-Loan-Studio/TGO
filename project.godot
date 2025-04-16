@@ -30,6 +30,7 @@ config/icon="res://icon.svg"
 [autoload]
 
 TGO="*res://Scripts/DialogicAdapter.gd"
+WwiseRuntimeManager="*res://addons/Wwise/runtime/wwise_runtime_manager.gd"
 Dialogic="*res://addons/dialogic/Core/DialogicGameHandler.gd"
 
 [debug]
@@ -67,6 +68,14 @@ save/autosave_delay=60.0
 save/encryption_on_exports_only=true
 text/autopauses={}
 variables={
+"GroundsKeeper": {
+"FinishedTopics": false,
+"HasSpoken": false,
+"Q1Answered": false,
+"Q2Answered": false,
+"Q3Answered": false,
+"Q4Answered": false
+},
 "QuestVarConditionTest": false,
 "UserInputNum": 0,
 "UserInputString": ""
