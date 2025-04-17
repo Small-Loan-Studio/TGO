@@ -90,12 +90,14 @@ func send_param(param: int, value: float, local: bool = true) -> void:
 		Wwise.set_rtpc_value_id(param, value, null)
 
 
+# It's likely that global event sends will segfault; you've been warned
 func send_event(event_id: int, local: bool = true) -> void:
 	var tgt := _target
 	var locality_str := ""
 	if !local:
 		tgt = null
 		locality_str = "(global) "
+		print("It's likely that global event sends will segfault; you've been warned")
 
 	print(
 		(
