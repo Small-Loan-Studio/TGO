@@ -5,6 +5,7 @@ const TORCH_SCENE = preload("res://Scenes/Components/Torch.tscn")
 
 @export var light_color: Color = Color.WHITE
 
+
 static func get_torch(c: Character) -> Torch:
 	for child in c.get_children():
 		if child is Torch:
@@ -12,7 +13,7 @@ static func get_torch(c: Character) -> Torch:
 	return null
 
 
-static func add_torch(c: Character, color:  Color) -> Torch:
+static func add_torch(c: Character, color: Color) -> Torch:
 	if SimpleTorch.get_torch(c) != null:
 		printerr("torch already added")
 		return null
