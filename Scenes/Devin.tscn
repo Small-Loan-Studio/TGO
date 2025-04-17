@@ -15,9 +15,9 @@
 [sub_resource type="Resource" id="Resource_b1u10"]
 script = ExtResource("9_fybv6")
 typ = 0
-value = 100.0
 max_value = 100.0
 default_max = 100.0
+value = 100.0
 
 [node name="Devin" instance=ExtResource("1_kp6oq")]
 script = ExtResource("1_coq4s")
