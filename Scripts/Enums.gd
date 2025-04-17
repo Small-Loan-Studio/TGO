@@ -74,8 +74,6 @@ enum AudioBus {
 	MASTER,
 	BACKGROUND_MUSIC,
 	SOUND_EFFECTS,
-	AMBIENT,
-	MENU_EFFECTS,
 }
 
 enum ItemType {
@@ -109,8 +107,6 @@ const AUDIO_BUS_INFO = {
 	AudioBus.MASTER: [0, "Global"],
 	AudioBus.BACKGROUND_MUSIC: [1, "Background Music"],
 	AudioBus.SOUND_EFFECTS: [2, "Sound Effects"],
-	AudioBus.AMBIENT: [3, "Environmental Sounds"],
-	AudioBus.MENU_EFFECTS: [4, "Menu"],
 }
 
 const DIRECTION_PUSH_PULL_AXIS := {

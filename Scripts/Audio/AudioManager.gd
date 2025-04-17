@@ -25,7 +25,7 @@ func send_event(event: int) -> void:
 ## Saves the bus volume levels to disk
 func save_levels() -> void:
 	var data: Dictionary = {}
-	data["wwise"] = true
+	data["wwise-2"] = true
 	for bus_name in AKHelper.bus_names():
 		var bus_id := AKHelper.get_bus_id(bus_name)
 		var bus_param := AKHelper.bus_param(bus_id)
@@ -56,31 +56,18 @@ func load_levels_wwise() -> void:
 		return
 
 	var data: Dictionary = json.data
-	var wwise_levels := data.has("wwise") && (data["wwise"] as bool)
+	var wwise_levels := data.has("wwise-2") && (data["wwise-2"] as bool)
+	if !wwise_levels:
+		print("No wwise levels saved, using defaults")
+		return
 
 	for key: String in data.keys():
-		if key == "wwise":
+		if key == "wwise-2":
+			# skip sentinel
 			continue
-
-		if !wwise_levels:
-			var bus_enum := int(key) as Enums.AudioBus
-			var stored_vol := data[key] as float
-			set_level(bus_enum, stored_vol)
-		else:
-			var wwise_name := String(key)
-			var level := data[key] as float
-			set_level(AKHelper.bus_from_name(wwise_name), level)
-
-
-func _volume_to_db(level: float) -> float:
-	level = clampf(level, 0, 1)
-	var x := DB_MIN + (level * (DB_MAX - DB_MIN))
-	return x
-
-
-func _db_to_volume(db_level: float) -> float:
-	var vol := clampf(db_level, DB_MIN, DB_MAX) - DB_MIN
-	return clampf(vol / (DB_MAX - DB_MIN), 0, 1)
+		var wwise_name := String(key)
+		var level := data[key] as float
+		set_level(AKHelper.bus_from_name(wwise_name), level)
 
 
 ## Sets the volume level as a value 0->1 for a specific audio bus

@@ -1,10 +1,11 @@
 class_name AKHelper
 extends RefCounted
 
+# Maps the AudioBus Enums into the Wwise namespace
 const _OLD_NEW_MAPPING := {
-	Enums.AudioBus.MASTER: "Main",
-	Enums.AudioBus.BACKGROUND_MUSIC: "Background Music",
-	Enums.AudioBus.SOUND_EFFECTS: "Sound Effects",
+	Enums.AudioBus.MASTER: "MASTER",
+	Enums.AudioBus.BACKGROUND_MUSIC: "MUSIC",
+	Enums.AudioBus.SOUND_EFFECTS: "SFX",
 }
 
 var _target: Node
@@ -14,17 +15,11 @@ func _init(owner: Node) -> void:
 	_target = owner
 
 
+## Return the names of the busses that we use
 static func bus_names() -> Array[String]:
 	var ret: Array[String] = []
-	for k: String in AK.BUSSES._dict.keys():
-		ret.append(k)
-	return ret
-
-
-static func bus_ids() -> Array[int]:
-	var ret: Array[int] = []
-	for k: int in AK.BUSSES._dict.values():
-		ret.append(k)
+	for v: String in _OLD_NEW_MAPPING.values():
+		ret.append(v)
 	return ret
 
 
