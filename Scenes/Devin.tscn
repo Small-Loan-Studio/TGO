@@ -25,6 +25,7 @@ id = "Devin"
 _controller_node_path = NodePath("InputController")
 
 [node name="AnimatedSprite2D" parent="." index="0"]
+scale = Vector2(2, 2)
 sprite_frames = ExtResource("3_3e0sk")
 animation = &"west"
 
