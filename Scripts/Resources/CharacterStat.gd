@@ -1,10 +1,15 @@
 class_name CharacterStat
 extends Resource
 
+signal stat_changed()
+
 @export var typ: Enums.Stat
-@export var value: float
 @export var max_value: float
 @export var default_max: float = 100
+@export var value: float:
+	set(v):
+		value = v
+		stat_changed.emit()
 
 
 func reset() -> void:
