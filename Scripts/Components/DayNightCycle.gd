@@ -32,6 +32,7 @@ var current_time: int:
 
 var _time: DNClock
 var _timer: Timer
+var _ak_timer: Timer
 var _overlay_tween: Tween
 var _dilated_secs_per_tick: int = 0
 var _tick_rate := .2
@@ -51,6 +52,12 @@ var _txn_wall_sec: int:
 func _ready() -> void:
 	_time = DNClock.new()
 	_time.set_time_hm(day_start_h, 0)
+
+	_ak_timer = Timer.new()
+	_ak_timer.wait_time = 30
+	_ak_timer.timeout.connect(_sync_ak)
+	_ak_timer.autostart = true
+	add_child(_ak_timer)
 
 	_timer = Timer.new()
 	_timer.wait_time = _tick_rate
@@ -94,6 +101,7 @@ func _get_target_color(time: int) -> Color:
 func set_time_sec(time: int, immediate: bool = false) -> void:
 	_time.set_time_sec(time)
 	_begin_tween(immediate)
+	_sync_ak()
 
 
 func _begin_tween(immediate: bool = false) -> void:
@@ -137,6 +145,10 @@ func _on_tick() -> void:
 		_begin_tween()
 
 	time_changed.emit()
+
+
+func _sync_ak() -> void:
+	AKHelper.global_send_param(AK.GAME_PARAMETERS.TIMEOFDAY_RTPC, self.current_time as float)
 
 
 func time_str() -> String:
