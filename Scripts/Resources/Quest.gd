@@ -43,6 +43,11 @@ signal state_change(id: String, old_state: Enums.QuestState, new_state: Enums.Qu
 ## The set of conditions that will be checked to see if the quest is completed
 @export var conditions: Array[QuestCondition]
 
+## If set this quest requires being externally set to completed. This is primarily
+## going to be used when a Quost has no conditions or it's hard to model success
+## state as a condition and we just want to manage it through some other means.
+@export var manual_completion: bool = false
+
 @export_category("Quest line structure")
 ## A quest with phases acts as a kind of "parent" of its phase quests. When
 ## this quest is marked active the first phase is automatically set to active
@@ -119,8 +124,13 @@ func get_phase_parent() -> Quest:
 
 
 ## Triggers an evaluation as to whether a quest should be moved from active to
-## a finished state. If a quest is not active no work is done, an error is printed,
-## and false is returned.
+## a finished state.
+##
+## If a quest is not active no work is done, an error is printed, and false is
+## returned.
+##
+## If a quest has been marked as requiring manual completion no work is done, an
+## error is printed, and false is returned.
 ##
 ## For an active quest this walks the conditions and checks if they are all met.
 ## When phases are present it will check the completion state of all phases and
@@ -132,10 +142,35 @@ func evaluate() -> bool:
 		)
 		return false
 
-	for c: QuestCondition in conditions:
-		if !c.eval():
-			return false
+	if manual_completion:
+		printerr("Not evaluating quest %s because it's set to manual_completion" % [id])
+		return false
 
+	if !conditions_met():
+		return false
+
+	if !phases_completed(true):
+		return false
+
+	return self.mark_completed()
+
+
+#gdlint: enable=max-returns
+
+
+func conditions_met() -> bool:
+	for c: QuestCondition in conditions:
+		if c != null && !c.eval():
+			return false
+	return true
+
+
+## checks to see if the phases (if any) of this quest are completed; arg
+## controls whether or not this will mark the current quest as failed if
+## a phase that may not  fail has failed. This will default to false but
+## for simplicity / to reduce code duplication you can pass that from an
+## evaluation context when you want to have side effects.
+func phases_completed(fail_on_phase: bool = false) -> bool:
 	# if there are phases check to see if everything has completed such that we
 	# should close out this quest
 	for qp: QuestPhase in phases:
@@ -147,18 +182,16 @@ func evaluate() -> bool:
 				Enums.QuestState.ACTIVE:
 					return false
 				Enums.QuestState.FAILED:
-					if !qp.may_fail:
-						return self.mark_failed()
+					if fail_on_phase:
+						if !qp.may_fail:
+							return self.mark_failed()
+					return false
 				Enums.QuestState.COMPLETED:
 					if !chain_completed(q):
 						return false
 				_:
 					printerr("Unknown quest state for '%s': %s" % [id, q.state])
-
-	return self.mark_completed()
-
-
-#gdlint: enable=max-returns
+	return true
 
 
 ## returns whether or not a quest and all children have been marked as completed

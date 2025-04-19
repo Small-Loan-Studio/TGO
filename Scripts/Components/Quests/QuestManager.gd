@@ -108,12 +108,14 @@ func quest_by_id(id: String) -> Quest:
 func _load_quests() -> void:
 	_load_quests_helper(Utils.QUEST_DIR)
 	_link_quests()
-	
+
 	for k: String in _quest_dict.keys():
 		var q: Quest = _quest_dict[k][QUEST_IDX]
 		print(q.id + " is parented by " + str(q._parent))
 		if q._phase_parent != null:
 			print(q.id + " is a phase of " + str(q._phase_parent.id))
+
+
 ## Issue is that child quests that load before parents do not get modified
 ## by the parent append and so parent path is lost
 
@@ -177,6 +179,7 @@ func _link_quests() -> void:
 
 		# establish parents/next links
 		_link_children_of(q)
+
 
 ## helper for _link_quests
 func _link_children_of(q: Quest) -> void:
