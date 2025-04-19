@@ -6,6 +6,7 @@
 
 [sub_resource type="Resource" id="Resource_3jmuo"]
 script = ExtResource("1_8vude")
+light_color = Color(1, 1, 1, 1)
 
 [resource]
 script = ExtResource("1_6glhw")
