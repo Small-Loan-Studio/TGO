@@ -1,0 +1,29 @@
+[gd_resource type="Resource" script_class="Quest" load_steps=3 format=3 uid="uid://co3y7rc71au5r"]
+
+[ext_resource type="Script" path="res://Scripts/Resources/Quest.gd" id="1_v0npg"]
+
+[sub_resource type="Resource" id="Resource_uy815"]
+script = ExtResource("1_v0npg")
+id = "quest_c"
+title = "Quest C"
+description = ""
+manual_start = false
+state = 0
+conditions = Array[Resource("res://Scripts/Resources/QuestCondition.gd")]([])
+manual_completion = true
+phases = Array[Resource("res://Scripts/QuestPhase.gd")]([])
+next = Array[ExtResource("1_v0npg")]([])
+results = Array[Resource("res://Scripts/Resources/Effect.gd")]([])
+
+[resource]
+script = ExtResource("1_v0npg")
+id = "quest_b"
+title = "Quest B"
+description = ""
+manual_start = false
+state = 0
+conditions = Array[Resource("res://Scripts/Resources/QuestCondition.gd")]([])
+manual_completion = true
+phases = Array[Resource("res://Scripts/QuestPhase.gd")]([])
+next = Array[ExtResource("1_v0npg")]([SubResource("Resource_uy815")])
+results = Array[Resource("res://Scripts/Resources/Effect.gd")]([])
