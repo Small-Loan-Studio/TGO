@@ -100,10 +100,10 @@ dest_path = NodePath("../../Markers/PlayerStart")
 atlas = ExtResource("21_li46b")
 region = Rect2(0, 0, 32, 32)
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_7qfel"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_kpy07"]
 size = Vector2(32, 32)
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_uy6hq"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_0rcg4"]
 size = Vector2(32, 32)
 
 [node name="LevelBase" instance=ExtResource("1_iejup")]
@@ -251,7 +251,7 @@ collision_mask = 0
 
 [node name="Shape" parent="Objects/Automatic Interactable/Physics" index="0"]
 position = Vector2(0, -16)
-shape = SubResource("RectangleShape2D_7qfel")
+shape = SubResource("RectangleShape2D_kpy07")
 
 [node name="Interactable" parent="Objects/Automatic Interactable" index="2"]
 position = Vector2(0, -1)
@@ -265,7 +265,7 @@ action_map = {
 
 [node name="Shape" parent="Objects/Automatic Interactable/Interactable" index="0"]
 position = Vector2(0, -16)
-shape = SubResource("RectangleShape2D_uy6hq")
+shape = SubResource("RectangleShape2D_0rcg4")
 
 [node name="PlayerStart" type="Node2D" parent="Markers" index="0"]
 position = Vector2(522, 183)
