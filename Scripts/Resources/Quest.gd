@@ -322,6 +322,8 @@ func lint() -> Array[String]:
 		errs.append("W: Core: title is empty")
 	if description.strip_edges() == "":
 		errs.append("W: Core: description is empty")
+	if len(conditions) == 0 && len(phases) == 0 && !manual_completion:
+		errs.append("E: No conditions or phases and Manual Completion not set. Quest will automatically complete when started.")
 
 	for i in range(phases.size()):
 		var qp := phases[i]

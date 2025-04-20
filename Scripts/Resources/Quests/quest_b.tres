@@ -1,7 +1,7 @@
 [gd_resource type="Resource" script_class="Quest" load_steps=3 format=3 uid="uid://co3y7rc71au5r"]
 
 [ext_resource type="Script" path="res://Scripts/Resources/Quest.gd" id="1_v0npg"]
-[ext_resource type="Resource" uid="uid://cmtf08uns46qf" path="res://Scripts/Resources/Quests/quest_c.tres" id="1_wo4xs"]
+[ext_resource type="Resource" uid="uid://bd2l1m047j87r" path="res://Scripts/Resources/Quests/quest_c.tres" id="1_wo4xs"]
 
 [resource]
 script = ExtResource("1_v0npg")

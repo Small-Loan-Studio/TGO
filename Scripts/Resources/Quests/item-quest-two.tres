@@ -19,6 +19,7 @@ description = "complete test"
 manual_start = false
 state = 0
 conditions = Array[Resource("res://Scripts/Resources/QuestCondition.gd")]([SubResource("Resource_t57gy")])
+manual_completion = false
 phases = Array[Resource("res://Scripts/QuestPhase.gd")]([])
 next = Array[ExtResource("1_h5xlu")]([ExtResource("3_2qee8")])
 results = Array[Resource("res://Scripts/Resources/Effect.gd")]([])

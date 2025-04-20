@@ -23,6 +23,7 @@ description = ""
 manual_start = false
 state = 0
 conditions = Array[Resource("res://Scripts/Resources/QuestCondition.gd")]([])
+manual_completion = false
 phases = Array[ExtResource("2_ok6oc")]([SubResource("Resource_iwydt"), SubResource("Resource_i5b6l")])
 next = Array[ExtResource("1_3r2an")]([])
 results = Array[Resource("res://Scripts/Resources/Effect.gd")]([])

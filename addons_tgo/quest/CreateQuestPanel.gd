@@ -28,7 +28,8 @@ func display(at_pos: Vector2) -> void:
 
 
 func _on_cancel_pressed() -> void:
-	completed.emit([])
+	var data: Array[String] = []
+	completed.emit(data)
 	hide()
 
 
@@ -39,7 +40,7 @@ func _on_create_pressed() -> void:
 	var title := _title_edit.text.strip_edges()
 	if title == "":
 		title = _id_edit.text.strip_edges()
-	var data: Array[String] = [_id_edit.strip_edges(), title]
+	var data: Array[String] = [_id_edit.text.strip_edges(), title]
 	completed.emit(data)
 	hide()
 
