@@ -4,17 +4,17 @@
 
 [resource]
 script = ExtResource("1_cbpjs")
-zoom = 0.826446
-scroll_offset = Vector2(87.3008, 105.654)
+zoom = 0.683013
+scroll_offset = Vector2(-140.914, -97.9749)
 positions = {
 "a-quest-three": Vector2(750, 1400),
+"foo": Vector2(0, 0),
 "item-quest-two": Vector2(470, 1320),
-"other-quest": Vector2(-70, 140),
+"other-quest": Vector2(-110, 240),
 "phase-parent-test": Vector2(-70, 860),
 "quest": Vector2(210, 220),
 "quest_a": Vector2(-100, 450),
 "quest_b": Vector2(220, 450),
-"quest_c": Vector2(530, 460),
 "test-item-quest": Vector2(210, 1230),
 "test-var-quest": Vector2(210, 990)
 }
