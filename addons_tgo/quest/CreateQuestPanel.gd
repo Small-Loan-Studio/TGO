@@ -3,13 +3,14 @@ class_name QuestIDPanel
 extends PanelContainer
 
 ## Fired when either the create or cancel button is pressed. Create will send
-## a non-empty quest_id to use, cancel will send an empty string.
-signal completed(quest_id: String)
+## a non-empty [quest_id, quest_title] to use, cancel will send an empty array.
+signal completed(quest_data: Array[String])
 
 var _in_err := false
 var _all_ids: Array[String] = []
 
-@onready var _id_edit := %IDEdit
+@onready var _id_edit: LineEdit = %IDEdit
+@onready var _title_edit: LineEdit = %TitleEdit
 @onready var _create_button := %QuestIDCreate
 @onready var _err_label := %QuestIDErrLabel
 
@@ -27,7 +28,7 @@ func display(at_pos: Vector2) -> void:
 
 
 func _on_cancel_pressed() -> void:
-	completed.emit("")
+	completed.emit([])
 	hide()
 
 
@@ -35,7 +36,11 @@ func _on_create_pressed() -> void:
 	if _in_err:
 		return
 
-	completed.emit(_id_edit.text.strip_edges())
+	var title := _title_edit.text.strip_edges()
+	if title == "":
+		title = _id_edit.text.strip_edges()
+	var data: Array[String] = [_id_edit.strip_edges(), title]
+	completed.emit(data)
 	hide()
 
 
