@@ -61,8 +61,6 @@ func update_display() -> void:
 	var quest_keys := quest_errs.keys()
 	quest_keys.sort()
 
-	print("LintReport.update_display - %s %s" %[show_errors, show_warnings])
-
 	for q_id: String in quest_keys:
 		if quest_errs[q_id].size() == 0:
 			continue

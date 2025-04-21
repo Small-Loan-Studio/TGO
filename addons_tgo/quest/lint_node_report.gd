@@ -58,9 +58,6 @@ func _sync_vis() -> void:
 	else:
 		size_flags_vertical = Control.SIZE_FILL
 
-	print("[%s] visible? %s; %d, %d" %[_node_label.text, visible, _errors_section.get_child_count(), _warnings_section.get_child_count()])
-
-
 
 func reflow_width(x: int) -> void:
 	custom_minimum_size.x = x
