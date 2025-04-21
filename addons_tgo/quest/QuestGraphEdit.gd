@@ -318,9 +318,12 @@ func _on_connection_to_empty(
 	from_node: StringName, from_port: int, release_position: Vector2
 ) -> void:
 	_quest_id_dlg.display(get_global_mouse_position())
-	var new_quest_id: String = await _quest_id_dlg.completed
-	if new_quest_id == "":
+	var new_quest_data: Array[String] = await _quest_id_dlg.completed
+	if new_quest_data == []:
 		return
+
+	var new_quest_id := new_quest_data[0]
+	var new_quest_title := new_quest_data[1]
 
 	var tag_count := 0
 	var path := Utils.QUEST_DIR.path_join("%s%s.tres" % [new_quest_id, ""])
@@ -332,7 +335,12 @@ func _on_connection_to_empty(
 
 	var q := Quest.new()
 	q.id = new_quest_id
+	q.title = new_quest_title
 	ResourceSaver.save(q, path)
+
+	# Load quest back in from disk otherwise we'll be working with a local
+	# instance of the resource
+	q = ResourceLoader.load(path) as Quest
 
 	_quests[new_quest_id] = q
 	var node := QuestNode.from_quest(q)

@@ -48,22 +48,47 @@ split_offset = 1024
 
 [node name="QuestGraphEdit" type="GraphEdit" parent="VBoxContainer/HSplitContainer" node_paths=PackedStringArray("_lint_report", "_quest_id_dlg")]
 layout_mode = 2
+scroll_offset = Vector2(-140.914, -97.9749)
 snapping_distance = 10
 right_disconnects = true
+zoom = 0.683013
 show_zoom_label = true
 show_grid_buttons = false
 script = ExtResource("2_rl3x7")
-_lint_report = NodePath("../ScrollContainer/LintReport")
+_lint_report = NodePath("../VBoxContainer/ScrollContainer/LintReport")
 _quest_id_dlg = NodePath("../../../QuestIDPanel")
 
-[node name="ScrollContainer" type="ScrollContainer" parent="VBoxContainer/HSplitContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/HSplitContainer"]
 layout_mode = 2
 
-[node name="LintReport" type="VBoxContainer" parent="VBoxContainer/HSplitContainer/ScrollContainer"]
+[node name="ScrollContainer" type="ScrollContainer" parent="VBoxContainer/HSplitContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="LintReport" type="VBoxContainer" parent="VBoxContainer/HSplitContainer/VBoxContainer/ScrollContainer"]
+unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 script = ExtResource("2_wfou6")
+
+[node name="HSeparator" type="HSeparator" parent="VBoxContainer/HSplitContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/HSplitContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="ShowErrorsCheck" type="CheckBox" parent="VBoxContainer/HSplitContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+button_pressed = true
+text = "Errors"
+
+[node name="ShowWarningsCheck" type="CheckBox" parent="VBoxContainer/HSplitContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+button_pressed = true
+text = "Warnings"
 
 [node name="QuestIDPanel" type="PanelContainer" parent="."]
 visible = false
@@ -93,6 +118,19 @@ theme_override_colors/font_color = Color(0.864675, 0.864675, 0.864675, 1)
 text = "Quest ID :"
 
 [node name="IDEdit" type="LineEdit" parent="QuestIDPanel/MarginContainer/VBoxContainer/HBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="TitleHbox" type="HBoxContainer" parent="QuestIDPanel/MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="QuestIDPanel/MarginContainer/VBoxContainer/TitleHbox"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.864675, 0.864675, 0.864675, 1)
+text = "Title"
+
+[node name="TitleEdit" type="LineEdit" parent="QuestIDPanel/MarginContainer/VBoxContainer/TitleHbox"]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 3
@@ -127,8 +165,12 @@ text = "Create"
 [connection signal="disconnection_request" from="VBoxContainer/HSplitContainer/QuestGraphEdit" to="VBoxContainer/HSplitContainer/QuestGraphEdit" method="_on_disconnect_request"]
 [connection signal="node_deselected" from="VBoxContainer/HSplitContainer/QuestGraphEdit" to="VBoxContainer/HSplitContainer/QuestGraphEdit" method="_node_deselected"]
 [connection signal="node_selected" from="VBoxContainer/HSplitContainer/QuestGraphEdit" to="VBoxContainer/HSplitContainer/QuestGraphEdit" method="_node_selected"]
-[connection signal="select_node" from="VBoxContainer/HSplitContainer/ScrollContainer/LintReport" to="VBoxContainer/HSplitContainer/QuestGraphEdit" method="_focus_node"]
+[connection signal="select_node" from="VBoxContainer/HSplitContainer/VBoxContainer/ScrollContainer/LintReport" to="VBoxContainer/HSplitContainer/QuestGraphEdit" method="_focus_node"]
+[connection signal="toggled" from="VBoxContainer/HSplitContainer/VBoxContainer/HBoxContainer/ShowErrorsCheck" to="." method="_set_show_errors"]
+[connection signal="toggled" from="VBoxContainer/HSplitContainer/VBoxContainer/HBoxContainer/ShowWarningsCheck" to="." method="_set_show_warnings"]
 [connection signal="text_changed" from="QuestIDPanel/MarginContainer/VBoxContainer/HBoxContainer/IDEdit" to="QuestIDPanel" method="_on_id_edit_text_changed"]
 [connection signal="text_submitted" from="QuestIDPanel/MarginContainer/VBoxContainer/HBoxContainer/IDEdit" to="QuestIDPanel" method="_on_id_edit_text_submitted"]
+[connection signal="text_changed" from="QuestIDPanel/MarginContainer/VBoxContainer/TitleHbox/TitleEdit" to="QuestIDPanel" method="_on_id_edit_text_changed"]
+[connection signal="text_submitted" from="QuestIDPanel/MarginContainer/VBoxContainer/TitleHbox/TitleEdit" to="QuestIDPanel" method="_on_id_edit_text_submitted"]
 [connection signal="pressed" from="QuestIDPanel/MarginContainer/VBoxContainer/ButtonHBox/Cancel" to="QuestIDPanel" method="_on_cancel_pressed"]
 [connection signal="pressed" from="QuestIDPanel/MarginContainer/VBoxContainer/ButtonHBox/QuestIDCreate" to="QuestIDPanel" method="_on_create_pressed"]

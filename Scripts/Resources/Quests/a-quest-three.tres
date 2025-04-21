@@ -1,0 +1,24 @@
+[gd_resource type="Resource" script_class="Quest" load_steps=5 format=3 uid="uid://clw3cyepna6x8"]
+
+[ext_resource type="Script" path="res://Scripts/Resources/QuestConditionInventory.gd" id="1_cyek8"]
+[ext_resource type="Script" path="res://Scripts/Resources/Quest.gd" id="1_ra4d6"]
+[ext_resource type="Resource" uid="uid://2vts34ovdlva" path="res://Scripts/Resources/Items/Torch.tres" id="2_bc4ag"]
+
+[sub_resource type="Resource" id="Resource_dn4h0"]
+script = ExtResource("1_cyek8")
+inventory_id = "devin"
+check = "has"
+target_item = ExtResource("2_bc4ag")
+
+[resource]
+script = ExtResource("1_ra4d6")
+id = "a-quest-three"
+title = "third quest"
+description = "third in line"
+manual_start = false
+state = 0
+conditions = Array[Resource("res://Scripts/Resources/QuestCondition.gd")]([SubResource("Resource_dn4h0")])
+manual_completion = false
+phases = Array[Resource("res://Scripts/QuestPhase.gd")]([])
+next = Array[ExtResource("1_ra4d6")]([])
+results = Array[Resource("res://Scripts/Resources/Effect.gd")]([])
