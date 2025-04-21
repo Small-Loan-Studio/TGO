@@ -15,6 +15,7 @@ positions = {
 "quest": Vector2(210, 220),
 "quest_a": Vector2(-100, 450),
 "quest_b": Vector2(220, 450),
+"quest_c": Vector2(520, 470),
 "test-item-quest": Vector2(210, 1230),
 "test-var-quest": Vector2(210, 990)
 }
