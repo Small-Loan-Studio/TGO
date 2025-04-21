@@ -41,7 +41,6 @@ func _adjust_main_panel_ratio(offset: int) -> void:
 		_lint_report().trickle_width(((1 - _main_panel_ratio) * width) as int)
 
 
-
 func _on_visibility_changed() -> void:
 	if visible && _graph_edit != null && _first_load:
 		_first_load = false
@@ -51,6 +50,7 @@ func _on_visibility_changed() -> void:
 
 func _set_show_errors(on: bool) -> void:
 	_lint_report().show_errors = on
+
 
 func _set_show_warnings(on: bool) -> void:
 	_lint_report().show_warnings = on

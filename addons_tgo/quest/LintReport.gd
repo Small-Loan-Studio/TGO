@@ -12,10 +12,9 @@ var global_errs: Array[String] = []
 # Dictionary[Quest.id, Array[String]]
 var quest_errs: Dictionary = {}
 
-
 var show_warnings: bool = true:
 	set(v):
-		show_warnings= v
+		show_warnings = v
 		for c: Node in get_children():
 			if c is LintNodeReport:
 				c.show_warnings = v
@@ -47,6 +46,7 @@ func trickle_width(new_width: int) -> void:
 	for c: Node in get_children():
 		if c is LintNodeReport:
 			c.reflow_width(new_width)
+
 
 ## refresh the displayed errors with whatever the we're currently tracking in
 ## global_errs and quest_errs
