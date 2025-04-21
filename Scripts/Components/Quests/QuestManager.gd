@@ -109,16 +109,6 @@ func _load_quests() -> void:
 	_load_quests_helper(Utils.QUEST_DIR)
 	_link_quests()
 
-	for k: String in _quest_dict.keys():
-		var q: Quest = _quest_dict[k][QUEST_IDX]
-		print(q.id + " is parented by " + str(q._parent))
-		if q._phase_parent != null:
-			print(q.id + " is a phase of " + str(q._phase_parent.id))
-
-
-## Issue is that child quests that load before parents do not get modified
-## by the parent append and so parent path is lost
-
 
 ## recursive helper function for _load_quests
 func _load_quests_helper(cur_dir: String) -> void:
@@ -183,8 +173,6 @@ func _link_quests() -> void:
 
 ## helper for _link_quests
 func _link_children_of(q: Quest) -> void:
-	print("Id: " + q.id)
-	print("parent " + str(q._parent))
 	for idx in len(q.phases):
 		var phase := q.phases[idx]
 		phase.phase_index = idx
@@ -192,10 +180,8 @@ func _link_children_of(q: Quest) -> void:
 			printerr("What are you doing, this is an invalid quest phase")
 		else:
 			phase.quest._phase_parent = q
-			print("Has phases")
 
 	for c: Quest in q.next:
-		print("Has children " + c.id)
 		c._parent.append(q)
 		_link_children_of(c)
 
@@ -225,7 +211,6 @@ func _on_quest_state_changed(
 	quest_id: String, _old_state: Enums.QuestState, new_state: Enums.QuestState
 ) -> void:
 	var canonicalized_id := quest_id.to_lower()
-	print("Callable by " + quest_id)
 	match new_state:
 		Enums.QuestState.DORMANT:
 			printerr(
@@ -234,7 +219,6 @@ func _on_quest_state_changed(
 			_active_quests.erase(canonicalized_id)
 
 		Enums.QuestState.ACTIVE:
-			print("Adding to active quest queue" + quest_id)
 			_add_active_quest(canonicalized_id)
 
 		Enums.QuestState.COMPLETED:
@@ -287,9 +271,6 @@ func _process_completed_quest(id: String) -> void:
 		return
 
 	var phase_parent := q.get_phase_parent()
-	print("Processing quest completion for " + id)
-	if phase_parent != null:
-		print("Phase parent is " + phase_parent.id)
 	if q.state == Enums.QuestState.FAILED:
 		# In a failed state we trigger the phased parent to evaluate itself in case
 		# it should fail. Not that we *do not* check if the phase may_fail is set
@@ -312,8 +293,6 @@ func _process_completed_quest(id: String) -> void:
 	# phase parent is active
 
 	if phase_parent != null && phase_parent.state == Enums.QuestState.ACTIVE:
-		print("Current quest: " + id)
-		print("Parent quest: " + phase_parent.id)
 		var idx := 0
 		# look through all phases from the parent until we find one that isn't
 		# completed or we run off the end of the list -- we can get away with only

@@ -105,7 +105,6 @@ var _parent: Array[Quest]
 ##
 ## TODO: lmao this def needs tests
 func get_phase_parent() -> Quest:
-	print(_parent)
 	var cur := self
 	while true:
 		if cur._phase_parent != null:
