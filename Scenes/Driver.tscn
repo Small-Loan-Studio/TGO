@@ -1,18 +1,16 @@
-[gd_scene load_steps=24 format=3 uid="uid://d4cnh54npmjiv"]
+[gd_scene load_steps=22 format=3 uid="uid://d4cnh54npmjiv"]
 
 [ext_resource type="Script" path="res://Scripts/Driver.gd" id="1_agcjs"]
 [ext_resource type="PackedScene" uid="uid://tw1hy0j67l4g" path="res://Scenes/Audio/AudioManager.tscn" id="2_efjl6"]
 [ext_resource type="Script" path="res://Scripts/UI/Curtain.gd" id="2_gom2g"]
-[ext_resource type="Script" path="res://Scripts/Menu/MenuManager.gd" id="3_h1ccd"]
-[ext_resource type="PackedScene" uid="uid://ci7ksomi5hsr5" path="res://Scenes/Menu/DebugMenu.tscn" id="3_i7nbg"]
+[ext_resource type="Script" path="res://Scenes/menus/menus.gd" id="4_i8gfi"]
 [ext_resource type="Script" path="res://Scripts/UI/HUD.gd" id="4_kq6n3"]
 [ext_resource type="PackedScene" uid="uid://mqvl5162rawb" path="res://Scenes/Devin.tscn" id="6_gmy4s"]
 [ext_resource type="Script" path="res://Scripts/Components/Inventory/InventoryManager.gd" id="6_na5am"]
-[ext_resource type="PackedScene" uid="uid://g47folm6bh5u" path="res://Scenes/Menu/AudioSettings.tscn" id="6_oncv5"]
 [ext_resource type="PackedScene" uid="uid://dukcf64qxy46o" path="res://Scenes/UI/Debug/Inventory.tscn" id="7_3yw60"]
 [ext_resource type="PackedScene" uid="uid://dqrxejwlgxsgu" path="res://Scenes/UI/Debug/QuestTracker.tscn" id="8_8e3e0"]
 [ext_resource type="Script" path="res://Scripts/Components/Quests/QuestManager.gd" id="9_4hdkn"]
-[ext_resource type="PackedScene" uid="uid://c0kelgau5kji2" path="res://Scenes/UI/Debug/debug_equipment.tscn" id="9_n1ypf"]
+[ext_resource type="PackedScene" path="res://Scenes/UI/Debug/debug_equipment.tscn" id="9_n1ypf"]
 [ext_resource type="PackedScene" uid="uid://dmyrmmjngi1ts" path="res://Scenes/UI/Debug/debug_day_night.tscn" id="10_8xh8g"]
 [ext_resource type="Script" path="res://Scripts/SerializationManager.gd" id="11_e6bsk"]
 [ext_resource type="PackedScene" uid="uid://my7v0l0el1dj" path="res://Scenes/UI/Debug/quest_debugger.tscn" id="11_g6nlc"]
@@ -21,7 +19,7 @@
 [ext_resource type="PackedScene" uid="uid://dk572i6hv5rqn" path="res://Scenes/UI/Debug/debug_dialogic_adapters.tscn" id="13_bn7mq"]
 [ext_resource type="Script" path="res://Scenes/UI/Debug/DevinStateReport.gd" id="13_gfaub"]
 [ext_resource type="Script" path="res://Scenes/UI/Debug/StatLabel.gd" id="14_feb7v"]
-[ext_resource type="PackedScene" uid="uid://cm0r3afwqt28t" path="res://Scenes/UI/Debug/wwise_debug.tscn" id="17_5yu8a"]
+[ext_resource type="PackedScene" path="res://Scenes/UI/Debug/wwise_debug.tscn" id="17_5yu8a"]
 [ext_resource type="PackedScene" uid="uid://cr0chtmfakeyg" path="res://ZZ_Scratch/launch_config.tscn" id="23_ff22a"]
 
 [node name="Driver" type="Node2D"]
@@ -42,32 +40,14 @@ grow_vertical = 2
 color = Color(0, 0, 0, 1)
 script = ExtResource("2_gom2g")
 
-[node name="MenuManager" type="Control" parent="OverlayManager"]
-process_mode = 3
+[node name="Menus" type="Control" parent="OverlayManager"]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-script = ExtResource("3_h1ccd")
-
-[node name="DebugMenu" parent="OverlayManager/MenuManager" instance=ExtResource("3_i7nbg")]
-visible = false
-layout_mode = 1
-anchors_preset = -1
-anchor_top = 0.5
-anchor_bottom = 0.5
-offset_left = 300.0
-offset_top = -1.0
-offset_right = -300.0
-offset_bottom = -1.0
-size_flags_horizontal = 4
-menu_type = 1
-
-[node name="InGameOverlay" parent="OverlayManager/MenuManager" instance=ExtResource("6_oncv5")]
-visible = false
-layout_mode = 1
+script = ExtResource("4_i8gfi")
 
 [node name="HUD" type="Control" parent="OverlayManager"]
 layout_mode = 3
@@ -253,7 +233,6 @@ zoom = Vector2(1.2, 1.2)
 
 [node name="PersonalDevConfig" parent="." instance=ExtResource("23_ff22a")]
 
-[connection signal="request_load" from="OverlayManager/MenuManager/DebugMenu" to="." method="request_debug_load"]
 [connection signal="pressed" from="OverlayManager/HUD/DebugStack/SaveLoadMenu/SaveButton" to="SerializationManager" method="save_game"]
 [connection signal="pressed" from="OverlayManager/HUD/DebugStack/SaveLoadMenu/LoadButton" to="SerializationManager" method="load_game"]
 [connection signal="pressed" from="OverlayManager/HUD/DebugStack/SaveLoadMenu/DeleteButton" to="SerializationManager" method="delete_save"]

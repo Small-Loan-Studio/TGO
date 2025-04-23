@@ -1,0 +1,61 @@
+[gd_scene load_steps=2 format=3 uid="uid://dk2svfkcuaaen"]
+
+[ext_resource type="Script" path="res://Scenes/menus/level_menu.gd" id="1_ltf73"]
+
+[node name="LevelMenu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_ltf73")
+
+[node name="SectionContainer" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 32.0
+offset_right = -32.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 32
+
+[node name="LevelHeader" type="Label" parent="SectionContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 32
+text = "Levels"
+
+[node name="LevelContainer" type="GridContainer" parent="SectionContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_constants/h_separation = 16
+theme_override_constants/v_separation = 16
+columns = 6
+
+[node name="DebugHeader" type="Label" parent="SectionContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 32
+text = "Debug
+"
+
+[node name="DebugContainer" type="GridContainer" parent="SectionContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_constants/h_separation = 16
+theme_override_constants/v_separation = 16
+columns = 6
+
+[node name="BackButton" type="Button" parent="."]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -8.0
+offset_bottom = 8.0
+grow_horizontal = 0
+theme_override_font_sizes/font_size = 32
+text = "Back"
+
+[connection signal="pressed" from="BackButton" to="." method="_on_back_button_pressed"]

@@ -1,9 +1,6 @@
-class_name DebugMenu
 extends Menu
 
-signal request_load(path: String)
-
-@onready var _button_container := %ButtonContainer
+@onready var _debug_container := $SectionContainer/DebugContainer
 
 
 func _ready() -> void:
@@ -12,8 +9,12 @@ func _ready() -> void:
 		var b := Button.new()
 		b.text = k
 		b.pressed.connect(_on_load_request.bind(scene_dict[k]))
-		_button_container.add_child(b)
+		_debug_container.add_child(b)
 
 
 func _on_load_request(path: String) -> void:
-	request_load.emit(path)
+	Driver.instance().load_level(path, "")
+
+
+func _on_back_button_pressed() -> void:
+	dismiss.emit()

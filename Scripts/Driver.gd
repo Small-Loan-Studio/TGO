@@ -1,13 +1,15 @@
 class_name Driver
 extends Node2D
 
+signal resumed
+
 var _last_loaded_level: LevelBase = null
 
 @onready var audio_mgr: AudioManager = $AudioManager
 @onready var player: Devin = %Devin
 @onready var inventory_mgr: InventoryManager = $InventoryManager
+@onready var menus: Menus = $OverlayManager/Menus
 @onready var quest_mgr: QuestManager = $QuestManager
-@onready var _menu_mgr: MenuManager = $OverlayManager/MenuManager
 @onready var _curtain := $OverlayManager/Curtain
 @onready var _presentation := $GameWorld/Presentation
 @onready var _world := $GameWorld
@@ -73,8 +75,14 @@ func _post_ready() -> void:
 		load_level(_personal_config.autoload_level, LevelBase.DEFAULT_MARKER)
 		await _curtain.fade_out(1)
 	else:
-		_menu_mgr.show_menu(Enums.MenuType.DEBUG)
+		menus.present(Menus.MenuKind.TITLE)
 		await _curtain.fade_out(1, false)
+
+
+func exit_game() -> void:
+	var tree := get_tree()
+	tree.root.propagate_notification(NOTIFICATION_WM_CLOSE_REQUEST)
+	tree.quit()
 
 
 func get_hud() -> HUD:
@@ -93,6 +101,8 @@ func free_previous_level() -> void:
 ## Loads a new level into the game world. Connected to SerilizationManager.gd: load_saved_level
 func load_level(target_level_name: String, target_name: String) -> void:
 	assert(target_level_name != "", "Level to load must not be empty")
+
+	menus.dismiss()
 
 	var packed_level: PackedScene
 	var new_level: LevelBase
@@ -171,7 +181,6 @@ func pause(should_pause: bool = true) -> void:
 func request_debug_load(level_name: String) -> void:
 	audio_mgr.send_event(AK.EVENTS.LEVELSTART)
 	await _curtain.fade_in(1, false)
-	_menu_mgr.hide_menu(Enums.MenuType.DEBUG)
 	load_level(level_name, LevelBase.DEFAULT_MARKER)
 	await _curtain.fade_out(1, false)
 
