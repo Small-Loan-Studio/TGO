@@ -229,6 +229,12 @@ y_sort_enabled = true
 follow_viewport_enabled = true
 
 [node name="DayNightOverlay" parent="GameWorld" instance=ExtResource("12_8kqo6")]
+dawn_start_h = 5
+day_start_h = 7
+dusk_start_h = 15
+night_start_h = 17
+dusk_color = Color(0.548625, 0.5225, 0.55, 1)
+night_color = Color(0.027451, 0.0117647, 0.027451, 1)
 day_length_seconds = 900
 day_autostart = true
 
@@ -236,6 +242,8 @@ day_autostart = true
 unique_name_in_owner = true
 visible = false
 position = Vector2(0, 0)
+scale = Vector2(1.6, 1.6)
+safe_margin = 0.8
 
 [node name="Camera2D" type="Camera2D" parent="GameWorld/Devin"]
 zoom = Vector2(1.2, 1.2)
