@@ -1,0 +1,24 @@
+[gd_scene load_steps=2 format=3 uid="uid://cyvavm1k1iv7n"]
+
+[ext_resource type="PackedScene" uid="uid://dyq8mcdsutnsa" path="res://Scenes/Components/LevelBase.tscn" id="1_oseju"]
+
+[node name="LevelBase" instance=ExtResource("1_oseju")]
+
+[node name="TextEdit" type="TextEdit" parent="." index="5"]
+offset_left = 76.0
+offset_top = 41.0
+offset_right = 651.0
+offset_bottom = 578.0
+text = "Level Designer, you can delete this later.
+
+Farmlands Consist of:
+a- Field 1/2/3/Pastures aka \"Living Fields\" (living fields, actually usable for planting/sowing/etc.)
+b- Each of the 'external farmhouse complexes' + internals (sprint 6 technically) -- so potentially six of these
+c- the glintley internal farmhouse x 1 (Glintley farmhouse that Beatrice, Dan, Matthew etc. currently live in is here)
+d- Dead fields (covered by the black mist) and Abandonded Farmhouses (internal) Old Glintley farmhouse and multiple other houses burned down by the great fire Abraham Sharp set off are here (Also the way to the Puca's Burrow)
+e- Pastures
+
+Internal areas MIGHT become separate levels, but proceed in building out their perimeters in case we keep them in this level. If possible, build the interiors, too.
+
+"
+wrap_mode = 1
