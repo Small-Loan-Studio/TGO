@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<WwiseDocument Type="WorkUnit" ID="{D2F5854E-B20F-422F-80EE-B793C2098EE1}" SchemaVersion="119">
+	<Events>
+		<WorkUnit Name="NPC" ID="{D2F5854E-B20F-422F-80EE-B793C2098EE1}" PersistMode="Standalone">
+			<PropertyList>
+				<Property Name="Color" Type="int16" Value="24"/>
+				<Property Name="OverrideColor" Type="bool" Value="True"/>
+			</PropertyList>
+		</WorkUnit>
+	</Events>
+</WwiseDocument>

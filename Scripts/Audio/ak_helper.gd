@@ -1,12 +1,11 @@
 class_name AKHelper
 extends RefCounted
 
+# Maps the AudioBus Enums into the Wwise namespace
 const _OLD_NEW_MAPPING := {
-	Enums.AudioBus.MASTER: "Main",
-	Enums.AudioBus.BACKGROUND_MUSIC: "Background Music",
-	Enums.AudioBus.SOUND_EFFECTS: "Sound Effects",
-	Enums.AudioBus.MENU_EFFECTS: "Menu",
-	Enums.AudioBus.AMBIENT: "Ambient Sounds",
+	Enums.AudioBus.MASTER: "MASTER",
+	Enums.AudioBus.BACKGROUND_MUSIC: "MUSIC",
+	Enums.AudioBus.SOUND_EFFECTS: "SFX",
 }
 
 var _target: Node
@@ -16,17 +15,11 @@ func _init(owner: Node) -> void:
 	_target = owner
 
 
+## Return the names of the busses that we use
 static func bus_names() -> Array[String]:
 	var ret: Array[String] = []
-	for k: String in AK.BUSSES._dict.keys():
-		ret.append(k)
-	return ret
-
-
-static func bus_ids() -> Array[int]:
-	var ret: Array[int] = []
-	for k: int in AK.BUSSES._dict.values():
-		ret.append(k)
+	for v: String in _OLD_NEW_MAPPING.values():
+		ret.append(v)
 	return ret
 
 
@@ -36,16 +29,12 @@ static func get_bus_id(name: String) -> int:
 
 static func bus_param(bus_id: int) -> int:
 	match bus_id:
-		AK.BUSSES.MENU:
-			return AK.GAME_PARAMETERS.LEVELS_MENU
-		AK.BUSSES.AMBIENT_SOUNDS:
-			return AK.GAME_PARAMETERS.LEVELS_AMBIENT
-		AK.BUSSES.BACKGROUND_MUSIC:
-			return AK.GAME_PARAMETERS.LEVELS_BACKGROUND
-		AK.BUSSES.MAIN:
-			return AK.GAME_PARAMETERS.LEVELS_MAIN
-		AK.BUSSES.SOUND_EFFECTS:
-			return AK.GAME_PARAMETERS.LEVELS_EFFECTS
+		AK.BUSSES.MASTER:
+			return AK.GAME_PARAMETERS.MASTERVOL_RTPC
+		AK.BUSSES.MUSIC:
+			return AK.GAME_PARAMETERS.MUSICVOL_RTPC
+		AK.BUSSES.SFX:
+			return AK.GAME_PARAMETERS.SFXVOL_RTPC
 		_:
 			assert("unknown bus id %d" % [bus_id])
 			return -9999
@@ -77,6 +66,11 @@ func get_param(param: int, local: bool = true) -> float:
 	return Wwise.get_rtpc_value_id(param, null)
 
 
+static func global_send_param(param: int, value: float) -> void:
+	print("[Wwise] (global) rtpc -> %s=%s" % [name_by_id(AK.GAME_PARAMETERS._dict, param), value])
+	Wwise.set_rtpc_value_id(param, value, null)
+
+
 func send_param(param: int, value: float, local: bool = true) -> void:
 	var locality_str := ""
 	if !local:
@@ -97,12 +91,14 @@ func send_param(param: int, value: float, local: bool = true) -> void:
 		Wwise.set_rtpc_value_id(param, value, null)
 
 
+# It's likely that global event sends will segfault; you've been warned
 func send_event(event_id: int, local: bool = true) -> void:
 	var tgt := _target
 	var locality_str := ""
 	if !local:
 		tgt = null
 		locality_str = "(global) "
+		print("It's likely that global event sends will segfault; you've been warned")
 
 	print(
 		(

@@ -3,23 +3,46 @@
 	<GameParameters>
 		<WorkUnit Name="Default Work Unit" ID="{4BB587C7-F5F5-4FBE-AD3E-2AADCE4707E1}" PersistMode="Standalone">
 			<ChildrenList>
-				<Folder Name="Volume Adjust" ID="{BEF578FF-3C14-4EDE-873D-53C7EAB8B865}" ShortID="160281272">
+				<Folder Name="BusVolumeRTPCs" ID="{BEF578FF-3C14-4EDE-873D-53C7EAB8B865}" ShortID="160281272">
+					<Comment>These RTPCs are primarily for the player to have control over bus volume in settings</Comment>
+					<PropertyList>
+						<Property Name="Color" Type="int16" Value="5"/>
+						<Property Name="OverrideColor" Type="bool" Value="True"/>
+					</PropertyList>
 					<ChildrenList>
-						<GameParameter Name="Levels_Background" ID="{68A3BB83-7B2B-4867-A29B-414DF8F9925F}">
+						<GameParameter Name="MusicVol_RTPC" ID="{69C3C129-89F8-4FD7-B4BD-B74A93C9CAF1}">
 							<PropertyList>
-								<Property Name="InitialValue" Type="Real64" Value="80"/>
+								<Property Name="Color" Type="int16" Value="5"/>
+								<Property Name="OverrideColor" Type="bool" Value="True"/>
 							</PropertyList>
 						</GameParameter>
-						<GameParameter Name="Levels_Ambient" ID="{E62FE1EF-07F3-49B4-8F9F-6DFBA107ED01}"/>
-						<GameParameter Name="Levels_Menu" ID="{7ADC3B8D-CB70-4BCD-9A3D-D64A2E7DF36D}"/>
-						<GameParameter Name="Levels_Effects" ID="{A9F2EC9E-734C-4952-A717-2CFC48AD8259}"/>
-						<GameParameter Name="Levels_Main" ID="{AB0BDA09-BFDD-4754-A449-DB1D0A592CC1}">
+						<GameParameter Name="SFXVol_RTPC" ID="{B184FAA8-76B4-4526-B060-91636C7485E6}">
 							<PropertyList>
-								<Property Name="InitialValue" Type="Real64" Value="80"/>
+								<Property Name="Color" Type="int16" Value="5"/>
+								<Property Name="OverrideColor" Type="bool" Value="True"/>
+							</PropertyList>
+						</GameParameter>
+						<GameParameter Name="MasterVol_RTPC" ID="{1F3AB696-B0E0-4073-9B43-E691E8ECFB4B}">
+							<PropertyList>
+								<Property Name="Color" Type="int16" Value="5"/>
+								<Property Name="OverrideColor" Type="bool" Value="True"/>
 							</PropertyList>
 						</GameParameter>
 					</ChildrenList>
 				</Folder>
+				<GameParameter Name="Distance_RTPC" ID="{1F56BB92-26B6-4508-B57A-4B5985CF4F46}"/>
+				<GameParameter Name="PlayerHealth_RTPC" ID="{78B82DD0-EBF5-48A3-9734-7BE73B627C86}">
+					<PropertyList>
+						<Property Name="InitialValue" Type="Real64" Value="10"/>
+						<Property Name="Max" Type="Real64" Value="10"/>
+					</PropertyList>
+				</GameParameter>
+				<GameParameter Name="TimeOfDay_RTPC" ID="{45EED032-4AC5-415E-8247-FEBA8C3C906A}">
+					<PropertyList>
+						<Property Name="InitialValue" Type="Real64" Value="0"/>
+						<Property Name="Max" Type="Real64" Value="86400"/>
+					</PropertyList>
+				</GameParameter>
 			</ChildrenList>
 		</WorkUnit>
 	</GameParameters>

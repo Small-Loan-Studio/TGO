@@ -8,7 +8,7 @@
 						<Action Name="" ID="{A7A3A8C6-9956-41EF-877C-02BB3A761E09}" ShortID="875411714">
 							<ReferenceList>
 								<Reference Name="Target">
-									<ObjectRef Name="TGO_Tavern_Gadient1" ID="{54CF1D1E-7E99-4CE9-B18A-5525A09383E0}" WorkUnitID="{B7C97FFC-28BC-44FD-84DB-11B9ABE8BC50}"/>
+									<ObjectRef Name="MX_Tavern_Guitar" ID="{54CF1D1E-7E99-4CE9-B18A-5525A09383E0}" WorkUnitID="{B7C97FFC-28BC-44FD-84DB-11B9ABE8BC50}"/>
 								</Reference>
 							</ReferenceList>
 						</Action>

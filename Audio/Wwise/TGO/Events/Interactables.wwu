@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<WwiseDocument Type="WorkUnit" ID="{D9FB95D4-D1CB-4E4D-B4AD-20EE510BA0A6}" SchemaVersion="119">
+	<Events>
+		<WorkUnit Name="Interactables" ID="{D9FB95D4-D1CB-4E4D-B4AD-20EE510BA0A6}" PersistMode="Standalone">
+			<PropertyList>
+				<Property Name="Color" Type="int16" Value="20"/>
+				<Property Name="OverrideColor" Type="bool" Value="True"/>
+			</PropertyList>
+			<ChildrenList>
+				<Event Name="play_IN_hardtack_eat" ID="{9B93F301-E5F2-47BA-A2A3-7F017B46C0DA}">
+					<ChildrenList>
+						<Action Name="" ID="{2E27EA0E-3795-4F21-80A4-663641F51C76}" ShortID="188626287">
+							<ReferenceList>
+								<Reference Name="Target">
+									<ObjectRef Name="IN_hardtack_eat" ID="{B25445F6-D0C6-4B4C-B31D-FE69D7E0F092}" WorkUnitID="{2C578E29-CC89-4E68-9F40-97B72C39F948}"/>
+								</Reference>
+							</ReferenceList>
+						</Action>
+					</ChildrenList>
+				</Event>
+				<Event Name="play_IN_hardtack_pickup" ID="{AF390720-DDCE-4359-A50E-7E39A463777B}">
+					<ChildrenList>
+						<Action Name="" ID="{BF6043DA-6756-493F-986F-BA2133A8DE1A}" ShortID="1016988471">
+							<ReferenceList>
+								<Reference Name="Target">
+									<ObjectRef Name="IN_hardtack_pickup" ID="{60A10CD0-93A8-4A70-A334-ED6DC6035E49}" WorkUnitID="{2C578E29-CC89-4E68-9F40-97B72C39F948}"/>
+								</Reference>
+							</ReferenceList>
+						</Action>
+					</ChildrenList>
+				</Event>
+				<Event Name="play_IN_juniper_eat" ID="{C2180683-A2AB-41F4-B088-3CA65BECDF41}">
+					<ChildrenList>
+						<Action Name="" ID="{68973E79-91BA-4F06-8E9A-81207840F470}" ShortID="105957239">
+							<ReferenceList>
+								<Reference Name="Target">
+									<ObjectRef Name="IN_juniper_eat" ID="{4D427E7B-B987-4AE6-B9DE-3ADFE9D4A96C}" WorkUnitID="{2C578E29-CC89-4E68-9F40-97B72C39F948}"/>
+								</Reference>
+							</ReferenceList>
+						</Action>
+					</ChildrenList>
+				</Event>
+				<Event Name="play_IN_juniper_pickup" ID="{3F9180CB-861F-4C24-9219-21D9F926B0FC}">
+					<ChildrenList>
+						<Action Name="" ID="{7E52397B-064A-4166-9FCD-F6118D64FB8D}" ShortID="1050731546">
+							<ReferenceList>
+								<Reference Name="Target">
+									<ObjectRef Name="IN_juniper_pickup" ID="{01847D39-4AC9-40EE-9DE7-B0A1B5DFFC5D}" WorkUnitID="{2C578E29-CC89-4E68-9F40-97B72C39F948}"/>
+								</Reference>
+							</ReferenceList>
+						</Action>
+					</ChildrenList>
+				</Event>
+				<Event Name="play_IN_PaperScraps_pickup" ID="{24546A19-564D-498F-A386-AFB3BABDDCD8}">
+					<ChildrenList>
+						<Action Name="" ID="{AC8549D8-1197-45C5-9F6E-9087F730735A}" ShortID="941694494">
+							<ReferenceList>
+								<Reference Name="Target">
+									<ObjectRef Name="IN_PaperScraps_pickup" ID="{541FB1EE-A624-4C33-9DB7-44D8AE61F23A}" WorkUnitID="{2C578E29-CC89-4E68-9F40-97B72C39F948}"/>
+								</Reference>
+							</ReferenceList>
+						</Action>
+					</ChildrenList>
+				</Event>
+				<Event Name="play_SkeletalRemains_search" ID="{948FFE56-87D6-4794-91FE-D8B9E8D3BA46}">
+					<ChildrenList>
+						<Action Name="" ID="{726B12C5-3E4F-4F95-870E-B9E2BC55161E}" ShortID="262048426">
+							<ReferenceList>
+								<Reference Name="Target">
+									<ObjectRef Name="IN_SkeletalRemains_search" ID="{E2F0E520-8731-4F55-A09D-4A4912422E33}" WorkUnitID="{2C578E29-CC89-4E68-9F40-97B72C39F948}"/>
+								</Reference>
+							</ReferenceList>
+						</Action>
+					</ChildrenList>
+				</Event>
+			</ChildrenList>
+		</WorkUnit>
+	</Events>
+</WwiseDocument>

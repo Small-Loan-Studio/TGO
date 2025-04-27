@@ -95,35 +95,6 @@ max_value = 1.0
 step = 0.1
 value = 0.5
 
-[node name="Ambient" type="MarginContainer" parent="VBoxContainer"]
-layout_mode = 2
-theme_override_constants/margin_left = 20
-script = ExtResource("2_v28y3")
-bus = 3
-
-[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/Ambient"]
-layout_mode = 2
-theme_override_constants/separation = 8
-
-[node name="TextureRect" type="TextureRect" parent="VBoxContainer/Ambient/HBoxContainer"]
-layout_mode = 2
-texture = ExtResource("2_15y86")
-expand_mode = 3
-
-[node name="Label" type="Label" parent="VBoxContainer/Ambient/HBoxContainer"]
-layout_mode = 2
-text = "Ambient
-"
-
-[node name="BusSlider" type="HSlider" parent="VBoxContainer/Ambient/HBoxContainer"]
-layout_mode = 2
-size_flags_horizontal = 3
-size_flags_vertical = 4
-theme_override_styles/slider = ExtResource("4_7i0t7")
-max_value = 1.0
-step = 0.1
-value = 0.5
-
 [node name="SFX" type="MarginContainer" parent="VBoxContainer"]
 layout_mode = 2
 theme_override_constants/margin_left = 20
@@ -152,36 +123,6 @@ max_value = 1.0
 step = 0.1
 value = 0.5
 
-[node name="MenuFX" type="MarginContainer" parent="VBoxContainer"]
-layout_mode = 2
-theme_override_constants/margin_left = 20
-script = ExtResource("2_v28y3")
-bus = 4
-
-[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/MenuFX"]
-layout_mode = 2
-theme_override_constants/separation = 8
-
-[node name="TextureRect" type="TextureRect" parent="VBoxContainer/MenuFX/HBoxContainer"]
-layout_mode = 2
-texture = ExtResource("2_15y86")
-expand_mode = 3
-
-[node name="Label" type="Label" parent="VBoxContainer/MenuFX/HBoxContainer"]
-layout_mode = 2
-text = "Menu Effects"
-
-[node name="BusSlider" type="HSlider" parent="VBoxContainer/MenuFX/HBoxContainer"]
-layout_mode = 2
-size_flags_horizontal = 3
-size_flags_vertical = 4
-theme_override_styles/slider = ExtResource("4_7i0t7")
-max_value = 1.0
-step = 0.1
-value = 0.5
-
 [connection signal="drag_started" from="VBoxContainer/MainLevels/HBoxContainer/BusSlider" to="." method="_main_drag_start"]
 [connection signal="drag_started" from="VBoxContainer/BGMLevels/HBoxContainer/BusSlider" to="." method="_bgm_drag_start"]
-[connection signal="drag_started" from="VBoxContainer/Ambient/HBoxContainer/BusSlider" to="." method="_ambient_drag_start"]
 [connection signal="drag_started" from="VBoxContainer/SFX/HBoxContainer/BusSlider" to="." method="_sfx_drag_start"]
-[connection signal="drag_started" from="VBoxContainer/MenuFX/HBoxContainer/BusSlider" to="." method="_menu_drag_start"]

@@ -19,11 +19,7 @@
 							<Reference>
 								<Local>
 									<EffectSlot Name="" ID="{1F8B8B2C-BDF6-4976-8E8B-397D1A4A7DC3}">
-										<ReferenceList>
-											<Reference Name="Effect" PluginName="Wwise Reflect" CompanyID="0" PluginID="171" PluginType="3">
-												<ObjectRef Name="Reflect" ID="{37779A87-4754-4420-8175-3236FA46AA12}" WorkUnitID="{923039AD-F8B4-46D4-BDA7-CB5A6EE595E0}"/>
-											</Reference>
-										</ReferenceList>
+										<ReferenceList/>
 									</EffectSlot>
 								</Local>
 							</Reference>
@@ -46,11 +42,7 @@
 							<Reference>
 								<Local>
 									<EffectSlot Name="" ID="{9BB508E2-E9A9-4B37-A8AA-CA3564A607EB}">
-										<ReferenceList>
-											<Reference Name="Effect" PluginName="Wwise Reflect" CompanyID="0" PluginID="171" PluginType="3">
-												<ObjectRef Name="Reflect_Simplified" ID="{26D1B778-1690-400C-9DBA-3B2CDEE9B3AE}" WorkUnitID="{923039AD-F8B4-46D4-BDA7-CB5A6EE595E0}"/>
-											</Reference>
-										</ReferenceList>
+										<ReferenceList/>
 									</EffectSlot>
 								</Local>
 							</Reference>

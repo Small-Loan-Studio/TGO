@@ -1,0 +1,188 @@
+<?xml version="1.0" encoding="utf-8"?>
+<WwiseDocument Type="WorkUnit" ID="{05418A24-DE52-48AE-8733-F6F54D1BFD0E}" SchemaVersion="119">
+	<Events>
+		<WorkUnit Name="Ambience" ID="{05418A24-DE52-48AE-8733-F6F54D1BFD0E}" PersistMode="Standalone">
+			<PropertyList>
+				<Property Name="Color" Type="int16" Value="14"/>
+				<Property Name="OverrideColor" Type="bool" Value="True"/>
+			</PropertyList>
+			<ChildrenList>
+				<Event Name="play_AM_Crypt" ID="{482479D2-94ED-41B4-A096-57530F3F293A}">
+					<ChildrenList>
+						<Action Name="" ID="{082059CC-215F-4FB6-95E4-A8CD4D04FB01}" ShortID="341469448">
+							<PropertyList>
+								<Property Name="ActionType" Type="int16" Value="2"/>
+								<Property Name="FadeTime" Type="Real64" Value="1.5"/>
+							</PropertyList>
+							<ReferenceList>
+								<Reference Name="Target">
+									<ObjectRef Name="Ambience" ID="{53860B68-F0E2-4585-9101-A2DA90246DEE}" WorkUnitID="{C01D9EA6-37AB-4E7A-8456-A4A1C2274D7B}"/>
+								</Reference>
+							</ReferenceList>
+						</Action>
+						<Action Name="" ID="{B2DDADEC-A70F-4A9F-8998-D8816851ED19}" ShortID="543029589">
+							<PropertyList>
+								<Property Name="FadeTime" Type="Real64" Value="2"/>
+							</PropertyList>
+							<ReferenceList>
+								<Reference Name="Target">
+									<ObjectRef Name="AM_Crypt_bell_sequence" ID="{413159F7-32FD-4E90-9DE0-E3249223FED2}" WorkUnitID="{C01D9EA6-37AB-4E7A-8456-A4A1C2274D7B}"/>
+								</Reference>
+							</ReferenceList>
+						</Action>
+						<Action Name="" ID="{21081D95-7105-4A75-B8DF-C113EB05250E}" ShortID="183366115">
+							<PropertyList>
+								<Property Name="FadeTime" Type="Real64" Value="2"/>
+							</PropertyList>
+							<ReferenceList>
+								<Reference Name="Target">
+									<ObjectRef Name="sfx_AM_Crypt_01" ID="{6921EECD-9294-49D7-8957-7617598CE0ED}" WorkUnitID="{C01D9EA6-37AB-4E7A-8456-A4A1C2274D7B}"/>
+								</Reference>
+							</ReferenceList>
+						</Action>
+					</ChildrenList>
+				</Event>
+				<Folder Name="Props" ID="{EA587F54-B4FC-4D13-9695-77B276706ECD}" ShortID="51495291">
+					<ChildrenList>
+						<Event Name="play_AM_Crypt_ratSqueak" ID="{C08A1C61-363F-425B-8BF2-8145F0A24EC5}">
+							<ChildrenList>
+								<Action Name="" ID="{F1066643-C3E7-4583-AAD9-71CF80855D97}" ShortID="801388816">
+									<ReferenceList>
+										<Reference Name="Target">
+											<ObjectRef Name="AM_Crypt_ratSqueak" ID="{F0EA5CE1-D34E-4680-B4B3-F5AF77B0B385}" WorkUnitID="{C01D9EA6-37AB-4E7A-8456-A4A1C2274D7B}"/>
+										</Reference>
+									</ReferenceList>
+								</Action>
+							</ChildrenList>
+						</Event>
+						<Event Name="play_AM_Crypt_rubble" ID="{B446F544-17E8-4840-94BF-391A027AA793}">
+							<ChildrenList>
+								<Action Name="" ID="{B110D18C-A25A-4C30-AC34-3951958589DB}" ShortID="20372733">
+									<ReferenceList>
+										<Reference Name="Target">
+											<ObjectRef Name="AM_Crypt_rubble" ID="{1A055E96-F659-45DC-A13D-2C75170FC247}" WorkUnitID="{C01D9EA6-37AB-4E7A-8456-A4A1C2274D7B}"/>
+										</Reference>
+									</ReferenceList>
+								</Action>
+							</ChildrenList>
+						</Event>
+					</ChildrenList>
+				</Folder>
+				<Event Name="stop_AM_Crypt" ID="{A7138586-AE9F-4C4E-A1FF-35F6CA55439D}">
+					<PropertyList>
+						<Property Name="Color" Type="int16" Value="1"/>
+						<Property Name="OverrideColor" Type="bool" Value="True"/>
+					</PropertyList>
+					<ChildrenList>
+						<Action Name="" ID="{603BBE70-F873-40E8-A325-60EE1E434C6F}" ShortID="917943819">
+							<PropertyList>
+								<Property Name="ActionType" Type="int16" Value="2"/>
+							</PropertyList>
+							<ReferenceList>
+								<Reference Name="Target">
+									<ObjectRef Name="AM_Crypt_bell_sequence" ID="{413159F7-32FD-4E90-9DE0-E3249223FED2}" WorkUnitID="{C01D9EA6-37AB-4E7A-8456-A4A1C2274D7B}"/>
+								</Reference>
+							</ReferenceList>
+						</Action>
+						<Action Name="" ID="{8F7FB07A-A48F-48D8-8A76-9337CC0570BF}" ShortID="1014476784">
+							<PropertyList>
+								<Property Name="ActionType" Type="int16" Value="2"/>
+							</PropertyList>
+							<ReferenceList>
+								<Reference Name="Target">
+									<ObjectRef Name="sfx_AM_Crypt_01" ID="{6921EECD-9294-49D7-8957-7617598CE0ED}" WorkUnitID="{C01D9EA6-37AB-4E7A-8456-A4A1C2274D7B}"/>
+								</Reference>
+							</ReferenceList>
+						</Action>
+					</ChildrenList>
+				</Event>
+				<Event Name="play_AM_Cemetery" ID="{3E0F1F73-FCA0-46F7-8B43-D790B93CC126}">
+					<ChildrenList>
+						<Action Name="" ID="{61EDF5C0-09A6-4CC8-948B-827FF181C9BC}" ShortID="108998470">
+							<PropertyList>
+								<Property Name="ActionType" Type="int16" Value="2"/>
+								<Property Name="FadeTime" Type="Real64" Value="2"/>
+							</PropertyList>
+							<ReferenceList>
+								<Reference Name="Target">
+									<ObjectRef Name="Ambience" ID="{53860B68-F0E2-4585-9101-A2DA90246DEE}" WorkUnitID="{C01D9EA6-37AB-4E7A-8456-A4A1C2274D7B}"/>
+								</Reference>
+							</ReferenceList>
+						</Action>
+						<Action Name="" ID="{13ED66EB-51F9-4899-9F0A-7A50977264C4}" ShortID="1068774688">
+							<PropertyList>
+								<Property Name="FadeTime" Type="Real64" Value="2"/>
+							</PropertyList>
+							<ReferenceList>
+								<Reference Name="Target">
+									<ObjectRef Name="sfx_AM_Cemetery_main_loop_01" ID="{B806F82E-99E5-4CE1-8AA2-A25A1455DC6E}" WorkUnitID="{C01D9EA6-37AB-4E7A-8456-A4A1C2274D7B}"/>
+								</Reference>
+							</ReferenceList>
+						</Action>
+						<Action Name="" ID="{F3D84FAE-304E-4B0C-9378-C5727890AC64}" ShortID="991198397">
+							<PropertyList>
+								<Property Name="FadeTime" Type="Real64" Value="2"/>
+							</PropertyList>
+							<ReferenceList>
+								<Reference Name="Target">
+									<ObjectRef Name="AM_Cemetery_crows" ID="{ABD28FBE-5BF6-4E7A-8FB0-ACA5F8477B05}" WorkUnitID="{C01D9EA6-37AB-4E7A-8456-A4A1C2274D7B}"/>
+								</Reference>
+							</ReferenceList>
+						</Action>
+						<Action Name="" ID="{0181D99A-3547-47F1-BBEF-BFAFC670D903}" ShortID="964120651">
+							<PropertyList>
+								<Property Name="FadeTime" Type="Real64" Value="2"/>
+							</PropertyList>
+							<ReferenceList>
+								<Reference Name="Target">
+									<ObjectRef Name="AM_Cemetery_groans" ID="{3465843C-2C1A-4FFC-A4EB-7E3F03786F97}" WorkUnitID="{C01D9EA6-37AB-4E7A-8456-A4A1C2274D7B}"/>
+								</Reference>
+							</ReferenceList>
+						</Action>
+					</ChildrenList>
+				</Event>
+				<Event Name="stop_AM_Cemetery" ID="{490ECB4E-FBC6-4303-87B7-9322A376F130}">
+					<PropertyList>
+						<Property Name="Color" Type="int16" Value="1"/>
+						<Property Name="OverrideColor" Type="bool" Value="True"/>
+					</PropertyList>
+					<ChildrenList>
+						<Action Name="" ID="{98443EC6-A0F4-4219-90AE-F24FC0FC6F0B}" ShortID="969366881">
+							<PropertyList>
+								<Property Name="ActionType" Type="int16" Value="2"/>
+								<Property Name="FadeTime" Type="Real64" Value="2"/>
+							</PropertyList>
+							<ReferenceList>
+								<Reference Name="Target">
+									<ObjectRef Name="sfx_AM_Cemetery_main_loop_01" ID="{B806F82E-99E5-4CE1-8AA2-A25A1455DC6E}" WorkUnitID="{C01D9EA6-37AB-4E7A-8456-A4A1C2274D7B}"/>
+								</Reference>
+							</ReferenceList>
+						</Action>
+						<Action Name="" ID="{428ADA87-27B6-4983-ACE9-E3311AD5C989}" ShortID="149530402">
+							<PropertyList>
+								<Property Name="ActionType" Type="int16" Value="2"/>
+								<Property Name="FadeTime" Type="Real64" Value="2"/>
+							</PropertyList>
+							<ReferenceList>
+								<Reference Name="Target">
+									<ObjectRef Name="AM_Cemetery_crows" ID="{ABD28FBE-5BF6-4E7A-8FB0-ACA5F8477B05}" WorkUnitID="{C01D9EA6-37AB-4E7A-8456-A4A1C2274D7B}"/>
+								</Reference>
+							</ReferenceList>
+						</Action>
+						<Action Name="" ID="{B4C733AA-81B6-4B70-BC04-AD9AF76F9C35}" ShortID="473408240">
+							<PropertyList>
+								<Property Name="ActionType" Type="int16" Value="2"/>
+								<Property Name="FadeTime" Type="Real64" Value="2"/>
+							</PropertyList>
+							<ReferenceList>
+								<Reference Name="Target">
+									<ObjectRef Name="AM_Cemetery_groans" ID="{3465843C-2C1A-4FFC-A4EB-7E3F03786F97}" WorkUnitID="{C01D9EA6-37AB-4E7A-8456-A4A1C2274D7B}"/>
+								</Reference>
+							</ReferenceList>
+						</Action>
+					</ChildrenList>
+				</Event>
+			</ChildrenList>
+		</WorkUnit>
+	</Events>
+</WwiseDocument>

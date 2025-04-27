@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<WwiseDocument Type="WorkUnit" ID="{285F7A76-AE49-4D48-8D5D-C73C7938630A}" SchemaVersion="119">
+	<Events>
+		<WorkUnit Name="UserInterface" ID="{285F7A76-AE49-4D48-8D5D-C73C7938630A}" PersistMode="Standalone">
+			<PropertyList>
+				<Property Name="Color" Type="int16" Value="21"/>
+				<Property Name="OverrideColor" Type="bool" Value="True"/>
+			</PropertyList>
+			<ChildrenList>
+				<Event Name="play_UI_Journal_tab" ID="{9FE7CA81-AE95-4894-A28D-33917D159E8B}">
+					<ChildrenList>
+						<Action Name="" ID="{99C01DE9-8381-46E7-A144-C3E59F14F352}" ShortID="595692983">
+							<ReferenceList>
+								<Reference Name="Target">
+									<ObjectRef Name="UI_Journal_tab" ID="{EA2D1531-A31C-49CA-A912-53D18B4EF3A6}" WorkUnitID="{12B01E6D-B133-4DDD-BBB0-9FF6C4B3FB96}"/>
+								</Reference>
+							</ReferenceList>
+						</Action>
+					</ChildrenList>
+				</Event>
+				<Event Name="play_UI_NewClue" ID="{712DB457-47C6-40E1-B8DE-87C7BB2854F5}">
+					<ChildrenList>
+						<Action Name="" ID="{7E345128-01E2-4E90-8688-2EA138164A1C}" ShortID="395891369">
+							<ReferenceList>
+								<Reference Name="Target">
+									<ObjectRef Name="UI_NewClue" ID="{A87C4560-20F1-4E51-9ECE-16C8C5BD8B8D}" WorkUnitID="{12B01E6D-B133-4DDD-BBB0-9FF6C4B3FB96}"/>
+								</Reference>
+							</ReferenceList>
+						</Action>
+					</ChildrenList>
+				</Event>
+				<Event Name="play_UI_OpenInventory" ID="{67DE083F-114B-49C3-8AEA-E981ABB07D05}">
+					<ChildrenList>
+						<Action Name="" ID="{240A6841-636A-4C79-8D06-6328F5B75EEB}" ShortID="683023594">
+							<ReferenceList>
+								<Reference Name="Target">
+									<ObjectRef Name="UI_OpenInventory" ID="{DB9D5839-68CC-4AD6-8AEF-1239559EC2C3}" WorkUnitID="{12B01E6D-B133-4DDD-BBB0-9FF6C4B3FB96}"/>
+								</Reference>
+							</ReferenceList>
+						</Action>
+					</ChildrenList>
+				</Event>
+				<Event Name="play_UI_QuestLog_open" ID="{50977D55-4AAD-4DB7-9984-55B9F42DD5F5}">
+					<ChildrenList>
+						<Action Name="" ID="{C43F9A61-2B74-4CE2-8708-4A6E95E6C4E5}" ShortID="460847506">
+							<ReferenceList>
+								<Reference Name="Target">
+									<ObjectRef Name="UI_QuestLog_open" ID="{EEDBBEAB-3376-4EF3-BE11-C491D36E2E24}" WorkUnitID="{12B01E6D-B133-4DDD-BBB0-9FF6C4B3FB96}"/>
+								</Reference>
+							</ReferenceList>
+						</Action>
+					</ChildrenList>
+				</Event>
+				<Event Name="play_UI_NewQuest" ID="{A1848EB9-3D63-4874-B4BA-CE3CC7235F70}">
+					<ChildrenList>
+						<Action Name="" ID="{C9A97465-0F0E-4F8E-9E3F-D5F7D9D6A6D5}" ShortID="402467628">
+							<ReferenceList>
+								<Reference Name="Target">
+									<ObjectRef Name="sfx_UI_NewQuest" ID="{793A9611-5A78-4A2D-A768-8AF5FB3BE012}" WorkUnitID="{12B01E6D-B133-4DDD-BBB0-9FF6C4B3FB96}"/>
+								</Reference>
+							</ReferenceList>
+						</Action>
+					</ChildrenList>
+				</Event>
+				<Event Name="play_UI_QuestCompleted" ID="{DEFBE5EF-0A55-4638-8024-F5111FEC210A}">
+					<ChildrenList>
+						<Action Name="" ID="{C61E0ECC-0D94-434A-A38E-2897E2B2F11F}" ShortID="663625993">
+							<ReferenceList>
+								<Reference Name="Target">
+									<ObjectRef Name="sfx_UI_QuestCompleted" ID="{62BFFCF9-256E-48E5-800B-788E16413CAD}" WorkUnitID="{12B01E6D-B133-4DDD-BBB0-9FF6C4B3FB96}"/>
+								</Reference>
+							</ReferenceList>
+						</Action>
+					</ChildrenList>
+				</Event>
+			</ChildrenList>
+		</WorkUnit>
+	</Events>
+</WwiseDocument>

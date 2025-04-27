@@ -74,8 +74,6 @@ enum AudioBus {
 	MASTER,
 	BACKGROUND_MUSIC,
 	SOUND_EFFECTS,
-	AMBIENT,
-	MENU_EFFECTS,
 }
 
 enum ItemType {
@@ -103,14 +101,12 @@ enum ActionVerb { DEFAULT, PICK_UP, TALK, PUSH_PULL, RELEASE, USE, EXAMINE }
 enum QuestState { DORMANT, ACTIVE, FAILED, COMPLETED }
 enum QuestConditionType { VARIABLE, INVENTORY }
 
-enum Stat { STAMINA }
+enum Stat { HEALTH, STAMINA }
 
 const AUDIO_BUS_INFO = {
 	AudioBus.MASTER: [0, "Global"],
 	AudioBus.BACKGROUND_MUSIC: [1, "Background Music"],
 	AudioBus.SOUND_EFFECTS: [2, "Sound Effects"],
-	AudioBus.AMBIENT: [3, "Environmental Sounds"],
-	AudioBus.MENU_EFFECTS: [4, "Menu"],
 }
 
 const DIRECTION_PUSH_PULL_AXIS := {
@@ -128,6 +124,7 @@ const QUEST_STATE_NAME = {
 }
 
 const STAT_NAME = {
+	"Health": Stat.HEALTH,
 	"Stamina": Stat.STAMINA,
 }
 
@@ -434,6 +431,8 @@ static func stat_name(st: Stat) -> String:
 	match st:
 		Stat.STAMINA:
 			return "Stamina"
+		Stat.HEALTH:
+			return "Health"
 	printerr("Unknown stat: %s" % [st])
 	return "Unknown"
 
