@@ -1,7 +1,7 @@
 class_name CharacterStat
 extends Resource
 
-signal stat_changed()
+signal stat_changed
 
 @export var typ: Enums.Stat
 @export var max_value: float

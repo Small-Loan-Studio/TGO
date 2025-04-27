@@ -1,10 +1,11 @@
 extends Control
 
+var _akh: AKHelper
+
 @onready var _event_opt: OptionButton = $VBoxContainer/HBoxContainer2/Event
 @onready var _rtpc_opt: OptionButton = $VBoxContainer/HBoxContainer/RTPC
 @onready var _rtpc_val: TextEdit = $VBoxContainer/HBoxContainer/Value
 
-var _akh: AKHelper
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -14,6 +15,7 @@ func _ready() -> void:
 		_event_opt.add_item(k)
 	for k: String in AK.GAME_PARAMETERS._dict:
 		_rtpc_opt.add_item(k)
+
 
 func _fire_event() -> void:
 	var idx: int = _event_opt.selected

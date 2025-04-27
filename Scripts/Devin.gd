@@ -5,6 +5,7 @@ extends Character
 
 var _ak_helper: AKHelper
 
+
 func _ready() -> void:
 	super._ready()
 	if Engine.is_editor_hint():

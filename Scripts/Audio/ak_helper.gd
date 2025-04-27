@@ -70,6 +70,7 @@ static func global_send_param(param: int, value: float) -> void:
 	print("[Wwise] (global) rtpc -> %s=%s" % [name_by_id(AK.GAME_PARAMETERS._dict, param), value])
 	Wwise.set_rtpc_value_id(param, value, null)
 
+
 func send_param(param: int, value: float, local: bool = true) -> void:
 	var locality_str := ""
 	if !local:
