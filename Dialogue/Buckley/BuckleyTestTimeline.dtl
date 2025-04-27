@@ -15,4 +15,4 @@ Actually, have you seen the Moai head? They bear some investigation
 - What's a Moai?
 	Ah, those large stones! They appeared magically here from Easter Island. I don't know how it ended up in proto-Oakshaw!
 	I get a weird feeling when I stand around one of them.
-{HasSpoken} = true
+set {HasSpoken} = true
