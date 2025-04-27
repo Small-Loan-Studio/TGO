@@ -1,0 +1,17 @@
+[gd_scene load_steps=2 format=3 uid="uid://b74s0j8tu3veo"]
+
+[ext_resource type="PackedScene" uid="uid://dyq8mcdsutnsa" path="res://Scenes/Components/LevelBase.tscn" id="1_km0mt"]
+
+[node name="LevelBase" instance=ExtResource("1_km0mt")]
+
+[node name="TextEdit" type="TextEdit" parent="." index="5"]
+offset_left = 66.0
+offset_top = 47.0
+offset_right = 633.0
+offset_bottom = 314.0
+text = "Level Designer, you can delete this later.
+
+The smallest public house. Barely has room for a dozen but that doesn’t stop drinkers cramming in.
+
+This is an interior space and you can use the copper_kettle_interior.tscn level as a guide, but the Oyle in Wall should be much smaller."
+wrap_mode = 1

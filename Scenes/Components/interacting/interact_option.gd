@@ -14,7 +14,7 @@ enum { LAYOUT_LEFT, LAYOUT_RIGHT }
 		if _rlabel:
 			_rlabel.text = _clabel
 @export var layout := LAYOUT_RIGHT
-@export var symbol: Image = null
+@export var symbol: CompressedTexture2D = null
 
 var _clabel: String = ""
 
@@ -66,7 +66,7 @@ func toggle_chevron() -> void:
 
 
 func _ready() -> void:
-	_symbol.texture = ImageTexture.create_from_image(symbol)
+	_symbol.texture = symbol
 	_symbol.get_parent().hide()
 	match layout:
 		LAYOUT_LEFT:

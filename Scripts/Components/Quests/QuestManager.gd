@@ -271,7 +271,6 @@ func _process_completed_quest(id: String) -> void:
 		return
 
 	var phase_parent := q.get_phase_parent()
-
 	if q.state == Enums.QuestState.FAILED:
 		# In a failed state we trigger the phased parent to evaluate itself in case
 		# it should fail. Not that we *do not* check if the phase may_fail is set

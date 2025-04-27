@@ -1,0 +1,174 @@
+[gd_scene load_steps=15 format=3 uid="uid://cvdgiapn0cgfw"]
+
+[ext_resource type="PackedScene" uid="uid://dyq8mcdsutnsa" path="res://Scenes/Components/LevelBase.tscn" id="1_uvx5o"]
+[ext_resource type="PackedScene" uid="uid://c3fld6my8so3p" path="res://Scenes/Components/SimpleSwitch.tscn" id="2_33p6a"]
+[ext_resource type="Script" path="res://Scripts/Resources/Effects/SetQuestStateEffect.gd" id="3_ow355"]
+[ext_resource type="Script" path="res://Scripts/Resources/Conditions/QuestStateCondition.gd" id="4_cfj43"]
+
+[sub_resource type="Resource" id="Resource_sta6w"]
+script = ExtResource("3_ow355")
+quest_id = "quest_a"
+target_state = 1
+
+[sub_resource type="Resource" id="Resource_46aw8"]
+script = ExtResource("3_ow355")
+quest_id = "quest_a"
+target_state = 3
+
+[sub_resource type="Resource" id="Resource_l0si1"]
+script = ExtResource("4_cfj43")
+quest_id = "quest_a"
+check_type = 3
+check_value = 3
+
+[sub_resource type="Resource" id="Resource_30uvi"]
+script = ExtResource("3_ow355")
+quest_id = "quest_b"
+target_state = 1
+
+[sub_resource type="Resource" id="Resource_bq6qf"]
+script = ExtResource("4_cfj43")
+quest_id = "quest_b"
+check_type = 3
+check_value = 1
+
+[sub_resource type="Resource" id="Resource_a0laq"]
+script = ExtResource("3_ow355")
+quest_id = "quest_b"
+target_state = 3
+
+[sub_resource type="Resource" id="Resource_4du8g"]
+script = ExtResource("4_cfj43")
+quest_id = "quest_b"
+check_type = 3
+check_value = 3
+
+[sub_resource type="Resource" id="Resource_yg83x"]
+script = ExtResource("3_ow355")
+quest_id = "quest_c"
+target_state = 1
+
+[sub_resource type="Resource" id="Resource_upx6i"]
+script = ExtResource("4_cfj43")
+quest_id = "quest_c"
+check_type = 3
+check_value = 1
+
+[sub_resource type="Resource" id="Resource_32isk"]
+script = ExtResource("3_ow355")
+quest_id = "quest_c"
+target_state = 3
+
+[node name="QuestDebugging" instance=ExtResource("1_uvx5o")]
+
+[node name="StartQuest_A" parent="Objects/Switches" index="0" instance=ExtResource("2_33p6a")]
+z_index = -1
+position = Vector2(119, 265)
+sensor_size = Vector2(20, 20)
+feedback_enabled = true
+default_color = Color(0.61339, 0.61339, 0.61339, 1)
+active_color = Color(0.401161, 0.710938, 0.374908, 1)
+on_pressed_effects = Array[Resource("res://Scripts/Resources/Effect.gd")]([SubResource("Resource_sta6w")])
+
+[node name="CompleteQuest_A" parent="Objects/Switches" index="1" instance=ExtResource("2_33p6a")]
+z_index = -1
+position = Vector2(119, 378)
+sensor_size = Vector2(20, 20)
+feedback_enabled = true
+default_color = Color(0.61339, 0.61339, 0.61339, 1)
+active_color = Color(0.401161, 0.710938, 0.374908, 1)
+on_pressed_effects = Array[Resource("res://Scripts/Resources/Effect.gd")]([SubResource("Resource_46aw8")])
+
+[node name="StartQuest_B" parent="Objects/Switches" index="2" instance=ExtResource("2_33p6a")]
+position = Vector2(243, 264)
+sensor_size = Vector2(20, 20)
+feedback_enabled = true
+conditions = Array[Resource("res://Scripts/Resources/TriggerCondition.gd")]([SubResource("Resource_l0si1")])
+on_pressed_effects = Array[Resource("res://Scripts/Resources/Effect.gd")]([SubResource("Resource_30uvi")])
+
+[node name="CompleteQuest_B" parent="Objects/Switches" index="3" instance=ExtResource("2_33p6a")]
+z_index = -1
+position = Vector2(244, 381)
+sensor_size = Vector2(20, 20)
+feedback_enabled = true
+default_color = Color(0.61339, 0.61339, 0.61339, 1)
+active_color = Color(0.401161, 0.710938, 0.374908, 1)
+conditions = Array[Resource("res://Scripts/Resources/TriggerCondition.gd")]([SubResource("Resource_bq6qf")])
+on_pressed_effects = Array[Resource("res://Scripts/Resources/Effect.gd")]([SubResource("Resource_a0laq")])
+
+[node name="StartQuest_C" parent="Objects/Switches" index="4" instance=ExtResource("2_33p6a")]
+z_index = -1
+position = Vector2(387, 264)
+sensor_size = Vector2(20, 20)
+feedback_enabled = true
+default_color = Color(0.61339, 0.61339, 0.61339, 1)
+active_color = Color(0.401161, 0.710938, 0.374908, 1)
+conditions = Array[Resource("res://Scripts/Resources/TriggerCondition.gd")]([SubResource("Resource_4du8g")])
+on_pressed_effects = Array[Resource("res://Scripts/Resources/Effect.gd")]([SubResource("Resource_yg83x")])
+
+[node name="CompleteQuest_C" parent="Objects/Switches" index="5" instance=ExtResource("2_33p6a")]
+z_index = -1
+position = Vector2(391, 382)
+sensor_size = Vector2(20, 20)
+feedback_enabled = true
+default_color = Color(0.61339, 0.61339, 0.61339, 1)
+active_color = Color(0.401161, 0.710938, 0.374908, 1)
+conditions = Array[Resource("res://Scripts/Resources/TriggerCondition.gd")]([SubResource("Resource_upx6i")])
+on_pressed_effects = Array[Resource("res://Scripts/Resources/Effect.gd")]([SubResource("Resource_32isk")])
+
+[node name="DebugGrid" type="Node" parent="Objects" index="4"]
+
+[node name="Label" type="Label" parent="Objects/DebugGrid" index="0"]
+offset_left = -107.0
+offset_top = 232.0
+offset_right = -19.0
+offset_bottom = 255.0
+text = "Start Quest"
+
+[node name="Label2" type="Label" parent="Objects/DebugGrid" index="1"]
+offset_left = -121.0
+offset_top = 363.0
+offset_right = 4.0
+offset_bottom = 386.0
+text = "Complete Quest"
+
+[node name="Label3" type="Label" parent="Objects/DebugGrid" index="2"]
+offset_left = 115.0
+offset_top = 135.0
+offset_right = 128.0
+offset_bottom = 158.0
+text = "A"
+
+[node name="Label4" type="Label" parent="Objects/DebugGrid" index="3"]
+offset_left = 243.0
+offset_top = 136.0
+offset_right = 256.0
+offset_bottom = 159.0
+text = "B"
+
+[node name="Label5" type="Label" parent="Objects/DebugGrid" index="4"]
+offset_left = 384.0
+offset_top = 133.0
+offset_right = 402.0
+offset_bottom = 156.0
+text = "C"
+
+[node name="Line2D" type="Line2D" parent="Objects/DebugGrid" index="5"]
+z_index = -5
+position = Vector2(-3, 314)
+points = PackedVector2Array(594, 0, 0, 0)
+
+[node name="Line2D2" type="Line2D" parent="Objects/DebugGrid" index="6"]
+z_index = -5
+position = Vector2(173, 47)
+rotation = 1.5708
+points = PackedVector2Array(594, 0, 0, 0)
+
+[node name="Line2D3" type="Line2D" parent="Objects/DebugGrid" index="7"]
+z_index = -5
+position = Vector2(327, 51)
+rotation = 1.5708
+points = PackedVector2Array(594, 0, 0, 0)
+
+[node name="PlayerStart" type="Node2D" parent="Markers" index="0"]
+position = Vector2(240, 198)

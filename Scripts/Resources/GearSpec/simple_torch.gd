@@ -3,6 +3,8 @@ extends GearSpec
 
 const TORCH_SCENE = preload("res://Scenes/Components/Torch.tscn")
 
+@export var light_color: Color = Color.WHITE
+
 
 static func get_torch(c: Character) -> Torch:
 	for child in c.get_children():
@@ -11,14 +13,15 @@ static func get_torch(c: Character) -> Torch:
 	return null
 
 
-static func add_torch(c: Character) -> Torch:
+static func add_torch(c: Character, color: Color) -> Torch:
 	if SimpleTorch.get_torch(c) != null:
 		printerr("torch already added")
 		return null
 	var torch_node := TORCH_SCENE.instantiate() as Torch
 	c.add_child(torch_node)
 	# configure the torch
-	torch_node.light_size = 3
+	torch_node.light_color = color
+	torch_node.light_size = 2
 	torch_node.sprite_texture = null
 	torch_node.sprite_frames = null
 	torch_node.toggle(false)
@@ -35,7 +38,7 @@ static func remove_torch(c: Character) -> void:
 
 
 func on_equip(c: Character) -> void:
-	SimpleTorch.add_torch(c)
+	SimpleTorch.add_torch(c, light_color)
 
 
 func on_remove(c: Character) -> void:
