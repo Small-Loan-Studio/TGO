@@ -25,8 +25,9 @@ id = "Devin"
 _controller_node_path = NodePath("InputController")
 
 [node name="AnimatedSprite2D" parent="." index="0"]
+scale = Vector2(1.6, 1.6)
 sprite_frames = ExtResource("3_3e0sk")
-animation = &"west"
+animation = &"northwest"
 
 [node name="StateMachine" parent="." index="3" node_paths=PackedStringArray("_initial_state")]
 _initial_state = NodePath("Idle")

@@ -1,0 +1,17 @@
+[gd_scene load_steps=2 format=3 uid="uid://dpy5l43d7v8vk"]
+
+[ext_resource type="PackedScene" uid="uid://dyq8mcdsutnsa" path="res://Scenes/Components/LevelBase.tscn" id="1_3bcgw"]
+
+[node name="LevelBase" instance=ExtResource("1_3bcgw")]
+
+[node name="TextEdit" type="TextEdit" parent="." index="5"]
+offset_left = 66.0
+offset_top = 47.0
+offset_right = 633.0
+offset_bottom = 314.0
+text = "Level Designer, you can delete this later.
+
+A 13th century inn with four floors. Devin sleeps here. Run by Ishmael Harris.
+
+This is a large building, and it should probably be CLOSE in size to the Copper Kettle (but smaller), where you can use the copper_kettle_interior.tscn level as a loose guide."
+wrap_mode = 1

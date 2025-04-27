@@ -39,9 +39,12 @@ gdscript/warnings/untyped_declaration=2
 
 [dialogic]
 
-directories/dch_directory={}
+directories/dch_directory={
+"Groundskeeper": "res://Scripts/Resources/NPCs/DialogicCharacters/Groundskeeper.dch"
+}
 directories/dtl_directory={
 "BuckleyTestTimeline": "res://Dialogue/Buckley/BuckleyTestTimeline.dtl",
+"GroundskeeperTimeline": "res://Dialogue/Groundskeeper/GroundskeeperTimeline.dtl",
 "debugging_timeline": "res://ZZ_Scratch/DialogicValidation/debugging_timeline.dtl",
 "juniper_bush_full": "res://Dialogue/PlaceableInteractive/juniper_bush_full.dtl",
 "npc_test_dialogue": "res://ZZ_Scratch/NPCDialogue/npc_test_dialogue.dtl",
@@ -65,6 +68,14 @@ save/autosave_delay=60.0
 save/encryption_on_exports_only=true
 text/autopauses={}
 variables={
+"GroundsKeeper": {
+"FinishedTopics": false,
+"HasSpoken": false,
+"Q1Answered": false,
+"Q2Answered": false,
+"Q3Answered": false,
+"Q4Answered": false
+},
 "QuestVarConditionTest": false,
 "UserInputNum": 0,
 "UserInputString": ""
