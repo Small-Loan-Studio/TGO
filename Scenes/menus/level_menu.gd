@@ -1,5 +1,6 @@
 extends Menu
 
+@onready var _level_container := $SectionContainer/LevelContainer
 @onready var _debug_container := $SectionContainer/DebugContainer
 
 
@@ -9,6 +10,13 @@ func _ready() -> void:
 		var b := Button.new()
 		b.text = k
 		b.pressed.connect(_on_load_request.bind(scene_dict[k]))
+		_level_container.add_child(b)
+
+	var debug_dict := ScratchScenes.get_debug_scenes()
+	for k in debug_dict.keys() as Array[String]:
+		var b := Button.new()
+		b.text = k
+		b.pressed.connect(_on_load_request.bind(debug_dict[k]))
 		_debug_container.add_child(b)
 
 

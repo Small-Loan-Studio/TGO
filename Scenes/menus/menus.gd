@@ -16,9 +16,13 @@ func dismiss() -> void:
 	for menu: Menu in _menus:
 		menu.queue_free()
 	_menus = []
+	hide()
 
 
-func present(kind: MenuKind) -> void:
+## presents a menu and returns immediately; in order to block until
+## the menu is closed await on returned Menu.dismiss
+func present_nonblocking(kind: MenuKind) -> Menu:
+	show()
 	var menu: Menu = null
 	match kind:
 		MenuKind.DEBUG:
@@ -28,7 +32,10 @@ func present(kind: MenuKind) -> void:
 		MenuKind.TITLE:
 			menu = TitleMenuScene.instantiate()
 	self._present(menu)
-	await menu.dismiss
+	return menu
+
+func present(kind: MenuKind) -> void:
+	await present_nonblocking(kind).dismiss
 
 
 ## Private

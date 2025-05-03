@@ -1,8 +1,6 @@
 class_name ScratchScenes
 extends Node
 
-const SCENES = {"Greyboxing": "BadLevelA"}
-
 
 ## Returns a dictionary that is String->String.[br]
 ## [br]
@@ -22,6 +20,21 @@ static func get_scenes() -> Dictionary:
 	var result := {}
 	for a in opts:
 		var v := Utils.level_path_to_name(a)
-		result[v] = v
+		if !Utils.level_is_debug(v):
+			result[v] = v
 
+	return result
+
+
+## as get_scenes but the debug stuff
+static func get_debug_scenes() -> Dictionary:
+	var opts := Utils.walk_directory(
+		Utils.LEVEL_DIR, func(s: String) -> bool: return s.ends_with(".tscn")
+	)
+
+	var result := {}
+	for a in opts:
+		var name := Utils.level_path_to_name(a)
+		if Utils.level_is_debug(name):
+			result[name] = name
 	return result

@@ -3,6 +3,8 @@ extends Menu
 const LevelMenuScene: PackedScene = preload("./level_menu.tscn")
 const SettingsMenuScene: PackedScene = preload("./settings_menu.tscn")
 
+@export var start_level: String
+
 ## Private
 
 

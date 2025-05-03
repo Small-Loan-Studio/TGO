@@ -75,8 +75,22 @@ func _post_ready() -> void:
 		load_level(_personal_config.autoload_level, LevelBase.DEFAULT_MARKER)
 		await _curtain.fade_out(1)
 	else:
-		menus.present(Menus.MenuKind.TITLE)
-		await _curtain.fade_out(1, false)
+		_show_title_menu()
+
+
+## Present the title menu; this is currently only used on initial game load
+## so probably some tooling to make it work for "quit to main" interactions
+func _show_title_menu() -> void:
+	_hud.hide()
+	var title_menu := menus.present_nonblocking(Menus.MenuKind.TITLE)
+	title_menu.dismiss.connect(_title_hide, ConnectFlags.CONNECT_ONE_SHOT)
+	await _curtain.fade_out(1, false)
+	await title_menu.dismiss
+
+
+func _title_hide() -> void:
+	_hud.show()
+
 
 
 func exit_game() -> void:
