@@ -16,16 +16,8 @@ var _active_bus := 0:
 @onready var _levels_container := $VBoxContainer
 
 
-func _enter_tree() -> void:
-	for c in _sliders:
-		c.init(Driver.instance().audio_mgr)
-		c.process_mode = Node.PROCESS_MODE_INHERIT
-		c.is_active = false
-	_active_bus = 0
-	visible = true
-
-
 func _ready() -> void:
+	_active_bus = 0
 	var max_width := 0
 	for c in _levels_container.get_children():
 		if c is AudioSlider:
@@ -35,6 +27,8 @@ func _ready() -> void:
 
 	for c in _sliders:
 		c.set_label_width(max_width)
+		c.init(Driver.instance().audio_mgr)
+		c.process_mode = Node.PROCESS_MODE_INHERIT
 		c.is_active = false
 
 	_active_bus = 0
@@ -67,13 +61,5 @@ func _bgm_drag_start() -> void:
 	_active_bus = 1
 
 
-func _ambient_drag_start() -> void:
-	_active_bus = 2
-
-
 func _sfx_drag_start() -> void:
-	_active_bus = 3
-
-
-func _menu_drag_start() -> void:
-	_active_bus = 4
+	_active_bus = 2
