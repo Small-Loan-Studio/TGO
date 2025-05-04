@@ -169,7 +169,6 @@ func pause(should_pause: bool = true) -> void:
 
 ## TODO: We'll need to switch away  from debug load path soon
 func request_debug_load(level_name: String) -> void:
-	audio_mgr.send_event(AK.EVENTS.LEVELSTART)
 	await _curtain.fade_in(1, false)
 	_menu_mgr.hide_menu(Enums.MenuType.DEBUG)
 	load_level(level_name, LevelBase.DEFAULT_MARKER)

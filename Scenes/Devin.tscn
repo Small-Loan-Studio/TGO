@@ -30,13 +30,22 @@ value = 100.0
 script = ExtResource("1_coq4s")
 id = "Devin"
 _controller_node_path = NodePath("InputController")
+_has_audio_node = true
 
 [node name="AnimatedSprite2D" parent="." index="0"]
 scale = Vector2(1.6, 1.6)
 sprite_frames = ExtResource("3_3e0sk")
 animation = &"northwest"
 
-[node name="StateMachine" parent="." index="3" node_paths=PackedStringArray("_initial_state")]
+[node name="AudioNode" parent="." index="2"]
+track_position = true
+debug_wise_comms = true
+
+[node name="InputController" type="Node" parent="." index="4"]
+script = ExtResource("8_1w5au")
+deadzone = 0.25
+
+[node name="StateMachine" parent="." index="5" node_paths=PackedStringArray("_initial_state")]
 _initial_state = NodePath("Idle")
 
 [node name="Idle" type="Node" parent="StateMachine" index="0" node_paths=PackedStringArray("walk_state", "sprint_state", "interact_state", "menu_state")]
@@ -75,11 +84,7 @@ script = ExtResource("9_ac1aa")
 idle_state = NodePath("../Idle")
 _input_exclusive = true
 
-[node name="InputController" type="Node" parent="." index="4"]
-script = ExtResource("8_1w5au")
-deadzone = 0.25
-
-[node name="Stats" parent="." index="5"]
-stats = Array[ExtResource("9_fybv6")]([SubResource("Resource_b1u10"), SubResource("Resource_3jtju")])
-
 [node name="AkListener2D" type="AkListener2D" parent="." index="6"]
+
+[node name="Stats" parent="." index="7"]
+stats = Array[ExtResource("9_fybv6")]([SubResource("Resource_b1u10"), SubResource("Resource_3jtju")])

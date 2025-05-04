@@ -134,7 +134,7 @@ func get_by_id(id: String) -> Node2D:
 		return null
 
 	id = id.to_lower()
-	for n in get_tree().get_nodes_in_group(Utils.ID_GROUP):
+	for n in get_tree().get_nodes_in_group(Utils.GroupNames.HasID):
 		if n.id.to_lower() == id:
 			return n
 	return null

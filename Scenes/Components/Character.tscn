@@ -1,7 +1,8 @@
-[gd_scene load_steps=8 format=3 uid="uid://cx703e8t27grh"]
+[gd_scene load_steps=9 format=3 uid="uid://cx703e8t27grh"]
 
 [ext_resource type="Script" path="res://Scripts/Components/Character.gd" id="1_tt4fa"]
 [ext_resource type="SpriteFrames" uid="uid://b3igo1ygiyl0b" path="res://Art/Characters/character_placeholder.tres" id="2_3xe5u"]
+[ext_resource type="PackedScene" uid="uid://dmnnbfc6xvtds" path="res://Scenes/Audio/AudioNode.tscn" id="3_lqngy"]
 [ext_resource type="Script" path="res://Scripts/Components/CharacterControl/StateMachine.gd" id="3_y8i3d"]
 [ext_resource type="Script" path="res://Scripts/Components/StatCollection.gd" id="4_a40ji"]
 
@@ -43,6 +44,8 @@ collision_mask = 2
 [node name="CollisionShape2D" type="CollisionShape2D" parent="SensorSet/PushPullSensor"]
 position = Vector2(0, -19)
 shape = SubResource("CircleShape2D_vih0k")
+
+[node name="AudioNode" parent="." instance=ExtResource("3_lqngy")]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, -9)
