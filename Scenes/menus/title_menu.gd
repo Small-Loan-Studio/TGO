@@ -10,15 +10,14 @@ const SettingsMenuScene: PackedScene = preload("./settings_menu.tscn")
 
 func _on_continue_button_pressed() -> void:
 	# FIXME: Level 1 should not be defined here we should probably have
-	# something like `Driver.instance().continue_game()`
+	# something like `Driver.instance().continue_game()` as we should not be
+	# hitting private variables.
 	Driver.instance()._serialization_mgr.load_game()
 	dismiss.emit()
 
 
 func _on_new_game_button_pressed() -> void:
-	# FIXME: Level 1 should not be defined here we should probably have
-	# something like `Driver.instance().new_game()`
-	Driver.instance().load_level("BadLevelA", "")
+	Driver.instance().new_game()
 	dismiss.emit()
 
 

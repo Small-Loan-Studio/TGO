@@ -3,6 +3,9 @@ extends Node2D
 
 signal resumed
 
+@export var new_game_level: String
+@export var new_game_marker: String = ""
+
 var _last_loaded_level: LevelBase = null
 
 @onready var audio_mgr: AudioManager = $AudioManager
@@ -90,7 +93,6 @@ func _show_title_menu() -> void:
 
 func _title_hide() -> void:
 	_hud.show()
-
 
 
 func exit_game() -> void:
@@ -185,6 +187,10 @@ func _set_player_from_save() -> void:
 ## Quest effect chain.
 func get_current_level() -> LevelBase:
 	return _last_loaded_level
+
+
+func new_game() -> void:
+	load_level(new_game_level, new_game_marker)
 
 
 func pause(should_pause: bool = true) -> void:

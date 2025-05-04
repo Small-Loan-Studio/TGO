@@ -34,6 +34,7 @@ func present_nonblocking(kind: MenuKind) -> Menu:
 	self._present(menu)
 	return menu
 
+
 func present(kind: MenuKind) -> void:
 	await present_nonblocking(kind).dismiss
 
