@@ -12,7 +12,7 @@ func act(_actor_id: String, _cur_level: LevelBase) -> Variant:
 				% [parent.get_parent().name]
 			)
 		)
-		return
+		return null
 
 	Dialogic.start(timeline)
 	return null

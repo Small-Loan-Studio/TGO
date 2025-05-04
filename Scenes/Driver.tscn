@@ -247,7 +247,6 @@ day_autostart = true
 unique_name_in_owner = true
 visible = false
 position = Vector2(0, 0)
-activate_external_sensors = false
 
 [node name="Camera2D" type="Camera2D" parent="GameWorld/Devin"]
 zoom = Vector2(1.2, 1.2)

@@ -29,7 +29,7 @@ func act(_actor_id: String, _cur_level: LevelBase) -> Variant:
 				% [new_value, variable_name]
 			)
 		)
-		return
+		return null
 	match set_type:
 		"overwrite":
 			Dialogic.VAR.set_variable(variable_name, coerced_value)
