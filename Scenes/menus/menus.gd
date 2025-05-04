@@ -54,9 +54,10 @@ func _dismiss() -> void:
 
 
 func _present(menu: Menu) -> void:
-	var active: Menu = _menus.back()
-	if active:
-		active.visible = false
+	if not _menus.is_empty():
+		var active: Menu = _menus.back()
+		if active:
+			active.visible = false
 	menu.dismiss.connect(_dismiss)
 	menu.present.connect(_present)
 	_menus.push_back(menu)
