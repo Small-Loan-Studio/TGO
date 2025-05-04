@@ -29,7 +29,7 @@ func _trigger(effect_chain: Array[Effect], actor_id: String, cur_level: LevelBas
 
 
 func terminal_callback(ctx: Variant) -> void:
-	for elePair: Variant in ctx as Array[Variant]:
-		var ele: Effect = elePair[0]
-		var arg: Variant = elePair[1]
+	for ele_pair: Variant in ctx as Array[Variant]:
+		var ele: Effect = ele_pair[0]
+		var arg: Variant = ele_pair[1]
 		ele.terminal_callback(arg)

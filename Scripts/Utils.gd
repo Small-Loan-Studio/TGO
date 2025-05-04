@@ -192,6 +192,8 @@ static func ersatz_dialogic_get_var(path: String) -> Variant:
 	return [v, typeof(v)]
 
 
+#gdlint: disable=class-variable-name
 class GroupNames:
 	static var HasID := "NodesWithID"
 	static var AudioNodes := "RegisteredAudioNode"
+#gdlint: enable=class-variable-name
