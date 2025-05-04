@@ -19,7 +19,7 @@ timeline = ExtResource("7_unvp1")
 [sub_resource type="Resource" id="Resource_bl5wy"]
 script = ExtResource("11_cp71p")
 load_level_name = "BadLevelA"
-marker_name = null
+marker_name = ""
 
 [node name="LevelBase" instance=ExtResource("1_t8b0a")]
 script = ExtResource("2_hodgd")
@@ -61,7 +61,7 @@ effects = Array[Resource("res://Scripts/Resources/Effect.gd")]([SubResource("Res
 y_sort_width = 104
 
 [node name="PlayerStart" type="Node2D" parent="Markers" index="0"]
-position = Vector2(171, 235)
+position = Vector2(490, 207)
 
 [node name="CanvasModulate" parent="." index="4"]
 visible = false
