@@ -3,7 +3,7 @@ class_name AudioEventEffect
 extends Effect
 
 var event_name: String
-var fire_type: String:
+var fire_type: String = "one shot":
 	set(v):
 		fire_type = v
 		property_list_changed.emit()
