@@ -4,5 +4,3 @@
 
 [node name="AudioNode" type="Node2D"]
 script = ExtResource("1_pah3p")
-track_position = null
-debug_wise_comms = null

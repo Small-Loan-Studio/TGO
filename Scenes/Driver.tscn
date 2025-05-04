@@ -247,9 +247,6 @@ day_autostart = true
 unique_name_in_owner = true
 visible = false
 position = Vector2(0, 0)
-_debug_draw_origin = false
-_equipment = {}
-_has_audio_node = false
 activate_external_sensors = false
 
 [node name="Camera2D" type="Camera2D" parent="GameWorld/Devin"]

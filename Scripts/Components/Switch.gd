@@ -115,7 +115,9 @@ func _do_press(id: String) -> void:
 	_config.is_pressed = true
 	_config.triggered.emit(id, true)
 	for e in _config.on_pressed_effects:
-		e.act(id, _cur_level)
+		var ctx: Variant = e.act(id, _cur_level)
+		if ctx != null:
+			_waiting_callbacks.push_back(func() -> void: e.terminal_callback(ctx))
 
 
 ## Does the work of deactivating the switch. That is it updates internal state,

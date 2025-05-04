@@ -19,12 +19,12 @@ func _exit_tree() -> void:
 		remove_from_group(Utils.GroupNames.AudioNodes)
 
 
-func setup(node: Node2D, id: String) -> void:
+func setup(node: Node2D, incoming_id: String) -> void:
 	_target = node
-	id = id
-	_registered = Wwise.register_game_obj(node, "C-" + id)
+	id = incoming_id
+	_registered = Wwise.register_game_obj(node, id)
 	if _registered:
-		add_to_group(Utils.GroupNames.AudioNodes)
+		add_to_group(Utils.GroupNames.AudioNodes, true)
 	else:
 		printerr("Failed to register %s"  %[id])
 
@@ -32,28 +32,25 @@ func setup(node: Node2D, id: String) -> void:
 func _process(_delta: float) -> void:
 	if track_position:
 		if _last_reported_pos != _target.transform:
-			if debug_wise_comms:
-				print("[Wwise] %s.position -> %s" % [id, _target.transform])
+			# if debug_wise_comms:
+			# 	print("[Wwise] %s.position -> %s" % [id, _target.transform])
 			Wwise.set_2d_position(_target, _target.transform, 0)
 
 
-func post_event(cfg: EventConfig) -> AkEvent2D:
-	if !AK.EVENTS._dict.has(name):
-		printerr("[Wwise] Attempting to post unknown event %s" % [name])
-		return
+func post_event(cfg: EventConfig) -> int:
+	if !AK.EVENTS._dict.has(cfg.event_name):
+		printerr("[Wwise] Attempting to post unknown event %s: %s" % [cfg.event_name, JSON.stringify(cfg)])
+		return -1
 
-	var akn := AkEvent2D.new()
-	akn.event = {
-		"id": AK.EVENTS._dict[name],
-		"name": name,
-	}
-	add_child(akn)
-	return akn
+	var fire_type := "one shot"
+	if !cfg.one_shot:
+		fire_type = "until exit"
+	print("[Wwise] -> %s.post_event %s (%s)" % [_target.name, cfg.event_name, fire_type])
+	return Wwise.post_event(cfg.event_name, _target)
 
-func stop_event(akevent: AkEvent2D) -> void:
-	printerr("[Wwise] Attempting to stop event")
-	remove_child(akevent)
-	akevent.queue_free()
+func stop_event(cfg: EventConfig) -> void: #akevent: AkEvent2D) -> void:
+	print("[Wwise] %s.stop_event %s" % [_target.name, cfg.event_name])
+	Wwise.stop_event(cfg.playing_id, cfg.stop_fade_time, cfg.interp_mode)
 
 class EventConfig:
 	extends RefCounted
@@ -61,4 +58,5 @@ class EventConfig:
 	var event_name: String
 	var stop_fade_time: int
 	var interp_mode: int
-	var one_shot: bool = false
+	var one_shot: bool = true
+	var playing_id: int = -1

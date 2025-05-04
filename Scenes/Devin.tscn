@@ -30,6 +30,7 @@ value = 100.0
 script = ExtResource("1_coq4s")
 id = "Devin"
 _controller_node_path = NodePath("InputController")
+_has_audio_node = true
 
 [node name="AnimatedSprite2D" parent="." index="0"]
 scale = Vector2(1.6, 1.6)
