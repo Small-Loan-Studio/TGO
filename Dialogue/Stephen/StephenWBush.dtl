@@ -1,0 +1,41 @@
+if {StephensQuest.HasSpoken} == false:
+	Oh, hello traveler! I seem to have lost my valuable KEY when I was out playing in the BUSHES.
+	...
+	OOPSIE POOPSIES!
+	If you wouldn't mind, could you go retrieve my KEY? Y'know, from the BUSHES? Thanks, doll!
+	set {StephensQuest.HasSpoken} = true
+	[end_timeline]
+if {StephensQuest.HasSpoken} == true:
+	if {TGO.player_inventory.has("STEPHENS_KEY")} == true:
+		Oh... OH!!! That's my KEY! Thanks, chum!
+		set {StephensQuest.S_KeyGiven} = true
+		[tgo_expr expr="{TGO.player_inventory.remove_item("STEPHENS_KEY", 1)}"]
+		[end_timeline]
+	else:
+		if {StephensQuest.S_KeyGiven} == false:
+			Well, champ, where's my KEY, hmm?
+			[end_timeline]
+if {StephensQuest.S_KeyGiven} == true:
+	if {StephensQuest.Post_S_Quest1} == false:
+		Hey fella, I really appreciate you giving me my key back... but our business here is done.
+		Please go away now.
+		set {StephensQuest.Post_S_Quest1} = true
+		[end_timeline]
+if {StephensQuest.Post_S_Quest1} == true:
+	if {StephensQuest.Post_S_Quest2} == false:
+		Dude. Buzz off, my dawg. Respect my privacy.
+		set {StephensQuest.Post_S_Quest2} = true
+		[end_timeline]
+if {StephensQuest.Post_S_Quest2} == true:
+	if {StephensQuest.Post_S_Quest3} == false:
+		BROOOOO. Get the fuck OUT my man!!! I've got nothing for you!
+		set {StephensQuest.Post_S_Quest3} = true
+		[end_timeline]
+if {StephensQuest.Post_S_Quest3} == true:
+	if {StephensQuest.Post_S_Quest4} == false:
+		Okay, fine, you can stay. It's whatever. Like I even care.
+		set {StephensQuest.Post_S_Quest4} = true
+		[end_timeline]
+if {StephensQuest.Post_S_Quest4} == true:
+	...bruh.
+	[end_timeline]

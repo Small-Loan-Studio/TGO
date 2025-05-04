@@ -41,11 +41,15 @@ gdscript/warnings/untyped_declaration=2
 directories/dch_directory={
 "Alia": "res://Scripts/Resources/NPCs/DialogicCharacters/Alia.dch",
 "Billybob": "res://Scripts/Resources/NPCs/DialogicCharacters/Billybob.dch",
+"Stephen": "res://Art/Misc/Stephen.dch",
 "The Faceless": "res://Scripts/Resources/NPCs/DialogicCharacters/The Faceless.dch"
 }
 directories/dtl_directory={
 "BuckleyTestTimeline": "res://Dialogue/Buckley/BuckleyTestTimeline.dtl",
+"GuyLine": "res://Dialogue/GuyLine/GuyLine.dtl",
 "RansomNPC_greeting": "res://Dialogue/RansomNPC/RansomNPC_greeting.dtl",
+"Stephen/StephenTimeline": "res://Dialogue/Stephen/StephenTimeline.dtl",
+"Stephen_cemetery_quest_start": "res://Dialogue/Stephen/StephenWBush.dtl",
 "billybob1": "res://Dialogue/RansomNPC2/billybob1.dtl",
 "debugging_timeline": "res://ZZ_Scratch/DialogicValidation/debugging_timeline.dtl",
 "juniper_bush_full": "res://Dialogue/PlaceableInteractive/juniper_bush_full.dtl",
@@ -71,8 +75,13 @@ save/encryption_on_exports_only=true
 text/autopauses={}
 variables={
 "QuestVarConditionTest": false,
-"RansomNPCvar": {
-"HasSpoken": false
+"StephensQuest": {
+"HasSpoken": false,
+"Post_S_Quest1": false,
+"Post_S_Quest2": false,
+"Post_S_Quest3": false,
+"Post_S_Quest4": false,
+"S_KeyGiven": false
 },
 "UserInputNum": 0,
 "UserInputString": ""

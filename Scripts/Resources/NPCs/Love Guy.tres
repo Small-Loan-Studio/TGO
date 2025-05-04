@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="NPCConfig" load_steps=3 format=3 uid="uid://bbsuefwqeg84x"]
+
+[ext_resource type="Script" path="res://Scripts/Resources/NpcConfig.gd" id="1_r8nsg"]
+[ext_resource type="SpriteFrames" uid="uid://602xb41y0tak" path="res://Art/Characters/stub_animated_sprite.tres" id="2_a1qia"]
+
+[resource]
+script = ExtResource("1_r8nsg")
+character_id = "Love Guy"
+sprite_sheet = ExtResource("2_a1qia")
+valid_timelines = Array[String]([])

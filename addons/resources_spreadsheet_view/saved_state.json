@@ -1,10 +1,6 @@
 {
   "hidden_columns": {
-    "res://Scripts/Resource/NPC/": {
-      "resource_local_to_scene": true,
-      "resource_name": true
-    },
-    "res://Scripts/Resource/NPCs/": {
+    "res://Scenes/Components/NPC/": {
       "resource_local_to_scene": true,
       "resource_name": true
     },
@@ -12,31 +8,15 @@
       "resource_local_to_scene": true,
       "resource_name": true
     },
-    "res://Scripts/Resources/NP/": {
-      "resource_local_to_scene": true,
-      "resource_name": true
-    },
-    "res://Scripts/Resources/NPC/": {
-      "resource_local_to_scene": true,
-      "resource_name": true
-    },
     "res://Scripts/Resources/NPCs/": {
       "resource_local_to_scene": true,
       "resource_name": true
     },
-    "res://Scripts/npc/": {
+    "res://Scripts/Resources/item/": {
       "resource_local_to_scene": true,
       "resource_name": true
     },
-    "res://resouces/": {
-      "resource_local_to_scene": true,
-      "resource_name": true
-    },
-    "res://resouces/NPC/": {
-      "resource_local_to_scene": true,
-      "resource_name": true
-    },
-    "res://resource/NPC/": {
+    "res://Scripts/Resources/items/": {
       "resource_local_to_scene": true,
       "resource_name": true
     }
@@ -44,14 +24,9 @@
   "recent_paths": [
     "res://Scripts/Resources/Items/",
     "res://Scripts/Resources/NPCs/",
-    "res://Scripts/Resources/NPC/",
-    "res://Scripts/Resources/NP/",
-    "res://Scripts/npc/",
-    "res://resouces/",
-    "res://resouces/NPC/",
-    "res://resource/NPC/",
-    "res://Scripts/Resource/NPC/",
-    "res://Scripts/Resource/NPCs/"
+    "res://Scenes/Components/NPC/",
+    "res://Scripts/Resources/item/",
+    "res://Scripts/Resources/items/"
   ],
   "table_functions": {
     "filter": [

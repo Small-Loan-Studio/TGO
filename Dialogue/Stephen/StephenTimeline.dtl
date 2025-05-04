@@ -1,0 +1,10 @@
+AAAAAAAAAH??
+Okay, I'm fine now, thanks.
+[background arg="res://Art/Misc/hearts-png-transparent-8.png" fade="1.5"]
+I love you!
+[background fade="0.7" transition="Simple Fade"]
+Just kidding.
+[background arg="res://Art/Misc/hearts-png-transparent-8.png" fade="3.0" transition="Push Up"]
+Unless....
+[wait time="0.8" hide_text="false"]
+[end_timeline]
