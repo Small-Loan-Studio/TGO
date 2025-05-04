@@ -1,0 +1,14 @@
+[gd_scene load_steps=3 format=3 uid="uid://bdsgop2r7ud6r"]
+
+[ext_resource type="PackedScene" uid="uid://dyq8mcdsutnsa" path="res://Scenes/Components/LevelBase.tscn" id="1_s81fs"]
+[ext_resource type="PackedScene" uid="uid://c3fld6my8so3p" path="res://Scenes/Components/SimpleSwitch.tscn" id="2_abwej"]
+
+[node name="AudioEventTrigger" instance=ExtResource("1_s81fs")]
+
+[node name="SendAudioEvent" parent="Objects/Switches" index="0" instance=ExtResource("2_abwej")]
+z_index = -1
+position = Vector2(139, 76)
+sensor_size = Vector2(20, 20)
+feedback_enabled = true
+default_color = Color(0.61339, 0.61339, 0.61339, 1)
+active_color = Color(0.401161, 0.710938, 0.374908, 1)

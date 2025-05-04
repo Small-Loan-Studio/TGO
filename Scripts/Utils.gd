@@ -2,7 +2,6 @@
 class_name Utils
 extends RefCounted
 
-const ID_GROUP := "NodesWithID"
 const PLAYER_ID := "Devin"
 const QUEST_DIR := "res://Scripts/Resources/Quests"
 const USER_DATA_DIR := "user://"
@@ -191,3 +190,8 @@ static func ersatz_dialogic_get_var(path: String) -> Variant:
 
 	var v: Variant = folder[parts[0]]
 	return [v, typeof(v)]
+
+
+class GroupNames:
+	static var HasID := "NodesWithID"
+	static var AudioNodes := "RegisteredAudioNode"

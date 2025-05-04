@@ -8,7 +8,7 @@ extends Effect
 @export var target_state: Enums.QuestState = Enums.QuestState.ACTIVE
 
 
-func act(_actor_id: String, _cur_level: LevelBase) -> void:
+func act(_actor_id: String, _cur_level: LevelBase) -> Variant:
 	var mgr := Driver.instance().quest_mgr
 	match target_state:
 		Enums.QuestState.ACTIVE:
@@ -19,3 +19,5 @@ func act(_actor_id: String, _cur_level: LevelBase) -> void:
 			mgr.quest_by_id(quest_id).mark_failed()
 		Enums.QuestState.DORMANT:
 			printerr("Does not support setting quest state to dormant")
+	
+	return null

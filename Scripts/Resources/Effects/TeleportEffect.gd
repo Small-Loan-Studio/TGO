@@ -5,7 +5,7 @@ extends Effect
 @export var dest_path: NodePath
 
 
-func act(actor_id: String, cur_level: LevelBase) -> void:
+func act(actor_id: String, cur_level: LevelBase) -> Variant:
 	var refined_path := str(dest_path)
 	var idx := refined_path.find(Utils.MARKERS_SECTION_NAME + "/")
 	if idx == -1:
@@ -21,3 +21,5 @@ func act(actor_id: String, cur_level: LevelBase) -> void:
 	var actor := cur_level.get_by_id(actor_id)
 	if actor != null:
 		actor.global_position = dest_node.global_position
+
+	return null
