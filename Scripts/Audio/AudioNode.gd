@@ -1,7 +1,6 @@
 class_name AudioNode
 extends Node2D
 
-
 @export var track_position: bool
 @export var debug_wise_comms: bool
 
@@ -26,7 +25,7 @@ func setup(node: Node2D, incoming_id: String) -> void:
 	if _registered:
 		add_to_group(Utils.GroupNames.AudioNodes, true)
 	else:
-		printerr("Failed to register %s"  %[id])
+		printerr("Failed to register %s" % [id])
 
 
 func _process(_delta: float) -> void:
@@ -39,7 +38,12 @@ func _process(_delta: float) -> void:
 
 func post_event(cfg: EventConfig) -> int:
 	if !AK.EVENTS._dict.has(cfg.event_name):
-		printerr("[Wwise] Attempting to post unknown event %s: %s" % [cfg.event_name, JSON.stringify(cfg)])
+		printerr(
+			(
+				"[Wwise] Attempting to post unknown event %s: %s"
+				% [cfg.event_name, JSON.stringify(cfg)]
+			)
+		)
 		return -1
 
 	var fire_type := "one shot"
@@ -48,9 +52,11 @@ func post_event(cfg: EventConfig) -> int:
 	print("[Wwise] -> %s.post_event %s (%s)" % [_target.name, cfg.event_name, fire_type])
 	return Wwise.post_event(cfg.event_name, _target)
 
-func stop_event(cfg: EventConfig) -> void: #akevent: AkEvent2D) -> void:
+
+func stop_event(cfg: EventConfig) -> void:  #akevent: AkEvent2D) -> void:
 	print("[Wwise] %s.stop_event %s" % [_target.name, cfg.event_name])
 	Wwise.stop_event(cfg.playing_id, cfg.stop_fade_time, cfg.interp_mode)
+
 
 class EventConfig:
 	extends RefCounted

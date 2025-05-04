@@ -21,15 +21,15 @@ func _trigger(effect_chain: Array[Effect], actor_id: String, cur_level: LevelBas
 		var ctx: Variant = e.act(actor_id, cur_level)
 		if ctx != null:
 			callbacks.push_back([e, ctx])
-		
+
 	if callbacks.size() == 0:
 		return null
-	
+
 	return callbacks
 
 
 func terminal_callback(ctx: Variant) -> void:
-	for elePair: Variant in (ctx as Array[Variant]):
+	for elePair: Variant in ctx as Array[Variant]:
 		var ele: Effect = elePair[0]
 		var arg: Variant = elePair[1]
 		ele.terminal_callback(arg)

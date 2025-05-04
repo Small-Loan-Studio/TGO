@@ -19,5 +19,5 @@ func act(_actor_id: String, _cur_level: LevelBase) -> Variant:
 			mgr.quest_by_id(quest_id).mark_failed()
 		Enums.QuestState.DORMANT:
 			printerr("Does not support setting quest state to dormant")
-	
+
 	return null

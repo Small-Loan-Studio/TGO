@@ -49,3 +49,6 @@ offset_top = 65.0
 offset_right = 357.0
 offset_bottom = 88.0
 text = "FireOnly"
+
+[node name="PlayerStart" type="Node2D" parent="Markers" index="0"]
+position = Vector2(214, 140)

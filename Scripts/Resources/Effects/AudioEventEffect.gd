@@ -28,8 +28,7 @@ func act(actor_id: String, cur_level: LevelBase) -> Variant:
 	cfg.playing_id = actor.post_event(cfg)
 
 	if !cfg.one_shot:
-		return func() -> void:
-			actor.stop_event(cfg)
+		return func() -> void: actor.stop_event(cfg)
 	return null
 
 
@@ -42,6 +41,7 @@ func _find_actor(id: String, _cur_level: LevelBase) -> AudioNode:
 		if node.id == id:
 			return node
 	return null
+
 
 func _get_property_list() -> Array[Dictionary]:
 	var event_names := AK.EVENTS._dict.keys()
@@ -64,17 +64,41 @@ func _get_property_list() -> Array[Dictionary]:
 		},
 	]
 	if fire_type == "until exit":
-		var modes_csv := ",".join(["LOG3", "SINE", "LOG1", "INVSCURVE", "LINEAR", "SCURVE", "EXP1", "SINERECIP", "EXP3", "LASTFADECURVE", "CONSTANT"])
-		props.push_back({
-			"name": "interpolation_mode",
-			"type": TYPE_INT,
-			"hint": PROPERTY_HINT_ENUM,
-			"hint_string": modes_csv,
-			"usage": PROPERTY_USAGE_DEFAULT,
-		})
-		props.push_back({
-			"name": "stop_fade_time",
-			"type": TYPE_INT,
-			"usage": PROPERTY_USAGE_DEFAULT,
-		})
+		var modes_csv := ",".join(
+			[
+				"LOG3",
+				"SINE",
+				"LOG1",
+				"INVSCURVE",
+				"LINEAR",
+				"SCURVE",
+				"EXP1",
+				"SINERECIP",
+				"EXP3",
+				"LASTFADECURVE",
+				"CONSTANT"
+			]
+		)
+		(
+			props
+			. push_back(
+				{
+					"name": "interpolation_mode",
+					"type": TYPE_INT,
+					"hint": PROPERTY_HINT_ENUM,
+					"hint_string": modes_csv,
+					"usage": PROPERTY_USAGE_DEFAULT,
+				}
+			)
+		)
+		(
+			props
+			. push_back(
+				{
+					"name": "stop_fade_time",
+					"type": TYPE_INT,
+					"usage": PROPERTY_USAGE_DEFAULT,
+				}
+			)
+		)
 	return props

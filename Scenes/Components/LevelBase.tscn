@@ -49,6 +49,4 @@ y_sort_enabled = true
 
 [node name="Markers" type="Node" parent="."]
 
-[node name="PlayerStart" type="Node2D" parent="Markers"]
-
 [node name="CanvasModulate" type="CanvasModulate" parent="."]

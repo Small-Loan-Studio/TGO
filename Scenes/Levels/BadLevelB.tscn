@@ -60,6 +60,9 @@ can_interact = true
 effects = Array[Resource("res://Scripts/Resources/Effect.gd")]([SubResource("Resource_bl5wy")])
 y_sort_width = 104
 
+[node name="PlayerStart" type="Node2D" parent="Markers" index="0"]
+position = Vector2(171, 235)
+
 [node name="CanvasModulate" parent="." index="4"]
 visible = false
 color = Color(0.411765, 0.411765, 0.411765, 1)

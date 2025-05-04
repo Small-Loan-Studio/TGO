@@ -29,7 +29,6 @@ var _activation_stack: Array[String]
 ## A list of callbacks that should be made for switches on-release
 var _waiting_callbacks: Array[Callable]
 
-
 ## Tracks the level that the action is taking place in
 var _cur_level: LevelBase
 

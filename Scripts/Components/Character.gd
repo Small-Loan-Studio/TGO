@@ -111,7 +111,12 @@ func _ready() -> void:
 
 	if !_has_audio_node || id == "":
 		if _has_audio_node:
-			printerr("%s: Not registering character that wants to be an AudioNode because it has no ID" % [name])
+			printerr(
+				(
+					"%s: Not registering character that wants to be an AudioNode because it has no ID"
+					% [name]
+				)
+			)
 		remove_child(_audio_node)
 	else:
 		if id != "":
@@ -295,7 +300,10 @@ func _load_gear(data: Dictionary) -> void:
 #region audio
 func is_audio_object() -> bool:
 	return _audio_node != null
+
+
 #endregion
+
 
 func _get_configuration_warnings() -> PackedStringArray:
 	var errs := []
@@ -317,7 +325,7 @@ func _get_configuration_warnings() -> PackedStringArray:
 		errs.append("Controller Node Path must be set to respond to input or use State Machines")
 	elif !(get_node(_controller_node_path) is ControllerBase):
 		errs.append("Controller Node Path must reference a ControllerBase or subclass")
-	
+
 	if _has_audio_node && id == "":
 		errs.append("Characters with audio nodes must have an ID")
 
