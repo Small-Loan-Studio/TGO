@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=3 uid="uid://d4cnh54npmjiv"]
+[gd_scene load_steps=21 format=3 uid="uid://d4cnh54npmjiv"]
 
 [ext_resource type="Script" path="res://Scripts/Driver.gd" id="1_agcjs"]
 [ext_resource type="PackedScene" uid="uid://tw1hy0j67l4g" path="res://Scenes/Audio/AudioManager.tscn" id="2_efjl6"]
@@ -20,11 +20,11 @@
 [ext_resource type="Script" path="res://Scenes/UI/Debug/DevinStateReport.gd" id="13_gfaub"]
 [ext_resource type="Script" path="res://Scenes/UI/Debug/StatLabel.gd" id="14_feb7v"]
 [ext_resource type="PackedScene" path="res://Scenes/UI/Debug/wwise_debug.tscn" id="17_5yu8a"]
-[ext_resource type="PackedScene" uid="uid://cr0chtmfakeyg" path="res://ZZ_Scratch/launch_config.tscn" id="23_ff22a"]
 
 [node name="Driver" type="Node2D"]
 script = ExtResource("1_agcjs")
 new_game_level = "Debug/BadLevelA"
+new_game_marker = null
 
 [node name="AudioManager" parent="." instance=ExtResource("2_efjl6")]
 
@@ -102,6 +102,10 @@ text = "Load"
 layout_mode = 2
 focus_mode = 0
 text = "Delete"
+
+[node name="AutoloadButton" type="CheckBox" parent="OverlayManager/HUD/DebugStack/SaveLoadMenu"]
+layout_mode = 2
+text = "Autoload"
 
 [node name="DebugDayNight" parent="OverlayManager/HUD/DebugStack" instance=ExtResource("10_8xh8g")]
 layout_mode = 2
@@ -232,11 +236,10 @@ position = Vector2(0, 0)
 [node name="Camera2D" type="Camera2D" parent="GameWorld/Devin"]
 zoom = Vector2(1.2, 1.2)
 
-[node name="PersonalDevConfig" parent="." instance=ExtResource("23_ff22a")]
-
 [connection signal="pressed" from="OverlayManager/HUD/DebugStack/SaveLoadMenu/SaveButton" to="SerializationManager" method="save_game"]
 [connection signal="pressed" from="OverlayManager/HUD/DebugStack/SaveLoadMenu/LoadButton" to="SerializationManager" method="load_game"]
 [connection signal="pressed" from="OverlayManager/HUD/DebugStack/SaveLoadMenu/DeleteButton" to="SerializationManager" method="delete_save"]
+[connection signal="toggled" from="OverlayManager/HUD/DebugStack/SaveLoadMenu/AutoloadButton" to="SerializationManager" method="_on_autoload_toggled"]
 [connection signal="toggled" from="OverlayManager/HUD/DebugStack/HBoxContainer/OutputChanges" to="OverlayManager/HUD/DebugStack/HBoxContainer/CurrentState" method="_on_toggle_track_state_changes"]
 [connection signal="pressed" from="OverlayManager/HUD/DebugCorner/DebugButton" to="." method="_on_debug_pressed"]
 [connection signal="load_saved_level" from="SerializationManager" to="." method="load_level"]

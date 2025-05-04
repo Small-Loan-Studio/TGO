@@ -25,7 +25,6 @@ var _last_loaded_level: LevelBase = null
 @onready var _debug_dnc: DebugDayNight = $OverlayManager/HUD/DebugStack/DebugDayNight
 @onready var _debug_inventory: DebugInventory = $OverlayManager/HUD/DebugStack/DebugInventory
 @onready var _debug_quests: QuestDebugger = $OverlayManager/HUD/DebugStack/QuestDebugger
-@onready var _personal_config := $PersonalDevConfig
 
 
 static func instance() -> Driver:
@@ -72,10 +71,9 @@ func _post_ready() -> void:
 	player.equipment_changed.connect(_debug_ui_equipment.update_available.unbind(1))
 	_debug_ui_equipment.update_available()
 
-	if !_personal_config.autoload_level.is_empty():
+	if SerializationManager.is_autoload():
 		await _curtain.fade_in(1)
-		print("Loading autoload level")
-		load_level(_personal_config.autoload_level, LevelBase.DEFAULT_MARKER)
+		_serialization_mgr.autoload_game()
 		await _curtain.fade_out(1)
 	else:
 		_show_title_menu()
@@ -114,7 +112,7 @@ func free_previous_level() -> void:
 	_last_loaded_level.queue_free()
 
 
-## Loads a new level into the game world. Connected to SerilizationManager.gd: load_saved_level
+## Loads a new level into the game world. Connected to SerializationManager.gd: load_saved_level
 func load_level(target_level_name: String, target_name: String) -> void:
 	assert(target_level_name != "", "Level to load must not be empty")
 
