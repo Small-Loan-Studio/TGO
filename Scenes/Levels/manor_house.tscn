@@ -1,9 +1,13 @@
-[gd_scene load_steps=9 format=3 uid="uid://c3g8eee2id8cx"]
+[gd_scene load_steps=14 format=3 uid="uid://c3g8eee2id8cx"]
 
 [ext_resource type="PackedScene" uid="uid://dyq8mcdsutnsa" path="res://Scenes/Components/LevelBase.tscn" id="1_nvpjp"]
 [ext_resource type="TileSet" uid="uid://c72m3jled4jfg" path="res://Art/Environment/ext_simple_tileset.tres" id="2_x48i8"]
 [ext_resource type="PackedScene" uid="uid://c3fld6my8so3p" path="res://Scenes/Components/SimpleSwitch.tscn" id="3_6wkma"]
+[ext_resource type="PackedScene" uid="uid://c2kg6apj756dw" path="res://Scenes/Components/NPC.tscn" id="5_37rx3"]
 [ext_resource type="Script" path="res://Scripts/Resources/Effects/TeleportEffect.gd" id="5_vn40k"]
+[ext_resource type="Resource" uid="uid://cutmvyw13d4n7" path="res://Scripts/Resources/NPCs/Jefferson.tres" id="7_pu3d6"]
+[ext_resource type="Script" path="res://Scripts/Resources/Effects/DialogueEffect.gd" id="8_d4koa"]
+[ext_resource type="Resource" path="res://Dialogue/Jefferson/Jefferson3a1.dtl" id="9_76fxj"]
 
 [sub_resource type="Resource" id="Resource_i61gm"]
 script = ExtResource("5_vn40k")
@@ -20,6 +24,10 @@ dest_path = NodePath("../../../Markers/PS_Stairs_Side_L2")
 [sub_resource type="Resource" id="Resource_bs3kg"]
 script = ExtResource("5_vn40k")
 dest_path = NodePath("../../../Markers/PS_Stairs_Side_L1")
+
+[sub_resource type="Resource" id="Resource_xwiip"]
+script = ExtResource("8_d4koa")
+timeline = ExtResource("9_76fxj")
 
 [node name="LevelBase" instance=ExtResource("1_nvpjp")]
 
@@ -53,6 +61,12 @@ on_pressed_effects = Array[Resource("res://Scripts/Resources/Effect.gd")]([SubRe
 position = Vector2(7159, 5693)
 sensor_size = Vector2(20, 95)
 on_pressed_effects = Array[Resource("res://Scripts/Resources/Effect.gd")]([SubResource("Resource_bs3kg")])
+
+[node name="Jefferson Sharp" parent="Objects/Characters" index="0" instance=ExtResource("5_37rx3")]
+position = Vector2(4756.3, 5816.69)
+config = ExtResource("7_pu3d6")
+dlg = SubResource("Resource_xwiip")
+id = "Jefferson Sharp"
 
 [node name="Player Start" type="Node2D" parent="Markers" index="0"]
 position = Vector2(4261, 6724)

@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="NPCConfig" load_steps=3 format=3 uid="uid://cutmvyw13d4n7"]
+
+[ext_resource type="Script" path="res://Scripts/Resources/NpcConfig.gd" id="1_0ykb8"]
+[ext_resource type="SpriteFrames" uid="uid://b3igo1ygiyl0b" path="res://Art/Characters/character_placeholder.tres" id="2_ys7ty"]
+
+[resource]
+script = ExtResource("1_0ykb8")
+character_id = "Jefferson Sharp"
+sprite_sheet = ExtResource("2_ys7ty")
+valid_timelines = Array[String](["res://Dialogue/Jefferson/Jefferson3a1.dtl"])

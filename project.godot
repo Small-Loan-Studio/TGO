@@ -40,11 +40,13 @@ gdscript/warnings/untyped_declaration=2
 [dialogic]
 
 directories/dch_directory={
-"Groundskeeper": "res://Scripts/Resources/NPCs/DialogicCharacters/Groundskeeper.dch"
+"Groundskeeper": "res://Scripts/Resources/NPCs/DialogicCharacters/Groundskeeper.dch",
+"Jefferson": "res://Scripts/Resources/NPCs/DialogicCharacters/Jefferson.dch"
 }
 directories/dtl_directory={
 "BuckleyTestTimeline": "res://Dialogue/Buckley/BuckleyTestTimeline.dtl",
 "GroundskeeperTimeline": "res://Dialogue/Groundskeeper/GroundskeeperTimeline.dtl",
+"Jefferson3a1": "res://Dialogue/Jefferson/Jefferson3a1.dtl",
 "debugging_timeline": "res://ZZ_Scratch/DialogicValidation/debugging_timeline.dtl",
 "juniper_bush_full": "res://Dialogue/PlaceableInteractive/juniper_bush_full.dtl",
 "npc_test_dialogue": "res://ZZ_Scratch/NPCDialogue/npc_test_dialogue.dtl",
@@ -75,6 +77,13 @@ variables={
 "Q2Answered": false,
 "Q3Answered": false,
 "Q4Answered": false
+},
+"Jefferson": {
+"HasSpoken": false,
+"Q2_op1Answered": false,
+"Q2_op2Answered": false,
+"flashBackSpoken": false,
+"opt2_3a5": false
 },
 "QuestVarConditionTest": false,
 "UserInputNum": 0,
