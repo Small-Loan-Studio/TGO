@@ -102,6 +102,10 @@ static func level_path_to_name(path: String) -> String:
 	return path
 
 
+static func level_is_debug(name: String) -> bool:
+	return name.begins_with("Debug/")
+
+
 ## Used for getting persistent levels and loading saved levels [b]NOT[/b] the original levels
 static func level_to_path_binary(level_name: String) -> String:
 	return USER_DATA_DIR + SAVE_FOLDER + LEVEL_FOLDER + level_name + LEVEL_EXT_BIN

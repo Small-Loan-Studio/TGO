@@ -1,13 +1,18 @@
 class_name Driver
 extends Node2D
 
+signal resumed
+
+@export var new_game_level: String
+@export var new_game_marker: String = ""
+
 var _last_loaded_level: LevelBase = null
 
 @onready var audio_mgr: AudioManager = $AudioManager
 @onready var player: Devin = %Devin
 @onready var inventory_mgr: InventoryManager = $InventoryManager
+@onready var menus: Menus = $OverlayManager/Menus
 @onready var quest_mgr: QuestManager = $QuestManager
-@onready var _menu_mgr: MenuManager = $OverlayManager/MenuManager
 @onready var _curtain := $OverlayManager/Curtain
 @onready var _presentation := $GameWorld/Presentation
 @onready var _world := $GameWorld
@@ -20,7 +25,6 @@ var _last_loaded_level: LevelBase = null
 @onready var _debug_dnc: DebugDayNight = $OverlayManager/HUD/DebugStack/DebugDayNight
 @onready var _debug_inventory: DebugInventory = $OverlayManager/HUD/DebugStack/DebugInventory
 @onready var _debug_quests: QuestDebugger = $OverlayManager/HUD/DebugStack/QuestDebugger
-@onready var _personal_config := $PersonalDevConfig
 
 
 static func instance() -> Driver:
@@ -67,14 +71,32 @@ func _post_ready() -> void:
 	player.equipment_changed.connect(_debug_ui_equipment.update_available.unbind(1))
 	_debug_ui_equipment.update_available()
 
-	if !_personal_config.autoload_level.is_empty():
+	if SerializationManager.is_autoload():
 		await _curtain.fade_in(1)
-		print("Loading autoload level")
-		load_level(_personal_config.autoload_level, LevelBase.DEFAULT_MARKER)
+		_serialization_mgr.autoload_game()
 		await _curtain.fade_out(1)
 	else:
-		_menu_mgr.show_menu(Enums.MenuType.DEBUG)
-		await _curtain.fade_out(1, false)
+		_show_title_menu()
+
+
+## Present the title menu; this is currently only used on initial game load
+## so probably some tooling to make it work for "quit to main" interactions
+func _show_title_menu() -> void:
+	_hud.hide()
+	var title_menu := menus.present_nonblocking(Menus.MenuKind.TITLE)
+	title_menu.dismiss.connect(_title_hide, ConnectFlags.CONNECT_ONE_SHOT)
+	await _curtain.fade_out(1, false)
+	await title_menu.dismiss
+
+
+func _title_hide() -> void:
+	_hud.show()
+
+
+func exit_game() -> void:
+	var tree := get_tree()
+	tree.root.propagate_notification(NOTIFICATION_WM_CLOSE_REQUEST)
+	tree.quit()
 
 
 func get_hud() -> HUD:
@@ -90,9 +112,11 @@ func free_previous_level() -> void:
 	_last_loaded_level.queue_free()
 
 
-## Loads a new level into the game world. Connected to SerilizationManager.gd: load_saved_level
+## Loads a new level into the game world. Connected to SerializationManager.gd: load_saved_level
 func load_level(target_level_name: String, target_name: String) -> void:
 	assert(target_level_name != "", "Level to load must not be empty")
+
+	menus.dismiss()
 
 	var packed_level: PackedScene
 	var new_level: LevelBase
@@ -163,6 +187,10 @@ func get_current_level() -> LevelBase:
 	return _last_loaded_level
 
 
+func new_game() -> void:
+	load_level(new_game_level, new_game_marker)
+
+
 func pause(should_pause: bool = true) -> void:
 	get_tree().paused = should_pause
 
@@ -170,7 +198,6 @@ func pause(should_pause: bool = true) -> void:
 ## TODO: We'll need to switch away  from debug load path soon
 func request_debug_load(level_name: String) -> void:
 	await _curtain.fade_in(1, false)
-	_menu_mgr.hide_menu(Enums.MenuType.DEBUG)
 	load_level(level_name, LevelBase.DEFAULT_MARKER)
 	await _curtain.fade_out(1, false)
 
