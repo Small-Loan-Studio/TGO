@@ -1,0 +1,68 @@
+if {Ilene.HasSpoken} == false and {Ilene.ItemGiven} == false:
+	Devin: Good day, madame. Ilene, is it?
+	Ilene: Goodness. What manner of man are you?
+	Devin: I am investigating the deaths and disappearances, madame. On Lord Sharp's instructions. I am a hunter.
+	Ilene: My, your mask. It’s hideous. Well I cannot engage with you now. Alf is startled. Fetch a soother would you. From the pantry. Then we can talk.
+	set {Ilene.HasSpoken} = true
+	[end_timeline]
+if {Ilene.HasSpoken} == true and {Ilene.ItemGiven} == false:
+	Ilene: Oh! Tis you again, masked one. Have you fetched what I requested?
+	[end_timeline]
+if {Ilene.HasSpoken} == false and {Ilene.ItemGiven} == true:
+	Has NOT Spoken to Ilene, but has given item
+	set {Ilene.HasSpoken} = true
+	[end_timeline]
+if {Ilene.HasSpoken} == true and {Ilene.ItemGiven} == true:
+	Ilene: Oh! Tis you again, masked one. Tarry not, Alf naps for now.
+	label Questions
+	- What of these deaths?
+		Devin: What can you share of the recent deaths? The bodies found in the fields.
+		Ilene: Why would I? How would I? I know nothing of those corpses. Think about it. Tis not me who you need.
+		Devin: Enlighten me.
+		Ilene: Naturally I find it disgraceful that a certain Sharp mixes so frivolously with commoners.
+		Devin: My patience has its limits, madame.
+		Ilene: Fiona, of course. That spoiled brat. Alf shall never grow up to be like his reckless aunty. Isn’t that right Alfie?
+		Alf: Gaggles
+		Devin: So where is it I may find her?
+		Ilene: I could not care less, hunter. Ask my father-in-law.
+		Devin: Insightful, madame. Gramercy.
+		jump Questions
+	- What of strangeness in these grounds?
+		Devin: What can you tell me of any strangeness you have experienced on these grounds?
+		Ilene: By strange, I presume you mean that incessant thumping at night? The sound that wakes Alf and myself so frequently?
+		Devin: What is its source?
+		Ilene: Vermin. Rats in the walls. In the cellar. Everywhere. The staff is relentlessly ineffective at controlling them.
+		Devin: Have you seen rats here? With your own eyes?
+		Ilene: Of course. I believe so anyway. Things scurrying in the darkness. What else could they be but rats. Although I must say, the boys do indulge in all manner of fantasies that I daren’t repeat.
+		Devin: Fantasies?
+		Ilene: You had best take it up with them. They aren’t for Alfie’s ears.
+		Devin: What else troubles you, madame?
+		Ilene: The staff know too well, but the mould spreads uncontrollably. Won’t you urge them to see to it, for goodness sake?
+		Devin: Why the urgency?
+		Ilene: Upon catching sight of it, a sudden spell of vertigo overcame me. An inexorable compulsion to fall. I avert my eyes now. I pray it does not find its way back into my view.
+		Devin: Gramercy, for the warning.
+		jump Questions
+	- Anything you can share about Beth?
+		Devin: What can you tell me about Beth?
+		Ilene: The last time I saw my mother-in-law. We... Oh, dear.
+		Devin: I urge you to continue, madame.
+		Ilene: We had a lovely stroll. Both of us awoke in the middle of the night and could not fall back to sleep. She seemed content and carefree.
+		Devin: What was the topic of your conversation?
+		Ilene: Motherhood. Its hardships, its rewards. Something you cannot understand, sir.
+		Devin: Nor do I pretend to.
+		Ilene: Oh, the poor children. I cannot imagine a son nor daughter to be parted from their mother so young. Could you?
+		Devin: I prefer not to dwell on such matters. And when you parted?
+		Ilene: Lady Sharp was to fetch fresh linen for Alf. I had returned to our bedroom, Jefferson was fast asleep, the oaf. But she never returned.
+		Devin: You mean to say she disappeared in this house?
+		Ilene: I cannot say, hunter. Others suspect she ventured back into these grounds.
+		jump Questions
+	- The glass casing. Tell me about it.
+		Devin: The casing in the hallway remains empty. What can you tell me of its contents?
+		Ilene: Its fate lies with that maid of ours, so you had best take it up with her. Tis typical of those larcenous snakes from across the western sea.
+		Devin: What proof do you have of her guilt? Beyond heritage of course.
+		Ilene: A liar lies, sir, and I am sure you have encountered many of those. Now unless you have something else, Alf is stirring.
+		jump Questions
+	- I should be going.
+		Devin: I am glad for your help.
+		Ilene: I pray you find what you seek. Adieu.
+		[end_timeline]

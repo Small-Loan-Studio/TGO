@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=3 uid="uid://c3g8eee2id8cx"]
+[gd_scene load_steps=18 format=3 uid="uid://c3g8eee2id8cx"]
 
 [ext_resource type="PackedScene" uid="uid://dyq8mcdsutnsa" path="res://Scenes/Components/LevelBase.tscn" id="1_nvpjp"]
 [ext_resource type="TileSet" uid="uid://c72m3jled4jfg" path="res://Art/Environment/ext_simple_tileset.tres" id="2_x48i8"]
@@ -10,8 +10,6 @@
 [ext_resource type="PackedScene" uid="uid://rgvfsx60t2ap" path="res://Scenes/Components/Inventory/Item.tscn" id="9_6kywj"]
 [ext_resource type="Resource" path="res://Dialogue/Jefferson/Jefferson3a1.dtl" id="9_76fxj"]
 [ext_resource type="PackedScene" uid="uid://d1y25semyqxkw" path="res://Scenes/Components/Greyboxing/MoveableBlock.tscn" id="9_s2t1c"]
-[ext_resource type="Script" path="res://Scripts/Components/Greyboxing/MoveableBlock.gd" id="10_drp55"]
-[ext_resource type="Script" path="res://Scenes/Components/Inventory/Item.gd" id="10_i06jq"]
 [ext_resource type="Resource" uid="uid://bxc244asgqgoi" path="res://Scripts/Resources/Items/Collectible.tres" id="11_rpk22"]
 [ext_resource type="Resource" uid="uid://djcg0x5p8m34q" path="res://Scripts/Resources/Items/Laudanum.tres" id="12_rp2xl"]
 
@@ -74,35 +72,25 @@ config = ExtResource("7_pu3d6")
 dlg = SubResource("Resource_xwiip")
 id = "Jefferson Sharp"
 
-[node name="COLLECTIBLE" type="Node2D" parent="Objects/Items" index="0" instance=ExtResource("9_6kywj")]
-texture_filter = 1
+[node name="COLLECTIBLE" parent="Objects/Items" index="0" instance=ExtResource("9_6kywj")]
 position = Vector2(3496, 5391)
-script = ExtResource("10_i06jq")
 item = ExtResource("11_rpk22")
 quantity = 1
 
-[node name="LAUDANUM" type="Node2D" parent="Objects/Items" index="1" instance=ExtResource("9_6kywj")]
-texture_filter = 1
+[node name="LAUDANUM" parent="Objects/Items" index="1" instance=ExtResource("9_6kywj")]
 position = Vector2(3561, 5232)
-script = ExtResource("10_i06jq")
 item = ExtResource("12_rp2xl")
 quantity = 1
 
-[node name="PushableBlock" type="CharacterBody2D" parent="Objects" index="4" groups=["NodesWithID"] instance=ExtResource("9_s2t1c")]
+[node name="PushableBlock" parent="Objects" index="4" instance=ExtResource("9_s2t1c")]
 position = Vector2(3530, 5391)
-collision_layer = 5
-script = ExtResource("10_drp55")
 
-[node name="PushableBlock_2" type="CharacterBody2D" parent="Objects" index="5" groups=["NodesWithID"] instance=ExtResource("9_s2t1c")]
+[node name="PushableBlock_2" parent="Objects" index="5" instance=ExtResource("9_s2t1c")]
 position = Vector2(3594, 5327)
-collision_layer = 5
-script = ExtResource("10_drp55")
 tile_size = 24
 
-[node name="PushableBlock_3" type="CharacterBody2D" parent="Objects" index="6" groups=["NodesWithID"] instance=ExtResource("9_s2t1c")]
+[node name="PushableBlock_3" parent="Objects" index="6" instance=ExtResource("9_s2t1c")]
 position = Vector2(3594, 5359)
-collision_layer = 5
-script = ExtResource("10_drp55")
 tile_size = 24
 
 [node name="Player Start" type="Node2D" parent="Markers" index="0"]
