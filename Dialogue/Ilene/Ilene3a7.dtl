@@ -9,7 +9,8 @@ if {Ilene.HasSpoken} == true and {Ilene.ItemGiven} == false:
 	Ilene: Oh! Tis you again, masked one. Have you fetched what I requested?
 	[end_timeline]
 if {Ilene.HasSpoken} == false and {Ilene.ItemGiven} == true:
-	Has NOT Spoken to Ilene, but has given item
+	Ilene: My! Your mask. How hideous. Now is not the time. Unless you brought me that vial of laudanum? No? Then tarry not; Alf is sleeping!
+	jump Questions
 	set {Ilene.HasSpoken} = true
 	[end_timeline]
 if {Ilene.HasSpoken} == true and {Ilene.ItemGiven} == true:
