@@ -1,18 +1,16 @@
-[gd_scene load_steps=22 format=3 uid="uid://bgn6kmsvdqh4l"]
+[gd_scene load_steps=20 format=3 uid="uid://bgn6kmsvdqh4l"]
 
 [ext_resource type="PackedScene" uid="uid://dyq8mcdsutnsa" path="res://Scenes/Components/LevelBase.tscn" id="1_dma02"]
 [ext_resource type="TileSet" uid="uid://c72m3jled4jfg" path="res://Art/Environment/ext_simple_tileset.tres" id="2_pwhqm"]
 [ext_resource type="PackedScene" uid="uid://c3fld6my8so3p" path="res://Scenes/Components/SimpleSwitch.tscn" id="3_0ndau"]
 [ext_resource type="Script" path="res://Scripts/Resources/Effects/TeleportEffect.gd" id="5_7fsg8"]
 [ext_resource type="PackedScene" uid="uid://rgvfsx60t2ap" path="res://Scenes/Components/Inventory/Item.tscn" id="5_iepyf"]
-[ext_resource type="Script" path="res://Scenes/Components/Inventory/Item.gd" id="6_yolia"]
 [ext_resource type="Resource" uid="uid://dtinugfevbrp6" path="res://Scripts/Resources/Items/BluntTorch.tres" id="7_6sdya"]
 [ext_resource type="Resource" uid="uid://bhkis6mbwvpho" path="res://Scripts/Resources/Items/WallTorch.tres" id="8_mj1tv"]
 [ext_resource type="Resource" uid="uid://bt7flgi3tv6iy" path="res://Scripts/Resources/Items/Wine.tres" id="9_exnnc"]
 [ext_resource type="Resource" uid="uid://dihycutl8t8o6" path="res://Scripts/Resources/Items/Satchel.tres" id="10_pmbcc"]
 [ext_resource type="Resource" uid="uid://d0dr52jjvkhpj" path="res://Scripts/Resources/Items/Mushroom.tres" id="11_0plkk"]
 [ext_resource type="PackedScene" uid="uid://bx2qjlw58ci20" path="res://Scenes/Components/Greyboxing/GreyboxObject.tscn" id="12_us5wm"]
-[ext_resource type="Script" path="res://Scripts/Components/Greyboxing/GreyboxObject.gd" id="13_bwjsc"]
 
 [sub_resource type="Resource" id="Resource_jh8dd"]
 script = ExtResource("5_7fsg8")
@@ -103,136 +101,111 @@ position = Vector2(2272, 448)
 sensor_size = Vector2(120, 60)
 on_pressed_effects = Array[Resource("res://Scripts/Resources/Effect.gd")]([SubResource("Resource_7dvjx")])
 
-[node name="BLUNT_TORCH" type="Node2D" parent="Objects/Items" index="0" instance=ExtResource("5_iepyf")]
-texture_filter = 1
+[node name="BLUNT_TORCH" parent="Objects/Items" index="0" instance=ExtResource("5_iepyf")]
 position = Vector2(2733, 1199)
-script = ExtResource("6_yolia")
 item = ExtResource("7_6sdya")
 quantity = 1
 
-[node name="WALL_TORCH" type="Node2D" parent="Objects/Items" index="1" instance=ExtResource("5_iepyf")]
-texture_filter = 1
+[node name="WALL_TORCH" parent="Objects/Items" index="1" instance=ExtResource("5_iepyf")]
 position = Vector2(1520, 663)
-script = ExtResource("6_yolia")
 item = ExtResource("8_mj1tv")
 quantity = 1
 
-[node name="WALL_TORCH_2" type="Node2D" parent="Objects/Items" index="2" instance=ExtResource("5_iepyf")]
-texture_filter = 1
+[node name="WALL_TORCH_2" parent="Objects/Items" index="2" instance=ExtResource("5_iepyf")]
 position = Vector2(3888, 1072)
-script = ExtResource("6_yolia")
 item = ExtResource("8_mj1tv")
 quantity = 1
 
-[node name="WINE" type="Node2D" parent="Objects/Items" index="3" instance=ExtResource("5_iepyf")]
-texture_filter = 1
+[node name="WINE" parent="Objects/Items" index="3" instance=ExtResource("5_iepyf")]
 position = Vector2(173.892, 558.639)
-script = ExtResource("6_yolia")
 item = ExtResource("9_exnnc")
 quantity = 1
 
-[node name="SATCHEL" type="Node2D" parent="Objects/Items" index="4" instance=ExtResource("5_iepyf")]
-texture_filter = 1
+[node name="SATCHEL" parent="Objects/Items" index="4" instance=ExtResource("5_iepyf")]
 position = Vector2(398.157, 559.899)
-script = ExtResource("6_yolia")
 item = ExtResource("10_pmbcc")
 quantity = 1
 
-[node name="MUSHROOM" type="Node2D" parent="Objects/Items" index="5" instance=ExtResource("5_iepyf")]
-texture_filter = 1
+[node name="MUSHROOM" parent="Objects/Items" index="5" instance=ExtResource("5_iepyf")]
 position = Vector2(334.744, 488.545)
-script = ExtResource("6_yolia")
 item = ExtResource("11_0plkk")
 quantity = 1
 
-[node name="MUSHROOM_2" type="Node2D" parent="Objects/Items" index="6" instance=ExtResource("5_iepyf")]
-texture_filter = 1
+[node name="MUSHROOM_2" parent="Objects/Items" index="6" instance=ExtResource("5_iepyf")]
 position = Vector2(433.633, 487.654)
-script = ExtResource("6_yolia")
 item = ExtResource("11_0plkk")
 quantity = 1
 
-[node name="MUSHROOM_3" type="Node2D" parent="Objects/Items" index="7" instance=ExtResource("5_iepyf")]
-texture_filter = 1
+[node name="MUSHROOM_3" parent="Objects/Items" index="7" instance=ExtResource("5_iepyf")]
 position = Vector2(-175.741, 431.527)
-script = ExtResource("6_yolia")
 item = ExtResource("11_0plkk")
 quantity = 1
 
-[node name="MUSHROOM_4" type="Node2D" parent="Objects/Items" index="8" instance=ExtResource("5_iepyf")]
-texture_filter = 1
+[node name="MUSHROOM_4" parent="Objects/Items" index="8" instance=ExtResource("5_iepyf")]
 position = Vector2(-80.4153, 431.527)
-script = ExtResource("6_yolia")
 item = ExtResource("11_0plkk")
 quantity = 1
 
-[node name="MUSHROOM_5" type="Node2D" parent="Objects/Items" index="9" instance=ExtResource("5_iepyf")]
-texture_filter = 1
+[node name="MUSHROOM_5" parent="Objects/Items" index="9" instance=ExtResource("5_iepyf")]
 position = Vector2(-177.523, 592.78)
-script = ExtResource("6_yolia")
 item = ExtResource("11_0plkk")
 quantity = 1
 
-[node name="MUSHROOM_6" type="Node2D" parent="Objects/Items" index="10" instance=ExtResource("5_iepyf")]
-texture_filter = 1
+[node name="MUSHROOM_6" parent="Objects/Items" index="10" instance=ExtResource("5_iepyf")]
 position = Vector2(14.02, 561.598)
-script = ExtResource("6_yolia")
 item = ExtResource("11_0plkk")
 quantity = 1
 
-[node name="MUSHROOM_7" type="Node2D" parent="Objects/Items" index="11" instance=ExtResource("5_iepyf")]
-texture_filter = 1
+[node name="MUSHROOM_7" parent="Objects/Items" index="11" instance=ExtResource("5_iepyf")]
 position = Vector2(14.02, 752.251)
-script = ExtResource("6_yolia")
 item = ExtResource("11_0plkk")
 quantity = 1
 
-[node name="MUSHROOM_8" type="Node2D" parent="Objects/Items" index="12" instance=ExtResource("5_iepyf")]
-texture_filter = 1
+[node name="MUSHROOM_8" parent="Objects/Items" index="12" instance=ExtResource("5_iepyf")]
 position = Vector2(206.454, 815.505)
-script = ExtResource("6_yolia")
 item = ExtResource("11_0plkk")
 quantity = 1
 
-[node name="MUSHROOM_9" type="Node2D" parent="Objects/Items" index="13" instance=ExtResource("5_iepyf")]
-texture_filter = 1
+[node name="MUSHROOM_9" parent="Objects/Items" index="13" instance=ExtResource("5_iepyf")]
 position = Vector2(1584.28, 1232.2)
-script = ExtResource("6_yolia")
 item = ExtResource("11_0plkk")
 quantity = 1
 
-[node name="MUSHROOM_10" type="Node2D" parent="Objects/Items" index="14" instance=ExtResource("5_iepyf")]
-texture_filter = 1
+[node name="MUSHROOM_10" parent="Objects/Items" index="14" instance=ExtResource("5_iepyf")]
 position = Vector2(1966.04, 973.916)
-script = ExtResource("6_yolia")
 item = ExtResource("11_0plkk")
 quantity = 1
 
-[node name="MUSHROOM_11" type="Node2D" parent="Objects/Items" index="15" instance=ExtResource("5_iepyf")]
-texture_filter = 1
+[node name="MUSHROOM_11" parent="Objects/Items" index="15" instance=ExtResource("5_iepyf")]
 position = Vector2(3885.78, 1775.23)
-script = ExtResource("6_yolia")
 item = ExtResource("11_0plkk")
 quantity = 1
 
-[node name="Puddle of Gin" type="Node2D" parent="Objects" index="4" instance=ExtResource("12_us5wm")]
-y_sort_enabled = true
+[node name="Puddle of Gin" parent="Objects" index="4" instance=ExtResource("12_us5wm")]
 position = Vector2(3073, 1056)
-script = ExtResource("13_bwjsc")
 size = Vector2(2, 2)
 can_interact = true
 y_sort_width = 104
-metadata/_edit_group_ = true
 
-[node name="Hidden Tunnel Door" type="Node2D" parent="Objects" index="5" instance=ExtResource("12_us5wm")]
-y_sort_enabled = true
+[node name="Hidden Tunnel Door" parent="Objects" index="5" instance=ExtResource("12_us5wm")]
 position = Vector2(3888, 1569)
-script = ExtResource("13_bwjsc")
 can_block_movement = true
 can_block_light = true
 can_interact = true
-y_sort_width = 72
-metadata/_edit_group_ = true
+
+[node name="TorchMount" parent="Objects" index="6" instance=ExtResource("12_us5wm")]
+position = Vector2(2183, 765)
+size = Vector2(1, 2)
+can_block_movement = true
+can_block_light = true
+can_interact = true
+
+[node name="TorchMount_2" parent="Objects" index="7" instance=ExtResource("12_us5wm")]
+position = Vector2(2291, 765)
+size = Vector2(1, 2)
+can_block_movement = true
+can_block_light = true
+can_interact = true
 
 [node name="PlayerStart" type="Marker2D" parent="Markers" index="0"]
 position = Vector2(125, 533)
