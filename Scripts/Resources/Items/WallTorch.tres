@@ -1,0 +1,15 @@
+[gd_resource type="Resource" script_class="Item" load_steps=3 format=3 uid="uid://bhkis6mbwvpho"]
+
+[ext_resource type="Script" path="res://Scripts/Components/Inventory/Item.gd" id="1_5py8q"]
+[ext_resource type="Texture2D" uid="uid://3cvlh3bqqte5" path="res://Art/Items/Key.png" id="1_ifn8f"]
+
+[resource]
+script = ExtResource("1_5py8q")
+id = "WALL_TORCH"
+name = "Wall Torch"
+type = 0
+description = "A wall torch needed to mount in the burial chamber"
+stackable = false
+stack_size = 2
+icon = ExtResource("1_ifn8f")
+gear_spec = Array[Resource("res://Scripts/Resources/GearSpec.gd")]([])
