@@ -7,11 +7,16 @@
     "res://Scripts/Resources/NPCs/": {
       "resource_local_to_scene": true,
       "resource_name": true
+    },
+    "res://Scripts/Resources/NPcs/": {
+      "resource_local_to_scene": true,
+      "resource_name": true
     }
   },
   "recent_paths": [
     "res://Scripts/Resources/Items/",
-    "res://Scripts/Resources/NPCs/"
+    "res://Scripts/Resources/NPCs/",
+    "res://Scripts/Resources/NPcs/"
   ],
   "table_functions": {
     "filter": [

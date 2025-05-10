@@ -1,0 +1,101 @@
+join Jefferson 1
+if {Jefferson.HasSpoken} == true:
+	Jefferson: What is it, hunter?
+join Jefferson 1
+if {Jefferson.HasSpoken} == false:
+	Devin: Jefferson Sharp, I presume?
+	Jefferson: You presume correctly. You’re the hunter that father has looking into the business in the fields.
+	Devin: What is it that you read?
+	Jefferson: Never you mind. Speak fast.
+label Questions
+- What of these deaths?
+	Devin: The fields, aye. What can you tell me about these recent deaths?
+	Jefferson: Deaths? Heavens, I know nothing about those.
+	Devin: Perish the thought.
+	label DeathQs
+	- Have you seen anything odd?
+		You must have surveyed the land yourself. What oddities have you personally witnessed?
+		Jefferson: Other than your presence in our grounds and in our good town?
+		jump DeathQs
+	- You know nothing of the bodies?
+		Devin: I must press you for an answer. You mean to say you can infer nothing from these deaths?
+		Jefferson: Good heavens, faceless one! Nothing. Nothing whatsoever.
+		jump DeathQs
+	- What you suspect murder, perchance, or something stranger?
+		Devin: What do you make of the cause of death. Murder perhaps? Something otherworldly, as your father put it?
+		Jefferson: Murders, strange goings-on, oddities. Are we in London to your eyes?
+		Devin: You have seen nowt, then? It is important that you inform me of anything amiss.
+		Jefferson: Beyond that ten-year-fog, there was, well…
+		if {Jefferson.flashBackSpoken} == false:
+			- There was something else?
+				Devin: There was something else?
+				Jefferson: I say, nothing of import beyond…
+				Devin: Yes?
+				Jefferson: I espied a dark, mangy, rabid hare emerging from the thickness of the fog. Thought that sort of thing is hardly strange, considering…
+				Devin: Considering what?
+				Jefferson: A farm attracts pests aplenty, man.
+				Devin: Of course.
+			- You have my full confidence...
+				Devin: You have my full confidence in this matter. Speak plain.
+				Jefferson: Your confidence? I should hope so, hunter!
+				Devin: So what is it?
+				Jefferson: I espied a dark, mangy, rabid hare emerging from the thickness of the fog. Thought that sort of thing is hardly strange, considering…
+				Devin: Considering what?
+				Jefferson: A farm attracts pests aplenty, man.
+				Devin: Of course.
+			- Tell me now.
+				Devin: I am not for wasting time. You saw something. Didn’t you?
+				Jefferson: Yes, but I feel you shall not be satisfied with my answer.
+				Devin: Tell me now.
+				Jefferson: I espied a dark, mangy, rabid hare emerging from the thickness of the fog. Thought that sort of thing is hardly strange, considering…
+				Devin: Considering what?
+				Jefferson: A farm attracts pests aplenty, man.
+				Devin: Of course.
+			set {Jefferson.flashBackSpoken} = true
+			jump Questions
+		else:
+			- Describe this creature once more. [if {Jefferson.flashBackSpoken} == true]
+				Devin: Describe this creature once more.
+				Jefferson: Did you not listen the first time, faceless one? A mangy hare. Rabid. Dark in its complexion. Write it down in your little book.
+				jump Questions
+- What of strangeness in these grounds?
+	Devin: Have you experienced anything strange afoot on these grounds? In the house?
+	Jefferson: Be more specific, hunter.
+	label Q2
+	- Anything supernatural in nature?
+		Devin: Have you encountered any ghosts or goblins? Swarths or cobylins?
+		Jefferson: Ghosts or goblins? You jest. What next? This Tūn-Gāst the common folk talk of? Witches at the door?
+		Devin: You remain a sceptic?
+		Jefferson: We rooted out all the witches decades ago. Burned them. Drowned them. As for this Tūn-Gāst. I care not for fairytales. Nowt of ghosts, hunter.
+		set {Jefferson.Q2_op1Answered} = true
+	- Has the house itself changed?
+		Devin: Tell me more about this house, it does not look in the best condition.
+		Jefferson: Nothing out of the ordinary; creaking, whispering, odd sounds. An old house is seldom quiet.
+		Devin: I find the dead are seldom quiet.
+		Jefferson: Aye. Was there owt else?
+		set {Jefferson.Q2_op2Answered} = true
+	- What of pests — creatures? [if {Jefferson.opt2_3a5} == true]
+		Devin: What of these pests your cook has spoken of. Are there any dangers to be wary of?
+		Jefferson: While our servants are oft their own shadows they have of late complained of vermin. Poison the loft, I say.
+	if {Jefferson.Q2_op1Answered} == true and {Jefferson.Q2_op2Answered} == true:
+		jump Questions
+	else:
+		jump Q2
+- Anything you can share about Beth?
+	Devin: Your father has charged me with finding your mother. When did you last see her?
+	Jefferson: As yes, dear Mama. I saw her on the grounds a few short hours, before, that is.
+	Devin: Before what?
+	Jefferson: Before she vanished, faceless one. Slipped away into the night.
+	Devin: Into the night?
+	Jefferson: No traces of her in this house. Have you other fretful queries, or might I return to my lecture?
+- The glass box. Tell me about it.
+	Devin: Regarding this missing necklace. Any notion as to who might have absconded with it?
+	Jefferson: Like I said before, a farm attracts pests. Some take crops, others precious baubles. Both vermin.
+	Devin: A glass container sans a fairly heirloom. How long has it been in your family?
+	Jefferson: For generations, hunter. Since our great ancestor Abraham Sharp, at least. Possibly longer. It ought to have passed to my Ilene. May the Devil capture this thief’s soul.
+	Devin: I shall keep a watchful eye for it.
+- I should be going.
+	Devin: I ought to be going.
+	Jefferson: Yes, good.
+	set {Jefferson.HasSpoken} = true
+	[end_timeline]
