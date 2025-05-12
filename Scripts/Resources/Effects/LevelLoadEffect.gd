@@ -13,9 +13,10 @@ extends Effect
 @export var marker_name: String = ""
 
 
-func act(_actor_id: String, cur_level: LevelBase) -> void:
+func act(_actor_id: String, cur_level: LevelBase) -> Variant:
 	if cur_level == null:
-		return
+		return null
 
 	# TODO: should this be cur_level.driver.load_level(new_level) instead
 	cur_level.swap_to_level(load_level_name, marker_name)
+	return null

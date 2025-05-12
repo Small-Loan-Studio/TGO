@@ -16,16 +16,8 @@ var _active_bus := 0:
 @onready var _levels_container := $VBoxContainer
 
 
-func _open_menu() -> void:
-	for c in _sliders:
-		c.init(Driver.instance().audio_mgr)
-		c.process_mode = Node.PROCESS_MODE_INHERIT
-		c.is_active = false
-	_active_bus = 0
-	visible = true
-
-
 func _ready() -> void:
+	_active_bus = 0
 	var max_width := 0
 	for c in _levels_container.get_children():
 		if c is AudioSlider:
@@ -35,29 +27,21 @@ func _ready() -> void:
 
 	for c in _sliders:
 		c.set_label_width(max_width)
+		c.init(Driver.instance().audio_mgr)
+		c.process_mode = Node.PROCESS_MODE_INHERIT
 		c.is_active = false
 
 	_active_bus = 0
 
 
-func _close_menu() -> void:
+func _exit_tree() -> void:
 	Driver.instance().audio_mgr.save_levels()
 	visible = false
 	for c in _sliders:
 		c.process_mode = Node.PROCESS_MODE_DISABLED
-	menu_closed.emit(false)
 
 
-func _menu_process() -> void:
-	if (
-		Input
-		. is_action_just_pressed(
-			Enums.input_action_name(Enums.InputAction.MENU),
-		)
-	):
-		close_menu()
-		return
-
+func _input(_event: InputEvent) -> void:
 	if Input.is_action_just_pressed(Enums.input_action_name(Enums.InputAction.UP)):
 		_active_bus -= 1
 	if Input.is_action_just_pressed(Enums.input_action_name(Enums.InputAction.DOWN)):
@@ -77,13 +61,5 @@ func _bgm_drag_start() -> void:
 	_active_bus = 1
 
 
-func _ambient_drag_start() -> void:
-	_active_bus = 2
-
-
 func _sfx_drag_start() -> void:
-	_active_bus = 3
-
-
-func _menu_drag_start() -> void:
-	_active_bus = 4
+	_active_bus = 2

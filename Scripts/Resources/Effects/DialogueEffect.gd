@@ -4,7 +4,7 @@ extends Effect
 @export var timeline: DialogicTimeline
 
 
-func act(_actor_id: String, _cur_level: LevelBase) -> void:
+func act(_actor_id: String, _cur_level: LevelBase) -> Variant:
 	if timeline == null:
 		printerr(
 			(
@@ -12,6 +12,7 @@ func act(_actor_id: String, _cur_level: LevelBase) -> void:
 				% [parent.get_parent().name]
 			)
 		)
-		return
+		return null
 
 	Dialogic.start(timeline)
+	return null

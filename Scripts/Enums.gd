@@ -58,12 +58,6 @@ enum TimeOfDay {
 	NIGHT,
 }
 
-enum MenuType {
-	NONE,
-	DEBUG,
-	GAMEPLAY,
-}
-
 enum AudioTrack {
 	NONE,
 	SKETCH_1,
