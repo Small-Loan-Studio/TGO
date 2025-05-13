@@ -1,0 +1,19 @@
+[gd_scene load_steps=2 format=3 uid="uid://oe7lify5dr7e"]
+
+[ext_resource type="Script" path="res://Scripts/Components/RichTextButton.gd" id="1_jkfdb"]
+
+[node name="parentButton" type="Button"]
+offset_right = 8.0
+offset_bottom = 8.0
+focus_mode = 0
+script = ExtResource("1_jkfdb")
+
+[node name="RTL" type="RichTextLabel" parent="."]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+mouse_filter = 1
+bbcode_enabled = true
+fit_content = true
+scroll_active = false
+autowrap_mode = 0
