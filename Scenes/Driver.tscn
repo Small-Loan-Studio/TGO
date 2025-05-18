@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=3 uid="uid://d4cnh54npmjiv"]
+[gd_scene load_steps=22 format=3 uid="uid://d4cnh54npmjiv"]
 
 [ext_resource type="Script" path="res://Scripts/Driver.gd" id="1_agcjs"]
 [ext_resource type="PackedScene" uid="uid://tw1hy0j67l4g" path="res://Scenes/Audio/AudioManager.tscn" id="2_efjl6"]
@@ -10,7 +10,7 @@
 [ext_resource type="PackedScene" uid="uid://dukcf64qxy46o" path="res://Scenes/UI/Debug/Inventory.tscn" id="7_3yw60"]
 [ext_resource type="PackedScene" uid="uid://dqrxejwlgxsgu" path="res://Scenes/UI/Debug/QuestTracker.tscn" id="8_8e3e0"]
 [ext_resource type="Script" path="res://Scripts/Components/Quests/QuestManager.gd" id="9_4hdkn"]
-[ext_resource type="PackedScene" path="res://Scenes/UI/Debug/debug_equipment.tscn" id="9_n1ypf"]
+[ext_resource type="PackedScene" uid="uid://c0kelgau5kji2" path="res://Scenes/UI/Debug/debug_equipment.tscn" id="9_n1ypf"]
 [ext_resource type="PackedScene" uid="uid://dmyrmmjngi1ts" path="res://Scenes/UI/Debug/debug_day_night.tscn" id="10_8xh8g"]
 [ext_resource type="Script" path="res://Scripts/SerializationManager.gd" id="11_e6bsk"]
 [ext_resource type="PackedScene" uid="uid://my7v0l0el1dj" path="res://Scenes/UI/Debug/quest_debugger.tscn" id="11_g6nlc"]
@@ -19,12 +19,12 @@
 [ext_resource type="PackedScene" uid="uid://dk572i6hv5rqn" path="res://Scenes/UI/Debug/debug_dialogic_adapters.tscn" id="13_bn7mq"]
 [ext_resource type="Script" path="res://Scenes/UI/Debug/DevinStateReport.gd" id="13_gfaub"]
 [ext_resource type="Script" path="res://Scenes/UI/Debug/StatLabel.gd" id="14_feb7v"]
-[ext_resource type="PackedScene" path="res://Scenes/UI/Debug/wwise_debug.tscn" id="17_5yu8a"]
+[ext_resource type="PackedScene" uid="uid://cm0r3afwqt28t" path="res://Scenes/UI/Debug/wwise_debug.tscn" id="17_5yu8a"]
+[ext_resource type="Script" path="res://Scripts/RegionStateManager.gd" id="19_dn3w1"]
 
 [node name="Driver" type="Node2D"]
 script = ExtResource("1_agcjs")
 new_game_level = "Debug/BadLevelA"
-new_game_marker = null
 
 [node name="AudioManager" parent="." instance=ExtResource("2_efjl6")]
 
@@ -211,6 +211,10 @@ script = ExtResource("6_na5am")
 
 [node name="QuestManager" type="Node" parent="."]
 script = ExtResource("9_4hdkn")
+
+[node name="RegionStateManager" type="Node" parent="."]
+script = ExtResource("19_dn3w1")
+strict_mode = null
 
 [node name="GameWorld" type="Node2D" parent="."]
 y_sort_enabled = true

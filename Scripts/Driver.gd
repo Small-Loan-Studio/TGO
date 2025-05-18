@@ -13,6 +13,7 @@ var _last_loaded_level: LevelBase = null
 @onready var inventory_mgr: InventoryManager = $InventoryManager
 @onready var menus: Menus = $OverlayManager/Menus
 @onready var quest_mgr: QuestManager = $QuestManager
+@onready var region_state_mgr: RegionStateManager = $RegionStateManager
 @onready var _curtain := $OverlayManager/Curtain
 @onready var _presentation := $GameWorld/Presentation
 @onready var _world := $GameWorld
