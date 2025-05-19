@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=3 uid="uid://c3g8eee2id8cx"]
+[gd_scene load_steps=22 format=3 uid="uid://c3g8eee2id8cx"]
 
 [ext_resource type="PackedScene" uid="uid://dyq8mcdsutnsa" path="res://Scenes/Components/LevelBase.tscn" id="1_nvpjp"]
 [ext_resource type="TileSet" uid="uid://c72m3jled4jfg" path="res://Art/Environment/ext_simple_tileset.tres" id="2_x48i8"]
@@ -10,6 +10,9 @@
 [ext_resource type="PackedScene" uid="uid://rgvfsx60t2ap" path="res://Scenes/Components/Inventory/Item.tscn" id="9_6kywj"]
 [ext_resource type="Resource" path="res://Dialogue/Jefferson/Jefferson3a1.dtl" id="9_76fxj"]
 [ext_resource type="PackedScene" uid="uid://d1y25semyqxkw" path="res://Scenes/Components/Greyboxing/MoveableBlock.tscn" id="9_s2t1c"]
+[ext_resource type="Script" path="res://Scripts/Components/NPC.gd" id="9_t2i8a"]
+[ext_resource type="Resource" uid="uid://bqnkygsxhh7t1" path="res://Scripts/Resources/NPCs/Lisa.tres" id="10_a382r"]
+[ext_resource type="Resource" path="res://Dialogue/Lisa/Lisa_3a5.dtl" id="11_c3y8n"]
 [ext_resource type="Resource" uid="uid://bxc244asgqgoi" path="res://Scripts/Resources/Items/Collectible.tres" id="11_rpk22"]
 [ext_resource type="Resource" uid="uid://djcg0x5p8m34q" path="res://Scripts/Resources/Items/Laudanum.tres" id="12_rp2xl"]
 
@@ -32,6 +35,10 @@ dest_path = NodePath("../../../Markers/PS_Stairs_Side_L1")
 [sub_resource type="Resource" id="Resource_xwiip"]
 script = ExtResource("8_d4koa")
 timeline = ExtResource("9_76fxj")
+
+[sub_resource type="Resource" id="Resource_h5ev0"]
+script = ExtResource("8_d4koa")
+timeline = ExtResource("11_c3y8n")
 
 [node name="LevelBase" instance=ExtResource("1_nvpjp")]
 
@@ -71,6 +78,16 @@ position = Vector2(4756.3, 5816.69)
 config = ExtResource("7_pu3d6")
 dlg = SubResource("Resource_xwiip")
 id = "Jefferson Sharp"
+
+[node name="Lisa" type="CharacterBody2D" parent="Objects/Characters" index="1" groups=["NodesWithID"] instance=ExtResource("5_37rx3")]
+position = Vector2(3947.07, 5789.74)
+collision_layer = 5
+motion_mode = 1
+script = ExtResource("9_t2i8a")
+config = ExtResource("10_a382r")
+dlg = SubResource("Resource_h5ev0")
+id = "Lisa"
+activate_external_sensors = false
 
 [node name="COLLECTIBLE" parent="Objects/Items" index="0" instance=ExtResource("9_6kywj")]
 position = Vector2(3496, 5391)
