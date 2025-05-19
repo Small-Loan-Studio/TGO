@@ -18,29 +18,37 @@ var _expected_vars: Dictionary = {}
 @export var strict_mode := true
 
 func _enter_tree() -> void:
-	print("RSM._enter_tree")
-
 	# Load expected variables from project settings
-	_expected_vars = ProjectSettings.get_setting("tgo/region_states", {})
-	print("RSM._enter_tree: _expected_vars: %s" % _expected_vars)
+	var _settings_data: Dictionary = ProjectSettings.get_setting("tgo/region_states", [])
+
+	for path_str: String in _settings_data.keys():
+		var data: Variant = RegionState.FromDict(_settings_data[path_str])
+		if data == null:
+			printerr("Invalid region state in project settings: %s" % path_str)
+			continue
+		_set_state_in_nested_dict(path_str, _expected_vars, data)
+
 	# Initialize state with default values from expected vars
 	_state = _expected_vars.duplicate(true)
+
 
 ## Sets a variable at the given path. The path can be dot-separated to indicate nesting.
 ## Example: set_state("dungeon.east_wing.door1", new_state)
 func set_state(path: String, value: RegionState) -> void:
-	if strict_mode:
-		var expected_value: Variant = _get_from_nested_dict(path, _expected_vars)
-		if expected_value == null:
-			printerr("Setting an undefined variable; this is likely an error: %s" % path)
-			return
-		
+	print("RSM.set_state: %s <- %s" % [path, value])
+	if strict_mode && !_has_in_nested_dict(path, _expected_vars):
+		printerr("Setting an undefined variable; this is likely an error: %s" % path)
+
 	var old_value: RegionState = get_state(path)
-	if old_value.equal(value):
+	if old_value.equals(value):
 		return
-		
+
+	_set_state_in_nested_dict(path, _state, value)
+	region_changed.emit(path, old_value, value)
+
+func _set_state_in_nested_dict(path: String, dict: Dictionary, value: RegionState) -> void:
 	var parts := path.split(".")
-	var current_dict := _state
+	var current_dict := dict
 	
 	# Navigate to the correct nested dictionary
 	while len(parts) > 1:
@@ -56,18 +64,20 @@ func set_state(path: String, value: RegionState) -> void:
 	
 	# Set the final value
 	current_dict[parts[0]] = value
-	region_changed.emit(path, old_value, value)
 
 ## Gets a variable at the given path. Returns a new RegionState if the path doesn't exist.
 ## Example: get_variable("dungeon.east_wing.door1")
 func get_state(path: String) -> RegionState:
 	if strict_mode:
 		if not _has_in_nested_dict(path, _expected_vars):
-			printerr("Returning default value for undefined variable: %s" % path)
-			return RegionState.new()
+			printerr("Requesting undefined variable; this is likely an error: %s" % path)
 	
-	var rs := _get_from_nested_dict(path, _state) as RegionState
-	return rs.clone()
+	var rs: Variant= _get_from_nested_dict(path, _state)
+	if rs == null:
+		printerr("Returning default value for undefined variable: %s" % path)
+		return RegionState.new()
+
+	return (rs as RegionState).clone()
 
 ## Returns true if a variable exists at the given path
 func has(path: String) -> bool:
@@ -101,22 +111,22 @@ func dump_paths() -> Array[String]:
 func block_region(path: String) -> void:
 	var cur_state: RegionState = get_state(path)
 	cur_state.passable = false
-	set(path, cur_state)
+	set_state(path, cur_state)
 
 func unblock_region(path: String) -> void:
 	var cur_state: RegionState = get_state(path)
 	cur_state.passable = true
-	set(path, cur_state)
+	set_state(path, cur_state)
 
 func show_region(path: String) -> void:
 	var cur_state: RegionState = get_state(path)
 	cur_state.visible = true
-	set(path, cur_state)
+	set_state(path, cur_state)
 
 func hide_region(path: String) -> void:
 	var cur_state: RegionState = get_state(path)
 	cur_state.visible = false
-	set(path, cur_state)
+	set_state(path, cur_state)
 
 ## Helper function to get a value from a nested dictionary using a dot path
 ## Returns null of no path exists so we have to return a Variant because Godot's
@@ -151,4 +161,11 @@ func _get_all_paths(dict: Dictionary, base_path: String = "") -> Array[String]:
 		else:
 			paths.append(current_path)
 	
+	return paths
+
+static func get_settings_paths() -> Array[String]:
+	var _settings_data: Dictionary = ProjectSettings.get_setting("tgo/region_states", [])
+	var paths: Array[String] = []
+	for path_str: String in _settings_data.keys():
+		paths.append(path_str)
 	return paths

@@ -222,6 +222,16 @@ textures/decals/filter=0
 2d/snap/snap_2d_transforms_to_pixel=true
 2d/snap/snap_2d_vertices_to_pixel=true
 
+[tgo]
+
+region_states={
+"BadLevelB.test_door": {
+"extra": {},
+"passable": false,
+"visible": true
+}
+}
+
 [wwise]
 
 common_user_settings/base_path="res://Audio/GeneratedSoundBanks"

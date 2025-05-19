@@ -31,6 +31,7 @@ var selected: Enums.ActionVerb:
 			return actions[_selected - 1]
 		return actions[_selected]
 var target: Node2D
+var target_size: Vector2
 
 var _expanded: bool = false
 var _menu: InteractMenu = null
@@ -183,7 +184,7 @@ func _ready() -> void:
 	if presentation == PRESENTATION_GLOBAL:
 		self.position = target.global_position + target.owner.global_position
 
-	var tsize: Vector2 = target.size
+	var tsize: Vector2 = target_size
 	# NOTE: The current button size is 42x42 so if the target is smaller than
 	# this we need to virtually enlarge it.
 	if tsize.x < 42:

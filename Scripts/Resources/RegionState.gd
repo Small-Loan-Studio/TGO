@@ -20,3 +20,16 @@ func clone() -> RegionState:
 
 func equals(o: RegionState) -> bool:
 	return passable == o.passable && visible == o.visible && extra == o.extra
+
+func _to_string() -> String:
+	return "RegionState(passable=%s, visible=%s, extra=%s)" % [passable, visible, extra]
+
+static func FromDict(d: Dictionary) -> Variant:
+	if !(d.has("passable") && d.has("visible") && d.has("extra")):
+		return null
+
+	var rs := RegionState.new()
+	rs.passable = d.get("passable", false)
+	rs.visible = d.get("visible", false)
+	rs.extra = d.get("extra", {})
+	return rs

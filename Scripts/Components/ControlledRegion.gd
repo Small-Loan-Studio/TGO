@@ -1,7 +1,10 @@
+@tool
 class_name ControlledRegion
 extends Node2D
 
 var _rsm: RegionStateManager
+
+@export var _collider: CollisionShape2D
 
 ## The dotted identifier for this region
 @export var region_id: String
@@ -9,7 +12,19 @@ var _rsm: RegionStateManager
 ## The default state of this region
 @export var initial_state: RegionState
 
+var _physics_body: StaticBody2D:
+	get:
+		if has_node("StaticBody2D"):
+			return $StaticBody2D
+		return null
+	set(v):
+		printerr("ControlledRegion._physics_body is read only")
+
+
 func _enter_tree() -> void:
+	if Engine.is_editor_hint():
+		return
+
 	# Ensure we have a unique identifier
 	if region_id.is_empty():
 		printerr("ControlledRegion is no id set, will not function")
@@ -19,11 +34,22 @@ func _enter_tree() -> void:
 	_rsm.region_changed.connect(_on_state_change)
 
 func _ready() -> void:
+	if Engine.is_editor_hint() || region_id.is_empty():
+		return
+
+	# Initialize state if it doesn't exist
+	if not _rsm.has(region_id):
+		_rsm.set_state(region_id, initial_state)
+
+	_physics_body.collision_layer = _layer_cache
+	_physics_body.collision_mask = _layer_mask_cache
+	_collider.reparent(_physics_body)
+
 	# Initial state sync
 	_sync_state()
 
 func _exit_tree() -> void:
-	if region_id.is_empty():
+	if Engine.is_editor_hint() || region_id.is_empty():
 		return
 
 	_rsm.region_changed.disconnect(_on_state_change)
@@ -35,9 +61,60 @@ func _on_state_change(key: String, _old: RegionState, _new: RegionState) -> void
 	_sync_state()
 
 func _sync_state() -> void:
-	_apply_state(_rsm.get_state(region_id))
+	var new_state: RegionState = _rsm.get_state(region_id)
+	_collider.disabled = new_state.passable
+	_apply_state(new_state)
 
 func _apply_state(_state: RegionState) -> void:
 	# This method should be overridden by derived classes to handle
 	# their specific state changes
 	pass
+
+func _get_configuration_warnings() -> PackedStringArray:
+	var errs: Array[String] = []
+	if _collider == null:
+		errs.push_back("ControlledRegion: missing collider")
+	if region_id.is_empty():
+		errs.push_back("ControlledRegion: missing region_id")
+	return errs
+
+func _get_property_list() -> Array[Dictionary]:
+	var props: Array[Dictionary] = []
+	props.append({
+		"name": "collision_layer",
+		"type": TYPE_INT,
+		"usage": PROPERTY_USAGE_DEFAULT | PROPERTY_USAGE_CLASS_IS_BITFIELD,
+		"hint": PROPERTY_HINT_LAYERS_2D_PHYSICS,
+	})
+	props.append({
+		"name": "collision_mask",
+		"type": TYPE_INT,
+		"usage": PROPERTY_USAGE_DEFAULT | PROPERTY_USAGE_CLASS_IS_BITFIELD,
+		"hint": PROPERTY_HINT_LAYERS_2D_PHYSICS,
+	})
+	return props
+
+func _get(property: StringName) -> Variant:
+	if property == "collision_layer":
+		return _physics_body.collision_layer
+	elif property == "collision_mask":
+		return _physics_body.collision_mask
+	return null
+
+var _layer_cache: int
+var _layer_mask_cache: int
+
+func _set(property: StringName, value: Variant) -> bool:
+	if property == "collision_layer":
+		if _physics_body != null:
+			_physics_body.collision_layer = value
+		_layer_cache = value
+		return true
+	elif property == "collision_mask":
+		if _physics_body != null:
+			_physics_body.collision_mask = value
+		_layer_mask_cache = value
+		return true
+
+	return false
+

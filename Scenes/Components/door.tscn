@@ -1,0 +1,50 @@
+[gd_scene load_steps=11 format=3 uid="uid://bwlnxooxokiw6"]
+
+[ext_resource type="PackedScene" uid="uid://5xu2lbni2byw" path="res://Scenes/Components/controlled_region.tscn" id="1_eqi30"]
+[ext_resource type="Script" path="res://Scripts/Components/DoorRegion.gd" id="2_7lkme"]
+[ext_resource type="Texture2D" uid="uid://t6m2c5miudfu" path="res://Art/Stub/door.png" id="3_u2wpn"]
+[ext_resource type="Script" path="res://Scripts/Resources/Effects/ToggleDoorEffect.gd" id="5_osi51"]
+[ext_resource type="PackedScene" uid="uid://c2040l84asu8j" path="res://Scenes/Components/Interactable.tscn" id="5_qo5gh"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_eflbr"]
+atlas = ExtResource("3_u2wpn")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_f1dck"]
+atlas = ExtResource("3_u2wpn")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_spnj4"]
+size = Vector2(32, 10)
+
+[sub_resource type="Resource" id="Resource_gde5w"]
+script = ExtResource("5_osi51")
+door_id = ""
+door_action = "toggle"
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_kue4l"]
+resource_local_to_scene = true
+size = Vector2(26, 21)
+
+[node name="Door" node_paths=PackedStringArray("_collider") instance=ExtResource("1_eqi30")]
+script = ExtResource("2_7lkme")
+closed_sprite = SubResource("AtlasTexture_eflbr")
+open_sprite = SubResource("AtlasTexture_f1dck")
+unlocked = Array[Resource("res://Scripts/Resources/TriggerCondition.gd")]([])
+use_action = "toggle"
+_collider = NodePath("CollisionShape2D")
+
+[node name="Display" type="Sprite2D" parent="." index="0"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." index="1"]
+shape = SubResource("RectangleShape2D_spnj4")
+
+[node name="Interactable" parent="." index="2" node_paths=PackedStringArray("_display_hook") instance=ExtResource("5_qo5gh")]
+default_verb = 5
+action_map = {
+5: [SubResource("Resource_gde5w")]
+}
+_display_hook = NodePath("../Display")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Interactable" index="0"]
+shape = SubResource("RectangleShape2D_kue4l")

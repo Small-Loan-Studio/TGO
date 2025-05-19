@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://c3pgmxm78klqy"]
+[gd_scene load_steps=17 format=3 uid="uid://c3pgmxm78klqy"]
 
 [ext_resource type="PackedScene" uid="uid://dyq8mcdsutnsa" path="res://Scenes/Components/LevelBase.tscn" id="1_t8b0a"]
 [ext_resource type="Script" path="res://ZZ_Scratch/GreyboxingTools/BadLevelA.gd" id="2_hodgd"]
@@ -11,6 +11,8 @@
 [ext_resource type="Resource" uid="uid://b7w2axnxl0fkt" path="res://Scripts/Resources/Items/Key.tres" id="9_ewmie"]
 [ext_resource type="PackedScene" uid="uid://bx2qjlw58ci20" path="res://Scenes/Components/Greyboxing/GreyboxObject.tscn" id="10_k3j1d"]
 [ext_resource type="Script" path="res://Scripts/Resources/Effects/LevelLoadEffect.gd" id="11_cp71p"]
+[ext_resource type="PackedScene" uid="uid://bwlnxooxokiw6" path="res://Scenes/Components/door.tscn" id="12_rh8so"]
+[ext_resource type="Script" path="res://Scripts/Resources/RegionState.gd" id="13_35k11"]
 
 [sub_resource type="Resource" id="Resource_ql4ne"]
 script = ExtResource("6_1o8fo")
@@ -20,6 +22,12 @@ timeline = ExtResource("7_unvp1")
 script = ExtResource("11_cp71p")
 load_level_name = "BadLevelA"
 marker_name = ""
+
+[sub_resource type="Resource" id="Resource_450hm"]
+script = ExtResource("13_35k11")
+passable = false
+visible = true
+extra = {}
 
 [node name="LevelBase" instance=ExtResource("1_t8b0a")]
 script = ExtResource("2_hodgd")
@@ -66,3 +74,9 @@ position = Vector2(490, 207)
 [node name="CanvasModulate" parent="." index="4"]
 visible = false
 color = Color(0.411765, 0.411765, 0.411765, 1)
+
+[node name="Door" parent="." index="5" instance=ExtResource("12_rh8so")]
+position = Vector2(165, 238)
+use_action = "toggle"
+region_id = "BadLevelB.test_door"
+initial_state = SubResource("Resource_450hm")
