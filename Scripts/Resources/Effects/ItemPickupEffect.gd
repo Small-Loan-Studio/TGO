@@ -16,6 +16,6 @@ func act(actor_id: String, _level: LevelBase) -> Variant:
 
 	var inventory: Inventory = inv_manager.get_inventory(actor_id)
 	if inventory.insert(item):
+		item_node.picked_up.emit()
 		item_node.queue_free()
-
 	return null

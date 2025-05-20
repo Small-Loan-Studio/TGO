@@ -2,6 +2,9 @@
 class_name DoorRegion
 extends ControlledRegion
 
+signal door_opened
+signal door_closed
+
 @onready var _sprite: Sprite2D = $Display
 @onready var _interactable: Interactable = $Interactable
 

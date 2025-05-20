@@ -2,6 +2,8 @@
 class_name AudioEventEffect
 extends Effect
 
+@export var actor_id_override: String = ""
+
 var event_name: String
 var fire_type: String = "one shot":
 	set(v):
@@ -12,12 +14,16 @@ var interpolation_mode: int = 4
 
 
 func act(actor_id: String, cur_level: LevelBase) -> Variant:
-	var actor := _find_actor(actor_id, cur_level)
+	var use_id := actor_id
+	if actor_id_override != "":
+		use_id = actor_id_override
+
+	var actor := _find_actor(use_id, cur_level)
 	if actor == null:
 		return null
 
 	if !AK.EVENTS._dict.has(event_name):
-		printerr("AudioEvent - attempting to send invalid event %s.%s" % [actor_id, event_name])
+		printerr("AudioEvent - attempting to send invalid event %s.%s" % [use_id, event_name])
 		return null
 
 	var cfg := AudioNode.EventConfig.new()
