@@ -12,7 +12,7 @@
 [ext_resource type="PackedScene" uid="uid://bx2qjlw58ci20" path="res://Scenes/Components/Greyboxing/GreyboxObject.tscn" id="10_k3j1d"]
 [ext_resource type="Script" path="res://Scripts/Resources/Effects/LevelLoadEffect.gd" id="11_cp71p"]
 [ext_resource type="PackedScene" uid="uid://bwlnxooxokiw6" path="res://Scenes/Components/door.tscn" id="12_rh8so"]
-[ext_resource type="Script" path="res://Scripts/Resources/RegionState.gd" id="13_35k11"]
+[ext_resource type="Script" path="res://Scripts/Resources/Conditions/InventoryCheckCondition.gd" id="13_d5pwi"]
 
 [sub_resource type="Resource" id="Resource_ql4ne"]
 script = ExtResource("6_1o8fo")
@@ -20,14 +20,15 @@ timeline = ExtResource("7_unvp1")
 
 [sub_resource type="Resource" id="Resource_bl5wy"]
 script = ExtResource("11_cp71p")
-load_level_name = "BadLevelA"
+load_level_name = "Debug/BadLevelA"
 marker_name = ""
 
-[sub_resource type="Resource" id="Resource_450hm"]
-script = ExtResource("13_35k11")
-passable = false
-visible = true
-extra = {}
+[sub_resource type="Resource" id="Resource_06knf"]
+script = ExtResource("13_d5pwi")
+inventory_id = "devin"
+target_item = ExtResource("9_ewmie")
+check_type = 0
+check_value = 0
 
 [node name="LevelBase" instance=ExtResource("1_t8b0a")]
 script = ExtResource("2_hodgd")
@@ -77,6 +78,14 @@ color = Color(0.411765, 0.411765, 0.411765, 1)
 
 [node name="Door" parent="." index="5" instance=ExtResource("12_rh8so")]
 position = Vector2(165, 238)
-use_action = "toggle"
+unlocked = Array[Resource("res://Scripts/Resources/TriggerCondition.gd")]([SubResource("Resource_06knf")])
 region_id = "BadLevelB.test_door"
-initial_state = SubResource("Resource_450hm")
+
+[node name="Label" type="Label" parent="Door" index="4"]
+offset_left = 29.0
+offset_top = -40.0
+offset_right = 158.0
+offset_bottom = 35.0
+text = "Door won't open
+without carrying
+key"

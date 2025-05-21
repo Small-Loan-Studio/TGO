@@ -1,7 +1,6 @@
 class_name GearSpec
 extends Resource
 
-
 func on_equip(_c: Character) -> void:
 	pass
 

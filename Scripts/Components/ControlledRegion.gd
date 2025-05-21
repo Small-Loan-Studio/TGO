@@ -3,14 +3,15 @@ class_name ControlledRegion
 extends Node2D
 
 var _rsm: RegionStateManager
+var _collider_cache: CollisionShape2D
 
 @export var _collider: CollisionShape2D
 
 ## The dotted identifier for this region
 @export var region_id: String
 
-## The default state of this region
-@export var initial_state: RegionState
+# ## The default state of this region
+# @export var initial_state: RegionState
 
 var _physics_body: StaticBody2D:
 	get:
@@ -37,13 +38,24 @@ func _ready() -> void:
 	if Engine.is_editor_hint() || region_id.is_empty():
 		return
 
-	# Initialize state if it doesn't exist
-	if not _rsm.has(region_id):
-		_rsm.set_state(region_id, initial_state)
+	# State initialization removed for the time being bc it's complex to
+	# sort out when to initialize vs when the state was explicitly set, e.g.,
+	# by game load.
+	#
+	# # Initialize state if it doesn't exist
+	# if not _rsm.has(region_id)
+	# 	_rsm.set_state(region_id, initial_state)
 
 	_physics_body.collision_layer = _layer_cache
 	_physics_body.collision_mask = _layer_mask_cache
-	_collider.reparent(_physics_body)
+	_physics_body.print_tree_pretty()
+	if _collider != null:
+		# Have to do this because reparenting doesn't seem to get saved through
+		# level unload. Uncertain why.
+		_collider_cache = _collider.duplicate()
+		_collider_cache.set_owner(_physics_body)
+		_physics_body.add_child(_collider_cache)
+	_physics_body.print_tree_pretty()
 
 	# Initial state sync
 	_sync_state()
@@ -63,6 +75,8 @@ func _on_state_change(key: String, _old: RegionState, _new: RegionState) -> void
 func _sync_state() -> void:
 	var new_state: RegionState = _rsm.get_state(region_id)
 	_collider.disabled = new_state.passable
+	if _collider_cache != null:
+		_collider_cache.disabled = new_state.passable
 	_apply_state(new_state)
 
 func _apply_state(_state: RegionState) -> void:

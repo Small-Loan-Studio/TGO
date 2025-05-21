@@ -214,7 +214,6 @@ script = ExtResource("9_4hdkn")
 
 [node name="RegionStateManager" type="Node" parent="."]
 script = ExtResource("19_dn3w1")
-strict_mode = null
 
 [node name="GameWorld" type="Node2D" parent="."]
 y_sort_enabled = true

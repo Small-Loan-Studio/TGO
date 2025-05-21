@@ -24,6 +24,13 @@ func equals(o: RegionState) -> bool:
 func _to_string() -> String:
 	return "RegionState(passable=%s, visible=%s, extra=%s)" % [passable, visible, extra]
 
+func to_dict() -> Dictionary:
+	return {
+		"passable": passable,
+		"visible": visible,
+		"extra": extra
+	}
+
 static func FromDict(d: Dictionary) -> Variant:
 	if !(d.has("passable") && d.has("visible") && d.has("extra")):
 		return null

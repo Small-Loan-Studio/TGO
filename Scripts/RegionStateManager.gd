@@ -85,20 +85,21 @@ func has(path: String) -> bool:
 
 ## Saves the current state to a dictionary
 func save() -> Dictionary:
-	return _state.duplicate(true)
+	var state := {}
+	for key: String in _get_all_paths(_state):
+		state[key] = get_state(key).to_dict()
+	return state
 
 ## Loads state from a dictionary, replacing any existing state
 func load(content: Dictionary) -> void:
 	_state.clear()
-	_state = content.duplicate(true)
-
-	for key: String in _expected_vars.keys():
-		if !has(key):
-			printerr("Loaded state missing variable: %s" % [key])
-			set_state(key, _expected_vars[key])
 	for key: String in content.keys():
-		if _get_from_nested_dict(key, _expected_vars) == null:
-			printerr("Loaded state missing expected variable: %s" % [key])
+		var rs: Variant = RegionState.FromDict(content[key])
+		if rs == null:
+			printerr("Invalid region state in saved data: %s" % key)
+			continue
+		set_state(key, rs as RegionState)
+
 
 ## Clears all state back to defaults
 func clear() -> void:
