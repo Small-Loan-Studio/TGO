@@ -41,6 +41,7 @@ gdscript/warnings/untyped_declaration=2
 
 directories/dch_directory={
 "Alf": "res://Scripts/Resources/NPCs/DialogicCharacters/Alf.dch",
+"Bartholomew": "res://Scripts/Resources/NPCs/DialogicCharacters/Bartholomew.dch",
 "Devin": "res://Scripts/Resources/NPCs/DialogicCharacters/Devin.dch",
 "Groundskeeper": "res://Scripts/Resources/NPCs/DialogicCharacters/Groundskeeper.dch",
 "Ilene": "res://Scripts/Resources/NPCs/DialogicCharacters/Ilene.dch",
@@ -48,6 +49,7 @@ directories/dch_directory={
 "Lisa": "res://Scripts/Resources/NPCs/DialogicCharacters/Lisa.dch"
 }
 directories/dtl_directory={
+"Bartholomew3a6": "res://Dialogue/Bartholomew/Bartholomew3a6.dtl",
 "BuckleyTestTimeline": "res://Dialogue/Buckley/BuckleyTestTimeline.dtl",
 "GroundskeeperTimeline": "res://Dialogue/Groundskeeper/GroundskeeperTimeline.dtl",
 "Ilene3a7": "res://Dialogue/Ilene/Ilene3a7.dtl",
@@ -76,6 +78,13 @@ save/autosave_delay=60.0
 save/encryption_on_exports_only=true
 text/autopauses={}
 variables={
+"Bartholomew": {
+"3a1Op2.3": false,
+"3a3Op2": false,
+"ExaminedBodies": false,
+"QuestionedSharps": false,
+"SummonCount": 0.0
+},
 "GroundsKeeper": {
 "FinishedTopics": false,
 "HasSpoken": false,

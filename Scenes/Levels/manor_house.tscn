@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=3 uid="uid://c3g8eee2id8cx"]
+[gd_scene load_steps=25 format=3 uid="uid://c3g8eee2id8cx"]
 
 [ext_resource type="PackedScene" uid="uid://dyq8mcdsutnsa" path="res://Scenes/Components/LevelBase.tscn" id="1_nvpjp"]
 [ext_resource type="TileSet" uid="uid://c72m3jled4jfg" path="res://Art/Environment/ext_simple_tileset.tres" id="2_x48i8"]
@@ -15,6 +15,8 @@
 [ext_resource type="Resource" path="res://Dialogue/Lisa/Lisa_3a5.dtl" id="11_c3y8n"]
 [ext_resource type="Resource" uid="uid://bxc244asgqgoi" path="res://Scripts/Resources/Items/Collectible.tres" id="11_rpk22"]
 [ext_resource type="Resource" uid="uid://djcg0x5p8m34q" path="res://Scripts/Resources/Items/Laudanum.tres" id="12_rp2xl"]
+[ext_resource type="Resource" uid="uid://bkgpc6aqlh57s" path="res://Scripts/Resources/NPCs/Bartholomew.tres" id="12_uqklw"]
+[ext_resource type="Resource" path="res://Dialogue/Bartholomew/Bartholomew3a6.dtl" id="13_ubv2s"]
 
 [sub_resource type="Resource" id="Resource_i61gm"]
 script = ExtResource("5_vn40k")
@@ -39,6 +41,10 @@ timeline = ExtResource("9_76fxj")
 [sub_resource type="Resource" id="Resource_h5ev0"]
 script = ExtResource("8_d4koa")
 timeline = ExtResource("11_c3y8n")
+
+[sub_resource type="Resource" id="Resource_x8oy0"]
+script = ExtResource("8_d4koa")
+timeline = ExtResource("13_ubv2s")
 
 [node name="LevelBase" instance=ExtResource("1_nvpjp")]
 
@@ -79,14 +85,20 @@ config = ExtResource("7_pu3d6")
 dlg = SubResource("Resource_xwiip")
 id = "Jefferson Sharp"
 
-[node name="Lisa" type="CharacterBody2D" parent="Objects/Characters" index="1" groups=["NodesWithID"] instance=ExtResource("5_37rx3")]
+[node name="Lisa" parent="Objects/Characters" index="1" instance=ExtResource("5_37rx3")]
 position = Vector2(3947.07, 5789.74)
-collision_layer = 5
-motion_mode = 1
-script = ExtResource("9_t2i8a")
 config = ExtResource("10_a382r")
 dlg = SubResource("Resource_h5ev0")
 id = "Lisa"
+
+[node name="Bartholomew" type="CharacterBody2D" parent="Objects/Characters" index="2" groups=["NodesWithID"] instance=ExtResource("5_37rx3")]
+position = Vector2(4162.05, 6441.45)
+collision_layer = 5
+motion_mode = 1
+script = ExtResource("9_t2i8a")
+config = ExtResource("12_uqklw")
+dlg = SubResource("Resource_x8oy0")
+id = "Bartholomew"
 activate_external_sensors = false
 
 [node name="COLLECTIBLE" parent="Objects/Items" index="0" instance=ExtResource("9_6kywj")]
