@@ -1,6 +1,6 @@
 [gd_resource type="Resource" script_class="Item" load_steps=3 format=3 uid="uid://dtinugfevbrp6"]
 
-[ext_resource type="Texture2D" uid="uid://3cvlh3bqqte5" path="res://Art/Items/Key.png" id="1_2vm5d"]
+[ext_resource type="Texture2D" uid="uid://d1sc5mksc1my" path="res://Art/Items/BluntTorch.png" id="1_7sma8"]
 [ext_resource type="Script" path="res://Scripts/Components/Inventory/Item.gd" id="1_526a5"]
 
 [resource]
@@ -11,5 +11,5 @@ type = 0
 description = "A blunt torch found in the crypt burial chamber"
 stackable = false
 stack_size = 1
-icon = ExtResource("1_2vm5d")
+icon = ExtResource("1_7sma8")
 gear_spec = Array[Resource("res://Scripts/Resources/GearSpec.gd")]([])
