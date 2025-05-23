@@ -35,16 +35,12 @@ func _enter_tree() -> void:
 ## Sets a variable at the given path. The path can be dot-separated to indicate nesting.
 ## Example: set_state("dungeon.east_wing.door1", new_state)
 func set_state(path: String, value: RegionState) -> void:
-	print("RSM.set_state: %s <- %s" % [path, value])
 	if strict_mode && !_has_in_nested_dict(path, _expected_vars):
 		printerr("Setting an undefined variable; this is likely an error: %s" % path)
 
 	var has_state: bool = _has_in_nested_dict(path, _state)
 	var old_value: RegionState = get_state(path)
 	if has_state && old_value.equals(value):
-		print("Not updating: old and new value match")
-		print(old_value)
-		print(value)
 		return
 
 	_set_state_in_nested_dict(path, _state, value)
@@ -100,25 +96,16 @@ func save() -> Dictionary:
 
 ## Loads state from a dictionary, replacing any existing state
 func load(content: Dictionary) -> void:
-	print("RSM.load: %s" % [content.keys()])
-	print('content: ' + str(content))
-	self.print()
 	_state.clear()
-	self.print()
-	print('content: ' + str(content))
 	for key: String in content.keys():
-		print('load: %s with %s' % [key, content[key]])
 		var rs: Variant = RegionState.FromDict(content[key])
-		print('load.rs: %s with %s' % [key, rs])
 		if rs == null:
 			printerr("Invalid region state in saved data: %s" % key)
 			continue
 		set_state(key, rs as RegionState)
-	self.print()
 
 
 func print() -> void:
-	print(_state)
 	print("RegionStateManager {")
 	for key: String in dump_paths():
 		print("  %s -> %s" % [key, get_state(key)])
