@@ -38,6 +38,10 @@ func _ready() -> void:
 	if Engine.is_editor_hint() || region_id.is_empty():
 		return
 
+	print("%s: ControlledRegion._ready" % [region_id])
+	print("    _collider: %s" % [_collider])
+	print_tree_pretty()
+
 	# State initialization removed for the time being bc it's complex to
 	# sort out when to initialize vs when the state was explicitly set, e.g.,
 	# by game load.
@@ -48,14 +52,12 @@ func _ready() -> void:
 
 	_physics_body.collision_layer = _layer_cache
 	_physics_body.collision_mask = _layer_mask_cache
-	_physics_body.print_tree_pretty()
 	if _collider != null:
 		# Have to do this because reparenting doesn't seem to get saved through
 		# level unload. Uncertain why.
 		_collider_cache = _collider.duplicate()
-		_collider_cache.set_owner(_physics_body)
 		_physics_body.add_child(_collider_cache)
-	_physics_body.print_tree_pretty()
+		_collider_cache.set_owner(_physics_body)
 
 	# Initial state sync
 	_sync_state()
