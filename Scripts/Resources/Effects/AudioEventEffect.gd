@@ -2,6 +2,13 @@
 class_name AudioEventEffect
 extends Effect
 
+## If set this will override the effect actor ID. If both the effect actor_id
+## and the override ID are empty it examines parent and looks to see if it's
+## attached to something that has an AudioNode. What it checks is a bit
+## tricky... for an effect being run from an Interactable context it checks
+## the Interactable's parent; in all other cases it checks only the parent.
+## for the effect will check the use the AudioManager's ID. If all this fails
+## the effect falls back to the AudioManager's ID.
 @export var actor_id_override: String = ""
 
 var event_name: String
@@ -14,16 +21,30 @@ var interpolation_mode: int = 4
 
 
 func act(actor_id: String, cur_level: LevelBase) -> Variant:
+	if !AK.EVENTS._dict.has(event_name):
+		printerr("AudioEvent - attempting to send invalid event %s.%s" % [actor_id, event_name])
+		return null
+
 	var use_id := actor_id
 	if actor_id_override != "":
 		use_id = actor_id_override
+	if use_id == "":
+		var check_node: Node = parent
+		if check_node is Interactable:
+			check_node = check_node.get_parent()
+		for child in check_node.get_children():
+			if child is AudioNode:
+				use_id = child.id
+
+	if use_id == "":
+		# handle fallback to AudioManager case
+		var am := Driver.instance().audio_mgr
+		var event_id: int= AK.EVENTS._dict[event_name]
+		am.send_event(event_id)
+		return null
 
 	var actor := _find_actor(use_id, cur_level)
 	if actor == null:
-		return null
-
-	if !AK.EVENTS._dict.has(event_name):
-		printerr("AudioEvent - attempting to send invalid event %s.%s" % [use_id, event_name])
 		return null
 
 	var cfg := AudioNode.EventConfig.new()
@@ -43,6 +64,8 @@ func terminal_callback(ctx: Variant) -> void:
 
 
 func _find_actor(id: String, _cur_level: LevelBase) -> AudioNode:
+	if id == Utils.WwiseIds.AudioManager:
+		return Driver.instance().get_audio_manager()
 	for node: AudioNode in _cur_level.get_tree().get_nodes_in_group(Utils.GroupNames.AudioNodes):
 		if node.id == id:
 			return node

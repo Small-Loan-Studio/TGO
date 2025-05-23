@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3 uid="uid://c3pgmxm78klqy"]
+[gd_scene load_steps=20 format=3 uid="uid://c3pgmxm78klqy"]
 
 [ext_resource type="PackedScene" uid="uid://dyq8mcdsutnsa" path="res://Scenes/Components/LevelBase.tscn" id="1_t8b0a"]
 [ext_resource type="Script" path="res://ZZ_Scratch/GreyboxingTools/BadLevelA.gd" id="2_hodgd"]
@@ -13,10 +13,18 @@
 [ext_resource type="Script" path="res://Scripts/Resources/Effects/LevelLoadEffect.gd" id="11_cp71p"]
 [ext_resource type="PackedScene" uid="uid://bwlnxooxokiw6" path="res://Scenes/Components/door.tscn" id="12_rh8so"]
 [ext_resource type="Script" path="res://Scripts/Resources/Conditions/InventoryCheckCondition.gd" id="13_d5pwi"]
+[ext_resource type="Script" path="res://Scripts/Components/SignalToEffect.gd" id="14_dg0oi"]
+[ext_resource type="Script" path="res://Scripts/Resources/Effects/AudioEventEffect.gd" id="15_kpvf3"]
 
 [sub_resource type="Resource" id="Resource_ql4ne"]
 script = ExtResource("6_1o8fo")
 timeline = ExtResource("7_unvp1")
+
+[sub_resource type="Resource" id="Resource_e7mc3"]
+script = ExtResource("15_kpvf3")
+actor_id_override = ""
+event_name = "play_PC_foostep"
+fire_type = "one shot"
 
 [sub_resource type="Resource" id="Resource_bl5wy"]
 script = ExtResource("11_cp71p")
@@ -60,6 +68,10 @@ position = Vector2(218, 307)
 item = ExtResource("9_ewmie")
 quantity = 1
 
+[node name="SignalToEffect" type="Node" parent="Objects/Items/QUEST_KEY" index="2"]
+script = ExtResource("14_dg0oi")
+effects = Array[Resource("res://Scripts/Resources/Effect.gd")]([SubResource("Resource_e7mc3")])
+
 [node name="LevelTeleport" parent="Objects" index="3" instance=ExtResource("10_k3j1d")]
 position = Vector2(279, 364)
 size = Vector2(2, 2)
@@ -89,3 +101,5 @@ offset_bottom = 35.0
 text = "Door won't open
 without carrying
 key"
+
+[connection signal="picked_up" from="Objects/Items/QUEST_KEY" to="Objects/Items/QUEST_KEY/SignalToEffect" method="trigger"]

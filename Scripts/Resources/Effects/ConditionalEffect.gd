@@ -18,6 +18,8 @@ func _trigger(effect_chain: Array[Effect], actor_id: String, cur_level: LevelBas
 	var callbacks: Array[Variant] = []
 
 	for e in effect_chain:
+		# parents are transitive
+		e.parent = parent
 		var ctx: Variant = e.act(actor_id, cur_level)
 		if ctx != null:
 			callbacks.push_back([e, ctx])

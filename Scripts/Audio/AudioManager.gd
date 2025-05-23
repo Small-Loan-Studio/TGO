@@ -5,16 +5,25 @@ const AUDIO_PREFS_PATH = "user://audio_prefs.dat"
 const DB_MIN: float = -25
 const DB_MAX: float = 8
 
+var _registered: bool = false
 var _akhelper: AKHelper
 var _levels_local := false
 
 
 func _ready() -> void:
-	var success: bool = Wwise.register_game_obj(self, "Audio Manager")
-	if !success:
+	_registered = Wwise.register_game_obj(self, Utils.WwiseIds.AudioManager)
+	if !_registered:
 		print("Failed to register AudioManager with Wwise")
+		return
 	_akhelper = AKHelper.new(self)
 	load_levels_wwise()
+	add_to_group(Utils.GroupNames.AudioNodes, true)
+
+
+func _exit_tree() -> void:
+	if _registered:
+		remove_from_group(Utils.GroupNames.AudioNodes)
+		Wwise.unregister_game_obj(self)
 
 
 # sends a global event to wwise, See AK.EVENTS.XYZ for options
