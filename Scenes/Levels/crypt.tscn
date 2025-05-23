@@ -1,4 +1,4 @@
-[gd_scene load_steps=43 format=3 uid="uid://bgn6kmsvdqh4l"]
+[gd_scene load_steps=42 format=3 uid="uid://bgn6kmsvdqh4l"]
 
 [ext_resource type="PackedScene" uid="uid://dyq8mcdsutnsa" path="res://Scenes/Components/LevelBase.tscn" id="1_dma02"]
 [ext_resource type="TileSet" uid="uid://c72m3jled4jfg" path="res://Art/Environment/ext_simple_tileset.tres" id="2_pwhqm"]
@@ -14,7 +14,6 @@
 [ext_resource type="Resource" uid="uid://fvia3mg1tqpn" path="res://Scripts/Resources/Items/OldBatteredKey.tres" id="12_y5vuf"]
 [ext_resource type="Resource" uid="uid://bm03pp0j2filn" path="res://Scripts/Resources/Items/CryptKey.tres" id="13_g0tog"]
 [ext_resource type="Texture2D" uid="uid://dt80b5jqylpsw" path="res://Art/Environment/Placeables/Wall Torches/Crypt-Torch-Empty.png" id="13_pg1fx"]
-[ext_resource type="Script" path="res://Scripts/Components/Greyboxing/GreyboxObject.gd" id="14_rxvbw"]
 [ext_resource type="Resource" path="res://Dialogue/Examinations/GinPuddle.dtl" id="16_mo7jk"]
 [ext_resource type="Script" path="res://Scripts/Resources/Effects/DialogueEffect.gd" id="16_utw8c"]
 [ext_resource type="Resource" path="res://Dialogue/Examinations/UnlitWoodenTorch.dtl" id="17_b5waj"]
@@ -630,27 +629,19 @@ tint = Color(0.745098, 0.745098, 0.745098, 0)
 action_verb = 6
 effects = Array[Resource("res://Scripts/Resources/Effect.gd")]([SubResource("Resource_fk822")])
 
-[node name="JournalPage1_Examine" type="Node2D" parent="Objects" index="53" instance=ExtResource("12_us5wm")]
-y_sort_enabled = true
+[node name="JournalPage1_Examine" parent="Objects" index="53" instance=ExtResource("12_us5wm")]
 position = Vector2(3887, 1790)
-script = ExtResource("14_rxvbw")
 can_interact = true
 tint = Color(0.745098, 0.745098, 0.745098, 0)
 action_verb = 6
 effects = Array[Resource("res://Scripts/Resources/Effect.gd")]([SubResource("Resource_y4w0b")])
-y_sort_width = 72
-metadata/_edit_group_ = true
 
-[node name="BlackMould_Examine" type="Node2D" parent="Objects" index="54" instance=ExtResource("12_us5wm")]
-y_sort_enabled = true
+[node name="BlackMould_Examine" parent="Objects" index="54" instance=ExtResource("12_us5wm")]
 position = Vector2(434, 705)
-script = ExtResource("14_rxvbw")
 can_interact = true
 tint = Color(0.745098, 0.745098, 0.745098, 0)
 action_verb = 6
 effects = Array[Resource("res://Scripts/Resources/Effect.gd")]([SubResource("Resource_7815y")])
-y_sort_width = 72
-metadata/_edit_group_ = true
 
 [node name="PlayerStart" type="Marker2D" parent="Markers" index="0"]
 position = Vector2(125, 533)
