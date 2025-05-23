@@ -1,0 +1,16 @@
+[gd_resource type="Resource" script_class="Item" load_steps=3 format=3 uid="uid://bcmpeqarjv83p"]
+
+[ext_resource type="Script" path="res://Scripts/Components/Inventory/Item.gd" id="1_m8g67"]
+[ext_resource type="Texture2D" uid="uid://cmsy5v32kg1ys" path="res://Art/Items/TinderLighter.png" id="1_ys5it"]
+
+[resource]
+script = ExtResource("1_m8g67")
+id = "TINDER_LIGHTER"
+name = "Tinder Lighter"
+type = 2
+description = "Default: A simple lighter. I can smell the flint inside.
+After Examination: A simple, tarnished tinder lighter. Smells of flint. Serviceable source of light. It’s mine."
+stackable = false
+stack_size = 1
+icon = ExtResource("1_ys5it")
+gear_spec = Array[Resource("res://Scripts/Resources/GearSpec.gd")]([])

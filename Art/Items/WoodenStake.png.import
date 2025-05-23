@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://d1sc5mksc1my"
-path="res://.godot/imported/BluntTorch.png-b330d2741f7af101515400e741bbdb90.ctex"
+uid="uid://ccn1m3kujalqt"
+path="res://.godot/imported/WoodenStake.png-2688cec57ba08251d17f6bc5aa006791.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Art/Items/BluntTorch.png"
-dest_files=["res://.godot/imported/BluntTorch.png-b330d2741f7af101515400e741bbdb90.ctex"]
+source_file="res://Art/Items/WoodenStake.png"
+dest_files=["res://.godot/imported/WoodenStake.png-2688cec57ba08251d17f6bc5aa006791.ctex"]
 
 [params]
 

@@ -1,0 +1,16 @@
+[gd_resource type="Resource" script_class="Item" load_steps=3 format=3 uid="uid://d0dr52jjvkhpj"]
+
+[ext_resource type="Texture2D" uid="uid://c4543gmpgyso6" path="res://Art/Items/Mushroom.png" id="1_u2nfj"]
+[ext_resource type="Script" path="res://Scripts/Components/Inventory/Item.gd" id="2_aw4y8"]
+
+[resource]
+script = ExtResource("2_aw4y8")
+id = "CORRUPTED_MUSHROOM"
+name = "Corrupted Mushroom"
+type = 1
+description = "Default: A shrivelled, blackened mushroom, unlike any I have seen. Appears to fold in on itself.
+After Examination: A shrivelled, blackened mushroom, unlike any I have seen. Appears to fold in on itself. Some manner of infection likely ravages it. No doubt dangerous to handle or consume."
+stackable = true
+stack_size = 10
+icon = ExtResource("1_u2nfj")
+gear_spec = Array[Resource("res://Scripts/Resources/GearSpec.gd")]([])

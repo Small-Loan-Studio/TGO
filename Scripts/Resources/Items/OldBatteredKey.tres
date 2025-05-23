@@ -8,7 +8,8 @@ script = ExtResource("1_qi7sv")
 id = "OLD_BATTERED_KEY"
 name = "Old Battered Key"
 type = 0
-description = "Key that opens room door in Oakshaw Otter"
+description = "Default: An old key. Worn. Has a strange insignia on its handle.
+After Examination: An old worn key. Its handle is emblazoned with the face of an otter. Charming. This is mine, it must be."
 stackable = false
 stack_size = 1
 icon = ExtResource("1_5x7io")

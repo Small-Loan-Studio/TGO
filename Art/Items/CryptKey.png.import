@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://c2tdx7srexaqe"
-path="res://.godot/imported/WallTorch.png-6607e4a040481fb53ba4a163aa18c0ae.ctex"
+uid="uid://13dfivxpoil4"
+path="res://.godot/imported/CryptKey.png-fc741522f671bd32af5ccff5a2c7ee7f.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Art/Items/WallTorch.png"
-dest_files=["res://.godot/imported/WallTorch.png-6607e4a040481fb53ba4a163aa18c0ae.ctex"]
+source_file="res://Art/Items/CryptKey.png"
+dest_files=["res://.godot/imported/CryptKey.png-fc741522f671bd32af5ccff5a2c7ee7f.ctex"]
 
 [params]
 

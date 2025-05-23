@@ -1,0 +1,16 @@
+[gd_resource type="Resource" script_class="Item" load_steps=3 format=3 uid="uid://bt7flgi3tv6iy"]
+
+[ext_resource type="Texture2D" uid="uid://dus6rqx2kr6fm" path="res://Art/Items/Wine.png" id="1_7uwgs"]
+[ext_resource type="Script" path="res://Scripts/Components/Inventory/Item.gd" id="2_sxxnt"]
+
+[resource]
+script = ExtResource("2_sxxnt")
+id = "EMPTY_BOTTLE"
+name = "Empty Bottle"
+type = 1
+description = "Default: A large brown bottle. Empty. Stinks of gin. Only a couple of drops remain.
+After Examination: A brown bottle. Empty. Stinks of gin. Only a couple of drops remain. The label suggests it is from the Copper Kettle. That must be the establishment from which I sourced it."
+stackable = true
+stack_size = 10
+icon = ExtResource("1_7uwgs")
+gear_spec = Array[Resource("res://Scripts/Resources/GearSpec.gd")]([])

@@ -1,0 +1,16 @@
+[gd_resource type="Resource" script_class="Item" load_steps=3 format=3 uid="uid://cyvknj4dgrhrs"]
+
+[ext_resource type="Texture2D" uid="uid://btf60bad1qtcj" path="res://Art/Items/ScrapOfPaper.png" id="1_p8cps"]
+[ext_resource type="Script" path="res://Scripts/Components/Inventory/Item.gd" id="1_x80wf"]
+
+[resource]
+script = ExtResource("1_x80wf")
+id = "SCRAP_OF_PAPER"
+name = "Scrap Of Paper"
+type = 0
+description = "Default: A piece of parchment. Etched on it is a drawing of a dead tree.
+After Examination: A piece of parchment ripped from a journal. A strange tree is drawn on it, likely by my hand. Perchance this is relevant to my hunt, if only I could recall the reason."
+stackable = false
+stack_size = 1
+icon = ExtResource("1_p8cps")
+gear_spec = Array[Resource("res://Scripts/Resources/GearSpec.gd")]([])
