@@ -48,13 +48,14 @@ func _dismiss() -> void:
 		active.queue_free()
 		active = null
 
-	active = _menus.back()
-	if active:
-		active.visible = true
+	if !_menus.is_empty():
+		active = _menus.back()
+		if active:
+			active.visible = true
 
 
 func _present(menu: Menu) -> void:
-	if not _menus.is_empty():
+	if !_menus.is_empty():
 		var active: Menu = _menus.back()
 		if active:
 			active.visible = false
