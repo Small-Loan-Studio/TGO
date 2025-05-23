@@ -42,7 +42,9 @@ gdscript/warnings/untyped_declaration=2
 directories/dch_directory={
 "Alf": "res://Scripts/Resources/NPCs/DialogicCharacters/Alf.dch",
 "Bartholomew": "res://Scripts/Resources/NPCs/DialogicCharacters/Bartholomew.dch",
+"David": "res://Scripts/Resources/NPCs/DialogicCharacters/David.dch",
 "Devin": "res://Scripts/Resources/NPCs/DialogicCharacters/Devin.dch",
+"Elias": "res://Scripts/Resources/NPCs/DialogicCharacters/Elias.dch",
 "Groundskeeper": "res://Scripts/Resources/NPCs/DialogicCharacters/Groundskeeper.dch",
 "Ilene": "res://Scripts/Resources/NPCs/DialogicCharacters/Ilene.dch",
 "Jefferson": "res://Scripts/Resources/NPCs/DialogicCharacters/Jefferson.dch",
@@ -57,6 +59,7 @@ directories/dtl_directory={
 "CorruptedFungalGrowth": "res://Dialogue/Examinations/CorruptedFungalGrowth.dtl",
 "CorruptedMushroom": "res://Dialogue/Examinations/CorruptedMushroom.dtl",
 "CryptKey": "res://Dialogue/Examinations/CryptKey.dtl",
+"DavidElias3a2": "res://Dialogue/DavidElias/DavidElias3a2.dtl",
 "EmptyBottle": "res://Dialogue/Examinations/EmptyBottle.dtl",
 "FlameTorch": "res://Dialogue/Examinations/FlameTorch.dtl",
 "GinPuddle": "res://Dialogue/Examinations/GinPuddle.dtl",
@@ -104,6 +107,12 @@ variables={
 "ExaminedBodies": false,
 "QuestionedSharps": false,
 "SummonCount": 0.0
+},
+"DavidElias": {
+"HasSpoken": false,
+"Q1Answered": false,
+"Q2Answered": false,
+"Q3Answered": false
 },
 "GroundsKeeper": {
 "FinishedTopics": false,

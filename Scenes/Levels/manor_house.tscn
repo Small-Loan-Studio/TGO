@@ -1,4 +1,4 @@
-[gd_scene load_steps=25 format=3 uid="uid://c3g8eee2id8cx"]
+[gd_scene load_steps=30 format=3 uid="uid://c3g8eee2id8cx"]
 
 [ext_resource type="PackedScene" uid="uid://dyq8mcdsutnsa" path="res://Scenes/Components/LevelBase.tscn" id="1_nvpjp"]
 [ext_resource type="TileSet" uid="uid://c72m3jled4jfg" path="res://Art/Environment/ext_simple_tileset.tres" id="2_x48i8"]
@@ -17,6 +17,9 @@
 [ext_resource type="Resource" uid="uid://djcg0x5p8m34q" path="res://Scripts/Resources/Items/Laudanum.tres" id="12_rp2xl"]
 [ext_resource type="Resource" uid="uid://bkgpc6aqlh57s" path="res://Scripts/Resources/NPCs/Bartholomew.tres" id="12_uqklw"]
 [ext_resource type="Resource" path="res://Dialogue/Bartholomew/Bartholomew3a6.dtl" id="13_ubv2s"]
+[ext_resource type="Resource" uid="uid://c7l3hj7axap5b" path="res://Scripts/Resources/NPCs/David.tres" id="14_rr06e"]
+[ext_resource type="Resource" path="res://Dialogue/DavidElias/DavidElias3a2.dtl" id="15_1c4dn"]
+[ext_resource type="Resource" uid="uid://dpyk8bksf6gr4" path="res://Scripts/Resources/NPCs/Elias.tres" id="16_l4sde"]
 
 [sub_resource type="Resource" id="Resource_i61gm"]
 script = ExtResource("5_vn40k")
@@ -45,6 +48,14 @@ timeline = ExtResource("11_c3y8n")
 [sub_resource type="Resource" id="Resource_x8oy0"]
 script = ExtResource("8_d4koa")
 timeline = ExtResource("13_ubv2s")
+
+[sub_resource type="Resource" id="Resource_lgpmk"]
+script = ExtResource("8_d4koa")
+timeline = ExtResource("15_1c4dn")
+
+[sub_resource type="Resource" id="Resource_jjayp"]
+script = ExtResource("8_d4koa")
+timeline = ExtResource("15_1c4dn")
 
 [node name="LevelBase" instance=ExtResource("1_nvpjp")]
 
@@ -91,14 +102,30 @@ config = ExtResource("10_a382r")
 dlg = SubResource("Resource_h5ev0")
 id = "Lisa"
 
-[node name="Bartholomew" type="CharacterBody2D" parent="Objects/Characters" index="2" groups=["NodesWithID"] instance=ExtResource("5_37rx3")]
+[node name="Bartholomew" parent="Objects/Characters" index="2" instance=ExtResource("5_37rx3")]
 position = Vector2(4162.05, 6441.45)
-collision_layer = 5
-motion_mode = 1
-script = ExtResource("9_t2i8a")
 config = ExtResource("12_uqklw")
 dlg = SubResource("Resource_x8oy0")
 id = "Bartholomew"
+
+[node name="David Sharp" type="CharacterBody2D" parent="Objects/Characters" index="3" groups=["NodesWithID"] instance=ExtResource("5_37rx3")]
+position = Vector2(5019.16, 5752.85)
+collision_layer = 5
+motion_mode = 1
+script = ExtResource("9_t2i8a")
+config = ExtResource("14_rr06e")
+dlg = SubResource("Resource_lgpmk")
+id = "David Sharp"
+activate_external_sensors = false
+
+[node name="Elias Sharp" type="CharacterBody2D" parent="Objects/Characters" index="4" groups=["NodesWithID"] instance=ExtResource("5_37rx3")]
+position = Vector2(5076, 5753)
+collision_layer = 5
+motion_mode = 1
+script = ExtResource("9_t2i8a")
+config = ExtResource("16_l4sde")
+dlg = SubResource("Resource_jjayp")
+id = "Elias Sharp"
 activate_external_sensors = false
 
 [node name="COLLECTIBLE" parent="Objects/Items" index="0" instance=ExtResource("9_6kywj")]
