@@ -1,0 +1,92 @@
+Bartholomew: How fares the hunt, faceless one?
+Devin: Too early to ascertain.
+Bartholomew: How may I be of assistance?
+label Questions
+- What of these deaths?
+	Devin: A man of your position hears many things, I am sure. What can you tell me about the recent deaths?
+	Bartholomew: Well. I heard chatter of a furry beast roaming the fields. Beyond that, nothing of legitimate value.
+	Devin: This beast, what of its nature? Its size? Any traits?
+	Bartholomew: Hunter, twas merely hearsay from gin-soaked patrons in the Kettle. I wouldn’t place too much import on it. Its nature shifts depending on the time of day, and how much the storyteller has imbibed.
+	jump Bartholomew3a6/Questions
+- What of strangeness in these grounds?
+	Devin: What can you tell me of this manor, Pimm?
+	Bartholomew: What is it that you need to know, hunter?
+	label strangeness
+	- What business does Arthur attend to?
+		Devin: What does Arthur spend his days on in that study of his?
+		Bartholomew: Well it is in the name, hunter. He studies.
+		Devin: Any suggestion as to what?
+		Bartholomew: What else would any man indulge in at a time like this?
+		Devin: Indeed.
+		Bartholomew: He desires to venture yonder. To find her. Into the ten-year-mist also. Tis the adventurer in him. It must be where Fiona acquired her lust for adventure.
+		Devin: He has not yet found a way through? Into the fog?
+		Bartholomew: No light shines in that fog, hunter. No person of sound mind dare sets foot for the illness they will contract. Not to mention the horrors that lurk in the darkness. See to those bodies, if you have not already.
+		jump Bartholomew3a6/strangeness
+	- Why are so many doors locked?
+		Devin: This is a large manor, Pimm, with plenty of lavish rooms, I imagine. Yet you and the Sharps only occupy a handful.
+		Bartholomew: Apologies for the inconvenience, sir. I’m ashamed to admit the estate is in a state of disrepair.
+		Devin: To what is this owed?
+		Bartholomew: Tis sensitive, I must admit. Finances. Put simply.
+		Devin: Which areas of this manor are kept under lock and key?
+		Bartholomew: The east wing. Many of the rooms are unused. The summer drawing room. A bedroom or two. The old study. Used mostly for storage now. Our cellars also. The smaller, we fear, is infested. The larger has been shut for many years.
+		jump Bartholomew3a6/strangeness
+	- What can you share about the mould? [if {Bartholomew.3a3Op2} == true]
+		Devin: There is mould that plagues these grounds. Care to elaborate?
+		Bartholomew: Tis the  black mould that has took hold of our larger cellar. We lack the capacity to clean it, in truth. Especially since our numbers have reduced. So we shut ourselves off from it. Best to ignore it.
+		Devin: Yet it lingers in the air.
+		Bartholomew: Nowt to be done, hunter. Unless you wish to abandon your investigations and pick up a scrub?
+		jump Bartholomew3a6/strangeness
+	- You have a rat problem. [if {Bartholomew.3a1Op2.3} == true]
+		Devin: Elaborate on this business with vermin.
+		Bartholomew: What more is there to say, beyond these bastard creatures running through our manor causing havoc. In the walls. The floors. The ceilings. Mostly at night.
+		Devin: I see.
+		jump Bartholomew3a6/strangeness
+	- Nothing.
+		Devin: There is nowt.
+		Bartholomew: As you wish.
+		jump Bartholomew3a6/Questions
+- Anything you can share about Beth?
+	Devin: Beth Sharp, what can you tell me of her disappearance?
+	Bartholomew: Not much beyond that which you likely already know. Sadly, I…
+	Devin: What is the matter?
+	Bartholomew: I saw Lady Sharp the morning of. Simple exchanged a passing glance. Nothing more.
+	jump Bartholomew3a6/Questions
+- The glass casing. Tell me about it.
+	Devin: What can you share of the contents of the glass casing that lies empty in the hallway.
+	Bartholomew: Yes, a foul business. Louisa McCarthy, our friend and colleague a thief, it emerged. She stole the heirloom — the quartz necklace — that was kept within.
+	Devin: Highly valuable, then?
+	Bartholomew: Priceless. We have yet to find where she hid it, or to which jolterhead she sold it to.
+	Bartholomew: Beth especially cared for it. If it were recovered, I know it would mean so much for the family. But she will not say.
+	Devin: McCarthy was caught?
+	Bartholomew: Rotting in the lock-up now. The scoundrel.
+	Devin: And what makes you certain of her guilt?
+	Bartholomew: She was the only person with access and motive. Twas a shame, I must admit. She lived a hard life. But so have we all, and yet we daren’t resort to thievery. Least of all from our employers. Foolish girl.
+	Devin: Why is it that you linger on this subject, Pimm?
+	Bartholomew: Our best efforts at persuasion failed. Although perhaps you could inquire with her regarding its fate? Your many talents may be put to good use here.
+	Devin: Well. It may serve well to enquire about the happenings in this place, at the very least.
+	jump Bartholomew3a6/Questions
+- Summon Lord Sharp.
+	Devin: Summon Lord Sharp, if you will. I must speak with him.
+	if {Bartholomew.QuestionedSharps} == true and {Bartholomew.ExaminedBodies} true:
+		Bartholomew: Very good, sir. One moment.
+		Devin: Gramercy.
+		EVENT HAPPENS
+	if {Bartholomew.QuestionedSharps} == true and {Bartholomew.ExaminedBodies} == false:
+		Bartholomew: Sir. Lord Sharp is not ready to receive you. Do be sure to question the labourers nearest the bodies, when you inspect the fields.
+		jump Bartholomew3a6/Questions
+	if {Bartholomew.QuestionedSharps} == false and {Bartholomew.ExaminedBodies} == true:
+		Bartholomew: Lord Sharp is not ready to receive you. Please do make sure to question all members of this household in the course of your inquiries.
+		jump Bartholomew3a6/Questions
+	if {Bartholomew.QuestionedSharps} == false and {Bartholomew.ExaminedBodies} == false:
+		if {Bartholomew.SummonCount} == 0:
+			Bartholomew: I cannot bother the Lord of the Manor for mere trifles. Please, go on about your work before requesting this of me again.
+		if {Bartholomew.SummonCount} == 1:
+			Bartholomew: Good man, you would do well to greet all the Sharps in your search. Or is it the fieldhands you’ve neglected?
+		if {Bartholomew.SummonCount} >= 2:
+			Bartholomew: How now, sir, the Lord of the Manor shall not be disturbed until your work is done! Go your ways.
+		set {Bartholomew.SummonCount} += 1
+		jump Bartholomew3a6/Questions
+- I should be going.
+	Devin: I must go.
+	Bartholomew: God be with you, hunter. Return if I may be of any assistance.
+	[end_timeline]

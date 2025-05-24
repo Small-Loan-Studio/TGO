@@ -77,6 +77,7 @@ label Questions
 	- What of pests — creatures? [if {Jefferson.opt2_3a5} == true]
 		Devin: What of these pests your cook has spoken of. Are there any dangers to be wary of?
 		Jefferson: While our servants are oft their own shadows they have of late complained of vermin. Poison the loft, I say.
+		set {Bartholomew.3a1Op2.3} = true
 	if {Jefferson.Q2_op1Answered} == true and {Jefferson.Q2_op2Answered} == true:
 		jump Questions
 	else:

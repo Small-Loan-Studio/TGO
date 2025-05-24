@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="NPCConfig" load_steps=3 format=3 uid="uid://dpyk8bksf6gr4"]
+
+[ext_resource type="Script" path="res://Scripts/Resources/NpcConfig.gd" id="1_7xe38"]
+[ext_resource type="SpriteFrames" uid="uid://b3igo1ygiyl0b" path="res://Art/Characters/character_placeholder.tres" id="2_mvinc"]
+
+[resource]
+script = ExtResource("1_7xe38")
+character_id = "Elias Sharp"
+sprite_sheet = ExtResource("2_mvinc")
+valid_timelines = Array[String](["res://Dialogue/DavidElias/DavidElias3a2.dtl"])

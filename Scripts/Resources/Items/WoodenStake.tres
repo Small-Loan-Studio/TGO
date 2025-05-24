@@ -1,0 +1,16 @@
+[gd_resource type="Resource" script_class="Item" load_steps=3 format=3 uid="uid://x0jx2mol86p8"]
+
+[ext_resource type="Script" path="res://Scripts/Components/Inventory/Item.gd" id="1_el721"]
+[ext_resource type="Texture2D" uid="uid://ccn1m3kujalqt" path="res://Art/Items/WoodenStake.png" id="1_ixsnp"]
+
+[resource]
+script = ExtResource("1_el721")
+id = "WOODEN_STAKE"
+name = "Wooden Stake"
+type = 0
+description = "Default: A pale, wooden stake.
+After Examination: A pale wooden stake. Sturdy. Pray I need not wield it as a weapon. But I should yet find some use for it."
+stackable = false
+stack_size = 1
+icon = ExtResource("1_ixsnp")
+gear_spec = Array[Resource("res://Scripts/Resources/GearSpec.gd")]([])
