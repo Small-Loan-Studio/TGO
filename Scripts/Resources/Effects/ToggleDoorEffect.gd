@@ -16,7 +16,6 @@ func act(actor_id: String, cur_level: LevelBase) -> Variant:
 		printerr("Attempting to toggle door state for unloaded door: %s" % [door_id])
 		return null
 
-	door = door as DoorRegion
 	if TriggerCondition.evaluate_all(door.unlocked, actor_id):
 		match door_action:
 			"open":

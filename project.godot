@@ -225,6 +225,11 @@ textures/decals/filter=0
 [tgo]
 
 region_states={
+"BadLevelB.auto_door": {
+"extra": {},
+"passable": false,
+"visible": true
+},
 "BadLevelB.test_door": {
 "extra": {},
 "passable": false,

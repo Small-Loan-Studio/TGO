@@ -19,7 +19,7 @@ signal door_closed
 ## When you "use" the door successfully what happens? Toggle will alternate
 ## between open and closed. Open will only open, Close will only close.
 ## If the door is not unlocked no action will occur.
-@export_enum("open", "close", "toggle") var use_action: String = "toggle"
+@export_enum("none", "open", "close", "toggle") var use_action: String = "toggle"
 
 var is_open: bool:
 	get:
@@ -44,10 +44,21 @@ func _exit_tree() -> void:
 func _ready() -> void:
 	super._ready()
 
-	var toggle_effect: ToggleDoorEffect = ToggleDoorEffect.new()
-	toggle_effect.door_id = region_id
-	toggle_effect.door_action = use_action
-	_interactable.action_map[Enums.ActionVerb.USE] = [toggle_effect]
+	# See comment on `action_map` in `Interactable.gd`. This is existentially
+	# important to door behavior working as expected
+	_interactable.action_map = {}
+
+	if use_action != "none":
+		var toggle_effect: ToggleDoorEffect = ToggleDoorEffect.new()
+		toggle_effect.door_id = region_id
+		toggle_effect.door_action = use_action
+		_interactable.action_map[Enums.ActionVerb.USE] = [toggle_effect]
+
+	if use_action == "none" && _interactable != null:
+		remove_child(_interactable)
+		_interactable.queue_free()
+		_interactable = null
+
 
 
 func _apply_state(state: RegionState) -> void:

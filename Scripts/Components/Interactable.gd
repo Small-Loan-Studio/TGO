@@ -37,6 +37,14 @@ const InteractPanelScene: PackedScene = preload(
 ## only operates correctly on a MoveableBlock.
 ##
 ##   Type: Map[Enums.ActionVerb, Array[Effect]]
+##
+## TODO: This is a load bearing mistake. If an interactable gets embedded in
+## another scene then changes to the action_map get mirrored to all instances
+## of the embedding scene. We need to replace this with a composition solution:
+##   1. For each action type create a node that contains an Array[Effect]
+##   2. construct the action_map in _ready based on the Node's children
+##   3. remove action_map and burn Godot alive
+## TODOTODO: file issue to track this
 @export var action_map: Dictionary = {}
 
 @export var _display_hook: Sprite2D
@@ -194,6 +202,7 @@ func _set(prop: StringName, _val: Variant) -> bool:
 		var verb := Enums.action_verb_from_str(parts[0])
 
 		if action_map.has(verb) and len(_val) == 0:
+			print("action_map[%s] = %s" % [Enums.action_verb_name(verb), _val])
 			# this branch runs when we had a verb and we remove the last element;
 			# in that case just remove the verb entirely
 			action_map[verb] = _val

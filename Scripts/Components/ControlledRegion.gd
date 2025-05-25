@@ -38,11 +38,8 @@ func _enter_tree() -> void:
 
 func _ready() -> void:
 	if Engine.is_editor_hint() || region_id.is_empty():
+		print("ControlledRegion._ready but region_id is empty: %s" % [name])
 		return
-
-	print("%s: ControlledRegion._ready" % [region_id])
-	print("    _collider: %s" % [_collider])
-	print_tree_pretty()
 
 	# State initialization removed for the time being bc it's complex to
 	# sort out when to initialize vs when the state was explicitly set, e.g.,
