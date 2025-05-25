@@ -19,10 +19,10 @@ var _expected_vars: Dictionary = {}
 
 func _enter_tree() -> void:
 	# Load expected variables from project settings
-	var _settings_data: Dictionary = ProjectSettings.get_setting("tgo/region_states", [])
+	var settings_data: Dictionary = ProjectSettings.get_setting("tgo/region_states", [])
 
-	for path_str: String in _settings_data.keys():
-		var data: Variant = RegionState.FromDict(_settings_data[path_str])
+	for path_str: String in settings_data.keys():
+		var data: Variant = RegionState.from_dict(settings_data[path_str])
 		if data == null:
 			printerr("Invalid region state in project settings: %s" % path_str)
 			continue
@@ -98,7 +98,7 @@ func save() -> Dictionary:
 func load(content: Dictionary) -> void:
 	_state.clear()
 	for key: String in content.keys():
-		var rs: Variant = RegionState.FromDict(content[key])
+		var rs: Variant = RegionState.from_dict(content[key])
 		if rs == null:
 			printerr("Invalid region state in saved data: %s" % key)
 			continue

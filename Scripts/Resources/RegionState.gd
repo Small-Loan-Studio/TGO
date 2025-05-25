@@ -31,7 +31,7 @@ func to_dict() -> Dictionary:
 		"extra": extra
 	}
 
-static func FromDict(d: Dictionary) -> Variant:
+static func from_dict(d: Dictionary) -> Variant:
 	if !(d.has("passable") && d.has("visible") && d.has("extra")):
 		return null
 
