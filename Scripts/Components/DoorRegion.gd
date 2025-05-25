@@ -60,7 +60,6 @@ func _ready() -> void:
 		_interactable = null
 
 
-
 func _apply_state(state: RegionState) -> void:
 	var door_open := state.passable
 	visible = state.visible
