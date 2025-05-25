@@ -11,6 +11,7 @@ extends Resource
 ## Custom properties that don't fit the standard model
 @export var extra: Dictionary = {}
 
+
 func clone() -> RegionState:
 	var rs: RegionState = RegionState.new()
 	rs.passable = passable
@@ -18,18 +19,18 @@ func clone() -> RegionState:
 	rs.extra = extra.duplicate(true)
 	return rs
 
+
 func equals(o: RegionState) -> bool:
 	return passable == o.passable && visible == o.visible && extra == o.extra
+
 
 func _to_string() -> String:
 	return "RegionState(passable=%s, visible=%s, extra=%s)" % [passable, visible, extra]
 
+
 func to_dict() -> Dictionary:
-	return {
-		"passable": passable,
-		"visible": visible,
-		"extra": extra
-	}
+	return {"passable": passable, "visible": visible, "extra": extra}
+
 
 static func from_dict(d: Dictionary) -> Variant:
 	if !(d.has("passable") && d.has("visible") && d.has("extra")):

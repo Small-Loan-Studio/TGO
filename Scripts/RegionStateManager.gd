@@ -17,6 +17,7 @@ var _state: Dictionary = {}
 ## Map[String, RegionState]
 var _expected_vars: Dictionary = {}
 
+
 func _enter_tree() -> void:
 	# Load expected variables from project settings
 	var settings_data: Dictionary = ProjectSettings.get_setting("tgo/region_states", [])
@@ -46,6 +47,7 @@ func set_state(path: String, value: RegionState) -> void:
 	_set_state_in_nested_dict(path, _state, value)
 	region_changed.emit(path, old_value, value)
 
+
 func _set_state_in_nested_dict(path: String, dict: Dictionary, value: RegionState) -> void:
 	var parts := path.split(".")
 	var current_dict := dict
@@ -65,6 +67,7 @@ func _set_state_in_nested_dict(path: String, dict: Dictionary, value: RegionStat
 	# Set the final value
 	current_dict[parts[0]] = value
 
+
 ## Gets a variable at the given path. Returns a new RegionState if the path doesn't exist.
 ## Example: get_variable("dungeon.east_wing.door1")
 func get_state(path: String) -> RegionState:
@@ -77,15 +80,15 @@ func get_state(path: String) -> RegionState:
 		return (rs as RegionState).clone()
 
 	printerr("Returning default value for undefined variable: %s" % path)
-	var new_state :=  RegionState.new()
+	var new_state := RegionState.new()
 	_set_state_in_nested_dict(path, _state, new_state)
 	return new_state.clone()
-
 
 
 ## Returns true if a variable exists at the given path
 func has(path: String) -> bool:
 	return _has_in_nested_dict(path, _state)
+
 
 ## Saves the current state to a dictionary
 func save() -> Dictionary:
@@ -93,6 +96,7 @@ func save() -> Dictionary:
 	for key: String in _get_all_paths(_state):
 		state[key] = get_state(key).to_dict()
 	return state
+
 
 ## Loads state from a dictionary, replacing any existing state
 func load(content: Dictionary) -> void:
@@ -112,34 +116,39 @@ func print() -> void:
 	print("}")
 
 
-
 ## Clears all state back to defaults
 func clear() -> void:
 	_state = _expected_vars.duplicate(true)
 
+
 ## Gets all variable paths
 func dump_paths() -> Array[String]:
 	return _get_all_paths(_state, "")
+
 
 func block_region(path: String) -> void:
 	var cur_state: RegionState = get_state(path)
 	cur_state.passable = false
 	set_state(path, cur_state)
 
+
 func unblock_region(path: String) -> void:
 	var cur_state: RegionState = get_state(path)
 	cur_state.passable = true
 	set_state(path, cur_state)
+
 
 func show_region(path: String) -> void:
 	var cur_state: RegionState = get_state(path)
 	cur_state.visible = true
 	set_state(path, cur_state)
 
+
 func hide_region(path: String) -> void:
 	var cur_state: RegionState = get_state(path)
 	cur_state.visible = false
 	set_state(path, cur_state)
+
 
 ## Helper function to get a value from a nested dictionary using a dot path
 ## Returns null of no path exists so we have to return a Variant because Godot's
@@ -159,9 +168,11 @@ func _get_from_nested_dict(path: String, dict: Dictionary) -> Variant:
 
 	return current_dict.get(parts[0]) if len(parts) > 0 else null
 
+
 ## check if a path exists in a nested dictionary
 func _has_in_nested_dict(path: String, dict: Dictionary) -> bool:
 	return _get_from_nested_dict(path, dict) != null
+
 
 ## get all possible paths in a nested dictionary
 func _get_all_paths(dict: Dictionary, base_path: String = "") -> Array[String]:
@@ -175,6 +186,7 @@ func _get_all_paths(dict: Dictionary, base_path: String = "") -> Array[String]:
 			paths.append(current_path)
 
 	return paths
+
 
 static func get_settings_paths() -> Array[String]:
 	var settings_data: Dictionary = ProjectSettings.get_setting("tgo/region_states", [])

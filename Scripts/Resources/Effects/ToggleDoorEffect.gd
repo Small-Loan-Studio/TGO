@@ -4,6 +4,7 @@ extends Effect
 @export var door_id: String
 @export_enum("open", "close", "toggle") var door_action: String = "toggle"
 
+
 func act(actor_id: String, cur_level: LevelBase) -> Variant:
 	var door: DoorRegion = null
 	for door_options: Node2D in cur_level.get_tree().get_nodes_in_group(Utils.GroupNames.Doors):

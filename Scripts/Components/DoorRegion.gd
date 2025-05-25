@@ -5,7 +5,6 @@ extends ControlledRegion
 signal door_opened
 signal door_closed
 
-
 ## The sprite to use when the door is closed
 @export var closed_sprite: Texture2D
 
@@ -27,7 +26,6 @@ var is_open: bool:
 		return _rsm.get_state(region_id).passable
 	set(v):
 		printerr("%s.open may not be set directly" % [region_id])
-
 
 @onready var _sprite: Sprite2D = $Display
 @onready var _interactable: Interactable = $Interactable
@@ -62,17 +60,21 @@ func _apply_state(state: RegionState) -> void:
 	else:
 		_sprite.texture = closed_sprite
 
+
 func open() -> void:
 	_rsm.unblock_region(region_id)
 
+
 func close() -> void:
 	_rsm.block_region(region_id)
+
 
 func toggle() -> void:
 	if is_open:
 		close()
 	else:
 		open()
+
 
 func _get_configuration_warnings() -> PackedStringArray:
 	return super._get_configuration_warnings()

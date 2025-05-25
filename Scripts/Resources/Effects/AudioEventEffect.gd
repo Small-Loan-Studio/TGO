@@ -39,7 +39,7 @@ func act(actor_id: String, cur_level: LevelBase) -> Variant:
 	if use_id == "":
 		# handle fallback to AudioManager case
 		var am := Driver.instance().audio_mgr
-		var event_id: int= AK.EVENTS._dict[event_name]
+		var event_id: int = AK.EVENTS._dict[event_name]
 		am.send_event(event_id)
 		return null
 

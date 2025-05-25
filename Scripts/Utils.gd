@@ -202,6 +202,7 @@ class GroupNames:
 	static var AudioNodes := "RegisteredAudioNode"
 	static var Doors := "Doors"
 
+
 class WwiseIds:
 	static var AudioManager := "Audio Manager"
 #gdlint: enable=class-variable-name

@@ -6,7 +6,6 @@ extends Node2D
 @export var region_id: String
 @export var _collider: CollisionShape2D
 
-
 var _rsm: RegionStateManager
 var _collider_cache: CollisionShape2D
 var _layer_cache: int
@@ -35,6 +34,7 @@ func _enter_tree() -> void:
 
 	_rsm = Driver.instance().region_state_mgr
 	_rsm.region_changed.connect(_on_state_change)
+
 
 func _ready() -> void:
 	if Engine.is_editor_hint() || region_id.is_empty():
@@ -104,18 +104,28 @@ func _get_configuration_warnings() -> PackedStringArray:
 
 func _get_property_list() -> Array[Dictionary]:
 	var props: Array[Dictionary] = []
-	props.append({
-		"name": "collision_layer",
-		"type": TYPE_INT,
-		"usage": PROPERTY_USAGE_DEFAULT | PROPERTY_USAGE_CLASS_IS_BITFIELD,
-		"hint": PROPERTY_HINT_LAYERS_2D_PHYSICS,
-	})
-	props.append({
-		"name": "collision_mask",
-		"type": TYPE_INT,
-		"usage": PROPERTY_USAGE_DEFAULT | PROPERTY_USAGE_CLASS_IS_BITFIELD,
-		"hint": PROPERTY_HINT_LAYERS_2D_PHYSICS,
-	})
+	(
+		props
+		. append(
+			{
+				"name": "collision_layer",
+				"type": TYPE_INT,
+				"usage": PROPERTY_USAGE_DEFAULT | PROPERTY_USAGE_CLASS_IS_BITFIELD,
+				"hint": PROPERTY_HINT_LAYERS_2D_PHYSICS,
+			}
+		)
+	)
+	(
+		props
+		. append(
+			{
+				"name": "collision_mask",
+				"type": TYPE_INT,
+				"usage": PROPERTY_USAGE_DEFAULT | PROPERTY_USAGE_CLASS_IS_BITFIELD,
+				"hint": PROPERTY_HINT_LAYERS_2D_PHYSICS,
+			}
+		)
+	)
 	return props
 
 
@@ -140,4 +150,3 @@ func _set(property: StringName, value: Variant) -> bool:
 		return true
 
 	return false
-

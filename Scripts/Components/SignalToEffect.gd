@@ -8,6 +8,7 @@ extends Node
 
 @export var effects: Array[Effect] = []
 
+
 func trigger() -> void:
 	for effect: Effect in effects:
 		if effect != null:
