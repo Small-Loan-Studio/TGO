@@ -1,10 +1,10 @@
 [gd_resource type="Resource" script_class="NPCConfig" load_steps=3 format=3 uid="uid://govy3p3pxyql"]
 
 [ext_resource type="Script" path="res://Scripts/Resources/NpcConfig.gd" id="1_mvrtc"]
-[ext_resource type="SpriteFrames" uid="uid://tla7n0y5jgw5" path="res://Art/Characters/arthur_sharp_sheet.tres" id="2_y54kx"]
+[ext_resource type="SpriteFrames" uid="uid://6kgvj3it01mi" path="res://Art/Characters/Groundskeeper/groundskeeper.tres" id="2_dip7h"]
 
 [resource]
 script = ExtResource("1_mvrtc")
 character_id = "Ebenezer Beaupre - Groundskeeper"
-sprite_sheet = ExtResource("2_y54kx")
+sprite_sheet = ExtResource("2_dip7h")
 valid_timelines = Array[String]([])

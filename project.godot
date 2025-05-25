@@ -41,16 +41,43 @@ gdscript/warnings/untyped_declaration=2
 
 directories/dch_directory={
 "Alf": "res://Scripts/Resources/NPCs/DialogicCharacters/Alf.dch",
+"Bartholomew": "res://Scripts/Resources/NPCs/DialogicCharacters/Bartholomew.dch",
+"David": "res://Scripts/Resources/NPCs/DialogicCharacters/David.dch",
 "Devin": "res://Scripts/Resources/NPCs/DialogicCharacters/Devin.dch",
+"Elias": "res://Scripts/Resources/NPCs/DialogicCharacters/Elias.dch",
 "Groundskeeper": "res://Scripts/Resources/NPCs/DialogicCharacters/Groundskeeper.dch",
 "Ilene": "res://Scripts/Resources/NPCs/DialogicCharacters/Ilene.dch",
-"Jefferson": "res://Scripts/Resources/NPCs/DialogicCharacters/Jefferson.dch"
+"Jefferson": "res://Scripts/Resources/NPCs/DialogicCharacters/Jefferson.dch",
+"Lisa": "res://Scripts/Resources/NPCs/DialogicCharacters/Lisa.dch"
 }
 directories/dtl_directory={
+"BagOfHardtack": "res://Dialogue/Examinations/BagOfHardtack.dtl",
+"Bartholomew3a6": "res://Dialogue/Bartholomew/Bartholomew3a6.dtl",
+"BlackMouldCrypt": "res://Dialogue/Examinations/BlackMouldCrypt.dtl",
 "BuckleyTestTimeline": "res://Dialogue/Buckley/BuckleyTestTimeline.dtl",
+"Coffin": "res://Dialogue/Examinations/Coffin.dtl",
+"CorruptedFungalGrowth": "res://Dialogue/Examinations/CorruptedFungalGrowth.dtl",
+"CorruptedMushroom": "res://Dialogue/Examinations/CorruptedMushroom.dtl",
+"CryptKey": "res://Dialogue/Examinations/CryptKey.dtl",
+"DavidElias3a2": "res://Dialogue/DavidElias/DavidElias3a2.dtl",
+"EmptyBottle": "res://Dialogue/Examinations/EmptyBottle.dtl",
+"FlameTorch": "res://Dialogue/Examinations/FlameTorch.dtl",
+"GinPuddle": "res://Dialogue/Examinations/GinPuddle.dtl",
 "GroundskeeperTimeline": "res://Dialogue/Groundskeeper/GroundskeeperTimeline.dtl",
 "Ilene3a7": "res://Dialogue/Ilene/Ilene3a7.dtl",
 "Jefferson3a1": "res://Dialogue/Jefferson/Jefferson3a1.dtl",
+"JournalPage1": "res://Dialogue/Examinations/JournalPage1.dtl",
+"Lisa_3a5": "res://Dialogue/Lisa/Lisa_3a5.dtl",
+"LitWoodenTorch": "res://Dialogue/Examinations/LitWoodenTorch.dtl",
+"OldBatteredKey": "res://Dialogue/Examinations/OldBatteredKey.dtl",
+"PileOfWoodenStakes": "res://Dialogue/Examinations/PileOfWoodenStakes.dtl",
+"RansackedCoffin": "res://Dialogue/Examinations/RansackedCoffin.dtl",
+"Satchel": "res://Dialogue/Examinations/Satchel.dtl",
+"ScrapOfPaper": "res://Dialogue/Examinations/ScrapOfPaper.dtl",
+"SkeletalRemains": "res://Dialogue/Examinations/SkeletalRemains.dtl",
+"TinderLighter": "res://Dialogue/Examinations/TinderLighter.dtl",
+"UnlitWoodenTorch": "res://Dialogue/Examinations/UnlitWoodenTorch.dtl",
+"WoodenStake": "res://Dialogue/Examinations/WoodenStake.dtl",
 "debugging_timeline": "res://ZZ_Scratch/DialogicValidation/debugging_timeline.dtl",
 "juniper_bush_full": "res://Dialogue/PlaceableInteractive/juniper_bush_full.dtl",
 "npc_test_dialogue": "res://ZZ_Scratch/NPCDialogue/npc_test_dialogue.dtl",
@@ -74,6 +101,19 @@ save/autosave_delay=60.0
 save/encryption_on_exports_only=true
 text/autopauses={}
 variables={
+"Bartholomew": {
+"3a1Op2.3": false,
+"3a3Op2": false,
+"ExaminedBodies": false,
+"QuestionedSharps": false,
+"SummonCount": 0.0
+},
+"DavidElias": {
+"HasSpoken": false,
+"Q1Answered": false,
+"Q2Answered": false,
+"Q3Answered": false
+},
 "GroundsKeeper": {
 "FinishedTopics": false,
 "HasSpoken": false,
@@ -92,6 +132,9 @@ variables={
 "Q2_op2Answered": false,
 "flashBackSpoken": false,
 "opt2_3a5": false
+},
+"Lisa": {
+"HasSpoken": false
 },
 "QuestVarConditionTest": false,
 "UserInputNum": 0,

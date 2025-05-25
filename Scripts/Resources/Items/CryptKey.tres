@@ -1,0 +1,16 @@
+[gd_resource type="Resource" script_class="Item" load_steps=3 format=3 uid="uid://bm03pp0j2filn"]
+
+[ext_resource type="Texture2D" uid="uid://13dfivxpoil4" path="res://Art/Items/CryptKey.png" id="1_8y64t"]
+[ext_resource type="Script" path="res://Scripts/Components/Inventory/Item.gd" id="1_ugbbk"]
+
+[resource]
+script = ExtResource("1_ugbbk")
+id = "CRYPT_KEY"
+name = "Crypt Key/Lockpick"
+type = 0
+description = "Default: An old key. Coated in rust.
+After Examination: An old, ornate key with unique peculiar teeth. Coated in rust. Not many guesses to what this could open, but I believe it could serve me well to escape."
+stackable = false
+stack_size = 1
+icon = ExtResource("1_8y64t")
+gear_spec = Array[Resource("res://Scripts/Resources/GearSpec.gd")]([])

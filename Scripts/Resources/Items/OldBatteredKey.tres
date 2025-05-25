@@ -1,0 +1,16 @@
+[gd_resource type="Resource" script_class="Item" load_steps=3 format=3 uid="uid://fvia3mg1tqpn"]
+
+[ext_resource type="Texture2D" uid="uid://bi5vx0227ip10" path="res://Art/Items/OldBatteredKey.png" id="1_5x7io"]
+[ext_resource type="Script" path="res://Scripts/Components/Inventory/Item.gd" id="1_qi7sv"]
+
+[resource]
+script = ExtResource("1_qi7sv")
+id = "OLD_BATTERED_KEY"
+name = "Old Battered Key"
+type = 0
+description = "Default: An old key. Worn. Has a strange insignia on its handle.
+After Examination: An old worn key. Its handle is emblazoned with the face of an otter. Charming. This is mine, it must be."
+stackable = false
+stack_size = 1
+icon = ExtResource("1_5x7io")
+gear_spec = Array[Resource("res://Scripts/Resources/GearSpec.gd")]([])
