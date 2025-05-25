@@ -5,6 +5,9 @@ extends Node
 ## Emitted when a variable changes. Provides the full path, old value, and new value
 signal region_changed(path: String, old_value: RegionState, new_value: RegionState)
 
+## If true, warnings will be printed when accessing undefined variables
+@export var strict_mode := true
+
 ## The root state dictionary that holds all variables
 ## Map[String, RegionState]
 var _state: Dictionary = {}
@@ -13,9 +16,6 @@ var _state: Dictionary = {}
 ## Loaded once at _enter_tree()
 ## Map[String, RegionState]
 var _expected_vars: Dictionary = {}
-
-## If true, warnings will be printed when accessing undefined variables
-@export var strict_mode := true
 
 func _enter_tree() -> void:
 	# Load expected variables from project settings
@@ -49,19 +49,19 @@ func set_state(path: String, value: RegionState) -> void:
 func _set_state_in_nested_dict(path: String, dict: Dictionary, value: RegionState) -> void:
 	var parts := path.split(".")
 	var current_dict := dict
-	
+
 	# Navigate to the correct nested dictionary
 	while len(parts) > 1:
 		var dict_name: String = parts[0]
 		parts = parts.slice(1)
-		
+
 		if not current_dict.has(dict_name):
 			current_dict[dict_name] = {}
 		elif not current_dict[dict_name] is Dictionary:
 			current_dict[dict_name] = {}
-			
+
 		current_dict = current_dict[dict_name]
-	
+
 	# Set the final value
 	current_dict[parts[0]] = value
 
@@ -71,7 +71,7 @@ func get_state(path: String) -> RegionState:
 	if strict_mode:
 		if not _has_in_nested_dict(path, _expected_vars):
 			printerr("Requesting undefined variable; this is likely an error: %s" % path)
-	
+
 	var rs: Variant = _get_from_nested_dict(path, _state)
 	if rs != null:
 		return (rs as RegionState).clone()
@@ -147,16 +147,16 @@ func hide_region(path: String) -> void:
 func _get_from_nested_dict(path: String, dict: Dictionary) -> Variant:
 	var parts := path.split(".")
 	var current_dict := dict
-	
+
 	while len(parts) > 1:
 		var dict_name: String = parts[0]
 		parts = parts.slice(1)
-		
+
 		if not current_dict.has(dict_name) or not current_dict[dict_name] is Dictionary:
 			return null
-			
+
 		current_dict = current_dict[dict_name]
-	
+
 	return current_dict.get(parts[0]) if len(parts) > 0 else null
 
 ## check if a path exists in a nested dictionary
@@ -166,19 +166,19 @@ func _has_in_nested_dict(path: String, dict: Dictionary) -> bool:
 ## get all possible paths in a nested dictionary
 func _get_all_paths(dict: Dictionary, base_path: String = "") -> Array[String]:
 	var paths: Array[String] = []
-	
+
 	for key: String in dict:
 		var current_path: String = base_path + ("." if base_path else "") + key
 		if dict[key] is Dictionary:
 			paths.append_array(_get_all_paths(dict[key], current_path))
 		else:
 			paths.append(current_path)
-	
+
 	return paths
 
 static func get_settings_paths() -> Array[String]:
-	var _settings_data: Dictionary = ProjectSettings.get_setting("tgo/region_states", [])
+	var settings_data: Dictionary = ProjectSettings.get_setting("tgo/region_states", [])
 	var paths: Array[String] = []
-	for path_str: String in _settings_data.keys():
+	for path_str: String in settings_data.keys():
 		paths.append(path_str)
 	return paths
