@@ -1,3 +1,4 @@
+@tool
 ## Base class that can be extended to make easily configurable actions
 ## interactable objects. See [TeleportEffect] for an example of its
 ## usage.
@@ -13,6 +14,34 @@ var parent: Node2D
 #       by the calling code.
 # DECISION: We should switch to this; at the point I made this decision I
 #           don't think I was considering the singleton nature of resources
+
+
+## Effect execution continues down this path if item removal was successful
+var success_chain: Array[Effect]
+
+## Effect execution continues down this path if item removal was not successful
+var failure_chain: Array[Effect]
+
+## Set by the specific Effect impl to control whether there is a success/failure
+## path exposed in the Inspector. Doesn't do any magic to call them, just handles
+## exposing it. Children must include @tool and some _init boilerplate to work.
+## See InventoryAddItemEffect for an example.
+var _expose_result_chains: bool = false
+
+
+func _init() -> void:
+	pass
+
+
+func _get_property_list() -> Array[Dictionary]:
+	if !_expose_result_chains:
+		return []
+
+	var props: Array[Dictionary] = []
+	props.append(Utils.mk_array_prop("success_chain", PROPERTY_USAGE_DEFAULT, "Effect"))
+	props.append(Utils.mk_array_prop("failure_chain", PROPERTY_USAGE_DEFAULT, "Effect"))
+
+	return props
 
 
 ## Called with the actor triggering this action and the LevelBase context in
@@ -31,6 +60,21 @@ func act(_actor_id: String, _cur_level: LevelBase) -> Variant:
 ## Will only be called for effects triggered by a Switch.
 func terminal_callback(_arg: Variant) -> void:
 	pass
+
+
+func _run_success(actor_id: String, cur_level: LevelBase) -> Variant:
+	return _run_next(success_chain, actor_id, cur_level)
+
+
+func _run_failure(actor_id: String, cur_level: LevelBase) -> Variant:
+	return _run_next(failure_chain, actor_id, cur_level)
+
+func _to_string() -> String:
+	if get_script() != null:
+		var scr: Script = get_script()
+		return "Effect:%s" % [scr.resource_path]
+
+	return "Unknown Effect"
 
 
 ## Provides a default implementation of running a chain of effects and

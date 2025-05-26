@@ -1,3 +1,4 @@
+@tool
 class_name InventoryRemoveItemEffect
 extends Effect
 
@@ -11,11 +12,11 @@ extends Effect
 ## the item from
 @export var inventory_override: String
 
-## Effect execution continues down this path if item removal was successful
-@export var success_chain: Array[Effect]
 
-## Effect execution continues down this path if item removal was not successful
-@export var failure_chain: Array[Effect]
+func _init() -> void:
+	super._init()
+	_expose_result_chains = true
+
 
 func act(actor_id: String, cur_level: LevelBase) -> Variant:
 	var inv_id := actor_id
@@ -23,11 +24,11 @@ func act(actor_id: String, cur_level: LevelBase) -> Variant:
 		inv_id = inventory_override
 
 	var inv := Driver.instance().inventory_mgr.get_inventory(inv_id)
-	if !inv.has_item(item, remove_quantity):
-		if inv.remove_item(item, remove_quantity):
-			return _run_next(success_chain, actor_id, cur_level)
+	if inv.has_item(item, remove_quantity):
+		if inv.remove(item, remove_quantity):
+			return _run_success(actor_id, cur_level)
 	
-	return _run_next(failure_chain, actor_id, cur_level)
+	return _run_failure(actor_id, cur_level)
 
 
 func terminal_callback(ctx: Variant) -> void:

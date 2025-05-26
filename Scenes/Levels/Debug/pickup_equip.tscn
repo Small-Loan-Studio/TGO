@@ -1,0 +1,77 @@
+[gd_scene load_steps=16 format=3 uid="uid://bykn4mr24lcww"]
+
+[ext_resource type="PackedScene" uid="uid://dyq8mcdsutnsa" path="res://Scenes/Components/LevelBase.tscn" id="1_xjhjq"]
+[ext_resource type="PackedScene" uid="uid://rgvfsx60t2ap" path="res://Scenes/Components/Inventory/Item.tscn" id="2_jtnr4"]
+[ext_resource type="Resource" path="res://Scripts/Resources/Items/EmptyBottle.tres" id="4_8h54v"]
+[ext_resource type="PackedScene" uid="uid://bmkq7u7c66eru" path="res://Scenes/Components/signal_to_effect.tscn" id="5_hs7lt"]
+[ext_resource type="Script" path="res://Scripts/Resources/Effects/DebugEffect.gd" id="6_wwmir"]
+[ext_resource type="Script" path="res://Scripts/Resources/Effects/UpdateEquipmentEffect.gd" id="7_kwsgg"]
+[ext_resource type="Resource" uid="uid://2vts34ovdlva" path="res://Scripts/Resources/Items/Torch.tres" id="8_6uwuj"]
+[ext_resource type="Script" path="res://Scripts/Resources/Effects/InventoryRemoveItemEffect.gd" id="9_a066t"]
+
+[sub_resource type="Resource" id="Resource_61d4b"]
+script = ExtResource("6_wwmir")
+message = "Picked up hardtack"
+
+[sub_resource type="Resource" id="Resource_525n4"]
+script = ExtResource("6_wwmir")
+message = "failed to equip hardtack (whew)"
+
+[sub_resource type="Resource" id="Resource_ii5bs"]
+script = ExtResource("6_wwmir")
+message = "successfully equipped hardtack (wat)"
+
+[sub_resource type="Resource" id="Resource_rua6u"]
+script = ExtResource("7_kwsgg")
+slot = "right"
+unequip_previous = true
+item = ExtResource("4_8h54v")
+action = "equip"
+success_chain = Array[Resource("res://Scripts/Resources/Effect.gd")]([SubResource("Resource_ii5bs")])
+failure_chain = Array[Resource("res://Scripts/Resources/Effect.gd")]([SubResource("Resource_525n4")])
+
+[sub_resource type="Resource" id="Resource_clxgt"]
+script = ExtResource("6_wwmir")
+message = "equipped torch!"
+
+[sub_resource type="Resource" id="Resource_yegxl"]
+script = ExtResource("9_a066t")
+item = ExtResource("4_8h54v")
+remove_quantity = 1
+inventory_override = ""
+success_chain = Array[Resource("res://Scripts/Resources/Effect.gd")]([])
+failure_chain = Array[Resource("res://Scripts/Resources/Effect.gd")]([])
+
+[sub_resource type="Resource" id="Resource_1vw4n"]
+script = ExtResource("7_kwsgg")
+slot = "left"
+unequip_previous = true
+item = ExtResource("8_6uwuj")
+action = "equip"
+success_chain = Array[Resource("res://Scripts/Resources/Effect.gd")]([SubResource("Resource_clxgt"), SubResource("Resource_yegxl")])
+failure_chain = Array[Resource("res://Scripts/Resources/Effect.gd")]([])
+
+[node name="PickupEquip" instance=ExtResource("1_xjhjq")]
+
+[node name="EMPTY_BOTTLE" parent="Objects/Items" index="0" instance=ExtResource("2_jtnr4")]
+position = Vector2(180, 168)
+item = ExtResource("4_8h54v")
+quantity = 1
+
+[node name="OnPickup" parent="Objects/Items/EMPTY_BOTTLE" index="2" instance=ExtResource("5_hs7lt")]
+use_id = "devin"
+effects = Array[Resource("res://Scripts/Resources/Effect.gd")]([SubResource("Resource_61d4b"), SubResource("Resource_rua6u")])
+
+[node name="TORCH" parent="Objects/Items" index="1" instance=ExtResource("2_jtnr4")]
+position = Vector2(246, 81)
+item = ExtResource("8_6uwuj")
+quantity = 1
+
+[node name="OnPickup" parent="Objects/Items/TORCH" index="2" instance=ExtResource("5_hs7lt")]
+use_id = "devin"
+effects = Array[Resource("res://Scripts/Resources/Effect.gd")]([SubResource("Resource_1vw4n")])
+
+[node name="PlayerStart" type="Node2D" parent="Markers" index="0"]
+
+[connection signal="picked_up" from="Objects/Items/EMPTY_BOTTLE" to="Objects/Items/EMPTY_BOTTLE/OnPickup" method="trigger"]
+[connection signal="picked_up" from="Objects/Items/TORCH" to="Objects/Items/TORCH/OnPickup" method="trigger"]

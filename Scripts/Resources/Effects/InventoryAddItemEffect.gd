@@ -1,3 +1,4 @@
+@tool
 class_name InventoryAddItemEffect
 extends Effect
 
@@ -11,11 +12,17 @@ extends Effect
 ## the item to
 @export var inventory_override: String
 
-## Effect execution continues down this path if item addition was successful
-@export var success_chain: Array[Effect]
 
-## Effect execution continues down this path if item addition was not successful
-@export var failure_chain: Array[Effect]
+func _init() -> void:
+	super._init()
+	_expose_result_chains = true
+
+
+# ## Effect execution continues down this path if item addition was successful
+# @export var success_chain: Array[Effect]
+
+# ## Effect execution continues down this path if item addition was not successful
+# @export var failure_chain: Array[Effect]
 
 func act(actor_id: String, cur_level: LevelBase) -> Variant:
 	var inv_id := actor_id
