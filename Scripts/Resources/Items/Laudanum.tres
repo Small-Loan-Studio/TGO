@@ -1,6 +1,6 @@
 [gd_resource type="Resource" script_class="Item" load_steps=3 format=3 uid="uid://djcg0x5p8m34q"]
 
-[ext_resource type="Texture2D" uid="uid://3cvlh3bqqte5" path="res://Art/Items/Key.png" id="1_f2qss"]
+[ext_resource type="Texture2D" uid="uid://bk5g3c50cvkuj" path="res://Art/Items/potion.png" id="1_7iskc"]
 [ext_resource type="Script" path="res://Scripts/Components/Inventory/Item.gd" id="1_rm5ye"]
 
 [resource]
@@ -11,5 +11,5 @@ type = 0
 description = "A vial of laudanum"
 stackable = false
 stack_size = 1
-icon = ExtResource("1_f2qss")
+icon = ExtResource("1_7iskc")
 gear_spec = Array[Resource("res://Scripts/Resources/GearSpec.gd")]([])

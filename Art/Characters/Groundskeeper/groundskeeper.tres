@@ -1,0 +1,39 @@
+[gd_resource type="SpriteFrames" load_steps=6 format=3 uid="uid://6kgvj3it01mi"]
+
+[ext_resource type="Texture2D" uid="uid://clxti776inv3o" path="res://Art/Characters/Groundskeeper/Groundskeeper 4 Directions Walk Spritesheet.png" id="1_y78w8"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4cich"]
+atlas = ExtResource("1_y78w8")
+region = Rect2(0, 0, 18, 44)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0p5pu"]
+atlas = ExtResource("1_y78w8")
+region = Rect2(18, 0, 18, 44)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wn02a"]
+atlas = ExtResource("1_y78w8")
+region = Rect2(36, 0, 18, 44)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_g4ksq"]
+atlas = ExtResource("1_y78w8")
+region = Rect2(54, 0, 18, 44)
+
+[resource]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4cich")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0p5pu")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_wn02a")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_g4ksq")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
