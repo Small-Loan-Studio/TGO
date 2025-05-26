@@ -7,7 +7,7 @@
 
 [sub_resource type="Resource" id="Resource_gtm54"]
 script = ExtResource("5_0ywu3")
-load_level_name = "BadLevelB"
+load_level_name = "Debug/BadLevelB"
 marker_name = ""
 
 [node name="LevelBase" instance=ExtResource("1_p0kji")]

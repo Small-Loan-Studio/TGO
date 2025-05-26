@@ -1,7 +1,9 @@
 @tool
 ## Node that can be attached to make something an interactable object.
 ## When interaction is triggered (manual or automatic) the list of attached
-## actions will be run and then the triggered signal will be emitted.
+## actions will be run and then the triggered signal will be emitted. If no
+## effects are attached to the action the triggered signal will still be
+## emitted.
 ##
 ## Must be attached to scenes that contain a LevelBase as a ancestor.
 class_name Interactable
@@ -35,7 +37,17 @@ const InteractPanelScene: PackedScene = preload(
 ## only operates correctly on a MoveableBlock.
 ##
 ##   Type: Map[Enums.ActionVerb, Array[Effect]]
+##
+## TODO: This is a load bearing mistake. If an interactable gets embedded in
+## another scene then changes to the action_map get mirrored to all instances
+## of the embedding scene. We need to replace this with a composition solution:
+##   1. For each action type create a node that contains an Array[Effect]
+##   2. construct the action_map in _ready based on the Node's children
+##   3. remove action_map and burn Godot alive
+## TODOTODO: file issue to track this
 @export var action_map: Dictionary = {}
+
+@export var _display_hook: Sprite2D
 
 var examine: InteractPanel:
 	get:
@@ -61,7 +73,11 @@ func activate() -> void:
 	var player: Character = Driver.instance().player
 	var pmid: Vector2 = player.position
 	var tmid: Vector2 = self.owner.position
-	var tsize: Vector2 = self.owner.size
+	var tsize := Vector2.ZERO
+	if self._display_hook != null:
+		tsize = _display_hook.get_rect().position
+	else:
+		tsize = self.owner.size
 	tmid.x -= tsize.x / 2
 	tmid.y -= tsize.y / 2
 
@@ -76,11 +92,13 @@ func activate() -> void:
 	_examine_scene.actions.assign(examine_actions)
 	_examine_scene.input = Enums.InputAction.EXAMINE
 	_examine_scene.target = self.owner
+	_examine_scene.target_size = tsize
 
 	_interact_scene = InteractPanelScene.instantiate()
 	_interact_scene.actions.assign(interact_actions)
 	_interact_scene.input = Enums.InputAction.INTERACT
 	_interact_scene.target = self.owner
+	_interact_scene.target_size = tsize
 
 	if (tmid - pmid).x < 0:
 		_examine_scene.layout = InteractOption.LAYOUT_LEFT
@@ -111,10 +129,11 @@ func deactivate() -> void:
 
 
 func trigger(actor: Character, action: Enums.ActionVerb = default_verb) -> void:
-	if !action_map.has(action):
-		return
+	var action_list: Array[Effect] = []
+	if action_map.has(action):
+		action_list.assign(action_map[action])
 
-	for a: Effect in action_map[action]:
+	for a: Effect in action_list:
 		if a == null:
 			continue
 		a.parent = self
@@ -183,6 +202,7 @@ func _set(prop: StringName, _val: Variant) -> bool:
 		var verb := Enums.action_verb_from_str(parts[0])
 
 		if action_map.has(verb) and len(_val) == 0:
+			print("action_map[%s] = %s" % [Enums.action_verb_name(verb), _val])
 			# this branch runs when we had a verb and we remove the last element;
 			# in that case just remove the verb entirely
 			action_map[verb] = _val
