@@ -94,8 +94,7 @@ func has_room(item: ItemStack, allow_growth: bool = true) -> bool:
 
 	if allow_growth:
 		return _can_grow(new_stacks)
-	else:
-		return new_stacks == 0
+	return new_stacks == 0
 
 func has_room_by_item(item: Item, count: int = 1) -> bool:
 	var max_stack_size: int = item.stack_size

@@ -55,7 +55,7 @@ func equip(actor: Character, tgt: Item, tgt_slot: String) -> bool:
 				break
 	else:
 		use_slot = Enums.gear_slot_from_str(tgt_slot)
-	
+
 	if actor.in_slot(use_slot) != null:
 		actor.unequip(use_slot)
 	return actor.equip(use_slot, tgt)

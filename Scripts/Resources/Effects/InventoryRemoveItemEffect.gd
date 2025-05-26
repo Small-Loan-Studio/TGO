@@ -27,7 +27,7 @@ func act(actor_id: String, cur_level: LevelBase) -> Variant:
 	if inv.has_item(item, remove_quantity):
 		if inv.remove(item, remove_quantity):
 			return _run_success(actor_id, cur_level)
-	
+
 	return _run_failure(actor_id, cur_level)
 
 
