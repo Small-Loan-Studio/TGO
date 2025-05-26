@@ -24,6 +24,7 @@ func _init() -> void:
 # ## Effect execution continues down this path if item addition was not successful
 # @export var failure_chain: Array[Effect]
 
+
 func act(actor_id: String, cur_level: LevelBase) -> Variant:
 	var inv_id := actor_id
 	if inventory_override != "":

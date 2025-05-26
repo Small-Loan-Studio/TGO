@@ -7,7 +7,7 @@ extends Effect
 ## What slot are we changing; if "any" and:
 ##   unequiping -> we will unequip all items
 ##   equiping -> we will equip the item in the first available slot
-@export_enum("left", "right", "any")var slot: String = "any"
+@export_enum("left", "right", "any") var slot: String = "any"
 
 ## When equippeng a new item should we replace an existing item in that
 ## slot
@@ -16,11 +16,13 @@ extends Effect
 ## What item is being added/removed; if not set only unequip will be attempted
 @export var item: Item
 
-@export_enum("equip", "unequip")var action: String = "equip"
+@export_enum("equip", "unequip") var action: String = "equip"
+
 
 func _init() -> void:
 	super._init()
 	_expose_result_chains = true
+
 
 func act(actor_id: String, cur_level: LevelBase) -> Variant:
 	var maybe_actor := cur_level.get_by_id(actor_id)
@@ -71,5 +73,3 @@ func unequip(actor: Character, tgt: Item, tgt_slot: String) -> bool:
 
 	actor.unequip(Enums.gear_slot_from_str(tgt_slot))
 	return true
-
-

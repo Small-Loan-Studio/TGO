@@ -1,7 +1,6 @@
 class_name DebugEffect
 extends Effect
 
-
 @export var message: String = "debug message"
 
 

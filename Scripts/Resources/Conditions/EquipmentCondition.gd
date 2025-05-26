@@ -5,6 +5,7 @@ extends TriggerCondition
 @export_enum("equipped", "unequipped") var check_type: String = "equipped"
 @export_enum("left", "right", "any") var slot_requirement: String = "any"
 
+
 func evaluate(actor_id: String) -> bool:
 	var maybe_actor := Driver.instance().get_node(actor_id)
 	if maybe_actor == null || !(maybe_actor is Character):
@@ -21,6 +22,7 @@ func evaluate(actor_id: String) -> bool:
 
 	return false
 
+
 func _equipped(actor: Character) -> bool:
 	var item: Item = null
 	match slot_requirement:
@@ -32,6 +34,7 @@ func _equipped(actor: Character) -> bool:
 			return actor.is_equipped(check_item)
 
 	return item != null && item.id == check_item.id
+
 
 func _unequipped(actor: Character) -> bool:
 	var item: Item = null

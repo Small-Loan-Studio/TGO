@@ -206,7 +206,10 @@ class GroupNames:
 
 class WwiseIds:
 	static var AudioManager := "Audio Manager"
+
+
 #gdlint: enable=class-variable-name
+
 
 static func mk_array_prop(name: String, usage: int, type_name: String) -> Dictionary:
 	return {
@@ -214,9 +217,13 @@ static func mk_array_prop(name: String, usage: int, type_name: String) -> Dictio
 		"type": TYPE_ARRAY,
 		"usage": usage,
 		"hint": PROPERTY_HINT_ARRAY_TYPE,
-		"hint_string": "%d/%d:%s" % [
-			TYPE_OBJECT,
-			TYPE_BASIS,
-			type_name,
-		],
+		"hint_string":
+		(
+			"%d/%d:%s"
+			% [
+				TYPE_OBJECT,
+				TYPE_BASIS,
+				type_name,
+			]
+		),
 	}

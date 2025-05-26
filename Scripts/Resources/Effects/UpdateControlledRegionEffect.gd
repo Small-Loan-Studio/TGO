@@ -5,6 +5,7 @@ extends Effect
 @export_enum("passable", "visible", "toggle", "unchanged") var passable_state: String = "unchanged"
 @export_enum("passable", "visible", "toggle", "unchanged") var visible_state: String = "unchanged"
 
+
 func act(_actor_id: String, cur_level: LevelBase) -> Variant:
 	var region: ControlledRegion = cur_level.get_region_by_id(region_id)
 	if region == null:

@@ -70,6 +70,7 @@ func _exit_tree() -> void:
 	remove_from_group(Utils.GroupNames.ControlledRegions)
 	_rsm.region_changed.disconnect(_on_state_change)
 
+
 func _on_state_change(key: String, _old: RegionState, _new: RegionState) -> void:
 	# Check if the change is relevant to this region
 	if key != region_id:

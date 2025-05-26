@@ -15,7 +15,6 @@ var parent: Node2D
 # DECISION: We should switch to this; at the point I made this decision I
 #           don't think I was considering the singleton nature of resources
 
-
 ## Effect execution continues down this path if item removal was successful
 var success_chain: Array[Effect]
 
@@ -69,6 +68,7 @@ func _run_success(actor_id: String, cur_level: LevelBase) -> Variant:
 func _run_failure(actor_id: String, cur_level: LevelBase) -> Variant:
 	return _run_next(failure_chain, actor_id, cur_level)
 
+
 func _to_string() -> String:
 	if get_script() != null:
 		var scr: Script = get_script()
@@ -93,6 +93,7 @@ func _run_next(chain: Array[Effect], actor_id: String, cur_level: LevelBase) -> 
 		return null
 
 	return chain_ctx
+
 
 ## Provides a default implementation of running the terminal callbacks
 ## for a chain of effects. Intended to be used to handle the contexts
