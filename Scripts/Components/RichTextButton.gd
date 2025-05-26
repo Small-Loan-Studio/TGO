@@ -7,14 +7,19 @@ var closeTags: String = ""
 var labelText: String = "Default"
 
 func _ready()->void:
-	update_button()
+	#update_button()
+	pass
 
 func update_button()->void:
 	label.parse_bbcode("%s %s %s" % [openTags, labelText, closeTags])
-	custom_minimum_size = Vector2(label.get_content_width(),label.get_content_height())
+	#custom_minimum_size = Vector2(label.get_content_width(),label.get_content_height())
+
+func set_button_size(width: float, length: float) -> void:
+	custom_minimum_size = Vector2(width,length)
 
 func set_rich_text(nText: String)->void:
 	labelText = nText
+	update_button()
 
 func set_text_color(color: String)->void: # color is hexcode format XXXXXX
 	openTags = (openTags + "[color=#%s]" % [color])
