@@ -39,3 +39,17 @@ func partially_stack(other: ItemStack) -> ItemStack:
 
 func _to_string() -> String:
 	return "ItemStack<" + str(item) + "," + str(quantity) + ">"
+
+
+static func mk(contents: Item, qty: int = 1) -> ItemStack:
+	if qty <= 0:
+		printerr("Attempted to create an ItemStack with a quantity of 0 or less")
+		return null
+	if qty > contents.stack_size:
+		printerr("Attempted to create an ItemStack with a quantity greater than the stack size")
+		qty = contents.stack_size
+
+	var new_stack := ItemStack.new()
+	new_stack.item = contents
+	new_stack.quantity = qty
+	return new_stack

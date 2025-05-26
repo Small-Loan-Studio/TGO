@@ -32,6 +32,7 @@ func _enter_tree() -> void:
 		printerr("ControlledRegion is no id set, will not function")
 		return
 
+	add_to_group(Utils.GroupNames.ControlledRegions)
 	_rsm = Driver.instance().region_state_mgr
 	_rsm.region_changed.connect(_on_state_change)
 
@@ -66,6 +67,7 @@ func _exit_tree() -> void:
 	if Engine.is_editor_hint() || region_id.is_empty():
 		return
 
+	remove_from_group(Utils.GroupNames.ControlledRegions)
 	_rsm.region_changed.disconnect(_on_state_change)
 
 

@@ -239,6 +239,18 @@ func equip(slot: Enums.GearSlot, item: Item) -> bool:
 	return true
 
 
+func in_slot(slot: Enums.GearSlot) -> Item:
+	return _equipment.get(slot, null)
+
+
+func is_equipped(item: Item) -> bool:
+	for slot: Enums.GearSlot in _equipment:
+		var gear: Item = _equipment[slot]
+		if gear != null && gear.id == item.id:
+			return true
+	return false
+
+
 # removes equipment from slot, if any is present.
 func unequip(slot: Enums.GearSlot) -> void:
 	print("unequip(%s) - Current equip load: %s" % [slot, _equipment])

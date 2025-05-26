@@ -138,3 +138,16 @@ func get_by_id(id: String) -> Node2D:
 		if n.id.to_lower() == id:
 			return n
 	return null
+
+
+func get_region_by_id(region_id: String) -> ControlledRegion:
+	var region: ControlledRegion = null
+	for maybe_region: Node2D in get_tree().get_nodes_in_group(Utils.GroupNames.ControlledRegions):
+		if maybe_region is ControlledRegion:
+			region = maybe_region as ControlledRegion
+			break
+
+	if region == null || region.region_id != region_id:
+		return null
+
+	return region
