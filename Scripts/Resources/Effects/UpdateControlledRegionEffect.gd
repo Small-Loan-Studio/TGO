@@ -5,30 +5,33 @@ extends Effect
 @export_enum("passable", "visible", "toggle", "unchanged") var passable_state: String = "unchanged"
 @export_enum("passable", "visible", "toggle", "unchanged") var visible_state: String = "unchanged"
 
-func act(actor_id: String, cur_level: LevelBase) -> Variant:
+func act(_actor_id: String, cur_level: LevelBase) -> Variant:
 	var region: ControlledRegion = cur_level.get_region_by_id(region_id)
 	if region == null:
 		printerr("Failed to find controlled region with id: %s" % [region_id])
 		return null
 
-	var old_state := Driver.instance().region_state_mgr.get_state(region_id)
-	
+	var rsm := Driver.instance().region_state_mgr
+	var old_state := rsm.get_state(region_id)
+
 	if passable_state != "unchanged":
 		match passable_state:
 			"passable":
-				region.passable = true
+				old_state.passable = true
 			"unpassable":
-				region.passable = false
+				old_state.passable = false
 			"toggle":
-				region.passable = !region.passable
+				old_state.passable = !old_state.passable
 
 	if visible_state != "unchanged":
 		match visible_state:
 			"visible":
-				region.visible = true
+				old_state.visible = true
 			"invisible":
-				region.visible = false
+				old_state.visible = false
 			"toggle":
-				region.visible = !region.visible
+				old_state.visible = !region.visible
+
+	rsm.set_state(region_id, old_state)
 
 	return null
