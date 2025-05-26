@@ -200,6 +200,7 @@ static func ersatz_dialogic_get_var(path: String) -> Variant:
 class GroupNames:
 	static var HasID := "NodesWithID"
 	static var AudioNodes := "RegisteredAudioNode"
+	static var ControlledRegions := "ControlledRegions"
 	static var Doors := "Doors"
 
 

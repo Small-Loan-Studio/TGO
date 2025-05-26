@@ -10,15 +10,17 @@ signal inventory_item_inserted(item: ItemStack)
 @export var size: int = -1
 
 
-func has_item_by_id(item_id: String) -> bool:
+func has_item_by_id(item_id: String, count: int = 1) -> bool:
 	for stack in _items:
 		if stack.item.id == item_id:
-			return true
+			count -= stack.quantity
+			if count <= 0:
+				return true
 	return false
 
 
-func has_item(item: Item) -> bool:
-	return has_item_by_id(item.id)
+func has_item(item: Item, count: int = 1) -> bool:
+	return has_item_by_id(item.id, count)
 
 
 func count_item_by_id(item_id: String) -> int:
@@ -59,11 +61,27 @@ func insert(new_item: ItemStack) -> bool:
 	return inserted
 
 
+func insert_item(item: Item, count: int = 1) -> bool:
+	if !has_room_by_item(item, count):
+		return false
+
+	var remaining := count
+	while remaining > 0:
+		var new_stack := ItemStack.new()
+		new_stack.item = item
+		new_stack.quantity = min(remaining, item.stack_size)
+		remaining -= new_stack.quantity
+		if !insert(new_stack):
+			printerr("Surpisingly failed to insert %d %s" % [count, item.id])
+
+	return true
+
+
 func _can_grow(delta: int = 1) -> bool:
 	return size == -1 || (_items.size() + delta) <= size
 
 
-func has_room(item: ItemStack) -> bool:
+func has_room(item: ItemStack, allow_growth: bool = true) -> bool:
 	var new_stacks: int = 1
 	for slot in _items:
 		if slot.can_stack(item):
@@ -73,7 +91,22 @@ func has_room(item: ItemStack) -> bool:
 		if slot.can_partially_stack(item):
 			new_stacks = 1
 			break
-	return _can_grow(new_stacks)
+
+	if allow_growth:
+		return _can_grow(new_stacks)
+	else:
+		return new_stacks == 0
+
+func has_room_by_item(item: Item, count: int = 1) -> bool:
+	var max_stack_size: int = item.stack_size
+	var full_stacks := count / max_stack_size
+	var overflow := count - (max_stack_size * count)
+	var stacks_needed := full_stacks
+	if overflow > 0:
+		if !has_room(ItemStack.mk(item, overflow), false):
+			stacks_needed += 1
+
+	return _can_grow(stacks_needed)
 
 
 func remove_by_id(item_id: String, count: int = 1) -> bool:

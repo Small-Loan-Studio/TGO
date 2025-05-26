@@ -11,6 +11,8 @@ var parent: Node2D
 # TODO: why aren't we passing the parent into act again? Consider moving to
 #       that model instead of an invisible coupling where it gets magically set
 #       by the calling code.
+# DECISION: We should switch to this; at the point I made this decision I
+#           don't think I was considering the singleton nature of resources
 
 
 ## Called with the actor triggering this action and the LevelBase context in
@@ -29,3 +31,30 @@ func act(_actor_id: String, _cur_level: LevelBase) -> Variant:
 ## Will only be called for effects triggered by a Switch.
 func terminal_callback(_arg: Variant) -> void:
 	pass
+
+
+## Provides a default implementation of running a chain of effects and
+## collecting the effects + terminal callback contexts. Should be paired
+## by calling _run_next_callbacks from the class that uses this in its
+## terminal_callback implementation.
+func _run_next(chain: Array[Effect], actor_id: String, cur_level: LevelBase) -> Variant:
+	var chain_ctx: Array[Variant] = []
+	for e in chain:
+		e.parent = parent
+		var ctx: Variant = e.act(actor_id, cur_level)
+		if ctx != null:
+			chain_ctx.append([e, ctx])
+
+	if chain_ctx.size() == 0:
+		return null
+
+	return chain_ctx
+
+## Provides a default implementation of running the terminal callbacks
+## for a chain of effects. Intended to be used to handle the contexts
+## constructed from _run_next.
+func _run_next_callbacks(ctx: Variant) -> void:
+	for ele_pair: Variant in ctx as Array[Variant]:
+		var ele: Effect = ele_pair[0]
+		var arg: Variant = ele_pair[1]
+		ele.terminal_callback(arg)
