@@ -1,4 +1,4 @@
-[gd_scene load_steps=30 format=3 uid="uid://c3g8eee2id8cx"]
+[gd_scene load_steps=29 format=3 uid="uid://c3g8eee2id8cx"]
 
 [ext_resource type="PackedScene" uid="uid://dyq8mcdsutnsa" path="res://Scenes/Components/LevelBase.tscn" id="1_nvpjp"]
 [ext_resource type="TileSet" uid="uid://c72m3jled4jfg" path="res://Art/Environment/ext_simple_tileset.tres" id="2_x48i8"]
@@ -10,7 +10,6 @@
 [ext_resource type="PackedScene" uid="uid://rgvfsx60t2ap" path="res://Scenes/Components/Inventory/Item.tscn" id="9_6kywj"]
 [ext_resource type="Resource" path="res://Dialogue/Jefferson/Jefferson3a1.dtl" id="9_76fxj"]
 [ext_resource type="PackedScene" uid="uid://d1y25semyqxkw" path="res://Scenes/Components/Greyboxing/MoveableBlock.tscn" id="9_s2t1c"]
-[ext_resource type="Script" path="res://Scripts/Components/NPC.gd" id="9_t2i8a"]
 [ext_resource type="Resource" uid="uid://bqnkygsxhh7t1" path="res://Scripts/Resources/NPCs/Lisa.tres" id="10_a382r"]
 [ext_resource type="Resource" path="res://Dialogue/Lisa/Lisa_3a5.dtl" id="11_c3y8n"]
 [ext_resource type="Resource" uid="uid://bxc244asgqgoi" path="res://Scripts/Resources/Items/Collectible.tres" id="11_rpk22"]
@@ -108,25 +107,17 @@ config = ExtResource("12_uqklw")
 dlg = SubResource("Resource_x8oy0")
 id = "Bartholomew"
 
-[node name="David Sharp" type="CharacterBody2D" parent="Objects/Characters" index="3" groups=["NodesWithID"] instance=ExtResource("5_37rx3")]
+[node name="David Sharp" parent="Objects/Characters" index="3" instance=ExtResource("5_37rx3")]
 position = Vector2(5019.16, 5752.85)
-collision_layer = 5
-motion_mode = 1
-script = ExtResource("9_t2i8a")
 config = ExtResource("14_rr06e")
 dlg = SubResource("Resource_lgpmk")
 id = "David Sharp"
-activate_external_sensors = false
 
-[node name="Elias Sharp" type="CharacterBody2D" parent="Objects/Characters" index="4" groups=["NodesWithID"] instance=ExtResource("5_37rx3")]
+[node name="Elias Sharp" parent="Objects/Characters" index="4" instance=ExtResource("5_37rx3")]
 position = Vector2(5076, 5753)
-collision_layer = 5
-motion_mode = 1
-script = ExtResource("9_t2i8a")
 config = ExtResource("16_l4sde")
 dlg = SubResource("Resource_jjayp")
 id = "Elias Sharp"
-activate_external_sensors = false
 
 [node name="COLLECTIBLE" parent="Objects/Items" index="0" instance=ExtResource("9_6kywj")]
 position = Vector2(3496, 5391)
