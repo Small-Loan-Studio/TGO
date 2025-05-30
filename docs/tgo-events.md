@@ -5,27 +5,29 @@
   - [Core Concepts](#core-concepts)
     - [Effects](#effects)
     - [Trigger Conditions](#trigger-conditions)
+      - [Special Case: On completion](#special-case-on-completion)
     - [Branching Effects](#branching-effects)
   - [Available Effects](#available-effects)
     - [Inventory Effects](#inventory-effects)
       - [Add Item Effect (`InventoryAddItemEffect`)](#add-item-effect-inventoryadditemeffect)
       - [Remove Item Effect (`InventoryRemoveItemEffect`)](#remove-item-effect-inventoryremoveitemeffect)
       - [Update Character's gear (`UpdateEquipmentEffect`)](#update-characters-gear-updateequipmenteffect)
-    - [Quest Effects](#quest-effects)
-      - [Start Quest Effect (`SetQuestStateEffect`)](#start-quest-effect-setqueststateeffect)
+    - [Set Quest State (`SetQuestStateEffect`)](#set-quest-state-setqueststateeffect)
     - [Time Effects](#time-effects)
   - [Logical Operations](#logical-operations)
     - [Conditonally perform some effect (`ConditionalEffect`)](#conditonally-perform-some-effect-conditionaleffect)
-    - [](#)
   - [Available Conditions](#available-conditions)
-    - [Inventory Conditions](#inventory-conditions)
-      - [Has Item Condition (`InventoryHasItemCondition`)](#has-item-condition-inventoryhasitemcondition)
-      - [Has Room Condition (`InventoryHasRoomCondition`)](#has-room-condition-inventoryhasroomcondition)
-    - [Quest Conditions](#quest-conditions)
-      - [Quest State Condition (`QuestStateCondition`)](#quest-state-condition-queststatecondition)
+    - [Logical Conditions](#logical-conditions)
+      - [Logical AND (`AndCondition`)](#logical-and-andcondition)
+      - [Logical OR (`OrCondition`)](#logical-or-orcondition)
+      - [True (`TrueCondition`)](#true-truecondition)
+      - [False (`FalseCondition`)](#false-falsecondition)
+      - [Not (`InvertCondition`)](#not-invertcondition)
+    - [InventoryCheckCondition](#inventorycheckcondition)
+      - [Character Gear Check](#character-gear-check)
+    - [Quest State Condition (`QuestStateCondition`)](#quest-state-condition-queststatecondition)
+  - [World state check (`DialogicVARCondition`)](#world-state-check-dialogicvarcondition)
     - [Time Conditions](#time-conditions)
-      - [Time of Day Condition (`TimeOfDayCondition`)](#time-of-day-condition-timeofdaycondition)
-      - [Time Range Condition (`TimeRangeCondition`)](#time-range-condition-timerangecondition)
 
 ## Introduction
 
@@ -51,7 +53,10 @@ Trigger Conditions are checks that determine whether an effect should run. They 
 - The current time of day
 - And more!
 
-Multiple conditions can be combined - all conditions must be true for the effect to trigger.
+Multiple conditions can be combined - all conditions must be true for the effect to trigger. In this way an `Array[TriggorCondition]` is implicitly a logical AND operation.
+
+#### Special Case: On completion
+// TODO
 
 ### Branching Effects
 
@@ -94,9 +99,7 @@ Removes items from a specific inventory.
 #### Update Character's gear (`UpdateEquipmentEffect`)
 // TODO
 
-### Quest Effects
-
-#### Start Quest Effect (`SetQuestStateEffect`)
+### Set Quest State (`SetQuestStateEffect`)
 
 Updates the state of a specified quest.
 
@@ -114,49 +117,71 @@ None yet
 
 ## Logical Operations
 ### Conditonally perform some effect (`ConditionalEffect`)
-### 
+// TODO
+
+AudioEventEffect
+// TODO
+
+DebugEffect
+// TODO
+
+DialogueEffect
+// TODO
+
+ForceEffectId
+// TODO
+
+ItemPickupEffect
+// TODO
+
+LevelLoadEffect
+// TODO
+
+SetVAREffect
+// TODO
+
+TeleportEffect
+// TODO
+
+ToggleDoorEffect
+// TODO
+
+UpdateControlledRegionEffect
+// TODO
 
 ## Available Conditions
 
-### Inventory Conditions
+### Logical Conditions
+#### Logical AND (`AndCondition`)
+// TODO
 
-#### Has Item Condition (`InventoryHasItemCondition`)
-Checks if an inventory has a specific item.
+#### Logical OR (`OrCondition`)
+// TODO
 
-**Properties:**
-- `inventory_id`: The ID of the inventory to check
-- `item_id`: The ID of the item to look for
-- `count`: (Optional) Number of items required (default: 1)
-- `exact`: (Optional) If true, requires exactly the count (default: false)
+#### True (`TrueCondition`)
+// TODO
 
-#### Has Room Condition (`InventoryHasRoomCondition`)
-Checks if an inventory has room for an item.
+#### False (`FalseCondition`)
+// TODO
 
-**Properties:**
-- `inventory_id`: The ID of the inventory to check
-- `item_id`: The ID of the item to check space for
-- `count`: (Optional) Number of items to check space for (default: 1)
+#### Not (`InvertCondition`)
+// TODO
 
-### Quest Conditions
+### InventoryCheckCondition
+// TODO
 
-#### Quest State Condition (`QuestStateCondition`)
+#### Character Gear Check
+// TODO
+
+### Quest State Condition (`QuestStateCondition`)
 Checks the state of a quest.
 
 **Properties:**
 - `quest_id`: The ID of the quest to check
 - `state`: The state to check for (one of: "not_started", "in_progress", "completed", "failed")
 
+## World state check (`DialogicVARCondition`)
+
 ### Time Conditions
 
-#### Time of Day Condition (`TimeOfDayCondition`)
-Checks if it's a specific time of day.
-
-**Properties:**
-- `time_of_day`: The time of day to check for (one of: "dawn", "day", "dusk", "night")
-
-#### Time Range Condition (`TimeRangeCondition`)
-Checks if the current time is within a specific range.
-
-**Properties:**
-- `start_time`: Start time in 24-hour format (HH:MM)
-- `end_time`: End time in 24-hour format (HH:MM) 
+None yet
