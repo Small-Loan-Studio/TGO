@@ -8,6 +8,7 @@ func _init() -> void:
 	super._init()
 	_expose_result_chains = true
 
+
 func act(actor_id: String, cur_level: LevelBase) -> Variant:
 	for c in condition:
 		if !c.evaluate(actor_id):
