@@ -68,7 +68,19 @@ and there are generic Effects allowing you to create branching behaviors if
 necessary.
 
 #### Actor ID
-// TODO summarize Effect.gd notes on what actor_id is and how it's used.
+
+The `actor_id` represents the entity that triggered the effect. When an effect is executed, this ID identifies which character, quest, or game object initiated the action.
+
+**Key Usage Patterns:**
+- Effects use this ID to find the triggering entity in the game world
+- Many effects default to modifying the actor's inventory unless overridden
+- Movement effects like `TeleportEffect` move the triggering actor
+- Equipment effects modify the triggering actor's gear
+
+**Examples:**
+- When a player interacts with a switch, the player's ID becomes the `actor_id`
+- When a quest triggers an effect, the quest ID becomes the `actor_id`
+- Effects like `InventoryAddItemEffect` add items to the actor's inventory by default
 
 #### Special Case: completion callbacks
 > Only interesting as Effect authors. If you are only _using_ effects this
@@ -114,7 +126,19 @@ activated, has a series of effects that will run.
 An exception to this is the `ConditionalEffect` which we will discuss later.
 
 #### Evaluation ID
-// TODO: discuss what actor_id is within the context of a TrigerCondition
+
+The `actor_id` (referred to as "evaluation ID" in this context) represents the entity for which the condition is being evaluated. This determines which entity's state should be checked when the condition runs.
+
+**Key Usage Patterns:**
+- Conditions use this ID to check the specific entity's state
+- Many conditions have override fields but default to using the `actor_id`
+- Inventory and equipment conditions check the actor's possessions
+- Quest conditions typically don't use this ID since quests are global
+
+**Examples:**
+- `InventoryCheckCondition` checks if the actor has certain items (unless `inventory_id` is overridden)
+- `EquipmentCondition` verifies what the actor character has equipped
+- When a player triggers an interaction, conditions evaluate against the player's state
 
 ## Available Effects
 
