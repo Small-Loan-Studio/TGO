@@ -199,12 +199,14 @@ Sends an Audio Event to Wwise.
 - `event_name`: Name of the audio event to play
 - `fire_type`: "one shot" or "until exit" -- until_exit only works when used
   as part of a Switch's effect chain
-- `stop_fade_time`: Fade time when stopping (for "until exit" type)
+- `stop_fade_time`: Fade time when stopping (for "until exit" type, only valid when run from a Switch effect chain)
 - `interpolation_mode`: Interpolation mode for fade
 
 **Does not branch**
 
-**Object determination:** // TODO : discuss how actors are resolved and the interplay with what configuration is used. Basically summarize the docs on actor_id_override from the source
+**Object determination:** If `actor_id_override` is set, it will be used as the actor ID. If both the effect actor ID and the override ID are empty, the system examines the parent node and looks for an attached AudioNode. For effects run from an Interactable context, it checks the Interactable's parent; in all other cases it checks only the parent. If all this fails, the effect falls back to using the AudioManager's ID.
+
+When we fallback to AudioManager that will be fired as a one-shot event without the interpolation mode.
 
 ## Starting a Dialogue
 > `DialogueEffect`
