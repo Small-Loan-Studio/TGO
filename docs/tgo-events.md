@@ -9,13 +9,27 @@
     - [Branching Effects](#branching-effects)
   - [Available Effects](#available-effects)
     - [Inventory Effects](#inventory-effects)
-      - [Add Item Effect (`InventoryAddItemEffect`)](#add-item-effect-inventoryadditemeffect)
-      - [Remove Item Effect (`InventoryRemoveItemEffect`)](#remove-item-effect-inventoryremoveitemeffect)
+      - [Add Item Effect](#add-item-effect)
+      - [Remove Item Effect](#remove-item-effect)
       - [Update Character's gear (`UpdateEquipmentEffect`)](#update-characters-gear-updateequipmenteffect)
     - [Set Quest State (`SetQuestStateEffect`)](#set-quest-state-setqueststateeffect)
     - [Time Effects](#time-effects)
   - [Logical Operations](#logical-operations)
     - [Conditonally perform some effect (`ConditionalEffect`)](#conditonally-perform-some-effect-conditionaleffect)
+  - [Audio](#audio)
+    - [Triggering an event](#triggering-an-event)
+  - [Starting a Dialogue](#starting-a-dialogue)
+  - [Setting a variable](#setting-a-variable)
+  - [Player Movement](#player-movement)
+    - [Moving around a level](#moving-around-a-level)
+    - [Loading a new level](#loading-a-new-level)
+  - [Misc / Utility](#misc--utility)
+    - [Adding a debug printout](#adding-a-debug-printout)
+    - [Overriding the actor id](#overriding-the-actor-id)
+    - [Picking an item up](#picking-an-item-up)
+  - [Controlling regions](#controlling-regions)
+    - [Changing door state](#changing-door-state)
+    - [Generic region changes](#generic-region-changes)
   - [Available Conditions](#available-conditions)
     - [Logical Conditions](#logical-conditions)
       - [Logical AND (`AndCondition`)](#logical-and-andcondition)
@@ -74,7 +88,8 @@ For Effects that should branch based on world state _before_ acting you can cons
 
 ### Inventory Effects
 
-#### Add Item Effect (`InventoryAddItemEffect`)
+#### Add Item Effect
+> `InventoryAddItemEffect`
 Adds items to a specific inventory.
 
 **Properties:**
@@ -85,7 +100,9 @@ Adds items to a specific inventory.
 **Success Chain:** Effects to run if the item was successfully added
 **Failure Chain:** Effects to run if the item could not be added (e.g., inventory full)
 
-#### Remove Item Effect (`InventoryRemoveItemEffect`)
+#### Remove Item Effect
+> `InventoryRemoveItemEffect`
+
 Removes items from a specific inventory.
 
 **Properties:**
@@ -119,33 +136,47 @@ None yet
 ### Conditonally perform some effect (`ConditionalEffect`)
 // TODO
 
+## Audio
+### Triggering an event
 AudioEventEffect
 // TODO
 
-DebugEffect
-// TODO
-
+## Starting a Dialogue
 DialogueEffect
 // TODO
 
-ForceEffectId
-// TODO
-
-ItemPickupEffect
-// TODO
-
-LevelLoadEffect
-// TODO
-
+## Setting a variable
 SetVAREffect
 // TODO
 
+## Player Movement
+### Moving around a level
 TeleportEffect
 // TODO
 
+### Loading a new level
+LevelLoadEffect
+// TODO
+
+## Misc / Utility
+### Adding a debug printout
+DebugEffect
+// TODO
+
+### Overriding the actor id
+ForceEffectId
+// TODO
+
+### Picking an item up
+ItemPickupEffect
+// TODO
+
+## Controlling regions
+### Changing door state
 ToggleDoorEffect
 // TODO
 
+### Generic region changes
 UpdateControlledRegionEffect
 // TODO
 
