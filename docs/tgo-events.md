@@ -127,7 +127,9 @@ An exception to this is the `ConditionalEffect` which we will discuss later.
 
 #### Evaluation ID
 
-The `actor_id` (referred to as "evaluation ID" in this context) represents the entity for which the condition is being evaluated. This determines which entity's state should be checked when the condition runs.
+The `actor_id` (referred to as "evaluation ID" in this context) represents
+the entity for which the condition is being evaluated. This determines which
+entity's state should be checked when the condition runs.
 
 **Key Usage Patterns:**
 - Conditions use this ID to check the specific entity's state
@@ -235,9 +237,15 @@ Sends an Audio Event to Wwise.
 
 **Does not branch**
 
-**Object determination:** If `actor_id_override` is set, it will be used as the actor ID. If both the effect actor ID and the override ID are empty, the system examines the parent node and looks for an attached AudioNode. For effects run from an Interactable context, it checks the Interactable's parent; in all other cases it checks only the parent. If all this fails, the effect falls back to using the AudioManager's ID.
+**Object determination:** If `actor_id_override` is set, it will be used as the
+actor ID. If both the effect actor ID and the override ID are empty, the system
+examines the parent node and looks for an attached AudioNode. For effects run
+from an Interactable context, it checks the Interactable's parent; in all other
+cases it checks only the parent. If all this fails, the effect falls back to
+using the AudioManager's ID.
 
-When we fallback to AudioManager that will be fired as a one-shot event without the interpolation mode.
+When we fallback to AudioManager that will be fired as a one-shot event without
+the interpolation mode.
 
 ## Starting a Dialogue
 > `DialogueEffect`
