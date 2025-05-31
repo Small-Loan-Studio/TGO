@@ -4,9 +4,11 @@
   - [Introduction](#introduction)
   - [Core Concepts](#core-concepts)
     - [Effects](#effects)
+      - [Actor ID](#actor-id)
       - [Special Case: completion callbacks](#special-case-completion-callbacks)
+      - [Branching Effects](#branching-effects)
     - [Trigger Conditions](#trigger-conditions)
-    - [Branching Effects](#branching-effects)
+      - [Evaluation ID](#evaluation-id)
   - [Available Effects](#available-effects)
     - [Inventory Effects](#inventory-effects)
       - [Add Item to an Inventory](#add-item-to-an-inventory)
@@ -65,6 +67,9 @@ actions. Some effects expose branching paths for success and failure cases
 and there are generic Effects allowing you to create branching behaviors if
 necessary.
 
+#### Actor ID
+// TODO summarize Effect.gd notes on what actor_id is and how it's used.
+
 #### Special Case: completion callbacks
 > Only interesting as Effect authors. If you are only _using_ effects this
 > doesn't impact you at all.
@@ -75,6 +80,18 @@ This is currently only utilized by `AudioEventEffect` where we occasionally
 need to maintain a reference to the event that was created to issue a stop
 event.
 
+#### Branching Effects
+
+When an effect is something that can fail--e.g. adding or removing inventory 
+tems--there are hooks for effects to hang off each outcome:
+
+1. **Success Chain**: Effects that run if the previous effect was successful
+2. **Failure Chain**: Effects that run if the previous effect failed
+
+This allows for creating branching behaviors based on the outcome of each effect.
+
+For Effects that should branch based on world state _before_ acting you can
+construct simple tests using the logical effect set.
 
 ### Trigger Conditions
 
@@ -96,18 +113,8 @@ activated, has a series of effects that will run.
 
 An exception to this is the `ConditionalEffect` which we will discuss later.
 
-### Branching Effects
-
-When an effect is something that can fail--e.g. adding or removing inventory 
-tems--there are hooks for effects to hang off each outcome:
-
-1. **Success Chain**: Effects that run if the previous effect was successful
-2. **Failure Chain**: Effects that run if the previous effect failed
-
-This allows for creating branching behaviors based on the outcome of each effect.
-
-For Effects that should branch based on world state _before_ acting you can
-construct simple tests using the logical effect set.
+#### Evaluation ID
+// TODO: discuss what actor_id is within the context of a TrigerCondition
 
 ## Available Effects
 
