@@ -14,8 +14,7 @@
       - [Update Character's gear](#update-characters-gear)
     - [Set Quest State](#set-quest-state)
     - [Time Effects](#time-effects)
-  - [Logical Operations](#logical-operations)
-    - [Conditonally perform some effect](#conditonally-perform-some-effect)
+  - [Conditonally perform some effect](#conditonally-perform-some-effect)
   - [Audio](#audio)
     - [Triggering an event](#triggering-an-event)
   - [Starting a Dialogue](#starting-a-dialogue)
@@ -119,9 +118,10 @@ construct simple tests using the logical effect set.
 Adds items to a specific inventory.
 
 **Properties:**
-- `inventory_id`: The ID of the inventory to add to
-- `item_id`: The ID of the item to add
-- `count`: (Optional) Number of items to add (default: 1)
+- `item`: What item to add
+- `add_quantity`: How many to add (default: 1)
+- `inventory_override`: Override which inventory to add to; if not set uses the
+  id of the triggering actor
 
 **Success Chain:** Effects to run if the item was successfully added
 **Failure Chain:** Effects to run if the item could not be added (e.g., inventory full)
@@ -132,16 +132,33 @@ Adds items to a specific inventory.
 Removes items from a specific inventory.
 
 **Properties:**
-- `inventory_id`: The ID of the inventory to remove from
-- `item_id`: The ID of the item to remove
-- `count`: (Optional) Number of items to remove (default: 1)
+- `item`: What item to remove
+- `remove_quantity`: How many to remove (default: 1)
+- `inventory_override`: Override which inventory to add to; if not set uses the
+  id of the triggering actor
 
 **Success Chain:** Effects to run if the item was successfully removed
 **Failure Chain:** Effects to run if the item could not be removed (e.g., not enough items)
 
 #### Update Character's gear
 > `UpdateEquipmentEffect`
-// TODO
+
+Equips or unequips items for characters.
+
+**Properties:**
+- `slot`: Equipment slot - "left", "right", or "any" (default: "any")
+- `unequip_previous`: Whether to unequip existing items (default: true)
+- `item`: Item to equip/unequip
+- `action`: Action to take - "equip" or "unequip" (default: "equip")
+
+**Success Chain:** Effects to run if the equipment change was successful
+**Failure Chain:** Effects to run if the equipment change failed
+
+When equipping an item using `slot` "any" means it will be placed into
+the first viable slot discovered.
+
+When _un_equipping from "any" if an item is set it will unequip that item
+if it's equipped at all. If _no_ item is set it will unequip all items.
 
 ### Set Quest State
 > `SetQuestStateEffect`
@@ -149,7 +166,7 @@ Removes items from a specific inventory.
 Updates the state of a specified quest.
 
 **Properties:**
-- `quest_id`: The ID of the quest to start
+- `quest_id`: The ID of the quest to change
 - `target_state`: The new state a quest should take.
 
 **Does not branch**
@@ -160,89 +177,207 @@ The quest will be set to any `target_state` _except_ `DORMANT`.
 
 None yet
 
-## Logical Operations
-### Conditonally perform some effect
+## Conditonally perform some effect
 > `ConditionalEffect`
-// TODO
+
+Execute an efect chain based on the result of a condition.
+
+**Properties:**
+- `condition`: Array of TriggerConditions to evaluate
+
+**Success Chain:** Effects to run if all conditions are true
+**Failure Chain:** Effects to run if any condition is false
 
 ## Audio
 ### Triggering an event
 > `AudioEventEffect`
-// TODO
+
+Sends an Audio Event to Wwise.
+
+**Properties:**
+- `actor_id_override`: Override the effect actor ID
+- `event_name`: Name of the audio event to play
+- `fire_type`: "one shot" or "until exit" -- until_exit only works when used
+  as part of a Switch's effect chain
+- `stop_fade_time`: Fade time when stopping (for "until exit" type)
+- `interpolation_mode`: Interpolation mode for fade
+
+**Does not branch**
+
+**Object determination:** // TODO : discuss how actors are resolved and the interplay with what configuration is used. Basically summarize the docs on actor_id_override from the source
 
 ## Starting a Dialogue
 > `DialogueEffect`
-// TODO
+
+Starts a Dialogic timeline.
+
+**Properties:**
+- `timeline`: The DialogicTimeline to start
+
+**Does not branch**
 
 ## Setting a variable
 > `SetVAREffect`
-// TODO
+
+Modifies Dialogic variables.
+
+**Properties:**
+- `variable_name`: Name of the variable to modify
+- `set_type`: "overwrite" or "update" the current value (default: "overwrite")
+- `new_value`: Value to set (or add to the existing value)
+
+**Does not branch**
+
+Only variables that are ints or floats can be updated.
 
 ## Player Movement
 ### Moving around a level
 > `TeleportEffect`
-// TODO
+
+Teleports an actor to a destination within the current level.
+
+**Properties:**
+- `dest_path`: path to the destination within the `Markers` sceen tree section.
+
+**Does not branch**
 
 ### Loading a new level
 > `LevelLoadEffect`
-// TODO
+
+Loads a new level/scene.
+
+**Properties:**
+- `load_level_name`: Path to the scene to load
+- `marker_name`: Marker to use for player placement (default: empty which resolves to the "PlayerStart" location)
+
+**Does not branch**
 
 ## Misc / Utility
 ### Adding a debug printout
 > `DebugEffect`
-// TODO
+
+Prints debug messages to the console.
+
+**Properties:**
+- `message`: Debug message to print (default: "debug message")
+
+**Does not branch**
 
 ### Overriding the actor id
 > `ForceEffectId`
-// TODO
+
+Wraps other effects and overrides their actor ID.
+
+**Properties:**
+- `override_id`: ID to use instead of the original actor ID
+- `wrapped_effects`: Array of Effects to run with the overridden ID
+
+**Does not branch**
 
 ### Picking an item up
 > `ItemPickupEffect`
-// TODO
+
+Picks up items from the world and adds them to inventory.
+
+**NOTE**: This is really only intended to be used by the Item scene.
+
+**Properties:**
+- `dest_path`: NodePath to the item node in the world
+- `item`: The ItemStack that will be added to inventory
+
+**Does not branch**
 
 ## Controlling regions
 ### Changing door state
 > `ToggleDoorEffect`
-// TODO
+
+Controls door states.
+
+**Properties:**
+- `door_id`: ID of the door to control
+- `door_action`: Action to take - "open", "close", or "toggle" (default: "toggle")
+
+**Does not branch**
 
 ### Generic region changes
 > `UpdateControlledRegionEffect`
-// TODO
+
+Updates controlled region visibility and passability.
+
+**Properties:**
+- `region_id`: ID of the region to update
+- `passable_state`: "passable", "visible", "toggle", or "unchanged" (default: "unchanged")
+- `visible_state`: "passable", "visible", "toggle", or "unchanged" (default: "unchanged")
+
+**Does not branch**
 
 ## Available Conditions
 
 ### Logical Conditions
 #### Logical AND
 > `AndCondition`
-> 
-// TODO
+
+Returns true only if all contained conditions are true.
+
+**Properties:**
+- `clauses`: Array of TriggerConditions that must all be true
+
+**Note:** Returns true for empty arrays
 
 #### Logical OR
 > `OrCondition`
-> 
-// TODO
+
+Returns true if any contained condition is true.
+
+**Properties:**
+- `clauses`: Array of TriggerConditions where at least one must be true
+
+**Note:** Returns true for empty arrays
 
 #### True
 > `TrueCondition`
 
-// TODO
+Always returns true. Useful for testing or as a placeholder condition.
+
+**Properties:** None
 
 #### False
 > `FalseCondition`
 
-// TODO
+Always returns false. Useful for testing or as a placeholder condition.
+
+**Properties:** None
 
 #### Not
 > `InvertCondition`
-// TODO
+
+Returns the opposite of the wrapped condition's result.
+
+**Properties:**
+- `condition`: The TriggerCondition to invert
 
 ### Check an Inventory state
 > `InventoryCheckCondition`
-// TODO
+
+Checks inventory for item existence or specific quantities.
+
+**Properties:**
+- `inventory_id`: Which inventory to check (defaults to actor's inventory if empty)
+- `target_item`: Item to check for
+- `check_type`: Type of check operation (default: EXISTS)
+- `check_value`: Quantity value for non-EXISTS checks
+
+**Note**: To check if an inventory _does not_ contain an item you would use `check_type:LT` and `check_value:1`.
 
 #### Check equipped items
 > `EquipmentCondition`
-// TODO
+
+Checks if a specific item is equipped or unequipped in specified slots.
+
+**Properties:**
+- `check_item`: The item to check for
+- `check_type`: "equipped" or "unequipped" (default: "equipped")
+- `slot_requirement`: "left", "right", or "any" (default: "any")
 
 ### Check the state of a quest
 > `QuestStateCondition`
@@ -254,7 +389,15 @@ Checks the state of a quest.
 
 ## World state check
 > `DialogicVARCondition`
-// TODO
+
+Checks Dialogic variables with support for different data types.
+
+**Properties:**
+- `variable_name`: Name of the Dialogic variable to check
+- `check_type`: Type of comparison operation (default: EQ)
+- `check_value`: Value to compare against
+
+**Supports:** INT, FLOAT, BOOL, and STRING types. Special handling for EXISTS check which returns true if the variable is defined at all regardless of value.
 
 ## Time Conditions
 None implemented yet

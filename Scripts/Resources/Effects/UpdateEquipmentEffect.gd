@@ -49,6 +49,9 @@ func terminal_callback(arg: Variant) -> void:
 
 
 func equip(actor: Character, tgt: Item, tgt_slot: String) -> bool:
+	if tgt == null:
+		return false
+
 	var use_slot := Enums.GearSlot.RIGHT
 	if tgt_slot == "any":
 		for cur_slot: Enums.GearSlot in Enums.GearSlot.values():
