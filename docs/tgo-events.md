@@ -5,8 +5,9 @@
   - [Core Concepts](#core-concepts)
     - [Effects](#effects)
       - [Actor ID](#actor-id)
-      - [Special Case: completion callbacks](#special-case-completion-callbacks)
       - [Branching Effects](#branching-effects)
+      - [Special Case: SignalToEffect](#special-case-signaltoeffect)
+      - [Special Case: completion callbacks](#special-case-completion-callbacks)
     - [Trigger Conditions](#trigger-conditions)
       - [Evaluation ID](#evaluation-id)
   - [Available Effects](#available-effects)
@@ -14,35 +15,35 @@
       - [Add Item to an Inventory](#add-item-to-an-inventory)
       - [Remove Item from an Inventory](#remove-item-from-an-inventory)
       - [Update Character's gear](#update-characters-gear)
+      - [Picking an item up](#picking-an-item-up)
     - [Set Quest State](#set-quest-state)
     - [Time Effects](#time-effects)
-  - [Conditonally perform some effect](#conditonally-perform-some-effect)
-  - [Audio](#audio)
-    - [Triggering an event](#triggering-an-event)
-  - [Starting a Dialogue](#starting-a-dialogue)
-  - [Setting a variable](#setting-a-variable)
-  - [Player Movement](#player-movement)
-    - [Moving around a level](#moving-around-a-level)
-    - [Loading a new level](#loading-a-new-level)
-  - [Misc / Utility](#misc--utility)
-    - [Adding a debug printout](#adding-a-debug-printout)
-    - [Overriding the actor id](#overriding-the-actor-id)
-    - [Picking an item up](#picking-an-item-up)
-  - [Controlling regions](#controlling-regions)
-    - [Changing door state](#changing-door-state)
-    - [Generic region changes](#generic-region-changes)
+    - [Conditonally perform some effect](#conditonally-perform-some-effect)
+    - [Audio](#audio)
+      - [Triggering an event](#triggering-an-event)
+    - [Starting a Dialogue](#starting-a-dialogue)
+    - [Setting a variable](#setting-a-variable)
+    - [Player Movement](#player-movement)
+      - [Moving around a level](#moving-around-a-level)
+      - [Loading a new level](#loading-a-new-level)
+    - [Misc / Utility](#misc--utility)
+      - [Adding a debug printout](#adding-a-debug-printout)
+      - [Overriding the actor id](#overriding-the-actor-id)
+    - [Controlling regions](#controlling-regions)
+      - [Changing door state](#changing-door-state)
+      - [Generic region changes](#generic-region-changes)
   - [Available Conditions](#available-conditions)
     - [Logical Conditions](#logical-conditions)
       - [Logical AND](#logical-and)
       - [Logical OR](#logical-or)
+      - [LogicalNOT](#logicalnot)
       - [True](#true)
       - [False](#false)
-      - [Not](#not)
     - [Check an Inventory state](#check-an-inventory-state)
       - [Check equipped items](#check-equipped-items)
     - [Check the state of a quest](#check-the-state-of-a-quest)
-  - [World state check](#world-state-check)
-  - [Time Conditions](#time-conditions)
+    - [World state check](#world-state-check)
+    - [Time Conditions](#time-conditions)
 
 ## Introduction
 
@@ -82,16 +83,6 @@ The `actor_id` represents the entity that triggered the effect. When an effect i
 - When a quest triggers an effect, the quest ID becomes the `actor_id`
 - Effects like `InventoryAddItemEffect` add items to the actor's inventory by default
 
-#### Special Case: completion callbacks
-> Only interesting as Effect authors. If you are only _using_ effects this
-> doesn't impact you at all.
-
-As a special Effects that are invoked by switch **activation** can return
-a non-null context to receive a callback when the switch is **deactivated**.
-This is currently only utilized by `AudioEventEffect` where we occasionally
-need to maintain a reference to the event that was created to issue a stop
-event.
-
 #### Branching Effects
 
 When an effect is something that can fail--e.g. adding or removing inventory 
@@ -104,6 +95,23 @@ This allows for creating branching behaviors based on the outcome of each effect
 
 For Effects that should branch based on world state _before_ acting you can
 construct simple tests using the logical effect set.
+
+#### Special Case: SignalToEffect
+If a node has a signal that you would like to chain effects to you can attach a
+`SignalToEffect` node to make that conversion. It has a single zero-parameter
+function called `trigger` that will run the effects with a configured ID. The
+"parent" for the effect will be the parent node of `SignalToEffect` and then
+current level will be the currently loaded level.
+
+#### Special Case: completion callbacks
+> Only interesting as Effect authors. If you are only _using_ effects this
+> doesn't impact you at all.
+
+As a special Effects that are invoked by switch **activation** can return
+a non-null context to receive a callback when the switch is **deactivated**.
+This is currently only utilized by `AudioEventEffect` where we occasionally
+need to maintain a reference to the event that was created to issue a stop
+event.
 
 ### Trigger Conditions
 
@@ -193,6 +201,19 @@ the first viable slot discovered.
 When _un_equipping from "any" if an item is set it will unequip that item
 if it's equipped at all. If _no_ item is set it will unequip all items.
 
+#### Picking an item up
+> `ItemPickupEffect`
+
+Picks up items from the world and adds them to inventory.
+
+**NOTE**: This is really only intended to be used by the Item scene.
+
+**Properties:**
+- `dest_path`: NodePath to the item node in the world
+- `item`: The ItemStack that will be added to inventory
+
+**Does not branch**
+
 ### Set Quest State
 > `SetQuestStateEffect`
 
@@ -210,7 +231,7 @@ The quest will be set to any `target_state` _except_ `DORMANT`.
 
 None yet
 
-## Conditonally perform some effect
+### Conditonally perform some effect
 > `ConditionalEffect`
 
 Execute an efect chain based on the result of a condition.
@@ -221,8 +242,8 @@ Execute an efect chain based on the result of a condition.
 **Success Chain:** Effects to run if all conditions are true
 **Failure Chain:** Effects to run if any condition is false
 
-## Audio
-### Triggering an event
+### Audio
+#### Triggering an event
 > `AudioEventEffect`
 
 Sends an Audio Event to Wwise.
@@ -247,7 +268,7 @@ using the AudioManager's ID.
 When we fallback to AudioManager that will be fired as a one-shot event without
 the interpolation mode.
 
-## Starting a Dialogue
+### Starting a Dialogue
 > `DialogueEffect`
 
 Starts a Dialogic timeline.
@@ -257,7 +278,7 @@ Starts a Dialogic timeline.
 
 **Does not branch**
 
-## Setting a variable
+### Setting a variable
 > `SetVAREffect`
 
 Modifies Dialogic variables.
@@ -271,8 +292,8 @@ Modifies Dialogic variables.
 
 Only variables that are ints or floats can be updated.
 
-## Player Movement
-### Moving around a level
+### Player Movement
+#### Moving around a level
 > `TeleportEffect`
 
 Teleports an actor to a destination within the current level.
@@ -282,7 +303,7 @@ Teleports an actor to a destination within the current level.
 
 **Does not branch**
 
-### Loading a new level
+#### Loading a new level
 > `LevelLoadEffect`
 
 Loads a new level/scene.
@@ -293,8 +314,8 @@ Loads a new level/scene.
 
 **Does not branch**
 
-## Misc / Utility
-### Adding a debug printout
+### Misc / Utility
+#### Adding a debug printout
 > `DebugEffect`
 
 Prints debug messages to the console.
@@ -304,7 +325,7 @@ Prints debug messages to the console.
 
 **Does not branch**
 
-### Overriding the actor id
+#### Overriding the actor id
 > `ForceEffectId`
 
 Wraps other effects and overrides their actor ID.
@@ -315,21 +336,8 @@ Wraps other effects and overrides their actor ID.
 
 **Does not branch**
 
-### Picking an item up
-> `ItemPickupEffect`
-
-Picks up items from the world and adds them to inventory.
-
-**NOTE**: This is really only intended to be used by the Item scene.
-
-**Properties:**
-- `dest_path`: NodePath to the item node in the world
-- `item`: The ItemStack that will be added to inventory
-
-**Does not branch**
-
-## Controlling regions
-### Changing door state
+### Controlling regions
+#### Changing door state
 > `ToggleDoorEffect`
 
 Controls door states.
@@ -340,7 +348,7 @@ Controls door states.
 
 **Does not branch**
 
-### Generic region changes
+#### Generic region changes
 > `UpdateControlledRegionEffect`
 
 Updates controlled region visibility and passability.
@@ -375,6 +383,14 @@ Returns true if any contained condition is true.
 
 **Note:** Returns true for empty arrays
 
+#### LogicalNOT
+> `InvertCondition`
+
+Returns the opposite of the wrapped condition's result.
+
+**Properties:**
+- `condition`: The TriggerCondition to invert
+
 #### True
 > `TrueCondition`
 
@@ -388,14 +404,6 @@ Always returns true. Useful for testing or as a placeholder condition.
 Always returns false. Useful for testing or as a placeholder condition.
 
 **Properties:** None
-
-#### Not
-> `InvertCondition`
-
-Returns the opposite of the wrapped condition's result.
-
-**Properties:**
-- `condition`: The TriggerCondition to invert
 
 ### Check an Inventory state
 > `InventoryCheckCondition`
@@ -428,7 +436,7 @@ Checks the state of a quest.
 - `quest_id`: The ID of the quest to check
 - `state`: The state to check for (one of: "not_started", "in_progress", "completed", "failed")
 
-## World state check
+### World state check
 > `DialogicVARCondition`
 
 Checks Dialogic variables with support for different data types.
@@ -440,5 +448,5 @@ Checks Dialogic variables with support for different data types.
 
 **Supports:** INT, FLOAT, BOOL, and STRING types. Special handling for EXISTS check which returns true if the variable is defined at all regardless of value.
 
-## Time Conditions
+### Time Conditions
 None implemented yet
