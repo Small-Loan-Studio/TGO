@@ -22,6 +22,11 @@ func set_rich_text(nText: String)->void:
 	update_button()
 
 func set_text_color(color: String)->void: # color is hexcode format XXXXXX
+	var idx: int = openTags.find("[color")
+	if idx >= 0:
+		openTags = openTags.erase(idx, 15)
+	closeTags = closeTags.replace("[/color]","")
+	
 	openTags = (openTags + "[color=#%s]" % [color])
 	closeTags = "[/color]" + closeTags
 

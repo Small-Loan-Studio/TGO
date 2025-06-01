@@ -34,7 +34,9 @@ overrides = {}
 script = ExtResource("2_vincf")
 scene = ExtResource("6_1g4kj")
 overrides = {
-"boxes_fill_width": "false"
+"boxes_fill_width": "false",
+"text_color_custom": "Color(0.712891, 0.712891, 0.712891, 1)",
+"text_color_hovered": "Color(1, 1, 1, 1)"
 }
 
 [sub_resource type="Resource" id="Resource_ia3vt"]
