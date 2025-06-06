@@ -1,16 +1,21 @@
-[gd_resource type="Resource" script_class="Item" load_steps=3 format=3 uid="uid://bhkis6mbwvpho"]
+[gd_resource type="Resource" script_class="Item" load_steps=5 format=3 uid="uid://bhkis6mbwvpho"]
 
 [ext_resource type="Texture2D" uid="uid://c2tdx7srexaqe" path="res://Art/Items/FlameTorch.png" id="1_bm1le"]
+[ext_resource type="Script" path="res://Scripts/Resources/GearSpec/simple_torch.gd" id="1_tigeq"]
 [ext_resource type="Script" path="res://Scripts/Components/Inventory/Item.gd" id="2_lqm8k"]
+
+[sub_resource type="Resource" id="Resource_1saab"]
+script = ExtResource("1_tigeq")
+light_color = Color(1, 1, 1, 1)
 
 [resource]
 script = ExtResource("2_lqm8k")
 id = "FLAME_TORCH"
 name = "Flame Torch"
-type = 0
+type = 2
 description = "Default: A standard wooden torch. Smells like soot.
 After Examination: A standard torch that smells like soot. The ash is smudged where it has been used before. This will help me see much better through the darkness."
 stackable = false
 stack_size = 1
 icon = ExtResource("1_bm1le")
-gear_spec = Array[Resource("res://Scripts/Resources/GearSpec.gd")]([])
+gear_spec = Array[Resource("res://Scripts/Resources/GearSpec.gd")]([SubResource("Resource_1saab")])

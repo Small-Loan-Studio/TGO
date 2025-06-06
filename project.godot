@@ -60,6 +60,7 @@ directories/dtl_directory={
 "CorruptedFungalGrowth": "res://Dialogue/Examinations/CorruptedFungalGrowth.dtl",
 "CorruptedMushroom": "res://Dialogue/Examinations/CorruptedMushroom.dtl",
 "CryptKey": "res://Dialogue/Examinations/CryptKey.dtl",
+"CryptSecretChamberOnEnter": "res://Dialogue/Other/CryptSecretChamberOnEnter.dtl",
 "DavidElias3a2": "res://Dialogue/DavidElias/DavidElias3a2.dtl",
 "EmptyBottle": "res://Dialogue/Examinations/EmptyBottle.dtl",
 "FlameTorch": "res://Dialogue/Examinations/FlameTorch.dtl",
