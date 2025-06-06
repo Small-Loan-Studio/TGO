@@ -1,0 +1,93 @@
+set {Martha.HasSpoken} = true
+set {Martha.ItemGiven} = true
+if {Martha.HasSpoken} == false and {Martha.ItemGiven} == false:
+	Devin: Good day, madame.
+	Martha: Heavens! Are you a spirit?
+	Devin: It does serve mine craft to move as one.
+	Martha: Call me Martha, spirit.
+	Devin: You are Beth’s cousin.
+	Martha: Aye, she took me in after. Well.
+	Devin: No need to reopen old wounds. For now, I wish to focus on fresh ones.
+	Martha: I could use more spirit, speaking of which. The ice seems to soak up all the gin, see?
+	Devin: If it would better serve to loosen your tongue. For flowing conversation.
+	Martha: Mr Pimm is charged with preparing mine tipples. However, I suspect their is purpose to his sluggishness.
+	set {Martha.HasSpoken} = true
+	[end_timeline]
+if {Martha.HasSpoken} == true and {Martha.ItemGiven} == false:
+	Martha: The masked spirit returns. Any news of mine tipple?
+	Devin: In transit, I am sure.
+	[end_timeline]
+if {Martha.HasSpoken} == false and {Martha.ItemGiven} == true:
+	ADD TEXT HERE
+	[end_timeline]
+if {Martha.HasSpoken} == true and {Martha.ItemGiven} == true:
+	Devin: Shall we?
+	label Questions
+	- What of these deaths?
+		Devin: What can you share about the deaths in the fields?
+		Martha: We’re short a few Glintleys, but they seem to breed like rabbits.
+		if {Jefferson.flashBackSpoken} == true:
+			Devin: Speaking of, Jefferson did share that he witnessed a mangy hare in the fields. Emerging from the fog. Have you seen it, also?
+			Martha: Known that boy all his life. Scared of his own shadow, that one. No hare. I’m parched for a gin. Hair of the dog, after all.
+			Devin: No unusual creatures at all?
+			Martha: Well. There was something flying over the ash clouds of the pyres and deep into the fog. When I was in the flower garden, with Beth.
+			Devin: What did you see?
+			Martha: You might think me mad, hunter. But twas a strange sort of furry bird. But birds don’t have fur, do they now? It’s feathers. Feathers!
+			Devin: And how many gins ago was this?
+			Martha: Ha. Who can say for sure? Not I, sir.
+		Devin: Which Glintleys are missing? Do you know perchance?
+		Martha: Glintleys, Smiths, and so on. They all look alike. Smell alike. Sound alike. Think alike. Ungrateful peasants, the lot.
+		Devin: So nothing of import, then.
+		jump Questions
+	- What of strangeness in these grounds?
+		Devin: Have you seen or witnessed anything strange in the manor or its grounds?
+		Martha: I have mentioned the mould already, have I not? It’s ghastly.
+		Devin: Where have you seen it?
+		Martha: Not seen. Smell. Can you not smell it? In every room. In every corner. Only the fragrance of mine gin keeps it at bay.
+		Devin: Perhaps a thorough cleaning by the staff might see to it?
+		Martha: Those fools? It was Beth who kept things in order. She always made everything… well, beautiful, faceless one.
+		Devin: Anything else you wish to report?
+		Martha: Well, there has been a muffled thumping of late. I hear it at night.
+		Devin: Not as rhythmical as your own thumping on these keys, here, I presume?
+		Martha: Knock. Knock. Knock. All night long.
+		Devin: And what do you think might be the source?
+		Martha: Probably the help, if you ask me. Fucking alone in the dark like animals.
+		Devin: Yes I see.
+		jump Questions
+	- Anything you can share about Beth?
+		Devin: You must miss your cousin dearly. What can you tell me of her disappearance?
+		Martha: Will you find her? We are all missing her so. God bless her soul, she even pretended to like mine performances here.
+		Devin: What do you do, Martha? Are you widowed?
+		Martha: And what business is it of yours, hunter? Unless you seek to make it yours?
+		Devin: I must press you to answer.
+		Martha: Indeed you must. I’m here by the grace of our Beth’s kind heart. She invited me in and to her I owe mine life. And this lovely tipple, of course.
+		Devin: You have no money of your own then?
+		Martha: Watch your tongue, faceless one. It appears you fish for some motive. Ask why I’d bite the hand that feeds me.
+		Devin: Or that quenches your thirst.
+		Martha: Well exactly. You understand.
+		Devin: What can you remember of the day she vanished?
+		Martha: She sat with me often. The last day? She sat in the armchair while I played.
+		Devin: Which time of day?
+		Martha: I must carry on, see? Play for our Beth. She’ll hear the music and come back to us. Our dear, darling cousin. Why did you go?
+		Devin: Are you quite all right?
+		Martha: Our Beth is gone and I am alone in a house with these scheming Sharps. Fitting, do you not think? Readying their knives to sink into mine back.
+		Devin: With Beth keeping them at bay.
+		Martha: Oh, Beth. Beth, Beth, Beth, Beth!
+		Devin: We should change the subject.
+		jump Questions
+	- The glass box. Tell me about it
+		Devin: I understand a necklace has gone missing. A rather expensive one.
+		Martha: You are surely not implying what I think you are.
+		Devin: Perish the thought. A woman of your stature?
+		Martha: Too bloody right. If you want to get to the bottom of that matter, speak directly with the ungrateful burden of a girl.
+		Devin: Martha, who is it exactly you mean?
+		Martha: Our Fiona. That spoiled lass. She had the nerve to call me a barnacle on the family ship, if you could believe that.
+		Devin: You suspect Fiona of the theft?
+		Martha: Who else? I’m sure she would blame me, in kind. Mark mine words, Fiona is up to no good. Not an iota of mindfulness. No demure. A free spirit, you see. Much like her father. She is capable of anything, that one.
+		Devin: Yes, indeed. And where might I find her?
+		Martha: I know not. You had best be searching all the beds in Oakshaw.
+		jump Questions
+	- I should be going.
+		Devin: Gramercy, madam. If I find more gin I’ll have it sent.
+		Martha: Yes, yes. Do hurry.
+		[end_timeline]

@@ -1,4 +1,4 @@
-[gd_scene load_steps=29 format=3 uid="uid://c3g8eee2id8cx"]
+[gd_scene load_steps=32 format=3 uid="uid://c3g8eee2id8cx"]
 
 [ext_resource type="PackedScene" uid="uid://dyq8mcdsutnsa" path="res://Scenes/Components/LevelBase.tscn" id="1_nvpjp"]
 [ext_resource type="TileSet" uid="uid://c72m3jled4jfg" path="res://Art/Environment/ext_simple_tileset.tres" id="2_x48i8"]
@@ -19,6 +19,8 @@
 [ext_resource type="Resource" uid="uid://c7l3hj7axap5b" path="res://Scripts/Resources/NPCs/David.tres" id="14_rr06e"]
 [ext_resource type="Resource" path="res://Dialogue/DavidElias/DavidElias3a2.dtl" id="15_1c4dn"]
 [ext_resource type="Resource" uid="uid://dpyk8bksf6gr4" path="res://Scripts/Resources/NPCs/Elias.tres" id="16_l4sde"]
+[ext_resource type="Resource" uid="uid://csave3ek0b745" path="res://Scripts/Resources/NPCs/Martha.tres" id="17_fxnte"]
+[ext_resource type="Resource" path="res://Dialogue/Martha/Martha3a3.dtl" id="18_xdav4"]
 
 [sub_resource type="Resource" id="Resource_i61gm"]
 script = ExtResource("5_vn40k")
@@ -55,6 +57,10 @@ timeline = ExtResource("15_1c4dn")
 [sub_resource type="Resource" id="Resource_jjayp"]
 script = ExtResource("8_d4koa")
 timeline = ExtResource("15_1c4dn")
+
+[sub_resource type="Resource" id="Resource_1mso4"]
+script = ExtResource("8_d4koa")
+timeline = ExtResource("18_xdav4")
 
 [node name="LevelBase" instance=ExtResource("1_nvpjp")]
 
@@ -118,6 +124,12 @@ position = Vector2(5076, 5753)
 config = ExtResource("16_l4sde")
 dlg = SubResource("Resource_jjayp")
 id = "Elias Sharp"
+
+[node name="Martha" parent="Objects/Characters" index="5" instance=ExtResource("5_37rx3")]
+position = Vector2(4687.88, 6518.26)
+config = ExtResource("17_fxnte")
+dlg = SubResource("Resource_1mso4")
+id = "Martha"
 
 [node name="COLLECTIBLE" parent="Objects/Items" index="0" instance=ExtResource("9_6kywj")]
 position = Vector2(3496, 5391)

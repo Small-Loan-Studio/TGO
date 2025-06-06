@@ -22,7 +22,8 @@ label Questions
 	Devin: Have you noticed anything strange within these grounds of late? Within the walls of this manor?
 	Lisa: Nay, not a thing out of the ordinary. Tis a right bonnie home, but it has lost its former glory. Grand banquets, incredible feasts, all before mine time, mind you.
 	Devin: And now?
-	Lisa: Years of decay and neglect have seeped in. And that is despite Lady Sharp’s best efforts.
+	Lisa: Years of decay and neglect have seeped in. And that is despite Lady Sharp’s best efforts. Vermin have infested the place of late. 
+	set {Jefferson.opt2_3a5} = true
 	jump Questions
 - Anything you can share about Beth?
 	Devin: Did you know Beth Sharp well? Did you see her shortly before she disappeared?
