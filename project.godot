@@ -53,6 +53,7 @@ directories/dch_directory={
 }
 directories/dtl_directory={
 "BagOfHardtack": "res://Dialogue/Examinations/BagOfHardtack.dtl",
+"Bartholomew2b": "res://Dialogue/Bartholomew/Bartholomew2b.dtl",
 "Bartholomew3a6": "res://Dialogue/Bartholomew/Bartholomew3a6.dtl",
 "BlackMouldCrypt": "res://Dialogue/Examinations/BlackMouldCrypt.dtl",
 "BuckleyTestTimeline": "res://Dialogue/Buckley/BuckleyTestTimeline.dtl",
@@ -105,6 +106,7 @@ save/encryption_on_exports_only=true
 text/autopauses={}
 variables={
 "Bartholomew": {
+"2bSpoken": false,
 "3a1Op2.3": false,
 "3a3Op2": false,
 "ExaminedBodies": false,
