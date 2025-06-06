@@ -2,7 +2,7 @@
 
 [ext_resource type="PackedScene" uid="uid://dyq8mcdsutnsa" path="res://Scenes/Components/LevelBase.tscn" id="1_xjhjq"]
 [ext_resource type="PackedScene" uid="uid://rgvfsx60t2ap" path="res://Scenes/Components/Inventory/Item.tscn" id="2_jtnr4"]
-[ext_resource type="Resource" path="res://Scripts/Resources/Items/EmptyBottle.tres" id="4_8h54v"]
+[ext_resource type="Resource" uid="uid://bt7flgi3tv6iy" path="res://Scripts/Resources/Items/EmptyBottle.tres" id="4_8h54v"]
 [ext_resource type="PackedScene" uid="uid://bmkq7u7c66eru" path="res://Scenes/Components/signal_to_effect.tscn" id="5_hs7lt"]
 [ext_resource type="Script" path="res://Scripts/Resources/Effects/DebugEffect.gd" id="6_wwmir"]
 [ext_resource type="Script" path="res://Scripts/Resources/Effects/UpdateEquipmentEffect.gd" id="7_kwsgg"]
