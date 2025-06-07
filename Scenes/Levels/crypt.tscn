@@ -1,13 +1,15 @@
-[gd_scene load_steps=42 format=3 uid="uid://bgn6kmsvdqh4l"]
+[gd_scene load_steps=50 format=3 uid="uid://bgn6kmsvdqh4l"]
 
 [ext_resource type="PackedScene" uid="uid://dyq8mcdsutnsa" path="res://Scenes/Components/LevelBase.tscn" id="1_dma02"]
 [ext_resource type="TileSet" uid="uid://c72m3jled4jfg" path="res://Art/Environment/ext_simple_tileset.tres" id="2_pwhqm"]
 [ext_resource type="PackedScene" uid="uid://c3fld6my8so3p" path="res://Scenes/Components/SimpleSwitch.tscn" id="3_0ndau"]
 [ext_resource type="Script" path="res://Scripts/Resources/Effects/TeleportEffect.gd" id="5_7fsg8"]
 [ext_resource type="PackedScene" uid="uid://rgvfsx60t2ap" path="res://Scenes/Components/Inventory/Item.tscn" id="5_iepyf"]
+[ext_resource type="Resource" path="res://Dialogue/Other/CryptSecretChamberOnEnter.dtl" id="6_nab6h"]
 [ext_resource type="Resource" uid="uid://bhkis6mbwvpho" path="res://Scripts/Resources/Items/FlameTorch.tres" id="8_mj1tv"]
 [ext_resource type="Resource" uid="uid://bt7flgi3tv6iy" path="res://Scripts/Resources/Items/EmptyBottle.tres" id="9_exnnc"]
 [ext_resource type="Resource" uid="uid://d0dr52jjvkhpj" path="res://Scripts/Resources/Items/CorruptedMushroom.tres" id="11_0plkk"]
+[ext_resource type="PackedScene" uid="uid://b13wrl3bedjku" path="res://Scenes/Components/Torch.tscn" id="12_1eid6"]
 [ext_resource type="Texture2D" uid="uid://b7ntm61y8np7u" path="res://Art/Environment/Placeables/Wall Torches/Crypt-Torch-Unlit.png" id="12_mfm7m"]
 [ext_resource type="PackedScene" uid="uid://bx2qjlw58ci20" path="res://Scenes/Components/Greyboxing/GreyboxObject.tscn" id="12_us5wm"]
 [ext_resource type="Resource" uid="uid://x0jx2mol86p8" path="res://Scripts/Resources/Items/WoodenStake.tres" id="12_xo4o4"]
@@ -24,10 +26,17 @@
 [ext_resource type="Resource" path="res://Dialogue/Examinations/JournalPage1.dtl" id="24_foypm"]
 [ext_resource type="Resource" path="res://Dialogue/Examinations/Satchel.dtl" id="24_q7j2p"]
 [ext_resource type="Resource" path="res://Dialogue/Examinations/BlackMouldCrypt.dtl" id="25_d5spy"]
+[ext_resource type="PackedScene" uid="uid://bwlnxooxokiw6" path="res://Scenes/Components/door.tscn" id="28_4oovl"]
+[ext_resource type="Script" path="res://Scripts/Resources/Conditions/InventoryCheckCondition.gd" id="29_ogskv"]
+[ext_resource type="Resource" uid="uid://c0k5s2pwp0tvi" path="res://Scripts/Resources/Items/BagOfHardtack.tres" id="30_qe0oq"]
 
 [sub_resource type="Resource" id="Resource_jh8dd"]
 script = ExtResource("5_7fsg8")
 dest_path = NodePath("../../../Markers/RevivalChamber2ExtraRoom_tp")
+
+[sub_resource type="Resource" id="Resource_o85tt"]
+script = ExtResource("16_utw8c")
+timeline = ExtResource("6_nab6h")
 
 [sub_resource type="Resource" id="Resource_swm2o"]
 script = ExtResource("5_7fsg8")
@@ -56,6 +65,8 @@ dest_path = NodePath("../../../Markers/BurialChamber2ExitChamber_tp")
 [sub_resource type="Resource" id="Resource_7dvjx"]
 script = ExtResource("5_7fsg8")
 dest_path = NodePath("../../../Markers/ExitChamber2BurialChamber_tp")
+
+[sub_resource type="ImageTexture" id="ImageTexture_6s6xn"]
 
 [sub_resource type="Resource" id="Resource_kyv6i"]
 script = ExtResource("16_utw8c")
@@ -93,6 +104,13 @@ timeline = ExtResource("24_foypm")
 script = ExtResource("16_utw8c")
 timeline = ExtResource("25_d5spy")
 
+[sub_resource type="Resource" id="Resource_iisky"]
+script = ExtResource("29_ogskv")
+inventory_id = ""
+target_item = ExtResource("30_qe0oq")
+check_type = 0
+check_value = 0
+
 [node name="LevelBase2" instance=ExtResource("1_dma02")]
 
 [node name="ColorRect" type="ColorRect" parent="." index="0"]
@@ -114,7 +132,7 @@ layer_3/tile_data = PackedInt32Array(1310726, 983042, 6, 1310729, 983042, 6, 131
 [node name="RevivalChamber2ExtraRoom" parent="Objects/Switches" index="0" instance=ExtResource("3_0ndau")]
 position = Vector2(127, 350)
 sensor_size = Vector2(60, 60)
-on_pressed_effects = Array[Resource("res://Scripts/Resources/Effect.gd")]([SubResource("Resource_jh8dd")])
+on_pressed_effects = Array[Resource("res://Scripts/Resources/Effect.gd")]([SubResource("Resource_jh8dd"), SubResource("Resource_o85tt")])
 
 [node name="ExtraRoom2RevivalChamber" parent="Objects/Switches" index="1" instance=ExtResource("3_0ndau")]
 position = Vector2(-1856, 387)
@@ -240,6 +258,78 @@ quantity = 1
 position = Vector2(3316, 1483)
 item = ExtResource("13_g0tog")
 quantity = 1
+
+[node name="LightThruCrack" parent="Objects/Lighting" index="0" instance=ExtResource("12_1eid6")]
+position = Vector2(126, 533)
+light_energy = 1.5
+light_size = 2.0
+sprite_texture = SubResource("ImageTexture_6s6xn")
+
+[node name="AmbientLight" parent="Objects/Lighting" index="1" instance=ExtResource("12_1eid6")]
+position = Vector2(-229, 465)
+light_energy = 0.75
+light_size = 4.0
+sprite_texture = SubResource("ImageTexture_6s6xn")
+
+[node name="AmbientLight2" parent="Objects/Lighting" index="2" instance=ExtResource("12_1eid6")]
+position = Vector2(403, 547)
+light_energy = 0.75
+light_size = 4.0
+sprite_texture = SubResource("ImageTexture_6s6xn")
+
+[node name="AmbientLight3" parent="Objects/Lighting" index="3" instance=ExtResource("12_1eid6")]
+position = Vector2(130, 302)
+light_energy = 0.75
+light_size = 4.0
+sprite_texture = SubResource("ImageTexture_6s6xn")
+
+[node name="AmbientLight4" parent="Objects/Lighting" index="4" instance=ExtResource("12_1eid6")]
+position = Vector2(126, 845)
+light_energy = 0.75
+light_size = 4.0
+sprite_texture = SubResource("ImageTexture_6s6xn")
+
+[node name="AmbientLight5" parent="Objects/Lighting" index="5" instance=ExtResource("12_1eid6")]
+position = Vector2(-1853, 362)
+light_energy = 0.75
+light_size = 4.0
+sprite_texture = SubResource("ImageTexture_6s6xn")
+
+[node name="AmbientLight6" parent="Objects/Lighting" index="6" instance=ExtResource("12_1eid6")]
+position = Vector2(373, 2157)
+light_energy = 0.75
+light_size = 4.0
+sprite_texture = SubResource("ImageTexture_6s6xn")
+
+[node name="AmbientLight7" parent="Objects/Lighting" index="7" instance=ExtResource("12_1eid6")]
+position = Vector2(51, 2154)
+light_energy = 0.75
+light_size = 4.0
+sprite_texture = SubResource("ImageTexture_6s6xn")
+
+[node name="AmbientLight8" parent="Objects/Lighting" index="8" instance=ExtResource("12_1eid6")]
+position = Vector2(2240, 2113)
+light_energy = 0.75
+light_size = 4.0
+sprite_texture = SubResource("ImageTexture_6s6xn")
+
+[node name="AmbientLight9" parent="Objects/Lighting" index="9" instance=ExtResource("12_1eid6")]
+position = Vector2(2142, 1584)
+light_energy = 0.75
+light_size = 4.0
+sprite_texture = SubResource("ImageTexture_6s6xn")
+
+[node name="AmbientLight10" parent="Objects/Lighting" index="10" instance=ExtResource("12_1eid6")]
+position = Vector2(2512, 1262)
+light_energy = 0.75
+light_size = 4.0
+sprite_texture = SubResource("ImageTexture_6s6xn")
+
+[node name="AmbientLight11" parent="Objects/Lighting" index="11" instance=ExtResource("12_1eid6")]
+position = Vector2(2900, 1098)
+light_energy = 0.75
+light_size = 4.0
+sprite_texture = SubResource("ImageTexture_6s6xn")
 
 [node name="Hidden Tunnel Door" parent="Objects" index="4" instance=ExtResource("12_us5wm")]
 position = Vector2(3888, 1569)
@@ -643,11 +733,16 @@ tint = Color(0.745098, 0.745098, 0.745098, 0)
 action_verb = 6
 effects = Array[Resource("res://Scripts/Resources/Effect.gd")]([SubResource("Resource_7815y")])
 
+[node name="Door" parent="Objects" index="55" instance=ExtResource("28_4oovl")]
+position = Vector2(127, 860)
+unlocked = Array[Resource("res://Scripts/Resources/TriggerCondition.gd")]([SubResource("Resource_iisky")])
+region_id = "crypt.test_door"
+
 [node name="PlayerStart" type="Marker2D" parent="Markers" index="0"]
 position = Vector2(125, 533)
 
 [node name="RevivalChamber2ExtraRoom_tp" type="Marker2D" parent="Markers" index="1"]
-position = Vector2(-1854, 291)
+position = Vector2(-1857, 341)
 
 [node name="ExtraRoom2RevivalChamber_tp" type="Marker2D" parent="Markers" index="2"]
 position = Vector2(130, 419)

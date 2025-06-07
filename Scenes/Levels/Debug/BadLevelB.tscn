@@ -99,7 +99,7 @@ position = Vector2(425, 228)
 use_action = "none"
 region_id = "BadLevelB.auto_door"
 
-[node name="Label" type="Label" parent="AutoDoor" index="4"]
+[node name="Label" type="Label" parent="AutoDoor" index="2"]
 offset_left = 25.0
 offset_top = -22.0
 offset_right = 183.0
