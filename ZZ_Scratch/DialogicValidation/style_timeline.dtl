@@ -1,6 +1,11 @@
+Testing
+label Choices
+
 - Option 1
-	test_character: worked
+	jump Choices
 - Longer testing choice
-	
+	jump Choices
 - short
+	jump Choices
 - final option 4
+	jump Choices
