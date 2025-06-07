@@ -83,8 +83,8 @@ func setup(editor: EditorInterface) -> void:
 	# TODO: This doesn't seem to work for changes nested into the edited
 	# object, we may need to straight up poll instead of relying on a signal
 	# to indicate changes
-	if !_editor.get_inspector().property_edited.is_connected(_edited_object_changed):
-		_editor.get_inspector().property_edited.connect(_edited_object_changed)
+	if !EditorInterface.get_inspector().property_edited.is_connected(_edited_object_changed):
+		EditorInterface.get_inspector().property_edited.connect(_edited_object_changed)
 
 	_setup()
 
@@ -225,9 +225,9 @@ func _update_selection() -> void:
 		# workaround to handle property_edited signal not triggering for nested
 		# objects
 		_debounce_mark_msec = Time.get_ticks_msec()
-		_editor.edit_resource(_quests[quest_node._data.id])
+		EditorInterface.edit_resource(_quests[quest_node._data.id])
 	else:
-		_editor.edit_node(null)
+		EditorInterface.edit_node(null)
 		if _edited_node != null:
 			_force_sync_edits()
 			_edited_node = null

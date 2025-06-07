@@ -1,0 +1,75 @@
+if {DavidElias.HasSpoken} == false:
+	Devin: David… and Elias?
+	David: I’m David — and he’s Elias. Who are you?
+	Elias: Why do you wear that funny mask?
+	David: Elias!
+	Elias: What do they call you?
+	Devin: It’s okay, lads. Hunter, by many. Some by the Faceless — or faceless one. Others, well, we need not get into how I am branded. As for my mask, tis not a story for ears so young.
+	Elias: I’m nearly eight! Bloody hell, man.
+	David: Elias Sharp! Remember who you are and refrain from sounding like the help!
+	Elias: Well, they’ll never make you a lord anyway.
+	David: You think yourself a man, you spoiled homunculus.
+	Devin: Lads. Cease your squabbling. I have questions to ask of you. Of your mother, and other matters.
+	set {DavidElias.HasSpoken} = true
+else:
+	Devin: Boys?
+	David: You come with more questions?
+label Choice
+- What of these deaths?
+	Devin: Have you noticed or heard anything strange about events in the fields?
+	Elias: Like the murders, mister faceless?
+	David: You know nowt, Elias. But I can tell you someting.
+	Devin: Oh?
+	David: A young boy from
+	Elias: It was near where they found the bodies, sir.
+	Devin: What made it so worthy of note?
+	David: I know not. Only what Elliot told me. Its size. Towering. No such beast exists in Cumbria.
+	jump Choice
+- What of strangeness in these grounds?
+	Devin: Can you lads share any details of peculiarities at home? On these grounds?
+	David: At night, sometimes, we do hear a sound most curious. It’s a sort of thudding, but muffled.
+	Elias: Can I tell you a secret?
+	David: Not this rot again.
+	Elias: David, hush. One night, a few nights ago, I woke in the dark — and saw a pair of bright, yellow eyes floating in the corner. In the darkness.
+	David: Rot, I say! You were only dreaming.
+	Elias: Was not! Another time I woke to see a figure towering over me. A shadow. With those yellow eyes. Tweren’t no angel, neither.
+	David: You sound a silly and superstitious as our stupid servants, Elias.
+	label Choice 2
+	- Whose eyes did you see?
+		Devin: Whose eyes did you see, Elias?
+		Elias: I know not. But my blood ran ice cold when I saw them. And my heart was pounding. I buried myself in the covers and prayed they would vanish.
+		Devin: And did they?
+		Elias: I know not. I couldn’t even move. I fell asleep praying. In the morning, they were gone.
+		set {DavidElias.Q1Answered} = true
+		jump Choice 2
+	- What was this figure?
+		Devin: What did this figure look look? Did it resemble any man or woman you know?
+		Elias: Didn’t look like anyone here. But I didn’t imagine it! I saw it with mine own eyes.
+		set {DavidElias.Q2Answered} = true
+		jump Choice 2
+	- Have you told any adults?
+		Devin: Have you told another soul? Perhaps your father, or mother?
+		Elias: Not another. David already laughs at me. Please don’t tell papa, will you?
+		Devin: Of course not.
+		set {DavidElias.Q3Answered} = true
+		jump Choice 2
+	- Onto other matters. [if {DavidElias.Q1Answered} == true and {DavidElias.Q2Answered} == true and {DavidElias.Q3Answered} == true]
+		Devin: Let’s discuss other matters.
+	jump Choice
+- Anything you can share about Beth?
+	Devin: Lads. About your poor mother... Can you tell me anything you might know of her disappearance? Her whereabouts prior?
+	David: Elias and I know nothing. We just want her back. We really miss her, hunter.
+	Elias: Will you find her, please sir?
+	Devin: Rest assured, I will do all I can.
+	jump Choice
+- The glass box. Tell me about it
+	Devin: What do you know of the contents of this empty box in the hallway, there?
+	Elias: It’s mama’s.
+	David: No, you nincompoop. It’s a family heirloom — she just wears it sometimes.
+	Elias: It went missing just before she went.
+	David: Did you have another question, sir?
+	jump Choice
+- I should be going.
+	Devin: I should take my leave. Fear not, young Sharps. I will find your mother.
+	Elias: Gramercy. We miss her so.
+	David: God be with you.

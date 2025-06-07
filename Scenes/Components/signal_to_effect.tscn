@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://bmkq7u7c66eru"]
+
+[ext_resource type="Script" path="res://Scripts/Components/SignalToEffect.gd" id="1_yoh5w"]
+
+[node name="Node" type="Node"]
+script = ExtResource("1_yoh5w")

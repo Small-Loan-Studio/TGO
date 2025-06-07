@@ -43,10 +43,11 @@ on it's path relative to `Scenes/Level`. In other words if the file tree looks l
 
 ![](./imgs/errata-level-ref-file-tree.png)
 
-And we wanted to reference `nested level.tscn` we would specify it as: `Test Folder/nested level`.
-Note that we exclude the `.tscn` extension as well as the original folder path.
+And we wanted to reference `nested level.tscn` we would specify it as: `Debug/Test Folder/nested level`.
+Note that we exclude the `.tscn` extension as well as the `Scenes/Levels`
+portion of the folder path.
 
-For non-nested levels, e.g. `BadLevelA.tscn` it would be simple `BadLevelA`.
+For non-nested levels, e.g. `farmlands.tscn` it would be simple `farmlands`.
 
 [toolset-playlist]: https://www.youtube.com/watch?v=sdmigctjJE4&list=PL-u-qjmzyjPWRhyIqXs4uOrQIxwAf-BVj
 [tgo-arch]: https://www.youtube.com/watch?v=6NawSaaFHdg

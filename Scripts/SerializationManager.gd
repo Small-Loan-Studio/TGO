@@ -14,6 +14,8 @@ const DIALGOIC_SLOT := "tgo_world"
 const DIALOGIC_FILENAME := "state.txt"
 const DIALOGIC_THUMBNAIL := "thumbnail.png"
 
+const DEBUG_JSON := "debug.json"
+
 @export var is_loading_game: bool = false
 
 ## Stores all the levels the player has encountered during a playthrough.
@@ -61,6 +63,43 @@ func _create_file_paths() -> int:
 	return error
 
 
+static func _load_debug_json() -> Dictionary:
+	var data: Dictionary = {"enabled": false}
+	var file := FileAccess.open(DEBUG_JSON, FileAccess.READ)
+	if file != null:
+		var text := file.get_as_text()
+		var json := JSON.new()
+		var err := json.parse(text)
+		if err == OK:
+			data = json.data
+		file.close()
+	return data
+
+
+func autoload_game() -> void:
+	print("Autoload Game")
+	var data := SerializationManager._load_debug_json()
+	if data.enabled:
+		print(data)
+		Driver.instance().load_level(data.level, LevelBase.DEFAULT_MARKER)
+
+
+static func is_autoload() -> bool:
+	var data := SerializationManager._load_debug_json()
+	return data.enabled
+
+
+func _on_autoload_toggled(enabled: bool) -> void:
+	var data := SerializationManager._load_debug_json()
+	data.enabled = enabled
+	if enabled:
+		data.level = Driver.instance().get_current_level().level_name
+	var payload := JSON.stringify(data)
+	var file := FileAccess.open(DEBUG_JSON, FileAccess.WRITE)
+	file.store_string(payload)
+	file.close()
+
+
 ## Saves everything necessary in the game and creates a .sav file recording this data.
 ## Connected to Driver.gd signal: save_level
 func save_game() -> void:
@@ -80,6 +119,7 @@ func save_game() -> void:
 	meta_data.quest_info = Driver.instance().quest_mgr.save()
 	meta_data.time_of_day = Driver.instance()._day_night_cycle.current_time
 	meta_data.player_data = Driver.instance().player.save()
+	meta_data.region_states = Driver.instance().region_state_mgr.save()
 	_write_meta(meta_data)
 
 	if !_write_dialogic_data():
@@ -141,6 +181,9 @@ func load_game() -> void:
 	Driver.instance().quest_mgr.load(save_meta.quest_info)
 	if save_meta.version >= 1:
 		Driver.instance()._day_night_cycle.set_time_sec(save_meta.time_of_day, true)
+
+	if save_meta.version >= 4:
+		Driver.instance().region_state_mgr.load(save_meta.region_states)
 
 	DirAccess.remove_absolute(Utils.user_data_dir() + ZIP_FILE_NAME)
 	print("Loaded Game")
@@ -408,13 +451,17 @@ class SaveFileMeta:
 	# Map[QuestState, Array[quest_id: String]]
 	var quest_info: Dictionary
 
+	# Map[region_id: String, RegionState]
+	var region_states: Dictionary
+
 	func marshal() -> String:
 		var data := {
-			"meta_version": 3,
+			"meta_version": 4,
 			"level": level_name,
 			"quest_info": quest_info,
 			"time_of_day": time_of_day,
 			"player": player_data,
+			"region_states": region_states,
 		}
 
 		return JSON.stringify(data, "\t")
@@ -438,9 +485,8 @@ class SaveFileMeta:
 
 		sf.version = json.data["meta_version"]
 
-		if sf.version > 3:
+		if sf.version > 4:
 			assert(false, "Unknown meta file format")
-
 		sf.level_name = json.data["level"]
 		if sf.version >= 1:
 			sf.quest_info = json.data["quest_info"]
@@ -459,5 +505,8 @@ class SaveFileMeta:
 
 		if sf.version >= 3:
 			sf.player_data = json.data["player"]
+
+		if sf.version >= 4:
+			sf.region_states = json.data["region_states"]
 
 		return sf

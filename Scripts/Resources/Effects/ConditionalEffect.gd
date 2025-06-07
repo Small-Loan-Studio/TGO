@@ -2,19 +2,20 @@ class_name ConditionalEffect
 extends Effect
 
 @export var condition: Array[TriggerCondition] = []
-@export var true_path: Array[Effect] = []
-@export var false_path: Array[Effect] = []
 
 
-func act(actor_id: String, cur_level: LevelBase) -> void:
+func _init() -> void:
+	super._init()
+	_expose_result_chains = true
+
+
+func act(actor_id: String, cur_level: LevelBase) -> Variant:
 	for c in condition:
 		if !c.evaluate(actor_id):
-			_trigger(false_path, actor_id, cur_level)
-			return
+			return _run_next(failure_chain, actor_id, cur_level)
 
-	_trigger(true_path, actor_id, cur_level)
+	return _run_next(success_chain, actor_id, cur_level)
 
 
-func _trigger(effect_chain: Array[Effect], actor_id: String, cur_level: LevelBase) -> void:
-	for e in effect_chain:
-		e.act(actor_id, cur_level)
+func terminal_callback(ctx: Variant) -> void:
+	_run_next_callbacks(ctx)

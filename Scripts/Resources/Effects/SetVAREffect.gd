@@ -20,7 +20,7 @@ extends Effect
 @export var new_value: String
 
 
-func act(_actor_id: String, _cur_level: LevelBase) -> void:
+func act(_actor_id: String, _cur_level: LevelBase) -> Variant:
 	var coerced_value: Variant = _get_valid_value(variable_name, new_value)
 	if coerced_value == null:
 		printerr(
@@ -29,7 +29,7 @@ func act(_actor_id: String, _cur_level: LevelBase) -> void:
 				% [new_value, variable_name]
 			)
 		)
-		return
+		return null
 	match set_type:
 		"overwrite":
 			Dialogic.VAR.set_variable(variable_name, coerced_value)
@@ -45,6 +45,7 @@ func act(_actor_id: String, _cur_level: LevelBase) -> void:
 						"SetVarEffect: Unable to make update to non-numeric variable ",
 						variable_name
 					)
+	return null
 
 
 func _get_valid_value(variable_name: String, new_value: String) -> Variant:

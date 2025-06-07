@@ -1,0 +1,51 @@
+if {Lisa.HasSpoken} == false:
+	Devin: You must be the Sharps’ chef.
+	Lisa: Indeed I am, and you must be hunter who’s been slinking around Oakshaw?
+	Devin: Indeed. I’m here to investigate the recent deaths and disappearances, Mrs Bennett.
+	Lisa: Well consider me at your disposal. I know not how much help I can be, but I can try.
+if {Lisa.HasSpoken} == true:
+	Devin: Mrs Bennett.
+	Lisa: Faceless one, how can I help?
+label Questions
+- What of these deaths?
+	Devin: What do you know of the recent deaths and disappearances, Mrs Bennett? Anything odd, supernatural or monstrous?
+	Lisa: No monsters around here, no sir. Tis merely the demon awoken within.
+	Devin: A metaphorical one I hope.
+	Lisa: Tis the gin, hunter. People are obsessed with it, I say. Not just the men, neither, the women have gone mad with it, too! Just look at poor Martha.
+	Devin: And you have not been tempted by any such devilry?
+	Lisa: You know as well as I there is a difference, hunter. It’s the wanton inebriation. Their falling away from God that’s brought such just rewards. You may be sure of that.
+	Devin: Befuddlement, Mrs Bennett, does not cause such horrific wounds as those inflicted on these bodies. What might you suspect of the culprit?
+	Lisa: I know nothing, hunter, tis God’s will perhaps.
+	Devin: Ever the theologian.
+	jump Questions
+- What of strangeness in these grounds?
+	Devin: Have you noticed anything strange within these grounds of late? Within the walls of this manor?
+	Lisa: Nay, not a thing out of the ordinary. Tis a right bonnie home, but it has lost its former glory. Grand banquets, incredible feasts, all before mine time, mind you.
+	Devin: And now?
+	Lisa: Years of decay and neglect have seeped in. And that is despite Lady Sharp’s best efforts. Vermin have infested the place of late. 
+	set {Jefferson.opt2_3a5} = true
+	jump Questions
+- Anything you can share about Beth?
+	Devin: Did you know Beth Sharp well? Did you see her shortly before she disappeared?
+	Lisa: I fear I can’t say much.  She did spend much of her time in the grounds, by the flowers. The orchard. Not in the kitchen.
+	Devin: And what of her character?
+	Lisa: Lady Beth was kind. Caring. Not like most of the others.
+	Lisa: She had a fine sweet tooth, sir. I had the privilege of baking her favourite gooseberry pudding pies.
+	Lisa: Baked them for her weekly for more than five years. I even sought from my sister, Hannah. Well. Half-sister. Well now, enough of this maudlin nonsense.
+	jump Questions
+- The glass box. Tell me about it.
+	Devin: I noticed an empty glass case in the hallway. Some tiny glass shards near it. What can you say of its contents?
+	Lisa: Oh, yes. That box, sir, used to house a great quartz necklace. Tis a Sharp heirloom, and has been with them for generations.
+	Lisa: Caused quite an uproar when the casing was found smashed. Shards everywhere.
+	Devin: And yet they remain.
+	Lisa: Well, of course. they say poor Louisa took the necklace. In the night. Mr Pimm should know more, in truth.
+	Devin: Louisa?
+	Lisa: Our house maid. A friend of mine, truth be told. Now she rots in the lock-up. Awaiting hanging.
+	Devin: You do not suspect her.
+	Lisa: We cannot think who else it must have been. Though it does not fit her character. I suppose people are capable of anything when pushed to their limits.
+	jump Questions
+- I should be going.
+	Devin: I should be going.
+	Lisa: God be with you, faceless one.
+	set {Lisa.HasSpoken} = true
+	[end_timeline]

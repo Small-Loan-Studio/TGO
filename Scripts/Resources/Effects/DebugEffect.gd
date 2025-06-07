@@ -1,6 +1,10 @@
 class_name DebugEffect
 extends Effect
 
+@export var message: String = "debug message"
 
-func act(actor_id: String, cur_level: LevelBase) -> void:
-	print("DebugEffect: ", cur_level.get_by_id(actor_id))
+
+func act(actor_id: String, cur_level: LevelBase) -> Variant:
+	print("[DebugEffect] actor: %s, %s" % [actor_id, cur_level.get_by_id(actor_id)])
+	print("[DebugEffect] %s" % [message])
+	return null

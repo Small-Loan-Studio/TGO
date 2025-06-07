@@ -40,7 +40,7 @@ func maybe_menu(change_state: Callable) -> bool:
 		change_state
 		. call(
 			menu_state,
-			menu_state.mk_args(Enums.MenuType.GAMEPLAY),
+			menu_state.mk_args(Menus.MenuKind.PAUSE),
 		)
 	)
 	return true

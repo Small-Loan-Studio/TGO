@@ -2,7 +2,6 @@
 class_name Utils
 extends RefCounted
 
-const ID_GROUP := "NodesWithID"
 const PLAYER_ID := "Devin"
 const QUEST_DIR := "res://Scripts/Resources/Quests"
 const USER_DATA_DIR := "user://"
@@ -103,6 +102,10 @@ static func level_path_to_name(path: String) -> String:
 	return path
 
 
+static func level_is_debug(name: String) -> bool:
+	return name.begins_with("Debug/")
+
+
 ## Used for getting persistent levels and loading saved levels [b]NOT[/b] the original levels
 static func level_to_path_binary(level_name: String) -> String:
 	return USER_DATA_DIR + SAVE_FOLDER + LEVEL_FOLDER + level_name + LEVEL_EXT_BIN
@@ -191,3 +194,36 @@ static func ersatz_dialogic_get_var(path: String) -> Variant:
 
 	var v: Variant = folder[parts[0]]
 	return [v, typeof(v)]
+
+
+#gdlint: disable=class-variable-name
+class GroupNames:
+	static var HasID := "NodesWithID"
+	static var AudioNodes := "RegisteredAudioNode"
+	static var ControlledRegions := "ControlledRegions"
+	static var Doors := "Doors"
+
+
+class WwiseIds:
+	static var AudioManager := "Audio Manager"
+
+
+#gdlint: enable=class-variable-name
+
+
+static func mk_array_prop(name: String, usage: int, type_name: String) -> Dictionary:
+	return {
+		"name": name,
+		"type": TYPE_ARRAY,
+		"usage": usage,
+		"hint": PROPERTY_HINT_ARRAY_TYPE,
+		"hint_string":
+		(
+			"%d/%d:%s"
+			% [
+				TYPE_OBJECT,
+				TYPE_BASIS,
+				type_name,
+			]
+		),
+	}

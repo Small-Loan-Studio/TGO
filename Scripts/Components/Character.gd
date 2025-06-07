@@ -20,6 +20,9 @@ signal equipment_changed(id: String)
 ## Map[Enums.GearSlot, Item]
 @export var _equipment: Dictionary = {}
 
+## Whether or not this character should register themselves with Wwise
+@export var _has_audio_node: bool
+
 ## When set to false this will disable the monitoring state of the sensors
 ## a character uses to interact with the exterior world, e.g., use items /
 ## push/pull things. No checking is done to ensure it's safe to switch state
@@ -67,6 +70,7 @@ var _controller: ControllerBase
 @onready var _interaction_sensor: Area2D = $SensorSet/InteractionSensor
 @onready var _push_pull_sensor: Area2D = $SensorSet/PushPullSensor
 @onready var _state_machine: StateMachine = $StateMachine
+@onready var _audio_node: AudioNode = $AudioNode
 
 
 func _ready() -> void:
@@ -104,6 +108,19 @@ func _ready() -> void:
 			printerr("_controller is null, potentially unexpected, using noop fallback")
 		_controller = ControllerBase.new()
 		ctx.controller = _controller
+
+	if !_has_audio_node || id == "":
+		if _has_audio_node:
+			printerr(
+				(
+					"%s: Not registering character that wants to be an AudioNode because it has no ID"
+					% [name]
+				)
+			)
+		remove_child(_audio_node)
+	else:
+		if id != "":
+			_audio_node.setup(self, id)
 
 	_state_machine.setup(ctx)
 
@@ -222,6 +239,18 @@ func equip(slot: Enums.GearSlot, item: Item) -> bool:
 	return true
 
 
+func in_slot(slot: Enums.GearSlot) -> Item:
+	return _equipment.get(slot, null)
+
+
+func is_equipped(item: Item) -> bool:
+	for slot: Enums.GearSlot in _equipment:
+		var gear: Item = _equipment[slot]
+		if gear != null && gear.id == item.id:
+			return true
+	return false
+
+
 # removes equipment from slot, if any is present.
 func unequip(slot: Enums.GearSlot) -> void:
 	print("unequip(%s) - Current equip load: %s" % [slot, _equipment])
@@ -280,6 +309,14 @@ func _load_gear(data: Dictionary) -> void:
 #endregion
 
 
+#region audio
+func is_audio_object() -> bool:
+	return _audio_node != null
+
+
+#endregion
+
+
 func _get_configuration_warnings() -> PackedStringArray:
 	var errs := []
 	if _sprite.sprite_frames == null:
@@ -300,6 +337,9 @@ func _get_configuration_warnings() -> PackedStringArray:
 		errs.append("Controller Node Path must be set to respond to input or use State Machines")
 	elif !(get_node(_controller_node_path) is ControllerBase):
 		errs.append("Controller Node Path must reference a ControllerBase or subclass")
+
+	if _has_audio_node && id == "":
+		errs.append("Characters with audio nodes must have an ID")
 
 	return errs
 

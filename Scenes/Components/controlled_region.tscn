@@ -1,0 +1,10 @@
+[gd_scene load_steps=2 format=3 uid="uid://5xu2lbni2byw"]
+
+[ext_resource type="Script" path="res://Scripts/Components/ControlledRegion.gd" id="1_oaktj"]
+
+[node name="ControlledRegion" type="Node2D"]
+script = ExtResource("1_oaktj")
+collision_layer = 1
+collision_mask = 1
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]

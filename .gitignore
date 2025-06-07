@@ -24,6 +24,7 @@ mono_crash.*.json
 #Builds Folder
 builds/
 
+debug.json
 gdlint.sh
 gdformat.sh
 

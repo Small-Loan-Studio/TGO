@@ -7,3 +7,10 @@ extends Resource
 
 func evaluate(_actor_id: String) -> bool:
 	return false
+
+
+static func evaluate_all(conditions: Array[TriggerCondition], _actor_id: String) -> bool:
+	for condition: TriggerCondition in conditions:
+		if !condition.evaluate(_actor_id):
+			return false
+	return true

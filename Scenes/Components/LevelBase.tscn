@@ -23,6 +23,21 @@ layer_2/tile_data = PackedInt32Array()
 layer_3/name = "Placeables"
 layer_3/y_sort_enabled = true
 layer_3/tile_data = PackedInt32Array()
+layer_4/name = "Decals_1.0"
+layer_4/y_sort_enabled = true
+layer_4/z_index = 1
+layer_4/navigation_enabled = false
+layer_4/tile_data = PackedInt32Array()
+layer_5/name = "Decals_1.1"
+layer_5/y_sort_enabled = true
+layer_5/z_index = 1
+layer_5/navigation_enabled = false
+layer_5/tile_data = PackedInt32Array()
+layer_6/name = "Decals_2.0"
+layer_6/y_sort_enabled = true
+layer_6/z_index = 2
+layer_6/navigation_enabled = false
+layer_6/tile_data = PackedInt32Array()
 
 [node name="CanopyMap" type="TileMap" parent="."]
 light_mask = 0

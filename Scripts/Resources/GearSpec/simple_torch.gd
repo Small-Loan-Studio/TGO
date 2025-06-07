@@ -21,7 +21,7 @@ static func add_torch(c: Character, color: Color) -> Torch:
 	c.add_child(torch_node)
 	# configure the torch
 	torch_node.light_color = color
-	torch_node.light_size = 2
+	torch_node.light_size = 2.7
 	torch_node.sprite_texture = null
 	torch_node.sprite_frames = null
 	torch_node.toggle(false)

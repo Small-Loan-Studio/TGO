@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="NPCConfig" load_steps=3 format=3 uid="uid://bkgpc6aqlh57s"]
+
+[ext_resource type="Script" path="res://Scripts/Resources/NpcConfig.gd" id="1_p6q4h"]
+[ext_resource type="SpriteFrames" uid="uid://b3igo1ygiyl0b" path="res://Art/Characters/character_placeholder.tres" id="2_ono1o"]
+
+[resource]
+script = ExtResource("1_p6q4h")
+character_id = "Bartholomew"
+sprite_sheet = ExtResource("2_ono1o")
+valid_timelines = Array[String](["res://Dialogue/Bartholomew/Bartholomew3a6.dtl", "res://Dialogue/Bartholomew/Bartholomew2b.dtl"])

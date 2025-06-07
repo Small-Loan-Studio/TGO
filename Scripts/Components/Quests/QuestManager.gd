@@ -85,10 +85,13 @@ func load(data: Dictionary) -> void:
 
 	for quest_state_name: String in data:
 		for quest_id: String in data[quest_state_name]:
-			var quest: Quest = _quest_dict[quest_id][QUEST_IDX]
-			quest.state = Enums.quest_state_from_str(quest_state_name)
-			if quest.state == Enums.QuestState.ACTIVE:
-				_active_quests[quest_id] = null
+			if _quest_dict.has(quest_id):
+				var quest: Quest = _quest_dict[quest_id][QUEST_IDX]
+				quest.state = Enums.quest_state_from_str(quest_state_name)
+				if quest.state == Enums.QuestState.ACTIVE:
+					_active_quests[quest_id] = null
+			else:
+				printerr("Attempting to restore missing quest: %s" % [quest_id])
 
 	# signal state changes on all the newly marked active quests
 	for quest_id: String in _active_quests:

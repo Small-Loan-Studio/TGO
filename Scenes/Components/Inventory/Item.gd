@@ -1,6 +1,8 @@
 @tool
 extends Node2D
 
+signal picked_up
+
 @export var item: Item:
 	set(value):
 		item = value

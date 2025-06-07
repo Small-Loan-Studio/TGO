@@ -1,0 +1,9 @@
+join Devin 1
+Devin: My hunting bag. Threadbare. One of the stitches is coming undone. I must have dropped it in my stupor.
+if {TGO.player_inventory.has("SCRAP_OF_PAPER")} == false:
+	[tgo_expr expr="{TGO.player_inventory.add_item("SCRAP_OF_PAPER")}"]
+	Devin: I am bereft of my journal… This must do, for now.
+if {TGO.player_inventory.has("TINDER_LIGHTER")} == false:
+	[tgo_expr expr="{TGO.player_inventory.add_item("TINDER_LIGHTER")}"]
+if {TGO.player_inventory.has("BAG_OF_HARDTACK")} == false:
+	[tgo_expr expr="{TGO.player_inventory.add_item("BAG_OF_HARDTACK")}"]
