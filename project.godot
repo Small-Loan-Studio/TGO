@@ -40,7 +40,8 @@ gdscript/warnings/untyped_declaration=2
 [dialogic]
 
 directories/dch_directory={
-"Groundskeeper": "res://Scripts/Resources/NPCs/DialogicCharacters/Groundskeeper.dch"
+"Groundskeeper": "res://Scripts/Resources/NPCs/DialogicCharacters/Groundskeeper.dch",
+"test_character": "res://ZZ_Scratch/DialogicValidation/test_character.dch"
 }
 directories/dtl_directory={
 "BuckleyTestTimeline": "res://Dialogue/Buckley/BuckleyTestTimeline.dtl",
@@ -48,6 +49,7 @@ directories/dtl_directory={
 "debugging_timeline": "res://ZZ_Scratch/DialogicValidation/debugging_timeline.dtl",
 "juniper_bush_full": "res://Dialogue/PlaceableInteractive/juniper_bush_full.dtl",
 "npc_test_dialogue": "res://ZZ_Scratch/NPCDialogue/npc_test_dialogue.dtl",
+"style_timeline": "res://ZZ_Scratch/DialogicValidation/style_timeline.dtl",
 "test_timeline": "res://ZZ_Scratch/DialogicValidation/test_timeline.dtl"
 }
 text/letter_speed=0.01
@@ -80,10 +82,12 @@ variables={
 "UserInputNum": 0,
 "UserInputString": ""
 }
-layout/style_list=[]
-layout/default_style="Default"
+layout/style_list=["res://addons/dialogic/Modules/TGOLayoutStyle/TGOStyle.tres"]
+layout/default_style="res://addons/dialogic/Modules/TGOLayoutStyle/TGOStyle.tres"
 glossary/default_case_sensitive=true
 extensions_folder="res://addons/dialogic_additions"
+history/simple_history_enabled=true
+history/visited_event_history_enabled=false
 
 [display]
 
