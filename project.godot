@@ -51,6 +51,7 @@ directories/dch_directory={
 "Lisa": "res://Scripts/Resources/NPCs/DialogicCharacters/Lisa.dch"
 }
 directories/dtl_directory={
+"AudioAdapter": "res://Dialogue/TestTimelines/AudioAdapter.dtl",
 "BagOfHardtack": "res://Dialogue/Examinations/BagOfHardtack.dtl",
 "Bartholomew3a6": "res://Dialogue/Bartholomew/Bartholomew3a6.dtl",
 "BlackMouldCrypt": "res://Dialogue/Examinations/BlackMouldCrypt.dtl",

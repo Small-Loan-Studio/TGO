@@ -58,6 +58,29 @@ func stop_event(cfg: EventConfig) -> void:  #akevent: AkEvent2D) -> void:
 	Wwise.stop_event(cfg.playing_id, cfg.stop_fade_time, cfg.interp_mode)
 
 
+func stop_event_by_id(event_id: int, stop_time: int) -> void:
+	print("[Wwise] %s.stop_event_by_id: %d" % [_target.name, event_id])
+	Wwise.stop_event(event_id, stop_time, 4) # 4 == Linear interpolation
+
+
+func send_param(param_name: String, value: float) -> void:
+	var param_id := AKHelper.lookup_param_id(param_name)
+	if param_id == -1:
+		printerr("Invalid RTPC: %s" % [param_name])
+		return
+	print( "[Wwise] %s rtpc -> %s=%s" % [_target.name, param_name, value] )
+	Wwise.set_rtpc_value_id(param_id, value, _target)
+
+
+func get_param(param_name: String) -> float:
+	var param_id: int = AKHelper.lookup_param_id(param_name)
+	if param_id == -1:
+		printerr("Invalid RTPC: %s" % [param_name])
+		return 0.0
+	print("[Wwise] %s rtpc <- %s" % [_target.name, param_name])
+	return Wwise.get_rtpc_value_id(param_id, _target)
+
+
 class EventConfig:
 	extends RefCounted
 

@@ -63,13 +63,10 @@ func terminal_callback(ctx: Variant) -> void:
 	(ctx as Callable).call()
 
 
-func _find_actor(id: String, _cur_level: LevelBase) -> AudioNode:
+func _find_actor(id: String, cur_level: LevelBase) -> AudioNode:
 	if id == Utils.WwiseIds.AudioManager:
 		return Driver.instance().get_audio_manager()
-	for node: AudioNode in _cur_level.get_tree().get_nodes_in_group(Utils.GroupNames.AudioNodes):
-		if node.id == id:
-			return node
-	return null
+	return cur_level.get_audio_node(id)
 
 
 func _get_property_list() -> Array[Dictionary]:

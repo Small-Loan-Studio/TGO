@@ -44,7 +44,13 @@ static func name_by_id(dict: Dictionary, id: int) -> String:
 	for key: String in dict:
 		if dict[key] == id:
 			return key
-	return "--unknown--"
+	return ""
+
+
+static func lookup_param_id(name: String) -> int:
+	if !AK.GAME_PARAMETERS._dict.has(name):
+		return -1
+	return AK.GAME_PARAMETERS._dict[name]
 
 
 func get_param(param: int, local: bool = true) -> float:
@@ -78,7 +84,7 @@ func send_param(param: int, value: float, local: bool = true) -> void:
 	print(
 		(
 			"[Wwise] %s%s rtpc -> %s=%s"
-			% [locality_str, _target.name, self.name_by_id(AK.GAME_PARAMETERS._dict, param), value]
+			% [locality_str, _target.name, AKHelper.name_by_id(AK.GAME_PARAMETERS._dict, param), value]
 		)
 	)
 
