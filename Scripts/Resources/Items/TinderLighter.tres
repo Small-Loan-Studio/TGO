@@ -1,7 +1,12 @@
-[gd_resource type="Resource" script_class="Item" load_steps=3 format=3 uid="uid://bcmpeqarjv83p"]
+[gd_resource type="Resource" script_class="Item" load_steps=5 format=3 uid="uid://bcmpeqarjv83p"]
 
 [ext_resource type="Script" path="res://Scripts/Components/Inventory/Item.gd" id="1_m8g67"]
+[ext_resource type="Script" path="res://Scripts/Resources/GearSpec/simple_torch.gd" id="1_pk452"]
 [ext_resource type="Texture2D" uid="uid://cmsy5v32kg1ys" path="res://Art/Items/TinderLighter.png" id="1_ys5it"]
+
+[sub_resource type="Resource" id="Resource_uauxs"]
+script = ExtResource("1_pk452")
+light_color = Color(1, 1, 1, 0.588235)
 
 [resource]
 script = ExtResource("1_m8g67")
@@ -13,4 +18,4 @@ After Examination: A simple, tarnished tinder lighter. Smells of flint. Servicea
 stackable = false
 stack_size = 1
 icon = ExtResource("1_ys5it")
-gear_spec = Array[Resource("res://Scripts/Resources/GearSpec.gd")]([])
+gear_spec = Array[Resource("res://Scripts/Resources/GearSpec.gd")]([SubResource("Resource_uauxs")])

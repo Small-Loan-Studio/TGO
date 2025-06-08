@@ -48,11 +48,13 @@ directories/dch_directory={
 "Groundskeeper": "res://Scripts/Resources/NPCs/DialogicCharacters/Groundskeeper.dch",
 "Ilene": "res://Scripts/Resources/NPCs/DialogicCharacters/Ilene.dch",
 "Jefferson": "res://Scripts/Resources/NPCs/DialogicCharacters/Jefferson.dch",
-"Lisa": "res://Scripts/Resources/NPCs/DialogicCharacters/Lisa.dch"
+"Lisa": "res://Scripts/Resources/NPCs/DialogicCharacters/Lisa.dch",
+"Martha": "res://Scripts/Resources/NPCs/DialogicCharacters/Martha.dch"
 }
 directories/dtl_directory={
 "AudioAdapter": "res://Dialogue/TestTimelines/AudioAdapter.dtl",
 "BagOfHardtack": "res://Dialogue/Examinations/BagOfHardtack.dtl",
+"Bartholomew2b": "res://Dialogue/Bartholomew/Bartholomew2b.dtl",
 "Bartholomew3a6": "res://Dialogue/Bartholomew/Bartholomew3a6.dtl",
 "BlackMouldCrypt": "res://Dialogue/Examinations/BlackMouldCrypt.dtl",
 "BuckleyTestTimeline": "res://Dialogue/Buckley/BuckleyTestTimeline.dtl",
@@ -60,6 +62,7 @@ directories/dtl_directory={
 "CorruptedFungalGrowth": "res://Dialogue/Examinations/CorruptedFungalGrowth.dtl",
 "CorruptedMushroom": "res://Dialogue/Examinations/CorruptedMushroom.dtl",
 "CryptKey": "res://Dialogue/Examinations/CryptKey.dtl",
+"CryptSecretChamberOnEnter": "res://Dialogue/Other/CryptSecretChamberOnEnter.dtl",
 "DavidElias3a2": "res://Dialogue/DavidElias/DavidElias3a2.dtl",
 "EmptyBottle": "res://Dialogue/Examinations/EmptyBottle.dtl",
 "FlameTorch": "res://Dialogue/Examinations/FlameTorch.dtl",
@@ -70,6 +73,7 @@ directories/dtl_directory={
 "JournalPage1": "res://Dialogue/Examinations/JournalPage1.dtl",
 "Lisa_3a5": "res://Dialogue/Lisa/Lisa_3a5.dtl",
 "LitWoodenTorch": "res://Dialogue/Examinations/LitWoodenTorch.dtl",
+"Martha3a3": "res://Dialogue/Martha/Martha3a3.dtl",
 "OldBatteredKey": "res://Dialogue/Examinations/OldBatteredKey.dtl",
 "PileOfWoodenStakes": "res://Dialogue/Examinations/PileOfWoodenStakes.dtl",
 "RansackedCoffin": "res://Dialogue/Examinations/RansackedCoffin.dtl",
@@ -103,6 +107,7 @@ save/encryption_on_exports_only=true
 text/autopauses={}
 variables={
 "Bartholomew": {
+"2bSpoken": false,
 "3a1Op2.3": false,
 "3a3Op2": false,
 "ExaminedBodies": false,
@@ -136,6 +141,10 @@ variables={
 },
 "Lisa": {
 "HasSpoken": false
+},
+"Martha": {
+"HasSpoken": false,
+"ItemGiven": false
 },
 "QuestVarConditionTest": false,
 "UserInputNum": 0,

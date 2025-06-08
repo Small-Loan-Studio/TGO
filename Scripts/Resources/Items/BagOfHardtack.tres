@@ -1,5 +1,6 @@
-[gd_resource type="Resource" script_class="Item" load_steps=2 format=3 uid="uid://c0k5s2pwp0tvi"]
+[gd_resource type="Resource" script_class="Item" load_steps=3 format=3 uid="uid://c0k5s2pwp0tvi"]
 
+[ext_resource type="Texture2D" uid="uid://bk5g3c50cvkuj" path="res://Art/Items/potion.png" id="1_7qm8l"]
 [ext_resource type="Script" path="res://Scripts/Components/Inventory/Item.gd" id="1_7rqnp"]
 
 [resource]
@@ -11,4 +12,5 @@ description = "Default: Simple hardtack in a burlap sack. Makes my mouth dry jus
 After Examination: A dense, hardened cracker in a burlap sack. Doesn’t spoil easily. Ideal for the long hunts to which I’m accustomed, but makes my mouth dry just looking at it."
 stackable = true
 stack_size = 10
+icon = ExtResource("1_7qm8l")
 gear_spec = Array[Resource("res://Scripts/Resources/GearSpec.gd")]([])

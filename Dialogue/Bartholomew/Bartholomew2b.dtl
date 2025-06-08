@@ -1,0 +1,15 @@
+if {Bartholomew.2bSpoken} == true:
+	jump Bartholomew3a6/
+else:
+	# Player approaches with the front door and uses a “knock” interaction.
+	Bartholomew: Good day, sir. What is your business?
+	Devin: I come in response to a summons in a letter from the Lord of this manor, Arthur Sharp. He requested an audience.
+	Bartholomew: I see. Do come in, sir. I’ll enquire with Lord Sharp.
+	Devin: Gramercy.
+	# Transition into the grand hallway of the manor house.
+	Bartholomew: You may await Lord Sharp where you stand, hunter. He will greet you here.
+	Devin: Of course. I will take a moment to observe the surroundings whilst I wait.
+	Bartholomew: Observe your surroundings, if you must. But pray, neither damage nor remove owt. This house has suffered enough.
+	Devin: Indeed.
+	# The Sharp Butler exits, leaving Devin alone in the grand hallway.
+	set {Bartholomew.2bSpoken} = true
