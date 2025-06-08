@@ -21,6 +21,8 @@ func setup(plugin: TGOInspectorInteractable, obj: Interactable) -> void:
 
 func _sync() -> void:
 	_action_select.clear()
+	if _data == null:
+		return
 	var secondary_keys := _data.action_map.keys()
 	if !_data.action_map.has(_data.default_verb):
 		_action_select.add_item(Enums.action_verb_name(_data.default_verb))

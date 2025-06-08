@@ -1,0 +1,58 @@
+[gd_scene load_steps=2 format=3 uid="uid://vrc10plr6i20"]
+
+[ext_resource type="Script" path="res://addons_tgo/editors/region/TGOInspectorControlledRegionId.gd" id="1_3fjul"]
+
+[node name="TGOInspectorControlledRegionId" type="MarginContainer"]
+offset_right = 1280.0
+offset_bottom = 720.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 24
+script = ExtResource("1_3fjul")
+
+[node name="Vbox" type="VBoxContainer" parent="."]
+layout_mode = 2
+
+[node name="IdVbox" type="VBoxContainer" parent="Vbox"]
+layout_mode = 2
+
+[node name="Existing" type="OptionButton" parent="Vbox/IdVbox"]
+layout_mode = 2
+item_count = 1
+selected = 0
+popup/item_0/text = "New Region"
+popup/item_0/id = 0
+
+[node name="Hbox" type="HBoxContainer" parent="Vbox/IdVbox"]
+layout_mode = 2
+
+[node name="NewId" type="LineEdit" parent="Vbox/IdVbox/Hbox"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Create" type="Button" parent="Vbox/IdVbox/Hbox"]
+layout_mode = 2
+text = "Create"
+
+[node name="Config" type="VBoxContainer" parent="Vbox"]
+visible = false
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Vbox/Config"]
+layout_mode = 2
+text = "Initial Region State
+"
+
+[node name="Passable" type="CheckBox" parent="Vbox/Config"]
+layout_mode = 2
+text = "Is passable"
+
+[node name="Visible" type="CheckBox" parent="Vbox/Config"]
+layout_mode = 2
+text = "Is visible"
+
+[connection signal="item_selected" from="Vbox/IdVbox/Existing" to="." method="_on_select"]
+[connection signal="text_changed" from="Vbox/IdVbox/Hbox/NewId" to="." method="_on_new_region_id_change"]
+[connection signal="pressed" from="Vbox/IdVbox/Hbox/Create" to="." method="_on_create_region"]
+[connection signal="pressed" from="Vbox/Config/Passable" to="." method="_update_existing"]
+[connection signal="pressed" from="Vbox/Config/Visible" to="." method="_update_existing"]

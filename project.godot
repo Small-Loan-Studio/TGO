@@ -285,6 +285,11 @@ region_states={
 },
 "BadLevelB.test_door": {
 "extra": {},
+"passable": true,
+"visible": true
+},
+"crypt.exit_door": {
+"extra": {},
 "passable": false,
 "visible": true
 }
