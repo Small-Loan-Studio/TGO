@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dkhy257b711tp"
-path="res://.godot/imported/test_portrait.png-935a3d892606dd1393e3067c023d1bcf.ctex"
+uid="uid://enjv5fcc1k5w"
+path="res://.godot/imported/triangle_icon (4).png-998789677b23586a19d8e736082e4c7d.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://addons/dialogic/Modules/TGOLayoutStyle/test_portrait.png"
-dest_files=["res://.godot/imported/test_portrait.png-935a3d892606dd1393e3067c023d1bcf.ctex"]
+source_file="res://addons/dialogic/Modules/TGOLayoutStyle/triangle_icon (4).png"
+dest_files=["res://.godot/imported/triangle_icon (4).png-998789677b23586a19d8e736082e4c7d.ctex"]
 
 [params]
 

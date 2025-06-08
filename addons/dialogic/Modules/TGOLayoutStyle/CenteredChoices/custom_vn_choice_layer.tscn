@@ -37,7 +37,6 @@ metadata/_edit_layout_mode = 1
 
 [node name="DialogicNode_ChoiceButton1" type="Button" parent="Choices" node_paths=PackedStringArray("text_node")]
 layout_mode = 2
-text = "Some text"
 script = ExtResource("2_rhkjk")
 text_node = NodePath("RichTextButton")
 rich_choice = true
@@ -47,7 +46,6 @@ layout_mode = 0
 
 [node name="DialogicNode_ChoiceButton2" type="Button" parent="Choices" node_paths=PackedStringArray("text_node")]
 layout_mode = 2
-text = "Some text"
 script = ExtResource("2_rhkjk")
 text_node = NodePath("RichTextButton2")
 rich_choice = true
@@ -57,7 +55,6 @@ layout_mode = 0
 
 [node name="DialogicNode_ChoiceButton3" type="Button" parent="Choices" node_paths=PackedStringArray("text_node")]
 layout_mode = 2
-text = "Some text"
 script = ExtResource("2_rhkjk")
 text_node = NodePath("RichTextButton3")
 rich_choice = true
@@ -67,7 +64,6 @@ layout_mode = 0
 
 [node name="DialogicNode_ChoiceButton4" type="Button" parent="Choices" node_paths=PackedStringArray("text_node")]
 layout_mode = 2
-text = "Some text"
 script = ExtResource("2_rhkjk")
 text_node = NodePath("RichTextButton4")
 rich_choice = true
@@ -81,3 +77,16 @@ script = ExtResource("2_mgko6")
 sound_pressed = ExtResource("3_mql8i")
 sound_hover = ExtResource("4_420fr")
 sound_focus = SubResource("AudioStream_pe27w")
+
+[connection signal="focus_entered" from="Choices/DialogicNode_ChoiceButton1" to="Choices/DialogicNode_ChoiceButton1/RichTextButton" method="focus_color"]
+[connection signal="focus_exited" from="Choices/DialogicNode_ChoiceButton1" to="Choices/DialogicNode_ChoiceButton1/RichTextButton" method="exit_focus_color"]
+[connection signal="theme_changed" from="Choices/DialogicNode_ChoiceButton1" to="Choices/DialogicNode_ChoiceButton1" method="override_font_sizes"]
+[connection signal="focus_entered" from="Choices/DialogicNode_ChoiceButton2" to="Choices/DialogicNode_ChoiceButton2/RichTextButton2" method="focus_color"]
+[connection signal="focus_exited" from="Choices/DialogicNode_ChoiceButton2" to="Choices/DialogicNode_ChoiceButton2/RichTextButton2" method="exit_focus_color"]
+[connection signal="theme_changed" from="Choices/DialogicNode_ChoiceButton2" to="Choices/DialogicNode_ChoiceButton2" method="override_font_sizes"]
+[connection signal="focus_entered" from="Choices/DialogicNode_ChoiceButton3" to="Choices/DialogicNode_ChoiceButton3/RichTextButton3" method="focus_color"]
+[connection signal="focus_exited" from="Choices/DialogicNode_ChoiceButton3" to="Choices/DialogicNode_ChoiceButton3/RichTextButton3" method="exit_focus_color"]
+[connection signal="theme_changed" from="Choices/DialogicNode_ChoiceButton3" to="Choices/DialogicNode_ChoiceButton3" method="override_font_sizes"]
+[connection signal="focus_entered" from="Choices/DialogicNode_ChoiceButton4" to="Choices/DialogicNode_ChoiceButton4/RichTextButton4" method="focus_color"]
+[connection signal="focus_exited" from="Choices/DialogicNode_ChoiceButton4" to="Choices/DialogicNode_ChoiceButton4/RichTextButton4" method="exit_focus_color"]
+[connection signal="theme_changed" from="Choices/DialogicNode_ChoiceButton4" to="Choices/DialogicNode_ChoiceButton4" method="override_font_sizes"]

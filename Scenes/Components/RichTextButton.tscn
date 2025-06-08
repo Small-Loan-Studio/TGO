@@ -15,7 +15,15 @@ layout_mode = 0
 offset_right = 40.0
 offset_bottom = 40.0
 mouse_filter = 1
+theme_override_font_sizes/normal_font_size = 20
+theme_override_font_sizes/bold_font_size = 20
+theme_override_font_sizes/italics_font_size = 20
+theme_override_font_sizes/bold_italics_font_size = 20
+theme_override_font_sizes/mono_font_size = 20
 bbcode_enabled = true
 fit_content = true
 scroll_active = false
 autowrap_mode = 0
+
+[connection signal="focus_entered" from="." to="." method="focus_color"]
+[connection signal="focus_exited" from="." to="." method="exit_focus_color"]

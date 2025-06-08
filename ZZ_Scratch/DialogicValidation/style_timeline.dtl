@@ -1,11 +1,17 @@
-Testing
-label Choices
-
+Hello
+.
+label choices
+.
 - Option 1
-	jump Choices
-- Longer testing choice
-	jump Choices
-- short
-	jump Choices
-- final option 4
-	jump Choices
+	you picked options one
+	jump choices
+- Option 2
+	you picked option 2
+	jump choices
+- Option 3
+	you picked the third option
+	jump choices
+- Option 4
+	you picked the last option
+	jump choices
+
