@@ -38,7 +38,9 @@ func _enter_tree() -> void:
 
 
 func _ready() -> void:
-	if Engine.is_editor_hint() || region_id.is_empty():
+	if Engine.is_editor_hint():
+		return
+	if region_id.is_empty():
 		print("ControlledRegion._ready but region_id is empty: %s" % [name])
 		return
 
@@ -80,9 +82,14 @@ func _on_state_change(key: String, _old: RegionState, _new: RegionState) -> void
 
 func _sync_state() -> void:
 	var new_state: RegionState = _rsm.get_state(region_id)
-	_collider.disabled = new_state.passable
+	if new_state == null:
+		printerr("ControlledRegion._sync_state: no state found for region_id %s" % [region_id])
+		return
+	if _collider != null:
+		_collider.disabled = new_state.passable
 	if _collider_cache != null:
 		_collider_cache.disabled = new_state.passable
+	visible = new_state.visible
 	_apply_state(new_state)
 
 

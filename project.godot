@@ -52,6 +52,7 @@ directories/dch_directory={
 "Martha": "res://Scripts/Resources/NPCs/DialogicCharacters/Martha.dch"
 }
 directories/dtl_directory={
+"AudioAdapter": "res://Dialogue/TestTimelines/AudioAdapter.dtl",
 "BagOfHardtack": "res://Dialogue/Examinations/BagOfHardtack.dtl",
 "Bartholomew2b": "res://Dialogue/Bartholomew/Bartholomew2b.dtl",
 "Bartholomew3a6": "res://Dialogue/Bartholomew/Bartholomew3a6.dtl",
@@ -146,6 +147,9 @@ variables={
 "ItemGiven": false
 },
 "QuestVarConditionTest": false,
+"TestVariables": {
+"CRT-visible": true
+},
 "UserInputNum": 0,
 "UserInputString": ""
 }
@@ -283,6 +287,26 @@ region_states={
 "visible": true
 },
 "BadLevelB.test_door": {
+"extra": {},
+"passable": false,
+"visible": true
+},
+"BadLevelB.test_door_2": {
+"extra": {},
+"passable": false,
+"visible": true
+},
+"CRT.test_region_1": {
+"extra": {},
+"passable": true,
+"visible": true
+},
+"CRT.test_region_2": {
+"extra": {},
+"passable": true,
+"visible": true
+},
+"crypt.exit_door": {
 "extra": {},
 "passable": false,
 "visible": true

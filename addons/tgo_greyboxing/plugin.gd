@@ -9,6 +9,7 @@ var _quest_editor_scene: QuestMainPanel = null
 var _editor: EditorInterface = null
 
 var _interactable_plugin: Variant
+var _controlled_region_id_plugin: Variant
 
 func _enter_tree() -> void:
 	if !Engine.is_editor_hint():
@@ -26,7 +27,7 @@ func _make_visible(visible: bool) -> void:
 
 
 func _get_plugin_name() -> String:
-	return "Quest Manager"
+	return "TGO:Quests"
 
 
 func _get_plugin_icon():
@@ -49,6 +50,8 @@ func _load_scene() -> void:
 
 	_interactable_plugin = load("res://addons_tgo/editors/tgo_inspector_interactable.gd").new()
 	add_inspector_plugin(_interactable_plugin)
+	_controlled_region_id_plugin = load("res://addons_tgo/editors/region/tgo_inspector_controlled_region_id.gd").new()
+	add_inspector_plugin(_controlled_region_id_plugin)
 
 
 func _unload_scene() -> void:
@@ -60,6 +63,7 @@ func _unload_scene() -> void:
 
 	# this reports nonexisting inspector plugin...?
 	remove_inspector_plugin(_interactable_plugin)
+	remove_inspector_plugin(_controlled_region_id_plugin)
 
 
 func reload() -> void:

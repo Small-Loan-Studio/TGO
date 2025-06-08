@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="InventoryCheckCondition" load_steps=3 format=3 uid="uid://cc5v3qeeoiet"]
+
+[ext_resource type="Script" path="res://Scripts/Resources/Conditions/InventoryCheckCondition.gd" id="1_4ksbx"]
+[ext_resource type="Resource" uid="uid://b7w2axnxl0fkt" path="res://Scripts/Resources/Items/Key.tres" id="2_jdhoi"]
+
+[resource]
+script = ExtResource("1_4ksbx")
+inventory_id = "devin"
+target_item = ExtResource("2_jdhoi")
+check_type = 0
+check_value = 0

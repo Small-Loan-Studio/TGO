@@ -17,12 +17,10 @@ func _ready() -> void:
 		return
 	_akhelper = AKHelper.new(self)
 	load_levels_wwise()
-	add_to_group(Utils.GroupNames.AudioNodes, true)
 
 
 func _exit_tree() -> void:
 	if _registered:
-		remove_from_group(Utils.GroupNames.AudioNodes)
 		Wwise.unregister_game_obj(self)
 
 

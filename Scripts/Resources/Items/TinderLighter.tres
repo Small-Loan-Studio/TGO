@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="Item" load_steps=5 format=3 uid="uid://bcmpeqarjv83p"]
+[gd_resource type="Resource" script_class="Item" load_steps=5 format=3 uid="uid://tb26fixj3gin"]
 
 [ext_resource type="Script" path="res://Scripts/Components/Inventory/Item.gd" id="1_m8g67"]
 [ext_resource type="Script" path="res://Scripts/Resources/GearSpec/simple_torch.gd" id="1_pk452"]

@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=3 uid="uid://c3pgmxm78klqy"]
+[gd_scene load_steps=24 format=3 uid="uid://c3pgmxm78klqy"]
 
 [ext_resource type="PackedScene" uid="uid://dyq8mcdsutnsa" path="res://Scenes/Components/LevelBase.tscn" id="1_t8b0a"]
 [ext_resource type="Script" path="res://ZZ_Scratch/GreyboxingTools/BadLevelA.gd" id="2_hodgd"]
@@ -6,41 +6,41 @@
 [ext_resource type="PackedScene" uid="uid://c2kg6apj756dw" path="res://Scenes/Components/NPC.tscn" id="4_j1hnh"]
 [ext_resource type="Resource" uid="uid://0e6y5ablkqx" path="res://Scripts/Resources/NPCs/Buckley.tres" id="5_sxgok"]
 [ext_resource type="Script" path="res://Scripts/Resources/Effects/DialogueEffect.gd" id="6_1o8fo"]
-[ext_resource type="Resource" path="res://Dialogue/Buckley/BuckleyTestTimeline.dtl" id="7_unvp1"]
+[ext_resource type="Resource" path="res://Dialogue/TestTimelines/AudioAdapter.dtl" id="7_4h58g"]
 [ext_resource type="PackedScene" uid="uid://rgvfsx60t2ap" path="res://Scenes/Components/Inventory/Item.tscn" id="8_shpqy"]
 [ext_resource type="Resource" uid="uid://b7w2axnxl0fkt" path="res://Scripts/Resources/Items/Key.tres" id="9_ewmie"]
 [ext_resource type="PackedScene" uid="uid://bx2qjlw58ci20" path="res://Scenes/Components/Greyboxing/GreyboxObject.tscn" id="10_k3j1d"]
+[ext_resource type="PackedScene" uid="uid://bmkq7u7c66eru" path="res://Scenes/Components/signal_to_effect.tscn" id="10_lgusy"]
+[ext_resource type="Script" path="res://Scripts/Resources/Effects/ToggleDoorEffect.gd" id="11_6vl2n"]
 [ext_resource type="Script" path="res://Scripts/Resources/Effects/LevelLoadEffect.gd" id="11_cp71p"]
-[ext_resource type="Script" path="res://Scripts/Resources/Effects/ToggleDoorEffect.gd" id="12_6kome"]
+[ext_resource type="Script" path="res://Scripts/Resources/Effects/DebugEffect.gd" id="12_admpp"]
 [ext_resource type="PackedScene" uid="uid://bwlnxooxokiw6" path="res://Scenes/Components/door.tscn" id="12_rh8so"]
 [ext_resource type="Script" path="res://Scripts/Resources/Conditions/InventoryCheckCondition.gd" id="13_d5pwi"]
-[ext_resource type="Script" path="res://Scripts/Components/SignalToEffect.gd" id="14_dg0oi"]
-[ext_resource type="Script" path="res://Scripts/Resources/Effects/AudioEventEffect.gd" id="15_kpvf3"]
+[ext_resource type="Resource" uid="uid://cc5v3qeeoiet" path="res://Scripts/Resources/Conditions/Custom/DevinHasKey.tres" id="15_alexr"]
+[ext_resource type="Resource" path="res://Scripts/Resources/Items/EmptyBottle.tres" id="17_vaw2l"]
 
 [sub_resource type="Resource" id="Resource_ql4ne"]
 script = ExtResource("6_1o8fo")
-timeline = ExtResource("7_unvp1")
+timeline = ExtResource("7_4h58g")
 
-[sub_resource type="Resource" id="Resource_e7mc3"]
-script = ExtResource("15_kpvf3")
-actor_id_override = ""
-event_name = "play_PC_foostep"
-fire_type = "one shot"
-
-[sub_resource type="Resource" id="Resource_51gri"]
-script = ExtResource("12_6kome")
+[sub_resource type="Resource" id="Resource_u8kb4"]
+script = ExtResource("11_6vl2n")
 door_id = "BadLevelB.auto_door"
 door_action = "open"
+
+[sub_resource type="Resource" id="Resource_2837c"]
+script = ExtResource("12_admpp")
+message = "QUEST_KEY picked up"
 
 [sub_resource type="Resource" id="Resource_bl5wy"]
 script = ExtResource("11_cp71p")
 load_level_name = "Debug/BadLevelA"
 marker_name = ""
 
-[sub_resource type="Resource" id="Resource_06knf"]
+[sub_resource type="Resource" id="Resource_65o8f"]
 script = ExtResource("13_d5pwi")
-inventory_id = "devin"
-target_item = ExtResource("9_ewmie")
+inventory_id = "Devin"
+target_item = ExtResource("17_vaw2l")
 check_type = 0
 check_value = 0
 
@@ -74,9 +74,8 @@ position = Vector2(218, 307)
 item = ExtResource("9_ewmie")
 quantity = 1
 
-[node name="SignalToEffect" type="Node" parent="Objects/Items/QUEST_KEY" index="2"]
-script = ExtResource("14_dg0oi")
-effects = Array[Resource("res://Scripts/Resources/Effect.gd")]([SubResource("Resource_e7mc3"), SubResource("Resource_51gri")])
+[node name="PickedUp" parent="Objects/Items/QUEST_KEY" index="2" instance=ExtResource("10_lgusy")]
+effects = Array[Resource("res://Scripts/Resources/Effect.gd")]([SubResource("Resource_u8kb4"), SubResource("Resource_2837c")])
 
 [node name="LevelTeleport" parent="Objects" index="3" instance=ExtResource("10_k3j1d")]
 position = Vector2(279, 364)
@@ -109,7 +108,7 @@ opens on key pickup"
 
 [node name="Door" parent="." index="6" instance=ExtResource("12_rh8so")]
 position = Vector2(165, 238)
-unlocked = Array[Resource("res://Scripts/Resources/TriggerCondition.gd")]([SubResource("Resource_06knf")])
+unlocked = Array[Resource("res://Scripts/Resources/TriggerCondition.gd")]([ExtResource("15_alexr")])
 region_id = "BadLevelB.test_door"
 
 [node name="Label" type="Label" parent="Door" index="4"]
@@ -121,4 +120,9 @@ text = "Door won't open
 without carrying
 key"
 
-[connection signal="picked_up" from="Objects/Items/QUEST_KEY" to="Objects/Items/QUEST_KEY/SignalToEffect" method="trigger"]
+[node name="NewDoor" parent="." index="7" instance=ExtResource("12_rh8so")]
+position = Vector2(108, 237)
+unlocked = Array[Resource("res://Scripts/Resources/TriggerCondition.gd")]([ExtResource("15_alexr"), SubResource("Resource_65o8f")])
+region_id = "BadLevelB.test_door_2"
+
+[connection signal="picked_up" from="Objects/Items/QUEST_KEY" to="Objects/Items/QUEST_KEY/PickedUp" method="trigger"]

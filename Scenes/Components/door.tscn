@@ -21,10 +21,9 @@ region = Rect2(0, 0, 32, 32)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_spnj4"]
 size = Vector2(32, 10)
 
-[sub_resource type="Resource" id="Resource_aa00m"]
-resource_local_to_scene = true
+[sub_resource type="Resource" id="Resource_0obyy"]
 script = ExtResource("5_osi51")
-door_id = ""
+door_id = "Define New Region"
 door_action = "toggle"
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_kue4l"]
@@ -37,6 +36,7 @@ closed_sprite = SubResource("AtlasTexture_eflbr")
 open_sprite = SubResource("AtlasTexture_f1dck")
 unlocked = Array[Resource("res://Scripts/Resources/TriggerCondition.gd")]([])
 use_action = "toggle"
+region_id = "Define New Region"
 _collider = NodePath("CollisionShape2D")
 
 [node name="Display" type="Sprite2D" parent="." index="0"]
@@ -48,7 +48,7 @@ shape = SubResource("RectangleShape2D_spnj4")
 [node name="Interactable" parent="." index="2" node_paths=PackedStringArray("_display_hook") instance=ExtResource("5_qo5gh")]
 default_verb = 5
 action_map = {
-5: [SubResource("Resource_aa00m")]
+5: [SubResource("Resource_0obyy")]
 }
 _display_hook = NodePath("../Display")
 

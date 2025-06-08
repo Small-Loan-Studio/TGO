@@ -165,12 +165,12 @@ func build() -> SimpleSwitchConfig:
 			var was_true := SetVarEffect.new()
 			was_true.variable_name = _get_variable()
 			was_true.new_value = "false"
-			set_effect.true_path = [was_true]
+			set_effect.success_chain = [was_true]
 
 			var was_false := SetVarEffect.new()
 			was_false.variable_name = _get_variable()
 			was_false.new_value = "true"
-			set_effect.false_path = [was_false]
+			set_effect.failure_chain = [was_false]
 
 			scn.on_pressed_effects = [set_effect]
 
