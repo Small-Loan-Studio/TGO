@@ -26,7 +26,7 @@ func _make_visible(visible: bool) -> void:
 
 
 func _get_plugin_name() -> String:
-	return "Quest Manager"
+	return "TGO:Quests"
 
 
 func _get_plugin_icon():
