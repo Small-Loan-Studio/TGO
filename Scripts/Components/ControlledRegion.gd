@@ -80,6 +80,9 @@ func _on_state_change(key: String, _old: RegionState, _new: RegionState) -> void
 
 func _sync_state() -> void:
 	var new_state: RegionState = _rsm.get_state(region_id)
+	if new_state == null:
+		printerr("ControlledRegion._sync_state: no state found for region_id %s" % [region_id])
+		return
 	_collider.disabled = new_state.passable
 	if _collider_cache != null:
 		_collider_cache.disabled = new_state.passable

@@ -44,13 +44,17 @@ func _sync_dropdown_contents() -> void:
 	var all_paths := RegionStateManager.get_settings_paths()
 	_existing_options.clear()
 	_known_paths.clear()
-	_existing_options.selected = -1
+
+	var id_idx := -1
 	for path in all_paths:
 		_existing_options.add_item(path)
 		_known_paths[path] = true
 		if path == _obj.region_id:
-			_existing_options.selected = _existing_options.item_count - 1
+			id_idx = (_existing_options.item_count - 1)
 	_existing_options.add_item(ADD_NEW)
+
+	_existing_options.selected = id_idx
+
 
 
 func _on_select(_idx: int) -> void:
@@ -75,7 +79,7 @@ func none_selected() -> bool:
 
 func _sync_selected() -> void:
 	_new_id_hbox.visible = is_adding_new()
-	_config_section.visible = !is_adding_new()
+	_config_section.visible = !is_adding_new() && !none_selected()
 
 	if !is_adding_new() && !none_selected():
 		var path := _obj.region_id
