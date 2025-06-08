@@ -152,6 +152,7 @@ func get_region_by_id(region_id: String) -> ControlledRegion:
 
 	return region
 
+
 func get_audio_node(id: String) -> AudioNode:
 	for node: AudioNode in get_tree().get_nodes_in_group(Utils.GroupNames.AudioNodes):
 		if node.id == id:

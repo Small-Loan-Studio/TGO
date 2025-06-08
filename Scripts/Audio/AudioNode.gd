@@ -60,7 +60,7 @@ func stop_event(cfg: EventConfig) -> void:  #akevent: AkEvent2D) -> void:
 
 func stop_event_by_id(event_id: int, stop_time: int) -> void:
 	print("[Wwise] %s.stop_event_by_id: %d" % [_target.name, event_id])
-	Wwise.stop_event(event_id, stop_time, 4) # 4 == Linear interpolation
+	Wwise.stop_event(event_id, stop_time, 4)  # 4 == Linear interpolation
 
 
 func send_param(param_name: String, value: float) -> void:
@@ -68,7 +68,7 @@ func send_param(param_name: String, value: float) -> void:
 	if param_id == -1:
 		printerr("Invalid RTPC: %s" % [param_name])
 		return
-	print( "[Wwise] %s rtpc -> %s=%s" % [_target.name, param_name, value] )
+	print("[Wwise] %s rtpc -> %s=%s" % [_target.name, param_name, value])
 	Wwise.set_rtpc_value_id(param_id, value, _target)
 
 

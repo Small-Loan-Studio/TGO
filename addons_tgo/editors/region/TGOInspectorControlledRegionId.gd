@@ -1,6 +1,8 @@
 @tool
 extends MarginContainer
 
+const ADD_NEW = "Define New Region"
+
 var _create_button: Button:
 	get:
 		return $Vbox/IdVbox/Hbox/Create
@@ -29,11 +31,9 @@ var _region_visible: CheckBox:
 	get:
 		return $Vbox/Config/Visible
 
-
 var _obj: ControlledRegion
 var _tde: ToggleDoorEffect
 var _ure: UpdateControlledRegionEffect
-const ADD_NEW = "Define New Region"
 var _known_paths: Dictionary = {}
 
 
@@ -94,7 +94,6 @@ func _sync_dropdown_contents() -> void:
 	_existing_options.selected = id_idx
 
 
-
 func _on_select(_idx: int) -> void:
 	if !is_adding_new():
 		_update_region_id(selected_id())
@@ -124,6 +123,7 @@ func _sync_selected() -> void:
 		var cur_values: Dictionary = ProjectSettings.get_setting("tgo/region_states", {})[path]
 		_region_passable.button_pressed = cur_values["passable"] as bool
 		_region_visible.button_pressed = cur_values["visible"] as bool
+
 
 func _on_create_region() -> void:
 	var new_id := _new_id_edit.text.strip_edges()

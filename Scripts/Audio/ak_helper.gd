@@ -84,7 +84,12 @@ func send_param(param: int, value: float, local: bool = true) -> void:
 	print(
 		(
 			"[Wwise] %s%s rtpc -> %s=%s"
-			% [locality_str, _target.name, AKHelper.name_by_id(AK.GAME_PARAMETERS._dict, param), value]
+			% [
+				locality_str,
+				_target.name,
+				AKHelper.name_by_id(AK.GAME_PARAMETERS._dict, param),
+				value
+			]
 		)
 	)
 

@@ -5,6 +5,7 @@ static var player_inventory := InventoryAdapter.new(Utils.PLAYER_ID)
 
 static var time_of_day := TimeOfDayAdapter.new()
 
+
 static func audio(actor_id: String) -> AudioActorAdapter:
 	return AudioActorAdapter.new(actor_id)
 
@@ -189,9 +190,9 @@ class TimeOfDayAdapter:
 
 class AudioActorAdapter:
 	var _actor_id: String
+
 	func _init(actor: String) -> void:
 		_actor_id = actor
-
 
 	func rtpc(name: String, value: float) -> bool:
 		var audio_node := Driver.instance().get_current_level().get_audio_node(_actor_id)
@@ -201,14 +202,12 @@ class AudioActorAdapter:
 		audio_node.send_param(name, value)
 		return true
 
-
 	func get_rtpc(name: String) -> float:
 		var audio_node := Driver.instance().get_current_level().get_audio_node(_actor_id)
 		if audio_node == null:
 			printerr("No audio node with id %s" % [_actor_id])
 			return 0.0
 		return audio_node.get_param(name)
-
 
 	func fire(event_name: String) -> int:
 		var audio_node := Driver.instance().get_current_level().get_audio_node(_actor_id)
@@ -220,7 +219,6 @@ class AudioActorAdapter:
 		cfg.one_shot = true  # default to one shot for now
 		cfg.event_name = event_name
 		return audio_node.post_event(cfg)
-
 
 	func stop(event_id: int, fade_out: int) -> bool:
 		var audio_node := Driver.instance().get_current_level().get_audio_node(_actor_id)

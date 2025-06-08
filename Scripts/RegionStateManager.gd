@@ -37,7 +37,12 @@ func _enter_tree() -> void:
 ## Example: set_state("dungeon.east_wing.door1", new_state)
 func set_state(path: String, value: RegionState) -> void:
 	if strict_mode && !_has_in_nested_dict(path, _expected_vars):
-		printerr("[RSM.strict_mode] attempting to set an undefined region %s; this is an error -- exiting" % [path])
+		printerr(
+			(
+				"[RSM.strict_mode] attempting to set an undefined region %s; "
+				+ "this is an error -- exiting" % [path]
+			)
+		)
 		return
 
 	var has_state: bool = _has_in_nested_dict(path, _state)
