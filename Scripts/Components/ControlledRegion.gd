@@ -85,9 +85,11 @@ func _sync_state() -> void:
 	if new_state == null:
 		printerr("ControlledRegion._sync_state: no state found for region_id %s" % [region_id])
 		return
-	_collider.disabled = new_state.passable
+	if _collider != null:
+		_collider.disabled = new_state.passable
 	if _collider_cache != null:
 		_collider_cache.disabled = new_state.passable
+	visible = new_state.visible
 	_apply_state(new_state)
 
 

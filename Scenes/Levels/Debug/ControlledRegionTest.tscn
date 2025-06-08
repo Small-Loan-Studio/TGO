@@ -1,0 +1,101 @@
+[gd_scene load_steps=20 format=3 uid="uid://55wtd0wy8veq"]
+
+[ext_resource type="PackedScene" uid="uid://dyq8mcdsutnsa" path="res://Scenes/Components/LevelBase.tscn" id="1_v0rf6"]
+[ext_resource type="PackedScene" uid="uid://5xu2lbni2byw" path="res://Scenes/Components/controlled_region.tscn" id="2_2eqxg"]
+[ext_resource type="PackedScene" uid="uid://c3fld6my8so3p" path="res://Scenes/Components/SimpleSwitch.tscn" id="2_dvj7w"]
+[ext_resource type="Script" path="res://Scripts/Components/SimpleSwitchConfig.gd" id="3_06q65"]
+[ext_resource type="Script" path="res://Scripts/Resources/Conditions/DialogicVarCondition.gd" id="4_m0sjh"]
+[ext_resource type="Script" path="res://Scripts/Resources/Effects/SetVAREffect.gd" id="5_y3y2h"]
+[ext_resource type="Script" path="res://Scripts/Resources/Effects/ConditionalEffect.gd" id="6_c1vif"]
+[ext_resource type="Script" path="res://Scripts/Resources/Effects/UpdateControlledRegionEffect.gd" id="7_8vvhm"]
+[ext_resource type="PackedScene" uid="uid://b13wrl3bedjku" path="res://Scenes/Components/Torch.tscn" id="8_mcpif"]
+[ext_resource type="Script" path="res://Scripts/Components/Greyboxing/Torch.gd" id="9_w628c"]
+[ext_resource type="Texture2D" uid="uid://boyaede1duwf4" path="res://Art/Stub/stub_torch.png" id="10_p0m3n"]
+[ext_resource type="Texture2D" uid="uid://c8yb8h5whr058" path="res://Art/Environment/Mountain-NoBG.png" id="12_kmm5g"]
+
+[sub_resource type="Resource" id="Resource_am3my"]
+script = ExtResource("4_m0sjh")
+variable_name = "TestVariables.CRT-visible"
+check_type = 3
+check_value = "true"
+
+[sub_resource type="Resource" id="Resource_6dcjb"]
+script = ExtResource("5_y3y2h")
+variable_name = "TestVariables.CRT-visible"
+set_type = "overwrite"
+new_value = "true"
+
+[sub_resource type="Resource" id="Resource_448u4"]
+script = ExtResource("5_y3y2h")
+variable_name = "TestVariables.CRT-visible"
+set_type = "overwrite"
+new_value = "false"
+
+[sub_resource type="Resource" id="Resource_66i25"]
+script = ExtResource("6_c1vif")
+condition = Array[Resource("res://Scripts/Resources/TriggerCondition.gd")]([SubResource("Resource_am3my")])
+success_chain = Array[Resource("res://Scripts/Resources/Effect.gd")]([SubResource("Resource_448u4")])
+failure_chain = Array[Resource("res://Scripts/Resources/Effect.gd")]([SubResource("Resource_6dcjb")])
+
+[sub_resource type="Resource" id="Resource_3v81e"]
+script = ExtResource("7_8vvhm")
+region_id = "CRT.test_region_2"
+passable_state = "unchanged"
+visible_state = "toggle"
+
+[sub_resource type="Gradient" id="Gradient_l6m7m"]
+colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_54etw"]
+gradient = SubResource("Gradient_l6m7m")
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+fill_to = Vector2(0, 0.5)
+
+[node name="LevelBase" instance=ExtResource("1_v0rf6")]
+use_fixed_ambient = "BLACKOUT"
+
+[node name="ColorRect" type="ColorRect" parent="." index="0"]
+z_index = -100
+offset_left = -1696.0
+offset_top = -840.0
+offset_right = -1656.0
+offset_bottom = -800.0
+scale = Vector2(117.652, 67.5029)
+color = Color(0, 0, 0, 1)
+
+[node name="Switches" parent="Objects" index="0"]
+position = Vector2(3, 10)
+
+[node name="CRT_visibility" type="Node2D" parent="Objects/Switches" index="0" instance=ExtResource("2_dvj7w")]
+z_index = -1
+position = Vector2(190.535, 133.503)
+script = ExtResource("3_06q65")
+track_variable = "TestVariables.CRT-visible"
+sensor_size = Vector2(20, 20)
+feedback_enabled = true
+default_color = Color(0.61339, 0.61339, 0.61339, 1)
+active_color = Color(0.401161, 0.710938, 0.374908, 1)
+on_pressed_effects = Array[Resource("res://Scripts/Resources/Effect.gd")]([SubResource("Resource_66i25"), SubResource("Resource_3v81e")])
+
+[node name="ControlledRegion" parent="Objects" index="4" instance=ExtResource("2_2eqxg")]
+region_id = "CRT.test_region_2"
+
+[node name="Torch" type="Node2D" parent="Objects/ControlledRegion" index="1" instance=ExtResource("8_mcpif")]
+position = Vector2(108, 135)
+script = ExtResource("9_w628c")
+light_color = Color(0.988281, 0.934174, 0.687164, 1)
+light_energy = 1.2
+light_size = 9.0
+light_texture = SubResource("GradientTexture2D_54etw")
+sprite_texture = ExtResource("10_p0m3n")
+
+[node name="PlayerStart" type="Node2D" parent="Markers" index="0"]
+position = Vector2(197, 78)
+
+[node name="CanvasModulate" parent="." index="5"]
+color = Color(0, 0, 0, 1)
+
+[node name="Mountain-noBg" type="Sprite2D" parent="." index="6"]
+position = Vector2(-107, 368)
+texture = ExtResource("12_kmm5g")

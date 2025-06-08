@@ -53,8 +53,8 @@ new_value = "false"
 [sub_resource type="Resource" id="Resource_bqjrh"]
 script = ExtResource("15_x1ixy")
 condition = Array[Resource("res://Scripts/Resources/TriggerCondition.gd")]([SubResource("Resource_d5ja3")])
-true_path = Array[Resource("res://Scripts/Resources/Effect.gd")]([SubResource("Resource_hni0i")])
-false_path = Array[Resource("res://Scripts/Resources/Effect.gd")]([SubResource("Resource_cnrmo")])
+success_path = Array[Resource("res://Scripts/Resources/Effect.gd")]([SubResource("Resource_hni0i")])
+failure_path = Array[Resource("res://Scripts/Resources/Effect.gd")]([SubResource("Resource_cnrmo")])
 
 [sub_resource type="Resource" id="Resource_goqj7"]
 script = ExtResource("14_o0d20")

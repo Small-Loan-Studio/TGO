@@ -147,6 +147,9 @@ variables={
 "ItemGiven": false
 },
 "QuestVarConditionTest": false,
+"TestVariables": {
+"CRT-visible": true
+},
 "UserInputNum": 0,
 "UserInputString": ""
 }
@@ -291,6 +294,16 @@ region_states={
 "BadLevelB.test_door_2": {
 "extra": {},
 "passable": false,
+"visible": true
+},
+"CRT.test_region_1": {
+"extra": {},
+"passable": true,
+"visible": true
+},
+"CRT.test_region_2": {
+"extra": {},
+"passable": true,
 "visible": true
 },
 "crypt.exit_door": {
