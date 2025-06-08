@@ -121,6 +121,7 @@ func _ready() -> void:
 	else:
 		if id != "":
 			_audio_node.setup(self, id)
+			_audio_node.track_position = true
 
 	_state_machine.setup(ctx)
 

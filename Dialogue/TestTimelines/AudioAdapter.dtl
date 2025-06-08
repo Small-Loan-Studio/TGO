@@ -1,0 +1,8 @@
+- Emit Event
+	About to emit event
+	[tgo_expr expr="{TGO.audio("Devin").fire("LevelStart")}"]
+- Send RTPC
+	About to send RTPC value
+	[tgo_expr expr="{TGO.audio("Devin").rtpc("PlayerHealth_RTPC", 30)}"]
+- Check RTPC
+	Player health is {TGO.audio("Devin").get_rtpc("PlayerHealth_RTPC")}

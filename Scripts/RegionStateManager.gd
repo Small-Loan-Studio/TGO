@@ -37,7 +37,13 @@ func _enter_tree() -> void:
 ## Example: set_state("dungeon.east_wing.door1", new_state)
 func set_state(path: String, value: RegionState) -> void:
 	if strict_mode && !_has_in_nested_dict(path, _expected_vars):
-		printerr("Setting an undefined variable; this is likely an error: %s" % path)
+		printerr(
+			(
+				"[RSM.strict_mode] attempting to set an undefined region %s; "
+				+ "this is an error -- exiting" % [path]
+			)
+		)
+		return
 
 	var has_state: bool = _has_in_nested_dict(path, _state)
 	var old_value: RegionState = get_state(path)
@@ -73,14 +79,15 @@ func _set_state_in_nested_dict(path: String, dict: Dictionary, value: RegionStat
 func get_state(path: String) -> RegionState:
 	if strict_mode:
 		if not _has_in_nested_dict(path, _expected_vars):
-			printerr("Requesting undefined variable; this is likely an error: %s" % path)
+			printerr("[RSM.strict_mode] Requesting undefined variable; this is an error: %s" % path)
+			return null
 
 	var rs: Variant = _get_from_nested_dict(path, _state)
 	if rs != null:
 		return (rs as RegionState).clone()
 
-	printerr("Returning default value for undefined variable: %s" % path)
 	var new_state := RegionState.new()
+	printerr("Returning default value for undefined variable %s: %s" % [path, new_state])
 	_set_state_in_nested_dict(path, _state, new_state)
 	return new_state.clone()
 
@@ -100,7 +107,7 @@ func save() -> Dictionary:
 
 ## Loads state from a dictionary, replacing any existing state
 func load(content: Dictionary) -> void:
-	_state.clear()
+	clear()
 	for key: String in content.keys():
 		var rs: Variant = RegionState.from_dict(content[key])
 		if rs == null:
@@ -189,8 +196,16 @@ func _get_all_paths(dict: Dictionary, base_path: String = "") -> Array[String]:
 
 
 static func get_settings_paths() -> Array[String]:
-	var settings_data: Dictionary = ProjectSettings.get_setting("tgo/region_states", [])
+	var settings_data: Dictionary = ProjectSettings.get_setting("tgo/region_states", {})
 	var paths: Array[String] = []
 	for path_str: String in settings_data.keys():
 		paths.append(path_str)
+	paths.sort()
 	return paths
+
+
+static func update_setting(path: String, state: RegionState) -> void:
+	var settings_data: Dictionary = ProjectSettings.get_setting("tgo/region_states", {})
+	settings_data[path] = state.to_dict()
+	ProjectSettings.set_setting("tgo/region_states", settings_data)
+	ProjectSettings.save()

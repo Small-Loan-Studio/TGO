@@ -33,16 +33,22 @@ var is_open: bool:
 
 func _enter_tree() -> void:
 	super._enter_tree()
+	if Engine.is_editor_hint():
+		return
 	add_to_group(Utils.GroupNames.Doors)
 
 
 func _exit_tree() -> void:
 	super._exit_tree()
+	if Engine.is_editor_hint():
+		return
 	remove_from_group(Utils.GroupNames.Doors)
 
 
 func _ready() -> void:
 	super._ready()
+	if Engine.is_editor_hint():
+		return
 
 	# See comment on `action_map` in `Interactable.gd`. This is existentially
 	# important to door behavior working as expected

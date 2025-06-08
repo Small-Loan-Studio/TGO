@@ -29,6 +29,10 @@
       - [Is the current time after HH:MM](#is-the-current-time-after-hhmm)
       - [Is the current time between HH:MM and HH:MM](#is-the-current-time-between-hhmm-and-hhmm)
       - [Set the time](#set-the-time)
+  - [Audio Integration](#audio-integration)
+    - [Send RTPC value](#send-rtpc-value)
+    - [Check RTPC value](#check-rtpc-value)
+    - [Fire an event](#fire-an-event)
 
 ## Introduction
 
@@ -281,3 +285,39 @@ The valid options for the time of day are:
 [ldf]: https://www.youtube.com/watch?v=7PuPU0Mrl_g
 [htdl2]: https://www.youtube.com/watch?v=0JPNmQ27uwA&list=PLPwlXx18zF7EKPb4sVu4gZ9S7XS0-ad_a
 [tdlv]: https://youtu.be/uX23Jbmh7WU?t=722
+
+## Audio Integration
+
+Integration with Wwise is possible from within Dialogic as well. At the moment
+we have only RTPC and events wired up but more can be done as needed. The current
+method to access audio operations is: `{TGO.audio("<character_id>").<action>(<parameters>)}`.
+
+At the moment _only_ characters can be used as a host for events or RTPC emissions.
+This means hanging things off 'AudioManager' doesn't work from within the context
+of a Dialogue. This isn't set in stone and plumbing the AudioManager here is easy
+but a bit of overhead I wasn't initially sure was necessary... so it got skipped
+for v0.
+
+### Send RTPC value
+> returns: boolean -- true or false if the RTPC was successfully sent. Generally you can ignore this as.
+- `rtpc('<parameter name>', <parameter_value>)`
+
+**Examples:**  
+- `{TGO.audio("Devin").rtpc("PlayerHealth_RTPC", 30)}` -> tell the audio system that Devin is at 30 health. Note that this _only_ informs the audio subsystem about the change, it doesn't actually impact any other systems or actually change Devin's health.
+
+### Check RTPC value
+> returns: float -- the value of a specific RTPC
+
+**Examples:**  
+- `{TGO.audio("Devin").get_rtpc("PlayerHealth_RTPC")}` -> get the player health as reported to Wwise. Note that this may differ from the in-engine values. Probably most frequently used as debugging.
+
+### Fire an event
+> returns: int - the event id that can be passed into stop
+> 
+> note that I don't know a good way to capture the return value at the moment,
+> if it becomes essential to sort out we can; there may also be something in
+> dialogic itself that would let you do it (maybe placing the fire call as the
+> contents of a Set variable call)
+
+**Examples:**  
+- `{TGO.audio("Devin").fire("LevelStart")}` -> fires the level start event from Devin
