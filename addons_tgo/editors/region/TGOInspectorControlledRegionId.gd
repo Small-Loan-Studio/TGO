@@ -31,13 +31,38 @@ var _region_visible: CheckBox:
 
 
 var _obj: ControlledRegion
+var _tde: ToggleDoorEffect
 const ADD_NEW = "Define New Region"
 var _known_paths: Dictionary = {}
 
-func setup(_plugin: TGOInspectorControlledRegionId, obj: ControlledRegion) -> void:
+
+func setup(_plugin: TGOInspectorControlledRegionId, obj: ControlledRegion, tde: ToggleDoorEffect) -> void:
 	_obj = obj
+	_tde = tde
+	if _tde != null:
+		add_theme_constant_override("margin_left", 0)
 	_sync_dropdown_contents()
 	_sync_selected()
+
+
+func _get_region_id() -> String:
+	if _obj != null:
+		return _obj.region_id
+	if _tde != null:
+		return _tde.door_id
+	return ""
+
+func _update_region_id(new_id: String) -> void:
+	if _obj != null:
+		_obj.region_id = new_id
+	elif _tde != null:
+		_tde.door_id = new_id
+	else:
+		printerr("No object to update region ID for.")
+
+
+func _in_resource() -> bool:
+	return _tde != null
 
 
 func _sync_dropdown_contents() -> void:
@@ -49,9 +74,10 @@ func _sync_dropdown_contents() -> void:
 	for path in all_paths:
 		_existing_options.add_item(path)
 		_known_paths[path] = true
-		if path == _obj.region_id:
+		if path == _get_region_id():
 			id_idx = (_existing_options.item_count - 1)
-	_existing_options.add_item(ADD_NEW)
+	if !_in_resource():
+		_existing_options.add_item(ADD_NEW)
 
 	_existing_options.selected = id_idx
 
@@ -59,7 +85,7 @@ func _sync_dropdown_contents() -> void:
 
 func _on_select(_idx: int) -> void:
 	if !is_adding_new():
-		_obj.region_id = selected_id()
+		_update_region_id(selected_id())
 	_sync_selected()
 
 
@@ -79,20 +105,19 @@ func none_selected() -> bool:
 
 func _sync_selected() -> void:
 	_new_id_hbox.visible = is_adding_new()
-	_config_section.visible = !is_adding_new() && !none_selected()
+	_config_section.visible = !_in_resource() && !is_adding_new() && !none_selected()
 
-	if !is_adding_new() && !none_selected():
-		var path := _obj.region_id
+	if _config_section.visible:
+		var path := _get_region_id()
 		var cur_values: Dictionary = ProjectSettings.get_setting("tgo/region_states", {})[path]
 		_region_passable.button_pressed = cur_values["passable"] as bool
 		_region_visible.button_pressed = cur_values["visible"] as bool
-		_obj.region_id = selected_id()
 
 func _on_create_region() -> void:
 	var new_id := _new_id_edit.text.strip_edges()
 	var rs := RegionState.new()
 	RegionStateManager.update_setting(new_id, rs)
-	_obj.region_id = new_id
+	_update_region_id(new_id)
 	call_deferred("_sync_dropdown_contents")
 	call_deferred("_sync_selected")
 

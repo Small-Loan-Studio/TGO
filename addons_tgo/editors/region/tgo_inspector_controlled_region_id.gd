@@ -5,7 +5,7 @@ extends EditorInspectorPlugin
 
 
 func _can_handle(obj: Object) -> bool:
-	return obj is ControlledRegion
+	return obj is ControlledRegion || obj is ToggleDoorEffect
 
 
 func _parse_begin(_obj: Object) -> void:
@@ -29,19 +29,24 @@ func _parse_property(
 	_usage_flags: int,
 	_wide: bool
 ) -> bool:
-	if name == "region_id":
-		add_property_editor(name, IdProperty.new(self, obj as ControlledRegion))
+	if obj is ControlledRegion && name == "region_id":
+		add_property_editor(name, IdProperty.new(self, obj as ControlledRegion, null))
 		return true
+	if obj is ToggleDoorEffect && name == "door_id":
+		add_property_editor(name, IdProperty.new(self, null, obj as ToggleDoorEffect))
+		return true
+
 	return false
 
 
 class IdProperty:
 	extends EditorProperty
 
-	func _init(plugin: TGOInspectorControlledRegionId, obj: ControlledRegion) -> void:
+	func _init(plugin: TGOInspectorControlledRegionId, obj: ControlledRegion, tde: ToggleDoorEffect) -> void:
 		var control_scene: PackedScene = load("res://addons_tgo/editors/region/TGOInspectorControlledRegionId.tscn")
 		var control := control_scene.instantiate()
-		control.setup(plugin, obj)
+		control.setup(plugin, obj, tde)
 		add_child(control)
-		set_bottom_editor(control)
+		if obj != null:
+			set_bottom_editor(control)
 		add_focusable(control)

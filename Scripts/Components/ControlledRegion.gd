@@ -38,7 +38,9 @@ func _enter_tree() -> void:
 
 
 func _ready() -> void:
-	if Engine.is_editor_hint() || region_id.is_empty():
+	if Engine.is_editor_hint():
+		return
+	if region_id.is_empty():
 		print("ControlledRegion._ready but region_id is empty: %s" % [name])
 		return
 
