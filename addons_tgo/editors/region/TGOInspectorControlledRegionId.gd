@@ -32,14 +32,21 @@ var _region_visible: CheckBox:
 
 var _obj: ControlledRegion
 var _tde: ToggleDoorEffect
+var _ure: UpdateControlledRegionEffect
 const ADD_NEW = "Define New Region"
 var _known_paths: Dictionary = {}
 
 
-func setup(_plugin: TGOInspectorControlledRegionId, obj: ControlledRegion, tde: ToggleDoorEffect) -> void:
+func setup(
+	_plugin: TGOInspectorControlledRegionId,
+	obj: ControlledRegion,
+	tde: ToggleDoorEffect,
+	ure: UpdateControlledRegionEffect,
+) -> void:
 	_obj = obj
 	_tde = tde
-	if _tde != null:
+	_ure = ure
+	if _in_resource():
 		add_theme_constant_override("margin_left", 0)
 	_sync_dropdown_contents()
 	_sync_selected()
@@ -50,19 +57,24 @@ func _get_region_id() -> String:
 		return _obj.region_id
 	if _tde != null:
 		return _tde.door_id
+	if _ure != null:
+		return _ure.region_id
 	return ""
+
 
 func _update_region_id(new_id: String) -> void:
 	if _obj != null:
 		_obj.region_id = new_id
 	elif _tde != null:
 		_tde.door_id = new_id
+	elif _ure != null:
+		_ure.region_id = new_id
 	else:
 		printerr("No object to update region ID for.")
 
 
 func _in_resource() -> bool:
-	return _tde != null
+	return _obj == null
 
 
 func _sync_dropdown_contents() -> void:
