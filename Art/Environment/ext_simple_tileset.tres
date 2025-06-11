@@ -1,4 +1,4 @@
-[gd_resource type="TileSet" load_steps=44 format=3 uid="uid://c72m3jled4jfg"]
+[gd_resource type="TileSet" load_steps=54 format=3 uid="uid://c72m3jled4jfg"]
 
 [ext_resource type="Texture2D" uid="uid://bw8g5hunfu3yq" path="res://Art/Environment/simple_tileset_ext.png" id="1_rluj2"]
 [ext_resource type="Texture2D" uid="uid://bvljcethbpi17" path="res://Art/Environment/Int-Dungeon.png" id="2_oalth"]
@@ -83,13 +83,45 @@ texture_region_size = Vector2i(32, 32)
 2:1/0/physics_layer_0/angular_velocity = 0.0
 2:1/0/physics_layer_0/polygon_0/points = PackedVector2Array(-16, -16, 16, -16, 16, 16, -16, 16)
 
+[sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_v3wkh"]
+polygon = PackedVector2Array(-16, 48, -16, -48, 16, -48, 16, 48)
+
+[sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_8kqr6"]
+polygon = PackedVector2Array(-16, -48, 16, -48, 16, -16, -8, -16, -8, 16, 16, 16, 16, 48, -16, 48)
+
+[sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_dl6i4"]
+polygon = PackedVector2Array(-16, 48, -16, -48, 16, -48, 16, 48)
+
+[sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_28ce1"]
+polygon = PackedVector2Array(-16, 48, -16, -48, 16, -48, 16, 48)
+
+[sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_ugm0m"]
+polygon = PackedVector2Array(16, 48, -16, 48, -16, 16, -16, -48, -8, -48, -8, -32, 8, -32, 8, -48, 16, -48, 16, -24, -8, -16, -8, -8, 0, 0, 16, 0, 0, 16, -8, 24, 8, 24, 0, 32, 16, 32)
+
+[sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_qygxs"]
+polygon = PackedVector2Array(0, -48, 0, -32, 0, -16, -16, -16, -16, -8, 0, -8, 0, 8, 0, 16, -8, 16, -8, 24, -16, 24, -16, 48, 16, 48, 16, 16, 8, 16, 8, 8, 16, 8, 16, -48)
+
+[sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_cymjc"]
+polygon = PackedVector2Array(-16, 48, 16, 48, 16, 16, -8, 16, -8, 0, 16, 0, 16, -32, -8, -32, -8, -40, 16, -40, 16, -48, -16, -48, -16, -16, 8, -16, 0, -8, -16, -8)
+
+[sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_x3glo"]
+polygon = PackedVector2Array(-16, 48, -16, -48, 16, -48, 16, 48)
+
+[sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_vyv6v"]
+polygon = PackedVector2Array(-16, 40, -16, 48, 16, 48, 16, 40, 8, 24, 8, -16, 16, -32, 16, -48, -16, -48, -16, -40, -8, -24, -8, -16, -8, 16, -8, 32)
+
+[sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_arleg"]
+polygon = PackedVector2Array(-16, 48, -16, -48, 16, -48, 16, 48)
+
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_arskd"]
 texture = ExtResource("2_oalth")
 texture_region_size = Vector2i(32, 32)
 0:0/size_in_atlas = Vector2i(1, 3)
 0:0/0 = 0
+0:0/0/occlusion_layer_0/polygon = SubResource("OccluderPolygon2D_v3wkh")
 0:0/0/physics_layer_0/linear_velocity = Vector2(0, 0)
 0:0/0/physics_layer_0/angular_velocity = 0.0
+0:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-16, 48, -16, 16, 16, 16, 16, 48)
 1:0/0 = 0
 1:0/0/physics_layer_0/linear_velocity = Vector2(0, 0)
 1:0/0/physics_layer_0/angular_velocity = 0.0
@@ -119,8 +151,10 @@ texture_region_size = Vector2i(32, 32)
 3:2/0/physics_layer_0/angular_velocity = 0.0
 4:0/size_in_atlas = Vector2i(1, 3)
 4:0/0 = 0
+4:0/0/occlusion_layer_0/polygon = SubResource("OccluderPolygon2D_x3glo")
 4:0/0/physics_layer_0/linear_velocity = Vector2(0, 0)
 4:0/0/physics_layer_0/angular_velocity = 0.0
+4:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-16, 16, 16, 16, 16, 48, -16, 48)
 5:0/0 = 0
 5:0/0/physics_layer_0/linear_velocity = Vector2(0, 0)
 5:0/0/physics_layer_0/angular_velocity = 0.0
@@ -150,8 +184,10 @@ texture_region_size = Vector2i(32, 32)
 7:2/0/physics_layer_0/angular_velocity = 0.0
 8:0/size_in_atlas = Vector2i(1, 3)
 8:0/0 = 0
+8:0/0/occlusion_layer_0/polygon = SubResource("OccluderPolygon2D_arleg")
 8:0/0/physics_layer_0/linear_velocity = Vector2(0, 0)
 8:0/0/physics_layer_0/angular_velocity = 0.0
+8:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-16, 16, -16, 48, 16, 48, 16, 16)
 9:0/0 = 0
 9:0/0/physics_layer_0/linear_velocity = Vector2(0, 0)
 9:0/0/physics_layer_0/angular_velocity = 0.0
@@ -181,8 +217,10 @@ texture_region_size = Vector2i(32, 32)
 11:2/0/physics_layer_0/angular_velocity = 0.0
 12:0/size_in_atlas = Vector2i(1, 3)
 12:0/0 = 0
+12:0/0/occlusion_layer_0/polygon = SubResource("OccluderPolygon2D_dl6i4")
 12:0/0/physics_layer_0/linear_velocity = Vector2(0, 0)
 12:0/0/physics_layer_0/angular_velocity = 0.0
+12:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, 48, -8, 48, -16, 48, -16, 16, 16, 16, 16, 48, -16, 48)
 13:0/0 = 0
 13:0/0/physics_layer_0/linear_velocity = Vector2(0, 0)
 13:0/0/physics_layer_0/angular_velocity = 0.0
@@ -212,8 +250,10 @@ texture_region_size = Vector2i(32, 32)
 15:2/0/physics_layer_0/angular_velocity = 0.0
 16:0/size_in_atlas = Vector2i(1, 3)
 16:0/0 = 0
+16:0/0/occlusion_layer_0/polygon = SubResource("OccluderPolygon2D_28ce1")
 16:0/0/physics_layer_0/linear_velocity = Vector2(0, 0)
 16:0/0/physics_layer_0/angular_velocity = 0.0
+16:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-16, 48, -16, 16, 16, 16, 16, 48)
 0:7/0 = 0
 0:7/0/physics_layer_0/linear_velocity = Vector2(0, 0)
 0:7/0/physics_layer_0/angular_velocity = 0.0
@@ -495,24 +535,34 @@ texture_region_size = Vector2i(32, 32)
 5:10/0/physics_layer_0/angular_velocity = 0.0
 4:8/size_in_atlas = Vector2i(1, 3)
 4:8/0 = 0
+4:8/0/occlusion_layer_0/polygon = SubResource("OccluderPolygon2D_vyv6v")
 4:8/0/physics_layer_0/linear_velocity = Vector2(0, 0)
 4:8/0/physics_layer_0/angular_velocity = 0.0
+4:8/0/physics_layer_0/polygon_0/points = PackedVector2Array(-16, 48, 16, 48, 16, 16, -16, 16)
 3:8/size_in_atlas = Vector2i(1, 3)
 3:8/0 = 0
+3:8/0/occlusion_layer_0/polygon = SubResource("OccluderPolygon2D_cymjc")
 3:8/0/physics_layer_0/linear_velocity = Vector2(0, 0)
 3:8/0/physics_layer_0/angular_velocity = 0.0
+3:8/0/physics_layer_0/polygon_0/points = PackedVector2Array(-16, 48, -16, 16, 16, 16, 16, 48)
 2:8/size_in_atlas = Vector2i(1, 3)
 2:8/0 = 0
+2:8/0/occlusion_layer_0/polygon = SubResource("OccluderPolygon2D_qygxs")
 2:8/0/physics_layer_0/linear_velocity = Vector2(0, 0)
 2:8/0/physics_layer_0/angular_velocity = 0.0
+2:8/0/physics_layer_0/polygon_0/points = PackedVector2Array(-16, 16, -16, 48, 16, 48, 16, 16, -8, 16)
 1:8/size_in_atlas = Vector2i(1, 3)
 1:8/0 = 0
+1:8/0/occlusion_layer_0/polygon = SubResource("OccluderPolygon2D_ugm0m")
 1:8/0/physics_layer_0/linear_velocity = Vector2(0, 0)
 1:8/0/physics_layer_0/angular_velocity = 0.0
+1:8/0/physics_layer_0/polygon_0/points = PackedVector2Array(-16, 48, -16, 16, 16, 16, 16, 48)
 0:8/size_in_atlas = Vector2i(1, 3)
 0:8/0 = 0
+0:8/0/occlusion_layer_0/polygon = SubResource("OccluderPolygon2D_8kqr6")
 0:8/0/physics_layer_0/linear_velocity = Vector2(0, 0)
 0:8/0/physics_layer_0/angular_velocity = 0.0
+0:8/0/physics_layer_0/polygon_0/points = PackedVector2Array(-16, 40, -16, 48, -16, 24, -16, 16, 16, 16, 16, 48, -16, 48)
 0:11/0 = 0
 0:11/0/physics_layer_0/linear_velocity = Vector2(0, 0)
 0:11/0/physics_layer_0/angular_velocity = 0.0
