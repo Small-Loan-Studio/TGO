@@ -62,12 +62,78 @@
 						</Action>
 					</ChildrenList>
 				</Event>
-				<Event Name="play_SkeletalRemains_search" ID="{948FFE56-87D6-4794-91FE-D8B9E8D3BA46}">
+				<Event Name="play_IN_SkeletalRemains_search" ID="{948FFE56-87D6-4794-91FE-D8B9E8D3BA46}">
 					<ChildrenList>
 						<Action Name="" ID="{726B12C5-3E4F-4F95-870E-B9E2BC55161E}" ShortID="262048426">
 							<ReferenceList>
 								<Reference Name="Target">
 									<ObjectRef Name="IN_SkeletalRemains_search" ID="{E2F0E520-8731-4F55-A09D-4A4912422E33}" WorkUnitID="{2C578E29-CC89-4E68-9F40-97B72C39F948}"/>
+								</Reference>
+							</ReferenceList>
+						</Action>
+					</ChildrenList>
+				</Event>
+				<Event Name="play_IN_satchel_pickup" ID="{3A444292-D045-46C6-95F4-EC063D85684A}">
+					<ChildrenList>
+						<Action Name="" ID="{1C5C3C5B-6A1E-4B19-8474-B2C57BB4FB8D}" ShortID="278993368">
+							<ReferenceList>
+								<Reference Name="Target">
+									<ObjectRef Name="sfx_IN_satchel_pickup" ID="{1828C807-0F19-4B27-A335-465B384485BD}" WorkUnitID="{2C578E29-CC89-4E68-9F40-97B72C39F948}"/>
+								</Reference>
+							</ReferenceList>
+						</Action>
+					</ChildrenList>
+				</Event>
+				<Event Name="play_IN_UnlitWoodenTorch_pickup" ID="{2EFD280C-38A3-489C-8428-1BC0B9FD33F9}">
+					<ChildrenList>
+						<Action Name="" ID="{A1BD73F2-CB60-43D0-964B-52FAB72FE4E8}" ShortID="741697192">
+							<ReferenceList>
+								<Reference Name="Target">
+									<ObjectRef Name="IN_UnlitWoodenTorch_pickup" ID="{ED539E3B-9818-4C75-B664-1672A4A4E9DC}" WorkUnitID="{2C578E29-CC89-4E68-9F40-97B72C39F948}"/>
+								</Reference>
+							</ReferenceList>
+						</Action>
+					</ChildrenList>
+				</Event>
+				<Event Name="play_IN_WoodenStake_pickup" ID="{E4763070-442F-4B0D-B864-C6C74881D7ED}">
+					<ChildrenList>
+						<Action Name="" ID="{05B87C0F-F8BF-48BD-BBF1-3CBB39716473}" ShortID="624258045">
+							<ReferenceList>
+								<Reference Name="Target">
+									<ObjectRef Name="IN_WoodenStake_pickup" ID="{AA1996BC-BC83-4F3D-9C33-051137CB9209}" WorkUnitID="{2C578E29-CC89-4E68-9F40-97B72C39F948}"/>
+								</Reference>
+							</ReferenceList>
+						</Action>
+					</ChildrenList>
+				</Event>
+				<Event Name="play_IN_lockpick_pickup" ID="{C21369DB-9AD5-454E-A8EC-6DA461B14D5E}">
+					<ChildrenList>
+						<Action Name="" ID="{DFE0A020-4DD9-4BB7-B172-A339DA1650F1}" ShortID="507818137">
+							<ReferenceList>
+								<Reference Name="Target">
+									<ObjectRef Name="IN_lockpick_pickup" ID="{F697A36E-2654-47C2-A165-0207A2E789BC}" WorkUnitID="{2C578E29-CC89-4E68-9F40-97B72C39F948}"/>
+								</Reference>
+							</ReferenceList>
+						</Action>
+					</ChildrenList>
+				</Event>
+				<Event Name="play_IN_coffee_rummage" ID="{FC802E8F-137E-42F4-B46D-C12DB47A99C7}">
+					<ChildrenList>
+						<Action Name="" ID="{A275C716-CDBA-4E4C-8B9B-F1F7E60A8EDA}" ShortID="419292591">
+							<ReferenceList>
+								<Reference Name="Target">
+									<ObjectRef Name="IN_coffee_rummage" ID="{736889A3-D660-4EC7-81D7-E44D3B109BD6}" WorkUnitID="{2C578E29-CC89-4E68-9F40-97B72C39F948}"/>
+								</Reference>
+							</ReferenceList>
+						</Action>
+					</ChildrenList>
+				</Event>
+				<Event Name="play_IN_coffee_pickup" ID="{00160AEF-E6C4-4C47-A9FA-6034E5D00329}">
+					<ChildrenList>
+						<Action Name="" ID="{ACB9DB46-04D7-455A-9574-3D25A1FFBA35}" ShortID="464235444">
+							<ReferenceList>
+								<Reference Name="Target">
+									<ObjectRef Name="IN_coffee_pickup" ID="{CED97B96-5D61-4723-951B-EAFF42077EBF}" WorkUnitID="{2C578E29-CC89-4E68-9F40-97B72C39F948}"/>
 								</Reference>
 							</ReferenceList>
 						</Action>

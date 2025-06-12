@@ -6,6 +6,29 @@
 				<Property Name="Color" Type="int16" Value="16"/>
 				<Property Name="OverrideColor" Type="bool" Value="True"/>
 			</PropertyList>
+			<ChildrenList>
+				<Event Name="play_MX_Cemetery" ID="{1F432989-3199-4823-9A2C-959DC4F6EE64}">
+					<ChildrenList>
+						<Action Name="" ID="{756B8AB8-A558-4274-B386-72342F98629C}" ShortID="571390825">
+							<PropertyList>
+								<Property Name="ActionType" Type="int16" Value="2"/>
+							</PropertyList>
+							<ReferenceList>
+								<Reference Name="Target">
+									<ObjectRef Name="MX_Main" ID="{9973B76F-85B9-4284-8298-51E17B7E4F14}" WorkUnitID="{B7C97FFC-28BC-44FD-84DB-11B9ABE8BC50}"/>
+								</Reference>
+							</ReferenceList>
+						</Action>
+						<Action Name="" ID="{21E016FE-8BC1-420D-843E-A138F0C55462}" ShortID="754078986">
+							<ReferenceList>
+								<Reference Name="Target">
+									<ObjectRef Name="MX_Cemetery" ID="{97309C7B-514D-4BB8-9E64-A239B6EF6359}" WorkUnitID="{B7C97FFC-28BC-44FD-84DB-11B9ABE8BC50}"/>
+								</Reference>
+							</ReferenceList>
+						</Action>
+					</ChildrenList>
+				</Event>
+			</ChildrenList>
 		</WorkUnit>
 	</Events>
 </WwiseDocument>

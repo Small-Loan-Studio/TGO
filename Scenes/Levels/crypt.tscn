@@ -1,4 +1,4 @@
-[gd_scene load_steps=50 format=3 uid="uid://bgn6kmsvdqh4l"]
+[gd_scene load_steps=66 format=3 uid="uid://bgn6kmsvdqh4l"]
 
 [ext_resource type="PackedScene" uid="uid://dyq8mcdsutnsa" path="res://Scenes/Components/LevelBase.tscn" id="1_dma02"]
 [ext_resource type="TileSet" uid="uid://c72m3jled4jfg" path="res://Art/Environment/ext_simple_tileset.tres" id="2_pwhqm"]
@@ -6,16 +6,18 @@
 [ext_resource type="Script" path="res://Scripts/Resources/Effects/TeleportEffect.gd" id="5_7fsg8"]
 [ext_resource type="PackedScene" uid="uid://rgvfsx60t2ap" path="res://Scenes/Components/Inventory/Item.tscn" id="5_iepyf"]
 [ext_resource type="Resource" path="res://Dialogue/Other/CryptSecretChamberOnEnter.dtl" id="6_nab6h"]
+[ext_resource type="Script" path="res://Scripts/Resources/Effects/AudioEventEffect.gd" id="8_18w1y"]
 [ext_resource type="Resource" uid="uid://76bi0g1ps1s3" path="res://Scripts/Resources/Items/FlameTorch.tres" id="8_mj1tv"]
-[ext_resource type="Resource" path="res://Scripts/Resources/Items/EmptyBottle.tres" id="9_exnnc"]
-[ext_resource type="Resource" path="res://Scripts/Resources/Items/CorruptedMushroom.tres" id="11_0plkk"]
+[ext_resource type="Resource" uid="uid://bt7flgi3tv6iy" path="res://Scripts/Resources/Items/EmptyBottle.tres" id="9_exnnc"]
+[ext_resource type="Resource" uid="uid://d0dr52jjvkhpj" path="res://Scripts/Resources/Items/CorruptedMushroom.tres" id="11_0plkk"]
 [ext_resource type="PackedScene" uid="uid://b13wrl3bedjku" path="res://Scenes/Components/Torch.tscn" id="12_1eid6"]
 [ext_resource type="Texture2D" uid="uid://b7ntm61y8np7u" path="res://Art/Environment/Placeables/Wall Torches/Crypt-Torch-Unlit.png" id="12_mfm7m"]
 [ext_resource type="PackedScene" uid="uid://bx2qjlw58ci20" path="res://Scenes/Components/Greyboxing/GreyboxObject.tscn" id="12_us5wm"]
-[ext_resource type="Resource" path="res://Scripts/Resources/Items/WoodenStake.tres" id="12_xo4o4"]
-[ext_resource type="Resource" path="res://Scripts/Resources/Items/OldBatteredKey.tres" id="12_y5vuf"]
-[ext_resource type="Resource" path="res://Scripts/Resources/Items/CryptKey.tres" id="13_g0tog"]
+[ext_resource type="Resource" uid="uid://x0jx2mol86p8" path="res://Scripts/Resources/Items/WoodenStake.tres" id="12_xo4o4"]
+[ext_resource type="Resource" uid="uid://fvia3mg1tqpn" path="res://Scripts/Resources/Items/OldBatteredKey.tres" id="12_y5vuf"]
+[ext_resource type="Resource" uid="uid://bm03pp0j2filn" path="res://Scripts/Resources/Items/CryptKey.tres" id="13_g0tog"]
 [ext_resource type="Texture2D" uid="uid://dt80b5jqylpsw" path="res://Art/Environment/Placeables/Wall Torches/Crypt-Torch-Empty.png" id="13_pg1fx"]
+[ext_resource type="Script" path="res://Scripts/Components/SignalToEffect.gd" id="15_0sy7l"]
 [ext_resource type="Resource" path="res://Dialogue/Examinations/GinPuddle.dtl" id="16_mo7jk"]
 [ext_resource type="Script" path="res://Scripts/Resources/Effects/DialogueEffect.gd" id="16_utw8c"]
 [ext_resource type="Resource" path="res://Dialogue/Examinations/UnlitWoodenTorch.dtl" id="17_b5waj"]
@@ -28,7 +30,7 @@
 [ext_resource type="Resource" path="res://Dialogue/Examinations/BlackMouldCrypt.dtl" id="25_d5spy"]
 [ext_resource type="PackedScene" uid="uid://bwlnxooxokiw6" path="res://Scenes/Components/door.tscn" id="28_4oovl"]
 [ext_resource type="Script" path="res://Scripts/Resources/Conditions/InventoryCheckCondition.gd" id="29_ogskv"]
-[ext_resource type="Resource" path="res://Scripts/Resources/Items/BagOfHardtack.tres" id="30_qe0oq"]
+[ext_resource type="Resource" uid="uid://c0k5s2pwp0tvi" path="res://Scripts/Resources/Items/BagOfHardtack.tres" id="30_qe0oq"]
 
 [sub_resource type="Resource" id="Resource_jh8dd"]
 script = ExtResource("5_7fsg8")
@@ -66,6 +68,54 @@ dest_path = NodePath("../../../Markers/BurialChamber2ExitChamber_tp")
 script = ExtResource("5_7fsg8")
 dest_path = NodePath("../../../Markers/ExitChamber2BurialChamber_tp")
 
+[sub_resource type="Resource" id="Resource_d56ib"]
+script = ExtResource("8_18w1y")
+actor_id_override = ""
+event_name = "play_AM_Crypt_rubble"
+fire_type = "one shot"
+
+[sub_resource type="Resource" id="Resource_rc1m4"]
+script = ExtResource("8_18w1y")
+actor_id_override = ""
+event_name = "play_AM_Crypt"
+fire_type = "one shot"
+
+[sub_resource type="Resource" id="Resource_b8l65"]
+script = ExtResource("8_18w1y")
+actor_id_override = ""
+event_name = "stop_AM_Crypt"
+fire_type = "one shot"
+
+[sub_resource type="Resource" id="Resource_shi2k"]
+script = ExtResource("8_18w1y")
+actor_id_override = ""
+event_name = "play_AM_Crypt_ratSqueak"
+fire_type = "one shot"
+
+[sub_resource type="Resource" id="Resource_ftnkk"]
+script = ExtResource("8_18w1y")
+actor_id_override = ""
+event_name = "play_IN_juniper_pickup"
+fire_type = "one shot"
+
+[sub_resource type="Resource" id="Resource_qh3ce"]
+script = ExtResource("8_18w1y")
+actor_id_override = ""
+event_name = "play_IN_juniper_pickup"
+fire_type = "one shot"
+
+[sub_resource type="Resource" id="Resource_njphx"]
+script = ExtResource("8_18w1y")
+actor_id_override = ""
+event_name = "play_IN_WoodenStake_pickup"
+fire_type = "one shot"
+
+[sub_resource type="Resource" id="Resource_8knov"]
+script = ExtResource("8_18w1y")
+actor_id_override = ""
+event_name = "play_IN_SkeletalRemains_search"
+fire_type = "one shot"
+
 [sub_resource type="ImageTexture" id="ImageTexture_6s6xn"]
 
 [sub_resource type="Resource" id="Resource_kyv6i"]
@@ -76,6 +126,12 @@ timeline = ExtResource("16_mo7jk")
 script = ExtResource("16_utw8c")
 timeline = ExtResource("17_b5waj")
 
+[sub_resource type="Resource" id="Resource_b6v6o"]
+script = ExtResource("8_18w1y")
+actor_id_override = ""
+event_name = "play_IN_UnlitWoodenTorch_pickup"
+fire_type = "one shot"
+
 [sub_resource type="Resource" id="Resource_lqmha"]
 script = ExtResource("16_utw8c")
 timeline = ExtResource("19_g8jw2")
@@ -84,21 +140,51 @@ timeline = ExtResource("19_g8jw2")
 script = ExtResource("16_utw8c")
 timeline = ExtResource("22_vcdk7")
 
+[sub_resource type="Resource" id="Resource_mta75"]
+script = ExtResource("8_18w1y")
+actor_id_override = ""
+event_name = "play_IN_SkeletalRemains_search"
+fire_type = "one shot"
+
 [sub_resource type="Resource" id="Resource_45gmm"]
 script = ExtResource("16_utw8c")
 timeline = ExtResource("23_nako3")
+
+[sub_resource type="Resource" id="Resource_iluku"]
+script = ExtResource("8_18w1y")
+actor_id_override = ""
+event_name = "play_AM_Crypt_rubble"
+fire_type = "one shot"
 
 [sub_resource type="Resource" id="Resource_li3ln"]
 script = ExtResource("16_utw8c")
 timeline = ExtResource("24_bvtj4")
 
+[sub_resource type="Resource" id="Resource_4pyxs"]
+script = ExtResource("8_18w1y")
+actor_id_override = ""
+event_name = "play_AM_Crypt_rubble"
+fire_type = "one shot"
+
 [sub_resource type="Resource" id="Resource_fk822"]
 script = ExtResource("16_utw8c")
 timeline = ExtResource("24_q7j2p")
 
+[sub_resource type="Resource" id="Resource_n5m57"]
+script = ExtResource("8_18w1y")
+actor_id_override = ""
+event_name = "play_IN_satchel_pickup"
+fire_type = "one shot"
+
 [sub_resource type="Resource" id="Resource_y4w0b"]
 script = ExtResource("16_utw8c")
 timeline = ExtResource("24_foypm")
+
+[sub_resource type="Resource" id="Resource_aqarv"]
+script = ExtResource("8_18w1y")
+actor_id_override = ""
+event_name = "play_IN_PaperScraps_pickup"
+fire_type = "one shot"
 
 [sub_resource type="Resource" id="Resource_7815y"]
 script = ExtResource("16_utw8c")
@@ -116,10 +202,10 @@ check_value = 0
 [node name="ColorRect" type="ColorRect" parent="." index="0"]
 z_index = -100
 custom_minimum_size = Vector2(7000, 4000)
-offset_left = -2528.0
-offset_top = -1235.0
-offset_right = 4472.0
-offset_bottom = 3765.0
+offset_left = -2097.0
+offset_top = -1361.0
+offset_right = 4903.0
+offset_bottom = 3639.0
 color = Color(0, 0, 0, 1)
 
 [node name="TileMap" parent="." index="1"]
@@ -169,6 +255,99 @@ position = Vector2(2272, 448)
 sensor_size = Vector2(120, 60)
 on_pressed_effects = Array[Resource("res://Scripts/Resources/Effect.gd")]([SubResource("Resource_7dvjx")])
 
+[node name="AudioSwitches" type="Node" parent="Objects/Switches" index="8"]
+
+[node name="AM_Crypt_rubble" parent="Objects/Switches/AudioSwitches" index="0" instance=ExtResource("3_0ndau")]
+position = Vector2(70, 759)
+sensor_size = Vector2(20, 20)
+on_pressed_effects = Array[Resource("res://Scripts/Resources/Effect.gd")]([SubResource("Resource_d56ib")])
+
+[node name="AM_Crypt_rubble2" parent="Objects/Switches/AudioSwitches" index="1" instance=ExtResource("3_0ndau")]
+position = Vector2(145, 465)
+sensor_size = Vector2(20, 20)
+on_pressed_effects = Array[Resource("res://Scripts/Resources/Effect.gd")]([SubResource("Resource_d56ib")])
+
+[node name="AM_Crypt_rubble3" parent="Objects/Switches/AudioSwitches" index="2" instance=ExtResource("3_0ndau")]
+position = Vector2(-1817, 259)
+sensor_size = Vector2(20, 20)
+on_pressed_effects = Array[Resource("res://Scripts/Resources/Effect.gd")]([SubResource("Resource_d56ib")])
+
+[node name="AM_Crypt_rubble4" parent="Objects/Switches/AudioSwitches" index="3" instance=ExtResource("3_0ndau")]
+position = Vector2(247, 2333)
+sensor_size = Vector2(20, 20)
+on_pressed_effects = Array[Resource("res://Scripts/Resources/Effect.gd")]([SubResource("Resource_d56ib")])
+
+[node name="AM_Crypt_rubble5" parent="Objects/Switches/AudioSwitches" index="4" instance=ExtResource("3_0ndau")]
+position = Vector2(791, 2507)
+sensor_size = Vector2(20, 20)
+on_pressed_effects = Array[Resource("res://Scripts/Resources/Effect.gd")]([SubResource("Resource_d56ib")])
+
+[node name="AM_Crypt_rubble6" parent="Objects/Switches/AudioSwitches" index="5" instance=ExtResource("3_0ndau")]
+position = Vector2(1421, 2498)
+sensor_size = Vector2(20, 20)
+on_pressed_effects = Array[Resource("res://Scripts/Resources/Effect.gd")]([SubResource("Resource_d56ib")])
+
+[node name="AM_Crypt_rubble7" parent="Objects/Switches/AudioSwitches" index="6" instance=ExtResource("3_0ndau")]
+position = Vector2(1896, 2431)
+sensor_size = Vector2(20, 20)
+on_pressed_effects = Array[Resource("res://Scripts/Resources/Effect.gd")]([SubResource("Resource_d56ib")])
+
+[node name="AM_Crypt_rubble8" parent="Objects/Switches/AudioSwitches" index="7" instance=ExtResource("3_0ndau")]
+position = Vector2(2291, 1461)
+sensor_size = Vector2(20, 20)
+on_pressed_effects = Array[Resource("res://Scripts/Resources/Effect.gd")]([SubResource("Resource_d56ib")])
+
+[node name="AM_Crypt_rubble9" parent="Objects/Switches/AudioSwitches" index="8" instance=ExtResource("3_0ndau")]
+position = Vector2(2952, 1056)
+sensor_size = Vector2(20, 20)
+on_pressed_effects = Array[Resource("res://Scripts/Resources/Effect.gd")]([SubResource("Resource_d56ib")])
+
+[node name="AM_Crypt_rubble10" parent="Objects/Switches/AudioSwitches" index="9" instance=ExtResource("3_0ndau")]
+position = Vector2(2084, 869)
+sensor_size = Vector2(20, 20)
+on_pressed_effects = Array[Resource("res://Scripts/Resources/Effect.gd")]([SubResource("Resource_d56ib")])
+
+[node name="AM_Crypt_rubble11" parent="Objects/Switches/AudioSwitches" index="10" instance=ExtResource("3_0ndau")]
+position = Vector2(2657, 820)
+sensor_size = Vector2(20, 20)
+on_pressed_effects = Array[Resource("res://Scripts/Resources/Effect.gd")]([SubResource("Resource_d56ib")])
+
+[node name="AM_Crypt" parent="Objects/Switches/AudioSwitches" index="11" instance=ExtResource("3_0ndau")]
+position = Vector2(972, 1164)
+sensor_size = Vector2(6500, 5000)
+on_pressed_effects = Array[Resource("res://Scripts/Resources/Effect.gd")]([SubResource("Resource_rc1m4")])
+on_released_effects = Array[Resource("res://Scripts/Resources/Effect.gd")]([SubResource("Resource_b8l65")])
+
+[node name="AM_Crypt_ratSqueak" parent="Objects/Switches/AudioSwitches" index="12" instance=ExtResource("3_0ndau")]
+position = Vector2(255, 771)
+sensor_size = Vector2(20, 20)
+on_pressed_effects = Array[Resource("res://Scripts/Resources/Effect.gd")]([SubResource("Resource_shi2k")])
+
+[node name="AM_Crypt_ratSqueak2" parent="Objects/Switches/AudioSwitches" index="13" instance=ExtResource("3_0ndau")]
+position = Vector2(227, 583)
+sensor_size = Vector2(20, 20)
+on_pressed_effects = Array[Resource("res://Scripts/Resources/Effect.gd")]([SubResource("Resource_shi2k")])
+
+[node name="AM_Crypt_ratSqueak3" parent="Objects/Switches/AudioSwitches" index="14" instance=ExtResource("3_0ndau")]
+position = Vector2(1028, 2367)
+sensor_size = Vector2(20, 20)
+on_pressed_effects = Array[Resource("res://Scripts/Resources/Effect.gd")]([SubResource("Resource_shi2k")])
+
+[node name="AM_Crypt_ratSqueak4" parent="Objects/Switches/AudioSwitches" index="15" instance=ExtResource("3_0ndau")]
+position = Vector2(2275, 2445)
+sensor_size = Vector2(20, 20)
+on_pressed_effects = Array[Resource("res://Scripts/Resources/Effect.gd")]([SubResource("Resource_shi2k")])
+
+[node name="AM_Crypt_ratSqueak5" parent="Objects/Switches/AudioSwitches" index="16" instance=ExtResource("3_0ndau")]
+position = Vector2(1949, 1295)
+sensor_size = Vector2(20, 20)
+on_pressed_effects = Array[Resource("res://Scripts/Resources/Effect.gd")]([SubResource("Resource_shi2k")])
+
+[node name="AM_Crypt_ratSqueak6" parent="Objects/Switches/AudioSwitches" index="17" instance=ExtResource("3_0ndau")]
+position = Vector2(3292, 1571)
+sensor_size = Vector2(20, 20)
+on_pressed_effects = Array[Resource("res://Scripts/Resources/Effect.gd")]([SubResource("Resource_shi2k")])
+
 [node name="FLAME_TORCH" parent="Objects/Items" index="0" instance=ExtResource("5_iepyf")]
 position = Vector2(2733, 1199)
 item = ExtResource("8_mj1tv")
@@ -194,50 +373,90 @@ position = Vector2(334.744, 488.545)
 item = ExtResource("11_0plkk")
 quantity = 1
 
+[node name="PickedUp" type="Node" parent="Objects/Items/MUSHROOM" index="2"]
+script = ExtResource("15_0sy7l")
+effects = Array[Resource("res://Scripts/Resources/Effect.gd")]([SubResource("Resource_ftnkk")])
+
 [node name="MUSHROOM_2" parent="Objects/Items" index="5" instance=ExtResource("5_iepyf")]
 position = Vector2(433.633, 487.654)
 item = ExtResource("11_0plkk")
 quantity = 1
+
+[node name="PickedUp" type="Node" parent="Objects/Items/MUSHROOM_2" index="2"]
+script = ExtResource("15_0sy7l")
+effects = Array[Resource("res://Scripts/Resources/Effect.gd")]([SubResource("Resource_ftnkk")])
 
 [node name="MUSHROOM_3" parent="Objects/Items" index="6" instance=ExtResource("5_iepyf")]
 position = Vector2(-175.741, 431.527)
 item = ExtResource("11_0plkk")
 quantity = 1
 
+[node name="PickedUp" type="Node" parent="Objects/Items/MUSHROOM_3" index="2"]
+script = ExtResource("15_0sy7l")
+effects = Array[Resource("res://Scripts/Resources/Effect.gd")]([SubResource("Resource_ftnkk")])
+
 [node name="MUSHROOM_4" parent="Objects/Items" index="7" instance=ExtResource("5_iepyf")]
 position = Vector2(-80.4153, 431.527)
 item = ExtResource("11_0plkk")
 quantity = 1
+
+[node name="PickedUp" type="Node" parent="Objects/Items/MUSHROOM_4" index="2"]
+script = ExtResource("15_0sy7l")
+effects = Array[Resource("res://Scripts/Resources/Effect.gd")]([SubResource("Resource_ftnkk")])
 
 [node name="MUSHROOM_5" parent="Objects/Items" index="8" instance=ExtResource("5_iepyf")]
 position = Vector2(-177.523, 592.78)
 item = ExtResource("11_0plkk")
 quantity = 1
 
+[node name="PickedUp" type="Node" parent="Objects/Items/MUSHROOM_5" index="2"]
+script = ExtResource("15_0sy7l")
+effects = Array[Resource("res://Scripts/Resources/Effect.gd")]([SubResource("Resource_ftnkk")])
+
 [node name="MUSHROOM_6" parent="Objects/Items" index="9" instance=ExtResource("5_iepyf")]
 position = Vector2(14.02, 561.598)
 item = ExtResource("11_0plkk")
 quantity = 1
+
+[node name="PickedUp" type="Node" parent="Objects/Items/MUSHROOM_6" index="2"]
+script = ExtResource("15_0sy7l")
+effects = Array[Resource("res://Scripts/Resources/Effect.gd")]([SubResource("Resource_ftnkk")])
 
 [node name="MUSHROOM_7" parent="Objects/Items" index="10" instance=ExtResource("5_iepyf")]
 position = Vector2(14.02, 752.251)
 item = ExtResource("11_0plkk")
 quantity = 1
 
+[node name="PickedUp" type="Node" parent="Objects/Items/MUSHROOM_7" index="2"]
+script = ExtResource("15_0sy7l")
+effects = Array[Resource("res://Scripts/Resources/Effect.gd")]([SubResource("Resource_ftnkk")])
+
 [node name="MUSHROOM_8" parent="Objects/Items" index="11" instance=ExtResource("5_iepyf")]
 position = Vector2(206.454, 815.505)
 item = ExtResource("11_0plkk")
 quantity = 1
+
+[node name="PickedUp" type="Node" parent="Objects/Items/MUSHROOM_8" index="2"]
+script = ExtResource("15_0sy7l")
+effects = Array[Resource("res://Scripts/Resources/Effect.gd")]([SubResource("Resource_qh3ce")])
 
 [node name="MUSHROOM_9" parent="Objects/Items" index="12" instance=ExtResource("5_iepyf")]
 position = Vector2(1584.28, 1232.2)
 item = ExtResource("11_0plkk")
 quantity = 1
 
+[node name="PickedUp" type="Node" parent="Objects/Items/MUSHROOM_9" index="2"]
+script = ExtResource("15_0sy7l")
+effects = Array[Resource("res://Scripts/Resources/Effect.gd")]([SubResource("Resource_ftnkk")])
+
 [node name="MUSHROOM_10" parent="Objects/Items" index="13" instance=ExtResource("5_iepyf")]
 position = Vector2(1966.04, 973.916)
 item = ExtResource("11_0plkk")
 quantity = 1
+
+[node name="PickedUp" type="Node" parent="Objects/Items/MUSHROOM_10" index="2"]
+script = ExtResource("15_0sy7l")
+effects = Array[Resource("res://Scripts/Resources/Effect.gd")]([SubResource("Resource_ftnkk")])
 
 [node name="OLD_BATTERED_KEY" parent="Objects/Items" index="14" instance=ExtResource("5_iepyf")]
 position = Vector2(2091, 1449)
@@ -249,15 +468,27 @@ position = Vector2(1805.09, 1514.99)
 item = ExtResource("12_xo4o4")
 quantity = 1
 
+[node name="PickedUp" type="Node" parent="Objects/Items/WOODEN_STAKE" index="2"]
+script = ExtResource("15_0sy7l")
+effects = Array[Resource("res://Scripts/Resources/Effect.gd")]([SubResource("Resource_njphx")])
+
 [node name="WOODEN_STAKE_2" parent="Objects/Items" index="16" instance=ExtResource("5_iepyf")]
 position = Vector2(2216, 1282)
 item = ExtResource("12_xo4o4")
 quantity = 1
 
+[node name="PickedUp" type="Node" parent="Objects/Items/WOODEN_STAKE_2" index="2"]
+script = ExtResource("15_0sy7l")
+effects = Array[Resource("res://Scripts/Resources/Effect.gd")]([SubResource("Resource_njphx")])
+
 [node name="CRYPT_KEY" parent="Objects/Items" index="17" instance=ExtResource("5_iepyf")]
 position = Vector2(3316, 1483)
 item = ExtResource("13_g0tog")
 quantity = 1
+
+[node name="PickedUp" type="Node" parent="Objects/Items/CRYPT_KEY" index="2"]
+script = ExtResource("15_0sy7l")
+effects = Array[Resource("res://Scripts/Resources/Effect.gd")]([SubResource("Resource_8knov")])
 
 [node name="LightThruCrack" parent="Objects/Lighting" index="0" instance=ExtResource("12_1eid6")]
 position = Vector2(126, 533)
@@ -451,7 +682,7 @@ can_block_light = true
 can_interact = true
 tint = Color(0.745098, 0.745098, 0.745098, 0)
 action_verb = 6
-effects = Array[Resource("res://Scripts/Resources/Effect.gd")]([SubResource("Resource_nois6")])
+effects = Array[Resource("res://Scripts/Resources/Effect.gd")]([SubResource("Resource_nois6"), SubResource("Resource_b6v6o")])
 
 [node name="UnlitWoodenTorch_Examine2" parent="Objects" index="25" instance=ExtResource("12_us5wm")]
 position = Vector2(1863, 767)
@@ -461,7 +692,7 @@ can_block_light = true
 can_interact = true
 tint = Color(0.745098, 0.745098, 0.745098, 0)
 action_verb = 6
-effects = Array[Resource("res://Scripts/Resources/Effect.gd")]([SubResource("Resource_nois6")])
+effects = Array[Resource("res://Scripts/Resources/Effect.gd")]([SubResource("Resource_nois6"), SubResource("Resource_b6v6o")])
 
 [node name="UnlitWoodenTorch_Examine3" parent="Objects" index="26" instance=ExtResource("12_us5wm")]
 position = Vector2(2599, 767)
@@ -471,7 +702,7 @@ can_block_light = true
 can_interact = true
 tint = Color(0.745098, 0.745098, 0.745098, 0)
 action_verb = 6
-effects = Array[Resource("res://Scripts/Resources/Effect.gd")]([SubResource("Resource_nois6")])
+effects = Array[Resource("res://Scripts/Resources/Effect.gd")]([SubResource("Resource_nois6"), SubResource("Resource_b6v6o")])
 
 [node name="UnlitWoodenTorch_Examine4" parent="Objects" index="27" instance=ExtResource("12_us5wm")]
 position = Vector2(2898, 762)
@@ -481,7 +712,7 @@ can_block_light = true
 can_interact = true
 tint = Color(0.745098, 0.745098, 0.745098, 0)
 action_verb = 6
-effects = Array[Resource("res://Scripts/Resources/Effect.gd")]([SubResource("Resource_nois6")])
+effects = Array[Resource("res://Scripts/Resources/Effect.gd")]([SubResource("Resource_nois6"), SubResource("Resource_b6v6o")])
 
 [node name="UnlitWoodenTorch_Examine5" parent="Objects" index="28" instance=ExtResource("12_us5wm")]
 position = Vector2(3198, 767)
@@ -491,7 +722,7 @@ can_block_light = true
 can_interact = true
 tint = Color(0.745098, 0.745098, 0.745098, 0)
 action_verb = 6
-effects = Array[Resource("res://Scripts/Resources/Effect.gd")]([SubResource("Resource_nois6")])
+effects = Array[Resource("res://Scripts/Resources/Effect.gd")]([SubResource("Resource_nois6"), SubResource("Resource_b6v6o")])
 
 [node name="UnlitWoodenTorch_Examine6" parent="Objects" index="29" instance=ExtResource("12_us5wm")]
 position = Vector2(2170, 2237)
@@ -501,7 +732,7 @@ can_block_light = true
 can_interact = true
 tint = Color(0.745098, 0.745098, 0.745098, 0)
 action_verb = 6
-effects = Array[Resource("res://Scripts/Resources/Effect.gd")]([SubResource("Resource_nois6")])
+effects = Array[Resource("res://Scripts/Resources/Effect.gd")]([SubResource("Resource_nois6"), SubResource("Resource_b6v6o")])
 
 [node name="UnlitWoodenTorch_Examine7" parent="Objects" index="30" instance=ExtResource("12_us5wm")]
 position = Vector2(2307, 2242)
@@ -511,7 +742,7 @@ can_block_light = true
 can_interact = true
 tint = Color(0.745098, 0.745098, 0.745098, 0)
 action_verb = 6
-effects = Array[Resource("res://Scripts/Resources/Effect.gd")]([SubResource("Resource_nois6")])
+effects = Array[Resource("res://Scripts/Resources/Effect.gd")]([SubResource("Resource_nois6"), SubResource("Resource_b6v6o")])
 
 [node name="UnlitWoodenTorch_Examine8" parent="Objects" index="31" instance=ExtResource("12_us5wm")]
 position = Vector2(1867, 2237)
@@ -521,7 +752,7 @@ can_block_light = true
 can_interact = true
 tint = Color(0.745098, 0.745098, 0.745098, 0)
 action_verb = 6
-effects = Array[Resource("res://Scripts/Resources/Effect.gd")]([SubResource("Resource_nois6")])
+effects = Array[Resource("res://Scripts/Resources/Effect.gd")]([SubResource("Resource_nois6"), SubResource("Resource_b6v6o")])
 
 [node name="UnlitWoodenTorch_Examine9" parent="Objects" index="32" instance=ExtResource("12_us5wm")]
 position = Vector2(1568, 2237)
@@ -531,7 +762,7 @@ can_block_light = true
 can_interact = true
 tint = Color(0.745098, 0.745098, 0.745098, 0)
 action_verb = 6
-effects = Array[Resource("res://Scripts/Resources/Effect.gd")]([SubResource("Resource_nois6")])
+effects = Array[Resource("res://Scripts/Resources/Effect.gd")]([SubResource("Resource_nois6"), SubResource("Resource_b6v6o")])
 
 [node name="UnlitWoodenTorch_Examine10" parent="Objects" index="33" instance=ExtResource("12_us5wm")]
 position = Vector2(1269, 2238)
@@ -541,7 +772,7 @@ can_block_light = true
 can_interact = true
 tint = Color(0.745098, 0.745098, 0.745098, 0)
 action_verb = 6
-effects = Array[Resource("res://Scripts/Resources/Effect.gd")]([SubResource("Resource_nois6")])
+effects = Array[Resource("res://Scripts/Resources/Effect.gd")]([SubResource("Resource_nois6"), SubResource("Resource_b6v6o")])
 
 [node name="UnlitWoodenTorch_Examine11" parent="Objects" index="34" instance=ExtResource("12_us5wm")]
 position = Vector2(969, 2239)
@@ -551,7 +782,7 @@ can_block_light = true
 can_interact = true
 tint = Color(0.745098, 0.745098, 0.745098, 0)
 action_verb = 6
-effects = Array[Resource("res://Scripts/Resources/Effect.gd")]([SubResource("Resource_nois6")])
+effects = Array[Resource("res://Scripts/Resources/Effect.gd")]([SubResource("Resource_nois6"), SubResource("Resource_b6v6o")])
 
 [node name="UnlitWoodenTorch_Examine12" parent="Objects" index="35" instance=ExtResource("12_us5wm")]
 position = Vector2(669, 2239)
@@ -561,7 +792,7 @@ can_block_light = true
 can_interact = true
 tint = Color(0.745098, 0.745098, 0.745098, 0)
 action_verb = 6
-effects = Array[Resource("res://Scripts/Resources/Effect.gd")]([SubResource("Resource_nois6")])
+effects = Array[Resource("res://Scripts/Resources/Effect.gd")]([SubResource("Resource_nois6"), SubResource("Resource_b6v6o")])
 
 [node name="UnlitWoodenTorch_Examine13" parent="Objects" index="36" instance=ExtResource("12_us5wm")]
 position = Vector2(369, 2238)
@@ -571,7 +802,7 @@ can_block_light = true
 can_interact = true
 tint = Color(0.745098, 0.745098, 0.745098, 0)
 action_verb = 6
-effects = Array[Resource("res://Scripts/Resources/Effect.gd")]([SubResource("Resource_nois6")])
+effects = Array[Resource("res://Scripts/Resources/Effect.gd")]([SubResource("Resource_nois6"), SubResource("Resource_b6v6o")])
 
 [node name="UnlitWoodenTorch_Examine14" parent="Objects" index="37" instance=ExtResource("12_us5wm")]
 position = Vector2(45, 2239)
@@ -581,7 +812,7 @@ can_block_light = true
 can_interact = true
 tint = Color(0.745098, 0.745098, 0.745098, 0)
 action_verb = 6
-effects = Array[Resource("res://Scripts/Resources/Effect.gd")]([SubResource("Resource_nois6")])
+effects = Array[Resource("res://Scripts/Resources/Effect.gd")]([SubResource("Resource_nois6"), SubResource("Resource_b6v6o")])
 
 [node name="PileOfWoodenStakes_Examine" parent="Objects" index="38" instance=ExtResource("12_us5wm")]
 position = Vector2(2225, 1280)
@@ -596,7 +827,7 @@ position = Vector2(3313, 1502)
 can_interact = true
 tint = Color(0.745098, 0.745098, 0.745098, 0)
 action_verb = 6
-effects = Array[Resource("res://Scripts/Resources/Effect.gd")]([SubResource("Resource_8idhr")])
+effects = Array[Resource("res://Scripts/Resources/Effect.gd")]([SubResource("Resource_8idhr"), SubResource("Resource_mta75")])
 
 [node name="RansackedCoffin_Examine" parent="Objects" index="40" instance=ExtResource("12_us5wm")]
 position = Vector2(3375, 1519)
@@ -605,7 +836,7 @@ can_block_movement = true
 can_interact = true
 tint = Color(0.745098, 0.745098, 0.745098, 0)
 action_verb = 6
-effects = Array[Resource("res://Scripts/Resources/Effect.gd")]([SubResource("Resource_45gmm")])
+effects = Array[Resource("res://Scripts/Resources/Effect.gd")]([SubResource("Resource_45gmm"), SubResource("Resource_iluku")])
 
 [node name="Coffin_Examine" parent="Objects" index="41" instance=ExtResource("12_us5wm")]
 position = Vector2(2994, 777)
@@ -614,7 +845,7 @@ can_block_movement = true
 can_interact = true
 tint = Color(0.745098, 0.745098, 0.745098, 0)
 action_verb = 6
-effects = Array[Resource("res://Scripts/Resources/Effect.gd")]([SubResource("Resource_li3ln")])
+effects = Array[Resource("res://Scripts/Resources/Effect.gd")]([SubResource("Resource_li3ln"), SubResource("Resource_4pyxs")])
 
 [node name="Coffin_Examine2" parent="Objects" index="42" instance=ExtResource("12_us5wm")]
 position = Vector2(3087, 778)
@@ -623,7 +854,7 @@ can_block_movement = true
 can_interact = true
 tint = Color(0.745098, 0.745098, 0.745098, 0)
 action_verb = 6
-effects = Array[Resource("res://Scripts/Resources/Effect.gd")]([SubResource("Resource_li3ln")])
+effects = Array[Resource("res://Scripts/Resources/Effect.gd")]([SubResource("Resource_li3ln"), SubResource("Resource_4pyxs")])
 
 [node name="Coffin_Examine3" parent="Objects" index="43" instance=ExtResource("12_us5wm")]
 position = Vector2(2800, 778)
@@ -632,7 +863,7 @@ can_block_movement = true
 can_interact = true
 tint = Color(0.745098, 0.745098, 0.745098, 0)
 action_verb = 6
-effects = Array[Resource("res://Scripts/Resources/Effect.gd")]([SubResource("Resource_li3ln")])
+effects = Array[Resource("res://Scripts/Resources/Effect.gd")]([SubResource("Resource_li3ln"), SubResource("Resource_4pyxs")])
 
 [node name="Coffin_Examine4" parent="Objects" index="44" instance=ExtResource("12_us5wm")]
 position = Vector2(2703, 777)
@@ -641,7 +872,7 @@ can_block_movement = true
 can_interact = true
 tint = Color(0.745098, 0.745098, 0.745098, 0)
 action_verb = 6
-effects = Array[Resource("res://Scripts/Resources/Effect.gd")]([SubResource("Resource_li3ln")])
+effects = Array[Resource("res://Scripts/Resources/Effect.gd")]([SubResource("Resource_li3ln"), SubResource("Resource_4pyxs")])
 
 [node name="Coffin_Examine5" parent="Objects" index="45" instance=ExtResource("12_us5wm")]
 position = Vector2(2479, 777)
@@ -650,7 +881,7 @@ can_block_movement = true
 can_interact = true
 tint = Color(0.745098, 0.745098, 0.745098, 0)
 action_verb = 6
-effects = Array[Resource("res://Scripts/Resources/Effect.gd")]([SubResource("Resource_li3ln")])
+effects = Array[Resource("res://Scripts/Resources/Effect.gd")]([SubResource("Resource_li3ln"), SubResource("Resource_4pyxs")])
 
 [node name="Coffin_Examine6" parent="Objects" index="46" instance=ExtResource("12_us5wm")]
 position = Vector2(2385, 780)
@@ -659,7 +890,7 @@ can_block_movement = true
 can_interact = true
 tint = Color(0.745098, 0.745098, 0.745098, 0)
 action_verb = 6
-effects = Array[Resource("res://Scripts/Resources/Effect.gd")]([SubResource("Resource_li3ln")])
+effects = Array[Resource("res://Scripts/Resources/Effect.gd")]([SubResource("Resource_li3ln"), SubResource("Resource_4pyxs")])
 
 [node name="Coffins_Examine" parent="Objects" index="47" instance=ExtResource("12_us5wm")]
 position = Vector2(2431, 1677)
@@ -668,7 +899,7 @@ can_block_movement = true
 can_interact = true
 tint = Color(0.745098, 0.745098, 0.745098, 0)
 action_verb = 6
-effects = Array[Resource("res://Scripts/Resources/Effect.gd")]([SubResource("Resource_li3ln")])
+effects = Array[Resource("res://Scripts/Resources/Effect.gd")]([SubResource("Resource_li3ln"), SubResource("Resource_4pyxs")])
 y_sort_width = 104
 
 [node name="Coffins_Examine2" parent="Objects" index="48" instance=ExtResource("12_us5wm")]
@@ -678,7 +909,7 @@ can_block_movement = true
 can_interact = true
 tint = Color(0.745098, 0.745098, 0.745098, 0)
 action_verb = 6
-effects = Array[Resource("res://Scripts/Resources/Effect.gd")]([SubResource("Resource_li3ln")])
+effects = Array[Resource("res://Scripts/Resources/Effect.gd")]([SubResource("Resource_li3ln"), SubResource("Resource_4pyxs")])
 y_sort_width = 104
 
 [node name="Coffins_Examine3" parent="Objects" index="49" instance=ExtResource("12_us5wm")]
@@ -688,7 +919,7 @@ can_block_movement = true
 can_interact = true
 tint = Color(0.745098, 0.745098, 0.745098, 0)
 action_verb = 6
-effects = Array[Resource("res://Scripts/Resources/Effect.gd")]([SubResource("Resource_li3ln")])
+effects = Array[Resource("res://Scripts/Resources/Effect.gd")]([SubResource("Resource_li3ln"), SubResource("Resource_4pyxs")])
 y_sort_width = 104
 
 [node name="Coffins_Examine4" parent="Objects" index="50" instance=ExtResource("12_us5wm")]
@@ -698,7 +929,7 @@ can_block_movement = true
 can_interact = true
 tint = Color(0.745098, 0.745098, 0.745098, 0)
 action_verb = 6
-effects = Array[Resource("res://Scripts/Resources/Effect.gd")]([SubResource("Resource_li3ln")])
+effects = Array[Resource("res://Scripts/Resources/Effect.gd")]([SubResource("Resource_li3ln"), SubResource("Resource_4pyxs")])
 y_sort_width = 104
 
 [node name="Coffins_Examine5" parent="Objects" index="51" instance=ExtResource("12_us5wm")]
@@ -708,7 +939,7 @@ can_block_movement = true
 can_interact = true
 tint = Color(0.745098, 0.745098, 0.745098, 0)
 action_verb = 6
-effects = Array[Resource("res://Scripts/Resources/Effect.gd")]([SubResource("Resource_li3ln")])
+effects = Array[Resource("res://Scripts/Resources/Effect.gd")]([SubResource("Resource_li3ln"), SubResource("Resource_4pyxs")])
 y_sort_width = 104
 
 [node name="Satchel_Examine" parent="Objects" index="52" instance=ExtResource("12_us5wm")]
@@ -717,14 +948,14 @@ size = Vector2(1, 0.5)
 can_interact = true
 tint = Color(0.745098, 0.745098, 0.745098, 0)
 action_verb = 6
-effects = Array[Resource("res://Scripts/Resources/Effect.gd")]([SubResource("Resource_fk822")])
+effects = Array[Resource("res://Scripts/Resources/Effect.gd")]([SubResource("Resource_fk822"), SubResource("Resource_n5m57")])
 
 [node name="JournalPage1_Examine" parent="Objects" index="53" instance=ExtResource("12_us5wm")]
 position = Vector2(3887, 1790)
 can_interact = true
 tint = Color(0.745098, 0.745098, 0.745098, 0)
 action_verb = 6
-effects = Array[Resource("res://Scripts/Resources/Effect.gd")]([SubResource("Resource_y4w0b")])
+effects = Array[Resource("res://Scripts/Resources/Effect.gd")]([SubResource("Resource_y4w0b"), SubResource("Resource_aqarv")])
 
 [node name="BlackMould_Examine" parent="Objects" index="54" instance=ExtResource("12_us5wm")]
 position = Vector2(434, 705)
@@ -824,3 +1055,17 @@ offset_top = 229.0
 offset_right = 2705.0
 offset_bottom = 252.0
 text = "Stairs to Surface"
+
+[connection signal="picked_up" from="Objects/Items/MUSHROOM" to="Objects/Items/MUSHROOM/PickedUp" method="trigger"]
+[connection signal="picked_up" from="Objects/Items/MUSHROOM_2" to="Objects/Items/MUSHROOM_2/PickedUp" method="trigger"]
+[connection signal="picked_up" from="Objects/Items/MUSHROOM_3" to="Objects/Items/MUSHROOM_3/PickedUp" method="trigger"]
+[connection signal="picked_up" from="Objects/Items/MUSHROOM_4" to="Objects/Items/MUSHROOM_4/PickedUp" method="trigger"]
+[connection signal="picked_up" from="Objects/Items/MUSHROOM_5" to="Objects/Items/MUSHROOM_5/PickedUp" method="trigger"]
+[connection signal="picked_up" from="Objects/Items/MUSHROOM_6" to="Objects/Items/MUSHROOM_6/PickedUp" method="trigger"]
+[connection signal="picked_up" from="Objects/Items/MUSHROOM_7" to="Objects/Items/MUSHROOM_7/PickedUp" method="trigger"]
+[connection signal="picked_up" from="Objects/Items/MUSHROOM_8" to="Objects/Items/MUSHROOM_8/PickedUp" method="trigger"]
+[connection signal="picked_up" from="Objects/Items/MUSHROOM_9" to="Objects/Items/MUSHROOM_9/PickedUp" method="trigger"]
+[connection signal="picked_up" from="Objects/Items/MUSHROOM_10" to="Objects/Items/MUSHROOM_10/PickedUp" method="trigger"]
+[connection signal="picked_up" from="Objects/Items/WOODEN_STAKE" to="Objects/Items/WOODEN_STAKE/PickedUp" method="trigger"]
+[connection signal="picked_up" from="Objects/Items/WOODEN_STAKE_2" to="Objects/Items/WOODEN_STAKE_2/PickedUp" method="trigger"]
+[connection signal="picked_up" from="Objects/Items/WOODEN_STAKE_2" to="Objects/Items/CRYPT_KEY/PickedUp" method="trigger"]
