@@ -74,6 +74,8 @@ var _canvas_modulate: CanvasModulate = null:
 			return get_node(path)
 		return null
 
+@onready var tilemap: TileMap = $TileMap
+
 @onready var _marker_root := $Markers
 
 
@@ -158,3 +160,8 @@ func get_audio_node(id: String) -> AudioNode:
 		if node.id == id:
 			return node
 	return null
+
+
+func get_map_coords(global_pos: Vector2) -> Vector2i:
+	var map_local_coords: Vector2 = tilemap.to_local(global_pos)
+	return tilemap.local_to_map(map_local_coords)
