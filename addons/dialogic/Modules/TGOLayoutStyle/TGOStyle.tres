@@ -18,7 +18,9 @@ overrides = {}
 [sub_resource type="Resource" id="Resource_nql3p"]
 script = ExtResource("2_vincf")
 scene = ExtResource("3_wrsa7")
-overrides = {}
+overrides = {
+"box_panel": "\"default_stylebox.tres\""
+}
 
 [sub_resource type="Resource" id="Resource_7np5b"]
 script = ExtResource("2_vincf")
@@ -37,6 +39,8 @@ overrides = {
 "boxes_fill_width": "false",
 "boxes_min_size": "Vector2(0, 40)",
 "boxes_stylebox_focused": "\"res://addons/dialogic/Modules/TGOLayoutStyle/selected_icon.tres\"",
+"boxes_stylebox_hovered": "\"choice_panel_hover.tres\"",
+"boxes_stylebox_normal": "\"choice_panel_normal.tres\"",
 "boxes_v_separation": "0.0",
 "font_size_custom": "20.0",
 "font_size_use_global": "false",
@@ -63,4 +67,4 @@ base_overrides = {
 "global_bg_color": "Color(0, 0, 0, 0)"
 }
 layers = Array[ExtResource("2_vincf")]([SubResource("Resource_d5ctn"), SubResource("Resource_nql3p"), SubResource("Resource_7np5b"), SubResource("Resource_4n28v"), SubResource("Resource_w55xh"), SubResource("Resource_ia3vt"), SubResource("Resource_qc6j3")])
-metadata/_latest_layer = 4
+metadata/_latest_layer = 1
