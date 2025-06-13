@@ -1,81 +1,88 @@
 class_name RichTextButton
 extends Button
 
+var _open_tags: String = ""
+var _close_tags: String = ""
+var _label_text: String = "Default"
+
 @onready var label: RichTextLabel = $RTL
-var openTags: String = ""
-var closeTags: String = ""
-var labelText: String = "Default"
 
-func _ready()->void:
-	#update_button()
-	pass
 
-func update_button()->void:
-	label.parse_bbcode("%s %s %s" % [openTags, labelText, closeTags])
+func update_button() -> void:
+	label.parse_bbcode("%s %s %s" % [_open_tags, _label_text, _close_tags])
 	#custom_minimum_size = Vector2(label.get_content_width(),label.get_content_height())
 
 
 func set_button_size(width: float, length: float) -> void:
-	custom_minimum_size = Vector2(width,length)
+	custom_minimum_size = Vector2(width, length)
 
-func set_rich_text(nText: String)->void:
-	labelText = nText
+
+func set_rich_text(new_text: String) -> void:
+	_label_text = new_text
 	update_button()
 
-func set_text_color(color: String)->void: # color is hexcode format XXXXXX
-	var idx: int = openTags.find("[color")
+
+func set_text_color(color: String) -> void:  # color is hexcode format XXXXXX
+	var idx: int = _open_tags.find("[color")
 	if idx >= 0:
-		openTags = openTags.erase(idx, 15)
-	closeTags = closeTags.replace("[/color]","")
-	
-	openTags = (openTags + "[color=#%s]" % [color])
-	closeTags = "[/color]" + closeTags
-	
+		_open_tags = _open_tags.erase(idx, 15)
+	_close_tags = _close_tags.replace("[/color]", "")
+
+	_open_tags = (_open_tags + "[color=#%s]" % [color])
+	_close_tags = "[/color]" + _close_tags
 	update_button()
 
-func remove_text_color()->void:
-	var idx: int = openTags.find("[color")
+
+func remove_text_color() -> void:
+	var idx: int = _open_tags.find("[color")
 	if idx >= 0:
-		openTags = openTags.erase(idx, 15)
-	closeTags = closeTags.replace("[/color]", "")
-	
+		_open_tags = _open_tags.erase(idx, 15)
+	_close_tags = _close_tags.replace("[/color]", "")
 	update_button()
 
-func set_strikethrough()->void:
-	openTags = openTags + "[s]"
-	closeTags = "[/s]" + closeTags
-	
+
+func set_strikethrough() -> void:
+	_open_tags = _open_tags + "[s]"
+	_close_tags = "[/s]" + _close_tags
+
 	update_button()
 
-func clear_strikethrough()->void:
-	openTags = openTags.replace("[s]", "")
-	closeTags = closeTags.replace("[/s]","")
+
+func clear_strikethrough() -> void:
+	_open_tags = _open_tags.replace("[s]", "")
+	_close_tags = _close_tags.replace("[/s]", "")
 	update_button()
 
-func set_italics()->void:
-	openTags = openTags + "[i]"
-	closeTags = "[/i]" + closeTags
+
+func set_italics() -> void:
+	_open_tags = _open_tags + "[i]"
+	_close_tags = "[/i]" + _close_tags
 	update_button()
 
-func clear_italics()->void:
-	openTags = openTags.replace("[i]", "")
-	closeTags = closeTags.replace("[/i]", "")
+
+func clear_italics() -> void:
+	_open_tags = _open_tags.replace("[i]", "")
+	_close_tags = _close_tags.replace("[/i]", "")
 	update_button()
 
-func set_bold()->void:
-	openTags = openTags + "[b]"
-	closeTags = "[/b]" + closeTags
+
+func set_bold() -> void:
+	_open_tags = _open_tags + "[b]"
+	_close_tags = "[/b]" + _close_tags
 	update_button()
 
-func clear_bold()->void:
-	openTags = openTags.replace("[b]", "")
-	closeTags = closeTags.replace("[/b]", "")
+
+func clear_bold() -> void:
+	_open_tags = _open_tags.replace("[b]", "")
+	_close_tags = _close_tags.replace("[/b]", "")
 	update_button()
 
-func focus_color()->void:
+
+func focus_color() -> void:
 	set_bold()
 	set_text_color("FFFFFF")
 
-func exit_focus_color()->void:
+
+func exit_focus_color() -> void:
 	clear_bold()
 	set_text_color("BBBBBB")
