@@ -11,65 +11,80 @@
 
 [node name="VN_ChoiceLayer" type="Control"]
 layout_mode = 3
-anchors_preset = 15
-anchor_right = 1.0
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
 anchor_bottom = 1.0
+offset_top = -1.0
 grow_horizontal = 2
-grow_vertical = 2
+grow_vertical = 0
 mouse_filter = 2
 script = ExtResource("1_kurgw")
 text_color_hovered = Color(0.745098, 0.745098, 0.745098, 1)
 text_color_focused = Color(1, 1, 1, 1)
+boxes_fill_width = true
 
 [node name="Choices" type="VBoxContainer" parent="."]
 unique_name_in_owner = true
-layout_mode = 2
-offset_left = 517.0
-offset_top = 491.0
-offset_right = 1084.0
-offset_bottom = 671.0
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -232.0
+offset_top = -162.0
+offset_right = 272.0
+offset_bottom = -31.0
 grow_horizontal = 2
-grow_vertical = 0
-scale = Vector2(0.778525, 0.999319)
 mouse_filter = 2
 alignment = 1
 metadata/_edit_layout_mode = 1
 
 [node name="DialogicNode_ChoiceButton1" type="Button" parent="Choices" node_paths=PackedStringArray("text_node")]
 layout_mode = 2
+alignment = 0
 script = ExtResource("2_rhkjk")
 text_node = NodePath("RichTextButton")
 rich_choice = true
 
 [node name="RichTextButton" parent="Choices/DialogicNode_ChoiceButton1" instance=ExtResource("5_orgvm")]
 layout_mode = 0
+alignment = 0
 
 [node name="DialogicNode_ChoiceButton2" type="Button" parent="Choices" node_paths=PackedStringArray("text_node")]
 layout_mode = 2
+alignment = 0
 script = ExtResource("2_rhkjk")
 text_node = NodePath("RichTextButton2")
 rich_choice = true
 
 [node name="RichTextButton2" parent="Choices/DialogicNode_ChoiceButton2" instance=ExtResource("5_orgvm")]
 layout_mode = 0
+alignment = 0
 
 [node name="DialogicNode_ChoiceButton3" type="Button" parent="Choices" node_paths=PackedStringArray("text_node")]
 layout_mode = 2
+alignment = 0
 script = ExtResource("2_rhkjk")
 text_node = NodePath("RichTextButton3")
 rich_choice = true
 
 [node name="RichTextButton3" parent="Choices/DialogicNode_ChoiceButton3" instance=ExtResource("5_orgvm")]
 layout_mode = 0
+alignment = 0
 
 [node name="DialogicNode_ChoiceButton4" type="Button" parent="Choices" node_paths=PackedStringArray("text_node")]
 layout_mode = 2
+alignment = 0
 script = ExtResource("2_rhkjk")
 text_node = NodePath("RichTextButton4")
 rich_choice = true
 
 [node name="RichTextButton4" parent="Choices/DialogicNode_ChoiceButton4" instance=ExtResource("5_orgvm")]
 layout_mode = 0
+alignment = 0
 
 [node name="DialogicNode_ButtonSound" type="AudioStreamPlayer" parent="Choices"]
 unique_name_in_owner = true

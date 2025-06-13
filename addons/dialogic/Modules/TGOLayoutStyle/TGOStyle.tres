@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="DialogicStyle" load_steps=17 format=3 uid="uid://dfkd452qica5n"]
+[gd_resource type="Resource" script_class="DialogicStyle" load_steps=21 format=3 uid="uid://dfkd452qica5n"]
 
 [ext_resource type="PackedScene" uid="uid://c1k5m0w3r40xf" path="res://addons/dialogic/Modules/DefaultLayoutParts/Layer_FullBackground/full_background_layer.tscn" id="1_vufv0"]
 [ext_resource type="Script" path="res://addons/dialogic/Resources/dialogic_style_layer.gd" id="2_vincf"]
@@ -8,7 +8,9 @@
 [ext_resource type="PackedScene" uid="uid://c7pejsv4vqaqd" path="res://addons/dialogic/Modules/TGOLayoutStyle/CenteredChoices/custom_vn_choice_layer.tscn" id="6_1g4kj"]
 [ext_resource type="PackedScene" uid="uid://cvgf4c6gg0tsy" path="res://addons/dialogic/Modules/DefaultLayoutParts/Layer_TextInput/text_input_layer.tscn" id="7_sqts4"]
 [ext_resource type="PackedScene" uid="uid://lx24i8fl6uo" path="res://addons/dialogic/Modules/DefaultLayoutParts/Layer_History/history_layer.tscn" id="8_jbe66"]
+[ext_resource type="PackedScene" uid="uid://bquja8jyk8kbr" path="res://addons/dialogic/Modules/DefaultLayoutParts/Layer_VN_Textbox/vn_textbox_layer.tscn" id="9_3rk2k"]
 [ext_resource type="Script" path="res://addons/dialogic/Resources/dialogic_style.gd" id="9_vu128"]
+[ext_resource type="PackedScene" uid="uid://cy1y14inwkplb" path="res://addons/dialogic/Modules/DefaultLayoutParts/Layer_VN_Portraits/vn_portrait_layer.tscn" id="10_xrrrj"]
 
 [sub_resource type="Resource" id="Resource_d5ctn"]
 script = ExtResource("2_vincf")
@@ -19,7 +21,8 @@ overrides = {}
 script = ExtResource("2_vincf")
 scene = ExtResource("3_wrsa7")
 overrides = {
-"box_panel": "\"default_stylebox.tres\""
+"box_panel": "\"default_stylebox.tres\"",
+"disabled": "true"
 }
 
 [sub_resource type="Resource" id="Resource_7np5b"]
@@ -32,24 +35,6 @@ script = ExtResource("2_vincf")
 scene = ExtResource("5_5aegk")
 overrides = {}
 
-[sub_resource type="Resource" id="Resource_w55xh"]
-script = ExtResource("2_vincf")
-scene = ExtResource("6_1g4kj")
-overrides = {
-"boxes_fill_width": "false",
-"boxes_min_size": "Vector2(0, 40)",
-"boxes_stylebox_focused": "\"res://addons/dialogic/Modules/TGOLayoutStyle/selected_icon.tres\"",
-"boxes_stylebox_hovered": "\"choice_panel_hover.tres\"",
-"boxes_stylebox_normal": "\"choice_panel_normal.tres\"",
-"boxes_v_separation": "0.0",
-"font_size_custom": "20.0",
-"font_size_use_global": "false",
-"text_color_custom": "Color(0.712891, 0.712891, 0.712891, 1)",
-"text_color_focused": "Color(0.0683594, 0.0683594, 0.0683594, 1)",
-"text_color_hovered": "Color(0.0664063, 0.0664063, 0.0664063, 1)",
-"text_color_use_global": "false"
-}
-
 [sub_resource type="Resource" id="Resource_ia3vt"]
 script = ExtResource("2_vincf")
 scene = ExtResource("7_sqts4")
@@ -60,11 +45,43 @@ script = ExtResource("2_vincf")
 scene = ExtResource("8_jbe66")
 overrides = {}
 
+[sub_resource type="Resource" id="Resource_4snnf"]
+script = ExtResource("2_vincf")
+scene = ExtResource("10_xrrrj")
+overrides = {}
+
+[sub_resource type="Resource" id="Resource_c7bvd"]
+script = ExtResource("2_vincf")
+scene = ExtResource("9_3rk2k")
+overrides = {
+"bold_font": "\"res://Art/fonts/EBGaramond-Bold.ttf\"",
+"box_panel": "\"vn_textbox_default_panel.tres\"",
+"italics_font": "\"res://Art/fonts/EBGaramond-Italic-VariableFont_wght.ttf\"",
+"normal_font": "\"res://Art/fonts/EBGaramond-VariableFont_wght.ttf\""
+}
+
+[sub_resource type="Resource" id="Resource_w55xh"]
+script = ExtResource("2_vincf")
+scene = ExtResource("6_1g4kj")
+overrides = {
+"boxes_min_size": "Vector2(0, 35)",
+"boxes_stylebox_focused": "\"res://addons/dialogic/Modules/TGOLayoutStyle/selected_icon.tres\"",
+"boxes_stylebox_hovered": "\"choice_panel_hover.tres\"",
+"boxes_stylebox_normal": "\"choice_panel_normal.tres\"",
+"boxes_v_separation": "0.0",
+"font_custom": "\"res://Art/fonts/EBGaramond-VariableFont_wght.ttf\"",
+"font_size_custom": "20.0",
+"font_size_use_global": "false",
+"font_use_global": "false",
+"text_color_custom": "Color(0.712891, 0.712891, 0.712891, 1)",
+"text_color_focused": "Color(0.0683594, 0.0683594, 0.0683594, 1)",
+"text_color_hovered": "Color(0.0664063, 0.0664063, 0.0664063, 1)",
+"text_color_use_global": "false"
+}
+
 [resource]
 script = ExtResource("9_vu128")
 name = "TGOStyle"
-base_overrides = {
-"global_bg_color": "Color(0, 0, 0, 0)"
-}
-layers = Array[ExtResource("2_vincf")]([SubResource("Resource_d5ctn"), SubResource("Resource_nql3p"), SubResource("Resource_7np5b"), SubResource("Resource_4n28v"), SubResource("Resource_w55xh"), SubResource("Resource_ia3vt"), SubResource("Resource_qc6j3")])
-metadata/_latest_layer = 1
+base_overrides = {}
+layers = Array[ExtResource("2_vincf")]([SubResource("Resource_d5ctn"), SubResource("Resource_nql3p"), SubResource("Resource_7np5b"), SubResource("Resource_4n28v"), SubResource("Resource_ia3vt"), SubResource("Resource_qc6j3"), SubResource("Resource_4snnf"), SubResource("Resource_c7bvd"), SubResource("Resource_w55xh")])
+metadata/_latest_layer = 6

@@ -1,16 +1,17 @@
-Hello
-.
+join Devin 1
+Devin (Default): Hello
+Devin: .
 label choices
-.
+Devin: .
 - Option 1
-	you picked options one
+	Devin: you picked options one
 	jump choices
 - Option 2
-	you picked option 2
+	Devin: you picked option 2
 	jump choices
 - Option 3
-	you picked the third option
+	Devin: you picked the third option
 	jump choices
 - Option 4
-	you picked the last option
+	Devin: you picked the last option
 	jump choices

@@ -29,7 +29,7 @@ extends DialogicLayoutLayer
 @export_subgroup('Modulate')
 @export_subgroup('Size & Position')
 @export var boxes_v_separation: int = 10
-@export var boxes_fill_width: bool = true
+@export var boxes_fill_width: bool = false
 @export var boxes_min_size: Vector2 = Vector2()
 
 @export_group('Sounds')
