@@ -1,0 +1,48 @@
+if {Bartholomew.13bHasSpoken} == true:
+	Bartholomew: Hunter. How may I be of aid?
+else:
+	Bartholomew: You must forgive me for the mess. The family left in a panic. And, well, I have not yet been able to bring myself to clean.
+	Devin: You are shaken?
+	Bartholomew: We lost a good man yesterday.
+	Devin: You admired him?
+	Bartholomew: In a way.
+	Devin: You wanted to be like him? Or something deeper?
+	Bartholomew: We were friends, hunter, in a way. My cursed place in this society would never have allowed us to be on equal footing. But yes. He will be greatly missed.
+	Devin: By some in these walls, yes. But not by others perhaps.
+	Bartholomew: No. Well.
+	Devin: Tis not my business to waste time judging men like him. Only to prevent this sort of carnage from happening. I swear to you I will annihilate the beast that has wrought such havoc.
+	Bartholomew: Will you? Just as you claimed you would on arrival first in this house?
+	Devin: I beg your pardon?
+	Bartholomew: The master of this house dead. His wife missing for weeks. Somehow this wretched place slips further into the abyss by the hour. And it worsens the deeper you investigate.
+	Devin: Watch your tongue, now. It’s been but a few days. The least you could do now is help me.
+	Bartholomew: Forgive me, hunter. Grief is a monster that I must wrestle with myself. Not burden others with. How can I be of aid?
+label Questions
+- Do you know why Lord Sharp was in the fields?
+	Devin: Do you know where he was prior to his death? Was he going to or returning from somewhere?
+	Bartholomew: No. I don’t know. But I do know he left this house in the early hours of the morning.
+	Devin: Why?
+	Bartholomew: Ever since Beth’s disappearance, Lord Sharp would walk the farmlands before dawn to search for her.
+	Devin: You are certain he was searching for her? Not surveying the land for wild beasts? Or simply wishing a moment to be alone?
+	Bartholomew: I once overheard him speak with Jefferson. Since her body had not het been found, it must have meant she was alive. Held captive by that thing that lurks in the mist. It was a theory and it became his obsession.
+	Devin: He meant to venture deeper into the fields. But for that he would need light that could peer through the thickness of that fog.
+	Bartholomew: Yes, I fear so.
+	Devin: Did he find a way?
+	Bartholomew: Possibly. The answer will be in his study, if anywhere.
+	Devin: I need the keys.
+	Bartholomew: Of course. Take them as an apology for my crudeness.
+	[tgo_expr expr="{TGO.player_inventory.add_item("StudyKey", 1)}"]
+	Devin: Gramercy.
+	Bartholomew: Have you any other questions?
+	jump Questions
+- Have you heard or seen anything more?
+	Devin: Might you share anything new regarding the horrors that lurk in this town?
+	Bartholomew: I do not. I have only spent my hours within these walls since Beth vanished.
+	
+	Devin: Nothing from within these walls?
+	Bartholomew: Yes, well. The noises are growing louder. The pounding. Scratching. Scurrying. Perhaps tis my imagination.
+	jump Questions
+- I should be going
+	Devin: I should take my leave.
+	Bartholomew: God be with you, hunter.
+	set {Bartholomew.13bHasSpoken} = true
+	[end_timeline]

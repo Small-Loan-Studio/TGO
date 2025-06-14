@@ -54,6 +54,7 @@ directories/dch_directory={
 directories/dtl_directory={
 "AudioAdapter": "res://Dialogue/TestTimelines/AudioAdapter.dtl",
 "BagOfHardtack": "res://Dialogue/Examinations/BagOfHardtack.dtl",
+"Bartholomew13b": "res://Dialogue/Bartholomew/Bartholomew13b.dtl",
 "Bartholomew2b": "res://Dialogue/Bartholomew/Bartholomew2b.dtl",
 "Bartholomew3a6": "res://Dialogue/Bartholomew/Bartholomew3a6.dtl",
 "BlackMouldCrypt": "res://Dialogue/Examinations/BlackMouldCrypt.dtl",
@@ -107,6 +108,7 @@ save/encryption_on_exports_only=true
 text/autopauses={}
 variables={
 "Bartholomew": {
+"13bHasSpoken": false,
 "2bSpoken": false,
 "3a1Op2.3": false,
 "3a3Op2": false,
