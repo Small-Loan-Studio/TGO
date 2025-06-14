@@ -45,6 +45,7 @@ directories/dch_directory={
 "David": "res://Scripts/Resources/NPCs/DialogicCharacters/David.dch",
 "Devin": "res://Scripts/Resources/NPCs/DialogicCharacters/Devin.dch",
 "Elias": "res://Scripts/Resources/NPCs/DialogicCharacters/Elias.dch",
+"Fiona": "res://Scripts/Resources/NPCs/DialogicCharacters/Fiona.dch",
 "Groundskeeper": "res://Scripts/Resources/NPCs/DialogicCharacters/Groundskeeper.dch",
 "Ilene": "res://Scripts/Resources/NPCs/DialogicCharacters/Ilene.dch",
 "Jefferson": "res://Scripts/Resources/NPCs/DialogicCharacters/Jefferson.dch",
@@ -66,6 +67,7 @@ directories/dtl_directory={
 "CryptSecretChamberOnEnter": "res://Dialogue/Other/CryptSecretChamberOnEnter.dtl",
 "DavidElias3a2": "res://Dialogue/DavidElias/DavidElias3a2.dtl",
 "EmptyBottle": "res://Dialogue/Examinations/EmptyBottle.dtl",
+"Fiona_6b_6c": "res://Dialogue/Fiona/Fiona_6b_6c.dtl",
 "FlameTorch": "res://Dialogue/Examinations/FlameTorch.dtl",
 "GinPuddle": "res://Dialogue/Examinations/GinPuddle.dtl",
 "GroundskeeperTimeline": "res://Dialogue/Groundskeeper/GroundskeeperTimeline.dtl",
@@ -73,6 +75,7 @@ directories/dtl_directory={
 "Jefferson3a1": "res://Dialogue/Jefferson/Jefferson3a1.dtl",
 "JournalPage1": "res://Dialogue/Examinations/JournalPage1.dtl",
 "Lisa_3a5": "res://Dialogue/Lisa/Lisa_3a5.dtl",
+"Lisa_Barth3a4": "res://Dialogue/Lisa/Lisa_Barth3a4.dtl",
 "LitWoodenTorch": "res://Dialogue/Examinations/LitWoodenTorch.dtl",
 "Martha3a3": "res://Dialogue/Martha/Martha3a3.dtl",
 "OldBatteredKey": "res://Dialogue/Examinations/OldBatteredKey.dtl",
@@ -122,6 +125,10 @@ variables={
 "Q2Answered": false,
 "Q3Answered": false
 },
+"Fiona": {
+"HasSpoken": false,
+"SetANecklaceAsked": false
+},
 "GroundsKeeper": {
 "FinishedTopics": false,
 "HasSpoken": false,
@@ -142,6 +149,7 @@ variables={
 "opt2_3a5": false
 },
 "Lisa": {
+"FirstKitchen": true,
 "HasSpoken": false
 },
 "Martha": {

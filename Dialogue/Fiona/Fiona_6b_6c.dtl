@@ -1,0 +1,9 @@
+if {Fiona.HasSpoken} == false:
+	Devin: Fiona Sharp?
+	Fiona: Well met, good sir. I presume you’re the masked venator my father hired.
+	Devin: In the flesh.
+	Fiona: Aye. Well I’m rather busy. Difficult times of late, as you well know. Perchance you have come to serve?
+	Devin: I’m here for questions, Miss Sharp.
+	Fiona: I suspect others might be more help, but pray, continue if you must.
+else:
+	Devin: yo

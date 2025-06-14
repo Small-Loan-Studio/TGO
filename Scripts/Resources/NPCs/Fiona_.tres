@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="NPCConfig" load_steps=3 format=3 uid="uid://d0sg0ec04jo1t"]
+
+[ext_resource type="Script" path="res://Scripts/Resources/NpcConfig.gd" id="1_ovl05"]
+[ext_resource type="SpriteFrames" uid="uid://b3igo1ygiyl0b" path="res://Art/Characters/character_placeholder.tres" id="2_ga3sq"]
+
+[resource]
+script = ExtResource("1_ovl05")
+character_id = "Fiona"
+sprite_sheet = ExtResource("2_ga3sq")
+valid_timelines = Array[String](["res://Dialogue/Fiona/Fiona_6b_6c.dtl"])
