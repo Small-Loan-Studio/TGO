@@ -1,10 +1,9 @@
-[gd_scene load_steps=10 format=3 uid="uid://dtpdks82kmht8"]
+[gd_scene load_steps=9 format=3 uid="uid://dtpdks82kmht8"]
 
 [ext_resource type="PackedScene" uid="uid://dyq8mcdsutnsa" path="res://Scenes/Components/LevelBase.tscn" id="1_tjip3"]
 [ext_resource type="TileSet" uid="uid://c72m3jled4jfg" path="res://Art/Environment/ext_simple_tileset.tres" id="2_3hwda"]
 [ext_resource type="TileSet" uid="uid://dieqw1hu10wkc" path="res://Art/Environment/Canopy/TreesRoofCanopy.tres" id="3_cqdbv"]
 [ext_resource type="PackedScene" uid="uid://c2kg6apj756dw" path="res://Scenes/Components/NPC.tscn" id="4_10fpg"]
-[ext_resource type="Script" path="res://Scripts/Components/NPC.gd" id="5_vvuhg"]
 [ext_resource type="Resource" uid="uid://d0sg0ec04jo1t" path="res://Scripts/Resources/NPCs/Fiona_.tres" id="6_c3wf4"]
 [ext_resource type="Script" path="res://Scripts/Resources/Effects/DialogueEffect.gd" id="7_h2spo"]
 [ext_resource type="Resource" path="res://Dialogue/Fiona/Fiona_6b_6c.dtl" id="8_crun1"]
@@ -23,15 +22,11 @@ layer_0/tile_data = PackedInt32Array(65202, 0, 0, 130738, 0, 0, 196274, 0, 0, 26
 [node name="CanopyMap" parent="." index="1"]
 tile_set = ExtResource("3_cqdbv")
 
-[node name="Fiona" type="CharacterBody2D" parent="Objects/Characters" index="0" groups=["NodesWithID"] instance=ExtResource("4_10fpg")]
+[node name="Fiona" parent="Objects/Characters" index="0" instance=ExtResource("4_10fpg")]
 position = Vector2(308.827, 3.35651)
-collision_layer = 5
-motion_mode = 1
-script = ExtResource("5_vvuhg")
 config = ExtResource("6_c3wf4")
 dlg = SubResource("Resource_iuws7")
 id = "Fiona"
-activate_external_sensors = false
 
 [node name="PlayerStart" type="Node2D" parent="Markers" index="0"]
 position = Vector2(-189, 7)
