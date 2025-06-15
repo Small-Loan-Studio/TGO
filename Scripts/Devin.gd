@@ -17,3 +17,7 @@ func _ready() -> void:
 func _on_health_change() -> void:
 	var value := stats.get_stat(Enums.Stat.HEALTH).value
 	_ak_helper.send_param(AK.GAME_PARAMETERS.PLAYERHEALTH_RTPC, value as float)
+
+
+func _process(delta: float) -> void:
+	super._process(delta)
