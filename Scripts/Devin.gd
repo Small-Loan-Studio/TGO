@@ -4,6 +4,7 @@ class_name Devin
 extends Character
 
 var _ak_helper: AKHelper
+var _last_reported := Vector2i.ZERO
 
 
 func _ready() -> void:
@@ -32,8 +33,6 @@ func _process(delta: float) -> void:
 				if mat != "":
 					_audio_node.set_switch("GroundMaterialSwitch", mat)
 
-	
-var _last_reported := Vector2i.ZERO
 
 func _level() -> LevelBase:
 	var driver := Driver.instance()
