@@ -83,8 +83,10 @@ func _ready() -> void:
 	target.target_changed.connect(Callable(self, "_handle_target_changed"))
 	var ctx := StateMachine.CharacterContext.new()
 	ctx.character = self
-	if _controller_node_path != null:
+	if _controller_node_path != null && !_controller_node_path.is_empty():
 		_controller = get_node(_controller_node_path)
+
+	if _controller != null:
 		# TODO: .setup here isn't in the ControllerBase interface, need better
 		# config process; for now rely on duck typing
 		ctx.controller = _controller
@@ -109,8 +111,8 @@ func _ready() -> void:
 	else:
 		if id == Utils.PLAYER_ID:
 			printerr("_controller is null, potentially unexpected, using noop fallback")
-		_controller = ControllerBase.new()
-		ctx.controller = _controller
+			_controller = ControllerBase.new()
+			ctx.controller = _controller
 
 	if !_has_audio_node || id == "":
 		if _has_audio_node:
@@ -120,7 +122,9 @@ func _ready() -> void:
 					% [name]
 				)
 			)
+		_audio_node.queue_free()
 		remove_child(_audio_node)
+		_audio_node = null
 	else:
 		if id != "":
 			_audio_node.setup(self, id)
@@ -321,6 +325,11 @@ func is_audio_object() -> bool:
 
 
 func _maybe_report_env_material() -> void:
+	# can't process this until the node's _ready has completed because that's
+	# where we clean up or configure the audio node
+	if !is_node_ready():
+		return
+
 	if _audio_node == null:
 		return
 
@@ -338,6 +347,10 @@ func _maybe_report_env_material() -> void:
 		_audio_node.set_switch("GroundMaterialSwitch", mat)
 
 
+#endregion
+
+
+#region logistics / introspection to the game world
 ## get the character's position within the current level's tilemap.
 ## Returns Vector2.ZERO if the level is null
 func get_map_coords() -> Vector2i:
