@@ -62,6 +62,9 @@ var target: CharacterTarget = CharacterTarget.none()
 ## resolved node from _controller_node_path
 var _controller: ControllerBase
 
+## holds the last reported map coords for this character's environment material
+var _mat_pos_last_reported := Vector2i.ZERO
+
 @onready var stats: StatCollection = $Stats
 
 # component cache
@@ -154,6 +157,8 @@ func _process(delta: float) -> void:
 				use_item(Enums.GearSlot.LEFT)
 			if _controller.just_pressed(Enums.InputAction.RIGHT_ITEM):
 				use_item(Enums.GearSlot.RIGHT)
+
+	_maybe_report_env_material()
 
 
 #region sensor / target managementregion
@@ -313,6 +318,40 @@ func _load_gear(data: Dictionary) -> void:
 #region audio
 func is_audio_object() -> bool:
 	return _audio_node != null
+
+
+func _maybe_report_env_material() -> void:
+	if _audio_node == null:
+		return
+
+	var cur_level := _level()
+	if cur_level == null:
+		return
+
+	var coords := get_map_coords()
+	if _mat_pos_last_reported == coords:
+		return
+	_mat_pos_last_reported = coords
+
+	var mat := cur_level.get_tile_material(coords)
+	if mat != "":
+		_audio_node.set_switch("GroundMaterialSwitch", mat)
+
+
+## get the character's position within the current level's tilemap.
+## Returns Vector2.ZERO if the level is null
+func get_map_coords() -> Vector2i:
+	var cur_level := _level()
+	if cur_level == null:
+		return Vector2i.ZERO
+	return cur_level.get_map_coords(global_position)
+
+
+func _level() -> LevelBase:
+	var driver := Driver.instance()
+	if driver != null:
+		return driver.get_current_level()
+	return null
 
 
 #endregion

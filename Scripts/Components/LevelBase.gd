@@ -165,3 +165,14 @@ func get_audio_node(id: String) -> AudioNode:
 func get_map_coords(global_pos: Vector2) -> Vector2i:
 	var map_local_coords: Vector2 = tilemap.to_local(global_pos)
 	return tilemap.local_to_map(map_local_coords)
+
+
+func get_tile_material(map_coords: Vector2i) -> String:
+	var mat := ""
+	for layer: int in range(tilemap.get_layers_count()):
+		var td: TileData = tilemap.get_cell_tile_data(layer, map_coords)
+		if td != null:
+			var maybe_mat: Variant = td.get_custom_data("material")
+			if maybe_mat != null:
+				mat = maybe_mat as String
+	return mat
