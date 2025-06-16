@@ -5,6 +5,7 @@
 			<ChildrenList>
 				<SoundBank Name="Main" ID="{AC6FA22E-A513-4D96-9306-DAF3DB3B4167}">
 					<ObjectInclusionList>
+						<ObjectRef Name="play_IN_TinderLighter_pickup" ID="{C4A48BD2-90FA-4027-80CC-EDB7797136EA}" WorkUnitID="{D9FB95D4-D1CB-4E4D-B4AD-20EE510BA0A6}" Origin="Manual" Filter="7"/>
 						<ObjectRef Name="play_UI_NewClue" ID="{712DB457-47C6-40E1-B8DE-87C7BB2854F5}" WorkUnitID="{285F7A76-AE49-4D48-8D5D-C73C7938630A}" Origin="Manual" Filter="7"/>
 						<ObjectRef Name="MASTER" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{6C0969E1-B09C-4693-BC3C-B2E7116B2AEE}" Origin="Manual" Filter="7"/>
 						<ObjectRef Name="play_AM_Crypt" ID="{482479D2-94ED-41B4-A096-57530F3F293A}" WorkUnitID="{05418A24-DE52-48AE-8733-F6F54D1BFD0E}" Origin="Manual" Filter="7"/>

@@ -139,6 +139,17 @@
 						</Action>
 					</ChildrenList>
 				</Event>
+				<Event Name="play_IN_TinderLighter_pickup" ID="{C4A48BD2-90FA-4027-80CC-EDB7797136EA}">
+					<ChildrenList>
+						<Action Name="" ID="{E57C4D59-B18B-4B05-8AB0-E59771BA5307}" ShortID="635533208">
+							<ReferenceList>
+								<Reference Name="Target">
+									<ObjectRef Name="IN_WoodenStake_pickup" ID="{AA1996BC-BC83-4F3D-9C33-051137CB9209}" WorkUnitID="{2C578E29-CC89-4E68-9F40-97B72C39F948}"/>
+								</Reference>
+							</ReferenceList>
+						</Action>
+					</ChildrenList>
+				</Event>
 			</ChildrenList>
 		</WorkUnit>
 	</Events>

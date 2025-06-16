@@ -1017,9 +1017,7 @@
 									<ChildrenList>
 										<AudioFileSource Name="sfx_IN_EmptyBottle_pickup_01" ID="{927DC1B0-DE1A-4056-9203-8E5A0AF2C107}">
 											<PropertyList>
-												<Property Name="FadeOutDuration" Type="Real64" Value="4.28793969849246"/>
 												<Property Name="OverrideWavLoop" Type="bool" Value="True"/>
-												<Property Name="TrimEnd" Type="Real64" Value="8.69839195979898"/>
 											</PropertyList>
 											<Language>SFX</Language>
 											<AudioFile>Interactables\sfx_IN_EmptyBottle_pickup_01.wav</AudioFile>
@@ -1090,10 +1088,7 @@
 									<ChildrenList>
 										<AudioFileSource Name="sfx_IN_WoodenStake_pickup_01" ID="{7CE8E40B-0C2D-4BAC-8C9C-54CFD647FF19}">
 											<PropertyList>
-												<Property Name="FadeInDuration" Type="Real64" Value="5.60212644306328"/>
-												<Property Name="FadeOutDuration" Type="Real64" Value="11.579775"/>
 												<Property Name="OverrideWavLoop" Type="bool" Value="True"/>
-												<Property Name="TrimEnd" Type="Real64" Value="12.5494890859797"/>
 											</PropertyList>
 											<Language>SFX</Language>
 											<AudioFile>Interactables\sfx_IN_WoodenStake_pickup_01.wav</AudioFile>
@@ -1104,6 +1099,40 @@
 									</ChildrenList>
 									<ActiveSourceList>
 										<ActiveSource Name="sfx_IN_WoodenStake_pickup_01" ID="{7CE8E40B-0C2D-4BAC-8C9C-54CFD647FF19}" Platform="Linked"/>
+									</ActiveSourceList>
+								</Sound>
+							</ChildrenList>
+						</RandomSequenceContainer>
+						<RandomSequenceContainer Name="IN_TinderLighter_pickup" ID="{EDFF780B-8C82-4B05-9D58-7AE0E5E7053A}" ShortID="388975739">
+							<ReferenceList>
+								<Reference Name="Conversion">
+									<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{1E13664B-E694-4203-95E7-AEB6212579F7}"/>
+								</Reference>
+								<Reference Name="OutputBus">
+									<ObjectRef Name="MASTER" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{6C0969E1-B09C-4693-BC3C-B2E7116B2AEE}"/>
+								</Reference>
+							</ReferenceList>
+							<ChildrenList>
+								<Sound Name="sfx_IN_TinderLighter_pickup_01" ID="{1C0A9A60-83C8-47EE-8E47-077BD617A667}" ShortID="944786152">
+									<ReferenceList>
+										<Reference Name="Conversion">
+											<ObjectRef Name="CS_PC_SFX_High" ID="{11A47DD3-D0C7-4288-A9B3-09CFC6D530CF}" WorkUnitID="{1E13664B-E694-4203-95E7-AEB6212579F7}"/>
+										</Reference>
+										<Reference Name="OutputBus">
+											<ObjectRef Name="Interactables" ID="{A3E72D92-3E4A-4EC1-96EA-196EC484C398}" WorkUnitID="{6C0969E1-B09C-4693-BC3C-B2E7116B2AEE}"/>
+										</Reference>
+									</ReferenceList>
+									<ChildrenList>
+										<AudioFileSource Name="sfx_IN_TinderLighter_pickup_01" ID="{70496863-00B8-4F53-8DA9-68781D2209E3}">
+											<Language>SFX</Language>
+											<AudioFile>Interactables\sfx_IN_TinderLighter_pickup_01.wav</AudioFile>
+											<MediaIDList>
+												<MediaID ID="452077806"/>
+											</MediaIDList>
+										</AudioFileSource>
+									</ChildrenList>
+									<ActiveSourceList>
+										<ActiveSource Name="sfx_IN_TinderLighter_pickup_01" ID="{70496863-00B8-4F53-8DA9-68781D2209E3}" Platform="Linked"/>
 									</ActiveSourceList>
 								</Sound>
 							</ChildrenList>
