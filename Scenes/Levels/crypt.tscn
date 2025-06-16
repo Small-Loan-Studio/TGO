@@ -68,12 +68,6 @@ dest_path = NodePath("../../../Markers/BurialChamber2ExitChamber_tp")
 script = ExtResource("5_7fsg8")
 dest_path = NodePath("../../../Markers/ExitChamber2BurialChamber_tp")
 
-[sub_resource type="Resource" id="Resource_d56ib"]
-script = ExtResource("8_18w1y")
-actor_id_override = ""
-event_name = "play_AM_Crypt_rubble"
-fire_type = "one shot"
-
 [sub_resource type="Resource" id="Resource_rc1m4"]
 script = ExtResource("8_18w1y")
 actor_id_override = ""
@@ -84,6 +78,12 @@ fire_type = "one shot"
 script = ExtResource("8_18w1y")
 actor_id_override = ""
 event_name = "stop_AM_Crypt"
+fire_type = "one shot"
+
+[sub_resource type="Resource" id="Resource_d56ib"]
+script = ExtResource("8_18w1y")
+actor_id_override = ""
+event_name = "play_AM_Crypt_rubble"
 fire_type = "one shot"
 
 [sub_resource type="Resource" id="Resource_shi2k"]
@@ -215,6 +215,9 @@ layer_1/tile_data = PackedInt32Array(786428, 65538, 0, 786429, 65538, 0, 851965,
 layer_2/tile_data = PackedInt32Array(1179649, 851970, 6, 1245179, 851970, 6, 851974, 851970, 6, 720899, 458754, 19, 720900, 524290, 19, 655364, 524290, 18, 655363, 458754, 18, 589827, 458754, 17, 589828, 524290, 17, 2031711, 458758, 0, 786373, 327682, 17, 851909, 327682, 18, 917445, 327682, 19, 786374, 393218, 17, 851910, 393218, 18, 917446, 393218, 19, 458701, 1245192, 8, 458702, 1310728, 8, 262090, 327682, 6, 327626, 327682, 6, 1703984, 720898, 6, 1703986, 655362, 6, 1769523, 589826, 6, 1769525, 786434, 8, 1835061, 786434, 6, 1835062, 786434, 7, 1900598, 786434, 6, 1900599, 786434, 8, 1900600, 786434, 6, 1835064, 786434, 6, 1835065, 786434, 7, 1835066, 786434, 6, 1769531, 589826, 6, 1769532, 655362, 6, 1835069, 786434, 6, 1703993, 786434, 6, 1638456, 786434, 6, 1703992, 786434, 8, 1638455, 786434, 8, 1703991, 786434, 7, 1900589, 786434, 6, 1966126, 786434, 6, 1900590, 786434, 7, 1966141, 589826, 6, 1966142, 786434, 7, 2031678, 786434, 8, 1966128, 786434, 6, 1966129, 786434, 6, 2031664, 786434, 7, 2031665, 786434, 7, 1966131, 786434, 7, 1966132, 786434, 6, 2031669, 786434, 6, 2031668, 786434, 8, 2031670, 786434, 7, 2097205, 786434, 7, 2097206, 786434, 8, 2162742, 786434, 7, 2031674, 786434, 6, 2162744, 786434, 8, 2162745, 655362, 6, 2162746, 589826, 6, 2162747, 589826, 6, 2162748, 786434, 7, 2162738, 786434, 7, 2228275, 786434, 7, 2162739, 786434, 6, 2228274, 786434, 8, 2228276, 786434, 8, 2228271, 655362, 6, 2228272, 786434, 8, 2359340, 786434, 8, 2293819, 786434, 6, 2359355, 786434, 8, 2359354, 786434, 7, 2359353, 786434, 8, 2424890, 786434, 8, 2359350, 655362, 6, 2359349, 786434, 6, 2359345, 786434, 6, 2424881, 786434, 7, 2424880, 786434, 8, 2424879, 786434, 6, 2424878, 786434, 7, 2424883, 786434, 7, 2490419, 786434, 8, 2490420, 786434, 8, 2490424, 786434, 8, 2555962, 786434, 8, 2687035, 786434, 8, 2621499, 786434, 7, 2621495, 786434, 6, 2555950, 786434, 8, 2555951, 786434, 8, 2555948, 786434, 6, 2621484, 786434, 7, 2621492, 655362, 6, 2621493, 720898, 6, 2621494, 786434, 7, 2752566, 786434, 8, 2687027, 589826, 6, 2621490, 786434, 7, 2687026, 786434, 8, 2687024, 786434, 6, 2752560, 786434, 7, 2752569, 786434, 6, 2818105, 786434, 7, 2883641, 786434, 8, 2883640, 786434, 7, 2949174, 786434, 6, 2949175, 786434, 8, 2883638, 786434, 8, 2883637, 786434, 7, 2949173, 786434, 8, 2949171, 786434, 8, 2883635, 786434, 7, 2949172, 786434, 7, 2883636, 786434, 6, 2949170, 786434, 7, 3014706, 786434, 6, 2949169, 786434, 6, 2949168, 786434, 6, 3014705, 786434, 8, 3014704, 786434, 8, 2949167, 589826, 6, 3014761, 262150, 0, 2555973, 6, 2, 1966176, 65542, 0, 2228316, 65542, 0, 2424927, 65542, 0, 2293845, 65542, 0, 2621528, 65542, 0, 3014759, 262150, 2, 3342432, 131078, 0, 3342431, 131078, 0, 3342422, 131078, 0, 3342421, 131078, 0, 3342412, 131078, 0, 3342411, 131078, 0, 3342394, 131078, 0, 3342393, 131078, 0, 3342384, 131078, 0, 3342383, 131078, 0, 1114124, 393222, 1)
 layer_3/tile_data = PackedInt32Array(1310726, 983042, 6, 1310729, 983042, 6, 1310732, 983042, 6, 983052, 983042, 6, 983049, 983042, 6, 983046, 983042, 6, 1310721, 983042, 6, 1376254, 983042, 6, 1376251, 983042, 6, 1048571, 983042, 6, 983041, 983042, 6, 1048574, 983042, 6, 983053, 655362, 6, 983050, 655362, 6, 983047, 458754, 3, 983048, 458754, 3, 983051, 786434, 6, 1310727, 458754, 3, 1310728, 458754, 3, 1310730, 458754, 3, 1310731, 458754, 3, 1376255, 655362, 6, 1310720, 720898, 6, 1048572, 458754, 3, 1048573, 458754, 3, 1048575, 458754, 3, 983040, 458754, 3, 1769475, 327682, 18, 1835011, 327682, 19, 1835012, 393218, 19, 1769476, 393218, 18, 1703939, 327682, 17, 1703940, 393218, 17, 1376269, 2, 12, 4390918, 327682, 19, 4390919, 393218, 19, 4325382, 327682, 18, 4325383, 393218, 18, 4259846, 327682, 17, 4259847, 393218, 17, 4718594, 983042, 6, 4718597, 983042, 6, 4718600, 983042, 6, 5046280, 983042, 6, 5046277, 983042, 6, 5046274, 983042, 6, 5046283, 983042, 6, 4718603, 983042, 6, 4718606, 983042, 6, 5046286, 983042, 6, 5046289, 983042, 6, 4718609, 983042, 6, 4718612, 983042, 6, 5046292, 983042, 6, 5046298, 983042, 6, 5046295, 983042, 6, 4718615, 983042, 6, 4718618, 983042, 6, 4718621, 983042, 6, 5046301, 983042, 6, 5046304, 983042, 6, 4718624, 983042, 6, 4718627, 983042, 6, 5046307, 983042, 6, 5046310, 983042, 6, 4718630, 983042, 6, 4718633, 983042, 6, 5046313, 983042, 6, 5046316, 983042, 6, 4718636, 983042, 6, 4718639, 983042, 6, 5046319, 983042, 6, 5046322, 983042, 6, 4718642, 983042, 6, 4718645, 983042, 6, 5046325, 983042, 6, 5046328, 983042, 6, 4718648, 983042, 6, 4718651, 983042, 6, 5046331, 983042, 6, 5046334, 983042, 6, 4718654, 983042, 6, 4718657, 983042, 6, 5046337, 983042, 6, 5046340, 983042, 6, 4718660, 983042, 6, 4718663, 983042, 6, 5046343, 983042, 6, 4456518, 524290, 19, 4325445, 458754, 17, 4390981, 458754, 18, 4325446, 524290, 17, 4390982, 524290, 18, 3211337, 983042, 6, 3211342, 983042, 6, 3211347, 983042, 6, 3211352, 983042, 6, 3211357, 983042, 6, 3211362, 983042, 6, 3211367, 983042, 6, 2818151, 983042, 6, 2818146, 983042, 6, 2818141, 983042, 6, 2818136, 983042, 6, 2818131, 983042, 6, 2818126, 983042, 6, 2818121, 983042, 6, 2424905, 983042, 6, 2424910, 983042, 6, 2424915, 983042, 6, 2424920, 983042, 6, 2424925, 983042, 6, 2424930, 983042, 6, 2424935, 983042, 6, 2031719, 983042, 6, 2031714, 983042, 6, 2031709, 983042, 6, 2031704, 983042, 6, 2031699, 983042, 6, 2031694, 983042, 6, 2031689, 983042, 6, 3211324, 983042, 6, 3211329, 983042, 6, 3211332, 983042, 6, 3211319, 983042, 6, 3211314, 983042, 6, 3211309, 983042, 6, 2818093, 983042, 6, 2818098, 983042, 6, 2818103, 983042, 6, 2818108, 983042, 6, 2424892, 983042, 6, 2424887, 983042, 6, 2424882, 983042, 6, 2424877, 983042, 6, 2031661, 983042, 6, 2031671, 983042, 6, 2031676, 983042, 6, 1572926, 524290, 6, 1572927, 524290, 6, 1507389, 524290, 6, 1507388, 524290, 6, 2031666, 983042, 6, 1441838, 524290, 6, 1441839, 524290, 6, 1441840, 524290, 6, 4456517, 458754, 19, 3211330, 327682, 17, 3276866, 327682, 18, 3342402, 327682, 19, 3211331, 393218, 17, 3276867, 393218, 18, 3342403, 393218, 19, 1441861, 458754, 18, 1507397, 458754, 19, 1441862, 524290, 18, 1507398, 524290, 19, 1376325, 458754, 17, 1376326, 524290, 17, 786501, 327682, 17, 852037, 327682, 18, 917573, 327682, 19, 786502, 393218, 17, 852038, 393218, 18, 917574, 393218, 19, -61, 327682, 6, -60, 327682, 6, -59, 327682, 6, -58, 327682, 6, -57, 327682, 6, -56, 327682, 6, 65481, 327682, 6, 262090, 327682, 6, 262091, 327682, 6, 262092, 327682, 6, 262093, 327682, 6, 262094, 327682, 6, 65474, 327682, 6, 196545, 327682, 6, 327617, 327682, 6, 393153, 327682, 6, 458689, 327682, 6, 524225, 327682, 6, 589761, 327682, 6, 655298, 327682, 6, 655299, 327682, 6, 720836, 327682, 6, 720839, 327682, 6, 655304, 327682, 6, 655305, 327682, 6, 589771, 327682, 0, 589772, 327682, 0, 589773, 327682, 0, 589774, 327682, 0, 786372, 327682, 0, 786375, 327682, 0, 327630, 393218, 0, 327629, 393218, 0, 327628, 393218, 0, 327627, 393218, 0, 458698, 720898, 17, 589770, 327682, 6, 1245233, 327682, 3, 1114160, 327682, 3, 1114159, 327682, 3, 1114158, 327682, 3, 1179693, 327682, 3, 1179692, 327682, 3, 1179691, 327682, 3, 1179690, 327682, 3, 1179689, 327682, 3, 1179688, 327682, 3, 1245223, 327682, 3, 1310758, 327682, 3, 1572904, 327682, 0, 1441833, 327682, 0, 1441834, 327682, 0, 1441835, 327682, 0, 1507365, 327682, 0, 1638437, 327682, 0, 1703973, 327682, 0, 1769509, 327682, 0, 1835045, 327682, 0, 1900581, 327682, 0, 2097190, 327682, 0, 2162727, 327682, 0, 2162728, 327682, 0, 2162729, 327682, 0, 2162730, 327682, 0, 1703976, 327682, 0, 1769512, 327682, 0, 1835048, 327682, 0, 1900585, 327682, 0, 1900586, 327682, 0, 1572905, 327682, 0, 1638441, 327682, 0, 1703977, 327682, 0, 1638442, 327682, 0, 1703978, 327682, 0, 3407976, 327682, 0, 3407975, 327682, 0, 3407974, 327682, 0, 3407973, 327682, 0, 3407972, 327682, 0, 3407971, 327682, 0, 3407970, 327682, 0, 3407969, 327682, 0, 3407968, 327682, 0, 3407967, 327682, 0, 3407966, 327682, 0, 3407965, 327682, 0, 3407964, 327682, 0, 3407963, 327682, 0, 3407962, 327682, 0, 3407961, 327682, 0, 3407960, 327682, 0, 3407959, 327682, 0, 3407958, 327682, 0, 3407957, 327682, 0, 3407956, 327682, 0, 3407955, 327682, 0, 3407954, 327682, 0, 3407953, 327682, 0, 3407952, 327682, 0, 3407951, 327682, 0, 3407950, 327682, 0, 3407949, 327682, 0, 3407948, 327682, 0, 3407947, 327682, 0, 3407946, 327682, 0, 3407945, 327682, 0, 3407944, 327682, 0, 3407943, 327682, 0, 3407942, 327682, 0, 3407941, 327682, 0, 3407940, 327682, 0, 3407937, 327682, 0, 3407936, 327682, 0, 3407935, 327682, 0, 3407934, 327682, 0, 3407933, 327682, 0, 3407932, 327682, 0, 3407931, 327682, 0, 3407917, 327682, 0, 3407918, 327682, 0, 3407919, 327682, 0, 3407920, 327682, 0, 3407921, 327682, 0, 3407922, 327682, 0, 3407923, 327682, 0, 3407924, 327682, 0, 3407925, 327682, 0, 3407926, 327682, 0, 3407927, 327682, 0, 3407928, 327682, 0, 3407929, 327682, 0, 3407930, 327682, 0, 1507412, 131078, 0, 1507415, 131078, 0, 1507405, 131078, 0, 1507402, 131078, 0, 1507421, 131078, 0, 1507424, 131078, 0, 3604601, 65542, 1)
 
+[node name="Objects" parent="." index="3"]
+visible = false
+
 [node name="RevivalChamber2ExtraRoom" parent="Objects/Switches" index="0" instance=ExtResource("3_0ndau")]
 position = Vector2(127, 350)
 sensor_size = Vector2(60, 60)
@@ -257,66 +260,67 @@ on_pressed_effects = Array[Resource("res://Scripts/Resources/Effect.gd")]([SubRe
 
 [node name="AudioSwitches" type="Node" parent="Objects/Switches" index="8"]
 
-[node name="AM_Crypt_rubble" parent="Objects/Switches/AudioSwitches" index="0" instance=ExtResource("3_0ndau")]
-position = Vector2(70, 759)
-sensor_size = Vector2(20, 20)
-on_pressed_effects = Array[Resource("res://Scripts/Resources/Effect.gd")]([SubResource("Resource_d56ib")])
-
-[node name="AM_Crypt_rubble2" parent="Objects/Switches/AudioSwitches" index="1" instance=ExtResource("3_0ndau")]
-position = Vector2(145, 465)
-sensor_size = Vector2(20, 20)
-on_pressed_effects = Array[Resource("res://Scripts/Resources/Effect.gd")]([SubResource("Resource_d56ib")])
-
-[node name="AM_Crypt_rubble3" parent="Objects/Switches/AudioSwitches" index="2" instance=ExtResource("3_0ndau")]
-position = Vector2(-1817, 259)
-sensor_size = Vector2(20, 20)
-on_pressed_effects = Array[Resource("res://Scripts/Resources/Effect.gd")]([SubResource("Resource_d56ib")])
-
-[node name="AM_Crypt_rubble4" parent="Objects/Switches/AudioSwitches" index="3" instance=ExtResource("3_0ndau")]
-position = Vector2(247, 2333)
-sensor_size = Vector2(20, 20)
-on_pressed_effects = Array[Resource("res://Scripts/Resources/Effect.gd")]([SubResource("Resource_d56ib")])
-
-[node name="AM_Crypt_rubble5" parent="Objects/Switches/AudioSwitches" index="4" instance=ExtResource("3_0ndau")]
-position = Vector2(791, 2507)
-sensor_size = Vector2(20, 20)
-on_pressed_effects = Array[Resource("res://Scripts/Resources/Effect.gd")]([SubResource("Resource_d56ib")])
-
-[node name="AM_Crypt_rubble6" parent="Objects/Switches/AudioSwitches" index="5" instance=ExtResource("3_0ndau")]
-position = Vector2(1421, 2498)
-sensor_size = Vector2(20, 20)
-on_pressed_effects = Array[Resource("res://Scripts/Resources/Effect.gd")]([SubResource("Resource_d56ib")])
-
-[node name="AM_Crypt_rubble7" parent="Objects/Switches/AudioSwitches" index="6" instance=ExtResource("3_0ndau")]
-position = Vector2(1896, 2431)
-sensor_size = Vector2(20, 20)
-on_pressed_effects = Array[Resource("res://Scripts/Resources/Effect.gd")]([SubResource("Resource_d56ib")])
-
-[node name="AM_Crypt_rubble8" parent="Objects/Switches/AudioSwitches" index="7" instance=ExtResource("3_0ndau")]
-position = Vector2(2291, 1461)
-sensor_size = Vector2(20, 20)
-on_pressed_effects = Array[Resource("res://Scripts/Resources/Effect.gd")]([SubResource("Resource_d56ib")])
-
-[node name="AM_Crypt_rubble9" parent="Objects/Switches/AudioSwitches" index="8" instance=ExtResource("3_0ndau")]
-position = Vector2(2952, 1056)
-sensor_size = Vector2(20, 20)
-on_pressed_effects = Array[Resource("res://Scripts/Resources/Effect.gd")]([SubResource("Resource_d56ib")])
-
-[node name="AM_Crypt_rubble10" parent="Objects/Switches/AudioSwitches" index="9" instance=ExtResource("3_0ndau")]
-position = Vector2(2084, 869)
-sensor_size = Vector2(20, 20)
-on_pressed_effects = Array[Resource("res://Scripts/Resources/Effect.gd")]([SubResource("Resource_d56ib")])
-
-[node name="AM_Crypt_rubble11" parent="Objects/Switches/AudioSwitches" index="10" instance=ExtResource("3_0ndau")]
-position = Vector2(2657, 820)
-sensor_size = Vector2(20, 20)
-on_pressed_effects = Array[Resource("res://Scripts/Resources/Effect.gd")]([SubResource("Resource_d56ib")])
-
-[node name="AM_Crypt" parent="Objects/Switches/AudioSwitches" index="11" instance=ExtResource("3_0ndau")]
+[node name="AM_Crypt" parent="Objects/Switches/AudioSwitches" index="0" instance=ExtResource("3_0ndau")]
+visible = false
 position = Vector2(972, 1164)
 sensor_size = Vector2(6500, 5000)
 on_pressed_effects = Array[Resource("res://Scripts/Resources/Effect.gd")]([SubResource("Resource_rc1m4")])
 on_released_effects = Array[Resource("res://Scripts/Resources/Effect.gd")]([SubResource("Resource_b8l65")])
+
+[node name="AM_Crypt_rubble" parent="Objects/Switches/AudioSwitches" index="1" instance=ExtResource("3_0ndau")]
+position = Vector2(70, 759)
+sensor_size = Vector2(20, 20)
+on_pressed_effects = Array[Resource("res://Scripts/Resources/Effect.gd")]([SubResource("Resource_d56ib")])
+
+[node name="AM_Crypt_rubble2" parent="Objects/Switches/AudioSwitches" index="2" instance=ExtResource("3_0ndau")]
+position = Vector2(145, 465)
+sensor_size = Vector2(20, 20)
+on_pressed_effects = Array[Resource("res://Scripts/Resources/Effect.gd")]([SubResource("Resource_d56ib")])
+
+[node name="AM_Crypt_rubble3" parent="Objects/Switches/AudioSwitches" index="3" instance=ExtResource("3_0ndau")]
+position = Vector2(-1817, 259)
+sensor_size = Vector2(20, 20)
+on_pressed_effects = Array[Resource("res://Scripts/Resources/Effect.gd")]([SubResource("Resource_d56ib")])
+
+[node name="AM_Crypt_rubble4" parent="Objects/Switches/AudioSwitches" index="4" instance=ExtResource("3_0ndau")]
+position = Vector2(247, 2333)
+sensor_size = Vector2(20, 20)
+on_pressed_effects = Array[Resource("res://Scripts/Resources/Effect.gd")]([SubResource("Resource_d56ib")])
+
+[node name="AM_Crypt_rubble5" parent="Objects/Switches/AudioSwitches" index="5" instance=ExtResource("3_0ndau")]
+position = Vector2(791, 2507)
+sensor_size = Vector2(20, 20)
+on_pressed_effects = Array[Resource("res://Scripts/Resources/Effect.gd")]([SubResource("Resource_d56ib")])
+
+[node name="AM_Crypt_rubble6" parent="Objects/Switches/AudioSwitches" index="6" instance=ExtResource("3_0ndau")]
+position = Vector2(1421, 2498)
+sensor_size = Vector2(20, 20)
+on_pressed_effects = Array[Resource("res://Scripts/Resources/Effect.gd")]([SubResource("Resource_d56ib")])
+
+[node name="AM_Crypt_rubble7" parent="Objects/Switches/AudioSwitches" index="7" instance=ExtResource("3_0ndau")]
+position = Vector2(1896, 2431)
+sensor_size = Vector2(20, 20)
+on_pressed_effects = Array[Resource("res://Scripts/Resources/Effect.gd")]([SubResource("Resource_d56ib")])
+
+[node name="AM_Crypt_rubble8" parent="Objects/Switches/AudioSwitches" index="8" instance=ExtResource("3_0ndau")]
+position = Vector2(2291, 1461)
+sensor_size = Vector2(20, 20)
+on_pressed_effects = Array[Resource("res://Scripts/Resources/Effect.gd")]([SubResource("Resource_d56ib")])
+
+[node name="AM_Crypt_rubble9" parent="Objects/Switches/AudioSwitches" index="9" instance=ExtResource("3_0ndau")]
+position = Vector2(2952, 1056)
+sensor_size = Vector2(20, 20)
+on_pressed_effects = Array[Resource("res://Scripts/Resources/Effect.gd")]([SubResource("Resource_d56ib")])
+
+[node name="AM_Crypt_rubble10" parent="Objects/Switches/AudioSwitches" index="10" instance=ExtResource("3_0ndau")]
+position = Vector2(2084, 869)
+sensor_size = Vector2(20, 20)
+on_pressed_effects = Array[Resource("res://Scripts/Resources/Effect.gd")]([SubResource("Resource_d56ib")])
+
+[node name="AM_Crypt_rubble11" parent="Objects/Switches/AudioSwitches" index="11" instance=ExtResource("3_0ndau")]
+position = Vector2(2657, 820)
+sensor_size = Vector2(20, 20)
+on_pressed_effects = Array[Resource("res://Scripts/Resources/Effect.gd")]([SubResource("Resource_d56ib")])
 
 [node name="AM_Crypt_ratSqueak" parent="Objects/Switches/AudioSwitches" index="12" instance=ExtResource("3_0ndau")]
 position = Vector2(255, 771)
@@ -489,6 +493,9 @@ quantity = 1
 [node name="PickedUp" type="Node" parent="Objects/Items/CRYPT_KEY" index="2"]
 script = ExtResource("15_0sy7l")
 effects = Array[Resource("res://Scripts/Resources/Effect.gd")]([SubResource("Resource_8knov")])
+
+[node name="Lighting" parent="Objects" index="3"]
+visible = false
 
 [node name="LightThruCrack" parent="Objects/Lighting" index="0" instance=ExtResource("12_1eid6")]
 position = Vector2(126, 533)

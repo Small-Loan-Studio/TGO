@@ -73,6 +73,54 @@
 						</Action>
 					</ChildrenList>
 				</Event>
+				<Folder Name="Dialogue" ID="{BC22E47D-5830-42BC-8068-FDE50FA1310D}" ShortID="239823592">
+					<ChildrenList>
+						<Event Name="play_UI_Dialogue_generic_male" ID="{484BBDD4-C2C0-44C5-B0D4-B53AEE402C97}">
+							<ChildrenList>
+								<Action Name="" ID="{84962600-DE1F-489B-A8DD-F31E7B700BE8}" ShortID="574376440">
+									<ReferenceList>
+										<Reference Name="Target">
+											<ObjectRef Name="UI_Dialogue_generic_male" ID="{65EE4021-487E-406E-AF9D-30F4E438392C}" WorkUnitID="{12B01E6D-B133-4DDD-BBB0-9FF6C4B3FB96}"/>
+										</Reference>
+									</ReferenceList>
+								</Action>
+							</ChildrenList>
+						</Event>
+						<Event Name="play_UI_Dialogue_generic_female" ID="{859806D5-2B52-403C-A772-D0442AC8F23C}">
+							<ChildrenList>
+								<Action Name="" ID="{B6F1A8C5-E3FD-4683-83D6-EAE53CCADA39}" ShortID="1020117440">
+									<ReferenceList>
+										<Reference Name="Target">
+											<ObjectRef Name="UI_Dialogue_generic_female" ID="{088501C8-C1B4-4984-A3E2-92B992C32E5A}" WorkUnitID="{12B01E6D-B133-4DDD-BBB0-9FF6C4B3FB96}"/>
+										</Reference>
+									</ReferenceList>
+								</Action>
+							</ChildrenList>
+						</Event>
+						<Event Name="play_UI_Dialogue_Devin" ID="{437DFE8A-9081-4402-A8B7-9A5B44A319C0}">
+							<ChildrenList>
+								<Action Name="" ID="{8D11C4D5-1BDB-4612-BA03-D92388FB78A2}" ShortID="478675460">
+									<ReferenceList>
+										<Reference Name="Target">
+											<ObjectRef Name="UI_Dialogue_Devin" ID="{A7505CEA-F23C-4410-AFF3-92C2739D4168}" WorkUnitID="{12B01E6D-B133-4DDD-BBB0-9FF6C4B3FB96}"/>
+										</Reference>
+									</ReferenceList>
+								</Action>
+							</ChildrenList>
+						</Event>
+						<Event Name="play_UI_Dialogue_narrator" ID="{71C7EFF4-94E0-4D44-B9B3-604C63319D39}">
+							<ChildrenList>
+								<Action Name="" ID="{CF621C0F-0E96-468A-9711-B2EAFFC28D69}" ShortID="47569915">
+									<ReferenceList>
+										<Reference Name="Target">
+											<ObjectRef Name="UI_Dialogue_narrator" ID="{DF2CE47A-B7E2-4256-900A-1B18B44A6419}" WorkUnitID="{12B01E6D-B133-4DDD-BBB0-9FF6C4B3FB96}"/>
+										</Reference>
+									</ReferenceList>
+								</Action>
+							</ChildrenList>
+						</Event>
+					</ChildrenList>
+				</Folder>
 			</ChildrenList>
 		</WorkUnit>
 	</Events>

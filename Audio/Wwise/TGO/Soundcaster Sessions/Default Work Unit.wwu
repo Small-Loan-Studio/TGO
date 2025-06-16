@@ -13,6 +13,10 @@
 							<ObjectRef Name="stop_TEST_TestTone_lp_3D" ID="{ABEEB2B7-1680-4A85-8D2D-C308C24EAA97}" WorkUnitID="{AAA74B16-0AA3-4E80-A3C1-B701AD23C503}"/>
 							<Position X="1" Y="0"/>
 						</Module>
+						<Module>
+							<ObjectRef Name="play_UI_Dialogue_generic_male" ID="{484BBDD4-C2C0-44C5-B0D4-B53AEE402C97}" WorkUnitID="{285F7A76-AE49-4D48-8D5D-C73C7938630A}"/>
+							<Position X="2" Y="0"/>
+						</Module>
 					</ModuleList>
 					<RTPCValueList ShowAll="true">
 						<RTPCValue>
