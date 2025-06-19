@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=3 uid="uid://bu1vpanrcrar3"]
+[gd_scene load_steps=20 format=3 uid="uid://bu1vpanrcrar3"]
 
 [ext_resource type="PackedScene" uid="uid://dyq8mcdsutnsa" path="res://Scenes/Components/LevelBase.tscn" id="1_bbrpm"]
 [ext_resource type="TileSet" uid="uid://c72m3jled4jfg" path="res://Art/Environment/ext_simple_tileset.tres" id="2_svd0s"]
@@ -8,12 +8,18 @@
 [ext_resource type="Script" path="res://Scripts/Resources/Effects/DialogueEffect.gd" id="5_mniuv"]
 [ext_resource type="Resource" path="res://Dialogue/PlaceableInteractive/juniper_bush_full.dtl" id="6_md8hq"]
 [ext_resource type="PackedScene" uid="uid://c2kg6apj756dw" path="res://Scenes/Components/NPC.tscn" id="6_ns0oc"]
+[ext_resource type="Script" path="res://Scripts/Resources/Effects/LevelLoadEffect.gd" id="7_rtrad"]
 [ext_resource type="Resource" uid="uid://govy3p3pxyql" path="res://Scripts/Resources/NPCs/Groundskeeper.tres" id="8_3lgnx"]
 [ext_resource type="Resource" path="res://Dialogue/Groundskeeper/GroundskeeperTimeline.dtl" id="9_troe3"]
 
 [sub_resource type="Resource" id="Resource_fnqoc"]
 script = ExtResource("5_mniuv")
 timeline = ExtResource("6_md8hq")
+
+[sub_resource type="Resource" id="Resource_djeg5"]
+script = ExtResource("7_rtrad")
+load_level_name = "crypt"
+marker_name = "Entrance-Crypt"
 
 [sub_resource type="Resource" id="Resource_2cl87"]
 script = ExtResource("5_mniuv")
@@ -58,6 +64,11 @@ position = Vector2(-913, 30)
 scale = Vector2(6.7797, 4.39945)
 sensor_size = Vector2(20, 20)
 on_pressed_effects = Array[Resource("res://Scripts/Resources/Effect.gd")]([SubResource("Resource_fnqoc")])
+
+[node name="Switch" parent="Objects/Switches" index="1" instance=ExtResource("3_vl6rl")]
+position = Vector2(0, -168)
+sensor_size = Vector2(60, 20)
+on_pressed_effects = Array[Resource("res://Scripts/Resources/Effect.gd")]([SubResource("Resource_djeg5")])
 
 [node name="Ebenezer Beaupre" parent="Objects/Characters" index="0" instance=ExtResource("6_ns0oc")]
 position = Vector2(-2358, -29)
@@ -502,6 +513,7 @@ rotation = -1.57197
 shape = SubResource("CapsuleShape2D_aw4hl")
 
 [node name="PS-Crypt-Entrance" type="Node2D" parent="Markers" index="0"]
+position = Vector2(0, -120)
 
 [node name="PS-Cemetery-Entrance" type="Marker2D" parent="Markers" index="1"]
 position = Vector2(-1984, -960)
