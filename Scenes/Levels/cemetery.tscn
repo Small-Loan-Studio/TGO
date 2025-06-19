@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=3 uid="uid://bu1vpanrcrar3"]
+[gd_scene load_steps=21 format=3 uid="uid://bu1vpanrcrar3"]
 
 [ext_resource type="PackedScene" uid="uid://dyq8mcdsutnsa" path="res://Scenes/Components/LevelBase.tscn" id="1_bbrpm"]
 [ext_resource type="TileSet" uid="uid://c72m3jled4jfg" path="res://Art/Environment/ext_simple_tileset.tres" id="2_svd0s"]
@@ -20,6 +20,11 @@ timeline = ExtResource("6_md8hq")
 script = ExtResource("7_rtrad")
 load_level_name = "crypt"
 marker_name = "Entrance-Crypt"
+
+[sub_resource type="Resource" id="Resource_utiic"]
+script = ExtResource("7_rtrad")
+load_level_name = "residential_districts"
+marker_name = "PS-Cemetery-Exit"
 
 [sub_resource type="Resource" id="Resource_2cl87"]
 script = ExtResource("5_mniuv")
@@ -65,10 +70,15 @@ scale = Vector2(6.7797, 4.39945)
 sensor_size = Vector2(20, 20)
 on_pressed_effects = Array[Resource("res://Scripts/Resources/Effect.gd")]([SubResource("Resource_fnqoc")])
 
-[node name="Switch" parent="Objects/Switches" index="1" instance=ExtResource("3_vl6rl")]
+[node name="TP-Crypt" parent="Objects/Switches" index="1" instance=ExtResource("3_vl6rl")]
 position = Vector2(0, -168)
 sensor_size = Vector2(60, 20)
 on_pressed_effects = Array[Resource("res://Scripts/Resources/Effect.gd")]([SubResource("Resource_djeg5")])
+
+[node name="TP-ResDist" parent="Objects/Switches" index="2" instance=ExtResource("3_vl6rl")]
+position = Vector2(-1984, -976)
+sensor_size = Vector2(80, 20)
+on_pressed_effects = Array[Resource("res://Scripts/Resources/Effect.gd")]([SubResource("Resource_utiic")])
 
 [node name="Ebenezer Beaupre" parent="Objects/Characters" index="0" instance=ExtResource("6_ns0oc")]
 position = Vector2(-2358, -29)
@@ -516,7 +526,7 @@ shape = SubResource("CapsuleShape2D_aw4hl")
 position = Vector2(0, -120)
 
 [node name="PS-Cemetery-Entrance" type="Marker2D" parent="Markers" index="1"]
-position = Vector2(-1984, -960)
+position = Vector2(-1984, -1016)
 
 [node name="CanvasModulate" parent="." index="4"]
 position = Vector2(65, -30)
