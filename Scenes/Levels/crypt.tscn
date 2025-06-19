@@ -1,4 +1,4 @@
-[gd_scene load_steps=53 format=3 uid="uid://bgn6kmsvdqh4l"]
+[gd_scene load_steps=54 format=3 uid="uid://bgn6kmsvdqh4l"]
 
 [ext_resource type="PackedScene" uid="uid://dyq8mcdsutnsa" path="res://Scenes/Components/LevelBase.tscn" id="1_dma02"]
 [ext_resource type="TileSet" uid="uid://c72m3jled4jfg" path="res://Art/Environment/ext_simple_tileset.tres" id="2_pwhqm"]
@@ -28,6 +28,7 @@
 [ext_resource type="Resource" path="res://Dialogue/Examinations/Satchel.dtl" id="24_q7j2p"]
 [ext_resource type="Resource" path="res://Dialogue/Examinations/BlackMouldCrypt.dtl" id="25_d5spy"]
 [ext_resource type="PackedScene" uid="uid://bwlnxooxokiw6" path="res://Scenes/Components/door.tscn" id="28_4oovl"]
+[ext_resource type="Texture2D" uid="uid://bhpgcpicuioje" path="res://Art/Doors/DOR-001-A.png" id="29_h17ii"]
 [ext_resource type="Script" path="res://Scripts/Resources/Conditions/InventoryCheckCondition.gd" id="29_ogskv"]
 [ext_resource type="PackedScene" uid="uid://d1y25semyqxkw" path="res://Scenes/Components/Greyboxing/MoveableBlock.tscn" id="30_nk66s"]
 [ext_resource type="Resource" uid="uid://c0k5s2pwp0tvi" path="res://Scripts/Resources/Items/BagOfHardtack.tres" id="30_qe0oq"]
@@ -710,6 +711,8 @@ effects = Array[Resource("res://Scripts/Resources/Effect.gd")]([SubResource("Res
 
 [node name="Door" parent="Objects" index="49" instance=ExtResource("28_4oovl")]
 position = Vector2(128, 872)
+closed_sprite = ExtResource("29_h17ii")
+open_sprite = null
 unlocked = Array[Resource("res://Scripts/Resources/TriggerCondition.gd")]([SubResource("Resource_iisky")])
 region_id = "crypt.exit_door"
 
