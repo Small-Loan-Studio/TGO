@@ -8,13 +8,17 @@ offset_bottom = 8.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 focus_mode = 0
+text = "parent button"
 script = ExtResource("1_jkfdb")
 
 [node name="RTL" type="RichTextLabel" parent="."]
-layout_direction = 2
-layout_mode = 0
-offset_right = 40.0
-offset_bottom = 40.0
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 mouse_filter = 1
 theme_override_font_sizes/normal_font_size = 20
 theme_override_font_sizes/bold_font_size = 20
@@ -22,13 +26,13 @@ theme_override_font_sizes/italics_font_size = 20
 theme_override_font_sizes/bold_italics_font_size = 20
 theme_override_font_sizes/mono_font_size = 20
 bbcode_enabled = true
+text = "RTL"
 fit_content = true
 scroll_active = false
 autowrap_mode = 0
 
 [node name="Strikethrough" type="ColorRect" parent="."]
 visible = false
-custom_minimum_size = Vector2(0, 5)
 layout_mode = 1
 anchors_preset = 14
 anchor_top = 0.5
