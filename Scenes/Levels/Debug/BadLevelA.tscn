@@ -1,4 +1,4 @@
-[gd_scene load_steps=40 format=3 uid="uid://d4mrsiv1l8m35"]
+[gd_scene load_steps=38 format=3 uid="uid://d4mrsiv1l8m35"]
 
 [ext_resource type="PackedScene" uid="uid://dyq8mcdsutnsa" path="res://Scenes/Components/LevelBase.tscn" id="1_iejup"]
 [ext_resource type="Script" path="res://ZZ_Scratch/GreyboxingTools/BadLevelA.gd" id="2_22a2t"]
@@ -38,23 +38,11 @@ variable_name = "QuestVarConditionTest"
 check_type = 3
 check_value = "true"
 
-[sub_resource type="Resource" id="Resource_cnrmo"]
-script = ExtResource("14_o0d20")
-variable_name = "QuestVarConditionTest"
-set_type = "overwrite"
-new_value = "true"
-
-[sub_resource type="Resource" id="Resource_hni0i"]
-script = ExtResource("14_o0d20")
-variable_name = "QuestVarConditionTest"
-set_type = "overwrite"
-new_value = "false"
-
 [sub_resource type="Resource" id="Resource_bqjrh"]
 script = ExtResource("15_x1ixy")
 condition = Array[Resource("res://Scripts/Resources/TriggerCondition.gd")]([SubResource("Resource_d5ja3")])
-success_path = Array[Resource("res://Scripts/Resources/Effect.gd")]([SubResource("Resource_hni0i")])
-failure_path = Array[Resource("res://Scripts/Resources/Effect.gd")]([SubResource("Resource_cnrmo")])
+success_chain = Array[Resource("res://Scripts/Resources/Effect.gd")]([])
+failure_chain = Array[Resource("res://Scripts/Resources/Effect.gd")]([])
 
 [sub_resource type="Resource" id="Resource_goqj7"]
 script = ExtResource("14_o0d20")
@@ -100,10 +88,10 @@ dest_path = NodePath("../../Markers/PlayerStart")
 atlas = ExtResource("21_li46b")
 region = Rect2(0, 0, 32, 32)
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_wdjsr"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_4nohk"]
 size = Vector2(32, 32)
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_1pko8"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_slti4"]
 size = Vector2(32, 32)
 
 [node name="LevelBase" instance=ExtResource("1_iejup")]
@@ -251,7 +239,7 @@ collision_mask = 0
 
 [node name="Shape" parent="Objects/Automatic Interactable/Physics" index="0"]
 position = Vector2(0, -16)
-shape = SubResource("RectangleShape2D_wdjsr")
+shape = SubResource("RectangleShape2D_4nohk")
 
 [node name="Interactable" parent="Objects/Automatic Interactable" index="2"]
 position = Vector2(0, -1)
@@ -265,7 +253,7 @@ action_map = {
 
 [node name="Shape" parent="Objects/Automatic Interactable/Interactable" index="0"]
 position = Vector2(0, -16)
-shape = SubResource("RectangleShape2D_1pko8")
+shape = SubResource("RectangleShape2D_slti4")
 
 [node name="PlayerStart" type="Node2D" parent="Markers" index="0"]
 position = Vector2(522, 183)

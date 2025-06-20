@@ -155,7 +155,7 @@ variables={
 "UserInputNum": 0,
 "UserInputString": ""
 }
-layout/style_list=["res://addons/dialogic/Modules/TGOLayoutStyle/TGOStyle.tres", "res://Dialogue/StyleTGO/TGOStyle.tres"]
+layout/style_list=["res://Dialogue/StyleTGO/TGOStyle.tres"]
 layout/default_style="res://Dialogue/StyleTGO/TGOStyle.tres"
 glossary/default_case_sensitive=true
 extensions_folder="res://addons/dialogic_additions"
@@ -182,6 +182,10 @@ export/convert_text_resources_to_binary=false
 [editor_plugins]
 
 enabled=PackedStringArray("res://addons/Wwise/plugin.cfg", "res://addons/dialogic/plugin.cfg", "res://addons/resources_spreadsheet_view/plugin.cfg", "res://addons/tgo_greyboxing/plugin.cfg")
+
+[gui]
+
+theme/custom_font="res://Art/fonts/EBGaramond-VariableFont_wght.ttf"
 
 [input]
 

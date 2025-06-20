@@ -42,15 +42,17 @@ func remove_text_color() -> void:
 
 
 func set_strikethrough() -> void:
-	_open_tags = _open_tags + "[s]"
-	_close_tags = "[/s]" + _close_tags
+	$Strikethrough.visible = true
+	# _open_tags = _open_tags + "[s]"
+	# _close_tags = "[/s]" + _close_tags
 
 	update_button()
 
 
 func clear_strikethrough() -> void:
-	_open_tags = _open_tags.replace("[s]", "")
-	_close_tags = _close_tags.replace("[/s]", "")
+	$Stirkethrough.visible = false
+	# _open_tags = _open_tags.replace("[s]", "")
+	# _close_tags = _close_tags.replace("[/s]", "")
 	update_button()
 
 

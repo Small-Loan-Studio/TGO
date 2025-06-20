@@ -9,7 +9,7 @@
 [ext_resource type="PackedScene" uid="uid://lx24i8fl6uo" path="res://addons/dialogic/Modules/DefaultLayoutParts/Layer_History/history_layer.tscn" id="7_p5ri3"]
 [ext_resource type="PackedScene" uid="uid://cy1y14inwkplb" path="res://addons/dialogic/Modules/DefaultLayoutParts/Layer_VN_Portraits/vn_portrait_layer.tscn" id="8_1j4oi"]
 [ext_resource type="PackedScene" uid="uid://bquja8jyk8kbr" path="res://addons/dialogic/Modules/DefaultLayoutParts/Layer_VN_Textbox/vn_textbox_layer.tscn" id="9_dlu0i"]
-[ext_resource type="PackedScene" uid="uid://c7pejsv4vqaqd" path="res://addons/dialogic/Modules/TGOLayoutStyle/CenteredChoices/custom_vn_choice_layer.tscn" id="10_6qh0n"]
+[ext_resource type="PackedScene" uid="uid://fqnikau2eopt" path="res://Dialogue/StyleTGO/CenteredChoices/TGOChoiceLayer.tscn" id="10_l4v11"]
 [ext_resource type="Script" path="res://addons/dialogic/Resources/dialogic_style.gd" id="11_mje8a"]
 
 [sub_resource type="Resource" id="Resource_d5ctn"]
@@ -64,7 +64,7 @@ overrides = {
 
 [sub_resource type="Resource" id="Resource_w55xh"]
 script = ExtResource("2_gjeju")
-scene = ExtResource("10_6qh0n")
+scene = ExtResource("10_l4v11")
 overrides = {
 "boxes_min_size": "Vector2(0, 35)",
 "boxes_stylebox_focused": "\"res://addons/dialogic/Modules/TGOLayoutStyle/selected_icon.tres\"",
