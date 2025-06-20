@@ -155,8 +155,8 @@ variables={
 "UserInputNum": 0,
 "UserInputString": ""
 }
-layout/style_list=["res://addons/dialogic/Modules/TGOLayoutStyle/TGOStyle.tres"]
-layout/default_style="res://addons/dialogic/Modules/TGOLayoutStyle/TGOStyle.tres"
+layout/style_list=["res://addons/dialogic/Modules/TGOLayoutStyle/TGOStyle.tres", "res://Dialogue/StyleTGO/TGOStyle.tres"]
+layout/default_style="res://Dialogue/StyleTGO/TGOStyle.tres"
 glossary/default_case_sensitive=true
 extensions_folder="res://addons/dialogic_additions"
 history/simple_history_enabled=true

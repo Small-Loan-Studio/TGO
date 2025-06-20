@@ -43,7 +43,9 @@ overrides = {}
 [sub_resource type="Resource" id="Resource_qc6j3"]
 script = ExtResource("2_vincf")
 scene = ExtResource("8_jbe66")
-overrides = {}
+overrides = {
+"disabled": "true"
+}
 
 [sub_resource type="Resource" id="Resource_4snnf"]
 script = ExtResource("2_vincf")
@@ -69,7 +71,7 @@ overrides = {
 "boxes_stylebox_hovered": "\"choice_panel_hover.tres\"",
 "boxes_stylebox_normal": "\"choice_panel_normal.tres\"",
 "boxes_v_separation": "0.0",
-"font_custom": "\"res://Art/fonts/EBGaramond-VariableFont_wght.ttf\"",
+"font_custom": "\"EBGaramond-VariableFont_wght.ttf\"",
 "font_size_custom": "20.0",
 "font_size_use_global": "false",
 "font_use_global": "false",
@@ -84,4 +86,4 @@ script = ExtResource("9_vu128")
 name = "TGOStyle"
 base_overrides = {}
 layers = Array[ExtResource("2_vincf")]([SubResource("Resource_d5ctn"), SubResource("Resource_nql3p"), SubResource("Resource_7np5b"), SubResource("Resource_4n28v"), SubResource("Resource_ia3vt"), SubResource("Resource_qc6j3"), SubResource("Resource_4snnf"), SubResource("Resource_c7bvd"), SubResource("Resource_w55xh")])
-metadata/_latest_layer = 6
+metadata/_latest_layer = 8
