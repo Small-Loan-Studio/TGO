@@ -1,4 +1,4 @@
-[gd_scene load_steps=54 format=3 uid="uid://bgn6kmsvdqh4l"]
+[gd_scene load_steps=64 format=3 uid="uid://bgn6kmsvdqh4l"]
 
 [ext_resource type="PackedScene" uid="uid://dyq8mcdsutnsa" path="res://Scenes/Components/LevelBase.tscn" id="1_dma02"]
 [ext_resource type="TileSet" uid="uid://c72m3jled4jfg" path="res://Art/Environment/ext_simple_tileset.tres" id="2_pwhqm"]
@@ -20,13 +20,19 @@
 [ext_resource type="Resource" path="res://Dialogue/Examinations/GinPuddle.dtl" id="16_mo7jk"]
 [ext_resource type="Script" path="res://Scripts/Resources/Effects/DialogueEffect.gd" id="16_utw8c"]
 [ext_resource type="Resource" path="res://Dialogue/Examinations/UnlitWoodenTorch.dtl" id="17_b5waj"]
+[ext_resource type="PackedScene" uid="uid://5xu2lbni2byw" path="res://Scenes/Components/controlled_region.tscn" id="18_nwlbx"]
+[ext_resource type="Texture2D" uid="uid://gjjpnuho5s0q" path="res://Art/Environment/Placeables/Wall Torches/Crypt-Torch-Lit.png" id="19_5poms"]
 [ext_resource type="Resource" path="res://Dialogue/Examinations/PileOfWoodenStakes.dtl" id="19_g8jw2"]
 [ext_resource type="Resource" path="res://Dialogue/Examinations/SkeletalRemains.dtl" id="22_vcdk7"]
 [ext_resource type="Resource" path="res://Dialogue/Examinations/RansackedCoffin.dtl" id="23_nako3"]
+[ext_resource type="Resource" uid="uid://tb26fixj3gin" path="res://Scripts/Resources/Items/TinderLighter.tres" id="23_ooaay"]
 [ext_resource type="Resource" path="res://Dialogue/Examinations/Coffin.dtl" id="24_bvtj4"]
+[ext_resource type="Script" path="res://Scripts/Resources/Conditions/EquipmentCondition.gd" id="24_cbcji"]
 [ext_resource type="Resource" path="res://Dialogue/Examinations/JournalPage1.dtl" id="24_foypm"]
 [ext_resource type="Resource" path="res://Dialogue/Examinations/Satchel.dtl" id="24_q7j2p"]
+[ext_resource type="Script" path="res://Scripts/Resources/Effects/ConditionalEffect.gd" id="25_8o7vw"]
 [ext_resource type="Resource" path="res://Dialogue/Examinations/BlackMouldCrypt.dtl" id="25_d5spy"]
+[ext_resource type="Script" path="res://Scripts/Resources/Effects/UpdateControlledRegionEffect.gd" id="26_13br4"]
 [ext_resource type="PackedScene" uid="uid://bwlnxooxokiw6" path="res://Scenes/Components/door.tscn" id="28_4oovl"]
 [ext_resource type="Texture2D" uid="uid://bhpgcpicuioje" path="res://Art/Doors/DOR-001-A.png" id="29_h17ii"]
 [ext_resource type="Script" path="res://Scripts/Resources/Conditions/InventoryCheckCondition.gd" id="29_ogskv"]
@@ -84,6 +90,24 @@ timeline = ExtResource("16_mo7jk")
 script = ExtResource("16_utw8c")
 timeline = ExtResource("17_b5waj")
 
+[sub_resource type="Resource" id="Resource_b34f5"]
+script = ExtResource("24_cbcji")
+check_item = ExtResource("23_ooaay")
+check_type = "equipped"
+slot_requirement = "any"
+
+[sub_resource type="Resource" id="Resource_giv4r"]
+script = ExtResource("26_13br4")
+region_id = "crypt.torch"
+passable_state = "unchanged"
+visible_state = "visible"
+
+[sub_resource type="Resource" id="Resource_rw1uc"]
+script = ExtResource("25_8o7vw")
+condition = Array[Resource("res://Scripts/Resources/TriggerCondition.gd")]([SubResource("Resource_b34f5")])
+success_chain = Array[Resource("res://Scripts/Resources/Effect.gd")]([SubResource("Resource_giv4r")])
+failure_chain = Array[Resource("res://Scripts/Resources/Effect.gd")]([])
+
 [sub_resource type="Resource" id="Resource_lqmha"]
 script = ExtResource("16_utw8c")
 timeline = ExtResource("19_g8jw2")
@@ -119,6 +143,13 @@ target_item = ExtResource("30_qe0oq")
 check_type = 0
 check_value = 0
 
+[sub_resource type="Resource" id="Resource_yuns4"]
+script = ExtResource("29_ogskv")
+inventory_id = ""
+target_item = ExtResource("8_mj1tv")
+check_type = 4
+check_value = 3
+
 [node name="LevelBase2" instance=ExtResource("1_dma02")]
 
 [node name="ColorRect" type="ColorRect" parent="." index="0"]
@@ -142,7 +173,7 @@ layer_7/tile_data = PackedInt32Array(1769475, 589837, 10, 1769476, 655373, 10, -
 layer_8/tile_data = PackedInt32Array(393219, 589837, 27, 458755, 589837, 28, 524291, 589837, 29, 393220, 655373, 27, 458756, 655373, 28, 524292, 655373, 29, 4325382, 589837, 28, 4390918, 589837, 29, 4325383, 655373, 28, 4390919, 655373, 29, 4194310, 983053, 15, 4194311, 983053, 15, 4128775, 983053, 15, 4128774, 983053, 15, 4063238, 983053, 15, 4063239, 983053, 15, 4259846, 589837, 27, 4259847, 655373, 27, 4259893, 589837, 27, 4325429, 589837, 28, 4390965, 589837, 29, 4259894, 655373, 27, 4325430, 655373, 28, 4390966, 655373, 29, 4063285, 983053, 15, 4128821, 983053, 15, 4194357, 983053, 15, 4063286, 983053, 15, 4128822, 983053, 15, 4194358, 983053, 15, 4587554, 131072, 4, 4718624, 65536, 4, 1310786, 589837, 27, 1376322, 589837, 28, 1441858, 589837, 29, 1310787, 655373, 27, 1376323, 655373, 28, 1441859, 655373, 29, 1245250, 917517, 15, 1245251, 917517, 15, 1179715, 917517, 15, 1179714, 917517, 15, 3342402, 983053, 15, 3342403, 983053, 15, 3407939, 983053, 15, 3407938, 983053, 15, 3473474, 983053, 15, 3473475, 983053, 15, 3539011, 983053, 15, 3539010, 983053, 15, -1638327, 917517, 15, -1638326, 917517, 15, -1572791, 917517, 15, -1572790, 917517, 15)
 
 [node name="RevivalChamber2ExtraRoom" parent="Objects/Switches" index="0" instance=ExtResource("3_0ndau")]
-position = Vector2(128, 184)
+position = Vector2(128, 250)
 sensor_size = Vector2(60, 60)
 on_pressed_effects = Array[Resource("res://Scripts/Resources/Effect.gd")]([SubResource("Resource_jh8dd"), SubResource("Resource_o85tt")])
 
@@ -385,81 +416,90 @@ position = Vector2(128, 2192)
 texture = ExtResource("12_mfm7m")
 region_rect = Rect2(0, 14, 64, 50)
 
-[node name="UnlitTorch2" type="Sprite2D" parent="Objects" index="8"]
+[node name="ControlledRegion" parent="Objects" index="8" node_paths=PackedStringArray("_collider") instance=ExtResource("18_nwlbx")]
+position = Vector2(128, 2192)
+region_id = "crypt.torch"
+_collider = NodePath("")
+
+[node name="LitTorch" type="Sprite2D" parent="Objects/ControlledRegion" index="1"]
+texture = ExtResource("19_5poms")
+region_rect = Rect2(0, 14, 64, 50)
+
+[node name="UnlitTorch2" type="Sprite2D" parent="Objects" index="9"]
 position = Vector2(336, 2192)
 texture = ExtResource("12_mfm7m")
 region_rect = Rect2(0, 14, 64, 50)
 
-[node name="UnlitTorch3" type="Sprite2D" parent="Objects" index="9"]
+[node name="UnlitTorch3" type="Sprite2D" parent="Objects" index="10"]
 position = Vector2(592, 2192)
 texture = ExtResource("12_mfm7m")
 region_rect = Rect2(0, 14, 64, 50)
 
-[node name="UnlitTorch4" type="Sprite2D" parent="Objects" index="10"]
+[node name="UnlitTorch4" type="Sprite2D" parent="Objects" index="11"]
 position = Vector2(848, 2192)
 texture = ExtResource("12_mfm7m")
 region_rect = Rect2(0, 14, 64, 50)
 
-[node name="UnlitTorch5" type="Sprite2D" parent="Objects" index="11"]
+[node name="UnlitTorch5" type="Sprite2D" parent="Objects" index="12"]
 position = Vector2(1104, 2192)
 texture = ExtResource("12_mfm7m")
 region_rect = Rect2(0, 14, 64, 50)
 
-[node name="UnlitTorch6" type="Sprite2D" parent="Objects" index="12"]
+[node name="UnlitTorch6" type="Sprite2D" parent="Objects" index="13"]
 position = Vector2(1616, 2192)
 texture = ExtResource("12_mfm7m")
 region_rect = Rect2(0, 14, 64, 50)
 
-[node name="UnlitTorch7" type="Sprite2D" parent="Objects" index="13"]
+[node name="UnlitTorch7" type="Sprite2D" parent="Objects" index="14"]
 position = Vector2(1824, 2192)
 texture = ExtResource("12_mfm7m")
 region_rect = Rect2(0, 14, 64, 50)
 
-[node name="UnlitTorch8" type="Sprite2D" parent="Objects" index="14"]
+[node name="UnlitTorch8" type="Sprite2D" parent="Objects" index="15"]
 position = Vector2(-2880, -1616)
 texture = ExtResource("12_mfm7m")
 region_rect = Rect2(0, 14, 64, 50)
 
-[node name="UnlitTorch9" type="Sprite2D" parent="Objects" index="15"]
+[node name="UnlitTorch9" type="Sprite2D" parent="Objects" index="16"]
 position = Vector2(1360, 2192)
 texture = ExtResource("12_mfm7m")
 region_rect = Rect2(0, 14, 64, 50)
 
-[node name="UnlitTorch10" type="Sprite2D" parent="Objects" index="16"]
+[node name="UnlitTorch10" type="Sprite2D" parent="Objects" index="17"]
 position = Vector2(1863, 723)
 texture = ExtResource("12_mfm7m")
 region_rect = Rect2(0, 14, 64, 50)
 
-[node name="UnlitTorch11" type="Sprite2D" parent="Objects" index="17"]
+[node name="UnlitTorch11" type="Sprite2D" parent="Objects" index="18"]
 z_index = 1
 position = Vector2(1563, 723)
 texture = ExtResource("12_mfm7m")
 region_rect = Rect2(0, 14, 64, 50)
 
-[node name="UnlitTorch12" type="Sprite2D" parent="Objects" index="18"]
+[node name="UnlitTorch12" type="Sprite2D" parent="Objects" index="19"]
 z_index = 1
 position = Vector2(2600, 723)
 texture = ExtResource("12_mfm7m")
 region_rect = Rect2(0, 14, 64, 50)
 
-[node name="UnlitTorch_Door" type="Sprite2D" parent="Objects" index="19"]
+[node name="UnlitTorch_Door" type="Sprite2D" parent="Objects" index="20"]
 position = Vector2(2080, 688)
 texture = ExtResource("13_pg1fx")
 region_rect = Rect2(0, 14, 64, 50)
 
-[node name="UnlitTorch_Door2" type="Sprite2D" parent="Objects" index="20"]
+[node name="UnlitTorch_Door2" type="Sprite2D" parent="Objects" index="21"]
 position = Vector2(2208, 688)
 texture = ExtResource("13_pg1fx")
 region_rect = Rect2(0, 14, 64, 50)
 
-[node name="GinPuddle_Examine" parent="Objects" index="21" instance=ExtResource("12_us5wm")]
+[node name="GinPuddle_Examine" parent="Objects" index="22" instance=ExtResource("12_us5wm")]
 position = Vector2(2384, 960)
 can_interact = true
 tint = Color(0.745098, 0.745098, 0.745098, 0)
 action_verb = 6
 effects = Array[Resource("res://Scripts/Resources/Effect.gd")]([SubResource("Resource_kyv6i")])
 
-[node name="UnlitWoodenTorch_Examine" parent="Objects" index="22" instance=ExtResource("12_us5wm")]
+[node name="UnlitWoodenTorch_Examine" parent="Objects" index="23" instance=ExtResource("12_us5wm")]
 position = Vector2(1564, 766)
 size = Vector2(1, 3)
 can_block_movement = true
@@ -469,7 +509,7 @@ tint = Color(0.745098, 0.745098, 0.745098, 0)
 action_verb = 6
 effects = Array[Resource("res://Scripts/Resources/Effect.gd")]([SubResource("Resource_nois6")])
 
-[node name="UnlitWoodenTorch_Examine2" parent="Objects" index="23" instance=ExtResource("12_us5wm")]
+[node name="UnlitWoodenTorch_Examine2" parent="Objects" index="24" instance=ExtResource("12_us5wm")]
 position = Vector2(1863, 767)
 size = Vector2(1, 3)
 can_block_movement = true
@@ -479,7 +519,7 @@ tint = Color(0.745098, 0.745098, 0.745098, 0)
 action_verb = 6
 effects = Array[Resource("res://Scripts/Resources/Effect.gd")]([SubResource("Resource_nois6")])
 
-[node name="UnlitWoodenTorch_Examine3" parent="Objects" index="24" instance=ExtResource("12_us5wm")]
+[node name="UnlitWoodenTorch_Examine3" parent="Objects" index="25" instance=ExtResource("12_us5wm")]
 position = Vector2(2599, 767)
 size = Vector2(1, 3)
 can_block_movement = true
@@ -489,7 +529,7 @@ tint = Color(0.745098, 0.745098, 0.745098, 0)
 action_verb = 6
 effects = Array[Resource("res://Scripts/Resources/Effect.gd")]([SubResource("Resource_nois6")])
 
-[node name="UnlitWoodenTorch_Examine6" parent="Objects" index="25" instance=ExtResource("12_us5wm")]
+[node name="UnlitWoodenTorch_Examine6" parent="Objects" index="26" instance=ExtResource("12_us5wm")]
 position = Vector2(-2880, -1568)
 size = Vector2(1, 3)
 can_block_movement = true
@@ -499,7 +539,7 @@ tint = Color(0.745098, 0.745098, 0.745098, 0)
 action_verb = 6
 effects = Array[Resource("res://Scripts/Resources/Effect.gd")]([SubResource("Resource_nois6")])
 
-[node name="UnlitWoodenTorch_Examine7" parent="Objects" index="26" instance=ExtResource("12_us5wm")]
+[node name="UnlitWoodenTorch_Examine7" parent="Objects" index="27" instance=ExtResource("12_us5wm")]
 position = Vector2(1360, 2240)
 size = Vector2(1, 3)
 can_block_movement = true
@@ -509,7 +549,7 @@ tint = Color(0.745098, 0.745098, 0.745098, 0)
 action_verb = 6
 effects = Array[Resource("res://Scripts/Resources/Effect.gd")]([SubResource("Resource_nois6")])
 
-[node name="UnlitWoodenTorch_Examine8" parent="Objects" index="27" instance=ExtResource("12_us5wm")]
+[node name="UnlitWoodenTorch_Examine8" parent="Objects" index="28" instance=ExtResource("12_us5wm")]
 position = Vector2(1824, 2240)
 size = Vector2(1, 3)
 can_block_movement = true
@@ -519,7 +559,7 @@ tint = Color(0.745098, 0.745098, 0.745098, 0)
 action_verb = 6
 effects = Array[Resource("res://Scripts/Resources/Effect.gd")]([SubResource("Resource_nois6")])
 
-[node name="UnlitWoodenTorch_Examine9" parent="Objects" index="28" instance=ExtResource("12_us5wm")]
+[node name="UnlitWoodenTorch_Examine9" parent="Objects" index="29" instance=ExtResource("12_us5wm")]
 position = Vector2(1616, 2240)
 size = Vector2(1, 3)
 can_block_movement = true
@@ -529,7 +569,7 @@ tint = Color(0.745098, 0.745098, 0.745098, 0)
 action_verb = 6
 effects = Array[Resource("res://Scripts/Resources/Effect.gd")]([SubResource("Resource_nois6")])
 
-[node name="UnlitWoodenTorch_Examine10" parent="Objects" index="29" instance=ExtResource("12_us5wm")]
+[node name="UnlitWoodenTorch_Examine10" parent="Objects" index="30" instance=ExtResource("12_us5wm")]
 position = Vector2(1104, 2240)
 size = Vector2(1, 3)
 can_block_movement = true
@@ -539,7 +579,7 @@ tint = Color(0.745098, 0.745098, 0.745098, 0)
 action_verb = 6
 effects = Array[Resource("res://Scripts/Resources/Effect.gd")]([SubResource("Resource_nois6")])
 
-[node name="UnlitWoodenTorch_Examine11" parent="Objects" index="30" instance=ExtResource("12_us5wm")]
+[node name="UnlitWoodenTorch_Examine11" parent="Objects" index="31" instance=ExtResource("12_us5wm")]
 position = Vector2(848, 2240)
 size = Vector2(1, 3)
 can_block_movement = true
@@ -549,7 +589,7 @@ tint = Color(0.745098, 0.745098, 0.745098, 0)
 action_verb = 6
 effects = Array[Resource("res://Scripts/Resources/Effect.gd")]([SubResource("Resource_nois6")])
 
-[node name="UnlitWoodenTorch_Examine12" parent="Objects" index="31" instance=ExtResource("12_us5wm")]
+[node name="UnlitWoodenTorch_Examine12" parent="Objects" index="32" instance=ExtResource("12_us5wm")]
 position = Vector2(592, 2240)
 size = Vector2(1, 3)
 can_block_movement = true
@@ -559,7 +599,7 @@ tint = Color(0.745098, 0.745098, 0.745098, 0)
 action_verb = 6
 effects = Array[Resource("res://Scripts/Resources/Effect.gd")]([SubResource("Resource_nois6")])
 
-[node name="UnlitWoodenTorch_Examine13" parent="Objects" index="32" instance=ExtResource("12_us5wm")]
+[node name="UnlitWoodenTorch_Examine13" parent="Objects" index="33" instance=ExtResource("12_us5wm")]
 position = Vector2(336, 2240)
 size = Vector2(1, 3)
 can_block_movement = true
@@ -569,7 +609,7 @@ tint = Color(0.745098, 0.745098, 0.745098, 0)
 action_verb = 6
 effects = Array[Resource("res://Scripts/Resources/Effect.gd")]([SubResource("Resource_nois6")])
 
-[node name="UnlitWoodenTorch_Examine14" parent="Objects" index="33" instance=ExtResource("12_us5wm")]
+[node name="UnlitWoodenTorch_Examine14" parent="Objects" index="34" instance=ExtResource("12_us5wm")]
 position = Vector2(128, 2240)
 size = Vector2(1, 3)
 can_block_movement = true
@@ -577,9 +617,9 @@ can_block_light = true
 can_interact = true
 tint = Color(0.745098, 0.745098, 0.745098, 0)
 action_verb = 6
-effects = Array[Resource("res://Scripts/Resources/Effect.gd")]([SubResource("Resource_nois6")])
+effects = Array[Resource("res://Scripts/Resources/Effect.gd")]([SubResource("Resource_nois6"), SubResource("Resource_rw1uc")])
 
-[node name="PileOfWoodenStakes_Examine" parent="Objects" index="34" instance=ExtResource("12_us5wm")]
+[node name="PileOfWoodenStakes_Examine" parent="Objects" index="35" instance=ExtResource("12_us5wm")]
 position = Vector2(2312, 1120)
 can_block_movement = true
 can_interact = true
@@ -587,14 +627,14 @@ tint = Color(0.745098, 0.745098, 0.745098, 0)
 action_verb = 6
 effects = Array[Resource("res://Scripts/Resources/Effect.gd")]([SubResource("Resource_lqmha")])
 
-[node name="SkeletalRemains_Examine" parent="Objects" index="35" instance=ExtResource("12_us5wm")]
+[node name="SkeletalRemains_Examine" parent="Objects" index="36" instance=ExtResource("12_us5wm")]
 position = Vector2(2720, 1480)
 can_interact = true
 tint = Color(0.745098, 0.745098, 0.745098, 0)
 action_verb = 6
 effects = Array[Resource("res://Scripts/Resources/Effect.gd")]([SubResource("Resource_8idhr")])
 
-[node name="RansackedCoffin_Examine" parent="Objects" index="36" instance=ExtResource("12_us5wm")]
+[node name="RansackedCoffin_Examine" parent="Objects" index="37" instance=ExtResource("12_us5wm")]
 position = Vector2(2768, 1488)
 size = Vector2(1, 2)
 can_block_movement = true
@@ -603,7 +643,7 @@ tint = Color(0.745098, 0.745098, 0.745098, 0)
 action_verb = 6
 effects = Array[Resource("res://Scripts/Resources/Effect.gd")]([SubResource("Resource_45gmm")])
 
-[node name="Coffin_Examine3" parent="Objects" index="37" instance=ExtResource("12_us5wm")]
+[node name="Coffin_Examine3" parent="Objects" index="38" instance=ExtResource("12_us5wm")]
 position = Vector2(2736, 768)
 size = Vector2(1, 2)
 can_block_movement = true
@@ -612,7 +652,7 @@ tint = Color(0.745098, 0.745098, 0.745098, 0)
 action_verb = 6
 effects = Array[Resource("res://Scripts/Resources/Effect.gd")]([SubResource("Resource_li3ln")])
 
-[node name="Coffin_Examine4" parent="Objects" index="38" instance=ExtResource("12_us5wm")]
+[node name="Coffin_Examine4" parent="Objects" index="39" instance=ExtResource("12_us5wm")]
 position = Vector2(2704, 768)
 size = Vector2(1, 2)
 can_block_movement = true
@@ -621,7 +661,7 @@ tint = Color(0.745098, 0.745098, 0.745098, 0)
 action_verb = 6
 effects = Array[Resource("res://Scripts/Resources/Effect.gd")]([SubResource("Resource_li3ln")])
 
-[node name="Coffin_Examine5" parent="Objects" index="39" instance=ExtResource("12_us5wm")]
+[node name="Coffin_Examine5" parent="Objects" index="40" instance=ExtResource("12_us5wm")]
 position = Vector2(2480, 768)
 size = Vector2(1, 2)
 can_block_movement = true
@@ -630,7 +670,7 @@ tint = Color(0.745098, 0.745098, 0.745098, 0)
 action_verb = 6
 effects = Array[Resource("res://Scripts/Resources/Effect.gd")]([SubResource("Resource_li3ln")])
 
-[node name="Coffin_Examine6" parent="Objects" index="40" instance=ExtResource("12_us5wm")]
+[node name="Coffin_Examine6" parent="Objects" index="41" instance=ExtResource("12_us5wm")]
 position = Vector2(2448, 768)
 size = Vector2(1, 2)
 can_block_movement = true
@@ -639,7 +679,7 @@ tint = Color(0.745098, 0.745098, 0.745098, 0)
 action_verb = 6
 effects = Array[Resource("res://Scripts/Resources/Effect.gd")]([SubResource("Resource_li3ln")])
 
-[node name="Coffins_Examine" parent="Objects" index="41" instance=ExtResource("12_us5wm")]
+[node name="Coffins_Examine" parent="Objects" index="42" instance=ExtResource("12_us5wm")]
 position = Vector2(2368, 1568)
 size = Vector2(2, 2)
 can_block_movement = true
@@ -649,7 +689,7 @@ action_verb = 6
 effects = Array[Resource("res://Scripts/Resources/Effect.gd")]([SubResource("Resource_li3ln")])
 y_sort_width = 104
 
-[node name="Coffins_Examine2" parent="Objects" index="42" instance=ExtResource("12_us5wm")]
+[node name="Coffins_Examine2" parent="Objects" index="43" instance=ExtResource("12_us5wm")]
 position = Vector2(2736, 1552)
 can_block_movement = true
 can_interact = true
@@ -657,7 +697,7 @@ tint = Color(0.745098, 0.745098, 0.745098, 0)
 action_verb = 6
 effects = Array[Resource("res://Scripts/Resources/Effect.gd")]([SubResource("Resource_li3ln")])
 
-[node name="Coffins_Examine3" parent="Objects" index="43" instance=ExtResource("12_us5wm")]
+[node name="Coffins_Examine3" parent="Objects" index="44" instance=ExtResource("12_us5wm")]
 position = Vector2(2560, 1568)
 size = Vector2(2, 2)
 can_block_movement = true
@@ -667,7 +707,7 @@ action_verb = 6
 effects = Array[Resource("res://Scripts/Resources/Effect.gd")]([SubResource("Resource_li3ln")])
 y_sort_width = 104
 
-[node name="Coffins_Examine4" parent="Objects" index="44" instance=ExtResource("12_us5wm")]
+[node name="Coffins_Examine4" parent="Objects" index="45" instance=ExtResource("12_us5wm")]
 position = Vector2(1920, 1576)
 size = Vector2(2, 2)
 can_block_movement = true
@@ -677,7 +717,7 @@ action_verb = 6
 effects = Array[Resource("res://Scripts/Resources/Effect.gd")]([SubResource("Resource_li3ln")])
 y_sort_width = 104
 
-[node name="Coffins_Examine5" parent="Objects" index="45" instance=ExtResource("12_us5wm")]
+[node name="Coffins_Examine5" parent="Objects" index="46" instance=ExtResource("12_us5wm")]
 position = Vector2(1728, 1584)
 size = Vector2(2, 2)
 can_block_movement = true
@@ -687,7 +727,7 @@ action_verb = 6
 effects = Array[Resource("res://Scripts/Resources/Effect.gd")]([SubResource("Resource_li3ln")])
 y_sort_width = 104
 
-[node name="Satchel_Examine" parent="Objects" index="46" instance=ExtResource("12_us5wm")]
+[node name="Satchel_Examine" parent="Objects" index="47" instance=ExtResource("12_us5wm")]
 position = Vector2(400, 576)
 size = Vector2(1, 0.5)
 can_interact = true
@@ -695,30 +735,39 @@ tint = Color(0.745098, 0.745098, 0.745098, 0)
 action_verb = 6
 effects = Array[Resource("res://Scripts/Resources/Effect.gd")]([SubResource("Resource_fk822")])
 
-[node name="JournalPage1_Examine" parent="Objects" index="47" instance=ExtResource("12_us5wm")]
+[node name="JournalPage1_Examine" parent="Objects" index="48" instance=ExtResource("12_us5wm")]
 position = Vector2(3440, 2048)
 can_interact = true
 tint = Color(0.745098, 0.745098, 0.745098, 0)
 action_verb = 6
 effects = Array[Resource("res://Scripts/Resources/Effect.gd")]([SubResource("Resource_y4w0b")])
 
-[node name="BlackMould_Examine" parent="Objects" index="48" instance=ExtResource("12_us5wm")]
+[node name="BlackMould_Examine" parent="Objects" index="49" instance=ExtResource("12_us5wm")]
 position = Vector2(434, 705)
 can_interact = true
 tint = Color(0.745098, 0.745098, 0.745098, 0)
 action_verb = 6
 effects = Array[Resource("res://Scripts/Resources/Effect.gd")]([SubResource("Resource_7815y")])
 
-[node name="Door" parent="Objects" index="49" instance=ExtResource("28_4oovl")]
+[node name="Door" parent="Objects" index="50" instance=ExtResource("28_4oovl")]
 position = Vector2(128, 872)
 closed_sprite = ExtResource("29_h17ii")
 open_sprite = null
 unlocked = Array[Resource("res://Scripts/Resources/TriggerCondition.gd")]([SubResource("Resource_iisky")])
+use_action = "open"
 region_id = "crypt.exit_door"
 
-[node name="PushableBlock" parent="Objects" index="50" instance=ExtResource("30_nk66s")]
+[node name="PushableBlock" parent="Objects" index="51" instance=ExtResource("30_nk66s")]
 position = Vector2(2288, 1504)
 height = 2
+
+[node name="Door2" parent="Objects" index="52" instance=ExtResource("28_4oovl")]
+position = Vector2(2142, 728)
+closed_sprite = ExtResource("29_h17ii")
+open_sprite = null
+unlocked = Array[Resource("res://Scripts/Resources/TriggerCondition.gd")]([SubResource("Resource_yuns4")])
+use_action = "open"
+region_id = "crypt.exit_door2"
 
 [node name="PlayerStart" type="Marker2D" parent="Markers" index="0"]
 position = Vector2(80, 560)
@@ -751,6 +800,7 @@ position = Vector2(2368, -840)
 position = Vector2(3264, -232)
 
 [node name="CanvasModulate" parent="." index="5"]
+visible = false
 color = Color(0.411765, 0.411765, 0.411765, 1)
 
 [node name="Delete_Later_Room_Labels" type="Node" parent="." index="6"]

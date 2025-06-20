@@ -321,6 +321,21 @@ region_states={
 "extra": {},
 "passable": false,
 "visible": true
+},
+"crypt.exit_door2": {
+"extra": {},
+"passable": false,
+"visible": true
+},
+"crypt.torch": {
+"extra": {},
+"passable": true,
+"visible": false
+},
+"crypt.torch14": {
+"extra": {},
+"passable": true,
+"visible": false
 }
 }
 

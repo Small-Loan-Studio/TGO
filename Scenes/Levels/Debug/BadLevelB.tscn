@@ -17,7 +17,7 @@
 [ext_resource type="PackedScene" uid="uid://bwlnxooxokiw6" path="res://Scenes/Components/door.tscn" id="12_rh8so"]
 [ext_resource type="Script" path="res://Scripts/Resources/Conditions/InventoryCheckCondition.gd" id="13_d5pwi"]
 [ext_resource type="Resource" uid="uid://cc5v3qeeoiet" path="res://Scripts/Resources/Conditions/Custom/DevinHasKey.tres" id="15_alexr"]
-[ext_resource type="Resource" path="res://Scripts/Resources/Items/EmptyBottle.tres" id="17_vaw2l"]
+[ext_resource type="Resource" uid="uid://bt7flgi3tv6iy" path="res://Scripts/Resources/Items/EmptyBottle.tres" id="17_vaw2l"]
 
 [sub_resource type="Resource" id="Resource_ql4ne"]
 script = ExtResource("6_1o8fo")
