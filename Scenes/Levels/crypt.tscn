@@ -8,14 +8,14 @@
 [ext_resource type="Resource" path="res://Dialogue/Other/CryptSecretChamberOnEnter.dtl" id="6_nab6h"]
 [ext_resource type="Script" path="res://Scripts/Resources/Effects/LevelLoadEffect.gd" id="7_8gkxa"]
 [ext_resource type="Resource" uid="uid://76bi0g1ps1s3" path="res://Scripts/Resources/Items/FlameTorch.tres" id="8_mj1tv"]
-[ext_resource type="Resource" uid="uid://bt7flgi3tv6iy" path="res://Scripts/Resources/Items/EmptyBottle.tres" id="9_exnnc"]
-[ext_resource type="Resource" uid="uid://d0dr52jjvkhpj" path="res://Scripts/Resources/Items/CorruptedMushroom.tres" id="11_0plkk"]
+[ext_resource type="Resource" path="res://Scripts/Resources/Items/EmptyBottle.tres" id="9_exnnc"]
+[ext_resource type="Resource" path="res://Scripts/Resources/Items/CorruptedMushroom.tres" id="11_0plkk"]
 [ext_resource type="PackedScene" uid="uid://b13wrl3bedjku" path="res://Scenes/Components/Torch.tscn" id="12_1eid6"]
 [ext_resource type="Texture2D" uid="uid://b7ntm61y8np7u" path="res://Art/Environment/Placeables/Wall Torches/Crypt-Torch-Unlit.png" id="12_mfm7m"]
 [ext_resource type="PackedScene" uid="uid://bx2qjlw58ci20" path="res://Scenes/Components/Greyboxing/GreyboxObject.tscn" id="12_us5wm"]
 [ext_resource type="Resource" uid="uid://x0jx2mol86p8" path="res://Scripts/Resources/Items/WoodenStake.tres" id="12_xo4o4"]
-[ext_resource type="Resource" uid="uid://fvia3mg1tqpn" path="res://Scripts/Resources/Items/OldBatteredKey.tres" id="12_y5vuf"]
-[ext_resource type="Resource" uid="uid://bm03pp0j2filn" path="res://Scripts/Resources/Items/CryptKey.tres" id="13_g0tog"]
+[ext_resource type="Resource" path="res://Scripts/Resources/Items/OldBatteredKey.tres" id="12_y5vuf"]
+[ext_resource type="Resource" path="res://Scripts/Resources/Items/CryptKey.tres" id="13_g0tog"]
 [ext_resource type="Texture2D" uid="uid://dt80b5jqylpsw" path="res://Art/Environment/Placeables/Wall Torches/Crypt-Torch-Empty.png" id="13_pg1fx"]
 [ext_resource type="Resource" path="res://Dialogue/Examinations/GinPuddle.dtl" id="16_mo7jk"]
 [ext_resource type="Script" path="res://Scripts/Resources/Effects/DialogueEffect.gd" id="16_utw8c"]
@@ -37,7 +37,7 @@
 [ext_resource type="Texture2D" uid="uid://bhpgcpicuioje" path="res://Art/Doors/DOR-001-A.png" id="29_h17ii"]
 [ext_resource type="Script" path="res://Scripts/Resources/Conditions/InventoryCheckCondition.gd" id="29_ogskv"]
 [ext_resource type="PackedScene" uid="uid://d1y25semyqxkw" path="res://Scenes/Components/Greyboxing/MoveableBlock.tscn" id="30_nk66s"]
-[ext_resource type="Resource" uid="uid://c0k5s2pwp0tvi" path="res://Scripts/Resources/Items/BagOfHardtack.tres" id="30_qe0oq"]
+[ext_resource type="Resource" path="res://Scripts/Resources/Items/BagOfHardtack.tres" id="30_qe0oq"]
 
 [sub_resource type="Resource" id="Resource_jh8dd"]
 script = ExtResource("5_7fsg8")
@@ -416,10 +416,9 @@ position = Vector2(128, 2192)
 texture = ExtResource("12_mfm7m")
 region_rect = Rect2(0, 14, 64, 50)
 
-[node name="ControlledRegion" parent="Objects" index="8" node_paths=PackedStringArray("_collider") instance=ExtResource("18_nwlbx")]
+[node name="ControlledRegion" parent="Objects" index="8" instance=ExtResource("18_nwlbx")]
 position = Vector2(128, 2192)
 region_id = "crypt.torch"
-_collider = NodePath("")
 
 [node name="LitTorch" type="Sprite2D" parent="Objects/ControlledRegion" index="1"]
 texture = ExtResource("19_5poms")
