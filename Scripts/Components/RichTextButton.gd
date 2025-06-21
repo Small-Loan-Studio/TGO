@@ -5,12 +5,13 @@ var _open_tags: String = ""
 var _close_tags: String = ""
 var _label_text: String = "Default"
 
-@onready var label: RichTextLabel = $RTL
+@onready var label: RichTextLabel = $HBoxContainer/RTL
+@onready var arrow: TextureRect = %Arrow
+@onready var bar: ColorRect = $HBoxContainer/RTL/Strikethrough
 
 
 func update_button() -> void:
 	label.parse_bbcode("%s %s %s" % [_open_tags, _label_text, _close_tags])
-	#custom_minimum_size = Vector2(label.get_content_width(),label.get_content_height())
 
 
 func set_button_size(width: float, length: float) -> void:
@@ -42,7 +43,7 @@ func remove_text_color() -> void:
 
 
 func set_strikethrough() -> void:
-	$Strikethrough.visible = true
+	bar.visible = true
 	# _open_tags = _open_tags + "[s]"
 	# _close_tags = "[/s]" + _close_tags
 
@@ -50,7 +51,7 @@ func set_strikethrough() -> void:
 
 
 func clear_strikethrough() -> void:
-	$Stirkethrough.visible = false
+	bar.visible = false
 	# _open_tags = _open_tags.replace("[s]", "")
 	# _close_tags = _close_tags.replace("[/s]", "")
 	update_button()
@@ -83,8 +84,18 @@ func clear_bold() -> void:
 func focus_color() -> void:
 	set_bold()
 	set_text_color("FFFFFF")
+	_show_arrow()
 
 
 func exit_focus_color() -> void:
 	clear_bold()
 	set_text_color("BBBBBB")
+	_hide_arrow()
+
+
+func _show_arrow() -> void:
+	arrow.modulate.a = 1
+
+
+func _hide_arrow() -> void:
+	arrow.modulate.a = 0

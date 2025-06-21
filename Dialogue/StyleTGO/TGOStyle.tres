@@ -21,7 +21,6 @@ overrides = {}
 script = ExtResource("2_gjeju")
 scene = ExtResource("3_diied")
 overrides = {
-"box_panel": "\"default_stylebox.tres\"",
 "disabled": "true"
 }
 
@@ -67,9 +66,9 @@ script = ExtResource("2_gjeju")
 scene = ExtResource("10_l4v11")
 overrides = {
 "boxes_min_size": "Vector2(0, 35)",
-"boxes_stylebox_focused": "\"res://addons/dialogic/Modules/TGOLayoutStyle/selected_icon.tres\"",
-"boxes_stylebox_hovered": "\"choice_panel_hover.tres\"",
-"boxes_stylebox_normal": "\"choice_panel_normal.tres\"",
+"boxes_stylebox_focused": "\"res://Dialogue/StyleTGO/choice_panel_focus.tres\"",
+"boxes_stylebox_hovered": "\"res://Dialogue/StyleTGO/choice_plain.tres\"",
+"boxes_stylebox_normal": "\"res://Dialogue/StyleTGO/choice_plain.tres\"",
 "boxes_v_separation": "0.0",
 "font_custom": "\"res://Art/fonts/EBGaramond-VariableFont_wght.ttf\"",
 "font_size_custom": "20.0",

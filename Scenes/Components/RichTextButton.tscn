@@ -1,24 +1,40 @@
-[gd_scene load_steps=2 format=3 uid="uid://oe7lify5dr7e"]
+[gd_scene load_steps=3 format=3 uid="uid://oe7lify5dr7e"]
 
 [ext_resource type="Script" path="res://Scripts/Components/RichTextButton.gd" id="1_jkfdb"]
+[ext_resource type="Texture2D" uid="uid://c2xjyroee0nne" path="res://Dialogue/StyleTGO/triangle_icon.png" id="2_5p7fq"]
 
 [node name="parentButton" type="Button"]
-offset_right = 8.0
-offset_bottom = 8.0
-size_flags_horizontal = 3
-size_flags_vertical = 3
-focus_mode = 0
-text = "parent button"
-script = ExtResource("1_jkfdb")
-
-[node name="RTL" type="RichTextLabel" parent="."]
-visible = false
-layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+focus_mode = 0
+script = ExtResource("1_jkfdb")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_top = 0.05
+anchor_right = 1.0
+anchor_bottom = 0.95
+offset_top = 1.0
+offset_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Arrow" type="TextureRect" parent="HBoxContainer"]
+unique_name_in_owner = true
+modulate = Color(1, 1, 1, 0)
+layout_mode = 2
+texture = ExtResource("2_5p7fq")
+expand_mode = 3
+
+[node name="RTL" type="RichTextLabel" parent="HBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 4
 mouse_filter = 1
 theme_override_font_sizes/normal_font_size = 20
 theme_override_font_sizes/bold_font_size = 20
@@ -31,15 +47,17 @@ fit_content = true
 scroll_active = false
 autowrap_mode = 0
 
-[node name="Strikethrough" type="ColorRect" parent="."]
+[node name="Strikethrough" type="ColorRect" parent="HBoxContainer/RTL"]
 visible = false
+custom_minimum_size = Vector2(0, 3)
 layout_mode = 1
-anchors_preset = 14
+anchors_preset = -1
 anchor_top = 0.5
 anchor_right = 1.0
 anchor_bottom = 0.5
 grow_horizontal = 2
 grow_vertical = 2
+color = Color(0.728822, 0.728822, 0.728822, 1)
 
 [connection signal="focus_entered" from="." to="." method="focus_color"]
 [connection signal="focus_exited" from="." to="." method="exit_focus_color"]
