@@ -1,7 +1,0 @@
-[gd_resource type="StyleBoxTexture" load_steps=2 format=3 uid="uid://2lfg6be3iyxe"]
-
-[ext_resource type="Texture2D" uid="uid://enjv5fcc1k5w" path="res://addons/dialogic/Modules/TGOLayoutStyle/triangle_icon (4).png" id="1_fa0s8"]
-
-[resource]
-texture = ExtResource("1_fa0s8")
-draw_center = false

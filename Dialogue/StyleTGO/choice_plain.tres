@@ -1,5 +1,5 @@
 [gd_resource type="StyleBoxFlat" format=3 uid="uid://daxolx7yw2u4n"]
 
 [resource]
-draw_center = false
+bg_color = Color(0, 0, 0, 0.901961)
 expand_margin_left = 30.0
