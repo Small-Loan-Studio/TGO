@@ -1113,10 +1113,6 @@ position = Vector2(2368, -840)
 [node name="Entrance-Crypt" type="Marker2D" parent="Markers" index="9"]
 position = Vector2(3264, -232)
 
-[node name="CanvasModulate" parent="." index="5"]
-visible = false
-color = Color(0.411765, 0.411765, 0.411765, 1)
-
 [node name="Delete_Later_Room_Labels" type="Node" parent="." index="6"]
 
 [node name="Extra room" type="Label" parent="Delete_Later_Room_Labels" index="0"]
