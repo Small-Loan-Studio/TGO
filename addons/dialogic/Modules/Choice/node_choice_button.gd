@@ -24,6 +24,8 @@ extends Button
 @export var sound_focus: AudioStream
 ## If set, the text will be set on this node's `text` property instead.
 @export var text_node: Node
+## Set if using a rich text choice button
+@export var rich_choice: bool
 
 
 ## Called when the text changes.
@@ -31,11 +33,19 @@ func _set_text_changed(new_text: String) -> void:
 	if text_node == null:
 		text = new_text
 
+	elif rich_choice == true:
+		text_node.set_rich_text(new_text)
+		text_node.set_button_size(get_size().x, get_size().y)
+
 	else:
 		text_node.text = new_text
 
-
+func _child_pressed() -> void:
+	pressed.emit()
+	
 func _ready() -> void:
 	add_to_group('dialogic_choice_button')
 	shortcut_in_tooltip = false
+	if rich_choice:
+		text_node.pressed.connect(_child_pressed)
 	hide()
