@@ -147,12 +147,11 @@ func get_region_by_id(region_id: String) -> ControlledRegion:
 	for maybe_region: Node2D in get_tree().get_nodes_in_group(Utils.GroupNames.ControlledRegions):
 		if maybe_region is ControlledRegion:
 			region = maybe_region as ControlledRegion
-			break
-
-	if region == null || region.region_id != region_id:
-		return null
-
-	return region
+		if region == null || region.region_id != region_id:
+			continue
+		if region.region_id == region_id:
+			return region
+	return null
 
 
 func get_audio_node(id: String) -> AudioNode:
