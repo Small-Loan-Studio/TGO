@@ -19,6 +19,7 @@ anchor_bottom = 1.0
 offset_top = -1.0
 grow_horizontal = 2
 grow_vertical = 0
+size_flags_horizontal = 3
 size_flags_vertical = 8
 mouse_filter = 2
 script = ExtResource("1_xce7b")
@@ -51,14 +52,7 @@ text_node = NodePath("RichTextButton")
 rich_choice = true
 
 [node name="RichTextButton" parent="Choices/DialogicNode_ChoiceButton1" instance=ExtResource("3_maml7")]
-layout_mode = 0
-anchors_preset = 0
-anchor_right = 0.0
-anchor_bottom = 0.0
-offset_right = 8.0
-offset_bottom = 8.0
-grow_horizontal = 1
-grow_vertical = 1
+layout_mode = 1
 alignment = 0
 
 [node name="DialogicNode_ChoiceButton2" type="Button" parent="Choices" node_paths=PackedStringArray("text_node")]
@@ -69,14 +63,7 @@ text_node = NodePath("RichTextButton2")
 rich_choice = true
 
 [node name="RichTextButton2" parent="Choices/DialogicNode_ChoiceButton2" instance=ExtResource("3_maml7")]
-layout_mode = 0
-anchors_preset = 0
-anchor_right = 0.0
-anchor_bottom = 0.0
-offset_right = 8.0
-offset_bottom = 8.0
-grow_horizontal = 1
-grow_vertical = 1
+layout_mode = 1
 alignment = 0
 
 [node name="DialogicNode_ChoiceButton3" type="Button" parent="Choices" node_paths=PackedStringArray("text_node")]
@@ -87,14 +74,7 @@ text_node = NodePath("RichTextButton3")
 rich_choice = true
 
 [node name="RichTextButton3" parent="Choices/DialogicNode_ChoiceButton3" instance=ExtResource("3_maml7")]
-layout_mode = 0
-anchors_preset = 0
-anchor_right = 0.0
-anchor_bottom = 0.0
-offset_right = 8.0
-offset_bottom = 8.0
-grow_horizontal = 1
-grow_vertical = 1
+layout_mode = 1
 alignment = 0
 
 [node name="DialogicNode_ChoiceButton4" type="Button" parent="Choices" node_paths=PackedStringArray("text_node")]
@@ -105,14 +85,7 @@ text_node = NodePath("RichTextButton4")
 rich_choice = true
 
 [node name="RichTextButton4" parent="Choices/DialogicNode_ChoiceButton4" instance=ExtResource("3_maml7")]
-layout_mode = 0
-anchors_preset = 0
-anchor_right = 0.0
-anchor_bottom = 0.0
-offset_right = 8.0
-offset_bottom = 8.0
-grow_horizontal = 1
-grow_vertical = 1
+layout_mode = 1
 alignment = 0
 
 [node name="DialogicNode_ButtonSound" type="AudioStreamPlayer" parent="Choices"]
