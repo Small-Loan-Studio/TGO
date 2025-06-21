@@ -49,7 +49,8 @@ directories/dch_directory={
 "Ilene": "res://Scripts/Resources/NPCs/DialogicCharacters/Ilene.dch",
 "Jefferson": "res://Scripts/Resources/NPCs/DialogicCharacters/Jefferson.dch",
 "Lisa": "res://Scripts/Resources/NPCs/DialogicCharacters/Lisa.dch",
-"Martha": "res://Scripts/Resources/NPCs/DialogicCharacters/Martha.dch"
+"Martha": "res://Scripts/Resources/NPCs/DialogicCharacters/Martha.dch",
+"test_character": "res://ZZ_Scratch/DialogicValidation/test_character.dch"
 }
 directories/dtl_directory={
 "AudioAdapter": "res://Dialogue/TestTimelines/AudioAdapter.dtl",
@@ -86,6 +87,7 @@ directories/dtl_directory={
 "debugging_timeline": "res://ZZ_Scratch/DialogicValidation/debugging_timeline.dtl",
 "juniper_bush_full": "res://Dialogue/PlaceableInteractive/juniper_bush_full.dtl",
 "npc_test_dialogue": "res://ZZ_Scratch/NPCDialogue/npc_test_dialogue.dtl",
+"style_timeline": "res://ZZ_Scratch/DialogicValidation/style_timeline.dtl",
 "test_timeline": "res://ZZ_Scratch/DialogicValidation/test_timeline.dtl"
 }
 text/letter_speed=0.01
@@ -153,10 +155,12 @@ variables={
 "UserInputNum": 0,
 "UserInputString": ""
 }
-layout/style_list=[]
-layout/default_style="Default"
+layout/style_list=["res://Dialogue/StyleTGO/TGOStyle.tres"]
+layout/default_style="res://Dialogue/StyleTGO/TGOStyle.tres"
 glossary/default_case_sensitive=true
 extensions_folder="res://addons/dialogic_additions"
+history/simple_history_enabled=true
+history/visited_event_history_enabled=false
 
 [display]
 
@@ -178,6 +182,10 @@ export/convert_text_resources_to_binary=false
 [editor_plugins]
 
 enabled=PackedStringArray("res://addons/Wwise/plugin.cfg", "res://addons/dialogic/plugin.cfg", "res://addons/resources_spreadsheet_view/plugin.cfg", "res://addons/tgo_greyboxing/plugin.cfg")
+
+[gui]
+
+theme/custom_font="res://Art/fonts/EBGaramond-VariableFont_wght.ttf"
 
 [input]
 

@@ -31,7 +31,7 @@ corner_radius_bottom_left = 3
 corner_detail = 5
 
 [node name="AddEventButton" type="Button"]
-custom_minimum_size = Vector2(44, 30)
+custom_minimum_size = Vector2(70, 60)
 offset_right = 97.0
 offset_bottom = 42.0
 tooltip_text = "S"

@@ -1,0 +1,109 @@
+[gd_scene load_steps=8 format=3 uid="uid://fqnikau2eopt"]
+
+[ext_resource type="Script" path="res://Dialogue/StyleTGO/CenteredChoices/vn_choice_layer.gd" id="1_1ogv6"]
+[ext_resource type="Script" path="res://Dialogue/StyleTGO/CenteredChoices/RichChoiceNode.gd" id="2_lps0c"]
+[ext_resource type="PackedScene" uid="uid://oe7lify5dr7e" path="res://Scenes/Components/RichTextButton.tscn" id="3_maml7"]
+[ext_resource type="Script" path="res://addons/dialogic/Modules/Choice/node_button_sound.gd" id="4_qf4yo"]
+[ext_resource type="AudioStream" uid="uid://b6c1p14bc20p1" path="res://addons/dialogic/Example Assets/sound-effects/typing1.wav" id="5_a2ttv"]
+[ext_resource type="AudioStream" uid="uid://c2viukvbub6v6" path="res://addons/dialogic/Example Assets/sound-effects/typing4.wav" id="6_lmntk"]
+
+[sub_resource type="AudioStream" id="AudioStream_pe27w"]
+
+[node name="VN_ChoiceLayer" type="Control"]
+layout_mode = 3
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_top = -1.0
+grow_horizontal = 2
+grow_vertical = 0
+size_flags_horizontal = 3
+size_flags_vertical = 8
+mouse_filter = 2
+script = ExtResource("1_1ogv6")
+text_color_hovered = Color(0.745098, 0.745098, 0.745098, 1)
+text_color_focused = Color(1, 1, 1, 1)
+boxes_fill_width = true
+
+[node name="Choices" type="VBoxContainer" parent="."]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -220.0
+offset_right = 220.0
+offset_bottom = -32.0
+grow_horizontal = 2
+grow_vertical = 0
+mouse_filter = 2
+alignment = 1
+metadata/_edit_layout_mode = 1
+
+[node name="DialogicNode_ChoiceButton1" type="Button" parent="Choices" node_paths=PackedStringArray("text_node")]
+layout_mode = 2
+alignment = 0
+script = ExtResource("2_lps0c")
+text_node = NodePath("RichTextButton")
+rich_choice = true
+
+[node name="RichTextButton" parent="Choices/DialogicNode_ChoiceButton1" instance=ExtResource("3_maml7")]
+layout_mode = 1
+alignment = 0
+
+[node name="DialogicNode_ChoiceButton2" type="Button" parent="Choices" node_paths=PackedStringArray("text_node")]
+layout_mode = 2
+alignment = 0
+script = ExtResource("2_lps0c")
+text_node = NodePath("RichTextButton2")
+rich_choice = true
+
+[node name="RichTextButton2" parent="Choices/DialogicNode_ChoiceButton2" instance=ExtResource("3_maml7")]
+layout_mode = 1
+alignment = 0
+
+[node name="DialogicNode_ChoiceButton3" type="Button" parent="Choices" node_paths=PackedStringArray("text_node")]
+layout_mode = 2
+alignment = 0
+script = ExtResource("2_lps0c")
+text_node = NodePath("RichTextButton3")
+rich_choice = true
+
+[node name="RichTextButton3" parent="Choices/DialogicNode_ChoiceButton3" instance=ExtResource("3_maml7")]
+layout_mode = 1
+alignment = 0
+
+[node name="DialogicNode_ChoiceButton4" type="Button" parent="Choices" node_paths=PackedStringArray("text_node")]
+layout_mode = 2
+alignment = 0
+script = ExtResource("2_lps0c")
+text_node = NodePath("RichTextButton4")
+rich_choice = true
+
+[node name="RichTextButton4" parent="Choices/DialogicNode_ChoiceButton4" instance=ExtResource("3_maml7")]
+layout_mode = 1
+alignment = 0
+
+[node name="DialogicNode_ButtonSound" type="AudioStreamPlayer" parent="Choices"]
+unique_name_in_owner = true
+script = ExtResource("4_qf4yo")
+sound_pressed = ExtResource("5_a2ttv")
+sound_hover = ExtResource("6_lmntk")
+sound_focus = SubResource("AudioStream_pe27w")
+
+[connection signal="focus_entered" from="Choices/DialogicNode_ChoiceButton1" to="Choices/DialogicNode_ChoiceButton1/RichTextButton" method="focus_color"]
+[connection signal="focus_exited" from="Choices/DialogicNode_ChoiceButton1" to="Choices/DialogicNode_ChoiceButton1/RichTextButton" method="exit_focus_color"]
+[connection signal="theme_changed" from="Choices/DialogicNode_ChoiceButton1" to="Choices/DialogicNode_ChoiceButton1" method="override_font_sizes"]
+[connection signal="focus_entered" from="Choices/DialogicNode_ChoiceButton2" to="Choices/DialogicNode_ChoiceButton2/RichTextButton2" method="focus_color"]
+[connection signal="focus_exited" from="Choices/DialogicNode_ChoiceButton2" to="Choices/DialogicNode_ChoiceButton2/RichTextButton2" method="exit_focus_color"]
+[connection signal="theme_changed" from="Choices/DialogicNode_ChoiceButton2" to="Choices/DialogicNode_ChoiceButton2" method="override_font_sizes"]
+[connection signal="focus_entered" from="Choices/DialogicNode_ChoiceButton3" to="Choices/DialogicNode_ChoiceButton3/RichTextButton3" method="focus_color"]
+[connection signal="focus_exited" from="Choices/DialogicNode_ChoiceButton3" to="Choices/DialogicNode_ChoiceButton3/RichTextButton3" method="exit_focus_color"]
+[connection signal="theme_changed" from="Choices/DialogicNode_ChoiceButton3" to="Choices/DialogicNode_ChoiceButton3" method="override_font_sizes"]
+[connection signal="focus_entered" from="Choices/DialogicNode_ChoiceButton4" to="Choices/DialogicNode_ChoiceButton4/RichTextButton4" method="focus_color"]
+[connection signal="focus_exited" from="Choices/DialogicNode_ChoiceButton4" to="Choices/DialogicNode_ChoiceButton4/RichTextButton4" method="exit_focus_color"]
+[connection signal="theme_changed" from="Choices/DialogicNode_ChoiceButton4" to="Choices/DialogicNode_ChoiceButton4" method="override_font_sizes"]
