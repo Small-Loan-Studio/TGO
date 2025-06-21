@@ -1,7 +1,7 @@
 [gd_scene load_steps=8 format=3 uid="uid://fqnikau2eopt"]
 
-[ext_resource type="Script" path="res://addons/dialogic/Modules/TGOLayoutStyle/CenteredChoices/vn_choice_layer.gd" id="1_xce7b"]
-[ext_resource type="Script" path="res://addons/dialogic/Modules/TGOLayoutStyle/CenteredChoices/RichChoiceNode.gd" id="2_8g20d"]
+[ext_resource type="Script" path="res://Dialogue/StyleTGO/CenteredChoices/vn_choice_layer.gd" id="1_1ogv6"]
+[ext_resource type="Script" path="res://Dialogue/StyleTGO/CenteredChoices/RichChoiceNode.gd" id="2_lps0c"]
 [ext_resource type="PackedScene" uid="uid://oe7lify5dr7e" path="res://Scenes/Components/RichTextButton.tscn" id="3_maml7"]
 [ext_resource type="Script" path="res://addons/dialogic/Modules/Choice/node_button_sound.gd" id="4_qf4yo"]
 [ext_resource type="AudioStream" uid="uid://b6c1p14bc20p1" path="res://addons/dialogic/Example Assets/sound-effects/typing1.wav" id="5_a2ttv"]
@@ -22,7 +22,7 @@ grow_vertical = 0
 size_flags_horizontal = 3
 size_flags_vertical = 8
 mouse_filter = 2
-script = ExtResource("1_xce7b")
+script = ExtResource("1_1ogv6")
 text_color_hovered = Color(0.745098, 0.745098, 0.745098, 1)
 text_color_focused = Color(1, 1, 1, 1)
 boxes_fill_width = true
@@ -47,7 +47,7 @@ metadata/_edit_layout_mode = 1
 [node name="DialogicNode_ChoiceButton1" type="Button" parent="Choices" node_paths=PackedStringArray("text_node")]
 layout_mode = 2
 alignment = 0
-script = ExtResource("2_8g20d")
+script = ExtResource("2_lps0c")
 text_node = NodePath("RichTextButton")
 rich_choice = true
 
@@ -58,7 +58,7 @@ alignment = 0
 [node name="DialogicNode_ChoiceButton2" type="Button" parent="Choices" node_paths=PackedStringArray("text_node")]
 layout_mode = 2
 alignment = 0
-script = ExtResource("2_8g20d")
+script = ExtResource("2_lps0c")
 text_node = NodePath("RichTextButton2")
 rich_choice = true
 
@@ -69,7 +69,7 @@ alignment = 0
 [node name="DialogicNode_ChoiceButton3" type="Button" parent="Choices" node_paths=PackedStringArray("text_node")]
 layout_mode = 2
 alignment = 0
-script = ExtResource("2_8g20d")
+script = ExtResource("2_lps0c")
 text_node = NodePath("RichTextButton3")
 rich_choice = true
 
@@ -80,7 +80,7 @@ alignment = 0
 [node name="DialogicNode_ChoiceButton4" type="Button" parent="Choices" node_paths=PackedStringArray("text_node")]
 layout_mode = 2
 alignment = 0
-script = ExtResource("2_8g20d")
+script = ExtResource("2_lps0c")
 text_node = NodePath("RichTextButton4")
 rich_choice = true
 
