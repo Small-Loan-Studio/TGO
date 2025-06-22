@@ -58,12 +58,6 @@ enum TimeOfDay {
 	NIGHT,
 }
 
-enum AudioTrack {
-	NONE,
-	SKETCH_1,
-	SKETCH_2,
-}
-
 enum AudioBus {
 	MASTER,
 	BACKGROUND_MUSIC,
@@ -90,7 +84,44 @@ enum TargetType {
 	MOVEABLE_BLOCK,
 }
 
-enum ActionVerb { DEFAULT, PICK_UP, TALK, PUSH_PULL, RELEASE, USE, EXAMINE }
+enum ActionVerb {
+	DEFAULT,
+	PICK_UP,
+	TALK,
+	PUSH_PULL,
+	RELEASE,
+	USE,
+	EXAMINE,
+	SPEAK,
+	SHOW_ITEM,
+	GIVE_ITEM,
+}
+
+const ACTION_VERB_NAMES = {
+	ActionVerb.EXAMINE:   "Examine",
+	ActionVerb.PICK_UP:   "Pick Up",
+	ActionVerb.TALK:      "Talk",
+	ActionVerb.USE:       "Use",
+	ActionVerb.PUSH_PULL: "Grab",
+	ActionVerb.RELEASE:   "Release",
+	ActionVerb.DEFAULT:   "Interact",
+	ActionVerb.SPEAK:     "Speak",
+	ActionVerb.SHOW_ITEM: "Show Item",
+	ActionVerb.GIVE_ITEM: "Give Item",
+}
+
+static func action_verb_name(av: ActionVerb) -> String:
+	return ACTION_VERB_NAMES.get(av, "Interact")
+
+
+static func action_verb_from_str(action_str: String) -> Enums.ActionVerb:
+	for key: ActionVerb in ACTION_VERB_NAMES.keys():
+		if action_str == ACTION_VERB_NAMES[key]:
+			return key
+
+	printerr("Unknown action verb: ", action_str)
+	return ActionVerb.DEFAULT
+
 
 enum QuestState { DORMANT, ACTIVE, FAILED, COMPLETED }
 enum QuestConditionType { VARIABLE, INVENTORY }
@@ -165,17 +196,6 @@ static func direction_push_pull_axis(d: Direction) -> Vector2:
 	return DIRECTION_PUSH_PULL_AXIS[d]
 
 
-static func move_mode_name(mm: MoveMode) -> String:
-	match mm:
-		MoveMode.WALK:
-			return "walk"
-		MoveMode.SPRINT:
-			return "sprint"
-		MoveMode.PUSH_PULL:
-			return "push/pull"
-	return "unknown"
-
-
 static func input_action_name(ia: InputAction) -> String:
 	match ia:
 		InputAction.UP:
@@ -210,20 +230,6 @@ static func input_action_symbol_texture(ia: InputAction) -> CompressedTexture2D:
 			return null
 
 
-static func light_level_name(ll: LightLevel) -> String:
-	match ll:
-		LightLevel.OFF:
-			return "off"
-		LightLevel.NORMAL:
-			return "normal"
-		LightLevel.BRIGHT:
-			return "bright"
-		LightLevel.SPECIAL:
-			return "special"
-	assert(false, "Invalid light level: " + str(ll))
-	return ""
-
-
 static func time_of_day_name(tod: TimeOfDay) -> String:
 	match tod:
 		TimeOfDay.DAWN:
@@ -238,9 +244,9 @@ static func time_of_day_name(tod: TimeOfDay) -> String:
 	return ""
 
 
-static func time_of_day_from_str(str: String) -> TimeOfDay:
-	str = str.to_lower().strip_edges()
-	match str:
+static func time_of_day_from_str(time_str: String) -> TimeOfDay:
+	time_str = time_str.to_lower().strip_edges()
+	match time_str:
 		"dawn":
 			return TimeOfDay.DAWN
 		"day":
@@ -250,71 +256,8 @@ static func time_of_day_from_str(str: String) -> TimeOfDay:
 		"night":
 			return TimeOfDay.NIGHT
 		_:
-			printerr("Invalid time of tay: %s" % [str])
+			printerr("Invalid time of tay: %s" % [time_str])
 			return TimeOfDay.DAY
-
-
-static func audio_track_path(track: AudioTrack) -> String:
-	match track:
-		AudioTrack.NONE:
-			return ""
-		AudioTrack.SKETCH_1:
-			return "res://Audio/TSO Sketch 1.mp3"
-		AudioTrack.SKETCH_2:
-			return "res://Audio/TSO Sketch 2.mp3"
-		_:
-			printerr("Passed an unknown audio track id: ", track)
-			return ""
-
-
-static func audio_bus_index(bus: AudioBus) -> int:
-	return AUDIO_BUS_INFO[bus][0]
-
-
-static func audio_bus_description(bus: AudioBus) -> String:
-	return AUDIO_BUS_INFO[bus][1]
-
-
-static func action_verb_name(av: ActionVerb) -> String:
-	match av:
-		ActionVerb.EXAMINE:
-			return "Examine"
-		ActionVerb.PICK_UP:
-			return "Pick Up"
-		ActionVerb.TALK:
-			return "Talk"
-		ActionVerb.USE:
-			return "Use"
-		ActionVerb.PUSH_PULL:
-			return "Grab"
-		ActionVerb.RELEASE:
-			return "Release"
-		ActionVerb.DEFAULT:
-			return "Interact"
-	printerr("Unknown action verb name requested: ", av)
-	return "Interact"
-
-
-static func action_verb_from_str(str: String) -> Enums.ActionVerb:
-	var v: Enums.ActionVerb = ActionVerb.DEFAULT
-	match str:
-		"Examine":
-			v = ActionVerb.EXAMINE
-		"Pick Up":
-			v = ActionVerb.PICK_UP
-		"Talk":
-			v = ActionVerb.TALK
-		"Use":
-			v = ActionVerb.USE
-		"Grab":
-			v = ActionVerb.PUSH_PULL
-		"Release":
-			v = ActionVerb.RELEASE
-		"Interact":
-			v = ActionVerb.DEFAULT
-		_:
-			printerr("Unknown action verb: ", str)
-	return v
 
 
 static func gear_slot_name(slot: GearSlot) -> String:
@@ -413,11 +356,11 @@ static func quest_state_name(st: QuestState) -> String:
 	return "unknown"
 
 
-static func quest_state_from_str(str: String) -> QuestState:
-	str = str.to_lower()
-	if QUEST_STATE_NAME.has(str):
-		return QUEST_STATE_NAME[str]
-	printerr("Unable to resolve quest state %s, returning default" % [str])
+static func quest_state_from_str(state_str: String) -> QuestState:
+	state_str = state_str.to_lower()
+	if QUEST_STATE_NAME.has(state_str):
+		return QUEST_STATE_NAME[state_str]
+	printerr("Unable to resolve quest state %s, returning default" % [state_str])
 	return QuestState.DORMANT
 
 
