@@ -85,6 +85,7 @@ directories/dtl_directory={
 "UnlitWoodenTorch": "res://Dialogue/Examinations/UnlitWoodenTorch.dtl",
 "WoodenStake": "res://Dialogue/Examinations/WoodenStake.dtl",
 "debugging_timeline": "res://ZZ_Scratch/DialogicValidation/debugging_timeline.dtl",
+"examine": "res://Dialogue/Other/examine.dtl",
 "juniper_bush_full": "res://Dialogue/PlaceableInteractive/juniper_bush_full.dtl",
 "npc_test_dialogue": "res://ZZ_Scratch/NPCDialogue/npc_test_dialogue.dtl",
 "style_timeline": "res://ZZ_Scratch/DialogicValidation/style_timeline.dtl",
@@ -153,7 +154,10 @@ variables={
 "CRT-visible": true
 },
 "UserInputNum": 0,
-"UserInputString": ""
+"UserInputString": "",
+"Util": {
+"examine_text": ""
+}
 }
 layout/style_list=["res://Dialogue/StyleTGO/TGOStyle.tres"]
 layout/default_style="res://Dialogue/StyleTGO/TGOStyle.tres"

@@ -26,8 +26,8 @@ var _last_loaded_level: LevelBase = null
 @onready var _debug_dnc: DebugDayNight = $OverlayManager/HUD/DebugStack/DebugDayNight
 @onready var _debug_inventory: DebugInventory = $OverlayManager/HUD/DebugStack/DebugInventory
 @onready var _debug_quests: QuestDebugger = $OverlayManager/HUD/DebugStack/QuestDebugger
-@onready var _auto_level_check: CheckBox = %AutoloadCheck
-@onready var _auto_level_label: Label = %AutoLoadLevelLabel
+@onready var _debug_auto_level_check: CheckBox = %AutoloadCheck
+@onready var _debug_auto_level_label: Label = %AutoLoadLevelLabel
 
 
 static func instance() -> Driver:
@@ -59,9 +59,9 @@ func _debug_refresh_autoload_ui() -> void:
 	var tgt := prefs.autoload_level
 	var has_tgt := tgt != ""
 	if has_tgt:
-		_auto_level_label.text = tgt
-	_auto_level_label.visible = has_tgt
-	_auto_level_check.set_pressed_no_signal(has_tgt)
+		_debug_auto_level_label.text = tgt
+	_debug_auto_level_label.visible = has_tgt
+	_debug_auto_level_check.set_pressed_no_signal(has_tgt)
 
 
 func _debug_refresh_inventory_ui(inventory_id: String) -> void:

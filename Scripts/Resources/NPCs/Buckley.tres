@@ -8,3 +8,4 @@ script = ExtResource("1_cgkq4")
 character_id = "mayor_buckley"
 sprite_sheet = ExtResource("2_u6pql")
 valid_timelines = Array[String](["res://Dialogue/Buckley/BuckleyTestTimeline.dtl"])
+examine_text = "The town's mayor. He reeks of gin."

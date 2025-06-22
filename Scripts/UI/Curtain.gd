@@ -14,6 +14,7 @@ func fade_in(fade_time: float, pausable: bool = true) -> Signal:
 	return fade_complete
 
 
+## TODO: refresh on usecases for pausable and update comments
 func fade_out(fade_time: float, pausable: bool = true) -> Signal:
 	_do_fade(OUT_COLOR, fade_time, pausable)
 	return fade_complete
