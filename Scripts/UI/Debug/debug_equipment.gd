@@ -1,10 +1,10 @@
 class_name DebugEquipment
-extends Control
+extends GridContainer
 
 var _in_sync := false
 
-@onready var _left_option: OptionButton = $Grid/LeftOption
-@onready var _right_option: OptionButton = $Grid/RightOption
+@onready var _left_option: OptionButton = $LeftOption
+@onready var _right_option: OptionButton = $RightOption
 
 
 func update_available() -> void:

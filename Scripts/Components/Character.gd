@@ -189,8 +189,8 @@ func _on_pushpull_sensor_exited(area: Area2D) -> void:
 
 
 func _handle_target_changed() -> void:
-	# print("%s - _handle_target_changed -> %s" % [name, target])
 	# TODO(envy) - better toast management
+	# print("%s - _handle_target_changed -> %s" % [name, target])
 	var hud := Driver.instance().get_hud()
 	if target.is_set():
 		if target.is_interactable():

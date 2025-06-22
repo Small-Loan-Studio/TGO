@@ -132,6 +132,10 @@ static func user_inventory_dir() -> String:
 	return USER_DATA_DIR + SAVE_FOLDER + INVENTORY_FOLDER
 
 
+static func dev_prefs_path() -> String:
+	return USER_DATA_DIR + "dev_prefs.tres"
+
+
 ## Visits all files starting from some root directory calling the provided
 ## predicat function to determin if the should be included in the resulting
 ## fileset.
