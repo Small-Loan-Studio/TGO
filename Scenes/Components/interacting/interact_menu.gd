@@ -41,6 +41,6 @@ func _ready() -> void:
 		var option := InteractOptionScene.instantiate()
 		option.label = Enums.action_verb_name(action)
 		option.layout = layout
-		option.symbol = Enums.input_action_symbol_texture(Enums.InputAction.INTERACT)
+		option.symbol = Enums.input_action_symbol_texture(Enums.InputAction.DEFAULT)
 		_container.add_child(option)
 	self.add_child(_container)

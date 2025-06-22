@@ -16,9 +16,10 @@ func enter(_enter_ctx: Variant, change_state: Callable) -> void:
 func run_input(_event: InputEvent, change_state: Callable) -> void:
 	if _is_interacting:
 		return
+
 	if _is_selecting:
 		var interactable := _tgt.get_interactable()
-		if _ctx.controller.just_pressed(Enums.InputAction.INTERACT):
+		if _ctx.controller.just_pressed(Enums.InputAction.DEFAULT):
 			if interactable.interact.selected == Enums.ActionVerb.DEFAULT:
 				interactable.interact.blur()
 				interactable.interact.toggle()
@@ -34,14 +35,23 @@ func run_input(_event: InputEvent, change_state: Callable) -> void:
 			interactable.interact.next()
 		elif _ctx.controller.just_pressed(Enums.InputAction.UP):
 			interactable.interact.previous()
-	elif _tgt.is_interactable():
+		return
+
+	if _tgt.is_interactable():
 		_animated_sprite.stop()
 		var interactable := _tgt.get_interactable()
+		print("Found interactable: %s" % [interactable.name])
+		print("available actions:")
+		for key: Enums.ActionVerb in interactable.action_map.keys():
+			print("  %s" % [key])
+
+		# in cases where there are more than one actions transition to a selecting sub-state
 		if interactable.interact.actions.size() > 1:
 			_is_selecting = true
 			interactable.interact.focus(interactable.default_verb)
 			interactable.interact.toggle()
 		else:
+			# otherwise trigger the interactable
 			_is_interacting = true
 			interactable.trigger(_ctx.character)
 			await interactable.triggered

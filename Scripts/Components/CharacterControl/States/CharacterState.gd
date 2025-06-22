@@ -24,7 +24,7 @@ func maybe_interact(change_state: Callable) -> bool:
 			change_state.call(interact_state)
 			return true
 
-	if Enums.InputAction.INTERACT in just_pressed:
+	if Enums.InputAction.DEFAULT in just_pressed:
 		change_state.call(interact_state)
 		return true
 

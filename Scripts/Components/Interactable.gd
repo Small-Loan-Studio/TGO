@@ -90,13 +90,13 @@ func activate() -> void:
 
 	_examine_scene = InteractPanelScene.instantiate()
 	_examine_scene.actions.assign(examine_actions)
-	_examine_scene.input = Enums.InputAction.EXAMINE
+	_examine_scene.input = Enums.InputAction.SECONDARY
 	_examine_scene.target = self.owner
 	_examine_scene.target_size = tsize
 
 	_interact_scene = InteractPanelScene.instantiate()
 	_interact_scene.actions.assign(interact_actions)
-	_interact_scene.input = Enums.InputAction.INTERACT
+	_interact_scene.input = Enums.InputAction.DEFAULT
 	_interact_scene.target = self.owner
 	_interact_scene.target_size = tsize
 

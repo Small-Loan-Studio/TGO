@@ -36,13 +36,46 @@ enum InputAction {
 	DOWN,
 	LEFT,
 	RIGHT,
-	INTERACT,
+	DEFAULT,
 	SPRINT,
 	MENU,
 	LEFT_ITEM,
 	RIGHT_ITEM,
-	EXAMINE,
+	SECONDARY,
+	INTERACT_CANCEL,
 }
+
+
+const INTERACT_ACTION_NAMES = {
+	InputAction.UP: "up",
+	InputAction.DOWN: "down",
+	InputAction.LEFT: "left",
+	InputAction.RIGHT: "right",
+	InputAction.DEFAULT: "default_action",
+	InputAction.SPRINT: "sprint",
+	InputAction.MENU: "load_menu",
+	InputAction.LEFT_ITEM: "left_item",
+	InputAction.RIGHT_ITEM: "right_item",
+	InputAction.SECONDARY: "secondary_action",
+	InputAction.INTERACT_CANCEL: "interact_cancel",
+}
+
+static func input_action_name(ia: InputAction) -> String:
+	if INTERACT_ACTION_NAMES.has(ia):
+		return INTERACT_ACTION_NAMES[ia]
+	assert(false, "Invalid input action: " + str(ia))
+	return ""
+
+
+static func input_action_symbol_texture(ia: InputAction) -> CompressedTexture2D:
+	match ia:
+		InputAction.SECONDARY:
+			return preload("res://Art/interacting/symbol_square.png")
+		InputAction.DEFAULT:
+			return preload("res://Art/interacting/symbol_cross.png")
+		_:
+			return null
+
 
 enum LightLevel {
 	OFF,
@@ -194,40 +227,6 @@ static func direction_vector(da: Direction) -> Vector2:
 
 static func direction_push_pull_axis(d: Direction) -> Vector2:
 	return DIRECTION_PUSH_PULL_AXIS[d]
-
-
-static func input_action_name(ia: InputAction) -> String:
-	match ia:
-		InputAction.UP:
-			return "up"
-		InputAction.DOWN:
-			return "down"
-		InputAction.LEFT:
-			return "left"
-		InputAction.RIGHT:
-			return "right"
-		InputAction.INTERACT:
-			return "interact"
-		InputAction.SPRINT:
-			return "sprint"
-		InputAction.MENU:
-			return "load_menu"
-		InputAction.LEFT_ITEM:
-			return "left_item"
-		InputAction.RIGHT_ITEM:
-			return "right_item"
-	assert(false, "Invalid Input action: " + str(ia))
-	return ""
-
-
-static func input_action_symbol_texture(ia: InputAction) -> CompressedTexture2D:
-	match ia:
-		InputAction.EXAMINE:
-			return preload("res://Art/interacting/symbol_square.png")
-		InputAction.INTERACT:
-			return preload("res://Art/interacting/symbol_cross.png")
-		_:
-			return null
 
 
 static func time_of_day_name(tod: TimeOfDay) -> String:

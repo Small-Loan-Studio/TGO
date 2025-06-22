@@ -31,7 +31,7 @@ func enter(ctx: Variant, _change_state: Callable) -> void:
 
 
 func run_input(_event: InputEvent, change_state: Callable) -> void:
-	if Enums.InputAction.INTERACT in _ctx.controller.get_just_pressed():
+	if Enums.InputAction.DEFAULT in _ctx.controller.get_just_pressed():
 		change_state.call(idle_state)
 		_hud.set_toast(Enums.action_verb_name(Enums.ActionVerb.PUSH_PULL))
 		return
