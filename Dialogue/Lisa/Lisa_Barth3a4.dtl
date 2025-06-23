@@ -1,0 +1,12 @@
+if {Lisa.FirstKitchen} == true:
+	Lisa: … and those whispers that the Old Pretender will foment another uprising. Mark my words, he’ll be back.
+	Bartholomew: Miss Allgood, what does it matter if he returns to stake his claim once more? His senseless little tantrum will be put down and forgotten again a month hence.
+	Lisa: It’s Mrs Bennett now, you’d do well to remember.
+	Bartholomew: Yes, of course. I do forget. Mrs Bennett.
+	Lisa: Aye. And what about Charlie in any case? We ought to watch lest he returns from his gallivanting in France.
+	Bartholomew: The Young Pretender? Toothless if you ask me.
+	Lisa: Oh good sir, the threat is genuine. You may not even be around to live it. But the young ones? Oh, if a Catholic should seize the throne…
+	Bartholomew: Relent Mrs Bennett, we have company. What say you faceless one about these nasty Jacobites then?
+	Devin: My mother was a catholic. But I care not a whit for politics. Only for that which I can hunt.
+	Lisa: Aye, to business, then.
+	set {Lisa.FirstKitchen} = false

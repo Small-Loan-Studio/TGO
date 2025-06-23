@@ -1,0 +1,16 @@
+[gd_resource type="Resource" script_class="Item" load_steps=3 format=3 uid="uid://bdru104ygsgt2"]
+
+[ext_resource type="Texture2D" uid="uid://13dfivxpoil4" path="res://Art/Items/CryptKey.png" id="1_a7fau"]
+[ext_resource type="Script" path="res://Scripts/Components/Inventory/Item.gd" id="1_oa4gy"]
+
+[resource]
+script = ExtResource("1_oa4gy")
+id = "StudyKey"
+name = "Key to Arthur’s Study"
+type = 0
+description = "Default: The key to the Lord of the Manor’s study.
+After Examination: The key to the Lord of the Manor’s study. Wonder what bloody secrets it’s helped hide…"
+stackable = false
+stack_size = 1
+icon = ExtResource("1_a7fau")
+gear_spec = Array[Resource("res://Scripts/Resources/GearSpec.gd")]([])

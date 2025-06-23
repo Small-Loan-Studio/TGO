@@ -7,7 +7,7 @@ extends TriggerCondition
 
 
 func evaluate(actor_id: String) -> bool:
-	var maybe_actor := Driver.instance().get_node(actor_id)
+	var maybe_actor := Driver.instance().get_current_level().get_by_id(actor_id)
 	if maybe_actor == null || !(maybe_actor is Character):
 		printerr("Failed to find actor with id: %s" % [actor_id])
 		return false

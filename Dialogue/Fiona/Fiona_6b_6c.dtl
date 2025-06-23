@@ -1,0 +1,44 @@
+if {Fiona.HasSpoken} == false:
+	Devin: Fiona Sharp?
+	Fiona: Well met, good sir. I presume you’re the masked venator my father hired.
+	Devin: In the flesh.
+	Fiona: Aye. Well I’m rather busy. Difficult times of late, as you well know. Perchance you have come to serve?
+	Devin: I’m here for questions, Miss Sharp.
+	Fiona: I suspect others might be more help, but pray, continue if you must.
+	set {Fiona.HasSpoken} = true
+else:
+	if {Fiona.ItemGiven} == false:
+		if {Fiona.SetANecklaceAsked} == true:
+			Devin: Miss Sharp.
+			Fiona: I haven’t the time, there are more important matters at hand than your inane questions.
+			[end_timeline]
+		else:
+			Devin: Miss Sharp.
+			Fiona: Yes, hunter?
+	else:
+		Devin: Miss Sharp.
+		Fiona: Yes, hunter. How may I be of assistance?
+if {Fiona.ItemGiven} == false:
+	if {Fiona.SetANecklaceAsked} == false:
+		label Questions
+		- Strange deaths and disappearances. Notice anything unusual?
+			Devin: Bodies lie dead in the fields. They are savaged. Tell me what you have noticed of late?
+			Fiona: I pray you don’t think me blithe, but I cannot think of anything for certain. If it pleases the Lord, we’ll have fewer such deaths anon.
+			jump Questions
+		- Tell me about your mother, Beth.
+			Devin: Your mother has been missing for some months. I must ask —
+			Fiona: Yes. Apologies, hunter. But I can hardly get my thoughts together. I worry so.
+			jump Questions
+		- Your family is short a necklace. What do you know?
+			Devin: What can you tell me of the necklace that has vanished and its fate?
+			Fiona: Strange that it has gone missing, stranger yet that you consider it relevant. If you don’t mind, I must carry on with our important work.
+			Devin: Miss Sharp, need I remind you that people are dying in the fields — I must do what I can.
+			Fiona: And I must do what I can for townsfolk dying in the streets daily. Fare thee well, hunter.
+			set {Fiona.SetANecklaceAsked} = true
+			[end_timeline]
+		- I’ll be on my way
+			Devin: I should take my leave.
+			Fiona: Godspeed, hunter.
+			[end_timeline]
+else:
+	ADD SET B dialogue here

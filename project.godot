@@ -45,6 +45,7 @@ directories/dch_directory={
 "David": "res://Scripts/Resources/NPCs/DialogicCharacters/David.dch",
 "Devin": "res://Scripts/Resources/NPCs/DialogicCharacters/Devin.dch",
 "Elias": "res://Scripts/Resources/NPCs/DialogicCharacters/Elias.dch",
+"Fiona": "res://Scripts/Resources/NPCs/DialogicCharacters/Fiona.dch",
 "Groundskeeper": "res://Scripts/Resources/NPCs/DialogicCharacters/Groundskeeper.dch",
 "Ilene": "res://Scripts/Resources/NPCs/DialogicCharacters/Ilene.dch",
 "Jefferson": "res://Scripts/Resources/NPCs/DialogicCharacters/Jefferson.dch",
@@ -55,6 +56,7 @@ directories/dch_directory={
 directories/dtl_directory={
 "AudioAdapter": "res://Dialogue/TestTimelines/AudioAdapter.dtl",
 "BagOfHardtack": "res://Dialogue/Examinations/BagOfHardtack.dtl",
+"Bartholomew13b": "res://Dialogue/Bartholomew/Bartholomew13b.dtl",
 "Bartholomew2b": "res://Dialogue/Bartholomew/Bartholomew2b.dtl",
 "Bartholomew3a6": "res://Dialogue/Bartholomew/Bartholomew3a6.dtl",
 "BlackMouldCrypt": "res://Dialogue/Examinations/BlackMouldCrypt.dtl",
@@ -66,6 +68,7 @@ directories/dtl_directory={
 "CryptSecretChamberOnEnter": "res://Dialogue/Other/CryptSecretChamberOnEnter.dtl",
 "DavidElias3a2": "res://Dialogue/DavidElias/DavidElias3a2.dtl",
 "EmptyBottle": "res://Dialogue/Examinations/EmptyBottle.dtl",
+"Fiona_6b_6c": "res://Dialogue/Fiona/Fiona_6b_6c.dtl",
 "FlameTorch": "res://Dialogue/Examinations/FlameTorch.dtl",
 "GinPuddle": "res://Dialogue/Examinations/GinPuddle.dtl",
 "GroundskeeperTimeline": "res://Dialogue/Groundskeeper/GroundskeeperTimeline.dtl",
@@ -73,6 +76,7 @@ directories/dtl_directory={
 "Jefferson3a1": "res://Dialogue/Jefferson/Jefferson3a1.dtl",
 "JournalPage1": "res://Dialogue/Examinations/JournalPage1.dtl",
 "Lisa_3a5": "res://Dialogue/Lisa/Lisa_3a5.dtl",
+"Lisa_Barth3a4": "res://Dialogue/Lisa/Lisa_Barth3a4.dtl",
 "LitWoodenTorch": "res://Dialogue/Examinations/LitWoodenTorch.dtl",
 "Martha3a3": "res://Dialogue/Martha/Martha3a3.dtl",
 "OldBatteredKey": "res://Dialogue/Examinations/OldBatteredKey.dtl",
@@ -109,6 +113,7 @@ save/encryption_on_exports_only=true
 text/autopauses={}
 variables={
 "Bartholomew": {
+"13bHasSpoken": false,
 "2bSpoken": false,
 "3a1Op2.3": false,
 "3a3Op2": false,
@@ -121,6 +126,11 @@ variables={
 "Q1Answered": false,
 "Q2Answered": false,
 "Q3Answered": false
+},
+"Fiona": {
+"HasSpoken": false,
+"ItemGiven": false,
+"SetANecklaceAsked": false
 },
 "GroundsKeeper": {
 "FinishedTopics": false,
@@ -142,6 +152,7 @@ variables={
 "opt2_3a5": false
 },
 "Lisa": {
+"FirstKitchen": true,
 "HasSpoken": false
 },
 "Martha": {
@@ -317,6 +328,51 @@ region_states={
 "crypt.exit_door": {
 "extra": {},
 "passable": false,
+"visible": true
+},
+"crypt.exit_door2": {
+"extra": {},
+"passable": false,
+"visible": true
+},
+"crypt.torch": {
+"extra": {},
+"passable": true,
+"visible": false
+},
+"crypt.torch14": {
+"extra": {},
+"passable": true,
+"visible": false
+},
+"crypt.torch2": {
+"extra": {},
+"passable": true,
+"visible": true
+},
+"crypt.torch3": {
+"extra": {},
+"passable": true,
+"visible": true
+},
+"crypt.torch4": {
+"extra": {},
+"passable": true,
+"visible": true
+},
+"crypt.torch5": {
+"extra": {},
+"passable": true,
+"visible": true
+},
+"crypt.torch6": {
+"extra": {},
+"passable": true,
+"visible": true
+},
+"crypt.torch7": {
+"extra": {},
+"passable": true,
 "visible": true
 }
 }

@@ -15,7 +15,7 @@ name = "Flame Torch"
 type = 2
 description = "Default: A standard wooden torch. Smells like soot.
 After Examination: A standard torch that smells like soot. The ash is smudged where it has been used before. This will help me see much better through the darkness."
-stackable = false
-stack_size = 1
+stackable = true
+stack_size = 10
 icon = ExtResource("1_bm1le")
 gear_spec = Array[Resource("res://Scripts/Resources/GearSpec.gd")]([SubResource("Resource_1saab")])

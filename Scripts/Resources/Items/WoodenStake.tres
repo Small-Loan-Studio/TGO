@@ -10,7 +10,7 @@ name = "Wooden Stake"
 type = 0
 description = "Default: A pale, wooden stake.
 After Examination: A pale wooden stake. Sturdy. Pray I need not wield it as a weapon. But I should yet find some use for it."
-stackable = false
-stack_size = 1
+stackable = true
+stack_size = 10
 icon = ExtResource("1_ixsnp")
 gear_spec = Array[Resource("res://Scripts/Resources/GearSpec.gd")]([])
