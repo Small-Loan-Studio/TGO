@@ -19,10 +19,14 @@ func maybe_interact(change_state: Callable) -> bool:
 	if !_ctx.character.target.is_set():
 		return false
 
-	if _ctx.character.target.get_interactable():
+	var tgt: Interactable = _ctx.character.target.get_interactable()
+	if tgt != null:
 		if _ctx.character.target.get_interactable().automatic:
 			change_state.call(interact_state)
 			return true
+
+		if tgt.active_panel != null && tgt.action_count > 1:
+			print("should check secondary")
 
 	if Enums.InputAction.DEFAULT in just_pressed:
 		change_state.call(interact_state)

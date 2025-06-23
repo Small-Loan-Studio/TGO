@@ -56,6 +56,19 @@ var interact: InteractPanel:
 	get:
 		return _interact_scene
 
+var active_panel: InteractPanel:
+	get:
+		if _examine_scene != null && _examine_scene.visible:
+			return _examine_scene
+		elif _interact_scene != null and _interact_scene.visible:
+			return _interact_scene
+		else:
+			return null
+
+var action_count: int:
+	get:
+		return action_map.size()
+
 var _examine_scene: InteractPanel = null
 var _interact_scene: InteractPanel = null
 
