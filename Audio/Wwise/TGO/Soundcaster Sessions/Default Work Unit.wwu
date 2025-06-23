@@ -13,6 +13,10 @@
 							<ObjectRef Name="stop_TEST_TestTone_lp_3D" ID="{ABEEB2B7-1680-4A85-8D2D-C308C24EAA97}" WorkUnitID="{AAA74B16-0AA3-4E80-A3C1-B701AD23C503}"/>
 							<Position X="1" Y="0"/>
 						</Module>
+						<Module>
+							<ObjectRef Name="play_UI_Dialogue_generic_male" ID="{484BBDD4-C2C0-44C5-B0D4-B53AEE402C97}" WorkUnitID="{285F7A76-AE49-4D48-8D5D-C73C7938630A}"/>
+							<Position X="2" Y="0"/>
+						</Module>
 					</ModuleList>
 					<RTPCValueList ShowAll="true">
 						<RTPCValue>
@@ -36,7 +40,10 @@
 							<Value>100</Value>
 						</RTPCValue>
 					</RTPCValueList>
-					<CurrentStateList ShowAll="true"/>
+					<CurrentStateList ShowAll="true">
+						<CurrentStateRef Name="None" ID="{7F893D17-9EE0-4C22-A6EA-2838936E42C3}"/>
+						<CurrentStateRef Name="None" ID="{9689A2A8-DBB5-414A-B12F-4EBACCBA3E31}"/>
+					</CurrentStateList>
 					<CurrentSwitchList ShowAll="true">
 						<CurrentSwitchRef Name="Night" ID="{EE2540A7-8CE8-46A0-9FCA-65279EE0481B}"/>
 						<CurrentSwitchRef Name="Cemetery" ID="{4E545059-0EE6-44C0-8172-34292D586654}"/>
