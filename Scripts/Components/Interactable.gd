@@ -85,17 +85,13 @@ func activate() -> void:
 	tmid.x -= tsize.x / 2
 	tmid.y -= tsize.y / 2
 
-	print("default_action: %s" % [Enums.action_verb_name(default_verb)])
-
 	var default_action: Array = action_map.keys().filter(
 		func(e: Enums.ActionVerb) -> bool: return e == default_verb
 	)
-	print("default_action: %s"  % [default_action])
 
 	var secondary_actions: Array = action_map.keys().filter(
 		func(e: Enums.ActionVerb) -> bool: return e != default_verb
 	)
-	print("secondary_actions: %s" % [secondary_actions])
 
 	_primary_scene = InteractPanelScene.instantiate()
 	_primary_scene.actions.assign(default_action)

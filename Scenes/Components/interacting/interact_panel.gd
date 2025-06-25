@@ -27,9 +27,10 @@ var selected: Enums.ActionVerb:
 	get:
 		if _menu:
 			if _selected == 0:
-				return Enums.ActionVerb.DEFAULT
+				return Enums.ActionVerb.CLOSE
 			return actions[_selected - 1]
 		return actions[_selected]
+
 var target: Node2D
 var target_size: Vector2
 
@@ -120,7 +121,8 @@ func toggle() -> void:
 			_option.focus()
 		else:
 			_menu.expand()
-			_option.blur()
+			_selected = 1
+			previous()
 		_expanded = !_expanded
 
 
@@ -138,14 +140,7 @@ func _on_menu_opened() -> void:
 func _get_label() -> String:
 	if actions.size() == 1:
 		return Enums.action_verb_name(actions[0])
-	match input:
-		Enums.InputAction.SECONDARY:
-			return Enums.input_action_name(input)
-		Enums.InputAction.DEFAULT:
-			return Enums.input_action_name(input)
-		_:
-			assert(false, "ERROR: Unsupported input action selected.")
-			return ""
+	return "Interact"
 
 
 func _get_symbol() -> CompressedTexture2D:

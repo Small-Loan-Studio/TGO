@@ -17,14 +17,24 @@ func run_input(_event: InputEvent, change_state: Callable) -> void:
 	if _is_interacting:
 		return
 
+	var interactable := _tgt.get_interactable()
 	if _is_selecting:
-		var interactable := _tgt.get_interactable()
-		if _ctx.controller.just_pressed(Enums.InputAction.DEFAULT):
-			if interactable.secondary.selected == Enums.ActionVerb.DEFAULT:
-				interactable.secondary.blur()
-				interactable.secondary.toggle()
-				_is_selecting = false
-				change_state.call(idle_state)
+		interactable.primary.visible = false
+
+		var ctrl := _ctx.controller
+		var cancel := func() -> void:
+			interactable.secondary.blur()
+			interactable.secondary.toggle()
+			interactable.primary.visible = true
+			_is_selecting = false
+			change_state.call(idle_state)
+
+		if ctrl.just_pressed(Enums.InputAction.SECONDARY) || ctrl.just_pressed(Enums.InputAction.INTERACT_CANCEL):
+			cancel.call()
+		if ctrl.just_pressed(Enums.InputAction.DEFAULT):
+			if interactable.secondary.selected == Enums.ActionVerb.CLOSE:
+				cancel.call()
+				return
 			else:
 				_is_interacting = true
 				_is_selecting = false
@@ -39,26 +49,7 @@ func run_input(_event: InputEvent, change_state: Callable) -> void:
 
 	if _tgt.is_interactable():
 		_animated_sprite.stop()
-		var interactable := _tgt.get_interactable()
-
-		# if interactable.primary != null:
-		# 	for key: Enums.ActionVerb in interactable.primary.actions:
-		# 		var selected_str := "   "
-		# 		if interactable.primary.selected == key:
-		# 			selected_str = "-->"
-		# 		print("%s%s" % [selected_str, Enums.action_verb_name(key)])
-		# else:
-		# 	print("primary == null")
-
-		# print("secondary panel:")
-		# if interactable.secondary != null:
-		# 	for key: Enums.ActionVerb in interactable.secondary.actions:
-		# 		var selected_str := "   "
-		# 		if interactable.secondary.selected == key:
-		# 			selected_str = "-->"
-		# 		print("%s%s" % [selected_str, Enums.action_verb_name(key)])
-		# else:
-		# 	print("secondary == null")
+		interactable.primary.visible = true
 
 		# in cases where there are more than one actions transition to a selecting sub-state
 		if _ctx.controller.just_pressed(Enums.InputAction.SECONDARY):
@@ -74,10 +65,11 @@ func run_input(_event: InputEvent, change_state: Callable) -> void:
 				_is_selecting = true
 				interactable.secondary.focus(interactable.default_verb)
 				interactable.secondary.toggle()
+				interactable.primary.visible = false
 		else:
 			# otherwise trigger the interactable
 			_is_interacting = true
-			interactable.trigger(_ctx.character, interactable.primary.selected)
+			interactable.trigger(_ctx.character)
 			await interactable.triggered
 
 

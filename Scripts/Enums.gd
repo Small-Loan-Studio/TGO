@@ -128,6 +128,7 @@ enum ActionVerb {
 	SHOW_ITEM,
 	GIVE_ITEM,
 	MORE,
+	CLOSE,
 }
 
 const ACTION_VERB_NAMES = {
@@ -141,6 +142,7 @@ const ACTION_VERB_NAMES = {
 	ActionVerb.SHOW_ITEM: "Show Item",
 	ActionVerb.GIVE_ITEM: "Give Item",
 	ActionVerb.MORE:      "More",
+	ActionVerb.CLOSE:     "Close",
 }
 
 static func action_verb_name(av: ActionVerb) -> String:
