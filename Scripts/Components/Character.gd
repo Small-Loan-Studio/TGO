@@ -100,7 +100,13 @@ func _ready() -> void:
 					Enums.InputAction.DOWN,
 				],
 				[
+					Enums.InputAction.LEFT,
+					Enums.InputAction.RIGHT,
+					Enums.InputAction.UP,
+					Enums.InputAction.DOWN,
 					Enums.InputAction.DEFAULT,
+					Enums.InputAction.SECONDARY,
+					Enums.InputAction.INTERACT_CANCEL,
 					Enums.InputAction.SPRINT,
 					Enums.InputAction.MENU,
 					Enums.InputAction.LEFT_ITEM,

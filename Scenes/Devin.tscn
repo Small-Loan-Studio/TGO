@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://mqvl5162rawb"]
+[gd_scene load_steps=15 format=3 uid="uid://mqvl5162rawb"]
 
 [ext_resource type="Script" path="res://Scripts/Devin.gd" id="1_coq4s"]
 [ext_resource type="PackedScene" uid="uid://cx703e8t27grh" path="res://Scenes/Components/Character.tscn" id="1_kp6oq"]
@@ -9,6 +9,7 @@
 [ext_resource type="Script" path="res://Scripts/Components/CharacterControl/States/PushPull.gd" id="7_wksnu"]
 [ext_resource type="Script" path="res://Scripts/Components/CharacterControl/InputController.gd" id="8_1w5au"]
 [ext_resource type="Script" path="res://Scripts/Components/CharacterControl/States/Sprint.gd" id="8_ii0li"]
+[ext_resource type="Script" path="res://Scripts/Components/CharacterControl/States/InteractSubState.gd" id="8_utg10"]
 [ext_resource type="Script" path="res://Scripts/Components/CharacterControl/States/Menu.gd" id="9_ac1aa"]
 [ext_resource type="Script" path="res://Scripts/Resources/CharacterStat.gd" id="9_fybv6"]
 
@@ -48,11 +49,12 @@ deadzone = 0.25
 [node name="StateMachine" parent="." index="5" node_paths=PackedStringArray("_initial_state")]
 _initial_state = NodePath("Idle")
 
-[node name="Idle" type="Node" parent="StateMachine" index="0" node_paths=PackedStringArray("walk_state", "sprint_state", "interact_state", "menu_state")]
+[node name="Idle" type="Node" parent="StateMachine" index="0" node_paths=PackedStringArray("walk_state", "sprint_state", "interact_state", "interact_sub_state", "menu_state")]
 script = ExtResource("4_3ac8w")
 walk_state = NodePath("../Walk")
 sprint_state = NodePath("../Sprint")
 interact_state = NodePath("../Interact")
+interact_sub_state = NodePath("../InteractSubState")
 menu_state = NodePath("../Menu")
 
 [node name="Walk" type="Node" parent="StateMachine" index="1" node_paths=PackedStringArray("idle_state", "sprint_state", "interact_state")]
@@ -62,24 +64,30 @@ sprint_state = NodePath("../Sprint")
 move_speed = 175
 interact_state = NodePath("../Interact")
 
-[node name="Interact" type="Node" parent="StateMachine" index="2" node_paths=PackedStringArray("idle_state", "push_pull_state")]
+[node name="Interact" type="Node" parent="StateMachine" index="2" node_paths=PackedStringArray("idle_state", "push_pull_state", "interact_sub_state")]
 script = ExtResource("6_0katj")
 idle_state = NodePath("../Idle")
 push_pull_state = NodePath("../PushPull")
+interact_sub_state = NodePath("../InteractSubState")
 
-[node name="PushPull" type="Node" parent="StateMachine" index="3" node_paths=PackedStringArray("idle_state", "interact_state")]
+[node name="InteractSubState" type="Node" parent="StateMachine" index="3" node_paths=PackedStringArray("idle_state", "interact_state")]
+script = ExtResource("8_utg10")
+idle_state = NodePath("../Idle")
+interact_state = NodePath("../Interact")
+
+[node name="PushPull" type="Node" parent="StateMachine" index="4" node_paths=PackedStringArray("idle_state", "interact_state")]
 script = ExtResource("7_wksnu")
 idle_state = NodePath("../Idle")
 move_speed = 175
 interact_state = NodePath("../Interact")
 
-[node name="Sprint" type="Node" parent="StateMachine" index="4" node_paths=PackedStringArray("idle_state", "walk_state")]
+[node name="Sprint" type="Node" parent="StateMachine" index="5" node_paths=PackedStringArray("idle_state", "walk_state")]
 script = ExtResource("8_ii0li")
 idle_state = NodePath("../Idle")
 walk_state = NodePath("../Walk")
 move_speed = 260
 
-[node name="Menu" type="Node" parent="StateMachine" index="5" node_paths=PackedStringArray("idle_state")]
+[node name="Menu" type="Node" parent="StateMachine" index="6" node_paths=PackedStringArray("idle_state")]
 script = ExtResource("9_ac1aa")
 idle_state = NodePath("../Idle")
 _input_exclusive = true

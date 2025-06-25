@@ -125,9 +125,9 @@ enum ActionVerb {
 	RELEASE,
 	USE,
 	EXAMINE,
-	SPEAK,
 	SHOW_ITEM,
 	GIVE_ITEM,
+	MORE,
 }
 
 const ACTION_VERB_NAMES = {
@@ -138,9 +138,9 @@ const ACTION_VERB_NAMES = {
 	ActionVerb.PUSH_PULL: "Grab",
 	ActionVerb.RELEASE:   "Release",
 	ActionVerb.DEFAULT:   "Interact",
-	ActionVerb.SPEAK:     "Speak",
 	ActionVerb.SHOW_ITEM: "Show Item",
 	ActionVerb.GIVE_ITEM: "Give Item",
+	ActionVerb.MORE:      "More",
 }
 
 static func action_verb_name(av: ActionVerb) -> String:

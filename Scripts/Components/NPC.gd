@@ -23,16 +23,16 @@ func _ready() -> void:
 		_talk_sensor.action_map[Enums.ActionVerb.TALK] = [dlg]
 
 	if config.examine_text != "":
-		var examine_dlg := DialogueEffect.new()
-		examine_dlg.timeline = DialogicResourceUtil.get_timeline_resource("res://Dialogue/Other/examine.dtl")
-
-		var set_var := SetVarEffect.new()
-		set_var.variable_name = "Util.examine_text"
-		set_var.new_value = config.examine_text
 		_talk_sensor.action_map[Enums.ActionVerb.EXAMINE] = [
-			set_var,
-			examine_dlg,
+			ExamineEffect.mk_effect(config.examine_text),
 		]
+	
+	_talk_sensor.action_map[Enums.ActionVerb.GIVE_ITEM] = [
+		DebugEffect.mk_effect("give_item")]
+	_talk_sensor.action_map[Enums.ActionVerb.SHOW_ITEM] = [
+		DebugEffect.mk_effect("show_item")]
+
+	_talk_sensor.default_verb = Enums.ActionVerb.TALK
 
 	if config != null:
 		id = config.character_id

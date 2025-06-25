@@ -2,6 +2,7 @@ class_name CharacterState
 extends State
 
 @export var interact_state: State
+@export var interact_sub_state: State
 @export var menu_state: State
 
 var _ctx: StateMachine.CharacterContext
@@ -24,11 +25,13 @@ func maybe_interact(change_state: Callable) -> bool:
 		if _ctx.character.target.get_interactable().automatic:
 			change_state.call(interact_state)
 			return true
+	
+	# if tgt.action_count > 1:
+	# 		if Enums.InputAction.SECONDARY in just_pressed:
+	# 			change_state.call(interact_state) # interact_sub_state, interact_sub_state.mk_args())
+	# 			return true
 
-		if tgt.active_panel != null && tgt.action_count > 1:
-			print("should check secondary")
-
-	if Enums.InputAction.DEFAULT in just_pressed:
+	if Enums.InputAction.DEFAULT in just_pressed || Enums.InputAction.SECONDARY in just_pressed:
 		change_state.call(interact_state)
 		return true
 
