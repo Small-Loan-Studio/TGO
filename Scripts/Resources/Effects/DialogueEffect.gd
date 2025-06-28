@@ -16,3 +16,9 @@ func act(_actor_id: String, _cur_level: LevelBase) -> Variant:
 
 	Dialogic.start(timeline)
 	return null
+
+
+static func mk_effect(res: DialogicTimeline) -> DialogueEffect:
+	var de := DialogueEffect.new()
+	de.timeline = res
+	return de

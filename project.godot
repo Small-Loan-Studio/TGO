@@ -92,7 +92,10 @@ directories/dtl_directory={
 "examine": "res://Dialogue/Other/examine.dtl",
 "juniper_bush_full": "res://Dialogue/PlaceableInteractive/juniper_bush_full.dtl",
 "npc_test_dialogue": "res://ZZ_Scratch/NPCDialogue/npc_test_dialogue.dtl",
+"select_item": "res://Dialogue/Other/select_item.dtl",
 "style_timeline": "res://ZZ_Scratch/DialogicValidation/style_timeline.dtl",
+"test_give": "res://Dialogue/Other/test_give.dtl",
+"test_show": "res://Dialogue/Other/test_show.dtl",
 "test_timeline": "res://ZZ_Scratch/DialogicValidation/test_timeline.dtl"
 }
 text/letter_speed=0.01
@@ -167,7 +170,8 @@ variables={
 "UserInputNum": 0,
 "UserInputString": "",
 "Util": {
-"examine_text": ""
+"examine_text": "",
+"selected_item_id": ""
 }
 }
 layout/style_list=["res://Dialogue/StyleTGO/TGOStyle.tres"]

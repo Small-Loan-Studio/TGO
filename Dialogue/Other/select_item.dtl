@@ -1,0 +1,7 @@
+label Start
+[text_input text="Enter the item id" var="Util.selected_item_id" placeholder="ITEM_ID"]
+if {Util.selected_item_id} == "":
+	[end_timeline]
+if {TGO.selected_id_valid()} == false:
+	{Util.selected_item_id} is an unknown item. Try again.
+	jump 

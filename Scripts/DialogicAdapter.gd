@@ -1,6 +1,11 @@
 class_name DialogicAdapter
 extends Node
 
+
+static func selected_id_valid() -> bool:
+	return player_inventory.valid_id(SelectItemEffect.get_selected_id())
+
+
 static var player_inventory := InventoryAdapter.new(Utils.PLAYER_ID)
 
 static var time_of_day := TimeOfDayAdapter.new()
@@ -38,6 +43,12 @@ class InventoryAdapter:
 			var item := ResourceLoader.load(Item.ITEM_PATH.path_join(p)) as Item
 			if item != null:
 				_item_dict[item.id] = item
+
+
+	func valid_id(item_id: String) -> bool:
+		print("checking validity of: %s - %s" % [item_id, _item_dict.has(item_id)])
+		return _item_dict.has(item_id)
+
 
 	func has(item_name: String, count: int = -1) -> bool:
 		# TODO(envy): file issue that will validate item_name as a real item id

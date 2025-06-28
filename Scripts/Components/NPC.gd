@@ -28,9 +28,15 @@ func _ready() -> void:
 		]
 	
 	_talk_sensor.action_map[Enums.ActionVerb.GIVE_ITEM] = [
-		DebugEffect.mk_effect("give_item")]
+		DebugEffect.mk_effect("give_item"),
+		SelectItemEffect.mk_effect([
+			DialogueEffect.mk_effect(preload("res://Dialogue/Other/test_give.dtl") as DialogicTimeline)]),
+	]
 	_talk_sensor.action_map[Enums.ActionVerb.SHOW_ITEM] = [
-		DebugEffect.mk_effect("show_item")]
+		DebugEffect.mk_effect("show_item"),
+		SelectItemEffect.mk_effect([
+			DialogueEffect.mk_effect(preload("res://Dialogue/Other/test_show.dtl") as DialogicTimeline)]),
+	]
 
 	_talk_sensor.default_verb = Enums.ActionVerb.TALK
 
