@@ -47,6 +47,8 @@ const InteractPanelScene: PackedScene = preload(
 ## TODOTODO: file issue to track this
 @export var action_map: Dictionary = {}
 
+@export var secondary_action_order: Array[Enums.ActionVerb] = []
+
 @export var _display_hook: Sprite2D
 
 var secondary: InteractPanel:
@@ -89,9 +91,19 @@ func activate() -> void:
 		func(e: Enums.ActionVerb) -> bool: return e == default_verb
 	)
 
-	var secondary_actions: Array = action_map.keys().filter(
+	var proto_secondary_actions: Array = action_map.keys().filter(
 		func(e: Enums.ActionVerb) -> bool: return e != default_verb
 	)
+
+	var secondary_actions: Array = []
+	var seen := {}
+	for ele in secondary_action_order:
+		if action_map.has(ele) && ele != default_verb:
+			secondary_actions.append(ele)
+			seen[ele] = true
+	for rem: Enums.ActionVerb in proto_secondary_actions:
+		if !seen.has(rem):
+			secondary_actions.append(rem)
 
 	_primary_scene = InteractPanelScene.instantiate()
 	_primary_scene.actions.assign(default_action)

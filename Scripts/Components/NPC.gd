@@ -10,7 +10,7 @@ extends Character
 ## is spoken with. If null at _ready no conversation will be set up.
 @export var dlg: DialogueEffect
 
-@onready var _talk_sensor := $TalkSensor
+@onready var _talk_sensor: Interactable = $TalkSensor
 
 
 func _ready() -> void:
@@ -40,6 +40,13 @@ func _ready() -> void:
 		]
 
 	_talk_sensor.default_verb = Enums.ActionVerb.TALK
+
+	_talk_sensor.secondary_action_order = [
+		Enums.ActionVerb.TALK,
+		Enums.ActionVerb.EXAMINE,
+		Enums.ActionVerb.SHOW_ITEM,
+		Enums.ActionVerb.GIVE_ITEM,
+	]
 
 	if config != null:
 		id = config.character_id
