@@ -55,7 +55,7 @@ func _on_input_text_changed(text: String) -> void:
 	get_node(confirmation_button).disabled = !_allow_empty and text.is_empty()
 
 
-func _on_confirmation_button_pressed(text := "") -> void:
+func _on_confirmation_button_pressed(text: String = "") -> void:
 	if get_node(input_line_edit) is LineEdit:
 		if !get_node(input_line_edit).text.is_empty() or _allow_empty:
 			DialogicUtil.autoload().TextInput.input_confirmed.emit(get_node(input_line_edit).text)

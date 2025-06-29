@@ -38,13 +38,12 @@ func run_input(_event: InputEvent, change_state: Callable) -> void:
 			if interactable.secondary.selected == Enums.ActionVerb.CLOSE:
 				cancel.call()
 				return
-			else:
-				_is_interacting = true
-				_is_selecting = false
-				interactable.secondary.toggle()
-				interactable.primary.visible = true
-				interactable.trigger(_ctx.character, interactable.secondary.selected)
-				await interactable.triggered
+			_is_interacting = true
+			_is_selecting = false
+			interactable.secondary.toggle()
+			interactable.primary.visible = true
+			interactable.trigger(_ctx.character, interactable.secondary.selected)
+			await interactable.triggered
 		elif _ctx.controller.just_pressed(Enums.InputAction.DOWN):
 			interactable.secondary.next()
 		elif _ctx.controller.just_pressed(Enums.InputAction.UP):

@@ -234,5 +234,4 @@ func _maybe_autoload() -> bool:
 	if prefs.autoload_level != "":
 		load_level(prefs.autoload_level, LevelBase.DEFAULT_MARKER)
 		return true
-	else:
-		return false
+	return false

@@ -1,3 +1,4 @@
+#gdlint:disable=class-definitions-order
 class_name Enums
 extends RefCounted
 

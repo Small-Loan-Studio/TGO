@@ -1,14 +1,13 @@
 class_name DialogicAdapter
 extends Node
 
-
-static func selected_id_valid() -> bool:
-	return player_inventory.valid_id(SelectItemEffect.get_selected_id())
-
-
 static var player_inventory := InventoryAdapter.new(Utils.PLAYER_ID)
 
 static var time_of_day := TimeOfDayAdapter.new()
+
+
+static func selected_id_valid() -> bool:
+	return player_inventory.valid_id(SelectItemEffect.get_selected_id())
 
 
 static func audio(actor_id: String) -> AudioActorAdapter:
