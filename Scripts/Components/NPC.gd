@@ -26,16 +26,18 @@ func _ready() -> void:
 		_talk_sensor.action_map[Enums.ActionVerb.EXAMINE] = config.examine_effects
 	elif config.examine_text != "":
 		_talk_sensor.action_map[Enums.ActionVerb.EXAMINE] = [
-			ExamineEffect.mk_effect(config.examine_text)]
-	
+			ExamineEffect.mk_effect(config.examine_text)
+		]
+
 	if _has_effect(config.give_item_effects):
 		_talk_sensor.action_map[Enums.ActionVerb.GIVE_ITEM] = [
-			DebugEffect.mk_effect("give_item"),
-			SelectItemEffect.mk_effect(config.show_item_effects)]
+			DebugEffect.mk_effect("give_item"), SelectItemEffect.mk_effect(config.show_item_effects)
+		]
 
 	if _has_effect(config.show_item_effects):
 		_talk_sensor.action_map[Enums.ActionVerb.SHOW_ITEM] = [
-			SelectItemEffect.mk_effect(config.give_item_effects)]
+			SelectItemEffect.mk_effect(config.give_item_effects)
+		]
 
 	_talk_sensor.default_verb = Enums.ActionVerb.TALK
 

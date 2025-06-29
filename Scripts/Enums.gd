@@ -45,7 +45,6 @@ enum InputAction {
 	INTERACT_CANCEL,
 }
 
-
 const INTERACT_ACTION_NAMES = {
 	InputAction.UP: "up",
 	InputAction.DOWN: "down",
@@ -59,6 +58,7 @@ const INTERACT_ACTION_NAMES = {
 	InputAction.SECONDARY: "secondary_action",
 	InputAction.INTERACT_CANCEL: "interact_cancel",
 }
+
 
 static func input_action_name(ia: InputAction) -> String:
 	if INTERACT_ACTION_NAMES.has(ia):
@@ -132,18 +132,19 @@ enum ActionVerb {
 }
 
 const ACTION_VERB_NAMES = {
-	ActionVerb.EXAMINE:   "Examine",
-	ActionVerb.PICK_UP:   "Pick Up",
-	ActionVerb.TALK:      "Talk",
-	ActionVerb.USE:       "Use",
+	ActionVerb.EXAMINE: "Examine",
+	ActionVerb.PICK_UP: "Pick Up",
+	ActionVerb.TALK: "Talk",
+	ActionVerb.USE: "Use",
 	ActionVerb.PUSH_PULL: "Grab",
-	ActionVerb.RELEASE:   "Release",
-	ActionVerb.DEFAULT:   "Interact",
+	ActionVerb.RELEASE: "Release",
+	ActionVerb.DEFAULT: "Interact",
 	ActionVerb.SHOW_ITEM: "Show Item",
 	ActionVerb.GIVE_ITEM: "Give Item",
-	ActionVerb.MORE:      "More",
-	ActionVerb.CLOSE:     "Close",
+	ActionVerb.MORE: "More",
+	ActionVerb.CLOSE: "Close",
 }
+
 
 static func action_verb_name(av: ActionVerb) -> String:
 	return ACTION_VERB_NAMES.get(av, "Interact")

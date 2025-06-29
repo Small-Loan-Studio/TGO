@@ -25,7 +25,7 @@ func maybe_interact(change_state: Callable) -> bool:
 		if _ctx.character.target.get_interactable().automatic:
 			change_state.call(interact_state)
 			return true
-	
+
 	if Enums.InputAction.DEFAULT in just_pressed || Enums.InputAction.SECONDARY in just_pressed:
 		change_state.call(interact_state)
 		return true

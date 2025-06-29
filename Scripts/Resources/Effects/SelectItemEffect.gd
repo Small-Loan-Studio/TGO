@@ -7,6 +7,7 @@ const ITEM_VAR = "Util.selected_item_id"
 
 @export var with_item: Array[Effect]
 
+
 func act(actor_id: String, cur_level: LevelBase) -> Variant:
 	Dialogic.VAR.set_variable(ITEM_VAR, "")
 	Dialogic.start(SELECT_DTL)

@@ -29,7 +29,10 @@ func run_input(_event: InputEvent, change_state: Callable) -> void:
 			_is_selecting = false
 			change_state.call(idle_state)
 
-		if ctrl.just_pressed(Enums.InputAction.SECONDARY) || ctrl.just_pressed(Enums.InputAction.INTERACT_CANCEL):
+		if (
+			ctrl.just_pressed(Enums.InputAction.SECONDARY)
+			|| ctrl.just_pressed(Enums.InputAction.INTERACT_CANCEL)
+		):
 			cancel.call()
 		if ctrl.just_pressed(Enums.InputAction.DEFAULT):
 			if interactable.secondary.selected == Enums.ActionVerb.CLOSE:
