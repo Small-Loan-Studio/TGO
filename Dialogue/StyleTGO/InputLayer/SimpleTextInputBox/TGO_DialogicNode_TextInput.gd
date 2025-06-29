@@ -1,4 +1,4 @@
-class_name TGO_DialogicNode_TextInput
+class_name TGODialogicNodeTextInput
 extends Control
 
 ## Node that will show when a text input field is reached.
