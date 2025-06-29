@@ -22,10 +22,11 @@ func _ready() -> void:
 	if dlg != null:
 		_talk_sensor.action_map[Enums.ActionVerb.TALK] = [dlg]
 
-	if config.examine_text != "":
+	if config.examine_effects != null && config.examine_effects.size() > 0:
+		_talk_sensor.action_map[Enums.ActionVerb.EXAMINE] = config.examine_effects
+	elif config.examine_text != "":
 		_talk_sensor.action_map[Enums.ActionVerb.EXAMINE] = [
-			ExamineEffect.mk_effect(config.examine_text),
-		]
+			ExamineEffect.mk_effect(config.examine_text)]
 	
 	_talk_sensor.action_map[Enums.ActionVerb.GIVE_ITEM] = [
 		DebugEffect.mk_effect("give_item"),
