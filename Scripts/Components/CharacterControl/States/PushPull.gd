@@ -21,22 +21,24 @@ var _impulse: Vector2
 var _projected_impulse: Vector2
 
 
-func enter(ctx: Variant, _change_state: Callable) -> void:
+func enter(ctx: Variant, _change_state: Callable) -> StateChange:
 	var ctx_dict := ctx as Dictionary
 	_push_direction = ctx_dict["push_direction"]
 	_movement_axis = Enums.direction_push_pull_axis(_push_direction)
 	_target = ctx_dict["target"]
 	_hud.set_toast(Enums.action_verb_name(Enums.ActionVerb.RELEASE))
 	_handle_animation()
+	return null
 
 
-func run_input(_event: InputEvent, change_state: Callable) -> void:
+func run_input(_event: InputEvent, change_state: Callable) -> StateChange:
 	if Enums.InputAction.DEFAULT in _ctx.controller.get_just_pressed():
-		change_state.call(idle_state)
+		# change_state.call(idle_state)
 		_hud.set_toast(Enums.action_verb_name(Enums.ActionVerb.PUSH_PULL))
-		return
+		return StateChange.mk(idle_state)
 
 	_handle_animation()
+	return null
 
 
 func _handle_animation() -> void:
@@ -52,10 +54,10 @@ func _handle_animation() -> void:
 		_animated_sprite.play(want_animation)
 
 
-func run_physics(_delta: float, _change_state: Callable) -> void:
+func run_physics(_delta: float, _change_state: Callable) -> StateChange:
 	var push_velocity := _projected_impulse * move_speed / 3
 	if push_velocity == Vector2.ZERO:
-		return
+		return null
 
 	var pusher: CharacterBody2D = _target
 	var push_target: CharacterBody2D = _ctx.character
@@ -67,6 +69,8 @@ func run_physics(_delta: float, _change_state: Callable) -> void:
 	push_target.move_and_slide()
 	pusher.move_and_collide(push_velocity * _delta)
 
+	return null
+
 
 func _is_push(v: Vector2, push_direction: Enums.Direction) -> bool:
 	var axis := Enums.direction_push_pull_axis(push_direction)
@@ -76,9 +80,11 @@ func _is_push(v: Vector2, push_direction: Enums.Direction) -> bool:
 	return v == push_vec
 
 
-func run_tick(_delta: float, change_state: Callable) -> void:
+func run_tick(_delta: float, change_state: Callable) -> StateChange:
 	if !_ctx.character.target.is_moveable_block():
-		change_state.call(idle_state)
+		# change_state.call(idle_state)
+		return StateChange.mk(idle_state)
+	return null
 
 
 static func mk_args(facing: float, tgt: MoveableBlock) -> Dictionary:

@@ -8,36 +8,37 @@ var _is_selecting: bool = false
 var _tgt: CharacterTarget
 
 
-func enter(_enter_ctx: Variant, change_state: Callable) -> void:
+func enter(_enter_ctx: Variant, change_state: Callable) -> StateChange:
 	_tgt = _ctx.character.target
-	run_input(null, change_state)
+	# run_input(null, change_state)
+	return await run_input(null, change_state)
 
 
-func run_input(_event: InputEvent, change_state: Callable) -> void:
+func run_input(_event: InputEvent, change_state: Callable) -> StateChange:
 	if _is_interacting:
-		return
+		return null
 
 	var interactable := _tgt.get_interactable()
 	if _is_selecting:
 		interactable.primary.visible = false
 
 		var ctrl := _ctx.controller
-		var cancel := func() -> void:
+		var cancel := func() -> StateChange:
 			interactable.secondary.blur()
 			interactable.secondary.toggle()
 			interactable.primary.visible = true
 			_is_selecting = false
-			change_state.call(idle_state)
+			# change_state.call(idle_state)
+			return StateChange.mk(idle_state)
 
 		if (
 			ctrl.just_pressed(Enums.InputAction.SECONDARY)
 			|| ctrl.just_pressed(Enums.InputAction.INTERACT_CANCEL)
 		):
-			cancel.call()
+			return cancel.call()
 		if ctrl.just_pressed(Enums.InputAction.DEFAULT):
 			if interactable.secondary.selected == Enums.ActionVerb.CLOSE:
-				cancel.call()
-				return
+				return cancel.call()
 			_is_interacting = true
 			_is_selecting = false
 			interactable.secondary.toggle()
@@ -48,7 +49,7 @@ func run_input(_event: InputEvent, change_state: Callable) -> void:
 			interactable.secondary.next()
 		elif _ctx.controller.just_pressed(Enums.InputAction.UP):
 			interactable.secondary.previous()
-		return
+		return null
 
 	if _tgt.is_interactable():
 		_animated_sprite.stop()
@@ -57,8 +58,8 @@ func run_input(_event: InputEvent, change_state: Callable) -> void:
 		# in cases where there are more than one actions transition to a selecting sub-state
 		if _ctx.controller.just_pressed(Enums.InputAction.SECONDARY):
 			if interactable.action_count == 1:
-				change_state.call(idle_state)
-				return
+				# change_state.call(idle_state)
+				return StateChange.mk(idle_state)
 			if interactable.action_count == 2:
 				_is_interacting = true
 				var verb: Enums.ActionVerb = interactable.secondary.selected
@@ -75,22 +76,29 @@ func run_input(_event: InputEvent, change_state: Callable) -> void:
 			interactable.trigger(_ctx.character)
 			await interactable.triggered
 
+	return null
 
-func run_tick(_delta: float, change_state: Callable) -> void:
+
+func run_tick(_delta: float, change_state: Callable) -> StateChange:
 	if _is_selecting:
 		return
 	if _tgt.is_moveable_block():
 		_animated_sprite.stop()
-		(
-			change_state
-			. call(
-				push_pull_state,
-				push_pull_state.mk_args(_ctx.character.facing, _tgt.get_moveable_block()),
-			)
-		)
+		# (
+		# 	change_state
+		# 	. call(
+		# 		push_pull_state,
+		# 		push_pull_state.mk_args(_ctx.character.facing, _tgt.get_moveable_block()),
+		# 	)
+		# )
 		_is_interacting = false
-		return
+		return StateChange.mk(
+			push_pull_state,
+			push_pull_state.mk_args(_ctx.character.facing, _tgt.get_moveable_block()))
 
 	if Dialogic.current_timeline == null:
-		change_state.call(idle_state)
+		# change_state.call(idle_state)
 		_is_interacting = false
+		return StateChange.mk(idle_state)
+
+	return null

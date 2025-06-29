@@ -35,34 +35,59 @@ func setup(ctx: Variant = null) -> void:
 
 	if _initial_state != null:
 		_next_state = _initial_state
-		_maybe_enter_state()
+		# _maybe_enter_state()
+		_switch(StateChange.mk(_initial_state))
 	else:
 		printerr("No initial state provided")
 
 	_setup_complete = true
 
 
-func _maybe_enter_state(depth: int = 0) -> void:
-	if _next_state == null:
+func _switch(next: StateChange, depth: int = 0) -> void:
+	if next == null:
 		return
 
 	if depth > 4:
-		# Sometimes we make poor decisions in life like infinite state loops.
-		# Don't let them be the end, just face plant and move on.
 		printerr(
 			"StateMachine having a bad time enter state depth of %d. Aborting transitions" % [depth]
 		)
 		return
 
-	_cur_state.exit()
+	if _cur_state != null:
+		_cur_state.exit()
 	if print_state_changes:
 		print("(%d) %s -> %s" % [depth, _cur_state.name, _next_state.name])
-	_cur_state = _next_state
-	_next_state = null
-	_cur_state.enter(_next_state_ctx, queue_state_change)
-	# sometimes a state can immediately defer to a subsequent state;
-	# it's not elegant but eat that here
-	_maybe_enter_state(depth + 1)
+	
+	_cur_state = next.next_state
+	var noop: Callable = func(_x: State, _y: Variant) -> void:
+		print("shouldn't have called this")
+	var maybe_next: StateChange = await _cur_state.enter(next.ctx, noop)
+	if maybe_next != null:
+		_switch(maybe_next, depth + 1)
+	
+
+func _maybe_enter_state(depth: int = 0) -> void:
+	pass
+	# if _next_state == null:
+	# 	return
+
+	# if depth > 4:
+	# 	# Sometimes we make poor decisions in life like infinite state loops.
+	# 	# Don't let them be the end, just face plant and move on.
+	# 	printerr(
+	# 		"StateMachine having a bad time enter state depth of %d. Aborting transitions" % [depth]
+	# 	)
+	# 	return
+
+	# _cur_state.exit()
+	# if print_state_changes:
+	# 	print("(%d) %s -> %s" % [depth, _cur_state.name, _next_state.name])
+	# _cur_state = _next_state
+	# _next_state = null
+	# _cur_state.enter(_next_state_ctx, queue_state_change)
+	# # sometimes a state can immediately defer to a subsequent state;
+	# # it's not elegant but eat that here
+	# _maybe_enter_state(depth + 1)
 
 
 func run_input(event: InputEvent) -> void:
@@ -70,8 +95,8 @@ func run_input(event: InputEvent) -> void:
 		return
 
 	_next_state = null
-	_cur_state.run_input(event, queue_state_change)
-	_maybe_enter_state()
+	_switch(await _cur_state.run_input(event, queue_state_change))
+	# _maybe_enter_state()
 
 
 func run_physics(delta: float) -> void:
@@ -79,8 +104,8 @@ func run_physics(delta: float) -> void:
 		return
 
 	_next_state = null
-	_cur_state.run_physics(delta, queue_state_change)
-	_maybe_enter_state()
+	_switch(await _cur_state.run_physics(delta, queue_state_change))
+	# _maybe_enter_state()
 
 
 func run_tick(delta: float) -> void:
@@ -88,8 +113,8 @@ func run_tick(delta: float) -> void:
 		return
 
 	_next_state = null
-	_cur_state.run_tick(delta, queue_state_change)
-	_maybe_enter_state()
+	_switch(await _cur_state.run_tick(delta, queue_state_change))
+	# _maybe_enter_state()
 
 
 func cur_state() -> State:
@@ -107,12 +132,13 @@ func input_exclusive() -> bool:
 ## physics only runs in its own thread if we configure it iirc so we're probably
 ## okayish, idk about input event processing)
 func queue_state_change(next_state: State, context: Variant = null) -> void:
-	if _next_state != null:
-		printerr(
-			"Warning: Overwriting _next_state %s with %s" % [_next_state.name, next_state.name]
-		)
-	_next_state = next_state
-	_next_state_ctx = context
+	# if _next_state != null:
+	# 	printerr(
+	# 		"Warning: Overwriting _next_state %s with %s" % [_next_state.name, next_state.name]
+	# 	)
+	# _next_state = next_state
+	# _next_state_ctx = context
+	pass
 
 
 class CharacterContext:
