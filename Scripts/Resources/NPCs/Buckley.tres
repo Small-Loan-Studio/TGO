@@ -1,7 +1,18 @@
-[gd_resource type="Resource" script_class="NPCConfig" load_steps=3 format=3 uid="uid://0e6y5ablkqx"]
+[gd_resource type="Resource" script_class="NPCConfig" load_steps=8 format=3 uid="uid://0e6y5ablkqx"]
 
 [ext_resource type="Script" path="res://Scripts/Resources/NpcConfig.gd" id="1_cgkq4"]
+[ext_resource type="Script" path="res://Scripts/Resources/Effects/DialogueEffect.gd" id="1_ke6tk"]
+[ext_resource type="Resource" path="res://Dialogue/Other/test_show.dtl" id="2_qvexx"]
 [ext_resource type="SpriteFrames" uid="uid://tla7n0y5jgw5" path="res://Art/Characters/arthur_sharp_sheet.tres" id="2_u6pql"]
+[ext_resource type="Resource" path="res://Dialogue/Other/test_give.dtl" id="2_xsa3d"]
+
+[sub_resource type="Resource" id="Resource_l1d78"]
+script = ExtResource("1_ke6tk")
+timeline = ExtResource("2_xsa3d")
+
+[sub_resource type="Resource" id="Resource_585yh"]
+script = ExtResource("1_ke6tk")
+timeline = ExtResource("2_qvexx")
 
 [resource]
 script = ExtResource("1_cgkq4")
@@ -9,3 +20,6 @@ character_id = "mayor_buckley"
 sprite_sheet = ExtResource("2_u6pql")
 valid_timelines = Array[String](["res://Dialogue/Buckley/BuckleyTestTimeline.dtl"])
 examine_text = "The town's mayor. He reeks of gin."
+examine_effects = Array[Resource("res://Scripts/Resources/Effect.gd")]([])
+show_item_effects = Array[Resource("res://Scripts/Resources/Effect.gd")]([SubResource("Resource_585yh")])
+give_item_effects = Array[Resource("res://Scripts/Resources/Effect.gd")]([SubResource("Resource_l1d78")])

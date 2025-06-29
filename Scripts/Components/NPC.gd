@@ -22,22 +22,20 @@ func _ready() -> void:
 	if dlg != null:
 		_talk_sensor.action_map[Enums.ActionVerb.TALK] = [dlg]
 
-	if config.examine_effects != null && config.examine_effects.size() > 0:
+	if _has_effect(config.examine_effects):
 		_talk_sensor.action_map[Enums.ActionVerb.EXAMINE] = config.examine_effects
 	elif config.examine_text != "":
 		_talk_sensor.action_map[Enums.ActionVerb.EXAMINE] = [
 			ExamineEffect.mk_effect(config.examine_text)]
 	
-	_talk_sensor.action_map[Enums.ActionVerb.GIVE_ITEM] = [
-		DebugEffect.mk_effect("give_item"),
-		SelectItemEffect.mk_effect([
-			DialogueEffect.mk_effect(preload("res://Dialogue/Other/test_give.dtl") as DialogicTimeline)]),
-	]
-	_talk_sensor.action_map[Enums.ActionVerb.SHOW_ITEM] = [
-		DebugEffect.mk_effect("show_item"),
-		SelectItemEffect.mk_effect([
-			DialogueEffect.mk_effect(preload("res://Dialogue/Other/test_show.dtl") as DialogicTimeline)]),
-	]
+	if _has_effect(config.give_item_effects):
+		_talk_sensor.action_map[Enums.ActionVerb.GIVE_ITEM] = [
+			DebugEffect.mk_effect("give_item"),
+			SelectItemEffect.mk_effect(config.show_item_effects)]
+
+	if _has_effect(config.show_item_effects):
+		_talk_sensor.action_map[Enums.ActionVerb.SHOW_ITEM] = [
+			SelectItemEffect.mk_effect(config.give_item_effects)]
 
 	_talk_sensor.default_verb = Enums.ActionVerb.TALK
 
@@ -46,3 +44,7 @@ func _ready() -> void:
 		_sprite.sprite_frames = config.sprite_sheet
 	else:
 		printerr("NPC %s does not have an associated config" % [name])
+
+
+func _has_effect(arr: Array[Effect]) -> bool:
+	return arr != null && arr.size() > 0
