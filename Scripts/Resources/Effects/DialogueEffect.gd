@@ -15,6 +15,7 @@ func act(_actor_id: String, _cur_level: LevelBase) -> Variant:
 		return null
 
 	Dialogic.start(timeline)
+	await Dialogic.timeline_ended
 	return null
 
 

@@ -38,7 +38,7 @@ func setup(ctx: Variant = null) -> void:
 
 
 func _switch(next: StateChange, depth: int = 0) -> void:
-	if next == null:
+	if next == null || next.next_state == null:
 		return
 
 	if depth > 4:
@@ -50,7 +50,7 @@ func _switch(next: StateChange, depth: int = 0) -> void:
 	if _cur_state != null:
 		_cur_state.exit()
 	if print_state_changes:
-		print("(%d) %s -> %s" % [depth, _cur_state.name, next.name])
+		print("(%d) %s -> %s" % [depth, _cur_state.name, next.next_state.name])
 
 	_cur_state = next.next_state
 	# it will complain that we don't need an await here -- we do

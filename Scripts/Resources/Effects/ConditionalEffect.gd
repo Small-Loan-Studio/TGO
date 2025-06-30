@@ -13,9 +13,9 @@ func _init() -> void:
 func act(actor_id: String, cur_level: LevelBase) -> Variant:
 	for c in condition:
 		if !c.evaluate(actor_id):
-			return _run_next(failure_chain, actor_id, cur_level)
+			return await _run_next(failure_chain, actor_id, cur_level)
 
-	return _run_next(success_chain, actor_id, cur_level)
+	return await _run_next(success_chain, actor_id, cur_level)
 
 
 func terminal_callback(ctx: Variant) -> void:

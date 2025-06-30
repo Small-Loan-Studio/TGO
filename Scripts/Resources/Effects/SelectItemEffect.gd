@@ -14,7 +14,7 @@ func act(actor_id: String, cur_level: LevelBase) -> Variant:
 	await Dialogic.timeline_ended
 	var item_id: String = SelectItemEffect.get_selected_id()
 	if item_id != "":
-		return _run_next(with_item, actor_id, cur_level)
+		return await _run_next(with_item, actor_id, cur_level)
 	return null
 
 

@@ -10,7 +10,6 @@ var _tgt: CharacterTarget
 
 func enter(_enter_ctx: Variant) -> StateChange:
 	_tgt = _ctx.character.target
-	# run_input(null, change_state)
 	return await run_input(null)
 
 
@@ -34,9 +33,11 @@ func run_input(_event: InputEvent) -> StateChange:
 			ctrl.just_pressed(Enums.InputAction.SECONDARY)
 			|| ctrl.just_pressed(Enums.InputAction.INTERACT_CANCEL)
 		):
+			print("case X -> idle")
 			return cancel.call()
 		if ctrl.just_pressed(Enums.InputAction.DEFAULT):
 			if interactable.secondary.selected == Enums.ActionVerb.CLOSE:
+				print("case Y -> idle")
 				return cancel.call()
 			_is_interacting = true
 			_is_selecting = false
@@ -44,6 +45,8 @@ func run_input(_event: InputEvent) -> StateChange:
 			interactable.primary.visible = true
 			interactable.trigger(_ctx.character, interactable.secondary.selected)
 			await interactable.triggered
+			_is_interacting = false
+			return StateChange.mk(idle_state)
 		elif _ctx.controller.just_pressed(Enums.InputAction.DOWN):
 			interactable.secondary.next()
 		elif _ctx.controller.just_pressed(Enums.InputAction.UP):
@@ -57,13 +60,15 @@ func run_input(_event: InputEvent) -> StateChange:
 		# in cases where there are more than one actions transition to a selecting sub-state
 		if _ctx.controller.just_pressed(Enums.InputAction.SECONDARY):
 			if interactable.action_count == 1:
-				# change_state.call(idle_state)
+				print("case Z -> idle")
 				return StateChange.mk(idle_state)
 			if interactable.action_count == 2:
 				_is_interacting = true
 				var verb: Enums.ActionVerb = interactable.secondary.selected
 				interactable.trigger(_ctx.character, verb)
 				await interactable.triggered
+				_is_interacting = false
+				return StateChange.mk(idle_state)
 			else:
 				_is_selecting = true
 				interactable.secondary.focus(interactable.default_verb)
@@ -74,6 +79,8 @@ func run_input(_event: InputEvent) -> StateChange:
 			_is_interacting = true
 			interactable.trigger(_ctx.character)
 			await interactable.triggered
+			_is_interacting = false
+			return StateChange.mk(idle_state)
 
 	return null
 
@@ -88,9 +95,5 @@ func run_tick(_delta: float) -> StateChange:
 			push_pull_state,
 			push_pull_state.mk_args(_ctx.character.facing, _tgt.get_moveable_block())
 		)
-
-	if Dialogic.current_timeline == null:
-		_is_interacting = false
-		return StateChange.mk(idle_state)
 
 	return null

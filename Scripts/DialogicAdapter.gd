@@ -144,7 +144,7 @@ class QuestAdapter:
 
 	func complete() -> bool:
 		var qst := Driver.instance().quest_mgr.quest_by_id(_id)
-		return qst.mark_completed()
+		return await qst.mark_completed()
 
 	func fail() -> bool:
 		var qst := Driver.instance().quest_mgr.quest_by_id(_id)

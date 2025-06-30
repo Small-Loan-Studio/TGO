@@ -114,7 +114,7 @@ func _do_press(id: String) -> void:
 	_config.is_pressed = true
 	_config.triggered.emit(id, true)
 	for e in _config.on_pressed_effects:
-		var ctx: Variant = e.act(id, _cur_level)
+		var ctx: Variant = await e.act(id, _cur_level)
 		if ctx != null:
 			_waiting_callbacks.push_back(func() -> void: e.terminal_callback(ctx))
 
@@ -129,7 +129,7 @@ func _do_release(id: String) -> void:
 	_config.is_pressed = false
 	_config.triggered.emit(id, false)
 	for e in _config.on_released_effects:
-		e.act(id, _cur_level)
+		await e.act(id, _cur_level)
 
 	for cb in _waiting_callbacks:
 		cb.call()
