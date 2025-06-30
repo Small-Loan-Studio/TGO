@@ -42,7 +42,7 @@ func run_input(_event: InputEvent) -> StateChange:
 	return null
 
 
-func run_physics(_delta: float, _change_state: Callable) -> StateChange:
+func run_physics(_delta: float) -> StateChange:
 	if !_has_entered:
 		return null
 	_ctx.character._sensor_group.rotation = _ctx.character.facing

@@ -9,8 +9,8 @@ var _direction: Enums.Direction
 var _has_entered: bool
 
 
-func enter(_state: Variant, change_state: Callable) -> StateChange:
-	var next := run_input(null, change_state)
+func enter(_state: Variant) -> StateChange:
+	var next := run_input(null)
 	_has_entered = true
 	return next
 
@@ -40,7 +40,7 @@ func run_input(_event: InputEvent) -> StateChange:
 	return maybe_interact()
 
 
-func run_physics(_delta: float, _change_state: Callable) -> StateChange:
+func run_physics(_delta: float) -> StateChange:
 	if !_has_entered:
 		return null
 	_ctx.character._sensor_group.rotation = _ctx.character.facing

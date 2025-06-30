@@ -8,10 +8,10 @@ var _is_selecting: bool = false
 var _tgt: CharacterTarget
 
 
-func enter(_enter_ctx: Variant, change_state: Callable) -> StateChange:
+func enter(_enter_ctx: Variant) -> StateChange:
 	_tgt = _ctx.character.target
 	# run_input(null, change_state)
-	return await run_input(null, change_state)
+	return await run_input(null)
 
 
 func run_input(_event: InputEvent) -> StateChange:

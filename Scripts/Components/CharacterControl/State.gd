@@ -21,7 +21,7 @@ func _local_setup() -> void:
 	pass
 
 
-func enter(_ctx: Variant, _change_state: Callable) -> StateChange:
+func enter(_ctx: Variant) -> StateChange:
 	return null
 
 
@@ -29,13 +29,13 @@ func exit() -> void:
 	pass
 
 
-func run_input(_event: InputEvent, _change_state: Callable) -> StateChange:
+func run_input(_event: InputEvent) -> StateChange:
 	return null
 
 
-func run_physics(_delta: float, _change_state: Callable) -> StateChange:
+func run_physics(_delta: float) -> StateChange:
 	return null
 
 
-func run_tick(_delta: float, _change_state: Callable) -> StateChange:
+func run_tick(_delta: float) -> StateChange:
 	return null

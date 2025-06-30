@@ -53,9 +53,8 @@ func _switch(next: StateChange, depth: int = 0) -> void:
 		print("(%d) %s -> %s" % [depth, _cur_state.name, next.name])
 
 	_cur_state = next.next_state
-	var noop: Callable = func(_x: State, _y: Variant) -> void: print("shouldn't have called this")
 	# it will complain that we don't need an await here -- we do
-	var maybe_next: StateChange = await _cur_state.enter(next.ctx, noop)
+	var maybe_next: StateChange = await _cur_state.enter(next.ctx)
 	if maybe_next != null:
 		_switch(maybe_next, depth + 1)
 
@@ -65,7 +64,7 @@ func run_input(event: InputEvent) -> void:
 		return
 
 	# it will complain that we don't need an await here -- we do
-	_switch(await _cur_state.run_input(event, queue_state_change))
+	_switch(await _cur_state.run_input(event))
 
 
 func run_physics(delta: float) -> void:
@@ -73,7 +72,7 @@ func run_physics(delta: float) -> void:
 		return
 
 	# it will complain that we don't need an await here -- we do
-	_switch(await _cur_state.run_physics(delta, queue_state_change))
+	_switch(await _cur_state.run_physics(delta))
 
 
 func run_tick(delta: float) -> void:
@@ -81,7 +80,7 @@ func run_tick(delta: float) -> void:
 		return
 
 	# it will complain that we don't need an await here -- we do
-	_switch(await _cur_state.run_tick(delta, queue_state_change))
+	_switch(await _cur_state.run_tick(delta))
 	# _maybe_enter_state()
 
 

@@ -7,7 +7,7 @@ var _waiting := false
 var _done_waiting := false
 
 
-func enter(ctx: Variant, _change_state: Callable) -> StateChange:
+func enter(ctx: Variant) -> StateChange:
 	_menu_type = ctx["menu"]
 	_waiting = false
 	_done_waiting = false

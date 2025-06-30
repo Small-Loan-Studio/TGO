@@ -21,7 +21,7 @@ var _impulse: Vector2
 var _projected_impulse: Vector2
 
 
-func enter(ctx: Variant, _change_state: Callable) -> StateChange:
+func enter(ctx: Variant) -> StateChange:
 	var ctx_dict := ctx as Dictionary
 	_push_direction = ctx_dict["push_direction"]
 	_movement_axis = Enums.direction_push_pull_axis(_push_direction)
@@ -53,7 +53,7 @@ func _handle_animation() -> void:
 		_animated_sprite.play(want_animation)
 
 
-func run_physics(_delta: float, _change_state: Callable) -> StateChange:
+func run_physics(_delta: float) -> StateChange:
 	var push_velocity := _projected_impulse * move_speed / 3
 	if push_velocity == Vector2.ZERO:
 		return null
