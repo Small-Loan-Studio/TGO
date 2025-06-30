@@ -10,11 +10,10 @@ var _direction: Enums.Direction
 var _has_entered: bool
 
 
-func enter(_state: Variant, change_state: Callable) -> StateChange:
+func enter(_state: Variant) -> StateChange:
 	if _get_stam().value < stamina_drain_rate:
-		# change_state.call(idle_state)
 		return StateChange.mk(idle_state)
-	var next := await run_input(null, change_state)
+	var next := await run_input(null)
 	_has_entered = true
 	return next
 
@@ -23,7 +22,7 @@ func exit() -> void:
 	_has_entered = false
 
 
-func run_input(_event: InputEvent, change_state: Callable) -> StateChange:
+func run_input(_event: InputEvent) -> StateChange:
 	_impulse = _ctx.controller.get_vector()
 
 	if _impulse != Vector2.ZERO:
@@ -35,11 +34,9 @@ func run_input(_event: InputEvent, change_state: Callable) -> StateChange:
 		if !animation_correct || !_animated_sprite.is_playing():
 			_animated_sprite.play(want_animation)
 	else:
-		# change_state.call(idle_state)
 		return StateChange.mk(idle_state)
 
 	if !Enums.InputAction.SPRINT in _ctx.controller.get_button_pressed():
-		# change_state.call(walk_state, walk_state.mk_args(_impulse))
 		return StateChange.mk(walk_state, walk_state.mk_args(_impulse))
 
 	return null
@@ -58,9 +55,8 @@ func _get_stam() -> CharacterStat:
 	return _ctx.character.stats.get_stat(Enums.Stat.STAMINA)
 
 
-func run_tick(delta: float, change_state: Callable) -> StateChange:
+func run_tick(delta: float) -> StateChange:
 	if _get_stam().value < stamina_drain_rate:
-		# change_state.call(idle_state)
 		return StateChange.mk(idle_state)
 	_ctx.character.stats.get_stat(Enums.Stat.STAMINA).drain(stamina_drain_rate * delta)
 

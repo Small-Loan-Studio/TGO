@@ -31,11 +31,13 @@ func _ready() -> void:
 
 	if _has_effect(config.give_item_effects):
 		_talk_sensor.action_map[Enums.ActionVerb.GIVE_ITEM] = [
-			SelectItemEffect.mk_effect(config.give_item_effects)]
+			SelectItemEffect.mk_effect(config.give_item_effects)
+		]
 
 	if _has_effect(config.show_item_effects):
 		_talk_sensor.action_map[Enums.ActionVerb.SHOW_ITEM] = [
-			SelectItemEffect.mk_effect(config.show_item_effects)]
+			SelectItemEffect.mk_effect(config.show_item_effects)
+		]
 
 	_talk_sensor.default_verb = Enums.ActionVerb.TALK
 

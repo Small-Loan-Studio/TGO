@@ -14,7 +14,7 @@ func enter(_enter_ctx: Variant, change_state: Callable) -> StateChange:
 	return await run_input(null, change_state)
 
 
-func run_input(_event: InputEvent, change_state: Callable) -> StateChange:
+func run_input(_event: InputEvent) -> StateChange:
 	if _is_interacting:
 		return null
 
@@ -28,7 +28,6 @@ func run_input(_event: InputEvent, change_state: Callable) -> StateChange:
 			interactable.secondary.toggle()
 			interactable.primary.visible = true
 			_is_selecting = false
-			# change_state.call(idle_state)
 			return StateChange.mk(idle_state)
 
 		if (
@@ -79,25 +78,18 @@ func run_input(_event: InputEvent, change_state: Callable) -> StateChange:
 	return null
 
 
-func run_tick(_delta: float, change_state: Callable) -> StateChange:
+func run_tick(_delta: float) -> StateChange:
 	if _is_selecting:
 		return
 	if _tgt.is_moveable_block():
 		_animated_sprite.stop()
-		# (
-		# 	change_state
-		# 	. call(
-		# 		push_pull_state,
-		# 		push_pull_state.mk_args(_ctx.character.facing, _tgt.get_moveable_block()),
-		# 	)
-		# )
 		_is_interacting = false
 		return StateChange.mk(
 			push_pull_state,
-			push_pull_state.mk_args(_ctx.character.facing, _tgt.get_moveable_block()))
+			push_pull_state.mk_args(_ctx.character.facing, _tgt.get_moveable_block())
+		)
 
 	if Dialogic.current_timeline == null:
-		# change_state.call(idle_state)
 		_is_interacting = false
 		return StateChange.mk(idle_state)
 

@@ -31,9 +31,8 @@ func enter(ctx: Variant, _change_state: Callable) -> StateChange:
 	return null
 
 
-func run_input(_event: InputEvent, change_state: Callable) -> StateChange:
+func run_input(_event: InputEvent) -> StateChange:
 	if Enums.InputAction.DEFAULT in _ctx.controller.get_just_pressed():
-		# change_state.call(idle_state)
 		_hud.set_toast(Enums.action_verb_name(Enums.ActionVerb.PUSH_PULL))
 		return StateChange.mk(idle_state)
 
@@ -80,9 +79,8 @@ func _is_push(v: Vector2, push_direction: Enums.Direction) -> bool:
 	return v == push_vec
 
 
-func run_tick(_delta: float, change_state: Callable) -> StateChange:
+func run_tick(_delta: float) -> StateChange:
 	if !_ctx.character.target.is_moveable_block():
-		# change_state.call(idle_state)
 		return StateChange.mk(idle_state)
 	return null
 

@@ -19,13 +19,12 @@ func exit() -> void:
 	_has_entered = false
 
 
-func run_input(_event: InputEvent, change_state: Callable) -> StateChange:
+func run_input(_event: InputEvent) -> StateChange:
 	_impulse = _ctx.controller.get_vector()
 
 	if _impulse != Vector2.ZERO:
 		_ctx.character.facing = Vector2.UP.angle_to(_impulse)
 		if Enums.InputAction.SPRINT in _ctx.controller.get_button_pressed():
-			# change_state.call(sprint_state, sprint_state.mk_args(_impulse))
 			var next := StateChange.mk(sprint_state, sprint_state.mk_args(_impulse))
 			_impulse = Vector2.ZERO
 			return next
@@ -36,10 +35,9 @@ func run_input(_event: InputEvent, change_state: Callable) -> StateChange:
 		if !animation_correct || !_animated_sprite.is_playing():
 			_animated_sprite.play(want_animation)
 	else:
-		# change_state.call(idle_state)
 		return StateChange.mk(idle_state)
 
-	return maybe_interact2()
+	return maybe_interact()
 
 
 func run_physics(_delta: float, _change_state: Callable) -> StateChange:

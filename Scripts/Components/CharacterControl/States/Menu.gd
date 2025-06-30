@@ -14,10 +14,9 @@ func enter(ctx: Variant, _change_state: Callable) -> StateChange:
 	return null
 
 
-func run_tick(_delta: float, change_state: Callable) -> StateChange:
+func run_tick(_delta: float) -> StateChange:
 	if _waiting:
 		if _done_waiting:
-			# change_state.call(idle_state)
 			return StateChange.mk(idle_state)
 		return null
 
