@@ -1,2 +1,3 @@
 join Devin 1
+[tgo_expr expr="{TGO.audio("Devin").fire("play_AM_Crypt_rubble")}"]
 Devin: Stone coffins sealed into the walls. Nameless, as the epitaphs have worn away. No chance I can pry into there.

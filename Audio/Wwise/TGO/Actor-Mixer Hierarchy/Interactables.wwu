@@ -1137,6 +1137,562 @@
 								</Sound>
 							</ChildrenList>
 						</RandomSequenceContainer>
+						<RandomSequenceContainer Name="IN_TinderLighter_use" ID="{29A3E0E3-83E8-4834-A5C7-A36F45F99659}" ShortID="177119196">
+							<ReferenceList>
+								<Reference Name="Conversion">
+									<ObjectRef Name="CS_PC_SFX_High" ID="{11A47DD3-D0C7-4288-A9B3-09CFC6D530CF}" WorkUnitID="{1E13664B-E694-4203-95E7-AEB6212579F7}"/>
+								</Reference>
+								<Reference Name="OutputBus">
+									<ObjectRef Name="Interactables" ID="{A3E72D92-3E4A-4EC1-96EA-196EC484C398}" WorkUnitID="{6C0969E1-B09C-4693-BC3C-B2E7116B2AEE}"/>
+								</Reference>
+							</ReferenceList>
+							<ChildrenList>
+								<Sound Name="sfx_IN_TinderLighter_use_01" ID="{1438E15F-E60D-4298-9AC5-EA967DA27173}" ShortID="705736740">
+									<ReferenceList>
+										<Reference Name="Conversion">
+											<ObjectRef Name="CS_PC_SFX_High" ID="{11A47DD3-D0C7-4288-A9B3-09CFC6D530CF}" WorkUnitID="{1E13664B-E694-4203-95E7-AEB6212579F7}"/>
+										</Reference>
+										<Reference Name="OutputBus">
+											<ObjectRef Name="Interactables" ID="{A3E72D92-3E4A-4EC1-96EA-196EC484C398}" WorkUnitID="{6C0969E1-B09C-4693-BC3C-B2E7116B2AEE}"/>
+										</Reference>
+									</ReferenceList>
+									<ChildrenList>
+										<AudioFileSource Name="sfx_IN_TinderLighter_use_01" ID="{6A700029-F486-4A3E-8F40-C52234EF13CD}">
+											<Language>SFX</Language>
+											<AudioFile>Interactables\sfx_IN_TinderLighter_use_01.wav</AudioFile>
+											<MediaIDList>
+												<MediaID ID="307292581"/>
+											</MediaIDList>
+										</AudioFileSource>
+									</ChildrenList>
+									<ActiveSourceList>
+										<ActiveSource Name="sfx_IN_TinderLighter_use_01" ID="{6A700029-F486-4A3E-8F40-C52234EF13CD}" Platform="Linked"/>
+									</ActiveSourceList>
+								</Sound>
+								<Sound Name="sfx_IN_TinderLighter_use_02" ID="{A623EF4E-9F60-465D-8AFA-852DBE55979C}" ShortID="1062242601">
+									<ReferenceList>
+										<Reference Name="Conversion">
+											<ObjectRef Name="CS_PC_SFX_High" ID="{11A47DD3-D0C7-4288-A9B3-09CFC6D530CF}" WorkUnitID="{1E13664B-E694-4203-95E7-AEB6212579F7}"/>
+										</Reference>
+										<Reference Name="OutputBus">
+											<ObjectRef Name="Interactables" ID="{A3E72D92-3E4A-4EC1-96EA-196EC484C398}" WorkUnitID="{6C0969E1-B09C-4693-BC3C-B2E7116B2AEE}"/>
+										</Reference>
+									</ReferenceList>
+									<ChildrenList>
+										<AudioFileSource Name="sfx_IN_TinderLighter_use_02" ID="{660A7953-4EF2-4064-8593-8A6D7D476385}">
+											<Language>SFX</Language>
+											<AudioFile>Interactables\sfx_IN_TinderLighter_use_02.wav</AudioFile>
+											<MediaIDList>
+												<MediaID ID="160950729"/>
+											</MediaIDList>
+										</AudioFileSource>
+									</ChildrenList>
+									<ActiveSourceList>
+										<ActiveSource Name="sfx_IN_TinderLighter_use_02" ID="{660A7953-4EF2-4064-8593-8A6D7D476385}" Platform="Linked"/>
+									</ActiveSourceList>
+								</Sound>
+								<Sound Name="sfx_IN_TinderLighter_use_03" ID="{BA032924-24BE-4369-AD1D-9CE9D58DC90E}" ShortID="687961270">
+									<ReferenceList>
+										<Reference Name="Conversion">
+											<ObjectRef Name="CS_PC_SFX_High" ID="{11A47DD3-D0C7-4288-A9B3-09CFC6D530CF}" WorkUnitID="{1E13664B-E694-4203-95E7-AEB6212579F7}"/>
+										</Reference>
+										<Reference Name="OutputBus">
+											<ObjectRef Name="Interactables" ID="{A3E72D92-3E4A-4EC1-96EA-196EC484C398}" WorkUnitID="{6C0969E1-B09C-4693-BC3C-B2E7116B2AEE}"/>
+										</Reference>
+									</ReferenceList>
+									<ChildrenList>
+										<AudioFileSource Name="sfx_IN_TinderLighter_use_03" ID="{FCBAEC7E-3061-4893-87A5-725D2031C6AB}">
+											<Language>SFX</Language>
+											<AudioFile>Interactables\sfx_IN_TinderLighter_use_03.wav</AudioFile>
+											<MediaIDList>
+												<MediaID ID="532563893"/>
+											</MediaIDList>
+										</AudioFileSource>
+									</ChildrenList>
+									<ActiveSourceList>
+										<ActiveSource Name="sfx_IN_TinderLighter_use_03" ID="{FCBAEC7E-3061-4893-87A5-725D2031C6AB}" Platform="Linked"/>
+									</ActiveSourceList>
+								</Sound>
+								<Sound Name="sfx_IN_TinderLighter_use_04" ID="{586A96C3-C29D-4882-A5AB-6C77C4E0E7B0}" ShortID="987654863">
+									<ReferenceList>
+										<Reference Name="Conversion">
+											<ObjectRef Name="CS_PC_SFX_High" ID="{11A47DD3-D0C7-4288-A9B3-09CFC6D530CF}" WorkUnitID="{1E13664B-E694-4203-95E7-AEB6212579F7}"/>
+										</Reference>
+										<Reference Name="OutputBus">
+											<ObjectRef Name="Interactables" ID="{A3E72D92-3E4A-4EC1-96EA-196EC484C398}" WorkUnitID="{6C0969E1-B09C-4693-BC3C-B2E7116B2AEE}"/>
+										</Reference>
+									</ReferenceList>
+									<ChildrenList>
+										<AudioFileSource Name="sfx_IN_TinderLighter_use_04" ID="{E9A88FF1-37DA-4E89-AFF8-C054596ABB7A}">
+											<Language>SFX</Language>
+											<AudioFile>Interactables\sfx_IN_TinderLighter_use_04.wav</AudioFile>
+											<MediaIDList>
+												<MediaID ID="309068171"/>
+											</MediaIDList>
+										</AudioFileSource>
+									</ChildrenList>
+									<ActiveSourceList>
+										<ActiveSource Name="sfx_IN_TinderLighter_use_04" ID="{E9A88FF1-37DA-4E89-AFF8-C054596ABB7A}" Platform="Linked"/>
+									</ActiveSourceList>
+								</Sound>
+								<Sound Name="sfx_IN_TinderLighter_use_05" ID="{D0898E8C-C9A5-44C7-9B9C-1DBFA1537701}" ShortID="53126446">
+									<ReferenceList>
+										<Reference Name="Conversion">
+											<ObjectRef Name="CS_PC_SFX_High" ID="{11A47DD3-D0C7-4288-A9B3-09CFC6D530CF}" WorkUnitID="{1E13664B-E694-4203-95E7-AEB6212579F7}"/>
+										</Reference>
+										<Reference Name="OutputBus">
+											<ObjectRef Name="Interactables" ID="{A3E72D92-3E4A-4EC1-96EA-196EC484C398}" WorkUnitID="{6C0969E1-B09C-4693-BC3C-B2E7116B2AEE}"/>
+										</Reference>
+									</ReferenceList>
+									<ChildrenList>
+										<AudioFileSource Name="sfx_IN_TinderLighter_use_05" ID="{0B0D5FC3-1509-441A-8C4F-B0C6D24833A5}">
+											<Language>SFX</Language>
+											<AudioFile>Interactables\sfx_IN_TinderLighter_use_05.wav</AudioFile>
+											<MediaIDList>
+												<MediaID ID="525809787"/>
+											</MediaIDList>
+										</AudioFileSource>
+									</ChildrenList>
+									<ActiveSourceList>
+										<ActiveSource Name="sfx_IN_TinderLighter_use_05" ID="{0B0D5FC3-1509-441A-8C4F-B0C6D24833A5}" Platform="Linked"/>
+									</ActiveSourceList>
+								</Sound>
+							</ChildrenList>
+						</RandomSequenceContainer>
+						<RandomSequenceContainer Name="IN_TinderLighter_sheath" ID="{5B459BC8-40F2-485F-B51A-A3D3A75478F0}" ShortID="443353699">
+							<ReferenceList>
+								<Reference Name="Conversion">
+									<ObjectRef Name="CS_PC_SFX_High" ID="{11A47DD3-D0C7-4288-A9B3-09CFC6D530CF}" WorkUnitID="{1E13664B-E694-4203-95E7-AEB6212579F7}"/>
+								</Reference>
+								<Reference Name="OutputBus">
+									<ObjectRef Name="Interactables" ID="{A3E72D92-3E4A-4EC1-96EA-196EC484C398}" WorkUnitID="{6C0969E1-B09C-4693-BC3C-B2E7116B2AEE}"/>
+								</Reference>
+							</ReferenceList>
+							<ChildrenList>
+								<Sound Name="sfx_IN_TinderLighter_sheath_02" ID="{147F99F3-47DB-4115-8276-245BDE42EAF1}" ShortID="102192922">
+									<ReferenceList>
+										<Reference Name="Conversion">
+											<ObjectRef Name="CS_PC_SFX_High" ID="{11A47DD3-D0C7-4288-A9B3-09CFC6D530CF}" WorkUnitID="{1E13664B-E694-4203-95E7-AEB6212579F7}"/>
+										</Reference>
+										<Reference Name="OutputBus">
+											<ObjectRef Name="Interactables" ID="{A3E72D92-3E4A-4EC1-96EA-196EC484C398}" WorkUnitID="{6C0969E1-B09C-4693-BC3C-B2E7116B2AEE}"/>
+										</Reference>
+									</ReferenceList>
+									<ChildrenList>
+										<AudioFileSource Name="sfx_IN_TinderLighter_sheath_02" ID="{90CB2E54-21FB-4213-9C6A-F67F6C8B305F}">
+											<Language>SFX</Language>
+											<AudioFile>Interactables\sfx_IN_TinderLighter_sheath_02.wav</AudioFile>
+											<MediaIDList>
+												<MediaID ID="113643814"/>
+											</MediaIDList>
+										</AudioFileSource>
+									</ChildrenList>
+									<ActiveSourceList>
+										<ActiveSource Name="sfx_IN_TinderLighter_sheath_02" ID="{90CB2E54-21FB-4213-9C6A-F67F6C8B305F}" Platform="Linked"/>
+									</ActiveSourceList>
+								</Sound>
+								<Sound Name="sfx_IN_TinderLighter_sheath_01" ID="{48272FE3-6842-41A2-8F27-61C584660DFF}" ShortID="590183873">
+									<ReferenceList>
+										<Reference Name="Conversion">
+											<ObjectRef Name="CS_PC_SFX_High" ID="{11A47DD3-D0C7-4288-A9B3-09CFC6D530CF}" WorkUnitID="{1E13664B-E694-4203-95E7-AEB6212579F7}"/>
+										</Reference>
+										<Reference Name="OutputBus">
+											<ObjectRef Name="Interactables" ID="{A3E72D92-3E4A-4EC1-96EA-196EC484C398}" WorkUnitID="{6C0969E1-B09C-4693-BC3C-B2E7116B2AEE}"/>
+										</Reference>
+									</ReferenceList>
+									<ChildrenList>
+										<AudioFileSource Name="sfx_IN_TinderLighter_sheath_01" ID="{926A42CF-608C-4C5D-AD0E-474D16A532A6}">
+											<Language>SFX</Language>
+											<AudioFile>Interactables\sfx_IN_TinderLighter_sheath_01.wav</AudioFile>
+											<MediaIDList>
+												<MediaID ID="1023514819"/>
+											</MediaIDList>
+										</AudioFileSource>
+									</ChildrenList>
+									<ActiveSourceList>
+										<ActiveSource Name="sfx_IN_TinderLighter_sheath_01" ID="{926A42CF-608C-4C5D-AD0E-474D16A532A6}" Platform="Linked"/>
+									</ActiveSourceList>
+								</Sound>
+								<Sound Name="sfx_IN_TinderLighter_sheath_03" ID="{B703A097-1C07-4ED1-9F5D-0AA9F6D45EA4}" ShortID="553042909">
+									<ReferenceList>
+										<Reference Name="Conversion">
+											<ObjectRef Name="CS_PC_SFX_High" ID="{11A47DD3-D0C7-4288-A9B3-09CFC6D530CF}" WorkUnitID="{1E13664B-E694-4203-95E7-AEB6212579F7}"/>
+										</Reference>
+										<Reference Name="OutputBus">
+											<ObjectRef Name="Interactables" ID="{A3E72D92-3E4A-4EC1-96EA-196EC484C398}" WorkUnitID="{6C0969E1-B09C-4693-BC3C-B2E7116B2AEE}"/>
+										</Reference>
+									</ReferenceList>
+									<ChildrenList>
+										<AudioFileSource Name="sfx_IN_TinderLighter_sheath_03" ID="{675D28AE-C70C-4AA3-BE3A-7F301767ED9A}">
+											<Language>SFX</Language>
+											<AudioFile>Interactables\sfx_IN_TinderLighter_sheath_03.wav</AudioFile>
+											<MediaIDList>
+												<MediaID ID="278199551"/>
+											</MediaIDList>
+										</AudioFileSource>
+									</ChildrenList>
+									<ActiveSourceList>
+										<ActiveSource Name="sfx_IN_TinderLighter_sheath_03" ID="{675D28AE-C70C-4AA3-BE3A-7F301767ED9A}" Platform="Linked"/>
+									</ActiveSourceList>
+								</Sound>
+								<Sound Name="sfx_IN_TinderLighter_sheath_04" ID="{511BD782-DB47-4777-BA65-1B77DF525166}" ShortID="590127222">
+									<ReferenceList>
+										<Reference Name="Conversion">
+											<ObjectRef Name="CS_PC_SFX_High" ID="{11A47DD3-D0C7-4288-A9B3-09CFC6D530CF}" WorkUnitID="{1E13664B-E694-4203-95E7-AEB6212579F7}"/>
+										</Reference>
+										<Reference Name="OutputBus">
+											<ObjectRef Name="Interactables" ID="{A3E72D92-3E4A-4EC1-96EA-196EC484C398}" WorkUnitID="{6C0969E1-B09C-4693-BC3C-B2E7116B2AEE}"/>
+										</Reference>
+									</ReferenceList>
+									<ChildrenList>
+										<AudioFileSource Name="sfx_IN_TinderLighter_sheath_04" ID="{C61BA8A2-3F35-4446-BCB4-75AA0A5BF37C}">
+											<Language>SFX</Language>
+											<AudioFile>Interactables\sfx_IN_TinderLighter_sheath_04.wav</AudioFile>
+											<MediaIDList>
+												<MediaID ID="1061330131"/>
+											</MediaIDList>
+										</AudioFileSource>
+									</ChildrenList>
+									<ActiveSourceList>
+										<ActiveSource Name="sfx_IN_TinderLighter_sheath_04" ID="{C61BA8A2-3F35-4446-BCB4-75AA0A5BF37C}" Platform="Linked"/>
+									</ActiveSourceList>
+								</Sound>
+								<Sound Name="sfx_IN_TinderLighter_sheath_05" ID="{2E4BB8B0-1F0A-4A7C-8E35-197E9A15F4EC}" ShortID="277687643">
+									<ReferenceList>
+										<Reference Name="Conversion">
+											<ObjectRef Name="CS_PC_SFX_High" ID="{11A47DD3-D0C7-4288-A9B3-09CFC6D530CF}" WorkUnitID="{1E13664B-E694-4203-95E7-AEB6212579F7}"/>
+										</Reference>
+										<Reference Name="OutputBus">
+											<ObjectRef Name="Interactables" ID="{A3E72D92-3E4A-4EC1-96EA-196EC484C398}" WorkUnitID="{6C0969E1-B09C-4693-BC3C-B2E7116B2AEE}"/>
+										</Reference>
+									</ReferenceList>
+									<ChildrenList>
+										<AudioFileSource Name="sfx_IN_TinderLighter_sheath_05" ID="{A602AAFF-CF10-4481-9072-54EC634B658C}">
+											<Language>SFX</Language>
+											<AudioFile>Interactables\sfx_IN_TinderLighter_sheath_05.wav</AudioFile>
+											<MediaIDList>
+												<MediaID ID="622948648"/>
+											</MediaIDList>
+										</AudioFileSource>
+									</ChildrenList>
+									<ActiveSourceList>
+										<ActiveSource Name="sfx_IN_TinderLighter_sheath_05" ID="{A602AAFF-CF10-4481-9072-54EC634B658C}" Platform="Linked"/>
+									</ActiveSourceList>
+								</Sound>
+							</ChildrenList>
+						</RandomSequenceContainer>
+						<RandomSequenceContainer Name="IN_WoodenTorch_light" ID="{77B8A2A2-ECC4-4BC9-AECD-A6EB3A29CF31}" ShortID="762453035">
+							<ReferenceList>
+								<Reference Name="Conversion">
+									<ObjectRef Name="CS_PC_SFX_High" ID="{11A47DD3-D0C7-4288-A9B3-09CFC6D530CF}" WorkUnitID="{1E13664B-E694-4203-95E7-AEB6212579F7}"/>
+								</Reference>
+								<Reference Name="OutputBus">
+									<ObjectRef Name="Interactables" ID="{A3E72D92-3E4A-4EC1-96EA-196EC484C398}" WorkUnitID="{6C0969E1-B09C-4693-BC3C-B2E7116B2AEE}"/>
+								</Reference>
+							</ReferenceList>
+							<ChildrenList>
+								<Sound Name="sfx_IN_WoodenTorch_light_01" ID="{30C141FB-C1D9-46CC-A670-9D380C086A2F}" ShortID="886734523">
+									<ReferenceList>
+										<Reference Name="Conversion">
+											<ObjectRef Name="CS_PC_SFX_High" ID="{11A47DD3-D0C7-4288-A9B3-09CFC6D530CF}" WorkUnitID="{1E13664B-E694-4203-95E7-AEB6212579F7}"/>
+										</Reference>
+										<Reference Name="OutputBus">
+											<ObjectRef Name="Interactables" ID="{A3E72D92-3E4A-4EC1-96EA-196EC484C398}" WorkUnitID="{6C0969E1-B09C-4693-BC3C-B2E7116B2AEE}"/>
+										</Reference>
+									</ReferenceList>
+									<ChildrenList>
+										<AudioFileSource Name="sfx_IN_WoodenTorch_light_01" ID="{0A91142C-5B92-4E3D-B6AD-FDEB90BA3A50}">
+											<Language>SFX</Language>
+											<AudioFile>Interactables\sfx_IN_WoodenTorch_light_01.wav</AudioFile>
+											<MediaIDList>
+												<MediaID ID="882159914"/>
+											</MediaIDList>
+										</AudioFileSource>
+									</ChildrenList>
+									<ActiveSourceList>
+										<ActiveSource Name="sfx_IN_WoodenTorch_light_01" ID="{0A91142C-5B92-4E3D-B6AD-FDEB90BA3A50}" Platform="Linked"/>
+									</ActiveSourceList>
+								</Sound>
+								<Sound Name="sfx_IN_WoodenTorch_light_02" ID="{5C01CAC2-F7B6-4044-B58F-674FE2907474}" ShortID="680509905">
+									<ReferenceList>
+										<Reference Name="Conversion">
+											<ObjectRef Name="CS_PC_SFX_High" ID="{11A47DD3-D0C7-4288-A9B3-09CFC6D530CF}" WorkUnitID="{1E13664B-E694-4203-95E7-AEB6212579F7}"/>
+										</Reference>
+										<Reference Name="OutputBus">
+											<ObjectRef Name="Interactables" ID="{A3E72D92-3E4A-4EC1-96EA-196EC484C398}" WorkUnitID="{6C0969E1-B09C-4693-BC3C-B2E7116B2AEE}"/>
+										</Reference>
+									</ReferenceList>
+									<ChildrenList>
+										<AudioFileSource Name="sfx_IN_WoodenTorch_light_02" ID="{B08A990A-00E7-45E2-9673-4178592E456C}">
+											<Language>SFX</Language>
+											<AudioFile>Interactables\sfx_IN_WoodenTorch_light_02.wav</AudioFile>
+											<MediaIDList>
+												<MediaID ID="628193066"/>
+											</MediaIDList>
+										</AudioFileSource>
+									</ChildrenList>
+									<ActiveSourceList>
+										<ActiveSource Name="sfx_IN_WoodenTorch_light_02" ID="{B08A990A-00E7-45E2-9673-4178592E456C}" Platform="Linked"/>
+									</ActiveSourceList>
+								</Sound>
+								<Sound Name="sfx_IN_WoodenTorch_light_03" ID="{AFE20945-CA33-43AB-A1C9-9D63FA55A6E2}" ShortID="815493320">
+									<ReferenceList>
+										<Reference Name="Conversion">
+											<ObjectRef Name="CS_PC_SFX_High" ID="{11A47DD3-D0C7-4288-A9B3-09CFC6D530CF}" WorkUnitID="{1E13664B-E694-4203-95E7-AEB6212579F7}"/>
+										</Reference>
+										<Reference Name="OutputBus">
+											<ObjectRef Name="Interactables" ID="{A3E72D92-3E4A-4EC1-96EA-196EC484C398}" WorkUnitID="{6C0969E1-B09C-4693-BC3C-B2E7116B2AEE}"/>
+										</Reference>
+									</ReferenceList>
+									<ChildrenList>
+										<AudioFileSource Name="sfx_IN_WoodenTorch_light_03" ID="{AE6A1EFD-C6CE-43F3-9995-995FBC163194}">
+											<Language>SFX</Language>
+											<AudioFile>Interactables\sfx_IN_WoodenTorch_light_03.wav</AudioFile>
+											<MediaIDList>
+												<MediaID ID="881830873"/>
+											</MediaIDList>
+										</AudioFileSource>
+									</ChildrenList>
+									<ActiveSourceList>
+										<ActiveSource Name="sfx_IN_WoodenTorch_light_03" ID="{AE6A1EFD-C6CE-43F3-9995-995FBC163194}" Platform="Linked"/>
+									</ActiveSourceList>
+								</Sound>
+								<Sound Name="sfx_IN_WoodenTorch_light_04" ID="{160A7C05-8CDB-4780-935D-38071C009351}" ShortID="819761486">
+									<ReferenceList>
+										<Reference Name="Conversion">
+											<ObjectRef Name="CS_PC_SFX_High" ID="{11A47DD3-D0C7-4288-A9B3-09CFC6D530CF}" WorkUnitID="{1E13664B-E694-4203-95E7-AEB6212579F7}"/>
+										</Reference>
+										<Reference Name="OutputBus">
+											<ObjectRef Name="Interactables" ID="{A3E72D92-3E4A-4EC1-96EA-196EC484C398}" WorkUnitID="{6C0969E1-B09C-4693-BC3C-B2E7116B2AEE}"/>
+										</Reference>
+									</ReferenceList>
+									<ChildrenList>
+										<AudioFileSource Name="sfx_IN_WoodenTorch_light_04" ID="{0263B3EE-F077-4A6F-A0ED-2774E0A8DFA1}">
+											<Language>SFX</Language>
+											<AudioFile>Interactables\sfx_IN_WoodenTorch_light_04.wav</AudioFile>
+											<MediaIDList>
+												<MediaID ID="871226208"/>
+											</MediaIDList>
+										</AudioFileSource>
+									</ChildrenList>
+									<ActiveSourceList>
+										<ActiveSource Name="sfx_IN_WoodenTorch_light_04" ID="{0263B3EE-F077-4A6F-A0ED-2774E0A8DFA1}" Platform="Linked"/>
+									</ActiveSourceList>
+								</Sound>
+							</ChildrenList>
+						</RandomSequenceContainer>
+						<RandomSequenceContainer Name="IN_WoodenTorch_mount" ID="{4CD02F26-54BB-4AB8-9B6B-9CB7F356E0ED}" ShortID="829245287">
+							<ReferenceList>
+								<Reference Name="Conversion">
+									<ObjectRef Name="CS_PC_SFX_High" ID="{11A47DD3-D0C7-4288-A9B3-09CFC6D530CF}" WorkUnitID="{1E13664B-E694-4203-95E7-AEB6212579F7}"/>
+								</Reference>
+								<Reference Name="OutputBus">
+									<ObjectRef Name="Interactables" ID="{A3E72D92-3E4A-4EC1-96EA-196EC484C398}" WorkUnitID="{6C0969E1-B09C-4693-BC3C-B2E7116B2AEE}"/>
+								</Reference>
+							</ReferenceList>
+							<ChildrenList>
+								<Sound Name="sfx_IN_WoodenTorch_mount_01" ID="{AEBCFC2B-A923-4B9E-A479-55441A035A51}" ShortID="514967721">
+									<ReferenceList>
+										<Reference Name="Conversion">
+											<ObjectRef Name="CS_PC_SFX_High" ID="{11A47DD3-D0C7-4288-A9B3-09CFC6D530CF}" WorkUnitID="{1E13664B-E694-4203-95E7-AEB6212579F7}"/>
+										</Reference>
+										<Reference Name="OutputBus">
+											<ObjectRef Name="Interactables" ID="{A3E72D92-3E4A-4EC1-96EA-196EC484C398}" WorkUnitID="{6C0969E1-B09C-4693-BC3C-B2E7116B2AEE}"/>
+										</Reference>
+									</ReferenceList>
+									<ChildrenList>
+										<AudioFileSource Name="sfx_IN_WoodenTorch_mount_01" ID="{3D6A38FA-3207-468A-AF06-F645DDC8B844}">
+											<Language>SFX</Language>
+											<AudioFile>Interactables\sfx_IN_WoodenTorch_mount_01.wav</AudioFile>
+											<MediaIDList>
+												<MediaID ID="19605304"/>
+											</MediaIDList>
+										</AudioFileSource>
+									</ChildrenList>
+									<ActiveSourceList>
+										<ActiveSource Name="sfx_IN_WoodenTorch_mount_01" ID="{3D6A38FA-3207-468A-AF06-F645DDC8B844}" Platform="Linked"/>
+									</ActiveSourceList>
+								</Sound>
+								<Sound Name="sfx_IN_WoodenTorch_mount_02" ID="{3C0C1906-92C8-4025-95AE-73D16EE44A39}" ShortID="615383192">
+									<ReferenceList>
+										<Reference Name="Conversion">
+											<ObjectRef Name="CS_PC_SFX_High" ID="{11A47DD3-D0C7-4288-A9B3-09CFC6D530CF}" WorkUnitID="{1E13664B-E694-4203-95E7-AEB6212579F7}"/>
+										</Reference>
+										<Reference Name="OutputBus">
+											<ObjectRef Name="Interactables" ID="{A3E72D92-3E4A-4EC1-96EA-196EC484C398}" WorkUnitID="{6C0969E1-B09C-4693-BC3C-B2E7116B2AEE}"/>
+										</Reference>
+									</ReferenceList>
+									<ChildrenList>
+										<AudioFileSource Name="sfx_IN_WoodenTorch_mount_02" ID="{8B248267-7721-444E-8DAC-D4300BF7CF6C}">
+											<Language>SFX</Language>
+											<AudioFile>Interactables\sfx_IN_WoodenTorch_mount_02.wav</AudioFile>
+											<MediaIDList>
+												<MediaID ID="1019272970"/>
+											</MediaIDList>
+										</AudioFileSource>
+									</ChildrenList>
+									<ActiveSourceList>
+										<ActiveSource Name="sfx_IN_WoodenTorch_mount_02" ID="{8B248267-7721-444E-8DAC-D4300BF7CF6C}" Platform="Linked"/>
+									</ActiveSourceList>
+								</Sound>
+								<Sound Name="sfx_IN_WoodenTorch_mount_03" ID="{16D83683-EA6F-4B1B-8345-C698C344E9CD}" ShortID="979749023">
+									<ReferenceList>
+										<Reference Name="Conversion">
+											<ObjectRef Name="CS_PC_SFX_High" ID="{11A47DD3-D0C7-4288-A9B3-09CFC6D530CF}" WorkUnitID="{1E13664B-E694-4203-95E7-AEB6212579F7}"/>
+										</Reference>
+										<Reference Name="OutputBus">
+											<ObjectRef Name="Interactables" ID="{A3E72D92-3E4A-4EC1-96EA-196EC484C398}" WorkUnitID="{6C0969E1-B09C-4693-BC3C-B2E7116B2AEE}"/>
+										</Reference>
+									</ReferenceList>
+									<ChildrenList>
+										<AudioFileSource Name="sfx_IN_WoodenTorch_mount_03" ID="{817DB6F7-6979-4B0E-BE54-93CE7A885CD8}">
+											<Language>SFX</Language>
+											<AudioFile>Interactables\sfx_IN_WoodenTorch_mount_03.wav</AudioFile>
+											<MediaIDList>
+												<MediaID ID="676606529"/>
+											</MediaIDList>
+										</AudioFileSource>
+									</ChildrenList>
+									<ActiveSourceList>
+										<ActiveSource Name="sfx_IN_WoodenTorch_mount_03" ID="{817DB6F7-6979-4B0E-BE54-93CE7A885CD8}" Platform="Linked"/>
+									</ActiveSourceList>
+								</Sound>
+							</ChildrenList>
+						</RandomSequenceContainer>
+						<RandomSequenceContainer Name="IN_WoodenTorch_sheath" ID="{891D5720-E646-4897-83B1-B8954684BAC1}" ShortID="792777396">
+							<ReferenceList>
+								<Reference Name="Conversion">
+									<ObjectRef Name="CS_PC_SFX_High" ID="{11A47DD3-D0C7-4288-A9B3-09CFC6D530CF}" WorkUnitID="{1E13664B-E694-4203-95E7-AEB6212579F7}"/>
+								</Reference>
+								<Reference Name="OutputBus">
+									<ObjectRef Name="Interactables" ID="{A3E72D92-3E4A-4EC1-96EA-196EC484C398}" WorkUnitID="{6C0969E1-B09C-4693-BC3C-B2E7116B2AEE}"/>
+								</Reference>
+							</ReferenceList>
+							<ChildrenList>
+								<Sound Name="sfx_IN_WoodenTorch_sheath_01" ID="{B7EAB627-A5EC-4802-9419-8BDCCD6440FD}" ShortID="200836838">
+									<ReferenceList>
+										<Reference Name="Conversion">
+											<ObjectRef Name="CS_PC_SFX_High" ID="{11A47DD3-D0C7-4288-A9B3-09CFC6D530CF}" WorkUnitID="{1E13664B-E694-4203-95E7-AEB6212579F7}"/>
+										</Reference>
+										<Reference Name="OutputBus">
+											<ObjectRef Name="Interactables" ID="{A3E72D92-3E4A-4EC1-96EA-196EC484C398}" WorkUnitID="{6C0969E1-B09C-4693-BC3C-B2E7116B2AEE}"/>
+										</Reference>
+									</ReferenceList>
+									<ChildrenList>
+										<AudioFileSource Name="sfx_IN_WoodenTorch_sheath_01" ID="{801C0F62-98C5-4282-B7F3-96E6CBFBC9DB}">
+											<Language>SFX</Language>
+											<AudioFile>Interactables\sfx_IN_WoodenTorch_sheath_01.wav</AudioFile>
+											<MediaIDList>
+												<MediaID ID="855822546"/>
+											</MediaIDList>
+										</AudioFileSource>
+									</ChildrenList>
+									<ActiveSourceList>
+										<ActiveSource Name="sfx_IN_WoodenTorch_sheath_01" ID="{801C0F62-98C5-4282-B7F3-96E6CBFBC9DB}" Platform="Linked"/>
+									</ActiveSourceList>
+								</Sound>
+								<Sound Name="sfx_IN_WoodenTorch_sheath_02" ID="{1B6B9CC3-EE9A-4978-B4DB-04868B0F7404}" ShortID="968866951">
+									<ReferenceList>
+										<Reference Name="Conversion">
+											<ObjectRef Name="CS_PC_SFX_High" ID="{11A47DD3-D0C7-4288-A9B3-09CFC6D530CF}" WorkUnitID="{1E13664B-E694-4203-95E7-AEB6212579F7}"/>
+										</Reference>
+										<Reference Name="OutputBus">
+											<ObjectRef Name="Interactables" ID="{A3E72D92-3E4A-4EC1-96EA-196EC484C398}" WorkUnitID="{6C0969E1-B09C-4693-BC3C-B2E7116B2AEE}"/>
+										</Reference>
+									</ReferenceList>
+									<ChildrenList>
+										<AudioFileSource Name="sfx_IN_WoodenTorch_sheath_02" ID="{594B724E-90C5-43A2-A4FC-C5659092785E}">
+											<Language>SFX</Language>
+											<AudioFile>Interactables\sfx_IN_WoodenTorch_sheath_02.wav</AudioFile>
+											<MediaIDList>
+												<MediaID ID="227675441"/>
+											</MediaIDList>
+										</AudioFileSource>
+									</ChildrenList>
+									<ActiveSourceList>
+										<ActiveSource Name="sfx_IN_WoodenTorch_sheath_02" ID="{594B724E-90C5-43A2-A4FC-C5659092785E}" Platform="Linked"/>
+									</ActiveSourceList>
+								</Sound>
+								<Sound Name="sfx_IN_WoodenTorch_sheath_03" ID="{7CBD673B-B93E-4CD4-B915-511AF9FA3AE4}" ShortID="525235534">
+									<ReferenceList>
+										<Reference Name="Conversion">
+											<ObjectRef Name="CS_PC_SFX_High" ID="{11A47DD3-D0C7-4288-A9B3-09CFC6D530CF}" WorkUnitID="{1E13664B-E694-4203-95E7-AEB6212579F7}"/>
+										</Reference>
+										<Reference Name="OutputBus">
+											<ObjectRef Name="Interactables" ID="{A3E72D92-3E4A-4EC1-96EA-196EC484C398}" WorkUnitID="{6C0969E1-B09C-4693-BC3C-B2E7116B2AEE}"/>
+										</Reference>
+									</ReferenceList>
+									<ChildrenList>
+										<AudioFileSource Name="sfx_IN_WoodenTorch_sheath_03" ID="{92926FEA-6E43-4BD3-83CE-5DC07BD1C97A}">
+											<Language>SFX</Language>
+											<AudioFile>Interactables\sfx_IN_WoodenTorch_sheath_03.wav</AudioFile>
+											<MediaIDList>
+												<MediaID ID="960026647"/>
+											</MediaIDList>
+										</AudioFileSource>
+									</ChildrenList>
+									<ActiveSourceList>
+										<ActiveSource Name="sfx_IN_WoodenTorch_sheath_03" ID="{92926FEA-6E43-4BD3-83CE-5DC07BD1C97A}" Platform="Linked"/>
+									</ActiveSourceList>
+								</Sound>
+								<Sound Name="sfx_IN_WoodenTorch_sheath_04" ID="{215938E0-37E5-462E-9601-A1C1EFAC4BB7}" ShortID="334788738">
+									<ReferenceList>
+										<Reference Name="Conversion">
+											<ObjectRef Name="CS_PC_SFX_High" ID="{11A47DD3-D0C7-4288-A9B3-09CFC6D530CF}" WorkUnitID="{1E13664B-E694-4203-95E7-AEB6212579F7}"/>
+										</Reference>
+										<Reference Name="OutputBus">
+											<ObjectRef Name="Interactables" ID="{A3E72D92-3E4A-4EC1-96EA-196EC484C398}" WorkUnitID="{6C0969E1-B09C-4693-BC3C-B2E7116B2AEE}"/>
+										</Reference>
+									</ReferenceList>
+									<ChildrenList>
+										<AudioFileSource Name="sfx_IN_WoodenTorch_sheath_04" ID="{7546DEC3-2AD9-4EA9-9BA2-CF2DC0AA1E13}">
+											<Language>SFX</Language>
+											<AudioFile>Interactables\sfx_IN_WoodenTorch_sheath_04.wav</AudioFile>
+											<MediaIDList>
+												<MediaID ID="513583154"/>
+											</MediaIDList>
+										</AudioFileSource>
+									</ChildrenList>
+									<ActiveSourceList>
+										<ActiveSource Name="sfx_IN_WoodenTorch_sheath_04" ID="{7546DEC3-2AD9-4EA9-9BA2-CF2DC0AA1E13}" Platform="Linked"/>
+									</ActiveSourceList>
+								</Sound>
+							</ChildrenList>
+						</RandomSequenceContainer>
+						<RandomSequenceContainer Name="IN_FlameTorch_pickup" ID="{B0CB456E-793C-4326-9B27-BFCC161E4B8F}" ShortID="909863693">
+							<ReferenceList>
+								<Reference Name="Conversion">
+									<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{1E13664B-E694-4203-95E7-AEB6212579F7}"/>
+								</Reference>
+								<Reference Name="OutputBus">
+									<ObjectRef Name="MASTER" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{6C0969E1-B09C-4693-BC3C-B2E7116B2AEE}"/>
+								</Reference>
+							</ReferenceList>
+							<ChildrenList>
+								<Sound Name="sfx_IN_FlameTorch_pickup_01" ID="{75944806-FCC4-4748-8B46-038360EFFD05}" ShortID="757142385">
+									<ReferenceList>
+										<Reference Name="Conversion">
+											<ObjectRef Name="CS_PC_SFX_High" ID="{11A47DD3-D0C7-4288-A9B3-09CFC6D530CF}" WorkUnitID="{1E13664B-E694-4203-95E7-AEB6212579F7}"/>
+										</Reference>
+										<Reference Name="OutputBus">
+											<ObjectRef Name="Interactables" ID="{A3E72D92-3E4A-4EC1-96EA-196EC484C398}" WorkUnitID="{6C0969E1-B09C-4693-BC3C-B2E7116B2AEE}"/>
+										</Reference>
+									</ReferenceList>
+									<ChildrenList>
+										<AudioFileSource Name="sfx_IN_FlameTorch_pickup_01" ID="{746FC4FD-9446-4C15-9430-E5F81BD148B2}">
+											<Language>SFX</Language>
+											<AudioFile>Interactables\sfx_IN_FlameTorch_pickup_01.wav</AudioFile>
+											<MediaIDList>
+												<MediaID ID="1042922343"/>
+											</MediaIDList>
+										</AudioFileSource>
+									</ChildrenList>
+									<ActiveSourceList>
+										<ActiveSource Name="sfx_IN_FlameTorch_pickup_01" ID="{746FC4FD-9446-4C15-9430-E5F81BD148B2}" Platform="Linked"/>
+									</ActiveSourceList>
+								</Sound>
+							</ChildrenList>
+						</RandomSequenceContainer>
 					</ChildrenList>
 				</ActorMixer>
 			</ChildrenList>

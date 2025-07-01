@@ -1,2 +1,3 @@
 join Devin 1
+[tgo_expr expr="{TGO.audio("Devin").fire("play_AM_Crypt_rubble")}"]
 Devin: An old, rotting coffin made of wood. Nothing remains inside. Looters care nothing for the dead.

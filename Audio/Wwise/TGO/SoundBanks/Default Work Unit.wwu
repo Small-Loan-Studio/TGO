@@ -6,7 +6,9 @@
 				<SoundBank Name="Main" ID="{AC6FA22E-A513-4D96-9306-DAF3DB3B4167}">
 					<ObjectInclusionList>
 						<ObjectRef Name="play_IN_TinderLighter_pickup" ID="{C4A48BD2-90FA-4027-80CC-EDB7797136EA}" WorkUnitID="{D9FB95D4-D1CB-4E4D-B4AD-20EE510BA0A6}" Origin="Manual" Filter="7"/>
+						<ObjectRef Name="play_IN_WoodenTorch_mount" ID="{BE48EC3C-CE38-40E0-BD46-39DDB859FA4B}" WorkUnitID="{D9FB95D4-D1CB-4E4D-B4AD-20EE510BA0A6}" Origin="Manual" Filter="7"/>
 						<ObjectRef Name="play_UI_NewClue" ID="{712DB457-47C6-40E1-B8DE-87C7BB2854F5}" WorkUnitID="{285F7A76-AE49-4D48-8D5D-C73C7938630A}" Origin="Manual" Filter="7"/>
+						<ObjectRef Name="play_IN_WoodenTorch_sheath" ID="{46E53A64-7995-4103-A52A-95BB013F1015}" WorkUnitID="{D9FB95D4-D1CB-4E4D-B4AD-20EE510BA0A6}" Origin="Manual" Filter="7"/>
 						<ObjectRef Name="MASTER" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{6C0969E1-B09C-4693-BC3C-B2E7116B2AEE}" Origin="Manual" Filter="7"/>
 						<ObjectRef Name="play_AM_Crypt" ID="{482479D2-94ED-41B4-A096-57530F3F293A}" WorkUnitID="{05418A24-DE52-48AE-8733-F6F54D1BFD0E}" Origin="Manual" Filter="7"/>
 						<ObjectRef Name="play_IN_juniper_eat" ID="{C2180683-A2AB-41F4-B088-3CA65BECDF41}" WorkUnitID="{D9FB95D4-D1CB-4E4D-B4AD-20EE510BA0A6}" Origin="Manual" Filter="7"/>
@@ -17,10 +19,12 @@
 						<ObjectRef Name="play_IN_lockpick_pickup" ID="{C21369DB-9AD5-454E-A8EC-6DA461B14D5E}" WorkUnitID="{D9FB95D4-D1CB-4E4D-B4AD-20EE510BA0A6}" Origin="Manual" Filter="7"/>
 						<ObjectRef Name="play_TEST_TestTone_lp" ID="{79A565EA-209C-45D6-8D83-743D1A53F4B9}" WorkUnitID="{AAA74B16-0AA3-4E80-A3C1-B701AD23C503}" Origin="Manual" Filter="7"/>
 						<ObjectRef Name="play_TEST_TestTone" ID="{DC68FA23-5028-45F4-85B3-1D8404626783}" WorkUnitID="{AAA74B16-0AA3-4E80-A3C1-B701AD23C503}" Origin="Manual" Filter="7"/>
+						<ObjectRef Name="play_IN_FlameTorch_pickup" ID="{8E45AB11-9962-461B-A1C3-D65046E8E57E}" WorkUnitID="{D9FB95D4-D1CB-4E4D-B4AD-20EE510BA0A6}" Origin="Manual" Filter="7"/>
 						<ObjectRef Name="play_UI_QuestCompleted" ID="{DEFBE5EF-0A55-4638-8024-F5111FEC210A}" WorkUnitID="{285F7A76-AE49-4D48-8D5D-C73C7938630A}" Origin="Manual" Filter="7"/>
 						<ObjectRef Name="play_IN_satchel_pickup" ID="{3A444292-D045-46C6-95F4-EC063D85684A}" WorkUnitID="{D9FB95D4-D1CB-4E4D-B4AD-20EE510BA0A6}" Origin="Manual" Filter="7"/>
 						<ObjectRef Name="play_AM_Cemetery" ID="{3E0F1F73-FCA0-46F7-8B43-D790B93CC126}" WorkUnitID="{05418A24-DE52-48AE-8733-F6F54D1BFD0E}" Origin="Manual" Filter="7"/>
 						<ObjectRef Name="play_IN_SkeletalRemains_search" ID="{948FFE56-87D6-4794-91FE-D8B9E8D3BA46}" WorkUnitID="{D9FB95D4-D1CB-4E4D-B4AD-20EE510BA0A6}" Origin="Manual" Filter="7"/>
+						<ObjectRef Name="play_IN_WoodenTorch_on" ID="{B2841DA2-D783-47B3-9F84-F76C2C4F27F4}" WorkUnitID="{D9FB95D4-D1CB-4E4D-B4AD-20EE510BA0A6}" Origin="Manual" Filter="7"/>
 						<ObjectRef Name="play_IN_hardtack_eat" ID="{9B93F301-E5F2-47BA-A2A3-7F017B46C0DA}" WorkUnitID="{D9FB95D4-D1CB-4E4D-B4AD-20EE510BA0A6}" Origin="Manual" Filter="7"/>
 						<ObjectRef Name="play_MX_Cemetery" ID="{1F432989-3199-4823-9A2C-959DC4F6EE64}" WorkUnitID="{39E60CE7-573A-4094-ABAE-4F20949E455C}" Origin="Manual" Filter="7"/>
 						<ObjectRef Name="play_AM_Crypt_rubble" ID="{B446F544-17E8-4840-94BF-391A027AA793}" WorkUnitID="{05418A24-DE52-48AE-8733-F6F54D1BFD0E}" Origin="Manual" Filter="7"/>
@@ -29,16 +33,19 @@
 						<ObjectRef Name="play_IN_UnlitWoodenTorch_pickup" ID="{2EFD280C-38A3-489C-8428-1BC0B9FD33F9}" WorkUnitID="{D9FB95D4-D1CB-4E4D-B4AD-20EE510BA0A6}" Origin="Manual" Filter="7"/>
 						<ObjectRef Name="play_IN_PaperScraps_pickup" ID="{24546A19-564D-498F-A386-AFB3BABDDCD8}" WorkUnitID="{D9FB95D4-D1CB-4E4D-B4AD-20EE510BA0A6}" Origin="Manual" Filter="7"/>
 						<ObjectRef Name="play_UI_OpenInventory" ID="{67DE083F-114B-49C3-8AEA-E981ABB07D05}" WorkUnitID="{285F7A76-AE49-4D48-8D5D-C73C7938630A}" Origin="Manual" Filter="7"/>
+						<ObjectRef Name="play_IN_TinderLighter_use" ID="{5D834BEB-061B-4A52-884A-C99FD2415850}" WorkUnitID="{D9FB95D4-D1CB-4E4D-B4AD-20EE510BA0A6}" Origin="Manual" Filter="7"/>
 						<ObjectRef Name="stop_TEST_TestTone_lp_3D" ID="{ABEEB2B7-1680-4A85-8D2D-C308C24EAA97}" WorkUnitID="{AAA74B16-0AA3-4E80-A3C1-B701AD23C503}" Origin="Manual" Filter="7"/>
 						<ObjectRef Name="MUSIC" ID="{3693891D-5483-4A95-BDDA-7B66DD12CB33}" WorkUnitID="{6C0969E1-B09C-4693-BC3C-B2E7116B2AEE}" Origin="Manual" Filter="7"/>
 						<ObjectRef Name="play_TEST_TestTone_lp_3D" ID="{587FA79A-7C29-4A9E-822E-70DF0B6636CF}" WorkUnitID="{AAA74B16-0AA3-4E80-A3C1-B701AD23C503}" Origin="Manual" Filter="7"/>
 						<ObjectRef Name="play_IN_WoodenStake_pickup" ID="{E4763070-442F-4B0D-B864-C6C74881D7ED}" WorkUnitID="{D9FB95D4-D1CB-4E4D-B4AD-20EE510BA0A6}" Origin="Manual" Filter="7"/>
+						<ObjectRef Name="play_IN_WoodenTorch_light" ID="{DEFB95E2-FD07-4C15-80E8-956CCEB455E4}" WorkUnitID="{D9FB95D4-D1CB-4E4D-B4AD-20EE510BA0A6}" Origin="Manual" Filter="7"/>
 						<ObjectRef Name="play_IN_juniper_pickup" ID="{3F9180CB-861F-4C24-9219-21D9F926B0FC}" WorkUnitID="{D9FB95D4-D1CB-4E4D-B4AD-20EE510BA0A6}" Origin="Manual" Filter="7"/>
 						<ObjectRef Name="play_IN_coffee_pickup" ID="{00160AEF-E6C4-4C47-A9FA-6034E5D00329}" WorkUnitID="{D9FB95D4-D1CB-4E4D-B4AD-20EE510BA0A6}" Origin="Manual" Filter="7"/>
 						<ObjectRef Name="stop_AM_Crypt" ID="{A7138586-AE9F-4C4E-A1FF-35F6CA55439D}" WorkUnitID="{05418A24-DE52-48AE-8733-F6F54D1BFD0E}" Origin="Manual" Filter="7"/>
 						<ObjectRef Name="SFX" ID="{7DE5626E-C0D2-4CD3-8CCC-12EEFCC9C14F}" WorkUnitID="{6C0969E1-B09C-4693-BC3C-B2E7116B2AEE}" Origin="Manual" Filter="7"/>
 						<ObjectRef Name="play_UI_QuestLog_open" ID="{50977D55-4AAD-4DB7-9984-55B9F42DD5F5}" WorkUnitID="{285F7A76-AE49-4D48-8D5D-C73C7938630A}" Origin="Manual" Filter="7"/>
 						<ObjectRef Name="play_PC_foostep" ID="{1E4D5A65-A50E-4DEE-B681-2EB0FC37D85B}" WorkUnitID="{FD1D796B-E5EC-4A68-AE27-6358AC2627C7}" Origin="Manual" Filter="7"/>
+						<ObjectRef Name="play_IN_TinderLighter_sheath" ID="{5FA57066-F4EB-4F12-9061-E56A283DD8C0}" WorkUnitID="{D9FB95D4-D1CB-4E4D-B4AD-20EE510BA0A6}" Origin="Manual" Filter="7"/>
 						<ObjectRef Name="play_TEST_TestTone_3D" ID="{D55E5C84-7FBA-4F20-BE0C-B7CE39E33F28}" WorkUnitID="{AAA74B16-0AA3-4E80-A3C1-B701AD23C503}" Origin="Manual" Filter="7"/>
 						<ObjectRef Name="stop_TEST_TestTone_lp" ID="{C4B0799A-DD21-4F57-9085-5E80F42B4A06}" WorkUnitID="{AAA74B16-0AA3-4E80-A3C1-B701AD23C503}" Origin="Manual" Filter="7"/>
 					</ObjectInclusionList>
