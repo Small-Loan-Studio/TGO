@@ -1,2 +1,4 @@
 join Devin 1
+[tgo_expr expr="{TGO.audio("Devin").fire("play_IN_PaperScraps_pickup")}"]
 Devin: The parchment is yellowed and cracks beneath my fingertips. A snippet from the past — an entry from my bestiary, ripped from the binder.
+[tgo_expr expr="{TGO.audio("Devin").fire("play_UI_NewClue")}"]

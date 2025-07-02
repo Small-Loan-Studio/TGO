@@ -150,6 +150,83 @@
 						</Action>
 					</ChildrenList>
 				</Event>
+				<Event Name="play_IN_TinderLighter_sheath" ID="{5FA57066-F4EB-4F12-9061-E56A283DD8C0}">
+					<ChildrenList>
+						<Action Name="" ID="{2CF063FF-A815-4A0C-893F-EE29DB00042C}" ShortID="324935613">
+							<ReferenceList>
+								<Reference Name="Target">
+									<ObjectRef Name="IN_TinderLighter_sheath" ID="{5B459BC8-40F2-485F-B51A-A3D3A75478F0}" WorkUnitID="{2C578E29-CC89-4E68-9F40-97B72C39F948}"/>
+								</Reference>
+							</ReferenceList>
+						</Action>
+					</ChildrenList>
+				</Event>
+				<Event Name="play_IN_TinderLighter_use" ID="{5D834BEB-061B-4A52-884A-C99FD2415850}">
+					<ChildrenList>
+						<Action Name="" ID="{BFFB8702-F961-484E-9E1F-83593C88C0A4}" ShortID="890016075">
+							<ReferenceList>
+								<Reference Name="Target">
+									<ObjectRef Name="IN_TinderLighter_use" ID="{29A3E0E3-83E8-4834-A5C7-A36F45F99659}" WorkUnitID="{2C578E29-CC89-4E68-9F40-97B72C39F948}"/>
+								</Reference>
+							</ReferenceList>
+						</Action>
+					</ChildrenList>
+				</Event>
+				<Event Name="play_IN_WoodenTorch_light" ID="{DEFB95E2-FD07-4C15-80E8-956CCEB455E4}">
+					<ChildrenList>
+						<Action Name="" ID="{1D83EE4B-F9EA-49B8-930F-752F08847D7A}" ShortID="901296977">
+							<ReferenceList>
+								<Reference Name="Target">
+									<ObjectRef Name="IN_WoodenTorch_light" ID="{77B8A2A2-ECC4-4BC9-AECD-A6EB3A29CF31}" WorkUnitID="{2C578E29-CC89-4E68-9F40-97B72C39F948}"/>
+								</Reference>
+							</ReferenceList>
+						</Action>
+					</ChildrenList>
+				</Event>
+				<Event Name="play_IN_WoodenTorch_mount" ID="{BE48EC3C-CE38-40E0-BD46-39DDB859FA4B}">
+					<ChildrenList>
+						<Action Name="" ID="{0EDD6671-1269-49CF-AD79-051E4B39336F}" ShortID="854377912">
+							<ReferenceList>
+								<Reference Name="Target">
+									<ObjectRef Name="IN_WoodenTorch_mount" ID="{4CD02F26-54BB-4AB8-9B6B-9CB7F356E0ED}" WorkUnitID="{2C578E29-CC89-4E68-9F40-97B72C39F948}"/>
+								</Reference>
+							</ReferenceList>
+						</Action>
+					</ChildrenList>
+				</Event>
+				<Event Name="play_IN_WoodenTorch_on" ID="{B2841DA2-D783-47B3-9F84-F76C2C4F27F4}">
+					<ChildrenList>
+						<Action Name="" ID="{7B3F14E1-56E1-43CA-B345-FDC807A2CC49}" ShortID="894661341">
+							<ReferenceList>
+								<Reference Name="Target">
+									<ObjectRef Name="IN_WoodenTorch_on" ID="{9F1937BD-DBD2-4DD7-AD6C-4A55E8892AB5}" WorkUnitID="{2C578E29-CC89-4E68-9F40-97B72C39F948}"/>
+								</Reference>
+							</ReferenceList>
+						</Action>
+					</ChildrenList>
+				</Event>
+				<Event Name="play_IN_WoodenTorch_sheath" ID="{46E53A64-7995-4103-A52A-95BB013F1015}">
+					<ChildrenList>
+						<Action Name="" ID="{C819CE4E-810E-4C7A-A8E9-B2631BC6558E}" ShortID="71297779">
+							<ReferenceList>
+								<Reference Name="Target">
+									<ObjectRef Name="IN_WoodenTorch_on" ID="{9F1937BD-DBD2-4DD7-AD6C-4A55E8892AB5}" WorkUnitID="{2C578E29-CC89-4E68-9F40-97B72C39F948}"/>
+								</Reference>
+							</ReferenceList>
+						</Action>
+					</ChildrenList>
+				</Event>
+				<Event Name="play_IN_FlameTorch_pickup" ID="{8E45AB11-9962-461B-A1C3-D65046E8E57E}">
+					<ChildrenList>
+						<Action Name="" ID="{FD31670A-1238-4940-ACD6-0DC241B36486}" ShortID="827742149">
+							<ReferenceList>
+								<Reference Name="Target">
+									<ObjectRef Name="IN_FlameTorch_pickup" ID="{B0CB456E-793C-4326-9B27-BFCC161E4B8F}" WorkUnitID="{2C578E29-CC89-4E68-9F40-97B72C39F948}"/>
+								</Reference>
+							</ReferenceList>
+						</Action>
+					</ChildrenList>
+				</Event>
 			</ChildrenList>
 		</WorkUnit>
 	</Events>
