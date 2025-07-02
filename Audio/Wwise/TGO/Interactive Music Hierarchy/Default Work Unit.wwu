@@ -9,7 +9,7 @@
 							<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{1E13664B-E694-4203-95E7-AEB6212579F7}"/>
 						</Reference>
 						<Reference Name="OutputBus">
-							<ObjectRef Name="MASTER" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{6C0969E1-B09C-4693-BC3C-B2E7116B2AEE}"/>
+							<ObjectRef Name="MUSIC" ID="{3693891D-5483-4A95-BDDA-7B66DD12CB33}" WorkUnitID="{6C0969E1-B09C-4693-BC3C-B2E7116B2AEE}"/>
 						</Reference>
 						<Reference Name="TransitionRoot">
 							<Custom>

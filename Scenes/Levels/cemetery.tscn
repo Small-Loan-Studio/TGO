@@ -1,4 +1,4 @@
-[gd_scene load_steps=24 format=3 uid="uid://bu1vpanrcrar3"]
+[gd_scene load_steps=23 format=3 uid="uid://bu1vpanrcrar3"]
 
 [ext_resource type="PackedScene" uid="uid://dyq8mcdsutnsa" path="res://Scenes/Components/LevelBase.tscn" id="1_bbrpm"]
 [ext_resource type="TileSet" uid="uid://c72m3jled4jfg" path="res://Art/Environment/ext_simple_tileset.tres" id="2_svd0s"]
@@ -11,7 +11,6 @@
 [ext_resource type="Script" path="res://Scripts/Resources/Effects/LevelLoadEffect.gd" id="7_rtrad"]
 [ext_resource type="Resource" uid="uid://govy3p3pxyql" path="res://Scripts/Resources/NPCs/Groundskeeper.tres" id="8_3lgnx"]
 [ext_resource type="Resource" path="res://Dialogue/Groundskeeper/GroundskeeperTimeline.dtl" id="9_troe3"]
-[ext_resource type="Script" path="res://Scripts/Components/SimpleSwitchConfig.gd" id="11_8c08f"]
 [ext_resource type="Script" path="res://Scripts/Resources/Effects/AudioEventEffect.gd" id="12_l2thq"]
 
 [sub_resource type="Resource" id="Resource_fnqoc"]
@@ -35,7 +34,7 @@ timeline = ExtResource("9_troe3")
 [sub_resource type="Resource" id="Resource_4hrfa"]
 script = ExtResource("12_l2thq")
 actor_id_override = ""
-event_name = "play_AM_Cemetery"
+event_name = "play_MX_Cemetery"
 fire_type = "one shot"
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_1gc5v"]
@@ -97,12 +96,16 @@ id = "Ebenezer Beaupre - Groundskeeper"
 
 [node name="Audio" type="Node" parent="Objects" index="4"]
 
-[node name="AM_Cemetery" type="Node2D" parent="Objects/Audio" index="0" instance=ExtResource("3_vl6rl")]
+[node name="AM_Cemetery" parent="Objects/Audio" index="0" instance=ExtResource("3_vl6rl")]
+visible = false
 position = Vector2(-883, 30)
-script = ExtResource("11_8c08f")
 sensor_size = Vector2(4000, 2800)
-default_color = Color(0.745098, 0.745098, 0.745098, 1)
-active_color = Color(0, 0.392157, 0, 1)
+on_pressed_effects = Array[Resource("res://Scripts/Resources/Effect.gd")]([SubResource("Resource_4hrfa")])
+
+[node name="MX_Cemetery" parent="Objects/Audio" index="1" instance=ExtResource("3_vl6rl")]
+visible = false
+position = Vector2(-883, 30)
+sensor_size = Vector2(4000, 2800)
 on_pressed_effects = Array[Resource("res://Scripts/Resources/Effect.gd")]([SubResource("Resource_4hrfa")])
 
 [node name="Tombstone_Style1" type="Sprite2D" parent="Objects" index="5"]
@@ -538,7 +541,6 @@ position = Vector2(2, 2)
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Objects/Juniper_Empty3/RigidBody2D" index="0"]
 position = Vector2(0, 4)
 rotation = -1.57197
-scale = Vector2(1, 1)
 shape = SubResource("CapsuleShape2D_aw4hl")
 
 [node name="PS-Crypt-Entrance" type="Node2D" parent="Markers" index="0"]

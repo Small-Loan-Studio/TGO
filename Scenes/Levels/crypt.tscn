@@ -1,4 +1,4 @@
-[gd_scene load_steps=103 format=3 uid="uid://bgn6kmsvdqh4l"]
+[gd_scene load_steps=102 format=3 uid="uid://bgn6kmsvdqh4l"]
 
 [ext_resource type="PackedScene" uid="uid://dyq8mcdsutnsa" path="res://Scenes/Components/LevelBase.tscn" id="1_dma02"]
 [ext_resource type="TileSet" uid="uid://c72m3jled4jfg" path="res://Art/Environment/ext_simple_tileset.tres" id="2_pwhqm"]
@@ -21,7 +21,6 @@
 [ext_resource type="Script" path="res://Scripts/Resources/Effects/DialogueEffect.gd" id="16_utw8c"]
 [ext_resource type="Resource" path="res://Dialogue/Examinations/UnlitWoodenTorch.dtl" id="17_b5waj"]
 [ext_resource type="Script" path="res://Scripts/Resources/Effects/AudioEventEffect.gd" id="17_gqyjf"]
-[ext_resource type="Script" path="res://Scripts/Components/SimpleSwitchConfig.gd" id="17_hcirb"]
 [ext_resource type="PackedScene" uid="uid://5xu2lbni2byw" path="res://Scenes/Components/controlled_region.tscn" id="18_nwlbx"]
 [ext_resource type="Texture2D" uid="uid://gjjpnuho5s0q" path="res://Art/Environment/Placeables/Wall Torches/Crypt-Torch-Lit.png" id="19_5poms"]
 [ext_resource type="Resource" path="res://Dialogue/Examinations/PileOfWoodenStakes.dtl" id="19_g8jw2"]
@@ -688,12 +687,9 @@ position = Vector2(256, 413)
 sensor_size = Vector2(20, 20)
 on_pressed_effects = Array[Resource("res://Scripts/Resources/Effect.gd")]([SubResource("Resource_sq15c")])
 
-[node name="AM_Crypt_ratSqueak3" type="Node2D" parent="Objects/Audio/AM_Crypt_ratSqueak Group" index="11" instance=ExtResource("3_0ndau")]
+[node name="AM_Crypt_ratSqueak3" parent="Objects/Audio/AM_Crypt_ratSqueak Group" index="11" instance=ExtResource("3_0ndau")]
 position = Vector2(184, 296)
-script = ExtResource("17_hcirb")
 sensor_size = Vector2(20, 20)
-default_color = Color(0.745098, 0.745098, 0.745098, 1)
-active_color = Color(0, 0.392157, 0, 1)
 on_pressed_effects = Array[Resource("res://Scripts/Resources/Effect.gd")]([SubResource("Resource_sq15c")])
 
 [node name="AM_Crypt_ratSqueak" parent="Objects/Audio/AM_Crypt_ratSqueak Group" index="12" instance=ExtResource("3_0ndau")]
