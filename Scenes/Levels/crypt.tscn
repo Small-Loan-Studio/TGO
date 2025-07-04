@@ -1,4 +1,4 @@
-[gd_scene load_steps=87 format=3 uid="uid://bgn6kmsvdqh4l"]
+[gd_scene load_steps=102 format=3 uid="uid://bgn6kmsvdqh4l"]
 
 [ext_resource type="PackedScene" uid="uid://dyq8mcdsutnsa" path="res://Scenes/Components/LevelBase.tscn" id="1_dma02"]
 [ext_resource type="TileSet" uid="uid://c72m3jled4jfg" path="res://Art/Environment/ext_simple_tileset.tres" id="2_pwhqm"]
@@ -20,6 +20,7 @@
 [ext_resource type="Resource" path="res://Dialogue/Examinations/GinPuddle.dtl" id="16_mo7jk"]
 [ext_resource type="Script" path="res://Scripts/Resources/Effects/DialogueEffect.gd" id="16_utw8c"]
 [ext_resource type="Resource" path="res://Dialogue/Examinations/UnlitWoodenTorch.dtl" id="17_b5waj"]
+[ext_resource type="Script" path="res://Scripts/Resources/Effects/AudioEventEffect.gd" id="17_gqyjf"]
 [ext_resource type="PackedScene" uid="uid://5xu2lbni2byw" path="res://Scenes/Components/controlled_region.tscn" id="18_nwlbx"]
 [ext_resource type="Texture2D" uid="uid://gjjpnuho5s0q" path="res://Art/Environment/Placeables/Wall Torches/Crypt-Torch-Lit.png" id="19_5poms"]
 [ext_resource type="Resource" path="res://Dialogue/Examinations/PileOfWoodenStakes.dtl" id="19_g8jw2"]
@@ -81,6 +82,24 @@ marker_name = "PS-Crypt-Entrance"
 
 [sub_resource type="ImageTexture" id="ImageTexture_6s6xn"]
 
+[sub_resource type="Resource" id="Resource_nykqr"]
+script = ExtResource("17_gqyjf")
+actor_id_override = ""
+event_name = "play_AM_Crypt"
+fire_type = "one shot"
+
+[sub_resource type="Resource" id="Resource_kme57"]
+script = ExtResource("17_gqyjf")
+actor_id_override = ""
+event_name = "stop_AM_Crypt"
+fire_type = "one shot"
+
+[sub_resource type="Resource" id="Resource_sq15c"]
+script = ExtResource("17_gqyjf")
+actor_id_override = ""
+event_name = "play_AM_Crypt_rubble"
+fire_type = "one shot"
+
 [sub_resource type="Resource" id="Resource_kyv6i"]
 script = ExtResource("16_utw8c")
 timeline = ExtResource("16_mo7jk")
@@ -101,10 +120,16 @@ region_id = "crypt.torch11"
 passable_state = "unchanged"
 visible_state = "visible"
 
+[sub_resource type="Resource" id="Resource_v0fxg"]
+script = ExtResource("17_gqyjf")
+actor_id_override = ""
+event_name = "play_IN_WoodenTorch_on"
+fire_type = "one shot"
+
 [sub_resource type="Resource" id="Resource_f85y6"]
 script = ExtResource("25_8o7vw")
 condition = Array[Resource("res://Scripts/Resources/TriggerCondition.gd")]([SubResource("Resource_taa4i")])
-success_chain = Array[Resource("res://Scripts/Resources/Effect.gd")]([SubResource("Resource_es13u")])
+success_chain = Array[Resource("res://Scripts/Resources/Effect.gd")]([SubResource("Resource_es13u"), SubResource("Resource_v0fxg")])
 failure_chain = Array[Resource("res://Scripts/Resources/Effect.gd")]([])
 
 [sub_resource type="Resource" id="Resource_xsuk6"]
@@ -113,10 +138,16 @@ region_id = "crypt.torch10"
 passable_state = "unchanged"
 visible_state = "visible"
 
+[sub_resource type="Resource" id="Resource_j0q12"]
+script = ExtResource("17_gqyjf")
+actor_id_override = ""
+event_name = "play_IN_WoodenTorch_on"
+fire_type = "one shot"
+
 [sub_resource type="Resource" id="Resource_dfpld"]
 script = ExtResource("25_8o7vw")
 condition = Array[Resource("res://Scripts/Resources/TriggerCondition.gd")]([SubResource("Resource_taa4i")])
-success_chain = Array[Resource("res://Scripts/Resources/Effect.gd")]([SubResource("Resource_xsuk6")])
+success_chain = Array[Resource("res://Scripts/Resources/Effect.gd")]([SubResource("Resource_xsuk6"), SubResource("Resource_j0q12")])
 failure_chain = Array[Resource("res://Scripts/Resources/Effect.gd")]([])
 
 [sub_resource type="Resource" id="Resource_xba52"]
@@ -125,10 +156,16 @@ region_id = "crypt.torch12"
 passable_state = "unchanged"
 visible_state = "visible"
 
+[sub_resource type="Resource" id="Resource_h578p"]
+script = ExtResource("17_gqyjf")
+actor_id_override = ""
+event_name = "play_IN_WoodenTorch_on"
+fire_type = "one shot"
+
 [sub_resource type="Resource" id="Resource_qgmfx"]
 script = ExtResource("25_8o7vw")
 condition = Array[Resource("res://Scripts/Resources/TriggerCondition.gd")]([SubResource("Resource_taa4i")])
-success_chain = Array[Resource("res://Scripts/Resources/Effect.gd")]([SubResource("Resource_xba52")])
+success_chain = Array[Resource("res://Scripts/Resources/Effect.gd")]([SubResource("Resource_xba52"), SubResource("Resource_h578p")])
 failure_chain = Array[Resource("res://Scripts/Resources/Effect.gd")]([])
 
 [sub_resource type="Resource" id="Resource_6ojmo"]
@@ -149,10 +186,16 @@ region_id = "crypt.torch9"
 passable_state = "unchanged"
 visible_state = "visible"
 
+[sub_resource type="Resource" id="Resource_bd4wk"]
+script = ExtResource("17_gqyjf")
+actor_id_override = ""
+event_name = "play_IN_WoodenTorch_on"
+fire_type = "one shot"
+
 [sub_resource type="Resource" id="Resource_3sv1s"]
 script = ExtResource("25_8o7vw")
 condition = Array[Resource("res://Scripts/Resources/TriggerCondition.gd")]([SubResource("Resource_taa4i")])
-success_chain = Array[Resource("res://Scripts/Resources/Effect.gd")]([SubResource("Resource_3rycv")])
+success_chain = Array[Resource("res://Scripts/Resources/Effect.gd")]([SubResource("Resource_3rycv"), SubResource("Resource_bd4wk")])
 failure_chain = Array[Resource("res://Scripts/Resources/Effect.gd")]([])
 
 [sub_resource type="Resource" id="Resource_yoywx"]
@@ -161,10 +204,16 @@ region_id = "crypt.torch7"
 passable_state = "unchanged"
 visible_state = "visible"
 
+[sub_resource type="Resource" id="Resource_l3emc"]
+script = ExtResource("17_gqyjf")
+actor_id_override = ""
+event_name = "play_IN_WoodenTorch_on"
+fire_type = "one shot"
+
 [sub_resource type="Resource" id="Resource_ei6fi"]
 script = ExtResource("25_8o7vw")
 condition = Array[Resource("res://Scripts/Resources/TriggerCondition.gd")]([SubResource("Resource_taa4i")])
-success_chain = Array[Resource("res://Scripts/Resources/Effect.gd")]([SubResource("Resource_yoywx")])
+success_chain = Array[Resource("res://Scripts/Resources/Effect.gd")]([SubResource("Resource_yoywx"), SubResource("Resource_l3emc")])
 failure_chain = Array[Resource("res://Scripts/Resources/Effect.gd")]([])
 
 [sub_resource type="Resource" id="Resource_cr3uc"]
@@ -173,10 +222,16 @@ region_id = "crypt.torch6"
 passable_state = "unchanged"
 visible_state = "visible"
 
+[sub_resource type="Resource" id="Resource_6brkl"]
+script = ExtResource("17_gqyjf")
+actor_id_override = ""
+event_name = "play_IN_WoodenTorch_on"
+fire_type = "one shot"
+
 [sub_resource type="Resource" id="Resource_ybipd"]
 script = ExtResource("25_8o7vw")
 condition = Array[Resource("res://Scripts/Resources/TriggerCondition.gd")]([SubResource("Resource_taa4i")])
-success_chain = Array[Resource("res://Scripts/Resources/Effect.gd")]([SubResource("Resource_cr3uc")])
+success_chain = Array[Resource("res://Scripts/Resources/Effect.gd")]([SubResource("Resource_cr3uc"), SubResource("Resource_6brkl")])
 failure_chain = Array[Resource("res://Scripts/Resources/Effect.gd")]([])
 
 [sub_resource type="Resource" id="Resource_7uql3"]
@@ -185,10 +240,16 @@ region_id = "crypt.torch5"
 passable_state = "unchanged"
 visible_state = "visible"
 
+[sub_resource type="Resource" id="Resource_tfhwl"]
+script = ExtResource("17_gqyjf")
+actor_id_override = ""
+event_name = "play_IN_WoodenTorch_on"
+fire_type = "one shot"
+
 [sub_resource type="Resource" id="Resource_6domd"]
 script = ExtResource("25_8o7vw")
 condition = Array[Resource("res://Scripts/Resources/TriggerCondition.gd")]([SubResource("Resource_taa4i")])
-success_chain = Array[Resource("res://Scripts/Resources/Effect.gd")]([SubResource("Resource_7uql3")])
+success_chain = Array[Resource("res://Scripts/Resources/Effect.gd")]([SubResource("Resource_7uql3"), SubResource("Resource_tfhwl")])
 failure_chain = Array[Resource("res://Scripts/Resources/Effect.gd")]([])
 
 [sub_resource type="Resource" id="Resource_2xais"]
@@ -197,10 +258,16 @@ region_id = "crypt.torch4"
 passable_state = "unchanged"
 visible_state = "visible"
 
+[sub_resource type="Resource" id="Resource_fg44s"]
+script = ExtResource("17_gqyjf")
+actor_id_override = ""
+event_name = "play_IN_WoodenTorch_on"
+fire_type = "one shot"
+
 [sub_resource type="Resource" id="Resource_tkqqb"]
 script = ExtResource("25_8o7vw")
 condition = Array[Resource("res://Scripts/Resources/TriggerCondition.gd")]([SubResource("Resource_taa4i")])
-success_chain = Array[Resource("res://Scripts/Resources/Effect.gd")]([SubResource("Resource_2xais")])
+success_chain = Array[Resource("res://Scripts/Resources/Effect.gd")]([SubResource("Resource_2xais"), SubResource("Resource_fg44s")])
 failure_chain = Array[Resource("res://Scripts/Resources/Effect.gd")]([])
 
 [sub_resource type="Resource" id="Resource_bnnuv"]
@@ -209,10 +276,16 @@ region_id = "crypt.torch3"
 passable_state = "unchanged"
 visible_state = "visible"
 
+[sub_resource type="Resource" id="Resource_wsgbu"]
+script = ExtResource("17_gqyjf")
+actor_id_override = ""
+event_name = "play_IN_WoodenTorch_on"
+fire_type = "one shot"
+
 [sub_resource type="Resource" id="Resource_l7wd1"]
 script = ExtResource("25_8o7vw")
 condition = Array[Resource("res://Scripts/Resources/TriggerCondition.gd")]([SubResource("Resource_taa4i")])
-success_chain = Array[Resource("res://Scripts/Resources/Effect.gd")]([SubResource("Resource_bnnuv")])
+success_chain = Array[Resource("res://Scripts/Resources/Effect.gd")]([SubResource("Resource_bnnuv"), SubResource("Resource_wsgbu")])
 failure_chain = Array[Resource("res://Scripts/Resources/Effect.gd")]([])
 
 [sub_resource type="Resource" id="Resource_t23at"]
@@ -227,11 +300,17 @@ region_id = "crypt.torch2"
 passable_state = "unchanged"
 visible_state = "visible"
 
+[sub_resource type="Resource" id="Resource_5r8er"]
+script = ExtResource("17_gqyjf")
+actor_id_override = ""
+event_name = "play_IN_WoodenTorch_on"
+fire_type = "one shot"
+
 [sub_resource type="Resource" id="Resource_w21v4"]
 resource_local_to_scene = true
 script = ExtResource("25_8o7vw")
 condition = Array[Resource("res://Scripts/Resources/TriggerCondition.gd")]([SubResource("Resource_t23at")])
-success_chain = Array[Resource("res://Scripts/Resources/Effect.gd")]([SubResource("Resource_kwyoi")])
+success_chain = Array[Resource("res://Scripts/Resources/Effect.gd")]([SubResource("Resource_kwyoi"), SubResource("Resource_5r8er")])
 failure_chain = Array[Resource("res://Scripts/Resources/Effect.gd")]([])
 
 [sub_resource type="Resource" id="Resource_wr6e2"]
@@ -244,11 +323,17 @@ region_id = "crypt.torch"
 passable_state = "unchanged"
 visible_state = "visible"
 
+[sub_resource type="Resource" id="Resource_hy6t1"]
+script = ExtResource("17_gqyjf")
+actor_id_override = ""
+event_name = "play_IN_WoodenTorch_on"
+fire_type = "one shot"
+
 [sub_resource type="Resource" id="Resource_3q783"]
 resource_local_to_scene = true
 script = ExtResource("25_8o7vw")
 condition = Array[Resource("res://Scripts/Resources/TriggerCondition.gd")]([SubResource("Resource_t23at")])
-success_chain = Array[Resource("res://Scripts/Resources/Effect.gd")]([SubResource("Resource_iko1r")])
+success_chain = Array[Resource("res://Scripts/Resources/Effect.gd")]([SubResource("Resource_iko1r"), SubResource("Resource_hy6t1")])
 failure_chain = Array[Resource("res://Scripts/Resources/Effect.gd")]([])
 
 [sub_resource type="Resource" id="Resource_lqmha"]
@@ -314,6 +399,9 @@ layer_4/tile_data = PackedInt32Array(327682, 131072, 0, 327685, 131072, 0, 32768
 layer_6/tile_data = PackedInt32Array(262146, 917517, 15, 327682, 917517, 15, 327683, 917517, 15, 262147, 917517, 15, 262148, 917517, 15, 131075, 917517, 15, 131076, 917517, 15, 196612, 917517, 15, 196611, 917517, 15, 917510, 131075, 2, 983046, 327683, 9, 917505, 131075, 1, 983041, 65539, 2, 589820, 131075, 1, 655356, 458755, 9, 327684, 917517, 15, 327685, 917517, 15, 393219, 3, 0, 458755, 589837, 28, 524291, 589837, 29, 393220, 3, 0, 458756, 655373, 28, 524292, 655373, 29, 1835011, 917517, 15, 1835012, 917517, 15, 1900548, 917517, 15, 1900547, 917517, 15, 1966083, 917517, 15, 1966084, 917517, 15, 1769475, 786445, 13, 1769476, 851981, 13, -3080278, 196611, 2, -3145814, 196611, 2, -3211350, 196611, 2, -3276886, 196611, 2, -3342422, 196611, 1, -3014742, 196611, 2, -2359387, 786445, 13, -2359386, 851981, 13, -2293851, 917517, 15, -2293850, 917517, 15, -2228314, 917517, 15, -2228315, 917517, 15, -2162779, 917517, 15, -2162778, 917517, 15, 4259846, 3, 0, 4259847, 3, 0, 4259893, 3, 0, 4259894, 3, 0, 2359365, 131075, 2, 2424901, 196611, 2, 2490437, 196611, 2, 2031685, 131075, 2, 2097221, 196611, 2, 2162757, 196611, 2, 2687045, 131075, 2, 2752581, 196611, 2, 2818117, 196611, 2, 2031692, 131075, 2, 2097228, 196611, 2, 2162764, 196611, 2, 2228300, 327683, 11, 2293836, 196611, 2, 2359372, 131075, 2, 2424908, 196611, 2, 2490444, 196611, 2, 2555980, 196611, 2, 2621516, 327683, 11, 2687052, 131075, 2, 2752588, 196611, 2, 2818124, 196611, 2, 2949196, 196611, 2, 3014732, 327683, 11, 2359379, 131075, 2, 2424915, 196611, 2, 2490451, 196611, 2, 2621523, 196611, 2, 2687059, 131075, 2, 2752595, 196611, 2, 2818131, 196611, 2, 2883667, 196611, 2, 3014739, 196611, 2, 2031699, 131075, 2, 2097235, 196611, 2, 2162771, 393219, 10, 2228307, 196611, 2, 1704012, 131075, 2, 1769548, 196611, 2, 1835084, 196611, 2, 1966156, 393219, 11, 1704019, 131075, 2, 1769555, 196611, 2, 1835091, 196611, 2, 1900627, 196611, 2, 1966163, 393219, 10, 2883653, 196611, 2, 2949189, 393219, 10, 3014725, 393219, 9, 3145797, 393219, 10, 1704005, 131075, 2, 1769541, 196611, 2, 1835077, 196611, 2, 1966149, 196611, 2, 1900613, 393219, 10, 3080275, 327683, 11, 1310786, 3, 0, 1310787, 3, 0, 2621529, 196611, 2, 2687065, 196611, 2, 2752601, 196611, 2, 2818137, 196611, 2, 2883673, 196611, 2, 2949209, 196611, 2, 3014745, 196611, 3, 2752618, 131075, 1, 2818154, 65539, 2, 2883690, 65539, 2, 2949226, 65539, 2, 3014762, 65539, 2, 3473514, 65539, 2, 3539050, 65539, 2, 3604586, 65539, 2, 3670122, 65539, 2, 3735658, 65539, 2, 2752620, 131075, 2, 2818156, 196611, 2, 2883692, 196611, 2, 2949228, 196611, 2, 3014764, 196611, 2, 3080300, 196611, 2, 3145836, 196611, 2, 3211372, 196611, 2, 3276908, 196611, 2, 3342444, 196611, 2, 3407980, 196611, 2, 3473516, 196611, 2, 3539052, 196611, 2, 3604588, 196611, 2, 3670124, 196611, 2, 3735660, 196611, 2, 2490473, 65539, 2, 2556009, 65539, 2, 2621545, 65539, 2, 2687081, 65539, 2, 2752617, 65539, 3, 2490477, 196611, 2, 2556013, 196611, 2, 2621549, 196611, 2, 2687085, 196611, 2, 2752621, 196611, 3, 3997801, 65539, 2, 4063337, 65539, 2, 4128873, 65539, 2, 4194409, 65539, 2, 4259945, 65539, 3, 4259946, 131075, 3, 4259947, 131075, 3, 4259948, 131075, 3, 3997805, 196611, 2, 4063341, 196611, 2, 4128877, 196611, 2, 4194413, 196611, 2, 4259949, 196611, 3, 3080268, 196611, 2, 3276866, 786445, 13, 3276867, 851981, 13, 1376327, 131075, 2, 1441863, 196611, 2, 1507399, 196611, 2, 1704000, 131075, 1, 1769536, 65539, 2, 1835072, 524291, 9, 1900608, 458755, 10, 1966144, 458755, 11, 2097216, 131075, 1, 2162752, 65539, 2, 2228288, 458755, 11, 2293824, 524291, 11, 2359360, 131075, 1, 2424896, 65539, 2, 2490432, 65539, 2, 2555968, 458755, 11, 2621504, 524291, 9, 2687040, 131075, 1, 2752576, 65539, 2, 2818112, 65539, 2, 2883648, 458755, 9, 3145792, 524291, 11, 3080256, 65539, 2, 3014720, 458755, 11, 1572926, 196611, 2, 1703993, 131075, 1, 2031673, 131075, 1, 2687033, 131075, 1, 2359346, 131075, 1, 2031666, 131075, 1, 1703986, 131075, 1, 1769522, 458755, 9, 1835058, 524291, 9, 1900594, 524291, 10, 2097202, 524291, 10, 2424882, 524291, 10, 2097209, 458755, 9, 2162745, 458755, 11, 2228281, 524291, 9, 2752569, 458755, 10, 2818105, 458755, 9, 2883641, 458755, 9, 3014713, 458755, 10, 3080249, 524291, 9, 3080242, 458755, 9, 3014706, 458755, 9, 2490418, 524291, 9, 2162738, 458755, 9, 2228274, 458755, 9, 1507390, 196611, 2, 1441854, 196611, 2, 1376318, 196611, 1, 2162726, 65539, 3, 2162727, 131075, 3, 2162728, 131075, 3, 2162729, 131075, 3, 2162730, 131075, 3, 2162731, 131075, 3, 2162732, 131075, 1, 1048614, 65539, 2, 1114150, 65539, 2, 1179686, 65539, 2, 1245222, 65539, 2, 1310758, 65539, 2, 1376294, 65539, 2, 1441830, 65539, 2, 1507366, 65539, 2, 1572902, 65539, 2, 1638438, 65539, 2, 1703974, 65539, 2, 1769510, 65539, 2, 1835046, 65539, 2, 1900582, 65539, 2, 1966118, 65539, 2, 2031654, 65539, 2, 2097190, 65539, 2, 1048617, 196611, 2, 1114153, 196611, 2, 1179689, 196611, 2, 1245225, 196611, 2, 1310761, 196611, 2, 1376297, 196611, 2, 1441833, 196611, 2, 1507369, 196611, 2, 1572905, 196611, 2, 1638441, 196611, 2, 1703977, 196611, 2, 1769513, 196611, 2, 3211324, 131072, 0, 3211323, 131072, 0, 3145788, 917517, 14, 3145787, 917517, 14, 3145802, 917517, 14, 3145807, 917517, 14, 3145808, 917517, 14, 3145813, 917517, 14, 3211338, 917517, 15, 3211343, 917517, 15, 3211344, 917517, 15, 3211349, 917517, 15, 3211317, 917517, 15, 3211318, 917517, 15, 3145781, 917517, 14, 3145782, 917517, 14, 1376332, 3, 0, 1376333, 3, 0, 1376340, 3, 0, 1376341, 3, 0, 1441868, 1179651, 5, 1441869, 1179651, 5, 3145775, 917517, 14, 3211311, 917517, 15, 3145776, 917517, 14, 3211312, 917517, 15, 1376309, 3, 0, 1441845, 1179651, 5, 1376310, 3, 0, 1441846, 1179651, 5, 1507381, 1179651, 9, 1507382, 1179651, 9, 655398, 65539, 2, 720934, 65539, 2, 786470, 65539, 2, 852006, 65539, 2, 917542, 65539, 2, 983085, 65539, 3, 983090, 196611, 3, 589862, 65539, 1, 917545, 131075, 2, 917546, 131075, 3, 917547, 131075, 3, 917548, 131075, 3, 917549, 131075, 1, 983086, 131075, 3, 983087, 131075, 3, 983088, 131075, 3, 983089, 131075, 3, 524338, 196611, 1, 589874, 196611, 2, 655410, 196611, 2, 720946, 196611, 2, 786482, 196611, 2, 852018, 196611, 2, 917554, 196611, 2, 983081, 196611, 2, 983078, 65539, 2, -3145628, 65539, 1, -3080092, 65539, 2, -3014556, 65539, 2, -2949020, 65539, 2, -2883484, 65539, 2, -2817948, 65539, 2, -3145625, 196611, 1, -3080089, 196611, 2, -3014553, 196611, 2, -2949017, 196611, 2, -2883481, 196611, 2, -2817945, 196611, 2, -2752412, 65539, 2, -2686876, 65539, 2, -2621340, 65539, 2, -2555804, 65539, 2, -2490268, 65539, 2, -2424732, 65539, 2, -2359196, 65539, 2, -2293660, 65539, 2, -2228124, 65539, 2, -2162588, 65539, 2, -2097052, 65539, 2, -2031516, 65539, 2, -1965980, 65539, 2, -1900444, 65539, 2, -1834908, 65539, 2, -1769372, 65539, 2, -1703836, 65539, 2, -1638300, 65539, 2, -1572764, 65539, 2, -1507228, 65539, 2, -1441692, 65539, 2, -1376156, 65539, 2, -1310620, 65539, 2, -1245084, 65539, 2, -1179548, 65539, 2, -1114012, 65539, 2, -1048476, 65539, 2, -982940, 65539, 2, -917404, 65539, 2, -2752409, 196611, 2, -2686873, 196611, 2, -2621337, 196611, 2, -2555801, 196611, 2, -2490265, 196611, 2, -2424729, 196611, 2, -2359193, 196611, 2, -2293657, 196611, 2, -2228121, 196611, 2, -2162585, 196611, 2, -2097049, 196611, 2, -2031513, 196611, 2, -1965977, 196611, 2, -1900441, 196611, 2, -1834905, 196611, 2, -1769369, 196611, 2, -1703833, 196611, 2, -1638297, 196611, 2, -1572761, 196611, 2, -1507225, 196611, 2, -1441689, 196611, 2, -1376153, 196611, 2, -1310617, 196611, 2, -1245081, 196611, 2, -1179545, 196611, 2, -1114009, 196611, 2, -1048473, 196611, 2, -982937, 196611, 2, -917401, 196611, 2, -2162607, 196611, 2, -2228143, 196611, 2, -2293679, 196611, 2, -2359215, 196611, 2, -2424751, 196611, 2, -2490287, 196611, 2, -2555823, 196611, 2, -2621359, 196611, 2, -2686895, 196611, 2, -2752431, 196611, 1, -1703863, 786445, 13, -1703862, 851981, 13, -2097071, 196611, 2, -2031535, 196611, 2, -1965999, 196611, 2, -851868, 65539, 2, -786332, 65539, 2, -720796, 65539, 2, -655260, 65539, 2, -589724, 65539, 2, -524188, 65539, 2, -458652, 65539, 2, -851865, 196611, 2, -786329, 196611, 2, -720793, 196611, 2, -655257, 196611, 2, -589721, 196611, 2, -524185, 196611, 2, -458649, 196611, 2)
 layer_7/tile_data = PackedInt32Array(1769475, 589837, 10, 1769476, 655373, 10, -2359387, 589837, 10, -2359386, 655373, 10, 393219, 458765, 10, 393220, 524301, 10, 4259846, 458765, 10, 4259847, 524301, 10, 4259893, 458765, 10, 4259894, 524301, 10, 1769557, 3, 1, 1769558, 3, 1, 1769559, 3, 1, 2097240, 3, 1, 2097239, 131075, 9, 2097237, 196611, 9, 1310786, 458765, 10, 1310787, 524301, 10, 3276866, 589837, 10, 3276867, 655373, 10, 3145802, 131075, 3, 3145801, 131075, 3, 3145808, 131075, 3, 3145807, 131075, 3, 3145813, 131075, 3, 3145814, 131075, 3, 3145812, 131075, 3, 3145809, 131075, 3, 3145806, 131075, 3, 3145803, 131075, 3, 3145800, 131075, 3, 3145786, 131075, 3, 3145787, 131075, 3, 3145788, 131075, 3, 3145789, 131075, 3, 3145780, 131075, 3, 3145781, 131075, 3, 3145782, 131075, 3, 3145783, 131075, 3, 3145775, 131075, 3, 3145776, 131075, 3, 3145777, 131075, 3, 3145778, 131075, 3, 3145774, 65539, 3, -1703863, 589837, 10, -1703862, 655373, 10)
 layer_8/tile_data = PackedInt32Array(393219, 589837, 27, 458755, 589837, 28, 524291, 589837, 29, 393220, 655373, 27, 458756, 655373, 28, 524292, 655373, 29, 4325382, 589837, 28, 4390918, 589837, 29, 4325383, 655373, 28, 4390919, 655373, 29, 4194310, 983053, 15, 4194311, 983053, 15, 4128775, 983053, 15, 4128774, 983053, 15, 4063238, 983053, 15, 4063239, 983053, 15, 4259846, 589837, 27, 4259847, 655373, 27, 4259893, 589837, 27, 4325429, 589837, 28, 4390965, 589837, 29, 4259894, 655373, 27, 4325430, 655373, 28, 4390966, 655373, 29, 4063285, 983053, 15, 4128821, 983053, 15, 4194357, 983053, 15, 4063286, 983053, 15, 4128822, 983053, 15, 4194358, 983053, 15, 4587554, 131072, 4, 4718624, 65536, 4, 1310786, 589837, 27, 1376322, 589837, 28, 1441858, 589837, 29, 1310787, 655373, 27, 1376323, 655373, 28, 1441859, 655373, 29, 1245250, 917517, 15, 1245251, 917517, 15, 1179715, 917517, 15, 1179714, 917517, 15, 3342402, 983053, 15, 3342403, 983053, 15, 3407939, 983053, 15, 3407938, 983053, 15, 3473474, 983053, 15, 3473475, 983053, 15, 3539011, 983053, 15, 3539010, 983053, 15, -1638327, 917517, 15, -1638326, 917517, 15, -1572791, 917517, 15, -1572790, 917517, 15)
+
+[node name="Switches" parent="Objects" index="0"]
+position = Vector2(14, 3)
 
 [node name="RevivalChamber2ExtraRoom" parent="Objects/Switches" index="0" instance=ExtResource("3_0ndau")]
 position = Vector2(128, 250)
@@ -533,12 +621,130 @@ light_energy = 11.0
 light_size = 12.0
 sprite_texture = null
 
-[node name="Hidden Tunnel Door" parent="Objects" index="4" instance=ExtResource("12_us5wm")]
+[node name="Audio" type="Node" parent="Objects" index="4"]
+
+[node name="AM_Crypt" parent="Objects/Audio" index="0" instance=ExtResource("3_0ndau")]
+visible = false
+position = Vector2(421, 465)
+sensor_size = Vector2(8000, 5000)
+on_pressed_effects = Array[Resource("res://Scripts/Resources/Effect.gd")]([SubResource("Resource_nykqr")])
+on_released_effects = Array[Resource("res://Scripts/Resources/Effect.gd")]([SubResource("Resource_kme57")])
+
+[node name="AM_Crypt_ratSqueak Group" type="Node" parent="Objects/Audio" index="1"]
+
+[node name="AM_Crypt_ratSqueak4" parent="Objects/Audio/AM_Crypt_ratSqueak Group" index="0" instance=ExtResource("3_0ndau")]
+position = Vector2(494, 2316)
+sensor_size = Vector2(20, 20)
+on_pressed_effects = Array[Resource("res://Scripts/Resources/Effect.gd")]([SubResource("Resource_sq15c")])
+
+[node name="AM_Crypt_ratSqueak5" parent="Objects/Audio/AM_Crypt_ratSqueak Group" index="1" instance=ExtResource("3_0ndau")]
+position = Vector2(1447, 2298)
+sensor_size = Vector2(20, 20)
+on_pressed_effects = Array[Resource("res://Scripts/Resources/Effect.gd")]([SubResource("Resource_sq15c")])
+
+[node name="AM_Crypt_ratSqueak6" parent="Objects/Audio/AM_Crypt_ratSqueak Group" index="2" instance=ExtResource("3_0ndau")]
+position = Vector2(2385, 1234)
+sensor_size = Vector2(20, 20)
+on_pressed_effects = Array[Resource("res://Scripts/Resources/Effect.gd")]([SubResource("Resource_sq15c")])
+
+[node name="AM_Crypt_ratSqueak7" parent="Objects/Audio/AM_Crypt_ratSqueak Group" index="3" instance=ExtResource("3_0ndau")]
+position = Vector2(2116, 1478)
+sensor_size = Vector2(20, 20)
+on_pressed_effects = Array[Resource("res://Scripts/Resources/Effect.gd")]([SubResource("Resource_sq15c")])
+
+[node name="AM_Crypt_ratSqueak8" parent="Objects/Audio/AM_Crypt_ratSqueak Group" index="4" instance=ExtResource("3_0ndau")]
+position = Vector2(2327, 1481)
+sensor_size = Vector2(20, 20)
+on_pressed_effects = Array[Resource("res://Scripts/Resources/Effect.gd")]([SubResource("Resource_sq15c")])
+
+[node name="AM_Crypt_ratSqueak9" parent="Objects/Audio/AM_Crypt_ratSqueak Group" index="5" instance=ExtResource("3_0ndau")]
+position = Vector2(2509.65, -1008.45)
+sensor_size = Vector2(20, 20)
+on_pressed_effects = Array[Resource("res://Scripts/Resources/Effect.gd")]([SubResource("Resource_sq15c")])
+
+[node name="AM_Crypt_ratSqueak10" parent="Objects/Audio/AM_Crypt_ratSqueak Group" index="6" instance=ExtResource("3_0ndau")]
+position = Vector2(3432.26, 1632.68)
+sensor_size = Vector2(20, 20)
+on_pressed_effects = Array[Resource("res://Scripts/Resources/Effect.gd")]([SubResource("Resource_sq15c")])
+
+[node name="AM_Crypt_ratSqueak11" parent="Objects/Audio/AM_Crypt_ratSqueak Group" index="7" instance=ExtResource("3_0ndau")]
+position = Vector2(1266, 1037)
+sensor_size = Vector2(20, 20)
+on_pressed_effects = Array[Resource("res://Scripts/Resources/Effect.gd")]([SubResource("Resource_sq15c")])
+
+[node name="AM_Crypt_ratSqueak12" parent="Objects/Audio/AM_Crypt_ratSqueak Group" index="8" instance=ExtResource("3_0ndau")]
+position = Vector2(2205, 907)
+sensor_size = Vector2(20, 20)
+on_pressed_effects = Array[Resource("res://Scripts/Resources/Effect.gd")]([SubResource("Resource_sq15c")])
+
+[node name="AM_Crypt_ratSqueak13" parent="Objects/Audio/AM_Crypt_ratSqueak Group" index="9" instance=ExtResource("3_0ndau")]
+position = Vector2(1590, 1467)
+sensor_size = Vector2(20, 20)
+on_pressed_effects = Array[Resource("res://Scripts/Resources/Effect.gd")]([SubResource("Resource_sq15c")])
+
+[node name="AM_Crypt_ratSqueak2" parent="Objects/Audio/AM_Crypt_ratSqueak Group" index="10" instance=ExtResource("3_0ndau")]
+position = Vector2(256, 413)
+sensor_size = Vector2(20, 20)
+on_pressed_effects = Array[Resource("res://Scripts/Resources/Effect.gd")]([SubResource("Resource_sq15c")])
+
+[node name="AM_Crypt_ratSqueak3" parent="Objects/Audio/AM_Crypt_ratSqueak Group" index="11" instance=ExtResource("3_0ndau")]
+position = Vector2(184, 296)
+sensor_size = Vector2(20, 20)
+on_pressed_effects = Array[Resource("res://Scripts/Resources/Effect.gd")]([SubResource("Resource_sq15c")])
+
+[node name="AM_Crypt_ratSqueak" parent="Objects/Audio/AM_Crypt_ratSqueak Group" index="12" instance=ExtResource("3_0ndau")]
+position = Vector2(-142, 497)
+sensor_size = Vector2(20, 20)
+on_pressed_effects = Array[Resource("res://Scripts/Resources/Effect.gd")]([SubResource("Resource_sq15c")])
+
+[node name="AM_Crypt_rubble Group" type="Node" parent="Objects/Audio" index="2"]
+
+[node name="AM_Crypt_rubble8" parent="Objects/Audio/AM_Crypt_rubble Group" index="0" instance=ExtResource("3_0ndau")]
+position = Vector2(2963, -1288)
+sensor_size = Vector2(20, 20)
+on_pressed_effects = Array[Resource("res://Scripts/Resources/Effect.gd")]([SubResource("Resource_sq15c")])
+
+[node name="AM_Crypt_rubble4" parent="Objects/Audio/AM_Crypt_rubble Group" index="1" instance=ExtResource("3_0ndau")]
+position = Vector2(3147, 1559)
+sensor_size = Vector2(20, 20)
+on_pressed_effects = Array[Resource("res://Scripts/Resources/Effect.gd")]([SubResource("Resource_sq15c")])
+
+[node name="AM_Crypt_rubble3" parent="Objects/Audio/AM_Crypt_rubble Group" index="2" instance=ExtResource("3_0ndau")]
+position = Vector2(1749, 2360)
+sensor_size = Vector2(20, 20)
+on_pressed_effects = Array[Resource("res://Scripts/Resources/Effect.gd")]([SubResource("Resource_sq15c")])
+
+[node name="AM_Crypt_rubble5" parent="Objects/Audio/AM_Crypt_rubble Group" index="3" instance=ExtResource("3_0ndau")]
+position = Vector2(1304.17, 568.092)
+sensor_size = Vector2(20, 20)
+on_pressed_effects = Array[Resource("res://Scripts/Resources/Effect.gd")]([SubResource("Resource_sq15c")])
+
+[node name="AM_Crypt_rubble6" parent="Objects/Audio/AM_Crypt_rubble Group" index="4" instance=ExtResource("3_0ndau")]
+position = Vector2(2775, 1295)
+sensor_size = Vector2(20, 20)
+on_pressed_effects = Array[Resource("res://Scripts/Resources/Effect.gd")]([SubResource("Resource_sq15c")])
+
+[node name="AM_Crypt_rubble7" parent="Objects/Audio/AM_Crypt_rubble Group" index="5" instance=ExtResource("3_0ndau")]
+position = Vector2(1666, 1168)
+sensor_size = Vector2(20, 20)
+on_pressed_effects = Array[Resource("res://Scripts/Resources/Effect.gd")]([SubResource("Resource_sq15c")])
+
+[node name="AM_Crypt_rubble2" parent="Objects/Audio/AM_Crypt_rubble Group" index="6" instance=ExtResource("3_0ndau")]
+position = Vector2(191, 2367)
+sensor_size = Vector2(20, 20)
+on_pressed_effects = Array[Resource("res://Scripts/Resources/Effect.gd")]([SubResource("Resource_sq15c")])
+
+[node name="AM_Crypt_rubble" parent="Objects/Audio/AM_Crypt_rubble Group" index="7" instance=ExtResource("3_0ndau")]
+position = Vector2(106, 306)
+sensor_size = Vector2(20, 20)
+on_pressed_effects = Array[Resource("res://Scripts/Resources/Effect.gd")]([SubResource("Resource_sq15c")])
+
+[node name="Hidden Tunnel Door" parent="Objects" index="5" instance=ExtResource("12_us5wm")]
 position = Vector2(3440, 1312)
 can_block_light = true
 can_interact = true
 
-[node name="TorchMount" parent="Objects" index="5" instance=ExtResource("12_us5wm")]
+[node name="TorchMount" parent="Objects" index="6" instance=ExtResource("12_us5wm")]
 position = Vector2(2080, 720)
 size = Vector2(1, 2)
 can_block_movement = true
@@ -546,7 +752,7 @@ can_block_light = true
 can_interact = true
 tint = Color(0.745098, 0.745098, 0.745098, 0)
 
-[node name="TorchMount_2" parent="Objects" index="6" instance=ExtResource("12_us5wm")]
+[node name="TorchMount_2" parent="Objects" index="7" instance=ExtResource("12_us5wm")]
 position = Vector2(2208, 720)
 size = Vector2(1, 2)
 can_block_movement = true
@@ -554,12 +760,12 @@ can_block_light = true
 can_interact = true
 tint = Color(0.745098, 0.745098, 0.745098, 0)
 
-[node name="UnlitTorch" type="Sprite2D" parent="Objects" index="7"]
+[node name="UnlitTorch" type="Sprite2D" parent="Objects" index="8"]
 position = Vector2(128, 2192)
 texture = ExtResource("12_mfm7m")
 region_rect = Rect2(0, 14, 64, 50)
 
-[node name="ControlledRegion" parent="Objects" index="8" instance=ExtResource("18_nwlbx")]
+[node name="ControlledRegion" parent="Objects" index="9" instance=ExtResource("18_nwlbx")]
 position = Vector2(128, 2192)
 region_id = "crypt.torch"
 
@@ -574,12 +780,12 @@ light_energy = 2.0
 light_size = 4.0
 sprite_texture = null
 
-[node name="UnlitTorch2" type="Sprite2D" parent="Objects" index="9"]
+[node name="UnlitTorch2" type="Sprite2D" parent="Objects" index="10"]
 position = Vector2(336, 2192)
 texture = ExtResource("12_mfm7m")
 region_rect = Rect2(0, 14, 64, 50)
 
-[node name="ControlledRegion2" parent="Objects" index="10" instance=ExtResource("18_nwlbx")]
+[node name="ControlledRegion2" parent="Objects" index="11" instance=ExtResource("18_nwlbx")]
 position = Vector2(336, 2192)
 region_id = "crypt.torch2"
 
@@ -594,12 +800,12 @@ light_energy = 2.0
 light_size = 4.0
 sprite_texture = null
 
-[node name="UnlitTorch3" type="Sprite2D" parent="Objects" index="11"]
+[node name="UnlitTorch3" type="Sprite2D" parent="Objects" index="12"]
 position = Vector2(592, 2192)
 texture = ExtResource("12_mfm7m")
 region_rect = Rect2(0, 14, 64, 50)
 
-[node name="ControlledRegion3" parent="Objects" index="12" instance=ExtResource("18_nwlbx")]
+[node name="ControlledRegion3" parent="Objects" index="13" instance=ExtResource("18_nwlbx")]
 position = Vector2(592, 2192)
 region_id = "crypt.torch3"
 
@@ -614,12 +820,12 @@ light_energy = 2.0
 light_size = 4.0
 sprite_texture = null
 
-[node name="UnlitTorch4" type="Sprite2D" parent="Objects" index="13"]
+[node name="UnlitTorch4" type="Sprite2D" parent="Objects" index="14"]
 position = Vector2(848, 2192)
 texture = ExtResource("12_mfm7m")
 region_rect = Rect2(0, 14, 64, 50)
 
-[node name="ControlledRegion4" parent="Objects" index="14" instance=ExtResource("18_nwlbx")]
+[node name="ControlledRegion4" parent="Objects" index="15" instance=ExtResource("18_nwlbx")]
 position = Vector2(848, 2192)
 region_id = "crypt.torch4"
 
@@ -634,12 +840,12 @@ light_energy = 2.0
 light_size = 4.0
 sprite_texture = null
 
-[node name="UnlitTorch5" type="Sprite2D" parent="Objects" index="15"]
+[node name="UnlitTorch5" type="Sprite2D" parent="Objects" index="16"]
 position = Vector2(1104, 2192)
 texture = ExtResource("12_mfm7m")
 region_rect = Rect2(0, 14, 64, 50)
 
-[node name="ControlledRegion5" parent="Objects" index="16" instance=ExtResource("18_nwlbx")]
+[node name="ControlledRegion5" parent="Objects" index="17" instance=ExtResource("18_nwlbx")]
 position = Vector2(1104, 2192)
 region_id = "crypt.torch5"
 
@@ -654,12 +860,12 @@ light_energy = 2.0
 light_size = 4.0
 sprite_texture = null
 
-[node name="UnlitTorch6" type="Sprite2D" parent="Objects" index="17"]
+[node name="UnlitTorch6" type="Sprite2D" parent="Objects" index="18"]
 position = Vector2(1616, 2192)
 texture = ExtResource("12_mfm7m")
 region_rect = Rect2(0, 14, 64, 50)
 
-[node name="ControlledRegion6" parent="Objects" index="18" instance=ExtResource("18_nwlbx")]
+[node name="ControlledRegion6" parent="Objects" index="19" instance=ExtResource("18_nwlbx")]
 position = Vector2(1616, 2192)
 region_id = "crypt.torch6"
 
@@ -674,12 +880,12 @@ light_energy = 2.0
 light_size = 4.0
 sprite_texture = null
 
-[node name="UnlitTorch7" type="Sprite2D" parent="Objects" index="19"]
+[node name="UnlitTorch7" type="Sprite2D" parent="Objects" index="20"]
 position = Vector2(1824, 2192)
 texture = ExtResource("12_mfm7m")
 region_rect = Rect2(0, 14, 64, 50)
 
-[node name="ControlledRegion7" parent="Objects" index="20" instance=ExtResource("18_nwlbx")]
+[node name="ControlledRegion7" parent="Objects" index="21" instance=ExtResource("18_nwlbx")]
 position = Vector2(1824, 2192)
 region_id = "crypt.torch7"
 
@@ -694,12 +900,12 @@ light_energy = 2.0
 light_size = 4.0
 sprite_texture = null
 
-[node name="UnlitTorch8" type="Sprite2D" parent="Objects" index="21"]
+[node name="UnlitTorch8" type="Sprite2D" parent="Objects" index="22"]
 position = Vector2(-2880, -1616)
 texture = ExtResource("12_mfm7m")
 region_rect = Rect2(0, 14, 64, 50)
 
-[node name="ControlledRegion8" parent="Objects" index="22" instance=ExtResource("18_nwlbx")]
+[node name="ControlledRegion8" parent="Objects" index="23" instance=ExtResource("18_nwlbx")]
 position = Vector2(-2880, -1616)
 region_id = "crypt.torch8"
 
@@ -714,12 +920,12 @@ light_energy = 2.0
 light_size = 4.0
 sprite_texture = null
 
-[node name="UnlitTorch9" type="Sprite2D" parent="Objects" index="23"]
+[node name="UnlitTorch9" type="Sprite2D" parent="Objects" index="24"]
 position = Vector2(1360, 2192)
 texture = ExtResource("12_mfm7m")
 region_rect = Rect2(0, 14, 64, 50)
 
-[node name="ControlledRegion9" parent="Objects" index="24" instance=ExtResource("18_nwlbx")]
+[node name="ControlledRegion9" parent="Objects" index="25" instance=ExtResource("18_nwlbx")]
 position = Vector2(1360, 2192)
 region_id = "crypt.torch9"
 
@@ -734,12 +940,12 @@ light_energy = 2.0
 light_size = 4.0
 sprite_texture = null
 
-[node name="UnlitTorch10" type="Sprite2D" parent="Objects" index="25"]
+[node name="UnlitTorch10" type="Sprite2D" parent="Objects" index="26"]
 position = Vector2(1863, 723)
 texture = ExtResource("12_mfm7m")
 region_rect = Rect2(0, 14, 64, 50)
 
-[node name="ControlledRegion10" parent="Objects" index="26" instance=ExtResource("18_nwlbx")]
+[node name="ControlledRegion10" parent="Objects" index="27" instance=ExtResource("18_nwlbx")]
 position = Vector2(1863, 723)
 region_id = "crypt.torch10"
 
@@ -754,13 +960,13 @@ light_energy = 2.0
 light_size = 4.0
 sprite_texture = null
 
-[node name="UnlitTorch11" type="Sprite2D" parent="Objects" index="27"]
+[node name="UnlitTorch11" type="Sprite2D" parent="Objects" index="28"]
 z_index = 1
 position = Vector2(1563, 723)
 texture = ExtResource("12_mfm7m")
 region_rect = Rect2(0, 14, 64, 50)
 
-[node name="ControlledRegion11" parent="Objects" index="28" instance=ExtResource("18_nwlbx")]
+[node name="ControlledRegion11" parent="Objects" index="29" instance=ExtResource("18_nwlbx")]
 position = Vector2(1563, 723)
 region_id = "crypt.torch11"
 
@@ -775,13 +981,13 @@ light_energy = 2.0
 light_size = 4.0
 sprite_texture = null
 
-[node name="UnlitTorch12" type="Sprite2D" parent="Objects" index="29"]
+[node name="UnlitTorch12" type="Sprite2D" parent="Objects" index="30"]
 z_index = 1
 position = Vector2(2600, 723)
 texture = ExtResource("12_mfm7m")
 region_rect = Rect2(0, 14, 64, 50)
 
-[node name="ControlledRegion12" parent="Objects" index="30" instance=ExtResource("18_nwlbx")]
+[node name="ControlledRegion12" parent="Objects" index="31" instance=ExtResource("18_nwlbx")]
 position = Vector2(2600, 723)
 region_id = "crypt.torch12"
 
@@ -796,24 +1002,24 @@ light_energy = 2.0
 light_size = 4.0
 sprite_texture = null
 
-[node name="UnlitTorch_Door" type="Sprite2D" parent="Objects" index="31"]
+[node name="UnlitTorch_Door" type="Sprite2D" parent="Objects" index="32"]
 position = Vector2(2080, 688)
 texture = ExtResource("13_pg1fx")
 region_rect = Rect2(0, 14, 64, 50)
 
-[node name="UnlitTorch_Door2" type="Sprite2D" parent="Objects" index="32"]
+[node name="UnlitTorch_Door2" type="Sprite2D" parent="Objects" index="33"]
 position = Vector2(2208, 688)
 texture = ExtResource("13_pg1fx")
 region_rect = Rect2(0, 14, 64, 50)
 
-[node name="GinPuddle_Examine" parent="Objects" index="33" instance=ExtResource("12_us5wm")]
+[node name="GinPuddle_Examine" parent="Objects" index="34" instance=ExtResource("12_us5wm")]
 position = Vector2(2384, 960)
 can_interact = true
 tint = Color(0.745098, 0.745098, 0.745098, 0)
 action_verb = 6
 effects = Array[Resource("res://Scripts/Resources/Effect.gd")]([SubResource("Resource_kyv6i")])
 
-[node name="UnlitWoodenTorch_Examine" parent="Objects" index="34" instance=ExtResource("12_us5wm")]
+[node name="UnlitWoodenTorch_Examine" parent="Objects" index="35" instance=ExtResource("12_us5wm")]
 position = Vector2(1564, 766)
 size = Vector2(1, 3)
 can_block_movement = true
@@ -823,7 +1029,7 @@ tint = Color(0.745098, 0.745098, 0.745098, 0)
 action_verb = 6
 effects = Array[Resource("res://Scripts/Resources/Effect.gd")]([SubResource("Resource_nois6"), SubResource("Resource_f85y6")])
 
-[node name="UnlitWoodenTorch_Examine2" parent="Objects" index="35" instance=ExtResource("12_us5wm")]
+[node name="UnlitWoodenTorch_Examine2" parent="Objects" index="36" instance=ExtResource("12_us5wm")]
 position = Vector2(1863, 767)
 size = Vector2(1, 3)
 can_block_movement = true
@@ -833,7 +1039,7 @@ tint = Color(0.745098, 0.745098, 0.745098, 0)
 action_verb = 6
 effects = Array[Resource("res://Scripts/Resources/Effect.gd")]([SubResource("Resource_nois6"), SubResource("Resource_dfpld")])
 
-[node name="UnlitWoodenTorch_Examine3" parent="Objects" index="36" instance=ExtResource("12_us5wm")]
+[node name="UnlitWoodenTorch_Examine3" parent="Objects" index="37" instance=ExtResource("12_us5wm")]
 position = Vector2(2599, 767)
 size = Vector2(1, 3)
 can_block_movement = true
@@ -843,7 +1049,7 @@ tint = Color(0.745098, 0.745098, 0.745098, 0)
 action_verb = 6
 effects = Array[Resource("res://Scripts/Resources/Effect.gd")]([SubResource("Resource_nois6"), SubResource("Resource_qgmfx")])
 
-[node name="UnlitWoodenTorch_Examine6" parent="Objects" index="37" instance=ExtResource("12_us5wm")]
+[node name="UnlitWoodenTorch_Examine6" parent="Objects" index="38" instance=ExtResource("12_us5wm")]
 position = Vector2(-2880, -1568)
 size = Vector2(1, 3)
 can_block_movement = true
@@ -853,7 +1059,7 @@ tint = Color(0.745098, 0.745098, 0.745098, 0)
 action_verb = 6
 effects = Array[Resource("res://Scripts/Resources/Effect.gd")]([SubResource("Resource_nois6"), SubResource("Resource_tvvuf")])
 
-[node name="UnlitWoodenTorch_Examine7" parent="Objects" index="38" instance=ExtResource("12_us5wm")]
+[node name="UnlitWoodenTorch_Examine7" parent="Objects" index="39" instance=ExtResource("12_us5wm")]
 position = Vector2(1360, 2240)
 size = Vector2(1, 3)
 can_block_movement = true
@@ -863,7 +1069,7 @@ tint = Color(0.745098, 0.745098, 0.745098, 0)
 action_verb = 6
 effects = Array[Resource("res://Scripts/Resources/Effect.gd")]([SubResource("Resource_nois6"), SubResource("Resource_3sv1s")])
 
-[node name="UnlitWoodenTorch_Examine8" parent="Objects" index="39" instance=ExtResource("12_us5wm")]
+[node name="UnlitWoodenTorch_Examine8" parent="Objects" index="40" instance=ExtResource("12_us5wm")]
 position = Vector2(1824, 2240)
 size = Vector2(1, 3)
 can_block_movement = true
@@ -873,7 +1079,7 @@ tint = Color(0.745098, 0.745098, 0.745098, 0)
 action_verb = 6
 effects = Array[Resource("res://Scripts/Resources/Effect.gd")]([SubResource("Resource_nois6"), SubResource("Resource_ei6fi")])
 
-[node name="UnlitWoodenTorch_Examine9" parent="Objects" index="40" instance=ExtResource("12_us5wm")]
+[node name="UnlitWoodenTorch_Examine9" parent="Objects" index="41" instance=ExtResource("12_us5wm")]
 position = Vector2(1616, 2240)
 size = Vector2(1, 3)
 can_block_movement = true
@@ -883,7 +1089,7 @@ tint = Color(0.745098, 0.745098, 0.745098, 0)
 action_verb = 6
 effects = Array[Resource("res://Scripts/Resources/Effect.gd")]([SubResource("Resource_nois6"), SubResource("Resource_ybipd")])
 
-[node name="UnlitWoodenTorch_Examine10" parent="Objects" index="41" instance=ExtResource("12_us5wm")]
+[node name="UnlitWoodenTorch_Examine10" parent="Objects" index="42" instance=ExtResource("12_us5wm")]
 position = Vector2(1104, 2240)
 size = Vector2(1, 3)
 can_block_movement = true
@@ -893,7 +1099,7 @@ tint = Color(0.745098, 0.745098, 0.745098, 0)
 action_verb = 6
 effects = Array[Resource("res://Scripts/Resources/Effect.gd")]([SubResource("Resource_nois6"), SubResource("Resource_6domd")])
 
-[node name="UnlitWoodenTorch_Examine11" parent="Objects" index="42" instance=ExtResource("12_us5wm")]
+[node name="UnlitWoodenTorch_Examine11" parent="Objects" index="43" instance=ExtResource("12_us5wm")]
 position = Vector2(848, 2240)
 size = Vector2(1, 3)
 can_block_movement = true
@@ -903,7 +1109,7 @@ tint = Color(0.745098, 0.745098, 0.745098, 0)
 action_verb = 6
 effects = Array[Resource("res://Scripts/Resources/Effect.gd")]([SubResource("Resource_nois6"), SubResource("Resource_tkqqb")])
 
-[node name="UnlitWoodenTorch_Examine12" parent="Objects" index="43" instance=ExtResource("12_us5wm")]
+[node name="UnlitWoodenTorch_Examine12" parent="Objects" index="44" instance=ExtResource("12_us5wm")]
 position = Vector2(592, 2240)
 size = Vector2(1, 3)
 can_block_movement = true
@@ -913,7 +1119,7 @@ tint = Color(0.745098, 0.745098, 0.745098, 0)
 action_verb = 6
 effects = Array[Resource("res://Scripts/Resources/Effect.gd")]([SubResource("Resource_nois6"), SubResource("Resource_l7wd1")])
 
-[node name="UnlitWoodenTorch_Examine13" parent="Objects" index="44" instance=ExtResource("12_us5wm")]
+[node name="UnlitWoodenTorch_Examine13" parent="Objects" index="45" instance=ExtResource("12_us5wm")]
 position = Vector2(336, 2240)
 size = Vector2(1, 3)
 can_block_movement = true
@@ -923,7 +1129,7 @@ tint = Color(0.745098, 0.745098, 0.745098, 0)
 action_verb = 6
 effects = Array[Resource("res://Scripts/Resources/Effect.gd")]([SubResource("Resource_nois6"), SubResource("Resource_w21v4")])
 
-[node name="UnlitWoodenTorch_Examine14" parent="Objects" index="45" instance=ExtResource("12_us5wm")]
+[node name="UnlitWoodenTorch_Examine14" parent="Objects" index="46" instance=ExtResource("12_us5wm")]
 position = Vector2(128, 2240)
 size = Vector2(1, 3)
 can_block_movement = true
@@ -933,7 +1139,7 @@ tint = Color(0.745098, 0.745098, 0.745098, 0)
 action_verb = 6
 effects = Array[Resource("res://Scripts/Resources/Effect.gd")]([SubResource("Resource_wr6e2"), SubResource("Resource_3q783")])
 
-[node name="PileOfWoodenStakes_Examine" parent="Objects" index="46" instance=ExtResource("12_us5wm")]
+[node name="PileOfWoodenStakes_Examine" parent="Objects" index="47" instance=ExtResource("12_us5wm")]
 position = Vector2(2312, 1120)
 can_block_movement = true
 can_interact = true
@@ -941,14 +1147,14 @@ tint = Color(0.745098, 0.745098, 0.745098, 0)
 action_verb = 6
 effects = Array[Resource("res://Scripts/Resources/Effect.gd")]([SubResource("Resource_lqmha")])
 
-[node name="SkeletalRemains_Examine" parent="Objects" index="47" instance=ExtResource("12_us5wm")]
+[node name="SkeletalRemains_Examine" parent="Objects" index="48" instance=ExtResource("12_us5wm")]
 position = Vector2(2720, 1480)
 can_interact = true
 tint = Color(0.745098, 0.745098, 0.745098, 0)
 action_verb = 6
 effects = Array[Resource("res://Scripts/Resources/Effect.gd")]([SubResource("Resource_8idhr")])
 
-[node name="RansackedCoffin_Examine" parent="Objects" index="48" instance=ExtResource("12_us5wm")]
+[node name="RansackedCoffin_Examine" parent="Objects" index="49" instance=ExtResource("12_us5wm")]
 position = Vector2(2768, 1488)
 size = Vector2(1, 2)
 can_block_movement = true
@@ -957,7 +1163,7 @@ tint = Color(0.745098, 0.745098, 0.745098, 0)
 action_verb = 6
 effects = Array[Resource("res://Scripts/Resources/Effect.gd")]([SubResource("Resource_45gmm")])
 
-[node name="Coffin_Examine3" parent="Objects" index="49" instance=ExtResource("12_us5wm")]
+[node name="Coffin_Examine3" parent="Objects" index="50" instance=ExtResource("12_us5wm")]
 position = Vector2(2736, 768)
 size = Vector2(1, 2)
 can_block_movement = true
@@ -966,7 +1172,7 @@ tint = Color(0.745098, 0.745098, 0.745098, 0)
 action_verb = 6
 effects = Array[Resource("res://Scripts/Resources/Effect.gd")]([SubResource("Resource_li3ln")])
 
-[node name="Coffin_Examine4" parent="Objects" index="50" instance=ExtResource("12_us5wm")]
+[node name="Coffin_Examine4" parent="Objects" index="51" instance=ExtResource("12_us5wm")]
 position = Vector2(2704, 768)
 size = Vector2(1, 2)
 can_block_movement = true
@@ -975,7 +1181,7 @@ tint = Color(0.745098, 0.745098, 0.745098, 0)
 action_verb = 6
 effects = Array[Resource("res://Scripts/Resources/Effect.gd")]([SubResource("Resource_li3ln")])
 
-[node name="Coffin_Examine5" parent="Objects" index="51" instance=ExtResource("12_us5wm")]
+[node name="Coffin_Examine5" parent="Objects" index="52" instance=ExtResource("12_us5wm")]
 position = Vector2(2480, 768)
 size = Vector2(1, 2)
 can_block_movement = true
@@ -984,7 +1190,7 @@ tint = Color(0.745098, 0.745098, 0.745098, 0)
 action_verb = 6
 effects = Array[Resource("res://Scripts/Resources/Effect.gd")]([SubResource("Resource_li3ln")])
 
-[node name="Coffin_Examine6" parent="Objects" index="52" instance=ExtResource("12_us5wm")]
+[node name="Coffin_Examine6" parent="Objects" index="53" instance=ExtResource("12_us5wm")]
 position = Vector2(2448, 768)
 size = Vector2(1, 2)
 can_block_movement = true
@@ -993,7 +1199,7 @@ tint = Color(0.745098, 0.745098, 0.745098, 0)
 action_verb = 6
 effects = Array[Resource("res://Scripts/Resources/Effect.gd")]([SubResource("Resource_li3ln")])
 
-[node name="Coffins_Examine" parent="Objects" index="53" instance=ExtResource("12_us5wm")]
+[node name="Coffins_Examine" parent="Objects" index="54" instance=ExtResource("12_us5wm")]
 position = Vector2(2368, 1568)
 size = Vector2(2, 2)
 can_block_movement = true
@@ -1003,7 +1209,7 @@ action_verb = 6
 effects = Array[Resource("res://Scripts/Resources/Effect.gd")]([SubResource("Resource_li3ln")])
 y_sort_width = 104
 
-[node name="Coffins_Examine2" parent="Objects" index="54" instance=ExtResource("12_us5wm")]
+[node name="Coffins_Examine2" parent="Objects" index="55" instance=ExtResource("12_us5wm")]
 position = Vector2(2736, 1552)
 can_block_movement = true
 can_interact = true
@@ -1011,7 +1217,7 @@ tint = Color(0.745098, 0.745098, 0.745098, 0)
 action_verb = 6
 effects = Array[Resource("res://Scripts/Resources/Effect.gd")]([SubResource("Resource_li3ln")])
 
-[node name="Coffins_Examine3" parent="Objects" index="55" instance=ExtResource("12_us5wm")]
+[node name="Coffins_Examine3" parent="Objects" index="56" instance=ExtResource("12_us5wm")]
 position = Vector2(2560, 1568)
 size = Vector2(2, 2)
 can_block_movement = true
@@ -1021,7 +1227,7 @@ action_verb = 6
 effects = Array[Resource("res://Scripts/Resources/Effect.gd")]([SubResource("Resource_li3ln")])
 y_sort_width = 104
 
-[node name="Coffins_Examine4" parent="Objects" index="56" instance=ExtResource("12_us5wm")]
+[node name="Coffins_Examine4" parent="Objects" index="57" instance=ExtResource("12_us5wm")]
 position = Vector2(1920, 1576)
 size = Vector2(2, 2)
 can_block_movement = true
@@ -1031,7 +1237,7 @@ action_verb = 6
 effects = Array[Resource("res://Scripts/Resources/Effect.gd")]([SubResource("Resource_li3ln")])
 y_sort_width = 104
 
-[node name="Coffins_Examine5" parent="Objects" index="57" instance=ExtResource("12_us5wm")]
+[node name="Coffins_Examine5" parent="Objects" index="58" instance=ExtResource("12_us5wm")]
 position = Vector2(1728, 1584)
 size = Vector2(2, 2)
 can_block_movement = true
@@ -1041,7 +1247,7 @@ action_verb = 6
 effects = Array[Resource("res://Scripts/Resources/Effect.gd")]([SubResource("Resource_li3ln")])
 y_sort_width = 104
 
-[node name="Satchel_Examine" parent="Objects" index="58" instance=ExtResource("12_us5wm")]
+[node name="Satchel_Examine" parent="Objects" index="59" instance=ExtResource("12_us5wm")]
 position = Vector2(400, 576)
 size = Vector2(1, 0.5)
 can_interact = true
@@ -1049,21 +1255,21 @@ tint = Color(0.745098, 0.745098, 0.745098, 0)
 action_verb = 6
 effects = Array[Resource("res://Scripts/Resources/Effect.gd")]([SubResource("Resource_fk822")])
 
-[node name="JournalPage1_Examine" parent="Objects" index="59" instance=ExtResource("12_us5wm")]
+[node name="JournalPage1_Examine" parent="Objects" index="60" instance=ExtResource("12_us5wm")]
 position = Vector2(3440, 2048)
 can_interact = true
 tint = Color(0.745098, 0.745098, 0.745098, 0)
 action_verb = 6
 effects = Array[Resource("res://Scripts/Resources/Effect.gd")]([SubResource("Resource_y4w0b")])
 
-[node name="BlackMould_Examine" parent="Objects" index="60" instance=ExtResource("12_us5wm")]
+[node name="BlackMould_Examine" parent="Objects" index="61" instance=ExtResource("12_us5wm")]
 position = Vector2(434, 705)
 can_interact = true
 tint = Color(0.745098, 0.745098, 0.745098, 0)
 action_verb = 6
 effects = Array[Resource("res://Scripts/Resources/Effect.gd")]([SubResource("Resource_7815y")])
 
-[node name="Door" parent="Objects" index="61" instance=ExtResource("28_4oovl")]
+[node name="Door" parent="Objects" index="62" instance=ExtResource("28_4oovl")]
 position = Vector2(128, 872)
 closed_sprite = ExtResource("29_h17ii")
 open_sprite = null
@@ -1071,11 +1277,11 @@ unlocked = Array[Resource("res://Scripts/Resources/TriggerCondition.gd")]([SubRe
 use_action = "open"
 region_id = "crypt.exit_door"
 
-[node name="PushableBlock" parent="Objects" index="62" instance=ExtResource("30_nk66s")]
+[node name="PushableBlock" parent="Objects" index="63" instance=ExtResource("30_nk66s")]
 position = Vector2(2288, 1504)
 height = 2
 
-[node name="Door2" parent="Objects" index="63" instance=ExtResource("28_4oovl")]
+[node name="Door2" parent="Objects" index="64" instance=ExtResource("28_4oovl")]
 position = Vector2(2142, 728)
 closed_sprite = ExtResource("29_h17ii")
 open_sprite = null

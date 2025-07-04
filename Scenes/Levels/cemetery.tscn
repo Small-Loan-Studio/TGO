@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=3 uid="uid://bu1vpanrcrar3"]
+[gd_scene load_steps=23 format=3 uid="uid://bu1vpanrcrar3"]
 
 [ext_resource type="PackedScene" uid="uid://dyq8mcdsutnsa" path="res://Scenes/Components/LevelBase.tscn" id="1_bbrpm"]
 [ext_resource type="TileSet" uid="uid://c72m3jled4jfg" path="res://Art/Environment/ext_simple_tileset.tres" id="2_svd0s"]
@@ -11,6 +11,7 @@
 [ext_resource type="Script" path="res://Scripts/Resources/Effects/LevelLoadEffect.gd" id="7_rtrad"]
 [ext_resource type="Resource" uid="uid://govy3p3pxyql" path="res://Scripts/Resources/NPCs/Groundskeeper.tres" id="8_3lgnx"]
 [ext_resource type="Resource" path="res://Dialogue/Groundskeeper/GroundskeeperTimeline.dtl" id="9_troe3"]
+[ext_resource type="Script" path="res://Scripts/Resources/Effects/AudioEventEffect.gd" id="12_l2thq"]
 
 [sub_resource type="Resource" id="Resource_fnqoc"]
 script = ExtResource("5_mniuv")
@@ -29,6 +30,12 @@ marker_name = "PS-Cemetery-Exit"
 [sub_resource type="Resource" id="Resource_2cl87"]
 script = ExtResource("5_mniuv")
 timeline = ExtResource("9_troe3")
+
+[sub_resource type="Resource" id="Resource_4hrfa"]
+script = ExtResource("12_l2thq")
+actor_id_override = ""
+event_name = "play_MX_Cemetery"
+fire_type = "one shot"
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_1gc5v"]
 height = 52.0
@@ -87,37 +94,51 @@ config = ExtResource("8_3lgnx")
 dlg = SubResource("Resource_2cl87")
 id = "Ebenezer Beaupre - Groundskeeper"
 
-[node name="Tombstone_Style1" type="Sprite2D" parent="Objects" index="4"]
+[node name="Audio" type="Node" parent="Objects" index="4"]
+
+[node name="AM_Cemetery" parent="Objects/Audio" index="0" instance=ExtResource("3_vl6rl")]
+visible = false
+position = Vector2(-883, 30)
+sensor_size = Vector2(4000, 2800)
+on_pressed_effects = Array[Resource("res://Scripts/Resources/Effect.gd")]([SubResource("Resource_4hrfa")])
+
+[node name="MX_Cemetery" parent="Objects/Audio" index="1" instance=ExtResource("3_vl6rl")]
+visible = false
+position = Vector2(-883, 30)
+sensor_size = Vector2(4000, 2800)
+on_pressed_effects = Array[Resource("res://Scripts/Resources/Effect.gd")]([SubResource("Resource_4hrfa")])
+
+[node name="Tombstone_Style1" type="Sprite2D" parent="Objects" index="5"]
 position = Vector2(-240, -252)
 texture = ExtResource("3_pwnwo")
 region_enabled = true
 region_rect = Rect2(0, 14, 64, 50)
 
-[node name="Tombstone_Style1_2" type="Sprite2D" parent="Objects" index="5"]
+[node name="Tombstone_Style1_2" type="Sprite2D" parent="Objects" index="6"]
 position = Vector2(241, 137)
 texture = ExtResource("3_pwnwo")
 region_enabled = true
 region_rect = Rect2(0, 14, 64, 50)
 
-[node name="Tombstone_Style1_3" type="Sprite2D" parent="Objects" index="6"]
+[node name="Tombstone_Style1_3" type="Sprite2D" parent="Objects" index="7"]
 position = Vector2(-529, 137)
 texture = ExtResource("3_pwnwo")
 region_enabled = true
 region_rect = Rect2(0, 14, 64, 50)
 
-[node name="Tombstone_Style1_4" type="Sprite2D" parent="Objects" index="7"]
+[node name="Tombstone_Style1_4" type="Sprite2D" parent="Objects" index="8"]
 position = Vector2(530, 5)
 texture = ExtResource("3_pwnwo")
 region_enabled = true
 region_rect = Rect2(0, 14, 64, 50)
 
-[node name="Tombstone_Style1_5" type="Sprite2D" parent="Objects" index="8"]
+[node name="Tombstone_Style1_5" type="Sprite2D" parent="Objects" index="9"]
 position = Vector2(-529, -379)
 texture = ExtResource("3_pwnwo")
 region_enabled = true
 region_rect = Rect2(0, 14, 64, 50)
 
-[node name="Tombstone_Style2" type="Sprite2D" parent="Objects" index="9"]
+[node name="Tombstone_Style2" type="Sprite2D" parent="Objects" index="10"]
 position = Vector2(338, -416)
 texture = ExtResource("3_pwnwo")
 region_enabled = true
@@ -128,7 +149,7 @@ region_rect = Rect2(0, 64, 64, 128)
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Objects/Tombstone_Style2/RigidBody2D" index="0"]
 shape = SubResource("CapsuleShape2D_1gc5v")
 
-[node name="Tombstone_Style2_2" type="Sprite2D" parent="Objects" index="10"]
+[node name="Tombstone_Style2_2" type="Sprite2D" parent="Objects" index="11"]
 position = Vector2(-433, -288)
 texture = ExtResource("3_pwnwo")
 region_enabled = true
@@ -141,7 +162,7 @@ position = Vector2(-285, -341)
 position = Vector2(285, 369)
 shape = SubResource("CapsuleShape2D_vkqit")
 
-[node name="Tombstone_Style2_3" type="Sprite2D" parent="Objects" index="11"]
+[node name="Tombstone_Style2_3" type="Sprite2D" parent="Objects" index="12"]
 position = Vector2(528, 223)
 texture = ExtResource("3_pwnwo")
 region_enabled = true
@@ -154,259 +175,259 @@ position = Vector2(216, 418)
 position = Vector2(-216, -385)
 shape = SubResource("CapsuleShape2D_yk71g")
 
-[node name="Tombstone_Broken" type="Sprite2D" parent="Objects" index="12"]
+[node name="Tombstone_Broken" type="Sprite2D" parent="Objects" index="13"]
 position = Vector2(339, 137)
 texture = ExtResource("3_pwnwo")
 region_enabled = true
 region_rect = Rect2(203, 10, 44, 55)
 
-[node name="Tombstone_Broken2" type="Sprite2D" parent="Objects" index="13"]
+[node name="Tombstone_Broken2" type="Sprite2D" parent="Objects" index="14"]
 position = Vector2(435, -379)
 texture = ExtResource("3_pwnwo")
 region_enabled = true
 region_rect = Rect2(203, 10, 44, 55)
 
-[node name="Tombstone_Broken3" type="Sprite2D" parent="Objects" index="14"]
+[node name="Tombstone_Broken3" type="Sprite2D" parent="Objects" index="15"]
 position = Vector2(-430, 8)
 texture = ExtResource("3_pwnwo")
 region_enabled = true
 region_rect = Rect2(203, 10, 44, 55)
 
-[node name="Tombstone_Broken4" type="Sprite2D" parent="Objects" index="15"]
+[node name="Tombstone_Broken4" type="Sprite2D" parent="Objects" index="16"]
 position = Vector2(440, 259)
 texture = ExtResource("3_pwnwo")
 region_enabled = true
 region_rect = Rect2(203, 10, 44, 55)
 
-[node name="Tombstone_Broken5" type="Sprite2D" parent="Objects" index="16"]
+[node name="Tombstone_Broken5" type="Sprite2D" parent="Objects" index="17"]
 position = Vector2(-240, -379)
 texture = ExtResource("3_pwnwo")
 region_enabled = true
 region_rect = Rect2(203, 10, 44, 55)
 
-[node name="Tombstone_Broken6" type="Sprite2D" parent="Objects" index="17"]
+[node name="Tombstone_Broken6" type="Sprite2D" parent="Objects" index="18"]
 position = Vector2(241, 7)
 texture = ExtResource("3_pwnwo")
 region_enabled = true
 region_rect = Rect2(203, 10, 44, 55)
 
-[node name="Tombstone_Broken7" type="Sprite2D" parent="Objects" index="18"]
+[node name="Tombstone_Broken7" type="Sprite2D" parent="Objects" index="19"]
 position = Vector2(-619, 4)
 texture = ExtResource("3_pwnwo")
 region_enabled = true
 region_rect = Rect2(203, 10, 44, 55)
 
-[node name="Tombstone_Broken8" type="Sprite2D" parent="Objects" index="19"]
+[node name="Tombstone_Broken8" type="Sprite2D" parent="Objects" index="20"]
 position = Vector2(434, 135)
 texture = ExtResource("3_pwnwo")
 region_enabled = true
 region_rect = Rect2(203, 10, 44, 55)
 
-[node name="Tombstone_Broken9" type="Sprite2D" parent="Objects" index="20"]
+[node name="Tombstone_Broken9" type="Sprite2D" parent="Objects" index="21"]
 position = Vector2(-719, -248)
 texture = ExtResource("3_pwnwo")
 region_enabled = true
 region_rect = Rect2(203, 10, 44, 55)
 
-[node name="Tombstone_Broken10" type="Sprite2D" parent="Objects" index="21"]
+[node name="Tombstone_Broken10" type="Sprite2D" parent="Objects" index="22"]
 position = Vector2(-335, -124)
 texture = ExtResource("3_pwnwo")
 region_enabled = true
 region_rect = Rect2(203, 10, 44, 55)
 
-[node name="Tombstone_Broken11" type="Sprite2D" parent="Objects" index="22"]
+[node name="Tombstone_Broken11" type="Sprite2D" parent="Objects" index="23"]
 position = Vector2(523, -382)
 texture = ExtResource("3_pwnwo")
 region_enabled = true
 region_rect = Rect2(203, 10, 44, 55)
 
-[node name="Tombstone_Broken12" type="Sprite2D" parent="Objects" index="23"]
+[node name="Tombstone_Broken12" type="Sprite2D" parent="Objects" index="24"]
 position = Vector2(-528, -247)
 texture = ExtResource("3_pwnwo")
 region_enabled = true
 region_rect = Rect2(203, 10, 44, 55)
 
-[node name="Tombstone_Broken13" type="Sprite2D" parent="Objects" index="24"]
+[node name="Tombstone_Broken13" type="Sprite2D" parent="Objects" index="25"]
 position = Vector2(-333, 131)
 texture = ExtResource("3_pwnwo")
 region_enabled = true
 region_rect = Rect2(203, 10, 44, 55)
 
-[node name="Tombstone_Broken14" type="Sprite2D" parent="Objects" index="25"]
+[node name="Tombstone_Broken14" type="Sprite2D" parent="Objects" index="26"]
 position = Vector2(-431, -379)
 texture = ExtResource("3_pwnwo")
 region_enabled = true
 region_rect = Rect2(203, 10, 44, 55)
 
-[node name="Tombstone_Broken15" type="Sprite2D" parent="Objects" index="26"]
+[node name="Tombstone_Broken15" type="Sprite2D" parent="Objects" index="27"]
 position = Vector2(432, -128)
 texture = ExtResource("3_pwnwo")
 region_enabled = true
 region_rect = Rect2(203, 10, 44, 55)
 
-[node name="Tombstone_Broken16" type="Sprite2D" parent="Objects" index="27"]
+[node name="Tombstone_Broken16" type="Sprite2D" parent="Objects" index="28"]
 position = Vector2(-624, -250)
 texture = ExtResource("3_pwnwo")
 region_enabled = true
 region_rect = Rect2(203, 10, 44, 55)
 
-[node name="Tombstone_Broken17" type="Sprite2D" parent="Objects" index="28"]
+[node name="Tombstone_Broken17" type="Sprite2D" parent="Objects" index="29"]
 position = Vector2(-623, -378)
 texture = ExtResource("3_pwnwo")
 region_enabled = true
 region_rect = Rect2(203, 10, 44, 55)
 
-[node name="Tombstone_BrokenStyle2" type="Sprite2D" parent="Objects" index="29"]
+[node name="Tombstone_BrokenStyle2" type="Sprite2D" parent="Objects" index="30"]
 position = Vector2(-713, -377)
 texture = ExtResource("3_pwnwo")
 region_enabled = true
 region_rect = Rect2(61, 67, 70, 62)
 
-[node name="Tombstone_BrokenStyle2_2" type="Sprite2D" parent="Objects" index="30"]
+[node name="Tombstone_BrokenStyle2_2" type="Sprite2D" parent="Objects" index="31"]
 position = Vector2(-623, 130)
 texture = ExtResource("3_pwnwo")
 region_enabled = true
 region_rect = Rect2(61, 67, 70, 62)
 
-[node name="Tombstone_BrokenStyle2_3" type="Sprite2D" parent="Objects" index="31"]
+[node name="Tombstone_BrokenStyle2_3" type="Sprite2D" parent="Objects" index="32"]
 position = Vector2(246, -112)
 texture = ExtResource("3_pwnwo")
 region_enabled = true
 region_rect = Rect2(61, 67, 70, 62)
 
-[node name="Tombstone_BrokenStyle2_4" type="Sprite2D" parent="Objects" index="32"]
+[node name="Tombstone_BrokenStyle2_4" type="Sprite2D" parent="Objects" index="33"]
 position = Vector2(437, -242)
 texture = ExtResource("3_pwnwo")
 region_enabled = true
 region_rect = Rect2(61, 67, 70, 62)
 
-[node name="Tombstone_BrokenStyle2_5" type="Sprite2D" parent="Objects" index="33"]
+[node name="Tombstone_BrokenStyle2_5" type="Sprite2D" parent="Objects" index="34"]
 position = Vector2(243, -254)
 texture = ExtResource("3_pwnwo")
 region_enabled = true
 region_rect = Rect2(61, 67, 70, 62)
 
-[node name="Tombstone_BrokenStyle2_6" type="Sprite2D" parent="Objects" index="34"]
+[node name="Tombstone_BrokenStyle2_6" type="Sprite2D" parent="Objects" index="35"]
 position = Vector2(530, -124)
 texture = ExtResource("3_pwnwo")
 region_enabled = true
 region_rect = Rect2(61, 67, 70, 62)
 
-[node name="Tombstone_BrokenStyle2_7" type="Sprite2D" parent="Objects" index="35"]
+[node name="Tombstone_BrokenStyle2_7" type="Sprite2D" parent="Objects" index="36"]
 position = Vector2(340, 4)
 texture = ExtResource("3_pwnwo")
 region_enabled = true
 region_rect = Rect2(61, 67, 70, 62)
 
-[node name="Tombstone_BrokenStyle2_8" type="Sprite2D" parent="Objects" index="36"]
+[node name="Tombstone_BrokenStyle2_8" type="Sprite2D" parent="Objects" index="37"]
 position = Vector2(436, 5)
 texture = ExtResource("3_pwnwo")
 region_enabled = true
 region_rect = Rect2(61, 67, 70, 62)
 
-[node name="Tombstone_BrokenStyle2_9" type="Sprite2D" parent="Objects" index="37"]
+[node name="Tombstone_BrokenStyle2_9" type="Sprite2D" parent="Objects" index="38"]
 position = Vector2(244, 258)
 texture = ExtResource("3_pwnwo")
 region_enabled = true
 region_rect = Rect2(61, 67, 70, 62)
 
-[node name="Tombstone_BrokenStyle2_10" type="Sprite2D" parent="Objects" index="38"]
+[node name="Tombstone_BrokenStyle2_10" type="Sprite2D" parent="Objects" index="39"]
 position = Vector2(-528, -128)
 texture = ExtResource("3_pwnwo")
 region_enabled = true
 region_rect = Rect2(61, 67, 70, 62)
 
-[node name="Tombstone_BrokenStyle2_11" type="Sprite2D" parent="Objects" index="39"]
+[node name="Tombstone_BrokenStyle2_11" type="Sprite2D" parent="Objects" index="40"]
 position = Vector2(245, -373)
 texture = ExtResource("3_pwnwo")
 region_enabled = true
 region_rect = Rect2(61, 67, 70, 62)
 
-[node name="Tombstone_BrokenStyle2_12" type="Sprite2D" parent="Objects" index="40"]
+[node name="Tombstone_BrokenStyle2_12" type="Sprite2D" parent="Objects" index="41"]
 position = Vector2(-718, 2)
 texture = ExtResource("3_pwnwo")
 region_enabled = true
 region_rect = Rect2(61, 67, 70, 62)
 
-[node name="Tombstone_BrokenStyle2_13" type="Sprite2D" parent="Objects" index="41"]
+[node name="Tombstone_BrokenStyle2_13" type="Sprite2D" parent="Objects" index="42"]
 position = Vector2(-239, -127)
 texture = ExtResource("3_pwnwo")
 region_enabled = true
 region_rect = Rect2(61, 67, 70, 62)
 
-[node name="Tombstone_BrokenStyle2_14" type="Sprite2D" parent="Objects" index="42"]
+[node name="Tombstone_BrokenStyle2_14" type="Sprite2D" parent="Objects" index="43"]
 position = Vector2(-431, -119)
 texture = ExtResource("3_pwnwo")
 region_enabled = true
 region_rect = Rect2(61, 67, 70, 62)
 
-[node name="Tombstone_BrokenStyle2_15" type="Sprite2D" parent="Objects" index="43"]
+[node name="Tombstone_BrokenStyle2_15" type="Sprite2D" parent="Objects" index="44"]
 position = Vector2(-431, 128)
 texture = ExtResource("3_pwnwo")
 region_enabled = true
 region_rect = Rect2(61, 67, 70, 62)
 
-[node name="Tombstone_BrokenStyle2_16" type="Sprite2D" parent="Objects" index="44"]
+[node name="Tombstone_BrokenStyle2_16" type="Sprite2D" parent="Objects" index="45"]
 position = Vector2(-243, 132)
 texture = ExtResource("3_pwnwo")
 region_enabled = true
 region_rect = Rect2(61, 67, 70, 62)
 
-[node name="Tombstone_BrokenStyle2_18" type="Sprite2D" parent="Objects" index="45"]
+[node name="Tombstone_BrokenStyle2_18" type="Sprite2D" parent="Objects" index="46"]
 position = Vector2(-717, 130)
 texture = ExtResource("3_pwnwo")
 region_enabled = true
 region_rect = Rect2(61, 67, 70, 62)
 
-[node name="Tombstone_Multiple" type="Sprite2D" parent="Objects" index="46"]
+[node name="Tombstone_Multiple" type="Sprite2D" parent="Objects" index="47"]
 position = Vector2(340, -248)
 texture = ExtResource("3_pwnwo")
 region_enabled = true
 region_rect = Rect2(80, 12, 32, 52)
 
-[node name="Tombstone_Multiple_2" type="Sprite2D" parent="Objects" index="47"]
+[node name="Tombstone_Multiple_2" type="Sprite2D" parent="Objects" index="48"]
 position = Vector2(528, -250)
 texture = ExtResource("3_pwnwo")
 region_enabled = true
 region_rect = Rect2(80, 12, 32, 52)
 
-[node name="Tombstone_Multiple_3" type="Sprite2D" parent="Objects" index="48"]
+[node name="Tombstone_Multiple_3" type="Sprite2D" parent="Objects" index="49"]
 position = Vector2(527, 133)
 texture = ExtResource("3_pwnwo")
 region_enabled = true
 region_rect = Rect2(80, 12, 32, 52)
 
-[node name="Tombstone_Multiple_4" type="Sprite2D" parent="Objects" index="49"]
+[node name="Tombstone_Multiple_4" type="Sprite2D" parent="Objects" index="50"]
 position = Vector2(-338, -251)
 texture = ExtResource("3_pwnwo")
 region_enabled = true
 region_rect = Rect2(80, 12, 32, 52)
 
-[node name="Tombstone_Multiple_5" type="Sprite2D" parent="Objects" index="50"]
+[node name="Tombstone_Multiple_5" type="Sprite2D" parent="Objects" index="51"]
 position = Vector2(-336, 5)
 texture = ExtResource("3_pwnwo")
 region_enabled = true
 region_rect = Rect2(80, 12, 32, 52)
 
-[node name="Tombstone_Multiple_6" type="Sprite2D" parent="Objects" index="51"]
+[node name="Tombstone_Multiple_6" type="Sprite2D" parent="Objects" index="52"]
 position = Vector2(-530, 4)
 texture = ExtResource("3_pwnwo")
 region_enabled = true
 region_rect = Rect2(80, 12, 32, 52)
 
-[node name="Tombstone_Multiple_7" type="Sprite2D" parent="Objects" index="52"]
+[node name="Tombstone_Multiple_7" type="Sprite2D" parent="Objects" index="53"]
 position = Vector2(-336, -376)
 texture = ExtResource("3_pwnwo")
 region_enabled = true
 region_rect = Rect2(80, 12, 32, 52)
 
-[node name="Tombstone_Multiple_8" type="Sprite2D" parent="Objects" index="53"]
+[node name="Tombstone_Multiple_8" type="Sprite2D" parent="Objects" index="54"]
 position = Vector2(-624, -124)
 texture = ExtResource("3_pwnwo")
 region_enabled = true
 region_rect = Rect2(80, 12, 32, 52)
 
-[node name="Tombstone_MultipleStyle2" type="Sprite2D" parent="Objects" index="54"]
+[node name="Tombstone_MultipleStyle2" type="Sprite2D" parent="Objects" index="55"]
 position = Vector2(338, 259)
 texture = ExtResource("3_pwnwo")
 region_enabled = true
@@ -418,7 +439,7 @@ region_rect = Rect2(144, 10, 32, 54)
 position = Vector2(0, 11)
 shape = SubResource("RectangleShape2D_lqpd0")
 
-[node name="Tombstone_MultipleStyle2_2" type="Sprite2D" parent="Objects" index="55"]
+[node name="Tombstone_MultipleStyle2_2" type="Sprite2D" parent="Objects" index="56"]
 position = Vector2(-721, -126)
 texture = ExtResource("3_pwnwo")
 region_enabled = true
@@ -430,7 +451,7 @@ region_rect = Rect2(144, 10, 32, 54)
 position = Vector2(0, 11)
 shape = SubResource("RectangleShape2D_lqpd0")
 
-[node name="Tombstone_MultipleStyle2_3" type="Sprite2D" parent="Objects" index="56"]
+[node name="Tombstone_MultipleStyle2_3" type="Sprite2D" parent="Objects" index="57"]
 position = Vector2(338, -123)
 texture = ExtResource("3_pwnwo")
 region_enabled = true
@@ -442,7 +463,7 @@ region_rect = Rect2(144, 10, 32, 54)
 position = Vector2(0, 11)
 shape = SubResource("RectangleShape2D_lqpd0")
 
-[node name="Tombstone_MultipleStyle2_4" type="Sprite2D" parent="Objects" index="57"]
+[node name="Tombstone_MultipleStyle2_4" type="Sprite2D" parent="Objects" index="58"]
 position = Vector2(-241, 6)
 texture = ExtResource("3_pwnwo")
 region_enabled = true
@@ -454,7 +475,7 @@ region_rect = Rect2(144, 10, 32, 54)
 position = Vector2(0, 11)
 shape = SubResource("RectangleShape2D_lqpd0")
 
-[node name="Juniper_Full" type="Sprite2D" parent="Objects" index="58"]
+[node name="Juniper_Full" type="Sprite2D" parent="Objects" index="59"]
 position = Vector2(-83, -52)
 texture = ExtResource("3_pwnwo")
 region_enabled = true
@@ -467,7 +488,7 @@ position = Vector2(-1, 11)
 rotation = -1.57197
 shape = SubResource("CapsuleShape2D_aw4hl")
 
-[node name="Juniper_Full2" type="Sprite2D" parent="Objects" index="59"]
+[node name="Juniper_Full2" type="Sprite2D" parent="Objects" index="60"]
 position = Vector2(-1889, 12)
 texture = ExtResource("3_pwnwo")
 region_enabled = true
@@ -480,7 +501,7 @@ position = Vector2(3, 8)
 rotation = -1.57197
 shape = SubResource("CapsuleShape2D_aw4hl")
 
-[node name="Juniper_Empty" type="Sprite2D" parent="Objects" index="60"]
+[node name="Juniper_Empty" type="Sprite2D" parent="Objects" index="61"]
 position = Vector2(-924, 30)
 texture = ExtResource("3_pwnwo")
 region_enabled = true
@@ -494,7 +515,7 @@ position = Vector2(0, 4)
 rotation = -1.57197
 shape = SubResource("CapsuleShape2D_aw4hl")
 
-[node name="Juniper_Empty2" type="Sprite2D" parent="Objects" index="61"]
+[node name="Juniper_Empty2" type="Sprite2D" parent="Objects" index="62"]
 position = Vector2(-1699, 82)
 texture = ExtResource("3_pwnwo")
 region_enabled = true
@@ -508,7 +529,7 @@ position = Vector2(0, 4)
 rotation = -1.57197
 shape = SubResource("CapsuleShape2D_aw4hl")
 
-[node name="Juniper_Empty3" type="Sprite2D" parent="Objects" index="62"]
+[node name="Juniper_Empty3" type="Sprite2D" parent="Objects" index="63"]
 position = Vector2(-1841, -335)
 texture = ExtResource("3_pwnwo")
 region_enabled = true

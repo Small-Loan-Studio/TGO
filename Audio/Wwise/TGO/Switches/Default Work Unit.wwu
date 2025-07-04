@@ -117,6 +117,8 @@
 								<Switch Name="Pavement" ID="{44A2FB08-29CF-4553-BC8F-28BC38CE6B42}"/>
 								<Switch Name="Stone" ID="{4678D85F-A338-4D56-B1C8-B1A0875C0F5B}"/>
 								<Switch Name="Wood" ID="{00F2F0FE-B5D1-4980-8A77-8665439D437C}"/>
+								<Switch Name="Carpet" ID="{15875E93-AB2F-4D8A-A8C6-6D75363BD696}"/>
+								<Switch Name="Tile" ID="{E3D7CB44-A109-4A40-9996-9505E95EE43D}"/>
 							</ChildrenList>
 						</SwitchGroup>
 					</ChildrenList>

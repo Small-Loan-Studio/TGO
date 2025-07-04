@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://capxu0fp4bs0w"
-path="res://.godot/imported/Oakshaw_Trees.png-9274e5943c2041f06eb8a211f8682639.ctex"
+uid="uid://clvlrsi7mre02"
+path="res://.godot/imported/Flora-Flowers.png-d494c16092fd91639f3ac8afea44765b.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Art/Environment/Oakshaw_Trees.png"
-dest_files=["res://.godot/imported/Oakshaw_Trees.png-9274e5943c2041f06eb8a211f8682639.ctex"]
+source_file="res://Art/Environment/Flora-Flowers.png"
+dest_files=["res://.godot/imported/Flora-Flowers.png-d494c16092fd91639f3ac8afea44765b.ctex"]
 
 [params]
 
