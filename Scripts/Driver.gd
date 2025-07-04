@@ -138,7 +138,6 @@ func load_level(target_level_name: String, target_name: String) -> void:
 			# before unloading save the state of the current level into working
 			# serialization cache
 			_serialization_mgr.update_level(_last_loaded_level)
-
 		free_previous_level()
 
 	# make sure the hud is shown

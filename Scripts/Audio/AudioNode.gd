@@ -82,7 +82,7 @@ func get_param(param_name: String) -> float:
 
 
 func set_switch(name: String, value: String) -> void:
-	print("[Wwise] %s switch -> %s:%s" % [_target.name, name, value])
+	# print("[Wwise] %s switch -> %s:%s" % [_target.name, name, value])
 	Wwise.set_switch(name, value, _target)
 
 

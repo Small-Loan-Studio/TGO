@@ -12,6 +12,7 @@ extends Area2D
 ## Fires when an actor indicates they wish to primary with this object.
 ## Passed the triggering Character
 signal triggered(actor: Character)
+signal simple_triggered()
 
 const InteractPanelScene: PackedScene = preload(
 	"res://Scenes/Components/interacting/interact_panel.tscn"
@@ -157,7 +158,10 @@ func trigger(actor: Character, action: Enums.ActionVerb = default_verb) -> void:
 			continue
 		a.parent = self
 		await a.act(actor.id, _cur_level)
+	
+	print("%s emitting triggered")
 	triggered.emit(actor)
+	simple_triggered.emit()
 
 
 func verb_name() -> String:

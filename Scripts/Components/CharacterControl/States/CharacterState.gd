@@ -23,13 +23,10 @@ func maybe_interact() -> StateChange:
 	var tgt: Interactable = _ctx.character.target.get_interactable()
 	if tgt != null:
 		if _ctx.character.target.get_interactable().automatic:
-			# change_state.call(interact_state)
 			return StateChange.mk(interact_state)
 
 	if Enums.InputAction.DEFAULT in just_pressed || Enums.InputAction.SECONDARY in just_pressed:
-		# change_state.call(interact_state)
 		return StateChange.mk(interact_state)
-		# return true
 
 	return null
 

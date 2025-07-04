@@ -43,8 +43,8 @@ func run_input(_event: InputEvent) -> StateChange:
 			_is_selecting = false
 			interactable.secondary.toggle()
 			interactable.primary.visible = true
-			interactable.trigger(_ctx.character, interactable.secondary.selected)
-			await interactable.triggered
+			await interactable.trigger(_ctx.character, interactable.secondary.selected)
+			# await interactable.simple_triggered
 			_is_interacting = false
 			return StateChange.mk(idle_state)
 		elif _ctx.controller.just_pressed(Enums.InputAction.DOWN):
@@ -60,13 +60,13 @@ func run_input(_event: InputEvent) -> StateChange:
 		# in cases where there are more than one actions transition to a selecting sub-state
 		if _ctx.controller.just_pressed(Enums.InputAction.SECONDARY):
 			if interactable.action_count == 1:
-				print("case Z -> idle")
+				_is_interacting = false
 				return StateChange.mk(idle_state)
 			if interactable.action_count == 2:
 				_is_interacting = true
 				var verb: Enums.ActionVerb = interactable.secondary.selected
-				interactable.trigger(_ctx.character, verb)
-				await interactable.triggered
+				await interactable.trigger(_ctx.character, verb)
+				# await interactable.simple_triggered
 				_is_interacting = false
 				return StateChange.mk(idle_state)
 			else:
@@ -74,12 +74,15 @@ func run_input(_event: InputEvent) -> StateChange:
 				interactable.secondary.focus(interactable.default_verb)
 				interactable.secondary.toggle()
 				interactable.primary.visible = false
-		else:
+		elif _ctx.controller.just_pressed(Enums.InputAction.DEFAULT):
 			# otherwise trigger the interactable
 			_is_interacting = true
-			interactable.trigger(_ctx.character)
-			await interactable.triggered
-			_is_interacting = false
+			print("%d: %s.trigger" % [_state_machine.rnd, interactable.get_parent().name])
+			await interactable.trigger(_ctx.character)
+			print("%d: awaiting" % [_state_machine.rnd])
+			# await interactable.simple_triggered
+			print("%d: %s.triggered" % [_state_machine.rnd, interactable.get_parent().name])
+			# _is_interacting = false
 			return StateChange.mk(idle_state)
 
 	return null
