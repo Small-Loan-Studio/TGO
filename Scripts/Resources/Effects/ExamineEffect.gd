@@ -10,6 +10,7 @@ const EXAMINE_VAR = "Util.examine_text"
 func act(_actor_id: String, _cur_level: LevelBase) -> Variant:
 	Dialogic.VAR.set_variable(EXAMINE_VAR, examine_text)
 	Dialogic.start(EXAMINE_DTL)
+	await Dialogic.timeline_ended
 	return null
 
 

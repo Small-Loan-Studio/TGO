@@ -82,7 +82,7 @@ func run_input(_event: InputEvent) -> StateChange:
 			print("%d: awaiting" % [_state_machine.rnd])
 			# await interactable.simple_triggered
 			print("%d: %s.triggered" % [_state_machine.rnd, interactable.get_parent().name])
-			# _is_interacting = false
+			_is_interacting = false
 			return StateChange.mk(idle_state)
 
 	return null

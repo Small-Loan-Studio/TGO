@@ -53,6 +53,8 @@ func _switch(next: StateChange, depth: int = 0) -> void:
 		print("(%d) %s -> %s" % [depth, _cur_state.name, next.next_state.name])
 
 	_cur_state = next.next_state
+
+	# yes, the await is required
 	var maybe_next: StateChange = await _cur_state.enter(next.ctx)
 	if maybe_next != null:
 		_switch(maybe_next, depth + 1)
@@ -64,17 +66,14 @@ func run_input(event: InputEvent) -> void:
 	if !_setup_complete:
 		return
 
-	var msg := "%d: calling run_input" % [rnd]
-	var next := _cur_state.run_input(event)
-	if next != null:
-		print(msg)
-		print("%d: next is: %s" % [rnd, next])
-	_switch(next)
+	# yes, the await is required
+	_switch(await _cur_state.run_input(event))
 
 
 func run_physics(delta: float) -> void:
 	if !_setup_complete:
 		return
+	# yes, the await is required
 	_switch(await _cur_state.run_physics(delta))
 
 
@@ -82,9 +81,8 @@ func run_tick(delta: float) -> void:
 	if !_setup_complete:
 		return
 
-	# it will complain that we don't need an await here -- we do
+	# yes, the await is required
 	_switch(await _cur_state.run_tick(delta))
-	# _maybe_enter_state()
 
 
 func cur_state() -> State:
