@@ -220,7 +220,12 @@ Picks up items from the world and adds them to inventory.
 >
 > :warning: Experimental
 
-Selects an item for some additional effect chain
+Selects an item for some additional effect chain. Right now this is an text
+entry box where you must enter the item id. This ID is validated against the
+list if known items but not against what's in your inventory. Eventually
+we'll swap out the mechanism of selection but the behavior (`util.selected_item_id`)
+should remain the same. That means Effect chains you build using this _probably_
+will just continue to work. :sweat_smile:.
 
 **Properties:**
 - `with_item`: This is an effect chain that will run after an item is selected
