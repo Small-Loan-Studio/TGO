@@ -26,6 +26,8 @@ var _last_loaded_level: LevelBase = null
 @onready var _debug_dnc: DebugDayNight = $OverlayManager/HUD/DebugStack/DebugDayNight
 @onready var _debug_inventory: DebugInventory = $OverlayManager/HUD/DebugStack/DebugInventory
 @onready var _debug_quests: QuestDebugger = $OverlayManager/HUD/DebugStack/QuestDebugger
+@onready var _debug_auto_level_check: CheckBox = %AutoloadCheck
+@onready var _debug_auto_level_label: Label = %AutoLoadLevelLabel
 
 
 static func instance() -> Driver:
@@ -49,6 +51,17 @@ func _ready() -> void:
 	inventory_mgr.inventory_updated.connect(_debug_refresh_inventory_ui)
 	# do an initial build from the start state
 	_debug_refresh_inventory_ui(player.id)
+	_debug_refresh_autoload_ui()
+
+
+func _debug_refresh_autoload_ui() -> void:
+	var prefs := DevPrefs.load()
+	var tgt := prefs.autoload_level
+	var has_tgt := tgt != ""
+	if has_tgt:
+		_debug_auto_level_label.text = tgt
+	_debug_auto_level_label.visible = has_tgt
+	_debug_auto_level_check.set_pressed_no_signal(has_tgt)
 
 
 func _debug_refresh_inventory_ui(inventory_id: String) -> void:
@@ -72,10 +85,8 @@ func _post_ready() -> void:
 	player.equipment_changed.connect(_debug_ui_equipment.update_available.unbind(1))
 	_debug_ui_equipment.update_available()
 
-	if SerializationManager.is_autoload():
-		await _curtain.fade_in(1)
-		_serialization_mgr.autoload_game()
-		await _curtain.fade_out(1)
+	if _maybe_autoload():
+		await _curtain.fade_out(1, false)
 	else:
 		_show_title_menu()
 
@@ -127,7 +138,6 @@ func load_level(target_level_name: String, target_name: String) -> void:
 			# before unloading save the state of the current level into working
 			# serialization cache
 			_serialization_mgr.update_level(_last_loaded_level)
-
 		free_previous_level()
 
 	# make sure the hud is shown
@@ -205,3 +215,22 @@ func request_debug_load(level_name: String) -> void:
 
 func _on_debug_pressed() -> void:
 	quest_mgr.debug_print()
+
+
+func _autoload_toggle(toggled_on: bool) -> void:
+	var prefs := DevPrefs.load()
+	if toggled_on:
+		prefs.autoload_level = get_current_level().level_name
+	else:
+		prefs.autoload_level = ""
+
+	prefs.save()
+	_debug_refresh_autoload_ui()
+
+
+func _maybe_autoload() -> bool:
+	var prefs := DevPrefs.load()
+	if prefs.autoload_level != "":
+		load_level(prefs.autoload_level, LevelBase.DEFAULT_MARKER)
+		return true
+	return false

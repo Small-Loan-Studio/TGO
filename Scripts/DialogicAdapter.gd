@@ -6,6 +6,10 @@ static var player_inventory := InventoryAdapter.new(Utils.PLAYER_ID)
 static var time_of_day := TimeOfDayAdapter.new()
 
 
+static func selected_id_valid() -> bool:
+	return player_inventory.valid_id(SelectItemEffect.get_selected_id())
+
+
 static func audio(actor_id: String) -> AudioActorAdapter:
 	return AudioActorAdapter.new(actor_id)
 
@@ -38,6 +42,9 @@ class InventoryAdapter:
 			var item := ResourceLoader.load(Item.ITEM_PATH.path_join(p)) as Item
 			if item != null:
 				_item_dict[item.id] = item
+
+	func valid_id(item_id: String) -> bool:
+		return _item_dict.has(item_id)
 
 	func has(item_name: String, count: int = -1) -> bool:
 		# TODO(envy): file issue that will validate item_name as a real item id
@@ -132,15 +139,15 @@ class QuestAdapter:
 
 	func start() -> bool:
 		var qst := Driver.instance().quest_mgr.quest_by_id(_id)
-		return qst.mark_active()
+		return await qst.mark_active()
 
 	func complete() -> bool:
 		var qst := Driver.instance().quest_mgr.quest_by_id(_id)
-		return qst.mark_completed()
+		return await qst.mark_completed()
 
 	func fail() -> bool:
 		var qst := Driver.instance().quest_mgr.quest_by_id(_id)
-		return qst.mark_failed()
+		return await qst.mark_failed()
 
 
 class TimeOfDayAdapter:

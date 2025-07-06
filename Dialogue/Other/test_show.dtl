@@ -1,0 +1,5 @@
+if {Util.selected_item_id} == "BAG_OF_HARDTACK":
+	Is that ...
+	Would you mind if I had a bite of that {Util.selected_item_id}?
+else:
+	What is that?

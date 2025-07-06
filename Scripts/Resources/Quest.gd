@@ -151,7 +151,7 @@ func evaluate() -> bool:
 	if !phases_completed(true):
 		return false
 
-	return self.mark_completed()
+	return await self.mark_completed()
 
 
 #gdlint: enable=max-returns
@@ -265,7 +265,7 @@ func mark_completed() -> bool:
 	state = Enums.QuestState.COMPLETED
 
 	for e: Effect in results:
-		e.act(id, Driver.instance().get_current_level())
+		await e.act(id, Driver.instance().get_current_level())
 
 	state_change.emit(id, old_state, state)
 	return true
@@ -288,7 +288,7 @@ func set_state(new_state: Enums.QuestState) -> void:
 		Enums.QuestState.FAILED:
 			success = mark_failed()
 		Enums.QuestState.COMPLETED:
-			success = mark_completed()
+			success = await mark_completed()
 		_:
 			assert(false, "Unexpected quest state: " + Enums.quest_state_name(new_state))
 	if !success:

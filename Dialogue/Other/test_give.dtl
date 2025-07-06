@@ -1,0 +1,5 @@
+if {Util.selected_item_id} == "BAG_OF_HARDTACK":
+	Yea, okay I could go for some HARDTACK
+	[tgo_expr expr="{TGO.player_inventory.remove_item("BAD_OF_HARDTACK", 1)}"]
+else:
+	Not hungry mate. Thanks though.

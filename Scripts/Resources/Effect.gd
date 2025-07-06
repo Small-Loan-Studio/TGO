@@ -62,11 +62,11 @@ func terminal_callback(_arg: Variant) -> void:
 
 
 func _run_success(actor_id: String, cur_level: LevelBase) -> Variant:
-	return _run_next(success_chain, actor_id, cur_level)
+	return await _run_next(success_chain, actor_id, cur_level)
 
 
 func _run_failure(actor_id: String, cur_level: LevelBase) -> Variant:
-	return _run_next(failure_chain, actor_id, cur_level)
+	return await _run_next(failure_chain, actor_id, cur_level)
 
 
 func _to_string() -> String:
@@ -85,7 +85,7 @@ func _run_next(chain: Array[Effect], actor_id: String, cur_level: LevelBase) -> 
 	var chain_ctx: Array[Variant] = []
 	for e in chain:
 		e.parent = parent
-		var ctx: Variant = e.act(actor_id, cur_level)
+		var ctx: Variant = await e.act(actor_id, cur_level)
 		if ctx != null:
 			chain_ctx.append([e, ctx])
 

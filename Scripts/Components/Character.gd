@@ -65,6 +65,10 @@ var _controller: ControllerBase
 ## holds the last reported map coords for this character's environment material
 var _mat_pos_last_reported := Vector2i.ZERO
 
+## holds the last reported material, this is used only to determine whether to
+## update the wwise character material switch
+var _last_mat := ""
+
 @onready var stats: StatCollection = $Stats
 
 # component cache
@@ -100,7 +104,13 @@ func _ready() -> void:
 					Enums.InputAction.DOWN,
 				],
 				[
-					Enums.InputAction.INTERACT,
+					Enums.InputAction.LEFT,
+					Enums.InputAction.RIGHT,
+					Enums.InputAction.UP,
+					Enums.InputAction.DOWN,
+					Enums.InputAction.DEFAULT,
+					Enums.InputAction.SECONDARY,
+					Enums.InputAction.INTERACT_CANCEL,
 					Enums.InputAction.SPRINT,
 					Enums.InputAction.MENU,
 					Enums.InputAction.LEFT_ITEM,
@@ -189,8 +199,8 @@ func _on_pushpull_sensor_exited(area: Area2D) -> void:
 
 
 func _handle_target_changed() -> void:
-	# print("%s - _handle_target_changed -> %s" % [name, target])
 	# TODO(envy) - better toast management
+	# print("%s - _handle_target_changed -> %s" % [name, target])
 	var hud := Driver.instance().get_hud()
 	if target.is_set():
 		if target.is_interactable():
@@ -343,8 +353,9 @@ func _maybe_report_env_material() -> void:
 	_mat_pos_last_reported = coords
 
 	var mat := cur_level.get_tile_material(coords)
-	if mat != "":
+	if mat != "" && mat != _last_mat:
 		_audio_node.set_switch("GroundMaterialSwitch", mat)
+		_last_mat = mat
 
 
 #endregion

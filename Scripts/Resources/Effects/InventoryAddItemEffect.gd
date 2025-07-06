@@ -33,9 +33,9 @@ func act(actor_id: String, cur_level: LevelBase) -> Variant:
 	var inv := Driver.instance().inventory_mgr.get_inventory(inv_id)
 	if !inv.has_room_by_item(item, add_quantity):
 		inv.insert_item(item, add_quantity)
-		return _run_next(success_chain, actor_id, cur_level)
+		return await _run_next(success_chain, actor_id, cur_level)
 
-	return _run_next(failure_chain, actor_id, cur_level)
+	return await _run_next(failure_chain, actor_id, cur_level)
 
 
 func terminal_callback(ctx: Variant) -> void:

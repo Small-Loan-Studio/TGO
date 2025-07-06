@@ -3,6 +3,7 @@ class_name LevelBase
 extends Node2D
 
 const DEFAULT_MARKER: String = "PlayerStart"
+const MATERIAL_LAYER = "material"
 
 ## Not for normal use -- explicitly paired with level_name to cache the
 ## the res:// path on initial load. Nested save state basically depends
@@ -64,6 +65,7 @@ var level_name: String:
 		printerr("Unable to assign level_name to: ", level_name)
 
 var _interior_light: Dictionary = {"BLACKOUT": Color.BLACK}
+var _has_material_data: bool = false
 
 var _canvas_modulate: CanvasModulate = null:
 	get:
@@ -80,7 +82,9 @@ var _canvas_modulate: CanvasModulate = null:
 
 
 func _ready() -> void:
-	pass
+	var ts := tilemap.get_tileset()
+	var idx := ts.get_custom_data_layer_by_name(MATERIAL_LAYER)
+	_has_material_data = idx != -1
 
 
 func setup(driver_in: Driver) -> void:
@@ -167,11 +171,14 @@ func get_map_coords(global_pos: Vector2) -> Vector2i:
 
 
 func get_tile_material(map_coords: Vector2i) -> String:
+	if !_has_material_data:
+		return ""
+
 	var mat := ""
 	for layer: int in range(tilemap.get_layers_count()):
 		var td: TileData = tilemap.get_cell_tile_data(layer, map_coords)
 		if td != null:
-			var maybe_mat: Variant = td.get_custom_data("material")
+			var maybe_mat: Variant = td.get_custom_data(MATERIAL_LAYER)
 			if maybe_mat != null:
 				mat = maybe_mat as String
 	return mat

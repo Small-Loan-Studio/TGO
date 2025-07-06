@@ -1,4 +1,4 @@
-[gd_scene load_steps=38 format=3 uid="uid://d4mrsiv1l8m35"]
+[gd_scene load_steps=40 format=3 uid="uid://d4mrsiv1l8m35"]
 
 [ext_resource type="PackedScene" uid="uid://dyq8mcdsutnsa" path="res://Scenes/Components/LevelBase.tscn" id="1_iejup"]
 [ext_resource type="Script" path="res://ZZ_Scratch/GreyboxingTools/BadLevelA.gd" id="2_22a2t"]
@@ -20,6 +20,7 @@
 [ext_resource type="Script" path="res://Scripts/Resources/Effects/ConditionalEffect.gd" id="15_x1ixy"]
 [ext_resource type="PackedScene" uid="uid://b13wrl3bedjku" path="res://Scenes/Components/Torch.tscn" id="16_p267s"]
 [ext_resource type="Resource" uid="uid://2vts34ovdlva" path="res://Scripts/Resources/Items/Torch.tres" id="19_ch306"]
+[ext_resource type="Script" path="res://Scripts/Resources/Effects/ExamineEffect.gd" id="20_b2qgo"]
 [ext_resource type="Texture2D" uid="uid://c0504hqd3q12y" path="res://ZZ_Scratch/MarioDemo/simple_tileset.png" id="21_li46b"]
 [ext_resource type="Script" path="res://Scripts/Components/Interactable.gd" id="22_s68f6"]
 
@@ -75,6 +76,10 @@ script = ExtResource("7_7tyl1")
 load_level_name = "Debug/BadLevelB"
 marker_name = ""
 
+[sub_resource type="Resource" id="Resource_pkko3"]
+script = ExtResource("20_b2qgo")
+examine_text = "This is a weird big grey box."
+
 [sub_resource type="Resource" id="Resource_1tsfc"]
 script = ExtResource("7_7tyl1")
 load_level_name = "Debug/Test Folder/nested level"
@@ -88,10 +93,10 @@ dest_path = NodePath("../../Markers/PlayerStart")
 atlas = ExtResource("21_li46b")
 region = Rect2(0, 0, 32, 32)
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_86bp7"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_scfal"]
 size = Vector2(32, 32)
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_qunb3"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_neead"]
 size = Vector2(32, 32)
 
 [node name="LevelBase" instance=ExtResource("1_iejup")]
@@ -115,6 +120,7 @@ can_block_movement = true
 can_interact = true
 action_verb = 5
 effects = Array[Resource("res://Scripts/Resources/Effect.gd")]([SubResource("Resource_ecxtb")])
+examine_effect = null
 y_sort_width = 104
 
 [node name="MoveableBlock" parent="Objects" index="1" instance=ExtResource("9_78gjk")]
@@ -189,6 +195,7 @@ can_interact = true
 tint = Color(0.171265, 0.539106, 0.71875, 1)
 action_verb = 5
 effects = Array[Resource("res://Scripts/Resources/Effect.gd")]([SubResource("Resource_yblux")])
+examine_effect = null
 
 [node name="GreyboxObj" parent="Objects" index="7" instance=ExtResource("7_ipcqk")]
 position = Vector2(451, 319)
@@ -197,6 +204,7 @@ can_interact = true
 tint = Color(0.171875, 0.6875, 0.179932, 1)
 action_verb = 5
 effects = Array[Resource("res://Scripts/Resources/Effect.gd")]([SubResource("Resource_yp128")])
+examine_effect = null
 
 [node name="LevelTeleport" parent="Objects" index="8" instance=ExtResource("7_ipcqk")]
 position = Vector2(112, 68)
@@ -204,6 +212,7 @@ size = Vector2(2, 2)
 can_block_movement = true
 can_interact = true
 effects = Array[Resource("res://Scripts/Resources/Effect.gd")]([SubResource("Resource_o1toe")])
+examine_effect = Array[Resource("res://Scripts/Resources/Effect.gd")]([SubResource("Resource_pkko3")])
 y_sort_width = 104
 
 [node name="Torch" parent="Objects/Lighting" index="0" instance=ExtResource("16_p267s")]
@@ -223,6 +232,7 @@ position = Vector2(313, -10)
 can_interact = true
 tint = Color(0.988281, 0.92591, 0.262512, 1)
 effects = Array[Resource("res://Scripts/Resources/Effect.gd")]([SubResource("Resource_1tsfc")])
+examine_effect = null
 
 [node name="Automatic Interactable" parent="Objects" index="11" instance=ExtResource("7_ipcqk")]
 position = Vector2(-25.3339, 33.4692)
@@ -230,6 +240,7 @@ can_block_movement = true
 can_interact = true
 tint = Color(0.878906, 0.0789642, 0.0789642, 1)
 effects = Array[Resource("res://Scripts/Resources/Effect.gd")]([SubResource("Resource_ct8mu")])
+examine_effect = null
 
 [node name="Display" parent="Objects/Automatic Interactable" index="0"]
 modulate = Color(0.878906, 0.0789642, 0.0789642, 1)
@@ -240,7 +251,7 @@ collision_mask = 0
 
 [node name="Shape" parent="Objects/Automatic Interactable/Physics" index="0"]
 position = Vector2(0, -16)
-shape = SubResource("RectangleShape2D_86bp7")
+shape = SubResource("RectangleShape2D_scfal")
 
 [node name="Interactable" parent="Objects/Automatic Interactable" index="2"]
 position = Vector2(0, -1)
@@ -254,7 +265,7 @@ action_map = {
 
 [node name="Shape" parent="Objects/Automatic Interactable/Interactable" index="0"]
 position = Vector2(0, -16)
-shape = SubResource("RectangleShape2D_qunb3")
+shape = SubResource("RectangleShape2D_neead")
 
 [node name="PlayerStart" type="Node2D" parent="Markers" index="0"]
 position = Vector2(522, 183)

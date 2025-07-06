@@ -81,9 +81,9 @@ func get_param(param_name: String) -> float:
 	return Wwise.get_rtpc_value_id(param_id, _target)
 
 
-func set_switch(name: String, value: String) -> void:
-	print("[Wwise] %s switch -> %s:%s" % [_target.name, name, value])
-	Wwise.set_switch(name, value, _target)
+func set_switch(sw_name: String, value: String) -> void:
+	print("[Wwise] %s switch -> %s:%s" % [_target.name, sw_name, value])
+	Wwise.set_switch(sw_name, value, _target)
 
 
 class EventConfig:

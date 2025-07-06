@@ -19,7 +19,7 @@ var placement := PLACEMENT_EAST
 var presentation := PRESENTATION_GLOBAL
 
 var actions: Array[Enums.ActionVerb]
-# NOTE: Setting this is not ideal as we only allow `EXAMINE` or `INTERACT` but
+# NOTE: Setting this is not ideal as we only allow `SECONDARY` or `DEFAULT` but
 # this is sufficient for now.
 var input: Enums.InputAction
 var layout := InteractOption.LAYOUT_RIGHT
@@ -27,9 +27,10 @@ var selected: Enums.ActionVerb:
 	get:
 		if _menu:
 			if _selected == 0:
-				return Enums.ActionVerb.DEFAULT
+				return Enums.ActionVerb.INTERACT_MENU_CLOSE
 			return actions[_selected - 1]
 		return actions[_selected]
+
 var target: Node2D
 var target_size: Vector2
 
@@ -120,7 +121,8 @@ func toggle() -> void:
 			_option.focus()
 		else:
 			_menu.expand()
-			_option.blur()
+			_selected = 1
+			previous()
 		_expanded = !_expanded
 
 
@@ -138,21 +140,14 @@ func _on_menu_opened() -> void:
 func _get_label() -> String:
 	if actions.size() == 1:
 		return Enums.action_verb_name(actions[0])
-	match input:
-		Enums.InputAction.EXAMINE:
-			return Enums.input_action_name(input)
-		Enums.InputAction.INTERACT:
-			return Enums.input_action_name(input)
-		_:
-			assert(false, "ERROR: Unsupported input action selected.")
-			return ""
+	return "More"
 
 
 func _get_symbol() -> CompressedTexture2D:
 	match input:
-		Enums.InputAction.EXAMINE:
+		Enums.InputAction.SECONDARY:
 			return Enums.input_action_symbol_texture(input)
-		Enums.InputAction.INTERACT:
+		Enums.InputAction.DEFAULT:
 			return Enums.input_action_symbol_texture(input)
 		_:
 			assert(false, "ERROR: Unsupported input action selected.")

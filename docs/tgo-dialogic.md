@@ -6,6 +6,7 @@
   - [Using Supported Expressions](#using-supported-expressions)
     - [In conditionals](#in-conditionals)
     - [Outside conditionals](#outside-conditionals)
+  - [Dealing with Items](#dealing-with-items)
   - [Available Logic](#available-logic)
     - [Inventory state](#inventory-state)
       - [Getting a specific inventory](#getting-a-specific-inventory)
@@ -75,6 +76,25 @@ can do that directly using the `Logic / TGO Expression` block:
 This provides a field where, for now, you can use the same structure as above to
 use specific TGO logic. To have somebody give Devin two potions the expression
 would be: `TGO.player_inventory.add_item("HEALTH_POTION", 2)`.
+
+## Dealing with Items
+When writing dialogue that handles "Show" and "Give" the dialogue will be
+called with a variable set containing the ID of the item being shown or
+offered. That variable is `Util.selected_item_id`. You can use it in a
+dialogue line as `{Util.selected_item_id}
+
+This means you can use conditions to construct the response; something like
+
+    if {Util.selected_item_id} == "BAG_OF_HARDTACK":
+      Is that ...
+      Would you mind if I had a bite of that {Util.selected_item_id}?
+    else:
+      What is that?
+
+Or from the Visual Editor:
+
+![The above dialogue as rendered in the Dialogic UI](./imgs/selected-id-ex.png)
+
 
 ## Available Logic
 

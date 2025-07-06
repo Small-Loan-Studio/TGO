@@ -63,43 +63,6 @@ func _create_file_paths() -> int:
 	return error
 
 
-static func _load_debug_json() -> Dictionary:
-	var data: Dictionary = {"enabled": false}
-	var file := FileAccess.open(DEBUG_JSON, FileAccess.READ)
-	if file != null:
-		var text := file.get_as_text()
-		var json := JSON.new()
-		var err := json.parse(text)
-		if err == OK:
-			data = json.data
-		file.close()
-	return data
-
-
-func autoload_game() -> void:
-	print("Autoload Game")
-	var data := SerializationManager._load_debug_json()
-	if data.enabled:
-		print(data)
-		Driver.instance().load_level(data.level, LevelBase.DEFAULT_MARKER)
-
-
-static func is_autoload() -> bool:
-	var data := SerializationManager._load_debug_json()
-	return data.enabled
-
-
-func _on_autoload_toggled(enabled: bool) -> void:
-	var data := SerializationManager._load_debug_json()
-	data.enabled = enabled
-	if enabled:
-		data.level = Driver.instance().get_current_level().level_name
-	var payload := JSON.stringify(data)
-	var file := FileAccess.open(DEBUG_JSON, FileAccess.WRITE)
-	file.store_string(payload)
-	file.close()
-
-
 ## Saves everything necessary in the game and creates a .sav file recording this data.
 ## Connected to Driver.gd signal: save_level
 func save_game() -> void:
