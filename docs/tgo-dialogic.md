@@ -91,9 +91,9 @@ This means you can use conditions to construct the response; something like
     else:
       What is that?
 
-Or, from the Visual Editor:
+Or from the Visual Editor:
 
-![The above dialogue as rendered in the Dialogic UI](image.png)
+![The above dialogue as rendered in the Dialogic UI](./imgs/selected-id-ex.png)
 
 
 ## Available Logic

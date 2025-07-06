@@ -147,7 +147,6 @@ func deactivate() -> void:
 
 
 func trigger(actor: Character, action: Enums.ActionVerb = default_verb) -> void:
-	print("triggering: %s with %s" % [get_parent().name, Enums.action_verb_name(action)])
 	var action_list: Array[Effect] = []
 	if action_map.has(action):
 		action_list.assign(action_map[action])
@@ -222,7 +221,6 @@ func _set(prop: StringName, _val: Variant) -> bool:
 		var verb := Enums.action_verb_from_str(parts[0])
 
 		if action_map.has(verb) and len(_val) == 0:
-			print("action_map[%s] = %s" % [Enums.action_verb_name(verb), _val])
 			# this branch runs when we had a verb and we remove the last element;
 			# in that case just remove the verb entirely
 			action_map[verb] = _val

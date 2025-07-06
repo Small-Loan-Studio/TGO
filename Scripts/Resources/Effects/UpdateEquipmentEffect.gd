@@ -40,8 +40,8 @@ func act(actor_id: String, cur_level: LevelBase) -> Variant:
 		result = unequip(actor, item, slot)
 
 	if result:
-		return _run_success(actor_id, cur_level)
-	return _run_failure(actor_id, cur_level)
+		return await _run_success(actor_id, cur_level)
+	return await _run_failure(actor_id, cur_level)
 
 
 func terminal_callback(arg: Variant) -> void:
