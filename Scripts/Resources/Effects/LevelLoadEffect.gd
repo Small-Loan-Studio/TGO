@@ -19,13 +19,4 @@ func act(_actor_id: String, cur_level: LevelBase) -> Variant:
 
 	# TODO: should this be cur_level.driver.load_level(new_level) instead
 	cur_level.swap_to_level(load_level_name, marker_name)
-	# _defer.bind(cur_level, load_level_name, marker_name).call_deferred()
 	return null
-
-
-func _defer(level: LevelBase, name: String, marker: String) -> void:
-	print('_defer')
-	var timer := level.get_tree().create_timer(1, true, false, true)
-	await timer.timeout
-	print('_deferred')
-	level.swap_to_level(name, marker)

@@ -81,7 +81,7 @@ would be: `TGO.player_inventory.add_item("HEALTH_POTION", 2)`.
 When writing dialogue that handles "Show" and "Give" the dialogue will be
 called with a variable set containing the ID of the item being shown or
 offered. That variable is `Util.selected_item_id`. You can use it in a
-dialogue line as `{}
+dialogue line as `{Util.selected_item_id}
 
 This means you can use conditions to construct the response; something like
 

@@ -140,7 +140,7 @@ class QuestAdapter:
 
 	func start() -> bool:
 		var qst := Driver.instance().quest_mgr.quest_by_id(_id)
-		return qst.mark_active()
+		return await qst.mark_active()
 
 	func complete() -> bool:
 		var qst := Driver.instance().quest_mgr.quest_by_id(_id)
@@ -148,7 +148,7 @@ class QuestAdapter:
 
 	func fail() -> bool:
 		var qst := Driver.instance().quest_mgr.quest_by_id(_id)
-		return qst.mark_failed()
+		return await qst.mark_failed()
 
 
 class TimeOfDayAdapter:
