@@ -1,5 +1,7 @@
 extends CharacterState
 
+## TODO: multi-action panel control is ... confusing; could use a refactor
+
 @export var idle_state: State
 @export var push_pull_state: State
 
@@ -25,7 +27,7 @@ func run_input(_event: InputEvent) -> StateChange:
 		var cancel := func() -> StateChange:
 			interactable.secondary.blur()
 			interactable.secondary.toggle()
-			interactable.primary.visible = true
+			_show_panels()
 			_is_selecting = false
 			return StateChange.mk(idle_state)
 
@@ -33,59 +35,82 @@ func run_input(_event: InputEvent) -> StateChange:
 			ctrl.just_pressed(Enums.InputAction.SECONDARY)
 			|| ctrl.just_pressed(Enums.InputAction.INTERACT_CANCEL)
 		):
-			print("case X -> idle")
 			return cancel.call()
 		if ctrl.just_pressed(Enums.InputAction.DEFAULT):
-			if interactable.secondary.selected == Enums.ActionVerb.CLOSE:
-				print("case Y -> idle")
+			if interactable.secondary.selected == Enums.ActionVerb.INTERACT_MENU_CLOSE:
 				return cancel.call()
 			_is_interacting = true
 			_is_selecting = false
+
 			interactable.secondary.toggle()
-			interactable.primary.visible = true
+			interactable.secondary.visible = false
 			await interactable.trigger(_ctx.character, interactable.secondary.selected)
-			# await interactable.simple_triggered
+			_show_panels()
 			_is_interacting = false
 			return StateChange.mk(idle_state)
+
 		elif _ctx.controller.just_pressed(Enums.InputAction.DOWN):
 			interactable.secondary.next()
+
 		elif _ctx.controller.just_pressed(Enums.InputAction.UP):
 			interactable.secondary.previous()
+
 		return null
 
 	if _tgt.is_interactable():
 		_animated_sprite.stop()
 		interactable.primary.visible = true
 
-		# in cases where there are more than one actions transition to a selecting sub-state
 		if _ctx.controller.just_pressed(Enums.InputAction.SECONDARY):
+			# secondary + one action -> not actually interacting
 			if interactable.action_count == 1:
 				_is_interacting = false
 				return StateChange.mk(idle_state)
+
+			# secondary + 2 actions -> trigger the second action
 			if interactable.action_count == 2:
 				_is_interacting = true
 				var verb: Enums.ActionVerb = interactable.secondary.selected
+				interactable.primary.visible = false
+				interactable.secondary.visible = false
 				await interactable.trigger(_ctx.character, verb)
-				# await interactable.simple_triggered
+				_show_panels()
 				_is_interacting = false
 				return StateChange.mk(idle_state)
+
 			else:
+				# secondary + 3+ actions -> move to secondary action selection sub-state
 				_is_selecting = true
 				interactable.secondary.focus(interactable.default_verb)
 				interactable.secondary.toggle()
 				interactable.primary.visible = false
+				# remain in interactable state
+				return null
+
 		elif _ctx.controller.just_pressed(Enums.InputAction.DEFAULT):
 			# otherwise trigger the interactable
 			_is_interacting = true
-			print("%d: %s.trigger" % [_state_machine.rnd, interactable.get_parent().name])
+			interactable.primary.visible = false
+			if interactable.action_count > 1:
+				interactable.secondary.visible = false
 			await interactable.trigger(_ctx.character)
-			print("%d: awaiting" % [_state_machine.rnd])
-			# await interactable.simple_triggered
-			print("%d: %s.triggered" % [_state_machine.rnd, interactable.get_parent().name])
+			_show_panels()
 			_is_interacting = false
 			return StateChange.mk(idle_state)
 
 	return null
+
+
+func _show_panels() -> void:
+	var interactable := _tgt.get_interactable()
+	if interactable == null:
+		# this happens when one of the interactions triggers a load level
+		return
+
+	if interactable.primary != null:
+		interactable.primary.visible = true
+	if interactable.secondary != null && interactable.action_count > 1:
+		interactable.secondary.visible = true
 
 
 func run_tick(_delta: float) -> StateChange:

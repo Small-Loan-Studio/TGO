@@ -51,6 +51,7 @@ const LIGHT_NODE = "Lighting"
 @export_subgroup("Interactable Configuration")
 @export var action_verb: Enums.ActionVerb = Enums.ActionVerb.DEFAULT
 @export var effects: Array[Effect] = []
+@export var examine_effect: Array[Effect] = []
 
 @export_category("Display Noise")
 @export var _display_collision_shapes: bool = true:
@@ -113,6 +114,10 @@ func _ready() -> void:
 		_interactable = get_node(INTERACT_NODE)
 		_interactable.default_verb = action_verb
 		_interactable.action_map[action_verb] = effects
+		if examine_effect.size() > 0:
+			if action_verb == Enums.ActionVerb.EXAMINE:
+				printerr("%s has both examine_effect set as well as default action set to examine")
+			_interactable.action_map[Enums.ActionVerb.EXAMINE] = examine_effect
 	if has_node(LIGHT_NODE):
 		_light = get_node(LIGHT_NODE)
 

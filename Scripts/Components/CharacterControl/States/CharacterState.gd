@@ -2,7 +2,6 @@ class_name CharacterState
 extends State
 
 @export var interact_state: State
-@export var interact_sub_state: State
 @export var menu_state: State
 
 var _ctx: StateMachine.CharacterContext

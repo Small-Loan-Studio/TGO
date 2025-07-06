@@ -294,7 +294,7 @@ enum ActionVerb {
 	SHOW_ITEM,
 	GIVE_ITEM,
 	MORE,
-	CLOSE,
+	INTERACT_MENU_CLOSE,
 }
 
 const ACTION_VERB_NAMES = {
@@ -308,7 +308,7 @@ const ACTION_VERB_NAMES = {
 	ActionVerb.SHOW_ITEM: "Show Item",
 	ActionVerb.GIVE_ITEM: "Give Item",
 	ActionVerb.MORE: "More",
-	ActionVerb.CLOSE: "Close",
+	ActionVerb.INTERACT_MENU_CLOSE: "Close",
 }
 
 

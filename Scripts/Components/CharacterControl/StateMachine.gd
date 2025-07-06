@@ -41,9 +41,11 @@ func _switch(next: StateChange, depth: int = 0) -> void:
 	if next == null || next.next_state == null:
 		return
 
+	# Sometimes we make poor decisions in life like infinite state loops.
+	# Don't let them be the end, just face plant and move on.
 	if depth > 4:
 		printerr(
-			"StateMachine having a bad time enter state depth of %d. Aborting transitions" % [depth]
+			"StateMachine having a bad time enter state depth of %d. Aborting further transitions" % [depth]
 		)
 		return
 
@@ -60,9 +62,7 @@ func _switch(next: StateChange, depth: int = 0) -> void:
 		_switch(maybe_next, depth + 1)
 
 
-var rnd := 0
 func run_input(event: InputEvent) -> void:
-	rnd = rnd + 1
 	if !_setup_complete:
 		return
 

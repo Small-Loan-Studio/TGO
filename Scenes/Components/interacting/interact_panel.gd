@@ -27,7 +27,7 @@ var selected: Enums.ActionVerb:
 	get:
 		if _menu:
 			if _selected == 0:
-				return Enums.ActionVerb.CLOSE
+				return Enums.ActionVerb.INTERACT_MENU_CLOSE
 			return actions[_selected - 1]
 		return actions[_selected]
 
@@ -140,7 +140,7 @@ func _on_menu_opened() -> void:
 func _get_label() -> String:
 	if actions.size() == 1:
 		return Enums.action_verb_name(actions[0])
-	return "Interact"
+	return "More"
 
 
 func _get_symbol() -> CompressedTexture2D:

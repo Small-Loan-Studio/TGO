@@ -65,6 +65,10 @@ var _controller: ControllerBase
 ## holds the last reported map coords for this character's environment material
 var _mat_pos_last_reported := Vector2i.ZERO
 
+## holds the last reported material, this is used only to determine whether to
+## update the wwise character material switch
+var _last_mat := ""
+
 @onready var stats: StatCollection = $Stats
 
 # component cache
@@ -349,9 +353,9 @@ func _maybe_report_env_material() -> void:
 	_mat_pos_last_reported = coords
 
 	var mat := cur_level.get_tile_material(coords)
-	if mat != "":
+	if mat != "" && mat != _last_mat:
 		_audio_node.set_switch("GroundMaterialSwitch", mat)
-
+		_last_mat = mat
 
 #endregion
 
