@@ -15,6 +15,7 @@ func enter(_enter_ctx: Variant) -> StateChange:
 	return await run_input(null)
 
 
+#gdlint: disable=max-returns,no-else-return,no-elif-return
 func run_input(_event: InputEvent) -> StateChange:
 	if _is_interacting:
 		return null
@@ -99,6 +100,9 @@ func run_input(_event: InputEvent) -> StateChange:
 			return StateChange.mk(idle_state)
 
 	return null
+
+
+#gdlint: enable=max-returns,no-else-return,no-elif-return
 
 
 func _show_panels() -> void:

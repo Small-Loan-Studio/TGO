@@ -357,6 +357,7 @@ func _maybe_report_env_material() -> void:
 		_audio_node.set_switch("GroundMaterialSwitch", mat)
 		_last_mat = mat
 
+
 #endregion
 
 

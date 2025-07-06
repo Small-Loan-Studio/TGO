@@ -45,7 +45,10 @@ func _switch(next: StateChange, depth: int = 0) -> void:
 	# Don't let them be the end, just face plant and move on.
 	if depth > 4:
 		printerr(
-			"StateMachine having a bad time enter state depth of %d. Aborting further transitions" % [depth]
+			(
+				"StateMachine having a bad time enter state depth of %d. Aborting further transitions"
+				% [depth]
+			)
 		)
 		return
 

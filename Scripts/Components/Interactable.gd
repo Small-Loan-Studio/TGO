@@ -157,7 +157,7 @@ func trigger(actor: Character, action: Enums.ActionVerb = default_verb) -> void:
 			continue
 		a.parent = self
 		await a.act(actor.id, _cur_level)
-	
+
 	triggered.emit(actor)
 
 
