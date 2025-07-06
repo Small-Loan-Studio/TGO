@@ -216,9 +216,9 @@ Picks up items from the world and adds them to inventory.
 **Does not branch**
 
 #### Select an item
-> :warning: Experimental
->
 > `SelectItemEffect`
+>
+> :warning: Experimental
 
 Selects an item for some additional effect chain
 
