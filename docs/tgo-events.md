@@ -16,6 +16,7 @@
       - [Remove Item from an Inventory](#remove-item-from-an-inventory)
       - [Update Character's gear](#update-characters-gear)
       - [Picking an item up](#picking-an-item-up)
+      - [Select an item](#select-an-item)
     - [Set Quest State](#set-quest-state)
     - [Time Effects](#time-effects)
     - [Conditonally perform some effect](#conditonally-perform-some-effect)
@@ -211,6 +212,19 @@ Picks up items from the world and adds them to inventory.
 **Properties:**
 - `dest_path`: NodePath to the item node in the world
 - `item`: The ItemStack that will be added to inventory
+
+**Does not branch**
+
+#### Select an item
+> :warning: Experimental
+>
+> `SelectItemEffect`
+
+Selects an item for some additional effect chain
+
+**Properties:**
+- `with_item`: This is an effect chain that will run after an item is selected
+  and placed into the Dialogic variable `Util.selected_item_id`
 
 **Does not branch**
 
