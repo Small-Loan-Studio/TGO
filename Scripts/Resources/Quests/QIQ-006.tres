@@ -1,0 +1,16 @@
+[gd_resource type="Resource" script_class="Quest" load_steps=2 format=3 uid="uid://be1o1q6nqik1x"]
+
+[ext_resource type="Script" path="res://Scripts/Resources/Quest.gd" id="1_tseh1"]
+
+[resource]
+script = ExtResource("1_tseh1")
+id = "QIQ-006"
+title = "Unlock the burial chamber door."
+description = "I am trapped in an old crypt. The further I progress, the more obstacles I encounter. I must find a way through this burial chamber, lest it becomes mine."
+manual_start = false
+state = 0
+conditions = Array[Resource("res://Scripts/Resources/QuestCondition.gd")]([])
+manual_completion = false
+phases = Array[Resource("res://Scripts/QuestPhase.gd")]([])
+next = Array[ExtResource("1_tseh1")]([])
+results = Array[Resource("res://Scripts/Resources/Effect.gd")]([])

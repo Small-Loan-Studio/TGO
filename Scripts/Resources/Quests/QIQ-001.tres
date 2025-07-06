@@ -1,0 +1,16 @@
+[gd_resource type="Resource" script_class="Quest" load_steps=2 format=3 uid="uid://bgm2677c5ty0a"]
+
+[ext_resource type="Script" path="res://Scripts/Resources/Quest.gd" id="1_xc2d2"]
+
+[resource]
+script = ExtResource("1_xc2d2")
+id = "QIQ-001"
+title = "Escape this wretched undercroft."
+description = "I awake once more in this forgotten undercroft, belongings missing and head ringing like church bells. Tis not how I expected to spend these first mornings in Oakshaw. I must find a way out. I must resume mine hunt."
+manual_start = false
+state = 0
+conditions = Array[Resource("res://Scripts/Resources/QuestCondition.gd")]([])
+manual_completion = false
+phases = Array[Resource("res://Scripts/QuestPhase.gd")]([])
+next = Array[ExtResource("1_xc2d2")]([])
+results = Array[Resource("res://Scripts/Resources/Effect.gd")]([])
