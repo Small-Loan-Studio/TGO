@@ -1,0 +1,16 @@
+[gd_resource type="Resource" script_class="Item" load_steps=3 format=3 uid="uid://c68ipc5iki3cr"]
+
+[ext_resource type="Script" path="res://Scripts/Components/Inventory/Item.gd" id="1_fknif"]
+[ext_resource type="Texture2D" uid="uid://btf60bad1qtcj" path="res://Art/Items/ScrapOfPaper.png" id="1_kkec6"]
+
+[resource]
+script = ExtResource("1_fknif")
+id = "JOURNAL"
+name = "Journal"
+type = 2
+description = "Default: My journal. It looks in poor condition, but it can still serve me well.
+After Examination: My journal — it’s conditions is poor. Pages are torn out. Its surface is stained with blood. I have no memory of how. But I do know it can serve me well."
+stackable = false
+stack_size = 1
+icon = ExtResource("1_kkec6")
+gear_spec = Array[Resource("res://Scripts/Resources/GearSpec.gd")]([])

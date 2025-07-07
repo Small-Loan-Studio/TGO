@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="NPCConfig" load_steps=3 format=3 uid="uid://c2a2t2nffy3mi"]
+
+[ext_resource type="Script" path="res://Scripts/Resources/NpcConfig.gd" id="1_hug5j"]
+[ext_resource type="SpriteFrames" uid="uid://b3igo1ygiyl0b" path="res://Art/Characters/character_placeholder.tres" id="2_sbw03"]
+
+[resource]
+script = ExtResource("1_hug5j")
+character_id = "Silas"
+sprite_sheet = ExtResource("2_sbw03")
+valid_timelines = Array[String](["res://Dialogue/Silas/Silas0-5a.dtl"])

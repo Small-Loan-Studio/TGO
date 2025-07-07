@@ -1,9 +1,11 @@
-[gd_scene load_steps=13 format=3 uid="uid://dpy5l43d7v8vk"]
+[gd_scene load_steps=15 format=3 uid="uid://dpy5l43d7v8vk"]
 
 [ext_resource type="PackedScene" uid="uid://dyq8mcdsutnsa" path="res://Scenes/Components/LevelBase.tscn" id="1_3bcgw"]
 [ext_resource type="TileSet" uid="uid://c72m3jled4jfg" path="res://Art/Environment/ext_simple_tileset.tres" id="2_bumtb"]
 [ext_resource type="PackedScene" uid="uid://c3fld6my8so3p" path="res://Scenes/Components/SimpleSwitch.tscn" id="3_irg77"]
+[ext_resource type="PackedScene" uid="uid://rgvfsx60t2ap" path="res://Scenes/Components/Inventory/Item.tscn" id="5_eckgw"]
 [ext_resource type="Script" path="res://Scripts/Resources/Effects/TeleportEffect.gd" id="5_tgjgd"]
+[ext_resource type="Resource" uid="uid://c68ipc5iki3cr" path="res://Scripts/Resources/Items/Journal.tres" id="7_x8xkj"]
 
 [sub_resource type="Resource" id="Resource_w2g47"]
 script = ExtResource("5_tgjgd")
@@ -90,6 +92,11 @@ on_pressed_effects = Array[Resource("res://Scripts/Resources/Effect.gd")]([SubRe
 position = Vector2(8000, 2512)
 sensor_size = Vector2(90, 10)
 on_pressed_effects = Array[Resource("res://Scripts/Resources/Effect.gd")]([SubResource("Resource_267l5")])
+
+[node name="JOURNAL" parent="Objects/Items" index="0" instance=ExtResource("5_eckgw")]
+position = Vector2(-468, 2320)
+item = ExtResource("7_x8xkj")
+quantity = 1
 
 [node name="PS-GF-Entrance" type="Marker2D" parent="Markers" index="0"]
 position = Vector2(2048, 2848)

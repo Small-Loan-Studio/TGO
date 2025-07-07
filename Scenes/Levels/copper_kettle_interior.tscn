@@ -1,11 +1,20 @@
-[gd_scene load_steps=13 format=3 uid="uid://5emseisko0ci"]
+[gd_scene load_steps=19 format=3 uid="uid://5emseisko0ci"]
 
 [ext_resource type="PackedScene" uid="uid://dyq8mcdsutnsa" path="res://Scenes/Components/LevelBase.tscn" id="1_3tpql"]
 [ext_resource type="TileSet" uid="uid://c72m3jled4jfg" path="res://Art/Environment/ext_simple_tileset.tres" id="2_by0xm"]
 [ext_resource type="TileSet" uid="uid://dieqw1hu10wkc" path="res://Art/Environment/Canopy/TreesRoofCanopy.tres" id="3_00xqd"]
 [ext_resource type="Script" path="res://Scripts/Components/Interactable.gd" id="3_jnvym"]
+[ext_resource type="PackedScene" uid="uid://c2kg6apj756dw" path="res://Scenes/Components/NPC.tscn" id="4_b3hdf"]
 [ext_resource type="Script" path="res://Scripts/Resources/Effects/LevelLoadEffect.gd" id="4_hb84b"]
+[ext_resource type="Script" path="res://Scripts/Components/NPC.gd" id="5_1katq"]
 [ext_resource type="Script" path="res://Scripts/Resources/Effects/TeleportEffect.gd" id="5_g2727"]
+[ext_resource type="Resource" uid="uid://c2a2t2nffy3mi" path="res://Scripts/Resources/NPCs/Silas.tres" id="6_v13il"]
+[ext_resource type="Script" path="res://Scripts/Resources/Effects/DialogueEffect.gd" id="7_h4407"]
+[ext_resource type="Resource" path="res://Dialogue/Silas/Silas0-5a.dtl" id="8_j0jag"]
+
+[sub_resource type="Resource" id="Resource_sv4j1"]
+script = ExtResource("7_h4407")
+timeline = ExtResource("8_j0jag")
 
 [sub_resource type="Resource" id="Resource_mcrt5"]
 script = ExtResource("4_hb84b")
@@ -40,6 +49,16 @@ layer_3/tile_data = PackedInt32Array(5177330, 131072, 1, 5177331, 131072, 1, 517
 [node name="CanopyMap" parent="." index="1"]
 tile_set = ExtResource("3_00xqd")
 layer_0/y_sort_origin = 16
+
+[node name="Silas" type="CharacterBody2D" parent="Objects/Characters" index="0" groups=["NodesWithID"] instance=ExtResource("4_b3hdf")]
+position = Vector2(1572.46, 2778.85)
+collision_layer = 5
+motion_mode = 1
+script = ExtResource("5_1katq")
+config = ExtResource("6_v13il")
+dlg = SubResource("Resource_sv4j1")
+id = "Silas"
+activate_external_sensors = false
 
 [node name="Exit" type="Node2D" parent="Objects" index="4"]
 unique_name_in_owner = true

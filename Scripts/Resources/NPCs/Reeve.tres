@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="NPCConfig" load_steps=3 format=3 uid="uid://jfosf82l4fw5"]
+
+[ext_resource type="Script" path="res://Scripts/Resources/NpcConfig.gd" id="1_ifsl4"]
+[ext_resource type="SpriteFrames" uid="uid://b3igo1ygiyl0b" path="res://Art/Characters/character_placeholder.tres" id="2_fdp5b"]
+
+[resource]
+script = ExtResource("1_ifsl4")
+character_id = "Reeve"
+sprite_sheet = ExtResource("2_fdp5b")
+valid_timelines = Array[String](["res://Dialogue/Reeve/Reeve1a.dtl"])

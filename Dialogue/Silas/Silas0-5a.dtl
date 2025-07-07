@@ -1,0 +1,55 @@
+# quest 002 activated here for testing
+#[tgo_expr expr="{TGO.quest("QIQ-002").start()}"]
+#set {Silas.5BTalked} = 6
+if {Silas.HasSpoken} == false:
+	Silas: You look like hell warmed over behind that mask.
+	Devin: Nay, barkeep. Far worse.
+	set {Silas.HasSpoken} = true
+else:
+	Silas: Another gin? Or more questions for me.
+if {Silas.5BTalked} >= 6:
+	label QuestionsC
+	- Where can I find Buckley?
+		Devin: Reeve Buckley is absent. Did you see where he went?
+		Silas: Eh? He must have slinked away while I was changing a barrel. Alas, no. Likely off on one of his many official duties — like whoring around town or drinking alone by the pyres.
+		Devin: The pyres?
+		Silas: Aye, Faceless. He’s soaking up gin with ash from our dead. This time of day, you’ll find him there. Near them bodies.
+		Devin: Bodies?
+		Silas: You ain’t heard, hunter? I assumed you had already attended to them! Tis been a few days since your arrival, has it not?
+		set {Silas.5CQ1Asked} = true
+		jump QuestionsC
+	- What should I expect from him?
+		Devin: What might Buckley want from me?
+		Silas: Is it not obvious? Before you see him, make sure you are ready and prepared.
+		Devin: Aye. I shall need to collect my things.
+		Silas: You will find them at the Otter, no doubt. Give Ishmael my regards.
+		Devin: Gramercy, I shall.
+		set {Silas.5CQ2Asked} = true
+		jump QuestionsC
+	- I should be going. [if {Silas.5CQ1Asked} == true and {Silas.5CQ2Asked} == true:]
+		Devin: Good day.
+		Silas: God be with you, faceless one.
+		[tgo_expr expr="{TGO.quest("QIQ-008").start()}"]
+		[end_timeline]
+else:
+	label Questions
+	- Ask about last night
+		Devin: Do you recall seeing me last night? Or perchance what I did?
+		Silas: I see that the gin has left you with a memory like a sponge.
+		Devin: I must say there are gaps. What did you witness me doing?
+		Silas: Nowt that our regulars haven’t done. You got fuddled. Babbling and stumbling around.
+		Devin: What did I say?
+		Silas: The usual. Monsters and such. Too far in your cups to be speaking clearly.
+		Devin: Anything else?
+		Silas: Ask the other patrons. Last night has spilled into this morning for one or two. Speaking of which. Mayor Buckley is looking for you since he came in for his breakfast.
+		Devin: A liquid one I am to assume.
+		Silas: I’d make haste. His hospitality does have its limits.
+		Devin: Gramercy, Mr Quigley.
+		Silas: Think nowt of it, Faceless. I’ve done my good deed for today.
+		[tgo_expr expr="{TGO.quest("QIQ-002").complete()}"]
+		[tgo_expr expr="{TGO.quest("QIQ-007").start()}"]
+		jump Questions
+	- I should be going
+		Devin: I shall take my leave, then, Mr Quigley.
+		Silas: Best of luck, hunter.
+		[end_timeline]

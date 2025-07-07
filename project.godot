@@ -51,6 +51,8 @@ directories/dch_directory={
 "Jefferson": "res://Scripts/Resources/NPCs/DialogicCharacters/Jefferson.dch",
 "Lisa": "res://Scripts/Resources/NPCs/DialogicCharacters/Lisa.dch",
 "Martha": "res://Scripts/Resources/NPCs/DialogicCharacters/Martha.dch",
+"Reeve": "res://Scripts/Resources/NPCs/DialogicCharacters/Reeve.dch",
+"Silas": "res://Scripts/Resources/NPCs/DialogicCharacters/Silas.dch",
 "test_character": "res://ZZ_Scratch/DialogicValidation/test_character.dch"
 }
 directories/dtl_directory={
@@ -82,8 +84,10 @@ directories/dtl_directory={
 "OldBatteredKey": "res://Dialogue/Examinations/OldBatteredKey.dtl",
 "PileOfWoodenStakes": "res://Dialogue/Examinations/PileOfWoodenStakes.dtl",
 "RansackedCoffin": "res://Dialogue/Examinations/RansackedCoffin.dtl",
+"Reeve1a": "res://Dialogue/Reeve/Reeve1a.dtl",
 "Satchel": "res://Dialogue/Examinations/Satchel.dtl",
 "ScrapOfPaper": "res://Dialogue/Examinations/ScrapOfPaper.dtl",
+"Silas0-5a": "res://Dialogue/Silas/Silas0-5a.dtl",
 "SkeletalRemains": "res://Dialogue/Examinations/SkeletalRemains.dtl",
 "TinderLighter": "res://Dialogue/Examinations/TinderLighter.dtl",
 "UnlitWoodenTorch": "res://Dialogue/Examinations/UnlitWoodenTorch.dtl",
@@ -92,7 +96,8 @@ directories/dtl_directory={
 "juniper_bush_full": "res://Dialogue/PlaceableInteractive/juniper_bush_full.dtl",
 "npc_test_dialogue": "res://ZZ_Scratch/NPCDialogue/npc_test_dialogue.dtl",
 "style_timeline": "res://ZZ_Scratch/DialogicValidation/style_timeline.dtl",
-"test_timeline": "res://ZZ_Scratch/DialogicValidation/test_timeline.dtl"
+"test_timeline": "res://ZZ_Scratch/DialogicValidation/test_timeline.dtl",
+"timeline": "res://Dialogue/Silas/timeline.dtl"
 }
 text/letter_speed=0.01
 text/initial_text_reveal_skippable=true
@@ -160,6 +165,15 @@ variables={
 "ItemGiven": false
 },
 "QuestVarConditionTest": false,
+"Reeve": {
+"a1HasSpoken": false
+},
+"Silas": {
+"5BTalked": 0.0,
+"5CQ1Asked": false,
+"5CQ2Asked": false,
+"HasSpoken": false
+},
 "TestVariables": {
 "CRT-visible": true
 },
