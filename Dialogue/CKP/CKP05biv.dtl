@@ -1,0 +1,27 @@
+if {CKP.MilesHasSpoken} == true:
+	CKP_Miles: Are you here for the devil’s brew, brother?
+else:
+	CKP_Miles: Are you here for the devil’s brew, brother?
+label Questions
+- Did you see me last night?
+	Devin: Did we meet yesterday? In this tavern?
+	CKP_Miles: No, hunter. Last night I was in church.
+	Devin: So late?
+	CKP_Miles: It was two years since Jacob, my brother, died. I was praying for his soul.
+	Devin: My condolences. How did you lose him?
+	CKP_Miles: What else but the devil’s brew. Drank himself to death, the poor bastard. I am soon to follow, no doubt.
+	jump Questions
+- Were can I find Buckley?
+	Devin: Have you seen Buckley?
+	CKP_Miles: Ah, Reeve. How he does love to imbibe copious volumes of liquor. How he drinks and moves so fast is a mystery known only to God.
+	Devin: The man is a politician, of course. Seen him here?
+	CKP_Miles: Apologies, but nay.
+	jump Questions
+- Fare thee well.
+	Devin: I must take my leave.
+	CKP_Miles: Good speaking with you, brother. God be with you.
+	if {CKP.NumSetMiles} == false:
+		set {Silas.5BTalked} += 1
+		set {CKP.NumSetMiles} = true
+	set {CKP.MilesHasSpoken} = true
+	[end_timeline]

@@ -1,0 +1,14 @@
+
+if {OIWP.03HasSpoken} == true:
+	OIWP_Ratty: Back away, freak.
+else:
+	OIWP_Ratty: What do you want with us, freak?
+	Devin: Pray, could you point the way to the town centre?
+	OIWP_Robert: Off with you. Not been my day.
+	OIWP_Charles: There some kind of masquerade we don’t know about?
+	OIWP_Ratty: Freak probably has a great wort on his mug. Kiss my arse.
+	OIWP_Christopher: They call me a sluggard. But I don’t mind the work, sheep shit and all. I’ll have my own plot of land by your age, but it’ll be mine!
+	Devin: I shall ask you once again. Trying to get to the town centre. Point me that way, will you?
+	OIWP_Ratty: Back away, freak.
+	set {OIWP.03HasSpoken} = true
+	[end_timeline]

@@ -1,0 +1,25 @@
+if {CKP.RebeccaHasSpoken} == true:
+	CKP_Rebecca: Yes?
+else:
+	CKP_Rebecca: Who, me?
+label Questions
+- Did you see me last night?
+	Devin: What can you tell me about last night?
+	CKP_Rebecca: Nowt, hunter. Did you see me perform?
+	Devin: You’re a performer?
+	CKP_Rebecca: Only after enough liquid courage. And last night, I had plenty.
+	jump Questions
+- Were can I find Buckley?
+	Devin: Have you seen the mayor?
+	CKP_Rebecca: Buckley? Nay.
+	Devin: Any notion where he is?
+	CKP_Rebecca: Nowt, I am afraid.
+	jump Questions
+- Fare thee well.
+	CKP_Rebecca: Perhaps next time you could see me perform?
+	Devin: If I find myself here, and if you find yourself some more gin, then I imagine so.
+	if {CKP.NumSetRebecca} == false:
+		set {Silas.5BTalked} += 1
+		set {CKP.NumSetRebecca} = true
+	set {CKP.RebeccaHasSpoken} = true
+	[end_timeline]

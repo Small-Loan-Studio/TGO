@@ -1,0 +1,31 @@
+if {CKP.NicholasHasSpoken} == true:
+	CKP_Nicholas: How goes thy hunt?
+else:
+	CKP_Nicholas: What ails you, my friend? Monsters? Ghosts? Spirits?
+label Questions
+- Did you see me last night?
+	Devin: Was I drinking in this tavern last night? Did you see me?
+	CKP_Nicholas: I did indeed, sir! You were deep in your cups. Speaking of, I have an amethyst! Put it in your drink and you won’t become so fuddled next time.
+	Devin: Save your gem for those who need it. What did you see me do?
+	CKP_Nicholas: You were slurring something horrifying, truth be told. About a grizzly wolf. You haunted by it? My vial of wolfsbane should keep those nightmares at bay.
+	Devin: Gramercy, but I have no need for your trinkets and cure-alls.
+	CKP_Nicholas: Change your mind, you know where to find me.
+	jump Questions
+- Were can I find Buckley?
+	Devin: Have you seen our mayor feasting in this hovel this morning?
+	CKP_Nicholas: He was just here, as it happens. Slippery as an eel, that one. Speaking of which, have you considered my eel oil? Imported it from London.
+	Devin: I need nothing of the sort.
+	CKP_Nicholas: Nonsense! Tis good for the heart, imbues you with vigour.
+	Devin: My patience wears thin. Where can I find Buckley?
+	CKP_Nicholas: Alright, hunter. No need to get your knickers in a twist over eel oil. Although it would certainly help you untangle them.
+	jump Questions
+- Fare thee well.
+	Devin: I should be going.
+	CKP_Nicholas: You tell me which horrors you are facing, and I’ll offer you what I can, hunter. I am always here to help. For a price.
+	Devin: I wouldn’t hold me breath.
+	CKP_Nicholas: Ever the sceptic. Off with you then, Doubting Thomas. But if you do change your mind…
+	if {CKP.NumSetNicholas} == false:
+		set {Silas.5BTalked} += 1
+		set {CKP.NumSetNicholas} = true
+	set {CKP.NicholasHasSpoken} = true
+	[end_timeline]

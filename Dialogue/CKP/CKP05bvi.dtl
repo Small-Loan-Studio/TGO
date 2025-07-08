@@ -1,0 +1,52 @@
+if {CKP.L&HHaveSpoken} == true:
+	CKP_Hugh: What do you want? I’m Hugh, but they call me huge. Big surprise.
+	CKP_Lydia: Oh don’t mind my big brother. He’s overprotective of me.
+else:
+	CKP_Hugh: What could Hugh want with us now?
+	CKP_Lydia: Oh, don’t. Can’t you see he has business to attend to?
+	Devin: Now that’s out the way…
+label Questions
+- Did you see me last night?
+	Devin: Did you see me hear last night?
+	CKP_Hugh: Hard to miss you with that mask of yours.
+	CKP_Lydia: We were sharing a gin or three, indeed. But you were so very fuddled. The way you moved. After a while, I tried not to stare or listen for how uncomfortable I felt, truth be told.
+	Devin: What was I discussing with you? Did you hear anything?
+	CKP_Hugh: Tales of the towns and villages you have visited all across this country. Nothing I can recall. however. Except, that is, for one word.
+	Devin: Pray tell?
+	CKP_Hugh: Come in closer, faceless one. I dare not repeat it while others listen.
+	CKP_Lydia: Are you sure we should say? Here of all places.
+	Devin: What was it.
+	CKP_Hugh: Come closer.
+	Devin: I am as close as I can get. Whisper the damn word.
+	CKP_Hugh: …
+	Devin: …
+	CKP_Hugh: CUNNILINGUS. Ha! Oh, you should see your face right now.
+	Devin: Consider yourself lucky we are in public.
+	CKP_Hugh: Oh, come now. You were far more receptive to our japes but a few hours ago.
+	CKP_Lydia: Tis true, hunter. What happened to you?
+	Devin: Spare me your japes, I have not the time for them now.
+	CKP_Hugh: A hunter with no sense of humour. You must kill at balls.
+	Devin: Better kill than flood this place with trivial inanities.
+	CKP_Hugh: Oh, I have upset you. Let me make it up. Find my father at his still. Tell him I sent you — he’ll help you out.
+	jump Questions
+- Were can I find Buckley?
+	Devin: Have you seen Buckley here?
+	CKP_Hugh: Slippery like a ferret and clever like a trout, that Buckley. Has he finally left us?
+	CKP_Lydia: What the devil, did he leave already? He was here just moments ago.
+	Devin: It seems I missed him then.
+	CKP_Lydia: Gracious me. He was here all morning, spewing proxy bile.
+	Devin: I heard he is looking for me.
+	CKP_Hugh: We all heard. Couldn’t stop running his big mouth about his hunter friend all morning. Ruined my appetite.
+	Devin: Did he say anything in particular about me?
+	CKP_Hugh: No. Just that he needed you. He looked upset.
+	Devin: Big surprise.
+	jump Questions
+- Fare thee well.
+	CKP_Hugh: Happy hunting. May your nets always be full.
+	CKP_Lydia: Next time pray tell us to where you have travelled in your adventures.
+	Devin: One day, perhaps.
+	if {CKP.NumSetL&H} == false:
+		set {Silas.5BTalked} += 1
+		set {CKP.NumSetL&H} = true
+	set {CKP.L&HHaveSpoken} = true
+	[end_timeline]

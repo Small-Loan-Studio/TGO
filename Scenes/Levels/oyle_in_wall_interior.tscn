@@ -1,7 +1,23 @@
-[gd_scene load_steps=3 format=3 uid="uid://b74s0j8tu3veo"]
+[gd_scene load_steps=13 format=3 uid="uid://b74s0j8tu3veo"]
 
 [ext_resource type="PackedScene" uid="uid://dyq8mcdsutnsa" path="res://Scenes/Components/LevelBase.tscn" id="1_km0mt"]
 [ext_resource type="TileSet" uid="uid://c72m3jled4jfg" path="res://Art/Environment/ext_simple_tileset.tres" id="2_l8yht"]
+[ext_resource type="PackedScene" uid="uid://c2kg6apj756dw" path="res://Scenes/Components/NPC.tscn" id="3_km200"]
+[ext_resource type="Script" path="res://Scripts/Components/NPC.gd" id="4_jqcwa"]
+[ext_resource type="Resource" uid="uid://d2sn7831mv8pk" path="res://Scripts/Resources/NPCs/OIWP_Charles.tres" id="5_47mja"]
+[ext_resource type="Script" path="res://Scripts/Resources/Effects/DialogueEffect.gd" id="6_1d5kb"]
+[ext_resource type="Resource" path="res://Scripts/Resources/NPCs/DialogicCharacters/OIWP/OIWP_03a.dtl" id="7_xquc7"]
+[ext_resource type="Resource" uid="uid://cy11gt7vr4jp7" path="res://Scripts/Resources/NPCs/OIWP_Christopher.tres" id="8_vsemx"]
+[ext_resource type="Resource" uid="uid://08cehmya72t4" path="res://Scripts/Resources/NPCs/OIWP_Ratty.tres" id="9_o7gm0"]
+[ext_resource type="Resource" uid="uid://b1ieqlm0o70de" path="res://Scripts/Resources/NPCs/OIWP_Robert.tres" id="10_6xys8"]
+
+[sub_resource type="Resource" id="Resource_pov12"]
+script = ExtResource("6_1d5kb")
+timeline = ExtResource("7_xquc7")
+
+[sub_resource type="Resource" id="Resource_re85g"]
+script = ExtResource("6_1d5kb")
+timeline = ExtResource("7_xquc7")
 
 [node name="LevelBase" instance=ExtResource("1_km0mt")]
 
@@ -12,6 +28,44 @@ layer_1/tile_data = PackedInt32Array(131130, 1245186, 10, 196666, 1310722, 10, 2
 layer_6/tile_data = PackedInt32Array(917571, 917517, 15, 917572, 917517, 15, 983108, 917517, 15, 983107, 917517, 15, 57, 1310722, 4, 65593, 1310722, 4, 131129, 1310722, 4, 196665, 1310722, 4, 262201, 1310722, 4, 327737, 1310722, 4, 393273, 1310722, 4, 458809, 1310722, 4, 524345, 1310722, 4, 589881, 1310722, 4, 655417, 1310722, 4, 720953, 1310722, 4, 786489, 1310722, 4, 852025, 1310722, 4, 917561, 1310722, 4, 983097, 1310722, 5, 720968, 1376258, 3, 786504, 1310722, 4, 852040, 1310722, 4, 917576, 1310722, 4, 78, 1441794, 4, 65614, 1441794, 4, 131150, 1441794, 4, 196686, 1441794, 4, 262222, 1441794, 4, 327758, 1441794, 4, 393294, 1441794, 4, 458830, 1441794, 4, 524366, 1441794, 4, 589902, 1441794, 4, 655438, 1441794, 4, 720974, 1441794, 4, 786510, 1441794, 4, 852046, 1441794, 4, 917582, 1441794, 4, 983118, 1441794, 5, 983117, 1376258, 5, 983116, 1376258, 5, 983115, 1376258, 5, 983114, 1376258, 5, 983113, 1376258, 5, 983112, 1310722, 5, 720962, 1376258, 3, 720965, 1376258, 4, 720959, 1376258, 4, 720960, 1376258, 5, 720961, 1376258, 5, 720966, 1376258, 5, 720967, 1376258, 5, 983098, 1376258, 5, 983099, 1376258, 5, 983100, 1376258, 5, 983101, 1376258, 5, 983102, 1376258, 5, 983103, 1441794, 5, 917567, 1441794, 4, 852031, 1441794, 4, 786495, 1441794, 4, 852034, 1310722, 5, 852037, 1441794, 5, 786498, 1310722, 4, 786501, 1441794, 4, 1048644, 917517, 15, 1048643, 917517, 15)
 layer_7/tile_data = PackedInt32Array(852035, 917517, 14, 852036, 917517, 14)
 layer_8/tile_data = PackedInt32Array(852035, 589837, 25, 852036, 655373, 25)
+
+[node name="OIWP_Charles" type="CharacterBody2D" parent="Objects/Characters" index="0" groups=["NodesWithID"] instance=ExtResource("3_km200")]
+position = Vector2(1976, 226.136)
+collision_layer = 5
+motion_mode = 1
+script = ExtResource("4_jqcwa")
+config = ExtResource("5_47mja")
+dlg = SubResource("Resource_pov12")
+id = "OIWP_Charles"
+activate_external_sensors = false
+
+[node name="OIWP_Christopher" type="CharacterBody2D" parent="Objects/Characters" index="1" groups=["NodesWithID"] instance=ExtResource("3_km200")]
+position = Vector2(2023.09, 219.409)
+collision_layer = 5
+motion_mode = 1
+script = ExtResource("4_jqcwa")
+config = ExtResource("8_vsemx")
+dlg = SubResource("Resource_re85g")
+id = "OIWP_Christopher"
+activate_external_sensors = false
+
+[node name="OIWP_Ratty" type="CharacterBody2D" parent="Objects/Characters" index="2" groups=["NodesWithID"] instance=ExtResource("3_km200")]
+position = Vector2(2065.98, 211.841)
+collision_layer = 5
+motion_mode = 1
+script = ExtResource("4_jqcwa")
+config = ExtResource("9_o7gm0")
+id = "OIWP_Ratty"
+activate_external_sensors = false
+
+[node name="OIWP_Robert" type="CharacterBody2D" parent="Objects/Characters" index="3" groups=["NodesWithID"] instance=ExtResource("3_km200")]
+position = Vector2(2113.07, 211)
+collision_layer = 5
+motion_mode = 1
+script = ExtResource("4_jqcwa")
+config = ExtResource("10_6xys8")
+id = "OIWP_Robert"
+activate_external_sensors = false
 
 [node name="PlayerStart" type="Marker2D" parent="Markers" index="0"]
 position = Vector2(2176, 424)

@@ -42,6 +42,13 @@ gdscript/warnings/untyped_declaration=2
 directories/dch_directory={
 "Alf": "res://Scripts/Resources/NPCs/DialogicCharacters/Alf.dch",
 "Bartholomew": "res://Scripts/Resources/NPCs/DialogicCharacters/Bartholomew.dch",
+"CKP_Hugh": "res://Dialogue/CKP/CKP_Hugh.dch",
+"CKP_Jeremiah": "res://Dialogue/CKP/CKP_Jeremiah.dch",
+"CKP_Lydia": "res://Dialogue/CKP/CKP_Lydia.dch",
+"CKP_Marjorie": "res://Dialogue/CKP/CKP_Marjorie.dch",
+"CKP_Miles": "res://Dialogue/CKP/CKP_Miles.dch",
+"CKP_Nicholas": "res://Dialogue/CKP/CKP_Nicholas.dch",
+"CKP_Rebecca": "res://Dialogue/CKP/CKP_Rebecca.dch",
 "David": "res://Scripts/Resources/NPCs/DialogicCharacters/David.dch",
 "Devin": "res://Scripts/Resources/NPCs/DialogicCharacters/Devin.dch",
 "Elias": "res://Scripts/Resources/NPCs/DialogicCharacters/Elias.dch",
@@ -51,6 +58,10 @@ directories/dch_directory={
 "Jefferson": "res://Scripts/Resources/NPCs/DialogicCharacters/Jefferson.dch",
 "Lisa": "res://Scripts/Resources/NPCs/DialogicCharacters/Lisa.dch",
 "Martha": "res://Scripts/Resources/NPCs/DialogicCharacters/Martha.dch",
+"OIWP_Charles": "res://Scripts/Resources/NPCs/DialogicCharacters/OIWP/OIWP_Charles.dch",
+"OIWP_Christopher": "res://Scripts/Resources/NPCs/DialogicCharacters/OIWP/OIWP_Christopher.dch",
+"OIWP_Ratty": "res://Scripts/Resources/NPCs/DialogicCharacters/OIWP/OIWP_Ratty.dch",
+"OIWP_Robert": "res://Scripts/Resources/NPCs/DialogicCharacters/OIWP/OIWP_Robert.dch",
 "Reeve": "res://Scripts/Resources/NPCs/DialogicCharacters/Reeve.dch",
 "Silas": "res://Scripts/Resources/NPCs/DialogicCharacters/Silas.dch",
 "test_character": "res://ZZ_Scratch/DialogicValidation/test_character.dch"
@@ -63,6 +74,12 @@ directories/dtl_directory={
 "Bartholomew3a6": "res://Dialogue/Bartholomew/Bartholomew3a6.dtl",
 "BlackMouldCrypt": "res://Dialogue/Examinations/BlackMouldCrypt.dtl",
 "BuckleyTestTimeline": "res://Dialogue/Buckley/BuckleyTestTimeline.dtl",
+"CKP05bi": "res://Dialogue/CKP/CKP05bi.dtl",
+"CKP05bii": "res://Dialogue/CKP/CKP05bii.dtl",
+"CKP05biii": "res://Dialogue/CKP/CKP05biii.dtl",
+"CKP05biv": "res://Dialogue/CKP/CKP05biv.dtl",
+"CKP05bv": "res://Dialogue/CKP/CKP05bv.dtl",
+"CKP05bvi": "res://Dialogue/CKP/CKP05bvi.dtl",
 "Coffin": "res://Dialogue/Examinations/Coffin.dtl",
 "CorruptedFungalGrowth": "res://Dialogue/Examinations/CorruptedFungalGrowth.dtl",
 "CorruptedMushroom": "res://Dialogue/Examinations/CorruptedMushroom.dtl",
@@ -81,6 +98,7 @@ directories/dtl_directory={
 "Lisa_Barth3a4": "res://Dialogue/Lisa/Lisa_Barth3a4.dtl",
 "LitWoodenTorch": "res://Dialogue/Examinations/LitWoodenTorch.dtl",
 "Martha3a3": "res://Dialogue/Martha/Martha3a3.dtl",
+"OIWP_03a": "res://Scripts/Resources/NPCs/DialogicCharacters/OIWP/OIWP_03a.dtl",
 "OldBatteredKey": "res://Dialogue/Examinations/OldBatteredKey.dtl",
 "PileOfWoodenStakes": "res://Dialogue/Examinations/PileOfWoodenStakes.dtl",
 "RansackedCoffin": "res://Dialogue/Examinations/RansackedCoffin.dtl",
@@ -126,6 +144,20 @@ variables={
 "QuestionedSharps": false,
 "SummonCount": 0.0
 },
+"CKP": {
+"JeremiahHasSpoken": false,
+"L&HHaveSpoken": false,
+"MarjorieHasSpoken": false,
+"MilesHasSpoken": false,
+"NicholasHasSpoken": false,
+"NumSetJeremiah": false,
+"NumSetL&H": false,
+"NumSetMarjorie": false,
+"NumSetMiles": false,
+"NumSetNicholas": false,
+"NumSetRebecca": false,
+"RebeccaHasSpoken": false
+},
 "DavidElias": {
 "HasSpoken": false,
 "Q1Answered": false,
@@ -163,6 +195,9 @@ variables={
 "Martha": {
 "HasSpoken": false,
 "ItemGiven": false
+},
+"OIWP": {
+"03HasSpoken": false
 },
 "QuestVarConditionTest": false,
 "Reeve": {
