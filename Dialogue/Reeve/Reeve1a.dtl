@@ -1,0 +1,29 @@
+if {Reeve.a1HasSpoken} == false:
+	Reeve: We have taken to burning the dead in Oakshaw.
+	Devin: Yellow flames. Salt. You mean to keep their souls from seeking their revenge on you.
+	Reeve: Those more attuned to affairs of the supernatural call our affliction a Tūn-Gāst. Tis a place where submerged in hatred. Bitterness. Where every person is to blame for the misery cast upon them —
+	Devin: — And where every soul lingers to enact vengeance. Is it an exchange of lore that you summoned me for?
+	Reeve: When I learned that a hunter had arrived in Oakshaw, I had expected a ruthless inquisitor of the highest standing. Not a masked vagrant who has thus far vanquished more spirits found in bottles than those lurking in the darkness.
+	Devin: That’s not the tone you took with me in the Kettle last evening.
+	Reeve: Tis your business if you wish to cavort in taverns nightly. Do so on your own coin. More corpses are consumed by these flames than our women welcome bairns. If not pestilence, then violence, or the noose, or the bottle. Now this Tūn-Gāst.
+	Devin: And this concerns the darkness overlooking the northern fields?
+	Reeve: We’ve contended with that ungodly fog for ten years. Our problems extend well beyond it. Four days ago labourers found two more bodies in the fields at daybreak. Savaged. Brutalised. Tis violence more extreme than I have ever known, hunter.
+	Devin: You believe this the work of a monster? Man is capable of much worse than your typical kelpie or banshee.
+	Reeve: Inspect the damn bodies and see for your self. The youngest, for three weeks ago, was just ten, faceless one. Unrecognisable but for what remained of a birthmark.
+	Devin: No parent deserves to find their bairn like that.
+	Reeve: As much as I relish a drinking companion, you are in the business of eradicating monsters — not our gin stores. Get yourself straight and get to work. For all our sakes.
+	Devin: As you will.
+	Reeve: First, an errand. I have for you a letter written by the lord of the manor, His Much Honoured Lord Arthur Sharp. He governs these grounds from where we stand to that fog in the north. You are to grant him the audience he has sought for three days since he heard of your arrival.
+	Devin: I see. Will the full address be necessary.
+	Reeve: It bloody well will be if you intend to get anywhere in Oakshaw.
+	Devin: Anything else I should know?
+	Reeve: N’owt from me. Just a word of caution, Lord Sharp fancies himself a learned man on the subject of monsters. Indulge him, if you will. He isn’t well.
+	Devin: Understood.
+	Reeve: Don't let us down, hunter. You came when others wouldn't but I know better than to question a miracle. Root out this evil once and for all. Be it this Tūn-Gāst as some say or something else entirely. God be with you.
+	Devin: And you.
+	[tgo_expr expr="{TGO.quest("QIQ-007").complete()}"]
+	#Start BH1 here, once quest node is created
+	#[tgo_expr expr="{TGO.quest("QBH-001").start()}"]
+	set {Reeve.a1HasSpoken} = true
+else:
+	Reeve: The hunt fares well, I hope? Come back to me once it’s done.

@@ -1,0 +1,16 @@
+[gd_resource type="Resource" script_class="Quest" load_steps=2 format=3 uid="uid://ca0dx00thjk3s"]
+
+[ext_resource type="Script" path="res://Scripts/Resources/Quest.gd" id="1_syqbm"]
+
+[resource]
+script = ExtResource("1_syqbm")
+id = "QIQ-008"
+title = "Recover mine belongings."
+description = "My belongings should be in mine room in the Oakshaw Otter. I must collect them before I meet with Buckley. Side note: The barkeep, Silas, has been a reliable sort."
+manual_start = false
+state = 0
+conditions = Array[Resource("res://Scripts/Resources/QuestCondition.gd")]([])
+manual_completion = false
+phases = Array[Resource("res://Scripts/QuestPhase.gd")]([])
+next = Array[ExtResource("1_syqbm")]([])
+results = Array[Resource("res://Scripts/Resources/Effect.gd")]([])

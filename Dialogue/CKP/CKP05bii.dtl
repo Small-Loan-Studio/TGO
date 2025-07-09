@@ -1,0 +1,25 @@
+if {CKP.JeremiahHasSpoken} == true:
+	CKP_Jeremiah: Faceless one, how can I help?
+else:
+	CKP_Jeremiah: Here for a war story, or a spot of gin?
+	Devin: Neither.
+label Questions
+- Did you see me last night?
+	Devin: Did we meet last night?
+	CKP_Jeremiah: I was deep in the throes of recounting my fighting in Sicily. 1709. The heat of the sun. The sweat and the blood. Just picture it. I certainly would have noticed your face peering through the crowd.night, I had plenty.
+	jump Questions
+- Were can I find Buckley?
+	Devin: What can you tell me of Buckley’s whereabouts?
+	CKP_Jeremiah: That old cat’s fart? Follow your nose. Now how about a war story?
+	Devin: Maybe later.
+	jump Questions
+- Fare thee well.
+	Devin: I must make haste.
+	CKP_Jeremiah: Should you wish to hear an exciting wartime tale, you know where to find me.
+	Devin: I shall remember your offer. Good day.
+	CKP_Jeremiah: Godspeed, hunter.
+	if {CKP.NumSetJeremiah} == false:
+		set {Silas.5BTalked} += 1
+		set {CKP.NumSetJeremiah} = true
+	set {CKP.JeremiahHasSpoken} = true
+	[end_timeline]

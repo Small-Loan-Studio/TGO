@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="NPCConfig" load_steps=3 format=3 uid="uid://cy11gt7vr4jp7"]
+
+[ext_resource type="Script" path="res://Scripts/Resources/NpcConfig.gd" id="1_d2to7"]
+[ext_resource type="SpriteFrames" uid="uid://b3igo1ygiyl0b" path="res://Art/Characters/character_placeholder.tres" id="2_m5xou"]
+
+[resource]
+script = ExtResource("1_d2to7")
+character_id = "OIWP_Christopher"
+sprite_sheet = ExtResource("2_m5xou")
+valid_timelines = Array[String](["res://Scripts/Resources/NPCs/DialogicCharacters/OIWP/OIWP_03a.dtl"])

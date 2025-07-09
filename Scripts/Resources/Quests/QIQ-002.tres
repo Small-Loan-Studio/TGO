@@ -1,0 +1,16 @@
+[gd_resource type="Resource" script_class="Quest" load_steps=2 format=3 uid="uid://c0ayskf18e2xt"]
+
+[ext_resource type="Script" path="res://Scripts/Resources/Quest.gd" id="1_vtbp6"]
+
+[resource]
+script = ExtResource("1_vtbp6")
+id = "QIQ-002"
+title = "Retrace mine steps from last night."
+description = "An unfortunate oversight, I have made no notes from my first few days in this place beyond a strange, meaningless drawing. I must deduce my movements last night elsewise. And I must learn from these mistakes."
+manual_start = false
+state = 0
+conditions = Array[Resource("res://Scripts/Resources/QuestCondition.gd")]([])
+manual_completion = false
+phases = Array[Resource("res://Scripts/QuestPhase.gd")]([])
+next = Array[ExtResource("1_vtbp6")]([])
+results = Array[Resource("res://Scripts/Resources/Effect.gd")]([])

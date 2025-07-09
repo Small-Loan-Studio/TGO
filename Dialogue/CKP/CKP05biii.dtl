@@ -1,0 +1,25 @@
+if {CKP.MarjorieHasSpoken} == true:
+	CKP_Marjorie: What is it that you want?
+else:
+	CKP_Marjorie: Sush, you devil. Don’t interrupt my pa’s stories. Unless you have something more interesting to discuss?
+label Questions
+- Did you see me last night?
+	Devin: Did we meet last evening?
+	CKP_Marjorie: No, dearie. Pa was telling one of his most thrilling tales from the war. Sicily, of all places. Lucifer himself may have waltzed in and I would not have turned me head.
+	Devin: But I was here.
+	CKP_Marjorie: Yes of course, but I just didn’t pay you no mind.
+	jump Questions
+- Were can I find Buckley?
+	Devin: Have you seen our mayor?
+	CKP_Marjorie: Our mayor? You have not been here but a few days, hunter. He was just here, nonetheless. That bloody weasel, has he scurried off already?
+	Devin: I was hoping that you could tell me.
+	CKP_Marjorie: Hope springs eternal in the human breast, hunter.
+	jump Questions
+- Fare thee well.
+	Devin: Until next time.
+	CKP_Marjorie: See you, hunter.
+	if {CKP.NumSetMarjorie} == false:
+		set {Silas.5BTalked} += 1
+		set {CKP.NumSetMarjorie} = true
+	set {CKP.MarjorieHasSpoken} = true
+	[end_timeline]

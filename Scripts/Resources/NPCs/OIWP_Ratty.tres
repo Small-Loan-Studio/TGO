@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="NPCConfig" load_steps=3 format=3 uid="uid://08cehmya72t4"]
+
+[ext_resource type="Script" path="res://Scripts/Resources/NpcConfig.gd" id="1_n8j7x"]
+[ext_resource type="SpriteFrames" uid="uid://b3igo1ygiyl0b" path="res://Art/Characters/character_placeholder.tres" id="2_u1m6y"]
+
+[resource]
+script = ExtResource("1_n8j7x")
+character_id = "OIWP_Ratty"
+sprite_sheet = ExtResource("2_u1m6y")
+valid_timelines = Array[String](["res://Scripts/Resources/NPCs/DialogicCharacters/OIWP/OIWP_03a.dtl"])

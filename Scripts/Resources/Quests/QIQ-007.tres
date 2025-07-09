@@ -1,0 +1,16 @@
+[gd_resource type="Resource" script_class="Quest" load_steps=2 format=3 uid="uid://be1pggoglqtl5"]
+
+[ext_resource type="Script" path="res://Scripts/Resources/Quest.gd" id="1_scklk"]
+
+[resource]
+script = ExtResource("1_scklk")
+id = "QIQ-007"
+title = "Find the mayor, Reeve Buckley."
+description = "I must find the mayor of this charming town. If he is not to be found in the Copper Kettle, then I must establish who would know of his whereabouts and ask myself if I have everything I need ahead of this audience?"
+manual_start = false
+state = 0
+conditions = Array[Resource("res://Scripts/Resources/QuestCondition.gd")]([])
+manual_completion = false
+phases = Array[Resource("res://Scripts/QuestPhase.gd")]([])
+next = Array[ExtResource("1_scklk")]([])
+results = Array[Resource("res://Scripts/Resources/Effect.gd")]([])

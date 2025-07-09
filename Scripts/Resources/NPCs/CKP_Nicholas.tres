@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="NPCConfig" load_steps=3 format=3 uid="uid://d31pi08ugpmj1"]
+
+[ext_resource type="Script" path="res://Scripts/Resources/NpcConfig.gd" id="1_f2e7g"]
+[ext_resource type="SpriteFrames" uid="uid://b3igo1ygiyl0b" path="res://Art/Characters/character_placeholder.tres" id="2_hbm1l"]
+
+[resource]
+script = ExtResource("1_f2e7g")
+character_id = "CKP_Nicholas"
+sprite_sheet = ExtResource("2_hbm1l")
+valid_timelines = Array[String](["res://Dialogue/CKP/CKP05bv.dtl"])
