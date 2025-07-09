@@ -1,4 +1,4 @@
-[gd_scene load_steps=102 format=3 uid="uid://bgn6kmsvdqh4l"]
+[gd_scene load_steps=108 format=3 uid="uid://bgn6kmsvdqh4l"]
 
 [ext_resource type="PackedScene" uid="uid://dyq8mcdsutnsa" path="res://Scenes/Components/LevelBase.tscn" id="1_dma02"]
 [ext_resource type="TileSet" uid="uid://c72m3jled4jfg" path="res://Art/Environment/ext_simple_tileset.tres" id="2_pwhqm"]
@@ -38,6 +38,8 @@
 [ext_resource type="Script" path="res://Scripts/Resources/Conditions/InventoryCheckCondition.gd" id="29_ogskv"]
 [ext_resource type="PackedScene" uid="uid://d1y25semyqxkw" path="res://Scenes/Components/Greyboxing/MoveableBlock.tscn" id="30_nk66s"]
 [ext_resource type="Resource" uid="uid://c0k5s2pwp0tvi" path="res://Scripts/Resources/Items/BagOfHardtack.tres" id="30_qe0oq"]
+[ext_resource type="Script" path="res://Scripts/Resources/Effects/SetQuestStateEffect.gd" id="32_hkboy"]
+[ext_resource type="Script" path="res://Scripts/Components/Greyboxing/GreyboxObject.gd" id="40_fqqq3"]
 
 [sub_resource type="Resource" id="Resource_jh8dd"]
 script = ExtResource("5_7fsg8")
@@ -75,10 +77,20 @@ dest_path = NodePath("../../../Markers/BurialChamber2ExitChamber_tp")
 script = ExtResource("5_7fsg8")
 dest_path = NodePath("../../../Markers/ExitChamber2BurialChamber_tp")
 
+[sub_resource type="Resource" id="Resource_l35rm"]
+script = ExtResource("32_hkboy")
+quest_id = "QIQ-006"
+target_state = 3
+
 [sub_resource type="Resource" id="Resource_s7cyv"]
 script = ExtResource("7_8gkxa")
 load_level_name = "cemetery"
 marker_name = "PS-Crypt-Entrance"
+
+[sub_resource type="Resource" id="Resource_x46en"]
+script = ExtResource("32_hkboy")
+quest_id = "QIQ-001"
+target_state = 3
 
 [sub_resource type="ImageTexture" id="ImageTexture_6s6xn"]
 
@@ -356,6 +368,11 @@ timeline = ExtResource("24_bvtj4")
 script = ExtResource("16_utw8c")
 timeline = ExtResource("24_q7j2p")
 
+[sub_resource type="Resource" id="Resource_72jy6"]
+script = ExtResource("32_hkboy")
+quest_id = "QIQ-001"
+target_state = 1
+
 [sub_resource type="Resource" id="Resource_y4w0b"]
 script = ExtResource("16_utw8c")
 timeline = ExtResource("24_foypm")
@@ -377,6 +394,11 @@ inventory_id = ""
 target_item = ExtResource("8_mj1tv")
 check_type = 4
 check_value = 3
+
+[sub_resource type="Resource" id="Resource_bc2b2"]
+script = ExtResource("32_hkboy")
+quest_id = "QIQ-006"
+target_state = 1
 
 [node name="LevelBase2" instance=ExtResource("1_dma02")]
 
@@ -441,12 +463,12 @@ on_pressed_effects = Array[Resource("res://Scripts/Resources/Effect.gd")]([SubRe
 [node name="ExitChamber2BurialChamber" parent="Objects/Switches" index="7" instance=ExtResource("3_0ndau")]
 position = Vector2(2144, 608)
 sensor_size = Vector2(60, 60)
-on_pressed_effects = Array[Resource("res://Scripts/Resources/Effect.gd")]([SubResource("Resource_7dvjx")])
+on_pressed_effects = Array[Resource("res://Scripts/Resources/Effect.gd")]([SubResource("Resource_7dvjx"), SubResource("Resource_l35rm")])
 
 [node name="Load-Cemetery" parent="Objects/Switches" index="8" instance=ExtResource("3_0ndau")]
 position = Vector2(3263.94, -207.812)
 sensor_size = Vector2(60, 20)
-on_pressed_effects = Array[Resource("res://Scripts/Resources/Effect.gd")]([SubResource("Resource_s7cyv")])
+on_pressed_effects = Array[Resource("res://Scripts/Resources/Effect.gd")]([SubResource("Resource_s7cyv"), SubResource("Resource_x46en")])
 
 [node name="FLAME_TORCH" parent="Objects/Items" index="0" instance=ExtResource("5_iepyf")]
 position = Vector2(2672, 1104)
@@ -1253,7 +1275,7 @@ size = Vector2(1, 0.5)
 can_interact = true
 tint = Color(0.745098, 0.745098, 0.745098, 0)
 action_verb = 6
-effects = Array[Resource("res://Scripts/Resources/Effect.gd")]([SubResource("Resource_fk822")])
+effects = Array[Resource("res://Scripts/Resources/Effect.gd")]([SubResource("Resource_fk822"), SubResource("Resource_72jy6")])
 
 [node name="JournalPage1_Examine" parent="Objects" index="60" instance=ExtResource("12_us5wm")]
 position = Vector2(3440, 2048)
@@ -1288,6 +1310,17 @@ open_sprite = null
 unlocked = Array[Resource("res://Scripts/Resources/TriggerCondition.gd")]([SubResource("Resource_yuns4")])
 use_action = "open"
 region_id = "crypt.exit_door2"
+
+[node name="Door2_Examine" type="Node2D" parent="Objects" index="65" instance=ExtResource("12_us5wm")]
+y_sort_enabled = true
+position = Vector2(2145, 741)
+script = ExtResource("40_fqqq3")
+can_interact = true
+tint = Color(0.745098, 0.745098, 0.745098, 0)
+action_verb = 6
+effects = Array[Resource("res://Scripts/Resources/Effect.gd")]([SubResource("Resource_bc2b2")])
+y_sort_width = 72
+metadata/_edit_group_ = true
 
 [node name="PlayerStart" type="Marker2D" parent="Markers" index="0"]
 position = Vector2(80, 560)
