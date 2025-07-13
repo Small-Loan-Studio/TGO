@@ -4,7 +4,7 @@ extends EditorInspectorPlugin
 
 
 func _can_handle(obj: Object) -> bool:
-	return obj is Interactable
+	return obj is Interactable || obj is InteractMenuSignals
 
 
 func _parse_begin(_obj: Object) -> void:
@@ -33,7 +33,12 @@ func _parse_property(
 	_wide: bool
 ) -> bool:
 	if name == "action_map":
-		add_property_editor(name, Property.new(self, obj as Interactable))
+		var adapter: TGOInteractableSecondaryActions.Adapter
+		if obj is Interactable:
+			adapter = TGOInteractableSecondaryActions.InteractableAdapter.new(obj)
+		if obj is InteractMenuSignals:
+			adapter = TGOInteractableSecondaryActions.MenuSignalsAdapter.new(obj)
+		add_property_editor(name, Property.new(self, adapter))
 		return true
 	return false
 
@@ -41,7 +46,7 @@ func _parse_property(
 class Property:
 	extends EditorProperty
 
-	func _init(plugin: TGOInspectorInteractable, obj: Interactable) -> void:
+	func _init(plugin: TGOInspectorInteractable, obj: TGOInteractableSecondaryActions.Adapter) -> void:
 		var control_scene: PackedScene = load(
 			"res://addons_tgo/editors/TGOInteractableSecondaryActions.tscn"
 		)

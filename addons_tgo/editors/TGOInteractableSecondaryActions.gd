@@ -3,7 +3,7 @@ class_name TGOInteractableSecondaryActions
 extends Control
 
 var _plugin_ref: TGOInspectorInteractable
-var _data: Interactable
+var _data: Adapter
 
 @onready var _margin_container := $MarginContainer
 @onready var _action_select: OptionButton = %ActionSelect
@@ -14,7 +14,7 @@ func _ready() -> void:
 	_sync()
 
 
-func setup(plugin: TGOInspectorInteractable, obj: Interactable) -> void:
+func setup(plugin: TGOInspectorInteractable, obj: Variant) -> void:
 	_plugin_ref = plugin
 	_data = obj
 
@@ -23,11 +23,15 @@ func _sync() -> void:
 	_action_select.clear()
 	if _data == null:
 		return
-	var secondary_keys := _data.action_map.keys()
-	if !_data.action_map.has(_data.default_verb):
-		_action_select.add_item(Enums.action_verb_name(_data.default_verb))
+	# var secondary_keys := _data.action_map.keys()
+	var secondary_keys: Array[Enums.ActionVerb] = _data.get_keys()
+	var default_verb := _data.default_verb()
+
+	# if !_data.action_map.has(_data.default_verb):
+	if ! default_verb in secondary_keys:
+		_action_select.add_item(Enums.action_verb_name(default_verb))
 	for a: Enums.ActionVerb in Enums.ActionVerb.values():
-		if !(a == _data.default_verb || a in secondary_keys):
+		if !(a == default_verb || a in secondary_keys):
 			_action_select.add_item(Enums.action_verb_name(a))
 
 
@@ -45,3 +49,42 @@ func _on_add_entry_pressed() -> void:
 
 	# inform the UI it should refresh the inspector view
 	_data.property_list_changed.emit()
+
+
+class Adapter:
+	extends RefCounted
+
+
+	func get_keys() -> Array[Enums.ActionVerb]:
+		return []
+
+
+	func default_verb() -> Enums.ActionVerb:
+		return Enums.ActionVerb.DEFAULT
+
+
+class InteractableAdapter:
+	extends Adapter
+
+	var _obj: Interactable
+
+	func _init(obj: Interactable) -> void:
+		_obj = obj
+
+
+	func get_keys() -> Array[Enums.ActionVerb]:
+		var arr: Array[Enums.ActionVerb] = []
+		arr.assign(_obj.action_map.keys())
+		return arr
+
+
+	func default_verb() -> Enums.ActionVerb:
+		return _obj.default_verb
+
+class MenuSignalsAdapter:
+	extends Adapter
+
+	var _obj: InteractMenuSignals
+
+	func _init(obj: InteractMenuSignals) -> void:
+		_obj = obj

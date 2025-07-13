@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=3 uid="uid://d4cnh54npmjiv"]
+[gd_scene load_steps=23 format=3 uid="uid://d4cnh54npmjiv"]
 
 [ext_resource type="Script" path="res://Scripts/Driver.gd" id="1_agcjs"]
 [ext_resource type="PackedScene" uid="uid://tw1hy0j67l4g" path="res://Scenes/Audio/AudioManager.tscn" id="2_efjl6"]
@@ -21,10 +21,12 @@
 [ext_resource type="Script" path="res://Scenes/UI/Debug/StatLabel.gd" id="14_feb7v"]
 [ext_resource type="PackedScene" uid="uid://cm0r3afwqt28t" path="res://Scenes/UI/Debug/wwise_debug.tscn" id="17_5yu8a"]
 [ext_resource type="Script" path="res://Scripts/RegionStateManager.gd" id="19_dn3w1"]
+[ext_resource type="Script" path="res://Scripts/Audio/InteractMenuSignals.gd" id="22_i7xr5"]
 
 [node name="Driver" type="Node2D"]
 script = ExtResource("1_agcjs")
 new_game_level = "Debug/BadLevelA"
+new_game_marker = null
 
 [node name="AudioManager" parent="." instance=ExtResource("2_efjl6")]
 
@@ -254,6 +256,9 @@ position = Vector2(0, 0)
 
 [node name="Camera2D" type="Camera2D" parent="GameWorld/Devin"]
 zoom = Vector2(1.2, 1.2)
+
+[node name="InteractMenuSignals" type="Node" parent="GameWorld/Devin"]
+script = ExtResource("22_i7xr5")
 
 [connection signal="pressed" from="OverlayManager/HUD/DebugStack/SaveLoadMenu/SaveButton" to="SerializationManager" method="save_game"]
 [connection signal="pressed" from="OverlayManager/HUD/DebugStack/SaveLoadMenu/LoadButton" to="SerializationManager" method="load_game"]

@@ -21,7 +21,7 @@ func dismiss() -> void:
 
 ## presents a menu and returns immediately; in order to block until
 ## the menu is closed await on returned Menu.dismiss
-func present_nonblocking(kind: MenuKind) -> Menu:
+func present_async(kind: MenuKind) -> Menu:
 	show()
 	var menu: Menu = null
 	match kind:
@@ -33,10 +33,6 @@ func present_nonblocking(kind: MenuKind) -> Menu:
 			menu = TitleMenuScene.instantiate()
 	self._present(menu)
 	return menu
-
-
-func present(kind: MenuKind) -> void:
-	await present_nonblocking(kind).dismiss
 
 
 ## Private
