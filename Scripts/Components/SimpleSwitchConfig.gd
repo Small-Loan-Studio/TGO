@@ -34,7 +34,7 @@ func _ready() -> void:
 		_delegate.configure(self, _switch_poly)
 
 	_sync_feedback()
-	_sync_sensor()
+	_sync_sensor.call_deferred()
 
 
 func _process(_delta: float) -> void:

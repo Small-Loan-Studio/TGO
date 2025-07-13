@@ -18,5 +18,5 @@ func act(_actor_id: String, cur_level: LevelBase) -> Variant:
 		return null
 
 	# TODO: should this be cur_level.driver.load_level(new_level) instead
-	cur_level.swap_to_level(load_level_name, marker_name)
+	cur_level.swap_to_level.call_deferred(load_level_name, marker_name)
 	return null

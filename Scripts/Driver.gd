@@ -120,7 +120,7 @@ func get_world_presentation() -> Node2D:
 
 
 func free_previous_level() -> void:
-	_world.remove_child(_last_loaded_level)
+	_world.remove_child.call_deferred(_last_loaded_level)
 	_last_loaded_level.queue_free()
 
 
