@@ -17,6 +17,9 @@ func _ready() -> void:
 	super._ready()
 
 	if Engine.is_editor_hint():
+		if config != null:
+			id = config.character_id
+			_sprite.sprite_frames = config.sprite_sheet
 		return
 
 	if dlg != null:

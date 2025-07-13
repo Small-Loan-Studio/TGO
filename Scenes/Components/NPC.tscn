@@ -14,6 +14,7 @@ dlg = null
 activate_external_sensors = false
 
 [node name="AnimatedSprite2D" parent="." index="0"]
+scale = Vector2(1.5, 1.5)
 sprite_frames = null
 
 [node name="SensorSet" parent="." index="1"]
