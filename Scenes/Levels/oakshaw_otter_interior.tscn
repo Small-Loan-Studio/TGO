@@ -1,11 +1,20 @@
-[gd_scene load_steps=15 format=3 uid="uid://dpy5l43d7v8vk"]
+[gd_scene load_steps=27 format=3 uid="uid://dpy5l43d7v8vk"]
 
 [ext_resource type="PackedScene" uid="uid://dyq8mcdsutnsa" path="res://Scenes/Components/LevelBase.tscn" id="1_3bcgw"]
 [ext_resource type="TileSet" uid="uid://c72m3jled4jfg" path="res://Art/Environment/ext_simple_tileset.tres" id="2_bumtb"]
 [ext_resource type="PackedScene" uid="uid://c3fld6my8so3p" path="res://Scenes/Components/SimpleSwitch.tscn" id="3_irg77"]
 [ext_resource type="PackedScene" uid="uid://rgvfsx60t2ap" path="res://Scenes/Components/Inventory/Item.tscn" id="5_eckgw"]
 [ext_resource type="Script" path="res://Scripts/Resources/Effects/TeleportEffect.gd" id="5_tgjgd"]
+[ext_resource type="PackedScene" uid="uid://c2kg6apj756dw" path="res://Scenes/Components/NPC.tscn" id="5_ybl08"]
+[ext_resource type="Script" path="res://Scripts/Components/NPC.gd" id="6_0cji4"]
+[ext_resource type="Resource" uid="uid://bfbius5m5rflm" path="res://Scripts/Resources/NPCs/Cuthbert.tres" id="7_f5wce"]
 [ext_resource type="Resource" uid="uid://c68ipc5iki3cr" path="res://Scripts/Resources/Items/Journal.tres" id="7_x8xkj"]
+[ext_resource type="Script" path="res://Scripts/Resources/Effects/DialogueEffect.gd" id="8_ftm0k"]
+[ext_resource type="Resource" path="res://Dialogue/MiscellaneousDialogue/CuthbertBarks.dtl" id="9_q0jcr"]
+[ext_resource type="Resource" uid="uid://0og7ycbr8mkc" path="res://Scripts/Resources/NPCs/NPC-033.tres" id="10_hkfnv"]
+[ext_resource type="Resource" path="res://Dialogue/MiscellaneousDialogue/NPC-033_Barks.dtl" id="11_wdgv8"]
+[ext_resource type="Resource" uid="uid://cqrtygijb50bp" path="res://Scripts/Resources/NPCs/NPC-021.tres" id="12_405jp"]
+[ext_resource type="Resource" path="res://Dialogue/MiscellaneousDialogue/NPC-021_Barks.dtl" id="13_vs1fj"]
 
 [sub_resource type="Resource" id="Resource_w2g47"]
 script = ExtResource("5_tgjgd")
@@ -38,6 +47,18 @@ dest_path = NodePath("../../../Markers/PS-RM7-from-2F")
 [sub_resource type="Resource" id="Resource_267l5"]
 script = ExtResource("5_tgjgd")
 dest_path = NodePath("../../../Markers/PS-2F-from-RM7")
+
+[sub_resource type="Resource" id="Resource_iu2hh"]
+script = ExtResource("8_ftm0k")
+timeline = ExtResource("9_q0jcr")
+
+[sub_resource type="Resource" id="Resource_wkwyd"]
+script = ExtResource("8_ftm0k")
+timeline = ExtResource("11_wdgv8")
+
+[sub_resource type="Resource" id="Resource_gmyho"]
+script = ExtResource("8_ftm0k")
+timeline = ExtResource("13_vs1fj")
 
 [node name="LevelBase" instance=ExtResource("1_3bcgw")]
 
@@ -92,6 +113,33 @@ on_pressed_effects = Array[Resource("res://Scripts/Resources/Effect.gd")]([SubRe
 position = Vector2(8000, 2512)
 sensor_size = Vector2(90, 10)
 on_pressed_effects = Array[Resource("res://Scripts/Resources/Effect.gd")]([SubResource("Resource_267l5")])
+
+[node name="Cuthbert" type="CharacterBody2D" parent="Objects/Characters" index="0" groups=["NodesWithID"] instance=ExtResource("5_ybl08")]
+position = Vector2(2399.23, 2492.75)
+collision_layer = 5
+motion_mode = 1
+script = ExtResource("6_0cji4")
+config = ExtResource("7_f5wce")
+dlg = SubResource("Resource_iu2hh")
+activate_external_sensors = false
+
+[node name="NPC-033" type="CharacterBody2D" parent="Objects/Characters" index="1" groups=["NodesWithID"] instance=ExtResource("5_ybl08")]
+position = Vector2(2491.03, 2543.78)
+collision_layer = 5
+motion_mode = 1
+script = ExtResource("6_0cji4")
+config = ExtResource("10_hkfnv")
+dlg = SubResource("Resource_wkwyd")
+activate_external_sensors = false
+
+[node name="NPC-021" type="CharacterBody2D" parent="Objects/Characters" index="2" groups=["NodesWithID"] instance=ExtResource("5_ybl08")]
+position = Vector2(2595.81, 2586.5)
+collision_layer = 5
+motion_mode = 1
+script = ExtResource("6_0cji4")
+config = ExtResource("12_405jp")
+dlg = SubResource("Resource_gmyho")
+activate_external_sensors = false
 
 [node name="JOURNAL" parent="Objects/Items" index="0" instance=ExtResource("5_eckgw")]
 position = Vector2(-468, 2320)

@@ -1,0 +1,14 @@
+[gd_resource type="Resource" script_class="NPCConfig" load_steps=3 format=3 uid="uid://n0or6gyfyjli"]
+
+[ext_resource type="Script" path="res://Scripts/Resources/NpcConfig.gd" id="1_h2847"]
+[ext_resource type="SpriteFrames" uid="uid://b3igo1ygiyl0b" path="res://Art/Characters/character_placeholder.tres" id="2_mkfen"]
+
+[resource]
+script = ExtResource("1_h2847")
+character_id = "Perry"
+sprite_sheet = ExtResource("2_mkfen")
+valid_timelines = Array[String](["res://Dialogue/Perry/Perry1b.dtl"])
+examine_text = ""
+examine_effects = Array[Resource("res://Scripts/Resources/Effect.gd")]([])
+show_item_effects = Array[Resource("res://Scripts/Resources/Effect.gd")]([])
+give_item_effects = Array[Resource("res://Scripts/Resources/Effect.gd")]([])

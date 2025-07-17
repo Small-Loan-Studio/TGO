@@ -1,0 +1,7 @@
+if {MiscellaneousCharacters.PerryHasSpoken} == false:
+	Perry: What do you want? Can't you tell I'm busy.
+	Devin: Tell me when you will clear this blockage?
+	Perry: What do you want? Can't you tell I'm busy.
+	Devin: You would be surprised.
+else:
+	Perry:  I told you to be patient, didn’t I? Bog off.

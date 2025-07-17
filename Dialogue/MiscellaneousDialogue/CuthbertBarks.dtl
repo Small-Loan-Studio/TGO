@@ -1,0 +1,16 @@
+if {MiscellaneousCharacters.CuthbertBarkNum} <= 0:
+	Cuthbert: Have you tasted the gin from the Puss&Mew? Yes they’ve even made their way up here.
+	set {MiscellaneousCharacters.CuthbertBarkNum} += 1
+	[end_timeline]
+elif {MiscellaneousCharacters.CuthbertBarkNum} == 1:
+	Cuthbert: Gin is fine. But it’s the jenever I’m after.
+	set {MiscellaneousCharacters.CuthbertBarkNum} += 1
+	[end_timeline]
+elif {MiscellaneousCharacters.CuthbertBarkNum} == 2:
+	Cuthbert: Peculiar, isn’t it? How the gin in Oakshaw tastes different. Don’t you think?
+	set {MiscellaneousCharacters.CuthbertBarkNum} += 1
+	[end_timeline]
+elif {MiscellaneousCharacters.CuthbertBarkNum} >= 3:
+	Cuthbert: You are a travelled man, no? London has many fine features — none as interesting to me as Oakshaw.
+	set {MiscellaneousCharacters.CuthbertBarkNum} = 0
+	[end_timeline]

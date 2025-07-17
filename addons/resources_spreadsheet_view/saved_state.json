@@ -8,6 +8,14 @@
       "resource_local_to_scene": true,
       "resource_name": true
     },
+    "res://Scripts/Resources/NPCs/perry/": {
+      "resource_local_to_scene": true,
+      "resource_name": true
+    },
+    "res://Scripts/Resources/NPCs::give_item_effects/": {
+      "resource_local_to_scene": true,
+      "resource_name": true
+    },
     "res://Scripts/Resources/NPcs/": {
       "resource_local_to_scene": true,
       "resource_name": true
@@ -16,7 +24,9 @@
   "recent_paths": [
     "res://Scripts/Resources/Items/",
     "res://Scripts/Resources/NPCs/",
-    "res://Scripts/Resources/NPcs/"
+    "res://Scripts/Resources/NPcs/",
+    "res://Scripts/Resources/NPCs/perry/",
+    "res://Scripts/Resources/NPCs::give_item_effects/"
   ],
   "table_functions": {
     "filter": [

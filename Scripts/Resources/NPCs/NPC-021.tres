@@ -1,0 +1,14 @@
+[gd_resource type="Resource" script_class="NPCConfig" load_steps=3 format=3 uid="uid://cqrtygijb50bp"]
+
+[ext_resource type="Script" path="res://Scripts/Resources/NpcConfig.gd" id="1_imft6"]
+[ext_resource type="SpriteFrames" uid="uid://b3igo1ygiyl0b" path="res://Art/Characters/character_placeholder.tres" id="2_2v852"]
+
+[resource]
+script = ExtResource("1_imft6")
+character_id = "NPC-021"
+sprite_sheet = ExtResource("2_2v852")
+valid_timelines = Array[String](["res://Dialogue/MiscellaneousDialogue/NPC-021_Barks.dtl"])
+examine_text = ""
+examine_effects = Array[Resource("res://Scripts/Resources/Effect.gd")]([])
+show_item_effects = Array[Resource("res://Scripts/Resources/Effect.gd")]([])
+give_item_effects = Array[Resource("res://Scripts/Resources/Effect.gd")]([])

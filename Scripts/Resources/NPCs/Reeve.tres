@@ -8,3 +8,7 @@ script = ExtResource("1_ifsl4")
 character_id = "Reeve"
 sprite_sheet = ExtResource("2_fdp5b")
 valid_timelines = Array[String](["res://Dialogue/Reeve/Reeve1a.dtl"])
+examine_text = ""
+examine_effects = Array[Resource("res://Scripts/Resources/Effect.gd")]([])
+show_item_effects = Array[Resource("res://Scripts/Resources/Effect.gd")]([])
+give_item_effects = Array[Resource("res://Scripts/Resources/Effect.gd")]([])

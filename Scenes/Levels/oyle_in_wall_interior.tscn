@@ -1,9 +1,8 @@
-[gd_scene load_steps=13 format=3 uid="uid://b74s0j8tu3veo"]
+[gd_scene load_steps=12 format=3 uid="uid://b74s0j8tu3veo"]
 
 [ext_resource type="PackedScene" uid="uid://dyq8mcdsutnsa" path="res://Scenes/Components/LevelBase.tscn" id="1_km0mt"]
 [ext_resource type="TileSet" uid="uid://c72m3jled4jfg" path="res://Art/Environment/ext_simple_tileset.tres" id="2_l8yht"]
 [ext_resource type="PackedScene" uid="uid://c2kg6apj756dw" path="res://Scenes/Components/NPC.tscn" id="3_km200"]
-[ext_resource type="Script" path="res://Scripts/Components/NPC.gd" id="4_jqcwa"]
 [ext_resource type="Resource" uid="uid://d2sn7831mv8pk" path="res://Scripts/Resources/NPCs/OIWP_Charles.tres" id="5_47mja"]
 [ext_resource type="Script" path="res://Scripts/Resources/Effects/DialogueEffect.gd" id="6_1d5kb"]
 [ext_resource type="Resource" path="res://Scripts/Resources/NPCs/DialogicCharacters/OIWP/OIWP_03a.dtl" id="7_xquc7"]
@@ -29,43 +28,27 @@ layer_6/tile_data = PackedInt32Array(917571, 917517, 15, 917572, 917517, 15, 983
 layer_7/tile_data = PackedInt32Array(852035, 917517, 14, 852036, 917517, 14)
 layer_8/tile_data = PackedInt32Array(852035, 589837, 25, 852036, 655373, 25)
 
-[node name="OIWP_Charles" type="CharacterBody2D" parent="Objects/Characters" index="0" groups=["NodesWithID"] instance=ExtResource("3_km200")]
+[node name="OIWP_Charles" parent="Objects/Characters" index="0" instance=ExtResource("3_km200")]
 position = Vector2(1976, 226.136)
-collision_layer = 5
-motion_mode = 1
-script = ExtResource("4_jqcwa")
 config = ExtResource("5_47mja")
 dlg = SubResource("Resource_pov12")
 id = "OIWP_Charles"
-activate_external_sensors = false
 
-[node name="OIWP_Christopher" type="CharacterBody2D" parent="Objects/Characters" index="1" groups=["NodesWithID"] instance=ExtResource("3_km200")]
+[node name="OIWP_Christopher" parent="Objects/Characters" index="1" instance=ExtResource("3_km200")]
 position = Vector2(2023.09, 219.409)
-collision_layer = 5
-motion_mode = 1
-script = ExtResource("4_jqcwa")
 config = ExtResource("8_vsemx")
 dlg = SubResource("Resource_re85g")
 id = "OIWP_Christopher"
-activate_external_sensors = false
 
-[node name="OIWP_Ratty" type="CharacterBody2D" parent="Objects/Characters" index="2" groups=["NodesWithID"] instance=ExtResource("3_km200")]
+[node name="OIWP_Ratty" parent="Objects/Characters" index="2" instance=ExtResource("3_km200")]
 position = Vector2(2065.98, 211.841)
-collision_layer = 5
-motion_mode = 1
-script = ExtResource("4_jqcwa")
 config = ExtResource("9_o7gm0")
 id = "OIWP_Ratty"
-activate_external_sensors = false
 
-[node name="OIWP_Robert" type="CharacterBody2D" parent="Objects/Characters" index="3" groups=["NodesWithID"] instance=ExtResource("3_km200")]
+[node name="OIWP_Robert" parent="Objects/Characters" index="3" instance=ExtResource("3_km200")]
 position = Vector2(2113.07, 211)
-collision_layer = 5
-motion_mode = 1
-script = ExtResource("4_jqcwa")
 config = ExtResource("10_6xys8")
 id = "OIWP_Robert"
-activate_external_sensors = false
 
 [node name="PlayerStart" type="Marker2D" parent="Markers" index="0"]
 position = Vector2(2176, 424)
