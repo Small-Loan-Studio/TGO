@@ -1,10 +1,9 @@
-[gd_scene load_steps=16 format=3 uid="uid://ds0gkocxs2aca"]
+[gd_scene load_steps=15 format=3 uid="uid://ds0gkocxs2aca"]
 
 [ext_resource type="PackedScene" uid="uid://dyq8mcdsutnsa" path="res://Scenes/Components/LevelBase.tscn" id="1_td7dg"]
 [ext_resource type="TileSet" uid="uid://c72m3jled4jfg" path="res://Art/Environment/ext_simple_tileset.tres" id="2_08aoa"]
 [ext_resource type="TileSet" uid="uid://dieqw1hu10wkc" path="res://Art/Environment/Canopy/TreesRoofCanopy.tres" id="3_peonm"]
 [ext_resource type="PackedScene" uid="uid://c2kg6apj756dw" path="res://Scenes/Components/NPC.tscn" id="4_skwh8"]
-[ext_resource type="Script" path="res://Scripts/Components/NPC.gd" id="5_66so5"]
 [ext_resource type="Resource" uid="uid://jfosf82l4fw5" path="res://Scripts/Resources/NPCs/Reeve.tres" id="6_s5jat"]
 [ext_resource type="Script" path="res://Scripts/Resources/Effects/DialogueEffect.gd" id="7_kvsud"]
 [ext_resource type="Resource" path="res://Dialogue/Reeve/Reeve1a.dtl" id="8_xeylo"]
@@ -54,23 +53,15 @@ layer_7/tile_data = PackedInt32Array(8716339, 65548, 13, 8716340, 65548, 13, 871
 [node name="CanopyMap" parent="." index="1"]
 tile_set = ExtResource("3_peonm")
 
-[node name="Reeve" type="CharacterBody2D" parent="Objects/Characters" index="0" groups=["NodesWithID"] instance=ExtResource("4_skwh8")]
+[node name="Reeve" parent="Objects/Characters" index="0" instance=ExtResource("4_skwh8")]
 position = Vector2(758.32, 3844.15)
-collision_layer = 5
-motion_mode = 1
-script = ExtResource("5_66so5")
 config = ExtResource("6_s5jat")
 dlg = SubResource("Resource_lrxfg")
-activate_external_sensors = false
 
-[node name="Perry" type="CharacterBody2D" parent="Objects/Characters" index="1" groups=["NodesWithID"] instance=ExtResource("4_skwh8")]
+[node name="Perry" parent="Objects/Characters" index="1" instance=ExtResource("4_skwh8")]
 position = Vector2(491.731, 4167.5)
-collision_layer = 5
-motion_mode = 1
-script = ExtResource("5_66so5")
 config = ExtResource("9_p3ra3")
 dlg = SubResource("Resource_rg54t")
-activate_external_sensors = false
 
 [node name="PlayerStart" type="Marker2D" parent="Markers" index="0"]
 position = Vector2(1486, 5031)

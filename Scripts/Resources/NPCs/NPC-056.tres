@@ -1,0 +1,14 @@
+[gd_resource type="Resource" script_class="NPCConfig" load_steps=3 format=3 uid="uid://cptnnqcxydnyl"]
+
+[ext_resource type="Script" path="res://Scripts/Resources/NpcConfig.gd" id="1_n7tkp"]
+[ext_resource type="SpriteFrames" uid="uid://b3igo1ygiyl0b" path="res://Art/Characters/character_placeholder.tres" id="2_y805m"]
+
+[resource]
+script = ExtResource("1_n7tkp")
+character_id = "NPC-056"
+sprite_sheet = ExtResource("2_y805m")
+valid_timelines = Array[String](["res://Dialogue/MiscellaneousDialogue/0_3bWilliam.dtl"])
+examine_text = ""
+examine_effects = Array[Resource("res://Scripts/Resources/Effect.gd")]([])
+show_item_effects = Array[Resource("res://Scripts/Resources/Effect.gd")]([])
+give_item_effects = Array[Resource("res://Scripts/Resources/Effect.gd")]([])
