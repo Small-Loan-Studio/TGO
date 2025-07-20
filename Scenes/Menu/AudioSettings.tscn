@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" path="res://Scripts/Menu/AudioSettingsMenu.gd" id="1_0roww"]
 [ext_resource type="Texture2D" uid="uid://mq3lrx2q74h4" path="res://Art/Stub/arrow_decorative_e.png" id="2_15y86"]
-[ext_resource type="Script" path="res://Scenes/Menu/AudioSlider.gd" id="2_v28y3"]
+[ext_resource type="Script" path="res://Scripts/Menu/AudioSlider.gd" id="2_v28y3"]
 [ext_resource type="StyleBox" uid="uid://c1ypkpgvj62ga" path="res://Scenes/Menu/AudioSlider.tres" id="4_7i0t7"]
 
 [node name="AudioSettings" type="Control"]
@@ -14,7 +14,6 @@ anchor_bottom = 0.85
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_0roww")
-menu_type = 2
 
 [node name="ColorRect" type="ColorRect" parent="."]
 layout_mode = 1
@@ -62,6 +61,7 @@ text = "Main"
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 4
+mouse_filter = 2
 theme_override_styles/slider = ExtResource("4_7i0t7")
 max_value = 1.0
 step = 0.1
@@ -90,6 +90,7 @@ text = "Background Music"
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 4
+mouse_filter = 2
 theme_override_styles/slider = ExtResource("4_7i0t7")
 max_value = 1.0
 step = 0.1
@@ -118,6 +119,7 @@ text = "Sound Effects"
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 4
+mouse_filter = 2
 theme_override_styles/slider = ExtResource("4_7i0t7")
 max_value = 1.0
 step = 0.1

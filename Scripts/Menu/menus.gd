@@ -3,8 +3,8 @@ extends Control
 
 enum MenuKind { DEBUG, PAUSE, TITLE }
 
-const PauseMenuScene: PackedScene = preload("./pause_menu.tscn")
-const TitleMenuScene: PackedScene = preload("./title_menu.tscn")
+const PauseMenuScene: PackedScene = preload("res://Scenes/Menu/pause_menu.tscn")
+const TitleMenuScene: PackedScene = preload("res://Scenes/Menu/title_menu.tscn")
 
 var _menus: Array[Menu] = []
 

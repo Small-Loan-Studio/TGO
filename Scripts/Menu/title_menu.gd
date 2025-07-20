@@ -1,7 +1,7 @@
 extends Menu
 
-const LevelMenuScene: PackedScene = preload("./level_menu.tscn")
-const SettingsMenuScene: PackedScene = preload("./settings_menu.tscn")
+const LevelMenuScene: PackedScene = preload("res://Scenes/Menu/level_menu.tscn")
+const SettingsMenuScene: PackedScene = preload("res://Scenes/Menu/settings_menu.tscn")
 
 @export var start_level: String
 
