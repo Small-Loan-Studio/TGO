@@ -41,6 +41,7 @@ gdscript/warnings/untyped_declaration=2
 
 directories/dch_directory={
 "Alf": "res://Scripts/Resources/NPCs/DialogicCharacters/Alf.dch",
+"Arthur Sharp": "res://Scripts/Resources/NPCs/DialogicCharacters/Arthur Sharp.dch",
 "Bartholomew": "res://Scripts/Resources/NPCs/DialogicCharacters/Bartholomew.dch",
 "CKP_Hugh": "res://Dialogue/CKP/CKP_Hugh.dch",
 "CKP_Jeremiah": "res://Dialogue/CKP/CKP_Jeremiah.dch",
@@ -67,6 +68,7 @@ directories/dch_directory={
 "test_character": "res://ZZ_Scratch/DialogicValidation/test_character.dch"
 }
 directories/dtl_directory={
+"Arthur Sharp": "res://Dialogue/Arthur Sharp/Arthur Sharp 2d.dtl",
 "AudioAdapter": "res://Dialogue/TestTimelines/AudioAdapter.dtl",
 "BagOfHardtack": "res://Dialogue/Examinations/BagOfHardtack.dtl",
 "Bartholomew13b": "res://Dialogue/Bartholomew/Bartholomew13b.dtl",
@@ -111,9 +113,13 @@ directories/dtl_directory={
 "UnlitWoodenTorch": "res://Dialogue/Examinations/UnlitWoodenTorch.dtl",
 "WoodenStake": "res://Dialogue/Examinations/WoodenStake.dtl",
 "debugging_timeline": "res://ZZ_Scratch/DialogicValidation/debugging_timeline.dtl",
+"examine": "res://Dialogue/Other/examine.dtl",
 "juniper_bush_full": "res://Dialogue/PlaceableInteractive/juniper_bush_full.dtl",
 "npc_test_dialogue": "res://ZZ_Scratch/NPCDialogue/npc_test_dialogue.dtl",
+"select_item": "res://Dialogue/Other/select_item.dtl",
 "style_timeline": "res://ZZ_Scratch/DialogicValidation/style_timeline.dtl",
+"test_give": "res://Dialogue/Other/test_give.dtl",
+"test_show": "res://Dialogue/Other/test_show.dtl",
 "test_timeline": "res://ZZ_Scratch/DialogicValidation/test_timeline.dtl",
 "timeline": "res://Dialogue/Silas/timeline.dtl"
 }
