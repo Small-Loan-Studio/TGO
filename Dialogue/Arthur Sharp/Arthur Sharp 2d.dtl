@@ -58,3 +58,6 @@ Devin: Of course.  I will do my utmost to root out the cause of these deaths. An
 	Devin: My gratitude.
 	"Arthur Sharp": God keep you safe, faceless one. Seek me after you learn more. I must away to my study.
 	# When Option 4 is chosen, Arthur leaves. Devin is free to roam about the rest of the Sharp Manor.
+# Add this code to when finished speaking to Author to complete quest
+[tgo_expr expr="{TGO.quest("QBH-001").complete()}"]
+[tgo_expr expr="{TGO.quest("QBH-003").start()}"]
