@@ -1,0 +1,16 @@
+[gd_resource type="Resource" script_class="Quest" load_steps=2 format=3 uid="uid://dkquw4xfgj6fj"]
+
+[ext_resource type="Script" path="res://Scripts/Resources/Quest.gd" id="1_eio86"]
+
+[resource]
+script = ExtResource("1_eio86")
+id = "QBH-003"
+title = "Question members of the Sharp household."
+description = "Those who dwell in this estate could offer a strong starting point regarding the misfortunate that has afflicted those in the farmlands. Spending time with them may also inform me of their current state of mind and morale."
+manual_start = false
+state = 0
+conditions = Array[Resource("res://Scripts/Resources/QuestCondition.gd")]([])
+manual_completion = false
+phases = Array[Resource("res://Scripts/QuestPhase.gd")]([])
+next = Array[ExtResource("1_eio86")]([])
+results = Array[Resource("res://Scripts/Resources/Effect.gd")]([])
