@@ -111,9 +111,13 @@ directories/dtl_directory={
 "UnlitWoodenTorch": "res://Dialogue/Examinations/UnlitWoodenTorch.dtl",
 "WoodenStake": "res://Dialogue/Examinations/WoodenStake.dtl",
 "debugging_timeline": "res://ZZ_Scratch/DialogicValidation/debugging_timeline.dtl",
+"examine": "res://Dialogue/Other/examine.dtl",
 "juniper_bush_full": "res://Dialogue/PlaceableInteractive/juniper_bush_full.dtl",
 "npc_test_dialogue": "res://ZZ_Scratch/NPCDialogue/npc_test_dialogue.dtl",
+"select_item": "res://Dialogue/Other/select_item.dtl",
 "style_timeline": "res://ZZ_Scratch/DialogicValidation/style_timeline.dtl",
+"test_give": "res://Dialogue/Other/test_give.dtl",
+"test_show": "res://Dialogue/Other/test_show.dtl",
 "test_timeline": "res://ZZ_Scratch/DialogicValidation/test_timeline.dtl",
 "timeline": "res://Dialogue/Silas/timeline.dtl"
 }
