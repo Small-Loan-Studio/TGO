@@ -1,31 +1,32 @@
 # The player has examined the necessary objects and Arthur Sharp enters.
-"Arthur Sharp": Goodness me. You’ve come at last. A renowned hunter in my presence. The Faceless, himself. So you have agreed to Buckley’s request?
-Devin: That I have. What is it that you wish to tell me?
-"Arthur Sharp": By Jove! Straight to the bone. Where to start?
-Devin: I suggest the beginning.
-"Arthur Sharp": Well, then. Three months back, a poor lad was found in the fields. Dead. Worse than dead.
-"Arthur Sharp": Far worse.
-"Arthur Sharp": Twas though a vicious beast had savaged him, but unlike any beast I have known. A day hence, three more had vanished.
-Devin: And even more deaths have followed, yes?
-"Arthur Sharp": Would that I could say no; but alas, I cannot. The recent bodies were found on the seventh of January.
-"Arthur Sharp": Eight dead and missing now. Please, sir, I beseech you to find this killer or beast.
-"Arthur Sharp": I...
-[wait time="1.0"]
-Devin: Yes?
-"Arthur Sharp": I tell you in confidence that these last two bodies left me pale in fright.
-Devin: Why so?
-"Arthur Sharp": Whatever grotesque barbarism is afoot, it seemed to me almost otherworldly.
-Devin: As I shall soon find for myself. Indeed, by now I should have already completed my appraisal. So pray tell, why is it exactly that you have summoned me?
-"Arthur Sharp": It is more personal in nature, faceless one. After the first death, a fortnight hence my Beth, my dear wife, vanished. No trace left.
-Devin: I see.
-"Arthur Sharp": We cannot think how. Or why. The family has been greatly disturbed by her absence. As have I.
-[wait time="1.0"]
-"Arthur Sharp": I implore you. Bring her back, hunter. Even if... even if she isn’t...
-Devin: Of course.  I will do my utmost to root out the cause of these deaths. And these vanishings. I will find her. You have my word.
-"Arthur Sharp": Gramercy. You are welcome to question my relatives before or after you see to the bodies. They reside here. Apart from my Fiona, our youngest daughter.
-"Arthur Sharp": Do you care to ask anything further before I return to my work?
-- 
-	# Option 1: The corpses. What did you mean by otherworldly?
+if {} == false:
+	"Arthur Sharp": Goodness me. You’ve come at last. A renowned hunter in my presence. The Faceless, himself. So you have agreed to Buckley’s request?
+	Devin: That I have. What is it that you wish to tell me?
+	"Arthur Sharp": By Jove! Straight to the bone. Where to start?
+	Devin: I suggest the beginning.
+	"Arthur Sharp": Well, then. Three months back, a poor lad was found in the fields. Dead. Worse than dead.
+	"Arthur Sharp": Far worse.
+	"Arthur Sharp": Twas though a vicious beast had savaged him, but unlike any beast I have known. A day hence, three more had vanished.
+	Devin: And even more deaths have followed, yes?
+	"Arthur Sharp": Would that I could say no; but alas, I cannot. The recent bodies were found on the seventh of January.
+	"Arthur Sharp": Eight dead and missing now. Please, sir, I beseech you to find this killer or beast.
+	"Arthur Sharp": I...
+	[wait time="1.0"]
+	Devin: Yes?
+	"Arthur Sharp": I tell you in confidence that these last two bodies left me pale in fright.
+	Devin: Why so?
+	"Arthur Sharp": Whatever grotesque barbarism is afoot, it seemed to me almost otherworldly.
+	Devin: As I shall soon find for myself. Indeed, by now I should have already completed my appraisal. So pray tell, why is it exactly that you have summoned me?
+	"Arthur Sharp": It is more personal in nature, faceless one. After the first death, a fortnight hence my Beth, my dear wife, vanished. No trace left.
+	Devin: I see.
+	"Arthur Sharp": We cannot think how. Or why. The family has been greatly disturbed by her absence. As have I.
+	[wait time="1.0"]
+	"Arthur Sharp": I implore you. Bring her back, hunter. Even if... even if she isn’t...
+	Devin: Of course.  I will do my utmost to root out the cause of these deaths. And these vanishings. I will find her. You have my word.
+	"Arthur Sharp": Gramercy. You are welcome to question my relatives before or after you see to the bodies. They reside here. Apart from my Fiona, our youngest daughter.
+	"Arthur Sharp": Do you care to ask anything further before I return to my work?
+# Option 1
+- The corpses. What did you mean by otherworldly?
 	Devin: You said “barbarism”. “Otherworldly” is the term you used also. Elaborate, if you will?
 	"Arthur Sharp": Yes, of course. Marks on each body from no beast nor creature that I have ever known. Not only do their depth and intensity stand out. But... their variety also. Pray tell, do I sound mad?
 	Devin: You ask a hunter of madness? Lunacy is my bread and butter most days.
@@ -33,14 +34,16 @@ Devin: Of course.  I will do my utmost to root out the cause of these deaths. An
 	"Arthur Sharp": You will have noticed my own exploits. But tis your particular line of work that I have always been fascinated with.
 	Devin: Indeed, there are similarities. Yet in my business, one must take care lest the hunter himself become the hunted.
 	Devin: As much as I relish this exchange in trade secrets, we have other matters to discuss.
-	# Option 2: What can you tell me of Beth’s vanishing?
+# Option 2
+- What can you tell me of Beth’s vanishing?
 	Devin: Your wife. What can you tell me about her disappearance?
 	"Arthur Sharp": My dear, sweet, kind Beth, who never hurt a soul. She is the beating heart of this household. The lifeblood of this family. We have all felt the impact of her absence keenly.
 	Devin: You suspect her vanishing to be caused by the same entity responsible for the deaths? The vanishings?
 	"Arthur Sharp": I cannot say with confidence. And I lack the means to understand such an entity — one as malignant as the one that savaged our labourers. I can say that the last person to see her was my daughter-in-law, Ilene.
 	Devin: Good. And where may I find her?
 	"Arthur Sharp": She oft lingers in the grounds. With my grandson.
-	# Option 3: Where is your family?
+# Option 3
+- Where is your family?
 	Devin: Who in the household may I speak with?
 	"Arthur Sharp": Ilene oft lingers in the grounds. Speak first with her, or even that leech, Martha Isaac, Beth’s first cousin, all pickled in gin and destroying the ambience in the music room.
 	"Arthur Sharp": Most days, my sons, Jefferson, the eldest, David, the middle and Elias, the youngest occupy the winter drawing room.
@@ -57,4 +60,4 @@ Devin: Of course.  I will do my utmost to root out the cause of these deaths. An
 	"Arthur Sharp": Every hunter needs good time piece, even one that hunts monsters.
 	Devin: My gratitude.
 	"Arthur Sharp": God keep you safe, faceless one. Seek me after you learn more. I must away to my study.
-	# When Option 4 is chosen, Arthur leaves. Devin is free to roam about the rest of the Sharp Manor.
+# When Option 4 is chosen, Arthur leaves.

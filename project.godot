@@ -141,6 +141,9 @@ save/autosave_delay=60.0
 save/encryption_on_exports_only=true
 text/autopauses={}
 variables={
+"Arthur Sharp": {
+"Var": "Arthur2dHasSpoken"
+},
 "Bartholomew": {
 "13bHasSpoken": false,
 "2bSpoken": false,
