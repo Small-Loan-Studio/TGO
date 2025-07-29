@@ -167,31 +167,32 @@ layer_7/tile_data = PackedInt32Array(8716339, 65548, 13, 8716340, 65548, 13, 871
 tile_set = ExtResource("3_peonm")
 
 [node name="Reeve" parent="Objects/Characters" index="0" instance=ExtResource("4_skwh8")]
-position = Vector2(1496, 4024)
+position = Vector2(1280, 4000)
 config = ExtResource("6_s5jat")
 dlg = SubResource("Resource_lrxfg")
+id = "NPC_001"
 
 [node name="Perry" parent="Objects/Characters" index="1" instance=ExtResource("4_skwh8")]
 position = Vector2(2112, 3400)
 config = ExtResource("9_p3ra3")
 dlg = SubResource("Resource_rg54t")
 
-[node name="Pyre_8" type="AnimatedSprite2D" parent="Objects" index="4"]
+[node name="Pyre_D6" type="AnimatedSprite2D" parent="Objects" index="4"]
 top_level = true
 z_as_relative = false
 y_sort_enabled = true
-position = Vector2(1632, 3616)
+position = Vector2(1760, 3040)
 sprite_frames = SubResource("SpriteFrames_cedmd")
 autoplay = "default"
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Objects/Pyre_8" index="0"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Objects/Pyre_D6" index="0"]
 z_as_relative = false
 y_sort_enabled = true
 position = Vector2(-16, 216)
 shape = SubResource("ConvexPolygonShape2D_jbne1")
 one_way_collision_margin = 0.0
 
-[node name="GreyboxObj" parent="Objects/Pyre_8" index="1" instance=ExtResource("11_q7iur")]
+[node name="GreyboxObj" parent="Objects/Pyre_D6" index="1" instance=ExtResource("11_q7iur")]
 visible = false
 z_as_relative = false
 position = Vector2(-16, 288)
@@ -201,206 +202,590 @@ can_block_light = true
 tint = Color(0.952659, 0.682052, 0.397883, 1)
 y_sort_width = 168
 
-[node name="Fire" parent="Objects/Pyre_8" index="2" instance=ExtResource("10_cb8wg")]
-z_index = 1
-position = Vector2(-16, 152)
-light_color = Color(1, 0.8125, 0, 1)
-light_size = 4.5
-sprite_texture = ExtResource("13_ypr3x")
-
-[node name="Pyre_11" type="AnimatedSprite2D" parent="Objects" index="5"]
-top_level = true
-z_as_relative = false
-y_sort_enabled = true
-position = Vector2(736, 3358)
-sprite_frames = SubResource("SpriteFrames_cedmd")
-autoplay = "default"
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Objects/Pyre_11" index="0"]
-z_as_relative = false
-y_sort_enabled = true
-position = Vector2(-16, 216)
-shape = SubResource("ConvexPolygonShape2D_jbne1")
-one_way_collision_margin = 0.0
-
-[node name="GreyboxObj" parent="Objects/Pyre_11" index="1" instance=ExtResource("11_q7iur")]
-visible = false
-z_as_relative = false
-position = Vector2(-16, 288)
-size = Vector2(4, 4)
-can_block_movement = true
-can_block_light = true
-tint = Color(0.952659, 0.682052, 0.397883, 1)
-y_sort_width = 168
-
-[node name="Fire" parent="Objects/Pyre_11" index="2" instance=ExtResource("10_cb8wg")]
-z_index = 1
-position = Vector2(-16, 152)
-light_color = Color(1, 0.8125, 0, 1)
-light_size = 4.5
-sprite_texture = ExtResource("13_ypr3x")
-
-[node name="Pyre_9" type="AnimatedSprite2D" parent="Objects" index="6"]
-top_level = true
-z_as_relative = false
-y_sort_enabled = true
-position = Vector2(1248, 3358)
-sprite_frames = SubResource("SpriteFrames_cedmd")
-autoplay = "default"
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Objects/Pyre_9" index="0"]
-z_as_relative = false
-y_sort_enabled = true
-position = Vector2(-16, 216)
-shape = SubResource("ConvexPolygonShape2D_jbne1")
-one_way_collision_margin = 0.0
-
-[node name="GreyboxObj" parent="Objects/Pyre_9" index="1" instance=ExtResource("11_q7iur")]
-visible = false
-z_as_relative = false
-position = Vector2(-16, 288)
-size = Vector2(4, 4)
-can_block_movement = true
-can_block_light = true
-tint = Color(0.952659, 0.682052, 0.397883, 1)
-y_sort_width = 168
-
-[node name="Fire" parent="Objects/Pyre_9" index="2" instance=ExtResource("10_cb8wg")]
-z_index = 1
-position = Vector2(-16, 152)
-light_color = Color(1, 0.8125, 0, 1)
-light_size = 4.5
-sprite_texture = ExtResource("13_ypr3x")
-
-[node name="Pyre_9" type="AnimatedSprite2D" parent="Objects/Pyre_9" index="3"]
-top_level = true
-z_as_relative = false
-y_sort_enabled = true
-position = Vector2(1504, 3358)
-sprite_frames = SubResource("SpriteFrames_cedmd")
-autoplay = "default"
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Objects/Pyre_9/Pyre_9" index="0"]
-z_as_relative = false
-y_sort_enabled = true
-position = Vector2(-16, 216)
-shape = SubResource("ConvexPolygonShape2D_jbne1")
-one_way_collision_margin = 0.0
-
-[node name="GreyboxObj" parent="Objects/Pyre_9/Pyre_9" index="1" instance=ExtResource("11_q7iur")]
-visible = false
-z_as_relative = false
-position = Vector2(-16, 288)
-size = Vector2(4, 4)
-can_block_movement = true
-can_block_light = true
-tint = Color(0.952659, 0.682052, 0.397883, 1)
-y_sort_width = 168
-
-[node name="Fire" parent="Objects/Pyre_9/Pyre_9" index="2" instance=ExtResource("10_cb8wg")]
-z_index = 1
-position = Vector2(-16, 152)
-light_color = Color(1, 0.8125, 0, 1)
-light_size = 4.5
-sprite_texture = ExtResource("13_ypr3x")
-
-[node name="Pyre_9" type="AnimatedSprite2D" parent="Objects/Pyre_9/Pyre_9" index="3"]
-top_level = true
-z_as_relative = false
-y_sort_enabled = true
-position = Vector2(1760, 3358)
-sprite_frames = SubResource("SpriteFrames_cedmd")
-autoplay = "default"
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Objects/Pyre_9/Pyre_9/Pyre_9" index="0"]
-z_as_relative = false
-y_sort_enabled = true
-position = Vector2(-16, 216)
-shape = SubResource("ConvexPolygonShape2D_jbne1")
-one_way_collision_margin = 0.0
-
-[node name="GreyboxObj" parent="Objects/Pyre_9/Pyre_9/Pyre_9" index="1" instance=ExtResource("11_q7iur")]
-visible = false
-z_as_relative = false
-position = Vector2(-16, 288)
-size = Vector2(4, 4)
-can_block_movement = true
-can_block_light = true
-tint = Color(0.952659, 0.682052, 0.397883, 1)
-y_sort_width = 168
-
-[node name="Fire" parent="Objects/Pyre_9/Pyre_9/Pyre_9" index="2" instance=ExtResource("10_cb8wg")]
-z_index = 1
-position = Vector2(-16, 152)
-light_color = Color(1, 0.8125, 0, 1)
-light_size = 4.5
-sprite_texture = ExtResource("13_ypr3x")
-
-[node name="Pyre_10" type="AnimatedSprite2D" parent="Objects" index="7"]
-top_level = true
-z_as_relative = false
-y_sort_enabled = true
-position = Vector2(992, 3358)
-sprite_frames = SubResource("SpriteFrames_cedmd")
-autoplay = "default"
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Objects/Pyre_10" index="0"]
-z_as_relative = false
-y_sort_enabled = true
-position = Vector2(-16, 216)
-shape = SubResource("ConvexPolygonShape2D_jbne1")
-one_way_collision_margin = 0.0
-
-[node name="GreyboxObj" parent="Objects/Pyre_10" index="1" instance=ExtResource("11_q7iur")]
-visible = false
-z_as_relative = false
-position = Vector2(-16, 288)
-size = Vector2(4, 4)
-can_block_movement = true
-can_block_light = true
-tint = Color(0.952659, 0.682052, 0.397883, 1)
-y_sort_width = 168
-
-[node name="Fire" parent="Objects/Pyre_10" index="2" instance=ExtResource("10_cb8wg")]
-z_index = 1
-position = Vector2(-16, 152)
-light_color = Color(1, 0.8125, 0, 1)
-light_size = 4.5
-sprite_texture = ExtResource("13_ypr3x")
-
-[node name="Pyre_7" type="AnimatedSprite2D" parent="Objects" index="8"]
-top_level = true
-z_as_relative = false
-y_sort_enabled = true
-position = Vector2(480, 3358)
-sprite_frames = SubResource("SpriteFrames_cedmd")
-autoplay = "default"
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Objects/Pyre_7" index="0"]
-z_as_relative = false
-y_sort_enabled = true
-position = Vector2(-16, 216)
-shape = SubResource("ConvexPolygonShape2D_jbne1")
-one_way_collision_margin = 0.0
-
-[node name="GreyboxObj" parent="Objects/Pyre_7" index="1" instance=ExtResource("11_q7iur")]
-visible = false
-z_as_relative = false
-position = Vector2(-16, 288)
-size = Vector2(4, 4)
-can_block_movement = true
-can_block_light = true
-tint = Color(0.952659, 0.682052, 0.397883, 1)
-y_sort_width = 168
-
-[node name="Fire" parent="Objects/Pyre_7" index="2" instance=ExtResource("10_cb8wg")]
+[node name="Fire" parent="Objects/Pyre_D6" index="2" instance=ExtResource("10_cb8wg")]
 z_index = 1
 position = Vector2(-8, 152)
 light_color = Color(1, 0.8125, 0, 1)
 light_size = 4.5
 sprite_texture = ExtResource("13_ypr3x")
 
-[node name="Pyre_6" type="AnimatedSprite2D" parent="Objects" index="9"]
+[node name="Pyre_D5" type="AnimatedSprite2D" parent="Objects" index="5"]
+top_level = true
+z_as_relative = false
+y_sort_enabled = true
+position = Vector2(1504, 3040)
+sprite_frames = SubResource("SpriteFrames_cedmd")
+autoplay = "default"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Objects/Pyre_D5" index="0"]
+z_as_relative = false
+y_sort_enabled = true
+position = Vector2(-16, 216)
+shape = SubResource("ConvexPolygonShape2D_jbne1")
+one_way_collision_margin = 0.0
+
+[node name="GreyboxObj" parent="Objects/Pyre_D5" index="1" instance=ExtResource("11_q7iur")]
+visible = false
+z_as_relative = false
+position = Vector2(-16, 288)
+size = Vector2(4, 4)
+can_block_movement = true
+can_block_light = true
+tint = Color(0.952659, 0.682052, 0.397883, 1)
+y_sort_width = 168
+
+[node name="Fire" parent="Objects/Pyre_D5" index="2" instance=ExtResource("10_cb8wg")]
+z_index = 1
+position = Vector2(-8, 152)
+light_color = Color(1, 0.8125, 0, 1)
+light_size = 4.5
+sprite_texture = ExtResource("13_ypr3x")
+
+[node name="Pyre_D4" type="AnimatedSprite2D" parent="Objects" index="6"]
+top_level = true
+z_as_relative = false
+y_sort_enabled = true
+position = Vector2(1248, 3040)
+sprite_frames = SubResource("SpriteFrames_cedmd")
+autoplay = "default"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Objects/Pyre_D4" index="0"]
+z_as_relative = false
+y_sort_enabled = true
+position = Vector2(-16, 216)
+shape = SubResource("ConvexPolygonShape2D_jbne1")
+one_way_collision_margin = 0.0
+
+[node name="GreyboxObj" parent="Objects/Pyre_D4" index="1" instance=ExtResource("11_q7iur")]
+visible = false
+z_as_relative = false
+position = Vector2(-16, 288)
+size = Vector2(4, 4)
+can_block_movement = true
+can_block_light = true
+tint = Color(0.952659, 0.682052, 0.397883, 1)
+y_sort_width = 168
+
+[node name="Fire" parent="Objects/Pyre_D4" index="2" instance=ExtResource("10_cb8wg")]
+z_index = 1
+position = Vector2(0, 152)
+light_color = Color(1, 0.8125, 0, 1)
+light_size = 4.5
+sprite_texture = ExtResource("13_ypr3x")
+
+[node name="Pyre_D3" type="AnimatedSprite2D" parent="Objects" index="7"]
+top_level = true
+z_as_relative = false
+y_sort_enabled = true
+position = Vector2(992, 3040)
+sprite_frames = SubResource("SpriteFrames_cedmd")
+autoplay = "default"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Objects/Pyre_D3" index="0"]
+z_as_relative = false
+y_sort_enabled = true
+position = Vector2(-16, 216)
+shape = SubResource("ConvexPolygonShape2D_jbne1")
+one_way_collision_margin = 0.0
+
+[node name="GreyboxObj" parent="Objects/Pyre_D3" index="1" instance=ExtResource("11_q7iur")]
+visible = false
+z_as_relative = false
+position = Vector2(-16, 288)
+size = Vector2(4, 4)
+can_block_movement = true
+can_block_light = true
+tint = Color(0.952659, 0.682052, 0.397883, 1)
+y_sort_width = 168
+
+[node name="Fire" parent="Objects/Pyre_D3" index="2" instance=ExtResource("10_cb8wg")]
+z_index = 1
+position = Vector2(-8, 152)
+light_color = Color(1, 0.8125, 0, 1)
+light_size = 4.5
+sprite_texture = ExtResource("13_ypr3x")
+
+[node name="Pyre_D2" type="AnimatedSprite2D" parent="Objects" index="8"]
+top_level = true
+z_as_relative = false
+y_sort_enabled = true
+position = Vector2(736, 3040)
+sprite_frames = SubResource("SpriteFrames_cedmd")
+autoplay = "default"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Objects/Pyre_D2" index="0"]
+z_as_relative = false
+y_sort_enabled = true
+position = Vector2(-16, 216)
+shape = SubResource("ConvexPolygonShape2D_jbne1")
+one_way_collision_margin = 0.0
+
+[node name="GreyboxObj" parent="Objects/Pyre_D2" index="1" instance=ExtResource("11_q7iur")]
+visible = false
+z_as_relative = false
+position = Vector2(-16, 288)
+size = Vector2(4, 4)
+can_block_movement = true
+can_block_light = true
+tint = Color(0.952659, 0.682052, 0.397883, 1)
+y_sort_width = 168
+
+[node name="Fire" parent="Objects/Pyre_D2" index="2" instance=ExtResource("10_cb8wg")]
+z_index = 1
+position = Vector2(-8, 152)
+light_color = Color(1, 0.8125, 0, 1)
+light_size = 4.5
+sprite_texture = ExtResource("13_ypr3x")
+
+[node name="Pyre_D1" type="AnimatedSprite2D" parent="Objects" index="9"]
+top_level = true
+z_as_relative = false
+y_sort_enabled = true
+position = Vector2(480, 3040)
+sprite_frames = SubResource("SpriteFrames_cedmd")
+autoplay = "default"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Objects/Pyre_D1" index="0"]
+z_as_relative = false
+y_sort_enabled = true
+position = Vector2(-16, 216)
+shape = SubResource("ConvexPolygonShape2D_jbne1")
+one_way_collision_margin = 0.0
+
+[node name="GreyboxObj" parent="Objects/Pyre_D1" index="1" instance=ExtResource("11_q7iur")]
+visible = false
+z_as_relative = false
+position = Vector2(-16, 288)
+size = Vector2(4, 4)
+can_block_movement = true
+can_block_light = true
+tint = Color(0.952659, 0.682052, 0.397883, 1)
+y_sort_width = 168
+
+[node name="Fire" parent="Objects/Pyre_D1" index="2" instance=ExtResource("10_cb8wg")]
+z_index = 1
+position = Vector2(-8, 152)
+light_color = Color(1, 0.8125, 0, 1)
+light_size = 4.5
+sprite_texture = ExtResource("13_ypr3x")
+
+[node name="Pyre_C6" type="AnimatedSprite2D" parent="Objects" index="10"]
+top_level = true
+z_as_relative = false
+y_sort_enabled = true
+position = Vector2(1632, 3232)
+sprite_frames = SubResource("SpriteFrames_cedmd")
+autoplay = "default"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Objects/Pyre_C6" index="0"]
+z_as_relative = false
+y_sort_enabled = true
+position = Vector2(-16, 216)
+shape = SubResource("ConvexPolygonShape2D_jbne1")
+one_way_collision_margin = 0.0
+
+[node name="GreyboxObj" parent="Objects/Pyre_C6" index="1" instance=ExtResource("11_q7iur")]
+visible = false
+z_as_relative = false
+position = Vector2(-16, 288)
+size = Vector2(4, 4)
+can_block_movement = true
+can_block_light = true
+tint = Color(0.952659, 0.682052, 0.397883, 1)
+y_sort_width = 168
+
+[node name="Fire" parent="Objects/Pyre_C6" index="2" instance=ExtResource("10_cb8wg")]
+z_index = 1
+position = Vector2(-16, 152)
+light_color = Color(1, 0.8125, 0, 1)
+light_size = 4.5
+sprite_texture = ExtResource("13_ypr3x")
+
+[node name="Pyre_C6" type="AnimatedSprite2D" parent="Objects/Pyre_C6" index="3"]
+top_level = true
+z_as_relative = false
+y_sort_enabled = true
+position = Vector2(1888, 3232)
+sprite_frames = SubResource("SpriteFrames_cedmd")
+autoplay = "default"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Objects/Pyre_C6/Pyre_C6" index="0"]
+z_as_relative = false
+y_sort_enabled = true
+position = Vector2(-16, 216)
+shape = SubResource("ConvexPolygonShape2D_jbne1")
+one_way_collision_margin = 0.0
+
+[node name="GreyboxObj" parent="Objects/Pyre_C6/Pyre_C6" index="1" instance=ExtResource("11_q7iur")]
+visible = false
+z_as_relative = false
+position = Vector2(-16, 288)
+size = Vector2(4, 4)
+can_block_movement = true
+can_block_light = true
+tint = Color(0.952659, 0.682052, 0.397883, 1)
+y_sort_width = 168
+
+[node name="Fire" parent="Objects/Pyre_C6/Pyre_C6" index="2" instance=ExtResource("10_cb8wg")]
+z_index = 1
+position = Vector2(-16, 152)
+light_color = Color(1, 0.8125, 0, 1)
+light_size = 4.5
+sprite_texture = ExtResource("13_ypr3x")
+
+[node name="Pyre_C5" type="AnimatedSprite2D" parent="Objects" index="11"]
+top_level = true
+z_as_relative = false
+y_sort_enabled = true
+position = Vector2(1376, 3232)
+sprite_frames = SubResource("SpriteFrames_cedmd")
+autoplay = "default"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Objects/Pyre_C5" index="0"]
+z_as_relative = false
+y_sort_enabled = true
+position = Vector2(-16, 216)
+shape = SubResource("ConvexPolygonShape2D_jbne1")
+one_way_collision_margin = 0.0
+
+[node name="GreyboxObj" parent="Objects/Pyre_C5" index="1" instance=ExtResource("11_q7iur")]
+visible = false
+z_as_relative = false
+position = Vector2(-16, 288)
+size = Vector2(4, 4)
+can_block_movement = true
+can_block_light = true
+tint = Color(0.952659, 0.682052, 0.397883, 1)
+y_sort_width = 168
+
+[node name="Fire" parent="Objects/Pyre_C5" index="2" instance=ExtResource("10_cb8wg")]
+z_index = 1
+position = Vector2(-16, 152)
+light_color = Color(1, 0.8125, 0, 1)
+light_size = 4.5
+sprite_texture = ExtResource("13_ypr3x")
+
+[node name="Pyre_C4" type="AnimatedSprite2D" parent="Objects" index="12"]
+top_level = true
+z_as_relative = false
+y_sort_enabled = true
+position = Vector2(1120, 3232)
+sprite_frames = SubResource("SpriteFrames_cedmd")
+autoplay = "default"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Objects/Pyre_C4" index="0"]
+z_as_relative = false
+y_sort_enabled = true
+position = Vector2(-16, 216)
+shape = SubResource("ConvexPolygonShape2D_jbne1")
+one_way_collision_margin = 0.0
+
+[node name="GreyboxObj" parent="Objects/Pyre_C4" index="1" instance=ExtResource("11_q7iur")]
+visible = false
+z_as_relative = false
+position = Vector2(-16, 288)
+size = Vector2(4, 4)
+can_block_movement = true
+can_block_light = true
+tint = Color(0.952659, 0.682052, 0.397883, 1)
+y_sort_width = 168
+
+[node name="Fire" parent="Objects/Pyre_C4" index="2" instance=ExtResource("10_cb8wg")]
+z_index = 1
+position = Vector2(-16, 152)
+light_color = Color(1, 0.8125, 0, 1)
+light_size = 4.5
+sprite_texture = ExtResource("13_ypr3x")
+
+[node name="Pyre_C3" type="AnimatedSprite2D" parent="Objects" index="13"]
+top_level = true
+z_as_relative = false
+y_sort_enabled = true
+position = Vector2(864, 3232)
+sprite_frames = SubResource("SpriteFrames_cedmd")
+autoplay = "default"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Objects/Pyre_C3" index="0"]
+z_as_relative = false
+y_sort_enabled = true
+position = Vector2(-16, 216)
+shape = SubResource("ConvexPolygonShape2D_jbne1")
+one_way_collision_margin = 0.0
+
+[node name="GreyboxObj" parent="Objects/Pyre_C3" index="1" instance=ExtResource("11_q7iur")]
+visible = false
+z_as_relative = false
+position = Vector2(-16, 288)
+size = Vector2(4, 4)
+can_block_movement = true
+can_block_light = true
+tint = Color(0.952659, 0.682052, 0.397883, 1)
+y_sort_width = 168
+
+[node name="Fire" parent="Objects/Pyre_C3" index="2" instance=ExtResource("10_cb8wg")]
+z_index = 1
+position = Vector2(-16, 152)
+light_color = Color(1, 0.8125, 0, 1)
+light_size = 4.5
+sprite_texture = ExtResource("13_ypr3x")
+
+[node name="Pyre_C2" type="AnimatedSprite2D" parent="Objects" index="14"]
+top_level = true
+z_as_relative = false
+y_sort_enabled = true
+position = Vector2(608, 3232)
+sprite_frames = SubResource("SpriteFrames_cedmd")
+autoplay = "default"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Objects/Pyre_C2" index="0"]
+z_as_relative = false
+y_sort_enabled = true
+position = Vector2(-16, 216)
+shape = SubResource("ConvexPolygonShape2D_jbne1")
+one_way_collision_margin = 0.0
+
+[node name="GreyboxObj" parent="Objects/Pyre_C2" index="1" instance=ExtResource("11_q7iur")]
+visible = false
+z_as_relative = false
+position = Vector2(-16, 288)
+size = Vector2(4, 4)
+can_block_movement = true
+can_block_light = true
+tint = Color(0.952659, 0.682052, 0.397883, 1)
+y_sort_width = 168
+
+[node name="Fire" parent="Objects/Pyre_C2" index="2" instance=ExtResource("10_cb8wg")]
+z_index = 1
+position = Vector2(-16, 152)
+light_color = Color(1, 0.8125, 0, 1)
+light_size = 4.5
+sprite_texture = ExtResource("13_ypr3x")
+
+[node name="Pyre_C1" type="AnimatedSprite2D" parent="Objects" index="15"]
+top_level = true
+z_as_relative = false
+y_sort_enabled = true
+position = Vector2(352, 3232)
+sprite_frames = SubResource("SpriteFrames_cedmd")
+autoplay = "default"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Objects/Pyre_C1" index="0"]
+z_as_relative = false
+y_sort_enabled = true
+position = Vector2(-16, 216)
+shape = SubResource("ConvexPolygonShape2D_jbne1")
+one_way_collision_margin = 0.0
+
+[node name="GreyboxObj" parent="Objects/Pyre_C1" index="1" instance=ExtResource("11_q7iur")]
+visible = false
+z_as_relative = false
+position = Vector2(-16, 288)
+size = Vector2(4, 4)
+can_block_movement = true
+can_block_light = true
+tint = Color(0.952659, 0.682052, 0.397883, 1)
+y_sort_width = 168
+
+[node name="Fire" parent="Objects/Pyre_C1" index="2" instance=ExtResource("10_cb8wg")]
+z_index = 1
+position = Vector2(-16, 152)
+light_color = Color(1, 0.8125, 0, 1)
+light_size = 4.5
+sprite_texture = ExtResource("13_ypr3x")
+
+[node name="Pyre_B6" type="AnimatedSprite2D" parent="Objects" index="16"]
+top_level = true
+z_as_relative = false
+y_sort_enabled = true
+position = Vector2(1760, 3422)
+sprite_frames = SubResource("SpriteFrames_cedmd")
+autoplay = "default"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Objects/Pyre_B6" index="0"]
+z_as_relative = false
+y_sort_enabled = true
+position = Vector2(-16, 216)
+shape = SubResource("ConvexPolygonShape2D_jbne1")
+one_way_collision_margin = 0.0
+
+[node name="GreyboxObj" parent="Objects/Pyre_B6" index="1" instance=ExtResource("11_q7iur")]
+visible = false
+z_as_relative = false
+position = Vector2(-16, 288)
+size = Vector2(4, 4)
+can_block_movement = true
+can_block_light = true
+tint = Color(0.952659, 0.682052, 0.397883, 1)
+y_sort_width = 168
+
+[node name="Fire" parent="Objects/Pyre_B6" index="2" instance=ExtResource("10_cb8wg")]
+z_index = 1
+position = Vector2(-16, 152)
+light_color = Color(1, 0.8125, 0, 1)
+light_size = 4.5
+sprite_texture = ExtResource("13_ypr3x")
+
+[node name="Pyre_B5" type="AnimatedSprite2D" parent="Objects" index="17"]
+top_level = true
+z_as_relative = false
+y_sort_enabled = true
+position = Vector2(1504, 3422)
+sprite_frames = SubResource("SpriteFrames_cedmd")
+autoplay = "default"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Objects/Pyre_B5" index="0"]
+z_as_relative = false
+y_sort_enabled = true
+position = Vector2(-16, 216)
+shape = SubResource("ConvexPolygonShape2D_jbne1")
+one_way_collision_margin = 0.0
+
+[node name="GreyboxObj" parent="Objects/Pyre_B5" index="1" instance=ExtResource("11_q7iur")]
+visible = false
+z_as_relative = false
+position = Vector2(-16, 288)
+size = Vector2(4, 4)
+can_block_movement = true
+can_block_light = true
+tint = Color(0.952659, 0.682052, 0.397883, 1)
+y_sort_width = 168
+
+[node name="Fire" parent="Objects/Pyre_B5" index="2" instance=ExtResource("10_cb8wg")]
+z_index = 1
+position = Vector2(-16, 152)
+light_color = Color(1, 0.8125, 0, 1)
+light_size = 4.5
+sprite_texture = ExtResource("13_ypr3x")
+
+[node name="Pyre_B4" type="AnimatedSprite2D" parent="Objects" index="18"]
+top_level = true
+z_as_relative = false
+y_sort_enabled = true
+position = Vector2(1248, 3422)
+sprite_frames = SubResource("SpriteFrames_cedmd")
+autoplay = "default"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Objects/Pyre_B4" index="0"]
+z_as_relative = false
+y_sort_enabled = true
+position = Vector2(-16, 216)
+shape = SubResource("ConvexPolygonShape2D_jbne1")
+one_way_collision_margin = 0.0
+
+[node name="GreyboxObj" parent="Objects/Pyre_B4" index="1" instance=ExtResource("11_q7iur")]
+visible = false
+z_as_relative = false
+position = Vector2(-16, 288)
+size = Vector2(4, 4)
+can_block_movement = true
+can_block_light = true
+tint = Color(0.952659, 0.682052, 0.397883, 1)
+y_sort_width = 168
+
+[node name="Fire" parent="Objects/Pyre_B4" index="2" instance=ExtResource("10_cb8wg")]
+z_index = 1
+position = Vector2(-16, 152)
+light_color = Color(1, 0.8125, 0, 1)
+light_size = 4.5
+sprite_texture = ExtResource("13_ypr3x")
+
+[node name="Pyre_B3" type="AnimatedSprite2D" parent="Objects" index="19"]
+top_level = true
+z_as_relative = false
+y_sort_enabled = true
+position = Vector2(992, 3422)
+sprite_frames = SubResource("SpriteFrames_cedmd")
+autoplay = "default"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Objects/Pyre_B3" index="0"]
+z_as_relative = false
+y_sort_enabled = true
+position = Vector2(-16, 216)
+shape = SubResource("ConvexPolygonShape2D_jbne1")
+one_way_collision_margin = 0.0
+
+[node name="GreyboxObj" parent="Objects/Pyre_B3" index="1" instance=ExtResource("11_q7iur")]
+visible = false
+z_as_relative = false
+position = Vector2(-16, 288)
+size = Vector2(4, 4)
+can_block_movement = true
+can_block_light = true
+tint = Color(0.952659, 0.682052, 0.397883, 1)
+y_sort_width = 168
+
+[node name="Fire" parent="Objects/Pyre_B3" index="2" instance=ExtResource("10_cb8wg")]
+z_index = 1
+position = Vector2(-16, 152)
+light_color = Color(1, 0.8125, 0, 1)
+light_size = 4.5
+sprite_texture = ExtResource("13_ypr3x")
+
+[node name="Pyre_B2" type="AnimatedSprite2D" parent="Objects" index="20"]
+top_level = true
+z_as_relative = false
+y_sort_enabled = true
+position = Vector2(736, 3422)
+sprite_frames = SubResource("SpriteFrames_cedmd")
+autoplay = "default"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Objects/Pyre_B2" index="0"]
+z_as_relative = false
+y_sort_enabled = true
+position = Vector2(-16, 216)
+shape = SubResource("ConvexPolygonShape2D_jbne1")
+one_way_collision_margin = 0.0
+
+[node name="GreyboxObj" parent="Objects/Pyre_B2" index="1" instance=ExtResource("11_q7iur")]
+visible = false
+z_as_relative = false
+position = Vector2(-16, 288)
+size = Vector2(4, 4)
+can_block_movement = true
+can_block_light = true
+tint = Color(0.952659, 0.682052, 0.397883, 1)
+y_sort_width = 168
+
+[node name="Fire" parent="Objects/Pyre_B2" index="2" instance=ExtResource("10_cb8wg")]
+z_index = 1
+position = Vector2(-16, 152)
+light_color = Color(1, 0.8125, 0, 1)
+light_size = 4.5
+sprite_texture = ExtResource("13_ypr3x")
+
+[node name="Pyre_B1" type="AnimatedSprite2D" parent="Objects" index="21"]
+top_level = true
+z_as_relative = false
+y_sort_enabled = true
+position = Vector2(480, 3422)
+sprite_frames = SubResource("SpriteFrames_cedmd")
+autoplay = "default"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Objects/Pyre_B1" index="0"]
+z_as_relative = false
+y_sort_enabled = true
+position = Vector2(-16, 216)
+shape = SubResource("ConvexPolygonShape2D_jbne1")
+one_way_collision_margin = 0.0
+
+[node name="GreyboxObj" parent="Objects/Pyre_B1" index="1" instance=ExtResource("11_q7iur")]
+visible = false
+z_as_relative = false
+position = Vector2(-16, 288)
+size = Vector2(4, 4)
+can_block_movement = true
+can_block_light = true
+tint = Color(0.952659, 0.682052, 0.397883, 1)
+y_sort_width = 168
+
+[node name="Fire" parent="Objects/Pyre_B1" index="2" instance=ExtResource("10_cb8wg")]
+z_index = 1
+position = Vector2(-8, 152)
+light_color = Color(1, 0.8125, 0, 1)
+light_size = 4.5
+sprite_texture = ExtResource("13_ypr3x")
+
+[node name="Pyre_A7" type="AnimatedSprite2D" parent="Objects" index="22"]
 top_level = true
 z_as_relative = false
 y_sort_enabled = true
@@ -408,14 +793,14 @@ position = Vector2(1889, 3616)
 sprite_frames = SubResource("SpriteFrames_cedmd")
 autoplay = "default"
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Objects/Pyre_6" index="0"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Objects/Pyre_A7" index="0"]
 z_as_relative = false
 y_sort_enabled = true
 position = Vector2(-16, 216)
 shape = SubResource("ConvexPolygonShape2D_jbne1")
 one_way_collision_margin = 0.0
 
-[node name="GreyboxObj" parent="Objects/Pyre_6" index="1" instance=ExtResource("11_q7iur")]
+[node name="GreyboxObj" parent="Objects/Pyre_A7" index="1" instance=ExtResource("11_q7iur")]
 visible = false
 z_as_relative = false
 position = Vector2(-16, 288)
@@ -425,14 +810,46 @@ can_block_light = true
 tint = Color(0.952659, 0.682052, 0.397883, 1)
 y_sort_width = 168
 
-[node name="Fire" parent="Objects/Pyre_6" index="2" instance=ExtResource("10_cb8wg")]
+[node name="Fire" parent="Objects/Pyre_A7" index="2" instance=ExtResource("10_cb8wg")]
 z_index = 1
 position = Vector2(-16, 152)
 light_color = Color(1, 0.8125, 0, 1)
 light_size = 4.5
 sprite_texture = ExtResource("13_ypr3x")
 
-[node name="Pyre_5" type="AnimatedSprite2D" parent="Objects" index="10"]
+[node name="Pyre_A6" type="AnimatedSprite2D" parent="Objects" index="23"]
+top_level = true
+z_as_relative = false
+y_sort_enabled = true
+position = Vector2(1632, 3616)
+sprite_frames = SubResource("SpriteFrames_cedmd")
+autoplay = "default"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Objects/Pyre_A6" index="0"]
+z_as_relative = false
+y_sort_enabled = true
+position = Vector2(-16, 216)
+shape = SubResource("ConvexPolygonShape2D_jbne1")
+one_way_collision_margin = 0.0
+
+[node name="GreyboxObj" parent="Objects/Pyre_A6" index="1" instance=ExtResource("11_q7iur")]
+visible = false
+z_as_relative = false
+position = Vector2(-16, 288)
+size = Vector2(4, 4)
+can_block_movement = true
+can_block_light = true
+tint = Color(0.952659, 0.682052, 0.397883, 1)
+y_sort_width = 168
+
+[node name="Fire" parent="Objects/Pyre_A6" index="2" instance=ExtResource("10_cb8wg")]
+z_index = 1
+position = Vector2(-16, 152)
+light_color = Color(1, 0.8125, 0, 1)
+light_size = 4.5
+sprite_texture = ExtResource("13_ypr3x")
+
+[node name="Pyre_A5" type="AnimatedSprite2D" parent="Objects" index="24"]
 top_level = true
 z_as_relative = false
 y_sort_enabled = true
@@ -440,14 +857,14 @@ position = Vector2(1376, 3616)
 sprite_frames = SubResource("SpriteFrames_cedmd")
 autoplay = "default"
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Objects/Pyre_5" index="0"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Objects/Pyre_A5" index="0"]
 z_as_relative = false
 y_sort_enabled = true
 position = Vector2(-16, 216)
 shape = SubResource("ConvexPolygonShape2D_jbne1")
 one_way_collision_margin = 0.0
 
-[node name="GreyboxObj" parent="Objects/Pyre_5" index="1" instance=ExtResource("11_q7iur")]
+[node name="GreyboxObj" parent="Objects/Pyre_A5" index="1" instance=ExtResource("11_q7iur")]
 visible = false
 z_as_relative = false
 position = Vector2(-16, 288)
@@ -457,14 +874,14 @@ can_block_light = true
 tint = Color(0.952659, 0.682052, 0.397883, 1)
 y_sort_width = 168
 
-[node name="Fire" parent="Objects/Pyre_5" index="2" instance=ExtResource("10_cb8wg")]
+[node name="Fire" parent="Objects/Pyre_A5" index="2" instance=ExtResource("10_cb8wg")]
 z_index = 1
-position = Vector2(-32, 152)
+position = Vector2(-32, 136)
 light_color = Color(1, 0.8125, 0, 1)
 light_size = 4.5
 sprite_texture = ExtResource("13_ypr3x")
 
-[node name="Pyre_4" type="AnimatedSprite2D" parent="Objects" index="11"]
+[node name="Pyre_A4" type="AnimatedSprite2D" parent="Objects" index="25"]
 top_level = true
 z_as_relative = false
 y_sort_enabled = true
@@ -472,14 +889,14 @@ position = Vector2(1120, 3616)
 sprite_frames = SubResource("SpriteFrames_cedmd")
 autoplay = "default"
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Objects/Pyre_4" index="0"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Objects/Pyre_A4" index="0"]
 z_as_relative = false
 y_sort_enabled = true
 position = Vector2(-16, 216)
 shape = SubResource("ConvexPolygonShape2D_jbne1")
 one_way_collision_margin = 0.0
 
-[node name="GreyboxObj" parent="Objects/Pyre_4" index="1" instance=ExtResource("11_q7iur")]
+[node name="GreyboxObj" parent="Objects/Pyre_A4" index="1" instance=ExtResource("11_q7iur")]
 visible = false
 z_as_relative = false
 position = Vector2(-16, 288)
@@ -489,14 +906,14 @@ can_block_light = true
 tint = Color(0.952659, 0.682052, 0.397883, 1)
 y_sort_width = 168
 
-[node name="Fire" parent="Objects/Pyre_4" index="2" instance=ExtResource("10_cb8wg")]
+[node name="Fire" parent="Objects/Pyre_A4" index="2" instance=ExtResource("10_cb8wg")]
 z_index = 1
 position = Vector2(-16, 152)
 light_color = Color(1, 0.8125, 0, 1)
 light_size = 4.5
 sprite_texture = ExtResource("13_ypr3x")
 
-[node name="Pyre_3" type="AnimatedSprite2D" parent="Objects" index="12"]
+[node name="Pyre_A3" type="AnimatedSprite2D" parent="Objects" index="26"]
 top_level = true
 z_as_relative = false
 y_sort_enabled = true
@@ -504,14 +921,14 @@ position = Vector2(865, 3616)
 sprite_frames = SubResource("SpriteFrames_cedmd")
 autoplay = "default"
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Objects/Pyre_3" index="0"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Objects/Pyre_A3" index="0"]
 z_as_relative = false
 y_sort_enabled = true
 position = Vector2(-16, 216)
 shape = SubResource("ConvexPolygonShape2D_jbne1")
 one_way_collision_margin = 0.0
 
-[node name="GreyboxObj" parent="Objects/Pyre_3" index="1" instance=ExtResource("11_q7iur")]
+[node name="GreyboxObj" parent="Objects/Pyre_A3" index="1" instance=ExtResource("11_q7iur")]
 visible = false
 z_as_relative = false
 position = Vector2(-16, 288)
@@ -521,46 +938,14 @@ can_block_light = true
 tint = Color(0.952659, 0.682052, 0.397883, 1)
 y_sort_width = 168
 
-[node name="Fire" parent="Objects/Pyre_3" index="2" instance=ExtResource("10_cb8wg")]
+[node name="Fire" parent="Objects/Pyre_A3" index="2" instance=ExtResource("10_cb8wg")]
 z_index = 1
 position = Vector2(-16, 152)
 light_color = Color(1, 0.8125, 0, 1)
 light_size = 4.5
 sprite_texture = ExtResource("13_ypr3x")
 
-[node name="Pyre_2" type="AnimatedSprite2D" parent="Objects" index="13"]
-top_level = true
-z_as_relative = false
-y_sort_enabled = true
-position = Vector2(352, 3616)
-sprite_frames = SubResource("SpriteFrames_cedmd")
-autoplay = "default"
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Objects/Pyre_2" index="0"]
-z_as_relative = false
-y_sort_enabled = true
-position = Vector2(-16, 216)
-shape = SubResource("ConvexPolygonShape2D_jbne1")
-one_way_collision_margin = 0.0
-
-[node name="GreyboxObj" parent="Objects/Pyre_2" index="1" instance=ExtResource("11_q7iur")]
-visible = false
-z_as_relative = false
-position = Vector2(-16, 288)
-size = Vector2(4, 4)
-can_block_movement = true
-can_block_light = true
-tint = Color(0.952659, 0.682052, 0.397883, 1)
-y_sort_width = 168
-
-[node name="Fire" parent="Objects/Pyre_2" index="2" instance=ExtResource("10_cb8wg")]
-z_index = 1
-position = Vector2(-16, 152)
-light_color = Color(1, 0.8125, 0, 1)
-light_size = 4.5
-sprite_texture = ExtResource("13_ypr3x")
-
-[node name="Pyre_1" type="AnimatedSprite2D" parent="Objects" index="14"]
+[node name="Pyre_A2" type="AnimatedSprite2D" parent="Objects" index="27"]
 top_level = true
 z_as_relative = false
 y_sort_enabled = true
@@ -568,14 +953,14 @@ position = Vector2(609, 3616)
 sprite_frames = SubResource("SpriteFrames_cedmd")
 autoplay = "default"
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Objects/Pyre_1" index="0"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Objects/Pyre_A2" index="0"]
 z_as_relative = false
 y_sort_enabled = true
 position = Vector2(-16, 216)
 shape = SubResource("ConvexPolygonShape2D_jbne1")
 one_way_collision_margin = 0.0
 
-[node name="GreyboxObj" parent="Objects/Pyre_1" index="1" instance=ExtResource("11_q7iur")]
+[node name="GreyboxObj" parent="Objects/Pyre_A2" index="1" instance=ExtResource("11_q7iur")]
 visible = false
 z_as_relative = false
 position = Vector2(-16, 288)
@@ -585,9 +970,41 @@ can_block_light = true
 tint = Color(0.952659, 0.682052, 0.397883, 1)
 y_sort_width = 168
 
-[node name="Fire" parent="Objects/Pyre_1" index="2" instance=ExtResource("10_cb8wg")]
+[node name="Fire" parent="Objects/Pyre_A2" index="2" instance=ExtResource("10_cb8wg")]
 z_index = 1
 position = Vector2(-17, 160)
+light_color = Color(1, 0.8125, 0, 1)
+light_size = 4.5
+sprite_texture = ExtResource("13_ypr3x")
+
+[node name="Pyre_A1" type="AnimatedSprite2D" parent="Objects" index="28"]
+top_level = true
+z_as_relative = false
+y_sort_enabled = true
+position = Vector2(352, 3616)
+sprite_frames = SubResource("SpriteFrames_cedmd")
+autoplay = "default"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Objects/Pyre_A1" index="0"]
+z_as_relative = false
+y_sort_enabled = true
+position = Vector2(-16, 216)
+shape = SubResource("ConvexPolygonShape2D_jbne1")
+one_way_collision_margin = 0.0
+
+[node name="GreyboxObj" parent="Objects/Pyre_A1" index="1" instance=ExtResource("11_q7iur")]
+visible = false
+z_as_relative = false
+position = Vector2(-16, 288)
+size = Vector2(4, 4)
+can_block_movement = true
+can_block_light = true
+tint = Color(0.952659, 0.682052, 0.397883, 1)
+y_sort_width = 168
+
+[node name="Fire" parent="Objects/Pyre_A1" index="2" instance=ExtResource("10_cb8wg")]
+z_index = 1
+position = Vector2(-16, 152)
 light_color = Color(1, 0.8125, 0, 1)
 light_size = 4.5
 sprite_texture = ExtResource("13_ypr3x")
@@ -682,5 +1099,3 @@ process_material = SubResource("ParticleProcessMaterial_8h30u")
 lifetime = 10.0
 preprocess = 30.0
 trail_lifetime = 0.5
-
-[node name="GPUParticles2D" type="GPUParticles2D" parent="." index="16"]
