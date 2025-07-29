@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=3 uid="uid://bpqy2l0t41kaa"]
+[gd_scene load_steps=18 format=3 uid="uid://bpqy2l0t41kaa"]
 
 [ext_resource type="PackedScene" uid="uid://dyq8mcdsutnsa" path="res://Scenes/Components/LevelBase.tscn" id="1_oacxt"]
 [ext_resource type="TileSet" uid="uid://c72m3jled4jfg" path="res://Art/Environment/ext_simple_tileset.tres" id="2_jud3x"]
@@ -6,7 +6,6 @@
 [ext_resource type="PackedScene" uid="uid://c3fld6my8so3p" path="res://Scenes/Components/SimpleSwitch.tscn" id="4_yclx1"]
 [ext_resource type="Script" path="res://Scripts/Resources/Effects/LevelLoadEffect.gd" id="6_7wqhn"]
 [ext_resource type="PackedScene" uid="uid://c2kg6apj756dw" path="res://Scenes/Components/NPC.tscn" id="6_ux3kt"]
-[ext_resource type="Script" path="res://Scripts/Components/NPC.gd" id="7_wwwkj"]
 [ext_resource type="Resource" uid="uid://cptnnqcxydnyl" path="res://Scripts/Resources/NPCs/NPC-056.tres" id="8_cfalv"]
 [ext_resource type="Script" path="res://Scripts/Resources/Effects/DialogueEffect.gd" id="9_20kkv"]
 [ext_resource type="Resource" path="res://Dialogue/MiscellaneousDialogue/0_3bWilliam.dtl" id="10_3fdum"]
@@ -113,14 +112,10 @@ position = Vector2(1808, 2584)
 sensor_size = Vector2(120, 10)
 on_pressed_effects = Array[Resource("res://Scripts/Resources/Effect.gd")]([SubResource("Resource_5a8ig")])
 
-[node name="NPC-056" type="CharacterBody2D" parent="Objects/Characters" index="0" groups=["NodesWithID"] instance=ExtResource("6_ux3kt")]
+[node name="NPC-056" parent="Objects/Characters" index="0" instance=ExtResource("6_ux3kt")]
 position = Vector2(-9582.01, 4524.88)
-collision_layer = 5
-motion_mode = 1
-script = ExtResource("7_wwwkj")
 config = ExtResource("8_cfalv")
 dlg = SubResource("Resource_pcigd")
-activate_external_sensors = false
 
 [node name="PS-Cemetery-Exit" type="Marker2D" parent="Markers" index="0"]
 position = Vector2(-8416, 5247)

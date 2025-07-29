@@ -1,4 +1,4 @@
-[gd_scene load_steps=108 format=3 uid="uid://bgn6kmsvdqh4l"]
+[gd_scene load_steps=107 format=3 uid="uid://bgn6kmsvdqh4l"]
 
 [ext_resource type="PackedScene" uid="uid://dyq8mcdsutnsa" path="res://Scenes/Components/LevelBase.tscn" id="1_dma02"]
 [ext_resource type="TileSet" uid="uid://c72m3jled4jfg" path="res://Art/Environment/ext_simple_tileset.tres" id="2_pwhqm"]
@@ -39,7 +39,6 @@
 [ext_resource type="PackedScene" uid="uid://d1y25semyqxkw" path="res://Scenes/Components/Greyboxing/MoveableBlock.tscn" id="30_nk66s"]
 [ext_resource type="Resource" uid="uid://c0k5s2pwp0tvi" path="res://Scripts/Resources/Items/BagOfHardtack.tres" id="30_qe0oq"]
 [ext_resource type="Script" path="res://Scripts/Resources/Effects/SetQuestStateEffect.gd" id="32_hkboy"]
-[ext_resource type="Script" path="res://Scripts/Components/Greyboxing/GreyboxObject.gd" id="40_fqqq3"]
 
 [sub_resource type="Resource" id="Resource_jh8dd"]
 script = ExtResource("5_7fsg8")
@@ -1311,16 +1310,12 @@ unlocked = Array[Resource("res://Scripts/Resources/TriggerCondition.gd")]([SubRe
 use_action = "open"
 region_id = "crypt.exit_door2"
 
-[node name="Door2_Examine" type="Node2D" parent="Objects" index="65" instance=ExtResource("12_us5wm")]
-y_sort_enabled = true
+[node name="Door2_Examine" parent="Objects" index="65" instance=ExtResource("12_us5wm")]
 position = Vector2(2145, 741)
-script = ExtResource("40_fqqq3")
 can_interact = true
 tint = Color(0.745098, 0.745098, 0.745098, 0)
 action_verb = 6
 effects = Array[Resource("res://Scripts/Resources/Effect.gd")]([SubResource("Resource_bc2b2")])
-y_sort_width = 72
-metadata/_edit_group_ = true
 
 [node name="PlayerStart" type="Marker2D" parent="Markers" index="0"]
 position = Vector2(80, 560)
