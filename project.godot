@@ -51,9 +51,11 @@ directories/dch_directory={
 "Jefferson": "res://Scripts/Resources/NPCs/DialogicCharacters/Jefferson.dch",
 "Lisa": "res://Scripts/Resources/NPCs/DialogicCharacters/Lisa.dch",
 "Martha": "res://Scripts/Resources/NPCs/DialogicCharacters/Martha.dch",
+"NPC-017": "res://Scripts/Resources/NPCs/DialogicCharacters/NPC-017.dch",
 "test_character": "res://ZZ_Scratch/DialogicValidation/test_character.dch"
 }
 directories/dtl_directory={
+"7b2": "res://Dialogue/Philippa/7b2.dtl",
 "AudioAdapter": "res://Dialogue/TestTimelines/AudioAdapter.dtl",
 "BagOfHardtack": "res://Dialogue/Examinations/BagOfHardtack.dtl",
 "Bartholomew13b": "res://Dialogue/Bartholomew/Bartholomew13b.dtl",
