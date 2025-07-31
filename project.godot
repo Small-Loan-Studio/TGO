@@ -61,7 +61,6 @@ directories/dch_directory={
 "Martha": "res://Scripts/Resources/NPCs/DialogicCharacters/Martha.dch",
 "NPC-002": "res://Scripts/Resources/NPCs/DialogicCharacters/NPC-002.dch",
 "NPC-021": "res://Dialogue/MiscellaneousDialogue/NPC-021.dch",
-"NPC-021/NPC-021": "res://Dialogue/NPC-021/NPC-021.dch",
 "NPC-033": "res://Dialogue/MiscellaneousDialogue/NPC-033.dch",
 "NPC-056": "res://Dialogue/MiscellaneousDialogue/NPC-056.dch",
 "OIWP_Charles": "res://Scripts/Resources/NPCs/DialogicCharacters/OIWP/OIWP_Charles.dch",
