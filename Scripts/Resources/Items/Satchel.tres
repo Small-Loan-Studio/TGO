@@ -1,0 +1,15 @@
+[gd_resource type="Resource" script_class="Item" load_steps=3 format=3 uid="uid://bjjqkmtq6eybl"]
+
+[ext_resource type="Script" path="res://Scripts/Components/Inventory/Item.gd" id="1_1fkxu"]
+[ext_resource type="Texture2D" uid="uid://dvxmx5j5n6yy3" path="res://Art/Items/Satchel.png" id="1_qaxvh"]
+
+[resource]
+script = ExtResource("1_1fkxu")
+id = "SATCHEL"
+name = "Sachel"
+type = 0
+description = "Test item"
+stackable = false
+stack_size = 1
+icon = ExtResource("1_qaxvh")
+gear_spec = Array[Resource("res://Scripts/Resources/GearSpec.gd")]([])
