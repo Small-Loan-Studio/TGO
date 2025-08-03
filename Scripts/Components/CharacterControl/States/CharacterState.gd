@@ -37,7 +37,8 @@ func maybe_menu() -> StateChange:
 
 	return StateChange.mk(menu_state, menu_state.mk_args(Menus.MenuKind.PAUSE))
 
+
 func maybe_dialog() -> StateChange:
-	if(Dialogic.current_timeline != null):
+	if Dialogic.current_timeline != null :
 		return StateChange.mk(dialog_state)
 	return null
