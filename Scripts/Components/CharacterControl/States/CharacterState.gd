@@ -3,6 +3,7 @@ extends State
 
 @export var interact_state: State
 @export var menu_state: State
+@export var dialog_state: State
 
 var _ctx: StateMachine.CharacterContext
 var _animated_sprite: AnimatedSprite2D
@@ -35,3 +36,8 @@ func maybe_menu() -> StateChange:
 		return null
 
 	return StateChange.mk(menu_state, menu_state.mk_args(Menus.MenuKind.PAUSE))
+
+func maybe_dialog() -> StateChange:
+	if(Dialogic.current_timeline != null):
+		return StateChange.mk(dialog_state)
+	return null

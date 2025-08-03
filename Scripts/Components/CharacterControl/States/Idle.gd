@@ -29,6 +29,9 @@ func run_input(_event: InputEvent) -> StateChange:
 
 
 func run_tick(_delta: float) -> StateChange:
+	var ns := maybe_dialog()
+	if ns != null:
+		return ns
 	var vect := _ctx.controller.get_vector()
 	if vect != Vector2.ZERO:
 		if Enums.InputAction.SPRINT in _ctx.controller.get_button_pressed():

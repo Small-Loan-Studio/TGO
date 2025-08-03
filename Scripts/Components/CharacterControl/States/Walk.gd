@@ -49,5 +49,11 @@ func run_physics(_delta: float) -> StateChange:
 	return null
 
 
+func run_tick(_delta: float) -> StateChange:
+	if Dialogic.current_timeline != null:
+		return StateChange.mk(idle_state)
+	return null
+
+
 static func mk_args(initial_vec: Vector2) -> Dictionary:
 	return {"impulse": initial_vec}
