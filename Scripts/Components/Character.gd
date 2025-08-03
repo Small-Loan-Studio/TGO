@@ -177,7 +177,6 @@ func _process(delta: float) -> void:
 	_maybe_report_env_material()
 
 
-
 #region sensor / target managementregion
 func _on_interaction_sensor_entered(area: Area2D) -> void:
 	if area is Interactable:

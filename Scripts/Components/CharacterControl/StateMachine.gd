@@ -69,6 +69,7 @@ func _switch(next: StateChange, depth: int = 0) -> void:
 	else:
 		enter.emit(_cur_state.name)
 
+
 func run_input(event: InputEvent) -> void:
 	if !_setup_complete:
 		return
