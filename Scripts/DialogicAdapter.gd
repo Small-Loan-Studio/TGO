@@ -125,6 +125,10 @@ class QuestAdapter:
 	func _init(id: String) -> void:
 		_id = id
 
+	func is_active() -> bool:
+		var qst := Driver.instance().quest_mgr.quest_by_id(_id)
+		return qst.state == Enums.QuestState.ACTIVE
+
 	func is_finished() -> bool:
 		var qst := Driver.instance().quest_mgr.quest_by_id(_id)
 		return qst.is_finished()
