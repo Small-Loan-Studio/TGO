@@ -86,6 +86,16 @@ func set_switch(sw_name: String, value: String) -> void:
 	Wwise.set_switch(sw_name, value, _target)
 
 
+func safely_set_switch(sw_name: String, value: String) -> void:
+	if !AK.SWITCHES._dict.has(sw_name):
+		printerr("Unknown switch name: %s" % [sw_name])
+		return
+	if !AK.SWITCHES[sw_name]["SWITCH"].has[value]:
+		printerr("Unknown switch value: %s.%s" % [sw_name, value])
+		return
+	self.set_switch(sw_name, value)
+
+
 class EventConfig:
 	extends RefCounted
 

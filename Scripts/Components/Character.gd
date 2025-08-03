@@ -139,6 +139,8 @@ func _ready() -> void:
 		if id != "":
 			_audio_node.setup(self, id)
 			_audio_node.track_position = true
+			if _state_machine != null:
+				_state_machine.enter.connect(_on_state_enter)
 
 	_state_machine.setup(ctx)
 
@@ -332,6 +334,19 @@ func _load_gear(data: Dictionary) -> void:
 #region audio
 func is_audio_object() -> bool:
 	return _audio_node != null
+
+
+func audio_node() -> AudioNode:
+	return _audio_node
+
+
+func _on_state_enter(state_name: String) -> void:
+	if !is_audio_object():
+		return
+
+	var sw_name := "%s_StateSwitch" % [id.to_lower()]
+	var sw_value := state_name.to_lower()
+	_audio_node.safely_set_switch(sw_name, sw_value)
 
 
 func _maybe_report_env_material() -> void:
