@@ -41,6 +41,7 @@ gdscript/warnings/untyped_declaration=2
 
 directories/dch_directory={
 "Alf": "res://Scripts/Resources/NPCs/DialogicCharacters/Alf.dch",
+"Arthur Sharp": "res://Scripts/Resources/NPCs/DialogicCharacters/Arthur Sharp.dch",
 "Bartholomew": "res://Scripts/Resources/NPCs/DialogicCharacters/Bartholomew.dch",
 "CKP_Hugh": "res://Dialogue/CKP/CKP_Hugh.dch",
 "CKP_Jeremiah": "res://Dialogue/CKP/CKP_Jeremiah.dch",
@@ -67,6 +68,7 @@ directories/dch_directory={
 "test_character": "res://ZZ_Scratch/DialogicValidation/test_character.dch"
 }
 directories/dtl_directory={
+"Arthur Sharp": "res://Dialogue/Arthur Sharp/Arthur Sharp 2d.dtl",
 "AudioAdapter": "res://Dialogue/TestTimelines/AudioAdapter.dtl",
 "BagOfHardtack": "res://Dialogue/Examinations/BagOfHardtack.dtl",
 "Bartholomew13b": "res://Dialogue/Bartholomew/Bartholomew13b.dtl",
@@ -139,6 +141,9 @@ save/autosave_delay=60.0
 save/encryption_on_exports_only=true
 text/autopauses={}
 variables={
+"Arthur Sharp": {
+"Var": "Arthur2dHasSpoken"
+},
 "Bartholomew": {
 "13bHasSpoken": false,
 "2bSpoken": false,
