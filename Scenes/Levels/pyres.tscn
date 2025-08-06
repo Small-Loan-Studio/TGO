@@ -170,15 +170,15 @@ tile_set = ExtResource("3_peonm")
 position = Vector2(1280, 4000)
 config = ExtResource("6_s5jat")
 dlg = SubResource("Resource_lrxfg")
-id = "NPC_001"
+id = "Reeve"
 
 [node name="Perry" parent="Objects/Characters" index="1" instance=ExtResource("4_skwh8")]
 position = Vector2(2112, 3400)
 config = ExtResource("9_p3ra3")
 dlg = SubResource("Resource_rg54t")
+id = "Perry"
 
 [node name="Pyre_D6" type="AnimatedSprite2D" parent="Objects" index="4"]
-visible = false
 top_level = true
 z_as_relative = false
 y_sort_enabled = true
@@ -211,7 +211,6 @@ light_size = 4.5
 sprite_texture = ExtResource("13_ypr3x")
 
 [node name="Pyre_D5" type="AnimatedSprite2D" parent="Objects" index="5"]
-visible = false
 top_level = true
 z_as_relative = false
 y_sort_enabled = true
@@ -244,7 +243,6 @@ light_size = 4.5
 sprite_texture = ExtResource("13_ypr3x")
 
 [node name="Pyre_D4" type="AnimatedSprite2D" parent="Objects" index="6"]
-visible = false
 top_level = true
 z_as_relative = false
 y_sort_enabled = true
@@ -277,7 +275,6 @@ light_size = 4.5
 sprite_texture = ExtResource("13_ypr3x")
 
 [node name="Pyre_D3" type="AnimatedSprite2D" parent="Objects" index="7"]
-visible = false
 top_level = true
 z_as_relative = false
 y_sort_enabled = true
@@ -310,7 +307,6 @@ light_size = 4.5
 sprite_texture = ExtResource("13_ypr3x")
 
 [node name="Pyre_D2" type="AnimatedSprite2D" parent="Objects" index="8"]
-visible = false
 top_level = true
 z_as_relative = false
 y_sort_enabled = true
@@ -343,7 +339,6 @@ light_size = 4.5
 sprite_texture = ExtResource("13_ypr3x")
 
 [node name="Pyre_D1" type="AnimatedSprite2D" parent="Objects" index="9"]
-visible = false
 top_level = true
 z_as_relative = false
 y_sort_enabled = true
@@ -375,8 +370,39 @@ light_color = Color(1, 0.8125, 0, 1)
 light_size = 4.5
 sprite_texture = ExtResource("13_ypr3x")
 
-[node name="Pyre_C6" type="AnimatedSprite2D" parent="Objects" index="10"]
+[node name="Pyre_C7" type="AnimatedSprite2D" parent="Objects" index="10"]
+top_level = true
+z_as_relative = false
+y_sort_enabled = true
+position = Vector2(1888, 3232)
+sprite_frames = SubResource("SpriteFrames_cedmd")
+autoplay = "default"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Objects/Pyre_C7" index="0"]
+z_as_relative = false
+y_sort_enabled = true
+position = Vector2(-16, 216)
+shape = SubResource("ConvexPolygonShape2D_jbne1")
+one_way_collision_margin = 0.0
+
+[node name="GreyboxObj" parent="Objects/Pyre_C7" index="1" instance=ExtResource("11_q7iur")]
 visible = false
+z_as_relative = false
+position = Vector2(-16, 288)
+size = Vector2(4, 4)
+can_block_movement = true
+can_block_light = true
+tint = Color(0.952659, 0.682052, 0.397883, 1)
+y_sort_width = 168
+
+[node name="Fire" parent="Objects/Pyre_C7" index="2" instance=ExtResource("10_cb8wg")]
+z_index = 1
+position = Vector2(-16, 152)
+light_color = Color(1, 0.8125, 0, 1)
+light_size = 4.5
+sprite_texture = ExtResource("13_ypr3x")
+
+[node name="Pyre_C6" type="AnimatedSprite2D" parent="Objects" index="11"]
 top_level = true
 z_as_relative = false
 y_sort_enabled = true
@@ -408,40 +434,7 @@ light_color = Color(1, 0.8125, 0, 1)
 light_size = 4.5
 sprite_texture = ExtResource("13_ypr3x")
 
-[node name="Pyre_C6" type="AnimatedSprite2D" parent="Objects/Pyre_C6" index="3"]
-top_level = true
-z_as_relative = false
-y_sort_enabled = true
-position = Vector2(1888, 3232)
-sprite_frames = SubResource("SpriteFrames_cedmd")
-autoplay = "default"
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Objects/Pyre_C6/Pyre_C6" index="0"]
-z_as_relative = false
-y_sort_enabled = true
-position = Vector2(-16, 216)
-shape = SubResource("ConvexPolygonShape2D_jbne1")
-one_way_collision_margin = 0.0
-
-[node name="GreyboxObj" parent="Objects/Pyre_C6/Pyre_C6" index="1" instance=ExtResource("11_q7iur")]
-visible = false
-z_as_relative = false
-position = Vector2(-16, 288)
-size = Vector2(4, 4)
-can_block_movement = true
-can_block_light = true
-tint = Color(0.952659, 0.682052, 0.397883, 1)
-y_sort_width = 168
-
-[node name="Fire" parent="Objects/Pyre_C6/Pyre_C6" index="2" instance=ExtResource("10_cb8wg")]
-z_index = 1
-position = Vector2(-16, 152)
-light_color = Color(1, 0.8125, 0, 1)
-light_size = 4.5
-sprite_texture = ExtResource("13_ypr3x")
-
-[node name="Pyre_C5" type="AnimatedSprite2D" parent="Objects" index="11"]
-visible = false
+[node name="Pyre_C5" type="AnimatedSprite2D" parent="Objects" index="12"]
 top_level = true
 z_as_relative = false
 y_sort_enabled = true
@@ -473,8 +466,7 @@ light_color = Color(1, 0.8125, 0, 1)
 light_size = 4.5
 sprite_texture = ExtResource("13_ypr3x")
 
-[node name="Pyre_C4" type="AnimatedSprite2D" parent="Objects" index="12"]
-visible = false
+[node name="Pyre_C4" type="AnimatedSprite2D" parent="Objects" index="13"]
 top_level = true
 z_as_relative = false
 y_sort_enabled = true
@@ -506,8 +498,7 @@ light_color = Color(1, 0.8125, 0, 1)
 light_size = 4.5
 sprite_texture = ExtResource("13_ypr3x")
 
-[node name="Pyre_C3" type="AnimatedSprite2D" parent="Objects" index="13"]
-visible = false
+[node name="Pyre_C3" type="AnimatedSprite2D" parent="Objects" index="14"]
 top_level = true
 z_as_relative = false
 y_sort_enabled = true
@@ -539,8 +530,7 @@ light_color = Color(1, 0.8125, 0, 1)
 light_size = 4.5
 sprite_texture = ExtResource("13_ypr3x")
 
-[node name="Pyre_C2" type="AnimatedSprite2D" parent="Objects" index="14"]
-visible = false
+[node name="Pyre_C2" type="AnimatedSprite2D" parent="Objects" index="15"]
 top_level = true
 z_as_relative = false
 y_sort_enabled = true
@@ -572,8 +562,7 @@ light_color = Color(1, 0.8125, 0, 1)
 light_size = 4.5
 sprite_texture = ExtResource("13_ypr3x")
 
-[node name="Pyre_C1" type="AnimatedSprite2D" parent="Objects" index="15"]
-visible = false
+[node name="Pyre_C1" type="AnimatedSprite2D" parent="Objects" index="16"]
 top_level = true
 z_as_relative = false
 y_sort_enabled = true
@@ -605,8 +594,7 @@ light_color = Color(1, 0.8125, 0, 1)
 light_size = 4.5
 sprite_texture = ExtResource("13_ypr3x")
 
-[node name="Pyre_B6" type="AnimatedSprite2D" parent="Objects" index="16"]
-visible = false
+[node name="Pyre_B6" type="AnimatedSprite2D" parent="Objects" index="17"]
 top_level = true
 z_as_relative = false
 y_sort_enabled = true
@@ -638,8 +626,7 @@ light_color = Color(1, 0.8125, 0, 1)
 light_size = 4.5
 sprite_texture = ExtResource("13_ypr3x")
 
-[node name="Pyre_B5" type="AnimatedSprite2D" parent="Objects" index="17"]
-visible = false
+[node name="Pyre_B5" type="AnimatedSprite2D" parent="Objects" index="18"]
 top_level = true
 z_as_relative = false
 y_sort_enabled = true
@@ -671,8 +658,7 @@ light_color = Color(1, 0.8125, 0, 1)
 light_size = 4.5
 sprite_texture = ExtResource("13_ypr3x")
 
-[node name="Pyre_B4" type="AnimatedSprite2D" parent="Objects" index="18"]
-visible = false
+[node name="Pyre_B4" type="AnimatedSprite2D" parent="Objects" index="19"]
 top_level = true
 z_as_relative = false
 y_sort_enabled = true
@@ -704,8 +690,7 @@ light_color = Color(1, 0.8125, 0, 1)
 light_size = 4.5
 sprite_texture = ExtResource("13_ypr3x")
 
-[node name="Pyre_B3" type="AnimatedSprite2D" parent="Objects" index="19"]
-visible = false
+[node name="Pyre_B3" type="AnimatedSprite2D" parent="Objects" index="20"]
 top_level = true
 z_as_relative = false
 y_sort_enabled = true
@@ -737,8 +722,7 @@ light_color = Color(1, 0.8125, 0, 1)
 light_size = 4.5
 sprite_texture = ExtResource("13_ypr3x")
 
-[node name="Pyre_B2" type="AnimatedSprite2D" parent="Objects" index="20"]
-visible = false
+[node name="Pyre_B2" type="AnimatedSprite2D" parent="Objects" index="21"]
 top_level = true
 z_as_relative = false
 y_sort_enabled = true
@@ -770,8 +754,7 @@ light_color = Color(1, 0.8125, 0, 1)
 light_size = 4.5
 sprite_texture = ExtResource("13_ypr3x")
 
-[node name="Pyre_B1" type="AnimatedSprite2D" parent="Objects" index="21"]
-visible = false
+[node name="Pyre_B1" type="AnimatedSprite2D" parent="Objects" index="22"]
 top_level = true
 z_as_relative = false
 y_sort_enabled = true
@@ -803,8 +786,7 @@ light_color = Color(1, 0.8125, 0, 1)
 light_size = 4.5
 sprite_texture = ExtResource("13_ypr3x")
 
-[node name="Pyre_A7" type="AnimatedSprite2D" parent="Objects" index="22"]
-visible = false
+[node name="Pyre_A7" type="AnimatedSprite2D" parent="Objects" index="23"]
 top_level = true
 z_as_relative = false
 y_sort_enabled = true
@@ -836,8 +818,7 @@ light_color = Color(1, 0.8125, 0, 1)
 light_size = 4.5
 sprite_texture = ExtResource("13_ypr3x")
 
-[node name="Pyre_A6" type="AnimatedSprite2D" parent="Objects" index="23"]
-visible = false
+[node name="Pyre_A6" type="AnimatedSprite2D" parent="Objects" index="24"]
 top_level = true
 z_as_relative = false
 y_sort_enabled = true
@@ -869,8 +850,7 @@ light_color = Color(1, 0.8125, 0, 1)
 light_size = 4.5
 sprite_texture = ExtResource("13_ypr3x")
 
-[node name="Pyre_A5" type="AnimatedSprite2D" parent="Objects" index="24"]
-visible = false
+[node name="Pyre_A5" type="AnimatedSprite2D" parent="Objects" index="25"]
 top_level = true
 z_as_relative = false
 y_sort_enabled = true
@@ -902,8 +882,7 @@ light_color = Color(1, 0.8125, 0, 1)
 light_size = 4.5
 sprite_texture = ExtResource("13_ypr3x")
 
-[node name="Pyre_A4" type="AnimatedSprite2D" parent="Objects" index="25"]
-visible = false
+[node name="Pyre_A4" type="AnimatedSprite2D" parent="Objects" index="26"]
 top_level = true
 z_as_relative = false
 y_sort_enabled = true
@@ -935,8 +914,7 @@ light_color = Color(1, 0.8125, 0, 1)
 light_size = 4.5
 sprite_texture = ExtResource("13_ypr3x")
 
-[node name="Pyre_A3" type="AnimatedSprite2D" parent="Objects" index="26"]
-visible = false
+[node name="Pyre_A3" type="AnimatedSprite2D" parent="Objects" index="27"]
 top_level = true
 z_as_relative = false
 y_sort_enabled = true
@@ -968,8 +946,7 @@ light_color = Color(1, 0.8125, 0, 1)
 light_size = 4.5
 sprite_texture = ExtResource("13_ypr3x")
 
-[node name="Pyre_A2" type="AnimatedSprite2D" parent="Objects" index="27"]
-visible = false
+[node name="Pyre_A2" type="AnimatedSprite2D" parent="Objects" index="28"]
 top_level = true
 z_as_relative = false
 y_sort_enabled = true
@@ -1001,7 +978,7 @@ light_color = Color(1, 0.8125, 0, 1)
 light_size = 4.5
 sprite_texture = ExtResource("13_ypr3x")
 
-[node name="Pyre_A1" type="AnimatedSprite2D" parent="Objects" index="28"]
+[node name="Pyre_A1" type="AnimatedSprite2D" parent="Objects" index="29"]
 top_level = true
 z_as_relative = false
 y_sort_enabled = true
