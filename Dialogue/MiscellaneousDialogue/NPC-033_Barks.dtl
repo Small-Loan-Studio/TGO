@@ -1,0 +1,12 @@
+if {MiscellaneousCharacters.NPC-033BarkNum} <= 0:
+	NPC-033: I see you can’t stay away, faceless one. I implore you to try.
+	set {MiscellaneousCharacters.NPC-033BarkNum} += 1
+	[end_timeline]
+elif {MiscellaneousCharacters.NPC-033BarkNum} == 1:
+	NPC-033: Don’t you have a monster to hunt?
+	set {MiscellaneousCharacters.NPC-033BarkNum} += 1
+	[end_timeline]
+elif {MiscellaneousCharacters.NPC-033BarkNum} >= 2:
+	NPC-033: I prefer to drink alone. Better company that way.
+	set {MiscellaneousCharacters.NPC-033BarkNum} = 0
+	[end_timeline]

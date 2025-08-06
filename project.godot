@@ -41,7 +41,6 @@ gdscript/warnings/untyped_declaration=2
 
 directories/dch_directory={
 "Alf": "res://Scripts/Resources/NPCs/DialogicCharacters/Alf.dch",
-"Arthur Sharp": "res://Scripts/Resources/NPCs/DialogicCharacters/Arthur Sharp.dch",
 "Bartholomew": "res://Scripts/Resources/NPCs/DialogicCharacters/Bartholomew.dch",
 "CKP_Hugh": "res://Dialogue/CKP/CKP_Hugh.dch",
 "CKP_Jeremiah": "res://Dialogue/CKP/CKP_Jeremiah.dch",
@@ -50,6 +49,7 @@ directories/dch_directory={
 "CKP_Miles": "res://Dialogue/CKP/CKP_Miles.dch",
 "CKP_Nicholas": "res://Dialogue/CKP/CKP_Nicholas.dch",
 "CKP_Rebecca": "res://Dialogue/CKP/CKP_Rebecca.dch",
+"Cuthbert": "res://Scripts/Resources/NPCs/DialogicCharacters/Cuthbert.dch",
 "David": "res://Scripts/Resources/NPCs/DialogicCharacters/David.dch",
 "Devin": "res://Scripts/Resources/NPCs/DialogicCharacters/Devin.dch",
 "Elias": "res://Scripts/Resources/NPCs/DialogicCharacters/Elias.dch",
@@ -59,16 +59,23 @@ directories/dch_directory={
 "Jefferson": "res://Scripts/Resources/NPCs/DialogicCharacters/Jefferson.dch",
 "Lisa": "res://Scripts/Resources/NPCs/DialogicCharacters/Lisa.dch",
 "Martha": "res://Scripts/Resources/NPCs/DialogicCharacters/Martha.dch",
+"NPC-002": "res://Scripts/Resources/NPCs/DialogicCharacters/NPC-002.dch",
+"NPC-021": "res://Dialogue/MiscellaneousDialogue/NPC-021.dch",
+"NPC-033": "res://Dialogue/MiscellaneousDialogue/NPC-033.dch",
+"NPC-056": "res://Dialogue/MiscellaneousDialogue/NPC-056.dch",
 "OIWP_Charles": "res://Scripts/Resources/NPCs/DialogicCharacters/OIWP/OIWP_Charles.dch",
 "OIWP_Christopher": "res://Scripts/Resources/NPCs/DialogicCharacters/OIWP/OIWP_Christopher.dch",
 "OIWP_Ratty": "res://Scripts/Resources/NPCs/DialogicCharacters/OIWP/OIWP_Ratty.dch",
 "OIWP_Robert": "res://Scripts/Resources/NPCs/DialogicCharacters/OIWP/OIWP_Robert.dch",
+"Perry": "res://Scripts/Resources/NPCs/DialogicCharacters/Perry.dch",
 "Reeve": "res://Scripts/Resources/NPCs/DialogicCharacters/Reeve.dch",
 "Silas": "res://Scripts/Resources/NPCs/DialogicCharacters/Silas.dch",
 "test_character": "res://ZZ_Scratch/DialogicValidation/test_character.dch"
 }
 directories/dtl_directory={
-"Arthur Sharp": "res://Dialogue/Arthur Sharp/Arthur Sharp 2d.dtl",
+"0_3bWilliam": "res://Dialogue/MiscellaneousDialogue/0_3bWilliam.dtl",
+"0_6bHarris": "res://Dialogue/NPC-002/0_6bHarris.dtl",
+"10b4": "res://Dialogue/NPC-021/10b4.dtl",
 "AudioAdapter": "res://Dialogue/TestTimelines/AudioAdapter.dtl",
 "BagOfHardtack": "res://Dialogue/Examinations/BagOfHardtack.dtl",
 "Bartholomew13b": "res://Dialogue/Bartholomew/Bartholomew13b.dtl",
@@ -87,6 +94,7 @@ directories/dtl_directory={
 "CorruptedMushroom": "res://Dialogue/Examinations/CorruptedMushroom.dtl",
 "CryptKey": "res://Dialogue/Examinations/CryptKey.dtl",
 "CryptSecretChamberOnEnter": "res://Dialogue/Other/CryptSecretChamberOnEnter.dtl",
+"CuthbertBarks": "res://Dialogue/MiscellaneousDialogue/CuthbertBarks.dtl",
 "DavidElias3a2": "res://Dialogue/DavidElias/DavidElias3a2.dtl",
 "EmptyBottle": "res://Dialogue/Examinations/EmptyBottle.dtl",
 "Fiona_6b_6c": "res://Dialogue/Fiona/Fiona_6b_6c.dtl",
@@ -100,8 +108,11 @@ directories/dtl_directory={
 "Lisa_Barth3a4": "res://Dialogue/Lisa/Lisa_Barth3a4.dtl",
 "LitWoodenTorch": "res://Dialogue/Examinations/LitWoodenTorch.dtl",
 "Martha3a3": "res://Dialogue/Martha/Martha3a3.dtl",
+"NPC-021_Barks": "res://Dialogue/MiscellaneousDialogue/NPC-021_Barks.dtl",
+"NPC-033_Barks": "res://Dialogue/MiscellaneousDialogue/NPC-033_Barks.dtl",
 "OIWP_03a": "res://Scripts/Resources/NPCs/DialogicCharacters/OIWP/OIWP_03a.dtl",
 "OldBatteredKey": "res://Dialogue/Examinations/OldBatteredKey.dtl",
+"Perry1b": "res://Dialogue/Perry/Perry1b.dtl",
 "PileOfWoodenStakes": "res://Dialogue/Examinations/PileOfWoodenStakes.dtl",
 "RansackedCoffin": "res://Dialogue/Examinations/RansackedCoffin.dtl",
 "Reeve1a": "res://Dialogue/Reeve/Reeve1a.dtl",
@@ -141,9 +152,6 @@ save/autosave_delay=60.0
 save/encryption_on_exports_only=true
 text/autopauses={}
 variables={
-"Arthur Sharp": {
-"Var": "Arthur2dHasSpoken"
-},
 "Bartholomew": {
 "13bHasSpoken": false,
 "2bSpoken": false,
@@ -205,6 +213,12 @@ variables={
 "HasSpoken": false,
 "ItemGiven": false
 },
+"MiscellaneousCharacters": {
+"CuthbertBarkNum": 0.0,
+"NPC-021BarkNum": 0.0,
+"NPC-033BarkNum": 0.0,
+"PerryHasSpoken": false
+},
 "OIWP": {
 "03HasSpoken": false
 },
@@ -222,11 +236,7 @@ variables={
 "CRT-visible": true
 },
 "UserInputNum": 0,
-"UserInputString": "",
-"Util": {
-"examine_text": "",
-"selected_item_id": ""
-}
+"UserInputString": ""
 }
 layout/style_list=["res://Dialogue/StyleTGO/TGOStyle.tres"]
 layout/default_style="res://Dialogue/StyleTGO/TGOStyle.tres"
@@ -290,13 +300,13 @@ right={
 , Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"window_id":0,"alt_pressed":false,"shift_pressed":false,"ctrl_pressed":false,"meta_pressed":false,"pressed":false,"keycode":0,"physical_keycode":68,"key_label":0,"unicode":0,"echo":false,"script":null)
 ]
 }
-default_action={
+interact={
 "deadzone": 0.5,
 "events": [Object(InputEventJoypadButton,"resource_local_to_scene":false,"resource_name":"","device":-1,"button_index":0,"pressure":0.0,"pressed":true,"script":null)
 , Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":-1,"window_id":0,"alt_pressed":false,"shift_pressed":false,"ctrl_pressed":false,"meta_pressed":false,"pressed":false,"keycode":0,"physical_keycode":4194309,"key_label":0,"unicode":0,"echo":false,"script":null)
 ]
 }
-secondary_action={
+examine={
 "deadzone": 0.5,
 "events": [Object(InputEventJoypadButton,"resource_local_to_scene":false,"resource_name":"","device":-1,"button_index":2,"pressure":0.0,"pressed":false,"script":null)
 , Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":-1,"window_id":0,"alt_pressed":false,"shift_pressed":false,"ctrl_pressed":false,"meta_pressed":false,"pressed":false,"keycode":0,"physical_keycode":32,"key_label":0,"unicode":32,"echo":false,"script":null)
@@ -333,12 +343,6 @@ right_item={
 "deadzone": 0.5,
 "events": [Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":-1,"window_id":0,"alt_pressed":false,"shift_pressed":false,"ctrl_pressed":false,"meta_pressed":false,"pressed":false,"keycode":0,"physical_keycode":69,"key_label":0,"unicode":46,"echo":false,"script":null)
 , Object(InputEventJoypadButton,"resource_local_to_scene":false,"resource_name":"","device":-1,"button_index":10,"pressure":0.0,"pressed":true,"script":null)
-]
-}
-interact_cancel={
-"deadzone": 0.5,
-"events": [Object(InputEventJoypadButton,"resource_local_to_scene":false,"resource_name":"","device":-1,"button_index":1,"pressure":0.0,"pressed":false,"script":null)
-, Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":-1,"window_id":0,"alt_pressed":false,"shift_pressed":false,"ctrl_pressed":false,"meta_pressed":false,"pressed":false,"keycode":0,"physical_keycode":4194305,"key_label":0,"unicode":0,"echo":false,"script":null)
 ]
 }
 

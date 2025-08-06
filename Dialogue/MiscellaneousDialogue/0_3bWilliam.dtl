@@ -1,0 +1,15 @@
+NPC-056:  Lost, are you?
+label Questions
+- Is this the way to the town centre?
+	Devin: Where can I find the town centre? Is this the way?
+	NPC-056: Aye. Follow the road. Can’t miss it — even with that torch of yours.
+	Devin: What fault has my torch?
+	NPC-056: A torch made from a gin-soaked rag? A waste of good liquor. But I suppose you’ve got stronger priorities than taste.
+	Devin: What business is it of yours?
+	NPC-056: Talk gets around fast when a masked stranger shows up.
+	Devin: As gossip is wont to do.
+	jump Questions
+- I should be going.
+	Devin: Good day.
+	NPC-056: Keep your nose clean, hunter. You should watch yourself.
+	[end_timeline]
