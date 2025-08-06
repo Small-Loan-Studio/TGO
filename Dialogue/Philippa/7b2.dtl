@@ -1,0 +1,16 @@
+#If player has receivedQBH-016.
+- I seek Matthew [if {TGO.quest("QBH-016").is_active()} == true]
+	Devin: I seek Matthew Glintley. Perhaps you may help?
+	NPC-017: Matthew? What could you need with him?
+	Devin: In truth, he might know something relating to mine hunt.
+	NPC-017: Matthew? What could he have to do with these monsters?
+	Devin: Monsters?
+	NPC-017: Aye, monsters — the beasts running wild. Matthew’s busy, regardless, so off with you.
+#If player has received QBH-017.
+- Mind if you let me into the farmhouse? [if {TGO.quest("QBH-017").is_active()} == true]
+	Devin: I need to speak with Matthew. Can you let me into the house?
+	NPC-017: Door’s locked, and I don’t have the key. Besides, only Christ knows why you would need to speak with him.
+	Devin: Who has the key?
+	NPC-017: Dan, of course. But he’s not about to let a beast like you into our home.
+	Devin: What makes you so sure?
+	NPC-017: Ten years of marriage.
