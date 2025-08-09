@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://mqvl5162rawb"]
+[gd_scene load_steps=15 format=3 uid="uid://mqvl5162rawb"]
 
 [ext_resource type="Script" path="res://Scripts/Devin.gd" id="1_coq4s"]
 [ext_resource type="PackedScene" uid="uid://cx703e8t27grh" path="res://Scenes/Components/Character.tscn" id="1_kp6oq"]
@@ -11,6 +11,7 @@
 [ext_resource type="Script" path="res://Scripts/Components/CharacterControl/States/Sprint.gd" id="8_ii0li"]
 [ext_resource type="Script" path="res://Scripts/Components/CharacterControl/States/Menu.gd" id="9_ac1aa"]
 [ext_resource type="Script" path="res://Scripts/Resources/CharacterStat.gd" id="9_fybv6"]
+[ext_resource type="Script" path="res://Scripts/Components/CharacterControl/States/Dialogue.gd" id="11_7fdo5"]
 
 [sub_resource type="Resource" id="Resource_b1u10"]
 script = ExtResource("9_fybv6")
@@ -48,12 +49,13 @@ deadzone = 0.25
 [node name="StateMachine" parent="." index="5" node_paths=PackedStringArray("_initial_state")]
 _initial_state = NodePath("Idle")
 
-[node name="Idle" type="Node" parent="StateMachine" index="0" node_paths=PackedStringArray("walk_state", "sprint_state", "interact_state", "menu_state")]
+[node name="Idle" type="Node" parent="StateMachine" index="0" node_paths=PackedStringArray("walk_state", "sprint_state", "interact_state", "menu_state", "dialog_state")]
 script = ExtResource("4_3ac8w")
 walk_state = NodePath("../Walk")
 sprint_state = NodePath("../Sprint")
 interact_state = NodePath("../Interact")
 menu_state = NodePath("../Menu")
+dialog_state = NodePath("../Dialog")
 
 [node name="Walk" type="Node" parent="StateMachine" index="1" node_paths=PackedStringArray("idle_state", "sprint_state", "interact_state")]
 script = ExtResource("5_uh8u1")
@@ -83,6 +85,10 @@ move_speed = 260
 script = ExtResource("9_ac1aa")
 idle_state = NodePath("../Idle")
 _input_exclusive = true
+
+[node name="Dialog" type="Node" parent="StateMachine" index="6" node_paths=PackedStringArray("idle_state")]
+script = ExtResource("11_7fdo5")
+idle_state = NodePath("../Idle")
 
 [node name="AkListener2D" type="AkListener2D" parent="." index="6"]
 

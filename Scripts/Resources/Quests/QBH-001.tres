@@ -1,0 +1,16 @@
+[gd_resource type="Resource" script_class="Quest" load_steps=2 format=3 uid="uid://dikehxu1h6qmt"]
+
+[ext_resource type="Script" path="res://Scripts/Resources/Quest.gd" id="1_roktq"]
+
+[resource]
+script = ExtResource("1_roktq")
+id = "QBH-001"
+title = "Meet the lord of the manor, Arthur Sharp, at the manor house."
+description = "The Mayor wants me to inspect the bodies in the fields. But I must first meet Arthur Sharp, lord of the manor for what I expect to be a most tedious encounter."
+manual_start = false
+state = 0
+conditions = Array[Resource("res://Scripts/Resources/QuestCondition.gd")]([])
+manual_completion = false
+phases = Array[Resource("res://Scripts/QuestPhase.gd")]([])
+next = Array[ExtResource("1_roktq")]([])
+results = Array[Resource("res://Scripts/Resources/Effect.gd")]([])

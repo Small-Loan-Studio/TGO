@@ -1,0 +1,12 @@
+[gd_resource type="Resource" script_class="NPCConfig" load_steps=2 format=3 uid="uid://b2di6jq70ui7u"]
+
+[ext_resource type="Script" path="res://Scripts/Resources/NpcConfig.gd" id="1_p8ajd"]
+
+[resource]
+script = ExtResource("1_p8ajd")
+character_id = ""
+valid_timelines = Array[String]([])
+examine_text = ""
+examine_effects = Array[Resource("res://Scripts/Resources/Effect.gd")]([])
+show_item_effects = Array[Resource("res://Scripts/Resources/Effect.gd")]([])
+give_item_effects = Array[Resource("res://Scripts/Resources/Effect.gd")]([])

@@ -1,4 +1,4 @@
-[gd_scene load_steps=24 format=3 uid="uid://c3pgmxm78klqy"]
+[gd_scene load_steps=22 format=3 uid="uid://c3pgmxm78klqy"]
 
 [ext_resource type="PackedScene" uid="uid://dyq8mcdsutnsa" path="res://Scenes/Components/LevelBase.tscn" id="1_t8b0a"]
 [ext_resource type="Script" path="res://ZZ_Scratch/GreyboxingTools/BadLevelA.gd" id="2_hodgd"]
@@ -13,7 +13,6 @@
 [ext_resource type="PackedScene" uid="uid://bmkq7u7c66eru" path="res://Scenes/Components/signal_to_effect.tscn" id="10_lgusy"]
 [ext_resource type="Script" path="res://Scripts/Resources/Effects/ToggleDoorEffect.gd" id="11_6vl2n"]
 [ext_resource type="Script" path="res://Scripts/Resources/Effects/LevelLoadEffect.gd" id="11_cp71p"]
-[ext_resource type="Script" path="res://Scripts/Resources/Effects/DebugEffect.gd" id="12_admpp"]
 [ext_resource type="PackedScene" uid="uid://bwlnxooxokiw6" path="res://Scenes/Components/door.tscn" id="12_rh8so"]
 [ext_resource type="Script" path="res://Scripts/Resources/Conditions/InventoryCheckCondition.gd" id="13_d5pwi"]
 [ext_resource type="Resource" uid="uid://cc5v3qeeoiet" path="res://Scripts/Resources/Conditions/Custom/DevinHasKey.tres" id="15_alexr"]
@@ -23,14 +22,10 @@
 script = ExtResource("6_1o8fo")
 timeline = ExtResource("7_4h58g")
 
-[sub_resource type="Resource" id="Resource_u8kb4"]
+[sub_resource type="Resource" id="Resource_fvb58"]
 script = ExtResource("11_6vl2n")
 door_id = "BadLevelB.auto_door"
 door_action = "open"
-
-[sub_resource type="Resource" id="Resource_2837c"]
-script = ExtResource("12_admpp")
-message = "QUEST_KEY picked up"
 
 [sub_resource type="Resource" id="Resource_bl5wy"]
 script = ExtResource("11_cp71p")
@@ -75,7 +70,7 @@ item = ExtResource("9_ewmie")
 quantity = 1
 
 [node name="PickedUp" parent="Objects/Items/QUEST_KEY" index="2" instance=ExtResource("10_lgusy")]
-effects = Array[Resource("res://Scripts/Resources/Effect.gd")]([SubResource("Resource_u8kb4"), SubResource("Resource_2837c")])
+effects = Array[Resource("res://Scripts/Resources/Effect.gd")]([SubResource("Resource_fvb58")])
 
 [node name="LevelTeleport" parent="Objects" index="3" instance=ExtResource("10_k3j1d")]
 position = Vector2(279, 364)

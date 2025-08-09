@@ -1,9 +1,8 @@
-[gd_scene load_steps=8 format=3 uid="uid://bpv5of16dfb8s"]
+[gd_scene load_steps=7 format=3 uid="uid://bpv5of16dfb8s"]
 
 [ext_resource type="PackedScene" uid="uid://dyq8mcdsutnsa" path="res://Scenes/Components/LevelBase.tscn" id="1_vjs5w"]
 [ext_resource type="TileSet" uid="uid://c72m3jled4jfg" path="res://Art/Environment/ext_simple_tileset.tres" id="2_j4nbg"]
 [ext_resource type="PackedScene" uid="uid://c3fld6my8so3p" path="res://Scenes/Components/SimpleSwitch.tscn" id="3_7rcoo"]
-[ext_resource type="Script" path="res://Scripts/Components/SimpleSwitchConfig.gd" id="4_dmq1r"]
 [ext_resource type="Script" path="res://Scripts/Resources/Effects/TeleportEffect.gd" id="5_5tkky"]
 
 [sub_resource type="Resource" id="Resource_uqyoh"]
@@ -22,20 +21,14 @@ layer_0/tile_data = PackedInt32Array(983043, 0, 0, 1048579, 0, 0, 1114115, 0, 0,
 layer_1/tile_data = PackedInt32Array(786459, 131072, 4, 851995, 131072, 4, -196593, 131072, 4, -131057, 131072, 4, -65521, 131072, 4, -65520, 131072, 4, -131055, 131072, 4, -131054, 131072, 4, -196590, 131072, 4, -262125, 131072, 4, -327660, 131072, 4, -393195, 131072, 4, -393194, 131072, 4, -458730, 131072, 4, -589817, 131072, 4, -589818, 131072, 4, -655354, 131072, 4, -655355, 131072, 4, -720891, 131072, 4, -720892, 131072, 4, -786429, 131072, 4, -786430, 131072, 4, -786431, 131072, 4, -786432, 131072, 4, -720897, 131072, 4, -720898, 131072, 4, -786435, 131072, 4, -786436, 131072, 4, -786437, 131072, 4, -786438, 131072, 4, -786439, 131072, 4, -786440, 131072, 4, -786441, 131072, 4, -786442, 131072, 4, -786443, 131072, 4, -786444, 131072, 4, -786445, 131072, 4, -786446, 131072, 4, -786447, 131072, 4, -720912, 131072, 4, -720913, 131072, 4, -720914, 131072, 4, -655379, 131072, 4, -589844, 131072, 4, -589845, 131072, 4, -524310, 131072, 4, -458775, 131072, 4, -458776, 131072, 4, -393240, 131072, 4, -393241, 131072, 4, -393242, 131072, 4, -327706, 131072, 4, -327707, 131072, 4, -262171, 131072, 4, -262172, 131072, 4, -196636, 131072, 4, -131101, 131072, 4, -65565, 131072, 4, -327712, 131072, 4, -262176, 131072, 4, -196640, 131072, 4, -131104, 131072, 4, -65568, 131072, 4, -32, 131072, 4, 65504, 131072, 4, 131041, 131072, 4, 196577, 131072, 4, 196578, 131072, 4, 262114, 131072, 4, 262115, 131072, 4, 196580, 131072, 4, 131044, 131072, 4, 131045, 131072, 4, 65510, 131072, 4, -25, 131072, 4, -65561, 131072, 4, -65560, 131072, 4, -393224, 131072, 4, -458760, 131072, 4, -458761, 131072, 4, -524297, 131072, 4, -524298, 131072, 4, -458762, 131072, 4, -393227, 131072, 4, -327691, 131072, 4, -327692, 131072, 4, -262156, 131072, 4, -327693, 131072, 4, -393230, 131072, 4, -458766, 131072, 4, -458767, 131072, 4, -458768, 131072, 4, -393233, 131072, 4, -327697, 131072, 4, -262161, 131072, 4, -262162, 131072, 4)
 layer_3/tile_data = PackedInt32Array(917517, 131072, 1, 917518, 131072, 1, 917519, 131072, 1, 917520, 131072, 1, 917521, 131072, 1, 917522, 131072, 1, 917523, 131072, 1, 917524, 131072, 1, 917525, 131072, 1, 917527, 131072, 1, 917528, 131072, 1, 917529, 131072, 1, 917530, 131072, 1, 917531, 131072, 1, 917512, 131072, 1, 917513, 131072, 1, 917514, 131072, 1, 917515, 131072, 1, 262143, 131072, 1, 196608, 131072, 1, 196609, 131072, 1, 196610, 131072, 1, 196611, 131072, 1, 196612, 131072, 1, 196613, 131072, 1, 196614, 131072, 1, 196615, 131072, 1, 196616, 131072, 1, 196617, 131072, 1, 196618, 131072, 1, 196619, 131072, 1, 196620, 131072, 1, 196621, 131072, 1, 196622, 131072, 1, 196623, 131072, 1, 196624, 131072, 1, 196627, 131072, 1, 196628, 131072, 1, 196629, 131072, 1, 196630, 131072, 1, 196631, 131072, 1, 196632, 131072, 1)
 
-[node name="BottomFloor2TopFloor" type="Node2D" parent="Objects/Switches" index="0" instance=ExtResource("3_7rcoo")]
+[node name="BottomFloor2TopFloor" parent="Objects/Switches" index="0" instance=ExtResource("3_7rcoo")]
 position = Vector2(508, 558)
-script = ExtResource("4_dmq1r")
 sensor_size = Vector2(70, 60)
-default_color = Color(0.745098, 0.745098, 0.745098, 1)
-active_color = Color(0, 0.392157, 0, 1)
 on_pressed_effects = Array[Resource("res://Scripts/Resources/Effect.gd")]([SubResource("Resource_uqyoh")])
 
-[node name="TopFloor2BottomFloor" type="Node2D" parent="Objects/Switches" index="1" instance=ExtResource("3_7rcoo")]
+[node name="TopFloor2BottomFloor" parent="Objects/Switches" index="1" instance=ExtResource("3_7rcoo")]
 position = Vector2(508, 1495)
-script = ExtResource("4_dmq1r")
 sensor_size = Vector2(70, 60)
-default_color = Color(0.745098, 0.745098, 0.745098, 1)
-active_color = Color(0, 0.392157, 0, 1)
 on_pressed_effects = Array[Resource("res://Scripts/Resources/Effect.gd")]([SubResource("Resource_rerov")])
 
 [node name="PlayerStart" type="Marker2D" parent="Markers" index="0"]

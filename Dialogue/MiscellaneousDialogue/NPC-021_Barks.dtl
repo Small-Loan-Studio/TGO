@@ -1,0 +1,12 @@
+if {MiscellaneousCharacters.NPC-021BarkNum} <= 0:
+	NPC-021: Unless you’re bringing me a pint of gin, shove off. Come back later for a story of course.
+	set {MiscellaneousCharacters.NPC-021BarkNum} += 1
+	[end_timeline]
+elif {MiscellaneousCharacters.NPC-021BarkNum} == 1:
+	NPC-021: What I wouldn’t give for a sunny day, a cup of tea and my pappy’s pipe.
+	set {MiscellaneousCharacters.NPC-021BarkNum} += 1
+	[end_timeline]
+elif {MiscellaneousCharacters.NPC-021BarkNum} >= 2:
+	NPC-021: You mind? Your frown casts its gloom over my table.
+	set {MiscellaneousCharacters.NPC-021BarkNum} = 0
+	[end_timeline]

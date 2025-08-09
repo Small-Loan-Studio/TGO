@@ -1,6 +1,8 @@
 class_name StateMachine
 extends Node
 
+signal enter(state_name: String)
+
 @export var _initial_state: State
 var print_state_changes: bool = false
 
@@ -50,6 +52,7 @@ func _switch(next: StateChange, depth: int = 0) -> void:
 				% [depth]
 			)
 		)
+		enter.emit(_cur_state.name)
 		return
 
 	if _cur_state != null:
@@ -63,6 +66,8 @@ func _switch(next: StateChange, depth: int = 0) -> void:
 	var maybe_next: StateChange = await _cur_state.enter(next.ctx)
 	if maybe_next != null:
 		_switch(maybe_next, depth + 1)
+	else:
+		enter.emit(_cur_state.name)
 
 
 func run_input(event: InputEvent) -> void:
@@ -101,5 +106,5 @@ func input_exclusive() -> bool:
 class CharacterContext:
 	extends RefCounted
 
-	var character: CharacterBody2D
+	var character: Character
 	var controller: ControllerBase

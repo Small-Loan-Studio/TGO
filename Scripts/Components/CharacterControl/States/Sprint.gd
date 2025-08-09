@@ -23,6 +23,8 @@ func exit() -> void:
 
 
 func run_input(_event: InputEvent) -> StateChange:
+	if Dialogic.current_timeline != null:
+		return StateChange.mk(idle_state)
 	_impulse = _ctx.controller.get_vector()
 
 	if _impulse != Vector2.ZERO:
@@ -56,6 +58,8 @@ func _get_stam() -> CharacterStat:
 
 
 func run_tick(delta: float) -> StateChange:
+	if Dialogic.current_timeline != null:
+		return StateChange.mk(idle_state)
 	if _get_stam().value < stamina_drain_rate:
 		return StateChange.mk(idle_state)
 	_ctx.character.stats.get_stat(Enums.Stat.STAMINA).drain(stamina_drain_rate * delta)

@@ -8,3 +8,7 @@ script = ExtResource("1_mvrtc")
 character_id = "Ebenezer Beaupre - Groundskeeper"
 sprite_sheet = ExtResource("2_dip7h")
 valid_timelines = Array[String]([])
+examine_text = ""
+examine_effects = Array[Resource("res://Scripts/Resources/Effect.gd")]([])
+show_item_effects = Array[Resource("res://Scripts/Resources/Effect.gd")]([])
+give_item_effects = Array[Resource("res://Scripts/Resources/Effect.gd")]([])
