@@ -45,8 +45,12 @@
 						<CurrentStateRef Name="None" ID="{9689A2A8-DBB5-414A-B12F-4EBACCBA3E31}"/>
 					</CurrentStateList>
 					<CurrentSwitchList ShowAll="true">
+						<CurrentSwitchRef Name="Boss" ID="{01607269-4F14-4B7B-AB0E-6C18AB2B6AF4}"/>
 						<CurrentSwitchRef Name="Night" ID="{EE2540A7-8CE8-46A0-9FCA-65279EE0481B}"/>
+						<CurrentSwitchRef Name="Oakshaw" ID="{8A28182E-E263-4240-919A-46E574444914}"/>
+						<CurrentSwitchRef Name="Lullaby" ID="{F252AAE8-0C51-46F6-82FB-038DB8FF82C7}"/>
 						<CurrentSwitchRef Name="Cemetery" ID="{4E545059-0EE6-44C0-8172-34292D586654}"/>
+						<CurrentSwitchRef Name="GlintleysDominic" ID="{E744EAC5-E1D5-4F9F-BFB8-2665F4EDCC1B}"/>
 						<CurrentSwitchRef Name="EtherealRealm" ID="{49861127-878D-415F-AF56-72478D323888}"/>
 						<CurrentSwitchRef Name="Dirt" ID="{A3A7D983-41DF-492F-BDD5-466DC98D4759}"/>
 						<CurrentSwitchRef Name="DamagedHealth" ID="{26AB03F6-BB08-4A8A-9DC0-57911E7C7246}"/>

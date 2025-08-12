@@ -174,6 +174,55 @@
 						</SwitchGroup>
 					</ChildrenList>
 				</Folder>
+				<Folder Name="Music" ID="{35340591-DFF9-4375-B100-E8382497BBEF}" ShortID="771567258">
+					<ChildrenList>
+						<SwitchGroup Name="MusicMain" ID="{E3413438-AD52-42F0-8FDF-92F205E553D4}">
+							<PropertyList>
+								<Property Name="Color" Type="int16" Value="16"/>
+								<Property Name="OverrideColor" Type="bool" Value="True"/>
+							</PropertyList>
+							<ChildrenList>
+								<Switch Name="DeadFields" ID="{8BA9315D-FFF2-4383-B528-D7E6A23BE464}"/>
+								<Switch Name="DesertedCemetery" ID="{E14C4091-0A26-43AF-9CA9-14B2F8C933B4}"/>
+								<Switch Name="FaithDistrict" ID="{566EB7BA-57F4-48CA-BAEE-BC32FD0062DE}"/>
+								<Switch Name="CharacterThemes" ID="{EFBAE0F9-2715-43C6-987D-76168B864C21}"/>
+								<Switch Name="ManorSharp" ID="{B8C78669-437F-436F-AF15-ACB5E822C06B}"/>
+								<Switch Name="Oakshaw" ID="{8A28182E-E263-4240-919A-46E574444914}"/>
+								<Switch Name="Silence" ID="{CEC0F4F4-9D25-4D2C-8317-93BB2956A5B1}"/>
+								<Switch Name="PucaBurrow" ID="{A1738161-1281-4CE6-A7E1-BEE3BC05B865}"/>
+							</ChildrenList>
+						</SwitchGroup>
+						<SwitchGroup Name="MusicCharacterThemes" ID="{303425D7-3D49-4874-90BC-02078BACEC7D}">
+							<PropertyList>
+								<Property Name="Color" Type="int16" Value="20"/>
+								<Property Name="OverrideColor" Type="bool" Value="True"/>
+							</PropertyList>
+							<ChildrenList>
+								<Switch Name="GlintleysDominic" ID="{E744EAC5-E1D5-4F9F-BFB8-2665F4EDCC1B}"/>
+								<Switch Name="GlintleysLucille" ID="{E1BA8B4A-BDA8-4A29-9316-7531A522C202}"/>
+							</ChildrenList>
+						</SwitchGroup>
+						<SwitchGroup Name="MusicPucaBurrow" ID="{64611DAB-5AE8-4003-87B6-C12C103FF8AA}">
+							<PropertyList>
+								<Property Name="Color" Type="int16" Value="23"/>
+								<Property Name="OverrideColor" Type="bool" Value="True"/>
+							</PropertyList>
+							<ChildrenList>
+								<Switch Name="Main" ID="{81439B73-2EBD-4F7F-AD53-060248550D3C}"/>
+								<Switch Name="Boss" ID="{01607269-4F14-4B7B-AB0E-6C18AB2B6AF4}"/>
+							</ChildrenList>
+						</SwitchGroup>
+						<SwitchGroup Name="MusicFaithDistrict" ID="{28671C0A-B3D5-432B-9725-293876C068E1}">
+							<PropertyList>
+								<Property Name="Color" Type="int16" Value="25"/>
+								<Property Name="OverrideColor" Type="bool" Value="True"/>
+							</PropertyList>
+							<ChildrenList>
+								<Switch Name="Lullaby" ID="{F252AAE8-0C51-46F6-82FB-038DB8FF82C7}"/>
+							</ChildrenList>
+						</SwitchGroup>
+					</ChildrenList>
+				</Folder>
 			</ChildrenList>
 		</WorkUnit>
 	</Switches>

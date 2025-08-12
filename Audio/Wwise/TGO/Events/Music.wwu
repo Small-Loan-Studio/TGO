@@ -22,7 +22,20 @@
 						<Action Name="" ID="{21E016FE-8BC1-420D-843E-A138F0C55462}" ShortID="754078986">
 							<ReferenceList>
 								<Reference Name="Target">
-									<ObjectRef Name="MX_Cemetery" ID="{97309C7B-514D-4BB8-9E64-A239B6EF6359}" WorkUnitID="{B7C97FFC-28BC-44FD-84DB-11B9ABE8BC50}"/>
+									<ObjectRef Name="MX_DesertedCemetery" ID="{DEFDA56C-9274-46B4-82AC-3BB312F694F5}" WorkUnitID="{B7C97FFC-28BC-44FD-84DB-11B9ABE8BC50}"/>
+								</Reference>
+							</ReferenceList>
+						</Action>
+					</ChildrenList>
+				</Event>
+				<Event Name="play_MX_Main" ID="{72926EA4-0A6D-4F4F-BCA6-293769FEC8FF}">
+					<Comment>This is the main music trigger event. It is intended to be able to trigger all of the in-game music off of a single event, then using sets of nested switches to avoid redundancy. 
+</Comment>
+					<ChildrenList>
+						<Action Name="" ID="{0E428A70-8106-4950-90EF-BA2FCA74DD4B}" ShortID="841389175">
+							<ReferenceList>
+								<Reference Name="Target">
+									<ObjectRef Name="MX_Main" ID="{9973B76F-85B9-4284-8298-51E17B7E4F14}" WorkUnitID="{B7C97FFC-28BC-44FD-84DB-11B9ABE8BC50}"/>
 								</Reference>
 							</ReferenceList>
 						</Action>

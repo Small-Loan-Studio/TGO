@@ -47,6 +47,7 @@
 						<ObjectRef Name="play_PC_foostep" ID="{1E4D5A65-A50E-4DEE-B681-2EB0FC37D85B}" WorkUnitID="{FD1D796B-E5EC-4A68-AE27-6358AC2627C7}" Origin="Manual" Filter="7"/>
 						<ObjectRef Name="play_IN_TinderLighter_sheath" ID="{5FA57066-F4EB-4F12-9061-E56A283DD8C0}" WorkUnitID="{D9FB95D4-D1CB-4E4D-B4AD-20EE510BA0A6}" Origin="Manual" Filter="7"/>
 						<ObjectRef Name="play_TEST_TestTone_3D" ID="{D55E5C84-7FBA-4F20-BE0C-B7CE39E33F28}" WorkUnitID="{AAA74B16-0AA3-4E80-A3C1-B701AD23C503}" Origin="Manual" Filter="7"/>
+						<ObjectRef Name="play_MX_Main" ID="{72926EA4-0A6D-4F4F-BCA6-293769FEC8FF}" WorkUnitID="{39E60CE7-573A-4094-ABAE-4F20949E455C}" Origin="Manual" Filter="7"/>
 						<ObjectRef Name="stop_TEST_TestTone_lp" ID="{C4B0799A-DD21-4F57-9085-5E80F42B4A06}" WorkUnitID="{AAA74B16-0AA3-4E80-A3C1-B701AD23C503}" Origin="Manual" Filter="7"/>
 					</ObjectInclusionList>
 					<ObjectExclusionList/>
