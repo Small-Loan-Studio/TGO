@@ -41,7 +41,7 @@
 						</RTPCValue>
 						<RTPCValue>
 							<GameParameterRef Name="PlayerMovement_RTPC" ID="{5847C79F-C464-4B8B-9C1B-255CACD2DE98}"/>
-							<Value>0</Value>
+							<Value>29.8013245033113</Value>
 						</RTPCValue>
 						<RTPCValue>
 							<GameParameterRef Name="MusicVol_RTPC" ID="{69C3C129-89F8-4FD7-B4BD-B74A93C9CAF1}"/>
@@ -53,15 +53,15 @@
 						<CurrentStateRef Name="None" ID="{9689A2A8-DBB5-414A-B12F-4EBACCBA3E31}"/>
 					</CurrentStateList>
 					<CurrentSwitchList ShowAll="true">
-						<CurrentSwitchRef Name="Boss" ID="{01607269-4F14-4B7B-AB0E-6C18AB2B6AF4}"/>
+						<CurrentSwitchRef Name="Main" ID="{81439B73-2EBD-4F7F-AD53-060248550D3C}"/>
 						<CurrentSwitchRef Name="Night" ID="{EE2540A7-8CE8-46A0-9FCA-65279EE0481B}"/>
-						<CurrentSwitchRef Name="CharacterThemes" ID="{EFBAE0F9-2715-43C6-987D-76168B864C21}"/>
+						<CurrentSwitchRef Name="PucaBurrow" ID="{A1738161-1281-4CE6-A7E1-BEE3BC05B865}"/>
 						<CurrentSwitchRef Name="Lullaby" ID="{F252AAE8-0C51-46F6-82FB-038DB8FF82C7}"/>
-						<CurrentSwitchRef Name="Idle" ID="{919BB0E8-60AB-453F-808C-9BFB5EE331B3}"/>
+						<CurrentSwitchRef Name="Walk" ID="{059129AF-6BD2-4285-89DB-AC25F1425C1A}"/>
 						<CurrentSwitchRef Name="Cemetery" ID="{4E545059-0EE6-44C0-8172-34292D586654}"/>
-						<CurrentSwitchRef Name="GlintleysDominic" ID="{E744EAC5-E1D5-4F9F-BFB8-2665F4EDCC1B}"/>
+						<CurrentSwitchRef Name="GlintleysLucille" ID="{E1BA8B4A-BDA8-4A29-9316-7531A522C202}"/>
 						<CurrentSwitchRef Name="EtherealRealm" ID="{49861127-878D-415F-AF56-72478D323888}"/>
-						<CurrentSwitchRef Name="Dirt" ID="{A3A7D983-41DF-492F-BDD5-466DC98D4759}"/>
+						<CurrentSwitchRef Name="Carpet" ID="{15875E93-AB2F-4D8A-A8C6-6D75363BD696}"/>
 						<CurrentSwitchRef Name="DamagedHealth" ID="{26AB03F6-BB08-4A8A-9DC0-57911E7C7246}"/>
 					</CurrentSwitchList>
 				</SoundcasterSession>

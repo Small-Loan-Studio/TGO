@@ -2,28 +2,36 @@ class_name AK
 
 class EVENTS:
 
-	const PLAY_IN_JUNIPER_EAT = 427066036
-	const PLAY_IN_JUNIPER_PICKUP = 1239768558
 	const PLAY_AM_CRYPT = 1814219829
-	const PLAY_MX_CEMETERY = 3102703168
+	const PLAY_UI_JOURNAL_TAB = 107540844
 	const PLAY_AM_CRYPT_RATSQUEAK = 401539735
 	const PLAY_AM_CRYPT_RUBBLE = 2005530490
 	const STOP_AM_CRYPT = 2908358191
 	const PLAY_AM_CEMETERY = 2092297755
 	const STOP_AM_CEMETERY = 2689129721
 	const PLAY_IN_HARDTACK_EAT = 877166793
-	const PLAY_UI_JOURNAL_TAB = 107540844
 	const PLAY_IN_HARDTACK_PICKUP = 1652368853
+	const PLAY_IN_JUNIPER_EAT = 427066036
+	const PLAY_IN_JUNIPER_PICKUP = 1239768558
 	const PLAY_IN_PAPERSCRAPS_PICKUP = 2395858153
 	const PLAY_IN_SKELETALREMAINS_SEARCH = 2638782597
 	const PLAY_IN_SATCHEL_PICKUP = 3205955683
 	const PLAY_IN_UNLITWOODENTORCH_PICKUP = 1046280625
 	const PLAY_IN_WOODENSTAKE_PICKUP = 3851154793
+	const PLAY_MX_CEMETERY = 3102703168
 	const PLAY_IN_LOCKPICK_PICKUP = 3993458031
 	const PLAY_IN_COFFEE_RUMMAGE = 67290089
 	const PLAY_IN_COFFEE_PICKUP = 1724082217
 	const PLAY_IN_TINDERLIGHTER_PICKUP = 2465837792
-	const PLAY_PC_FOOSTEP = 3162604858
+	const PLAY_IN_TINDERLIGHTER_SHEATH = 4274908003
+	const PLAY_IN_TINDERLIGHTER_USE = 2474915613
+	const PLAY_IN_WOODENTORCH_LIGHT = 41904975
+	const PLAY_IN_WOODENTORCH_MOUNT = 887206868
+	const PLAY_IN_WOODENTORCH_ON = 2222606266
+	const PLAY_IN_WOODENTORCH_SHEATH = 2417321178
+	const PLAY_IN_FLAMETORCH_PICKUP = 3923429570
+	const PLAY_MX_MAIN = 1676089443
+	const PLAY_PC_FOOTSTEP = 4047136094
 	const PLAY_TEST_TESTTONE = 3558576753
 	const PLAY_TEST_TESTTONE_3D = 1671298337
 	const PLAY_TEST_TESTTONE_LP = 882750264
@@ -39,37 +47,38 @@ class EVENTS:
 	const PLAY_UI_DIALOGUE_GENERIC_FEMALE = 4203217314
 	const PLAY_UI_DIALOGUE_DEVIN = 1702963376
 	const PLAY_UI_DIALOGUE_NARRATOR = 3677753111
-	const PLAY_IN_TINDERLIGHTER_USE = 2474915613
-	const PLAY_IN_WOODENTORCH_MOUNT = 887206868
-	const PLAY_IN_WOODENTORCH_ON = 2222606266
-	const PLAY_IN_FLAMETORCH_PICKUP = 3923429570
-	const PLAY_IN_TINDERLIGHTER_SHEATH = 4274908003
-	const PLAY_IN_WOODENTORCH_LIGHT = 41904975
-	const PLAY_IN_WOODENTORCH_SHEATH = 2417321178
 
 	const _dict = {
-		"play_IN_juniper_eat": PLAY_IN_JUNIPER_EAT,
-		"play_IN_juniper_pickup": PLAY_IN_JUNIPER_PICKUP,
 		"play_AM_Crypt": PLAY_AM_CRYPT,
-		"play_MX_Cemetery": PLAY_MX_CEMETERY,
+		"play_UI_Journal_tab": PLAY_UI_JOURNAL_TAB,
 		"play_AM_Crypt_ratSqueak": PLAY_AM_CRYPT_RATSQUEAK,
 		"play_AM_Crypt_rubble": PLAY_AM_CRYPT_RUBBLE,
 		"stop_AM_Crypt": STOP_AM_CRYPT,
 		"play_AM_Cemetery": PLAY_AM_CEMETERY,
 		"stop_AM_Cemetery": STOP_AM_CEMETERY,
 		"play_IN_hardtack_eat": PLAY_IN_HARDTACK_EAT,
-		"play_UI_Journal_tab": PLAY_UI_JOURNAL_TAB,
 		"play_IN_hardtack_pickup": PLAY_IN_HARDTACK_PICKUP,
+		"play_IN_juniper_eat": PLAY_IN_JUNIPER_EAT,
+		"play_IN_juniper_pickup": PLAY_IN_JUNIPER_PICKUP,
 		"play_IN_PaperScraps_pickup": PLAY_IN_PAPERSCRAPS_PICKUP,
 		"play_IN_SkeletalRemains_search": PLAY_IN_SKELETALREMAINS_SEARCH,
 		"play_IN_satchel_pickup": PLAY_IN_SATCHEL_PICKUP,
 		"play_IN_UnlitWoodenTorch_pickup": PLAY_IN_UNLITWOODENTORCH_PICKUP,
 		"play_IN_WoodenStake_pickup": PLAY_IN_WOODENSTAKE_PICKUP,
+		"play_MX_Cemetery": PLAY_MX_CEMETERY,
 		"play_IN_lockpick_pickup": PLAY_IN_LOCKPICK_PICKUP,
 		"play_IN_coffee_rummage": PLAY_IN_COFFEE_RUMMAGE,
 		"play_IN_coffee_pickup": PLAY_IN_COFFEE_PICKUP,
 		"play_IN_TinderLighter_pickup": PLAY_IN_TINDERLIGHTER_PICKUP,
-		"play_PC_foostep": PLAY_PC_FOOSTEP,
+		"play_IN_TinderLighter_sheath": PLAY_IN_TINDERLIGHTER_SHEATH,
+		"play_IN_TinderLighter_use": PLAY_IN_TINDERLIGHTER_USE,
+		"play_IN_WoodenTorch_light": PLAY_IN_WOODENTORCH_LIGHT,
+		"play_IN_WoodenTorch_mount": PLAY_IN_WOODENTORCH_MOUNT,
+		"play_IN_WoodenTorch_on": PLAY_IN_WOODENTORCH_ON,
+		"play_IN_WoodenTorch_sheath": PLAY_IN_WOODENTORCH_SHEATH,
+		"play_IN_FlameTorch_pickup": PLAY_IN_FLAMETORCH_PICKUP,
+		"play_MX_Main": PLAY_MX_MAIN,
+		"play_PC_footstep": PLAY_PC_FOOTSTEP,
 		"play_TEST_TestTone": PLAY_TEST_TESTTONE,
 		"play_TEST_TestTone_3D": PLAY_TEST_TESTTONE_3D,
 		"play_TEST_TestTone_lp": PLAY_TEST_TESTTONE_LP,
@@ -84,14 +93,7 @@ class EVENTS:
 		"play_UI_Dialogue_generic_male": PLAY_UI_DIALOGUE_GENERIC_MALE,
 		"play_UI_Dialogue_generic_female": PLAY_UI_DIALOGUE_GENERIC_FEMALE,
 		"play_UI_Dialogue_Devin": PLAY_UI_DIALOGUE_DEVIN,
-		"play_UI_Dialogue_narrator": PLAY_UI_DIALOGUE_NARRATOR,
-		"play_IN_TinderLighter_use": PLAY_IN_TINDERLIGHTER_USE,
-		"play_IN_WoodenTorch_mount": PLAY_IN_WOODENTORCH_MOUNT,
-		"play_IN_WoodenTorch_on": PLAY_IN_WOODENTORCH_ON,
-		"play_IN_FlameTorch_pickup": PLAY_IN_FLAMETORCH_PICKUP,
-		"play_IN_TinderLighter_sheath": PLAY_IN_TINDERLIGHTER_SHEATH,
-		"play_IN_WoodenTorch_light": PLAY_IN_WOODENTORCH_LIGHT,
-		"play_IN_WoodenTorch_sheath": PLAY_IN_WOODENTORCH_SHEATH
+		"play_UI_Dialogue_narrator": PLAY_UI_DIALOGUE_NARRATOR
 	}
 
 class STATES:
@@ -100,12 +102,12 @@ class STATES:
 		const GROUP = 4091656514
 
 		class STATE:
+			const INGAME = 984691642
 			const INMENU = 3374585465
 			const NONE = 748895195
-			const INGAME = 984691642
 
-	class PLAYERSTATE:
-		const GROUP = 3285234865
+	class PLAYERHEALTHSTATE:
+		const GROUP = 2698781627
 
 		class STATE:
 			const NONE = 748895195
@@ -116,13 +118,13 @@ class STATES:
 		"GameState": {
 			"GROUP": 4091656514,
 			"STATE": {
+				"InGame": 984691642,
 				"InMenu": 3374585465,
 				"None": 748895195,
-				"InGame": 984691642,
 			}
 		},
-		"PlayerState": {
-			"GROUP": 3285234865,
+		"PlayerHealthState": {
+			"GROUP": 2698781627,
 			"STATE": {
 				"None": 748895195,
 				"Alive": 655265632,
@@ -183,6 +185,8 @@ class SWITCHES:
 			const PAVEMENT = 2830102203
 			const STONE = 1216965916
 			const WOOD = 2058049674
+			const CARPET = 2412606308
+			const TILE = 2637588553
 
 	class PLAYERHEALTHSWITCH:
 		const GROUP = 206614296
@@ -192,6 +196,47 @@ class SWITCHES:
 			const FULLHEALTH = 2429688720
 			const LOWHEALTH = 1017222595
 			const NOHEALTH = 2921131014
+
+	class PLAYERMOVEMENTSWITCH:
+		const GROUP = 1462722741
+
+		class SWITCH:
+			const IDLE = 1874288895
+			const WALK = 2108779966
+			const SPRINT = 1296465089
+
+	class MUSICMAIN:
+		const GROUP = 374987273
+
+		class SWITCH:
+			const DEADFIELDS = 2107944144
+			const DESERTEDCEMETERY = 1558487793
+			const FAITHDISTRICT = 2118550049
+			const CHARACTERTHEMES = 2948476972
+			const MANORSHARP = 1127520404
+			const OAKSHAW = 1717014777
+			const SILENCE = 3041563226
+			const PUCABURROW = 3495533829
+
+	class MUSICCHARACTERTHEMES:
+		const GROUP = 585551793
+
+		class SWITCH:
+			const GLINTLEYSDOMINIC = 1301918983
+			const GLINTLEYSLUCILLE = 404541024
+
+	class MUSICPUCABURROW:
+		const GROUP = 2105789782
+
+		class SWITCH:
+			const MAIN = 3161908922
+			const BOSS = 1560169506
+
+	class MUSICFAITHDISTRICT:
+		const GROUP = 2093071284
+
+		class SWITCH:
+			const LULLABY = 867851510
 
 	const _dict = {
 		"AmbienceAreaSwitch": {
@@ -243,6 +288,8 @@ class SWITCHES:
 				"Pavement": 2830102203,
 				"Stone": 1216965916,
 				"Wood": 2058049674,
+				"Carpet": 2412606308,
+				"Tile": 2637588553,
 			}
 		},
 		"PlayerHealthSwitch": {
@@ -251,7 +298,48 @@ class SWITCHES:
 				"DamagedHealth": 3144424692,
 				"FullHealth": 2429688720,
 				"LowHealth": 1017222595,
-				"NoHealth": 2921131014
+				"NoHealth": 2921131014,
+			}
+		},
+		"PlayerMovementSwitch": {
+			"GROUP": 1462722741,
+			"SWITCH": {
+				"Idle": 1874288895,
+				"Walk": 2108779966,
+				"Sprint": 1296465089,
+			}
+		},
+		"MusicMain": {
+			"GROUP": 374987273,
+			"SWITCH": {
+				"DeadFields": 2107944144,
+				"DesertedCemetery": 1558487793,
+				"FaithDistrict": 2118550049,
+				"CharacterThemes": 2948476972,
+				"ManorSharp": 1127520404,
+				"Oakshaw": 1717014777,
+				"Silence": 3041563226,
+				"PucaBurrow": 3495533829,
+			}
+		},
+		"MusicCharacterThemes": {
+			"GROUP": 585551793,
+			"SWITCH": {
+				"GlintleysDominic": 1301918983,
+				"GlintleysLucille": 404541024,
+			}
+		},
+		"MusicPucaBurrow": {
+			"GROUP": 2105789782,
+			"SWITCH": {
+				"Main": 3161908922,
+				"Boss": 1560169506,
+			}
+		},
+		"MusicFaithDistrict": {
+			"GROUP": 2093071284,
+			"SWITCH": {
+				"Lullaby": 867851510
 			}
 		}
 	}
@@ -264,6 +352,7 @@ class GAME_PARAMETERS:
 	const DISTANCE_RTPC = 1273457242
 	const PLAYERHEALTH_RTPC = 3204359326
 	const TIMEOFDAY_RTPC = 3067665661
+	const PLAYERMOVEMENT_RTPC = 24313873
 
 	const _dict = {
 		"MusicVol_RTPC": MUSICVOL_RTPC,
@@ -271,17 +360,18 @@ class GAME_PARAMETERS:
 		"MasterVol_RTPC": MASTERVOL_RTPC,
 		"Distance_RTPC": DISTANCE_RTPC,
 		"PlayerHealth_RTPC": PLAYERHEALTH_RTPC,
-		"TimeOfDay_RTPC": TIMEOFDAY_RTPC
+		"TimeOfDay_RTPC": TIMEOFDAY_RTPC,
+		"PlayerMovement_RTPC": PLAYERMOVEMENT_RTPC
 	}
 
 class TRIGGERS:
 
-	const LEVELSTART = 3372421815
 	const WALKING = 340271938
+	const LEVELSTART = 3372421815
 
 	const _dict = {
-		"LevelStart": LEVELSTART,
-		"Walking": WALKING
+		"Walking": WALKING,
+		"LevelStart": LEVELSTART
 	}
 
 class BANKS:

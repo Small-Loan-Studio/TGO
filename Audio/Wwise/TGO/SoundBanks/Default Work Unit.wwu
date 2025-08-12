@@ -44,7 +44,7 @@
 						<ObjectRef Name="stop_AM_Crypt" ID="{A7138586-AE9F-4C4E-A1FF-35F6CA55439D}" WorkUnitID="{05418A24-DE52-48AE-8733-F6F54D1BFD0E}" Origin="Manual" Filter="7"/>
 						<ObjectRef Name="SFX" ID="{7DE5626E-C0D2-4CD3-8CCC-12EEFCC9C14F}" WorkUnitID="{6C0969E1-B09C-4693-BC3C-B2E7116B2AEE}" Origin="Manual" Filter="7"/>
 						<ObjectRef Name="play_UI_QuestLog_open" ID="{50977D55-4AAD-4DB7-9984-55B9F42DD5F5}" WorkUnitID="{285F7A76-AE49-4D48-8D5D-C73C7938630A}" Origin="Manual" Filter="7"/>
-						<ObjectRef Name="play_PC_foostep" ID="{1E4D5A65-A50E-4DEE-B681-2EB0FC37D85B}" WorkUnitID="{FD1D796B-E5EC-4A68-AE27-6358AC2627C7}" Origin="Manual" Filter="7"/>
+						<ObjectRef Name="play_PC_footstep" ID="{1E4D5A65-A50E-4DEE-B681-2EB0FC37D85B}" WorkUnitID="{FD1D796B-E5EC-4A68-AE27-6358AC2627C7}" Origin="Manual" Filter="7"/>
 						<ObjectRef Name="play_IN_TinderLighter_sheath" ID="{5FA57066-F4EB-4F12-9061-E56A283DD8C0}" WorkUnitID="{D9FB95D4-D1CB-4E4D-B4AD-20EE510BA0A6}" Origin="Manual" Filter="7"/>
 						<ObjectRef Name="play_TEST_TestTone_3D" ID="{D55E5C84-7FBA-4F20-BE0C-B7CE39E33F28}" WorkUnitID="{AAA74B16-0AA3-4E80-A3C1-B701AD23C503}" Origin="Manual" Filter="7"/>
 						<ObjectRef Name="play_MX_Main" ID="{72926EA4-0A6D-4F4F-BCA6-293769FEC8FF}" WorkUnitID="{39E60CE7-573A-4094-ABAE-4F20949E455C}" Origin="Manual" Filter="7"/>
