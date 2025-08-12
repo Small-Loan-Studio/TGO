@@ -399,6 +399,64 @@
 								</ConversionPluginInfo>
 							</ConversionPluginInfoList>
 						</Conversion>
+						<Conversion Name="CS_PC_SFX_Medium_Mono" ID="{0BE0A173-72C8-42EA-A609-C512E17C0B50}">
+							<Comment>10:1 to 18:1 Ratio. Good medium quality preset, or for filtered assets that don't need to be high quality.</Comment>
+							<PropertyList>
+								<Property Name="AllowChannelUpmix" Type="bool">
+									<ValueList>
+										<Value>False</Value>
+									</ValueList>
+								</Property>
+								<Property Name="Channels" Type="int32">
+									<ValueList>
+										<Value Platform="Mac">0</Value>
+										<Value Platform="Windows">0</Value>
+										<Value Platform="Linux">0</Value>
+									</ValueList>
+								</Property>
+								<Property Name="Color" Type="int16" Value="21"/>
+								<Property Name="LRMix" Type="Real64">
+									<ValueList>
+										<Value Platform="Mac">0</Value>
+										<Value Platform="Windows">0</Value>
+										<Value Platform="Linux">0</Value>
+									</ValueList>
+								</Property>
+								<Property Name="MaxSampleRate" Type="int32">
+									<ValueList>
+										<Value Platform="Mac">48000</Value>
+										<Value Platform="Windows">48000</Value>
+										<Value Platform="Linux">48000</Value>
+									</ValueList>
+								</Property>
+								<Property Name="MinSampleRate" Type="int32">
+									<ValueList>
+										<Value Platform="Mac">24000</Value>
+										<Value Platform="Windows">24000</Value>
+										<Value Platform="Linux">24000</Value>
+									</ValueList>
+								</Property>
+								<Property Name="OverrideColor" Type="bool" Value="True"/>
+								<Property Name="SampleRate" Type="int32">
+									<ValueList>
+										<Value Platform="Mac">3</Value>
+										<Value Platform="Windows">3</Value>
+										<Value Platform="Linux">3</Value>
+									</ValueList>
+								</Property>
+							</PropertyList>
+							<ConversionPluginInfoList>
+								<ConversionPluginInfo Platform="Mac">
+									<ConversionPlugin Name="" ID="{4DDFC0AC-B41E-4170-851A-9A2F5BF8B238}" PluginName="Vorbis" CompanyID="0" PluginID="4"/>
+								</ConversionPluginInfo>
+								<ConversionPluginInfo Platform="Windows">
+									<ConversionPlugin Name="" ID="{51410793-99D9-49D5-A69C-77F4DC32D3B2}" PluginName="Vorbis" CompanyID="0" PluginID="4"/>
+								</ConversionPluginInfo>
+								<ConversionPluginInfo Platform="Linux">
+									<ConversionPlugin Name="" ID="{26A0FF9A-AF50-4BD4-B7E2-DC19B9FA8F44}" PluginName="Vorbis" CompanyID="0" PluginID="4"/>
+								</ConversionPluginInfo>
+							</ConversionPluginInfoList>
+						</Conversion>
 					</ChildrenList>
 				</Folder>
 			</ChildrenList>

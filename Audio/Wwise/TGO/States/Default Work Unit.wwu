@@ -19,7 +19,7 @@
 						</State>
 					</ChildrenList>
 				</StateGroup>
-				<StateGroup Name="PlayerState" ID="{05F9326D-47D9-413E-A060-D1BDE8682CF3}">
+				<StateGroup Name="PlayerHealthState" ID="{05F9326D-47D9-413E-A060-D1BDE8682CF3}">
 					<PropertyList>
 						<Property Name="Color" Type="int16" Value="4"/>
 						<Property Name="OverrideColor" Type="bool" Value="True"/>

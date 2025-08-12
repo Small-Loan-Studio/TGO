@@ -19,7 +19,20 @@
 					<ChildrenList>
 						<ActorMixer Name="PlayerMovement" ID="{CC224711-2081-408F-B445-63B9A247F617}" ShortID="95362662">
 							<PropertyList>
+								<Property Name="BelowThresholdBehavior" Type="int16" Value="2"/>
+								<Property Name="MaxSoundPerInstance" Type="int16">
+									<ValueList>
+										<Value>3</Value>
+									</ValueList>
+								</Property>
 								<Property Name="OverrideOutput" Type="bool" Value="True"/>
+								<Property Name="OverrideVirtualVoice" Type="bool" Value="True"/>
+								<Property Name="UseMaxSoundPerInstance" Type="bool">
+									<ValueList>
+										<Value>True</Value>
+									</ValueList>
+								</Property>
+								<Property Name="VirtualVoiceQueueBehavior" Type="int16" Value="2"/>
 							</PropertyList>
 							<ReferenceList>
 								<Reference Name="Conversion">
@@ -32,13 +45,17 @@
 							<ChildrenList>
 								<SwitchContainer Name="PC_footstep_switch" ID="{8AD76273-D280-4050-9EB9-4FC76BC501A3}" ShortID="831149445">
 									<PropertyList>
+										<Property Name="MaxSoundPerInstance" Type="int16">
+											<ValueList>
+												<Value>3</Value>
+											</ValueList>
+										</Property>
 										<Property Name="OverrideConversion" Type="bool" Value="True"/>
 										<Property Name="Pitch" Type="int32">
 											<ModifierList>
 												<ModifierInfo>
 													<Modifier Name="" ID="{00D3CFFF-B563-4996-AAE1-C82FB26136D5}">
 														<PropertyList>
-															<Property Name="Enabled" Type="bool" Value="True"/>
 															<Property Name="Max" Type="Real64" Value="150"/>
 															<Property Name="Min" Type="Real64" Value="-150"/>
 														</PropertyList>
@@ -46,13 +63,14 @@
 												</ModifierInfo>
 											</ModifierList>
 										</Property>
+										<Property Name="SwitchBehavior" Type="int16" Value="1"/>
 									</PropertyList>
 									<ReferenceList>
 										<Reference Name="Conversion">
-											<ObjectRef Name="CS_PC_SFX_Medium" ID="{D643F969-96F4-4A20-B6E9-5D5050A03E05}" WorkUnitID="{1E13664B-E694-4203-95E7-AEB6212579F7}"/>
+											<ObjectRef Name="CS_PC_SFX_Medium_Mono" ID="{0BE0A173-72C8-42EA-A609-C512E17C0B50}" WorkUnitID="{1E13664B-E694-4203-95E7-AEB6212579F7}"/>
 										</Reference>
 										<Reference Name="DefaultSwitchOrState">
-											<ObjectRef Name="Gravel" ID="{CFE7E021-D7BE-4048-AB4F-2D6EB840E455}" WorkUnitID="{D2DCFF4B-2190-4064-823A-184361192CBC}"/>
+											<ObjectRef Name="Dirt" ID="{A3A7D983-41DF-492F-BDD5-466DC98D4759}" WorkUnitID="{D2DCFF4B-2190-4064-823A-184361192CBC}"/>
 										</Reference>
 										<Reference Name="OutputBus">
 											<ObjectRef Name="MASTER" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{6C0969E1-B09C-4693-BC3C-B2E7116B2AEE}"/>
@@ -63,6 +81,33 @@
 									</ReferenceList>
 									<ChildrenList>
 										<RandomSequenceContainer Name="PC_footstep_gravel" ID="{CAA6B817-4099-4E90-866C-627EEDF15BF3}" ShortID="152327357">
+											<PropertyList>
+												<Property Name="Pitch" Type="int32">
+													<ModifierList>
+														<ModifierInfo>
+															<Modifier Name="" ID="{6F958BA3-DFA7-4FA8-9775-17FE51292BEC}">
+																<PropertyList>
+																	<Property Name="Enabled" Type="bool" Value="True"/>
+																	<Property Name="Max" Type="Real64" Value="150"/>
+																	<Property Name="Min" Type="Real64" Value="-150"/>
+																</PropertyList>
+															</Modifier>
+														</ModifierInfo>
+													</ModifierList>
+												</Property>
+												<Property Name="PlayMechanismLoop" Type="bool" Value="True"/>
+												<Property Name="PlayMechanismSpecialTransitions" Type="bool" Value="True"/>
+												<Property Name="PlayMechanismSpecialTransitionsType" Type="int16" Value="3"/>
+												<Property Name="PlayMechanismSpecialTransitionsValue" Type="Real64" Value="0.6">
+													<ModifierList>
+														<ModifierInfo>
+															<Modifier Name="" ID="{AFBC7162-664E-45A6-BC0C-27CE3611187D}"/>
+														</ModifierInfo>
+													</ModifierList>
+												</Property>
+												<Property Name="PlayMechanismStepOrContinuous" Type="int16" Value="0"/>
+												<Property Name="RandomAvoidRepeatingCount" Type="int32" Value="5"/>
+											</PropertyList>
 											<ReferenceList>
 												<Reference Name="Conversion">
 													<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{1E13664B-E694-4203-95E7-AEB6212579F7}"/>
@@ -71,8 +116,351 @@
 													<ObjectRef Name="MASTER" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{6C0969E1-B09C-4693-BC3C-B2E7116B2AEE}"/>
 												</Reference>
 											</ReferenceList>
+											<ChildrenList>
+												<Sound Name="sfx_PC_footstep_gravel_walk_01" ID="{5E5D0403-DBC8-4CA8-B419-A4B2B584AE12}" ShortID="187441882">
+													<ReferenceList>
+														<Reference Name="Conversion">
+															<ObjectRef Name="CS_PC_SFX_Medium" ID="{D643F969-96F4-4A20-B6E9-5D5050A03E05}" WorkUnitID="{1E13664B-E694-4203-95E7-AEB6212579F7}"/>
+														</Reference>
+														<Reference Name="OutputBus">
+															<ObjectRef Name="PlayerMovement" ID="{0ED43A03-EC3C-400E-9488-71428CF9BE37}" WorkUnitID="{6C0969E1-B09C-4693-BC3C-B2E7116B2AEE}"/>
+														</Reference>
+													</ReferenceList>
+													<ChildrenList>
+														<AudioFileSource Name="sfx_PC_footstep_gravel_walk_01" ID="{B0F1145E-7717-4E25-A90C-1203A660AA17}">
+															<Language>SFX</Language>
+															<AudioFile>Player\Movement\sfx_PC_footstep_gravel_walk_01.wav</AudioFile>
+															<MediaIDList>
+																<MediaID ID="435324211"/>
+															</MediaIDList>
+														</AudioFileSource>
+													</ChildrenList>
+													<ActiveSourceList>
+														<ActiveSource Name="sfx_PC_footstep_gravel_walk_01" ID="{B0F1145E-7717-4E25-A90C-1203A660AA17}" Platform="Linked"/>
+													</ActiveSourceList>
+												</Sound>
+												<Sound Name="sfx_PC_footstep_gravel_walk_02" ID="{24FBADCC-5073-40D8-9E6C-E2AF7F53E152}" ShortID="500569826">
+													<ReferenceList>
+														<Reference Name="Conversion">
+															<ObjectRef Name="CS_PC_SFX_Medium" ID="{D643F969-96F4-4A20-B6E9-5D5050A03E05}" WorkUnitID="{1E13664B-E694-4203-95E7-AEB6212579F7}"/>
+														</Reference>
+														<Reference Name="OutputBus">
+															<ObjectRef Name="PlayerMovement" ID="{0ED43A03-EC3C-400E-9488-71428CF9BE37}" WorkUnitID="{6C0969E1-B09C-4693-BC3C-B2E7116B2AEE}"/>
+														</Reference>
+													</ReferenceList>
+													<ChildrenList>
+														<AudioFileSource Name="sfx_PC_footstep_gravel_walk_02" ID="{AEB847B4-8466-4FD6-9EC5-38C6122D39B0}">
+															<Language>SFX</Language>
+															<AudioFile>Player\Movement\sfx_PC_footstep_gravel_walk_02.wav</AudioFile>
+															<MediaIDList>
+																<MediaID ID="575714515"/>
+															</MediaIDList>
+														</AudioFileSource>
+													</ChildrenList>
+													<ActiveSourceList>
+														<ActiveSource Name="sfx_PC_footstep_gravel_walk_02" ID="{AEB847B4-8466-4FD6-9EC5-38C6122D39B0}" Platform="Linked"/>
+													</ActiveSourceList>
+												</Sound>
+												<Sound Name="sfx_PC_footstep_gravel_walk_03" ID="{E5AF01A6-92FF-43A9-91ED-8D8120BE4A41}" ShortID="659677560">
+													<ReferenceList>
+														<Reference Name="Conversion">
+															<ObjectRef Name="CS_PC_SFX_Medium" ID="{D643F969-96F4-4A20-B6E9-5D5050A03E05}" WorkUnitID="{1E13664B-E694-4203-95E7-AEB6212579F7}"/>
+														</Reference>
+														<Reference Name="OutputBus">
+															<ObjectRef Name="PlayerMovement" ID="{0ED43A03-EC3C-400E-9488-71428CF9BE37}" WorkUnitID="{6C0969E1-B09C-4693-BC3C-B2E7116B2AEE}"/>
+														</Reference>
+													</ReferenceList>
+													<ChildrenList>
+														<AudioFileSource Name="sfx_PC_footstep_gravel_walk_03" ID="{D8FC24EE-2D1D-41BA-9FC0-7D2F1B9BD9D5}">
+															<Language>SFX</Language>
+															<AudioFile>Player\Movement\sfx_PC_footstep_gravel_walk_03.wav</AudioFile>
+															<MediaIDList>
+																<MediaID ID="465723164"/>
+															</MediaIDList>
+														</AudioFileSource>
+													</ChildrenList>
+													<ActiveSourceList>
+														<ActiveSource Name="sfx_PC_footstep_gravel_walk_03" ID="{D8FC24EE-2D1D-41BA-9FC0-7D2F1B9BD9D5}" Platform="Linked"/>
+													</ActiveSourceList>
+												</Sound>
+												<Sound Name="sfx_PC_footstep_gravel_walk_05" ID="{89777716-3A6F-45DC-857D-9BB657727F18}" ShortID="672097760">
+													<ReferenceList>
+														<Reference Name="Conversion">
+															<ObjectRef Name="CS_PC_SFX_Medium" ID="{D643F969-96F4-4A20-B6E9-5D5050A03E05}" WorkUnitID="{1E13664B-E694-4203-95E7-AEB6212579F7}"/>
+														</Reference>
+														<Reference Name="OutputBus">
+															<ObjectRef Name="PlayerMovement" ID="{0ED43A03-EC3C-400E-9488-71428CF9BE37}" WorkUnitID="{6C0969E1-B09C-4693-BC3C-B2E7116B2AEE}"/>
+														</Reference>
+													</ReferenceList>
+													<ChildrenList>
+														<AudioFileSource Name="sfx_PC_footstep_gravel_walk_05" ID="{D95D8FCB-C3E3-483A-A51B-856A91D3E846}">
+															<Language>SFX</Language>
+															<AudioFile>Player\Movement\sfx_PC_footstep_gravel_walk_05.wav</AudioFile>
+															<MediaIDList>
+																<MediaID ID="429923099"/>
+															</MediaIDList>
+														</AudioFileSource>
+													</ChildrenList>
+													<ActiveSourceList>
+														<ActiveSource Name="sfx_PC_footstep_gravel_walk_05" ID="{D95D8FCB-C3E3-483A-A51B-856A91D3E846}" Platform="Linked"/>
+													</ActiveSourceList>
+												</Sound>
+												<Sound Name="sfx_PC_footstep_gravel_walk_04" ID="{47E4DCB5-847A-4D83-B01D-03857C25AD94}" ShortID="582179864">
+													<ReferenceList>
+														<Reference Name="Conversion">
+															<ObjectRef Name="CS_PC_SFX_Medium" ID="{D643F969-96F4-4A20-B6E9-5D5050A03E05}" WorkUnitID="{1E13664B-E694-4203-95E7-AEB6212579F7}"/>
+														</Reference>
+														<Reference Name="OutputBus">
+															<ObjectRef Name="PlayerMovement" ID="{0ED43A03-EC3C-400E-9488-71428CF9BE37}" WorkUnitID="{6C0969E1-B09C-4693-BC3C-B2E7116B2AEE}"/>
+														</Reference>
+													</ReferenceList>
+													<ChildrenList>
+														<AudioFileSource Name="sfx_PC_footstep_gravel_walk_04" ID="{C162A938-5573-44F5-B6FC-7C0939CCBDC9}">
+															<Language>SFX</Language>
+															<AudioFile>Player\Movement\sfx_PC_footstep_gravel_walk_04.wav</AudioFile>
+															<MediaIDList>
+																<MediaID ID="857984880"/>
+															</MediaIDList>
+														</AudioFileSource>
+													</ChildrenList>
+													<ActiveSourceList>
+														<ActiveSource Name="sfx_PC_footstep_gravel_walk_04" ID="{C162A938-5573-44F5-B6FC-7C0939CCBDC9}" Platform="Linked"/>
+													</ActiveSourceList>
+												</Sound>
+												<Sound Name="sfx_PC_footstep_gravel_walk_06" ID="{74BCBC3C-0E1F-4BB0-B741-63C6A26C1EF8}" ShortID="429548389">
+													<ReferenceList>
+														<Reference Name="Conversion">
+															<ObjectRef Name="CS_PC_SFX_Medium" ID="{D643F969-96F4-4A20-B6E9-5D5050A03E05}" WorkUnitID="{1E13664B-E694-4203-95E7-AEB6212579F7}"/>
+														</Reference>
+														<Reference Name="OutputBus">
+															<ObjectRef Name="PlayerMovement" ID="{0ED43A03-EC3C-400E-9488-71428CF9BE37}" WorkUnitID="{6C0969E1-B09C-4693-BC3C-B2E7116B2AEE}"/>
+														</Reference>
+													</ReferenceList>
+													<ChildrenList>
+														<AudioFileSource Name="sfx_PC_footstep_gravel_walk_06" ID="{C5FA6A6A-05F0-48F8-842C-43FB8857F38C}">
+															<Language>SFX</Language>
+															<AudioFile>Player\Movement\sfx_PC_footstep_gravel_walk_06.wav</AudioFile>
+															<MediaIDList>
+																<MediaID ID="320827261"/>
+															</MediaIDList>
+														</AudioFileSource>
+													</ChildrenList>
+													<ActiveSourceList>
+														<ActiveSource Name="sfx_PC_footstep_gravel_walk_06" ID="{C5FA6A6A-05F0-48F8-842C-43FB8857F38C}" Platform="Linked"/>
+													</ActiveSourceList>
+												</Sound>
+												<Sound Name="sfx_PC_footstep_gravel_walk_07" ID="{1330E9A9-7FCC-442C-9363-3872BBA0010B}" ShortID="518255069">
+													<ReferenceList>
+														<Reference Name="Conversion">
+															<ObjectRef Name="CS_PC_SFX_Medium" ID="{D643F969-96F4-4A20-B6E9-5D5050A03E05}" WorkUnitID="{1E13664B-E694-4203-95E7-AEB6212579F7}"/>
+														</Reference>
+														<Reference Name="OutputBus">
+															<ObjectRef Name="PlayerMovement" ID="{0ED43A03-EC3C-400E-9488-71428CF9BE37}" WorkUnitID="{6C0969E1-B09C-4693-BC3C-B2E7116B2AEE}"/>
+														</Reference>
+													</ReferenceList>
+													<ChildrenList>
+														<AudioFileSource Name="sfx_PC_footstep_gravel_walk_07" ID="{26AC178F-D6B5-4177-AEAE-4E7B45B727D7}">
+															<Language>SFX</Language>
+															<AudioFile>Player\Movement\sfx_PC_footstep_gravel_walk_07.wav</AudioFile>
+															<MediaIDList>
+																<MediaID ID="657518119"/>
+															</MediaIDList>
+														</AudioFileSource>
+													</ChildrenList>
+													<ActiveSourceList>
+														<ActiveSource Name="sfx_PC_footstep_gravel_walk_07" ID="{26AC178F-D6B5-4177-AEAE-4E7B45B727D7}" Platform="Linked"/>
+													</ActiveSourceList>
+												</Sound>
+												<Sound Name="sfx_PC_footstep_gravel_walk_08" ID="{C9904F59-7CB6-47C1-AC22-A198D83A119F}" ShortID="859212501">
+													<ReferenceList>
+														<Reference Name="Conversion">
+															<ObjectRef Name="CS_PC_SFX_Medium" ID="{D643F969-96F4-4A20-B6E9-5D5050A03E05}" WorkUnitID="{1E13664B-E694-4203-95E7-AEB6212579F7}"/>
+														</Reference>
+														<Reference Name="OutputBus">
+															<ObjectRef Name="PlayerMovement" ID="{0ED43A03-EC3C-400E-9488-71428CF9BE37}" WorkUnitID="{6C0969E1-B09C-4693-BC3C-B2E7116B2AEE}"/>
+														</Reference>
+													</ReferenceList>
+													<ChildrenList>
+														<AudioFileSource Name="sfx_PC_footstep_gravel_walk_08" ID="{2BB8526E-369E-4BF6-BD45-F63B4C3C4C17}">
+															<Language>SFX</Language>
+															<AudioFile>Player\Movement\sfx_PC_footstep_gravel_walk_08.wav</AudioFile>
+															<MediaIDList>
+																<MediaID ID="10979169"/>
+															</MediaIDList>
+														</AudioFileSource>
+													</ChildrenList>
+													<ActiveSourceList>
+														<ActiveSource Name="sfx_PC_footstep_gravel_walk_08" ID="{2BB8526E-369E-4BF6-BD45-F63B4C3C4C17}" Platform="Linked"/>
+													</ActiveSourceList>
+												</Sound>
+												<Sound Name="sfx_PC_footstep_gravel_walk_09" ID="{300085F0-B796-4E23-B12E-64CC4597F7AD}" ShortID="431567959">
+													<ReferenceList>
+														<Reference Name="Conversion">
+															<ObjectRef Name="CS_PC_SFX_Medium" ID="{D643F969-96F4-4A20-B6E9-5D5050A03E05}" WorkUnitID="{1E13664B-E694-4203-95E7-AEB6212579F7}"/>
+														</Reference>
+														<Reference Name="OutputBus">
+															<ObjectRef Name="PlayerMovement" ID="{0ED43A03-EC3C-400E-9488-71428CF9BE37}" WorkUnitID="{6C0969E1-B09C-4693-BC3C-B2E7116B2AEE}"/>
+														</Reference>
+													</ReferenceList>
+													<ChildrenList>
+														<AudioFileSource Name="sfx_PC_footstep_gravel_walk_09" ID="{93EE437D-AD48-4363-ABF9-FA05E1DA2C16}">
+															<Language>SFX</Language>
+															<AudioFile>Player\Movement\sfx_PC_footstep_gravel_walk_09.wav</AudioFile>
+															<MediaIDList>
+																<MediaID ID="71739596"/>
+															</MediaIDList>
+														</AudioFileSource>
+													</ChildrenList>
+													<ActiveSourceList>
+														<ActiveSource Name="sfx_PC_footstep_gravel_walk_09" ID="{93EE437D-AD48-4363-ABF9-FA05E1DA2C16}" Platform="Linked"/>
+													</ActiveSourceList>
+												</Sound>
+												<Sound Name="sfx_PC_footstep_gravel_walk_10" ID="{2B2752C2-D2D9-438F-96C0-BC81BDE01D3E}" ShortID="68738208">
+													<ReferenceList>
+														<Reference Name="Conversion">
+															<ObjectRef Name="CS_PC_SFX_Medium" ID="{D643F969-96F4-4A20-B6E9-5D5050A03E05}" WorkUnitID="{1E13664B-E694-4203-95E7-AEB6212579F7}"/>
+														</Reference>
+														<Reference Name="OutputBus">
+															<ObjectRef Name="PlayerMovement" ID="{0ED43A03-EC3C-400E-9488-71428CF9BE37}" WorkUnitID="{6C0969E1-B09C-4693-BC3C-B2E7116B2AEE}"/>
+														</Reference>
+													</ReferenceList>
+													<ChildrenList>
+														<AudioFileSource Name="sfx_PC_footstep_gravel_walk_10" ID="{4BFC8117-E759-455D-9DE5-477DBF6724DE}">
+															<Language>SFX</Language>
+															<AudioFile>Player\Movement\sfx_PC_footstep_gravel_walk_10.wav</AudioFile>
+															<MediaIDList>
+																<MediaID ID="59297529"/>
+															</MediaIDList>
+														</AudioFileSource>
+													</ChildrenList>
+													<ActiveSourceList>
+														<ActiveSource Name="sfx_PC_footstep_gravel_walk_10" ID="{4BFC8117-E759-455D-9DE5-477DBF6724DE}" Platform="Linked"/>
+													</ActiveSourceList>
+												</Sound>
+											</ChildrenList>
+											<ObjectLists>
+												<ObjectList Name="RTPC">
+													<Reference>
+														<Local>
+															<RTPC Name="" ID="{59762C0F-5213-4C23-8256-FBB518194B54}" ShortID="574722154">
+																<PropertyList>
+																	<Property Name="PropertyName" Type="string" Value="PlayMechanismSpecialTransitionsValue"/>
+																</PropertyList>
+																<ReferenceList>
+																	<Reference Name="ControlInput">
+																		<ObjectRef Name="PlayerMovement_RTPC" ID="{5847C79F-C464-4B8B-9C1B-255CACD2DE98}" WorkUnitID="{4BB587C7-F5F5-4FBE-AD3E-2AADCE4707E1}"/>
+																	</Reference>
+																	<Reference Name="Curve">
+																		<Custom>
+																			<Curve Name="" ID="{D7CF0FD8-F3CF-421D-B957-54DA47E5BC83}">
+																				<PropertyList>
+																					<Property Name="Flags" Type="int32" Value="1"/>
+																				</PropertyList>
+																				<PointList>
+																					<Point>
+																						<XPos>0</XPos>
+																						<YPos>0</YPos>
+																						<Flags>5</Flags>
+																					</Point>
+																					<Point>
+																						<XPos>70</XPos>
+																						<YPos>0</YPos>
+																						<Flags>0</Flags>
+																					</Point>
+																					<Point>
+																						<XPos>75</XPos>
+																						<YPos>-0.25</YPos>
+																						<Flags>0</Flags>
+																					</Point>
+																					<Point>
+																						<XPos>100</XPos>
+																						<YPos>-0.25</YPos>
+																						<Flags>37</Flags>
+																					</Point>
+																				</PointList>
+																			</Curve>
+																		</Custom>
+																	</Reference>
+																</ReferenceList>
+															</RTPC>
+														</Local>
+													</Reference>
+													<Reference>
+														<Local>
+															<RTPC Name="" ID="{DA539274-24DF-4CEF-9509-3BE0C65D04B6}" ShortID="9412511">
+																<PropertyList>
+																	<Property Name="PropertyName" Type="string" Value="Pitch"/>
+																</PropertyList>
+																<ReferenceList>
+																	<Reference Name="ControlInput">
+																		<ObjectRef Name="PlayerMovement_RTPC" ID="{5847C79F-C464-4B8B-9C1B-255CACD2DE98}" WorkUnitID="{4BB587C7-F5F5-4FBE-AD3E-2AADCE4707E1}"/>
+																	</Reference>
+																	<Reference Name="Curve">
+																		<Custom>
+																			<Curve Name="" ID="{207DBA1C-1DBE-421A-9215-C8A812489DC6}">
+																				<PropertyList>
+																					<Property Name="Flags" Type="int32" Value="65537"/>
+																				</PropertyList>
+																				<PointList>
+																					<Point>
+																						<XPos>0</XPos>
+																						<YPos>0</YPos>
+																						<Flags>5</Flags>
+																					</Point>
+																					<Point>
+																						<XPos>70</XPos>
+																						<YPos>0</YPos>
+																						<Flags>0</Flags>
+																					</Point>
+																					<Point>
+																						<XPos>75</XPos>
+																						<YPos>300</YPos>
+																						<Flags>0</Flags>
+																					</Point>
+																					<Point>
+																						<XPos>100</XPos>
+																						<YPos>300</YPos>
+																						<Flags>37</Flags>
+																					</Point>
+																				</PointList>
+																			</Curve>
+																		</Custom>
+																	</Reference>
+																</ReferenceList>
+															</RTPC>
+														</Local>
+													</Reference>
+												</ObjectList>
+											</ObjectLists>
 										</RandomSequenceContainer>
 										<RandomSequenceContainer Name="PC_footstep_dirt" ID="{31D5A2D5-CF63-42D7-AC99-A00C8B330520}" ShortID="371650076">
+											<PropertyList>
+												<Property Name="Pitch" Type="int32">
+													<ModifierList>
+														<ModifierInfo>
+															<Modifier Name="" ID="{2C17CBFC-E194-41CC-B708-AB80342C8386}">
+																<PropertyList>
+																	<Property Name="Enabled" Type="bool" Value="True"/>
+																	<Property Name="Max" Type="Real64" Value="150"/>
+																	<Property Name="Min" Type="Real64" Value="-150"/>
+																</PropertyList>
+															</Modifier>
+														</ModifierInfo>
+													</ModifierList>
+												</Property>
+												<Property Name="PlayMechanismLoop" Type="bool" Value="True"/>
+												<Property Name="PlayMechanismSpecialTransitions" Type="bool" Value="True"/>
+												<Property Name="PlayMechanismSpecialTransitionsType" Type="int16" Value="3"/>
+												<Property Name="PlayMechanismSpecialTransitionsValue" Type="Real64" Value="0.6">
+													<ModifierList>
+														<ModifierInfo>
+															<Modifier Name="" ID="{FA77EF54-0587-4231-9D3D-655BF11AB0A3}"/>
+														</ModifierInfo>
+													</ModifierList>
+												</Property>
+												<Property Name="PlayMechanismStepOrContinuous" Type="int16" Value="0"/>
+												<Property Name="RandomAvoidRepeatingCount" Type="int32" Value="5"/>
+											</PropertyList>
 											<ReferenceList>
 												<Reference Name="Conversion">
 													<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{1E13664B-E694-4203-95E7-AEB6212579F7}"/>
@@ -81,8 +469,373 @@
 													<ObjectRef Name="MASTER" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{6C0969E1-B09C-4693-BC3C-B2E7116B2AEE}"/>
 												</Reference>
 											</ReferenceList>
+											<ChildrenList>
+												<Sound Name="sfx_PC_footstep_dirt_walk_01" ID="{4E522C57-C336-4FC6-BEF0-53BB9B88CE01}" ShortID="611461039">
+													<ReferenceList>
+														<Reference Name="Conversion">
+															<ObjectRef Name="CS_PC_SFX_Medium" ID="{D643F969-96F4-4A20-B6E9-5D5050A03E05}" WorkUnitID="{1E13664B-E694-4203-95E7-AEB6212579F7}"/>
+														</Reference>
+														<Reference Name="OutputBus">
+															<ObjectRef Name="PlayerMovement" ID="{0ED43A03-EC3C-400E-9488-71428CF9BE37}" WorkUnitID="{6C0969E1-B09C-4693-BC3C-B2E7116B2AEE}"/>
+														</Reference>
+													</ReferenceList>
+													<ChildrenList>
+														<AudioFileSource Name="sfx_PC_footstep_dirt_walk_01" ID="{1BE78D81-06EE-4B3C-8A40-E141C65A93A4}">
+															<Language>SFX</Language>
+															<AudioFile>Player\Movement\sfx_PC_footstep_dirt_walk_01.wav</AudioFile>
+															<MediaIDList>
+																<MediaID ID="479601101"/>
+															</MediaIDList>
+														</AudioFileSource>
+													</ChildrenList>
+													<ActiveSourceList>
+														<ActiveSource Name="sfx_PC_footstep_dirt_walk_01" ID="{1BE78D81-06EE-4B3C-8A40-E141C65A93A4}" Platform="Linked"/>
+													</ActiveSourceList>
+												</Sound>
+												<Sound Name="sfx_PC_footstep_dirt_walk_02" ID="{993B3CDE-9239-4444-93C0-E99B12CC20E6}" ShortID="932064190">
+													<ReferenceList>
+														<Reference Name="Conversion">
+															<ObjectRef Name="CS_PC_SFX_Medium" ID="{D643F969-96F4-4A20-B6E9-5D5050A03E05}" WorkUnitID="{1E13664B-E694-4203-95E7-AEB6212579F7}"/>
+														</Reference>
+														<Reference Name="OutputBus">
+															<ObjectRef Name="PlayerMovement" ID="{0ED43A03-EC3C-400E-9488-71428CF9BE37}" WorkUnitID="{6C0969E1-B09C-4693-BC3C-B2E7116B2AEE}"/>
+														</Reference>
+													</ReferenceList>
+													<ChildrenList>
+														<AudioFileSource Name="sfx_PC_footstep_dirt_walk_02" ID="{27473BFD-9362-4262-8697-869D3CBD6187}">
+															<Language>SFX</Language>
+															<AudioFile>Player\Movement\sfx_PC_footstep_dirt_walk_02.wav</AudioFile>
+															<MediaIDList>
+																<MediaID ID="614312759"/>
+															</MediaIDList>
+														</AudioFileSource>
+													</ChildrenList>
+													<ActiveSourceList>
+														<ActiveSource Name="sfx_PC_footstep_dirt_walk_02" ID="{27473BFD-9362-4262-8697-869D3CBD6187}" Platform="Linked"/>
+													</ActiveSourceList>
+												</Sound>
+												<Sound Name="sfx_PC_footstep_dirt_walk_03" ID="{EAB0AE40-F783-4C6D-96E4-1D944AE19CBB}" ShortID="987570656">
+													<ReferenceList>
+														<Reference Name="Conversion">
+															<ObjectRef Name="CS_PC_SFX_Medium" ID="{D643F969-96F4-4A20-B6E9-5D5050A03E05}" WorkUnitID="{1E13664B-E694-4203-95E7-AEB6212579F7}"/>
+														</Reference>
+														<Reference Name="OutputBus">
+															<ObjectRef Name="PlayerMovement" ID="{0ED43A03-EC3C-400E-9488-71428CF9BE37}" WorkUnitID="{6C0969E1-B09C-4693-BC3C-B2E7116B2AEE}"/>
+														</Reference>
+													</ReferenceList>
+													<ChildrenList>
+														<AudioFileSource Name="sfx_PC_footstep_dirt_walk_03" ID="{EB398EA9-436C-4FFB-ACFF-55C691D7FA06}">
+															<Language>SFX</Language>
+															<AudioFile>Player\Movement\sfx_PC_footstep_dirt_walk_03.wav</AudioFile>
+															<MediaIDList>
+																<MediaID ID="942336478"/>
+															</MediaIDList>
+														</AudioFileSource>
+													</ChildrenList>
+													<ActiveSourceList>
+														<ActiveSource Name="sfx_PC_footstep_dirt_walk_03" ID="{EB398EA9-436C-4FFB-ACFF-55C691D7FA06}" Platform="Linked"/>
+													</ActiveSourceList>
+												</Sound>
+												<Sound Name="sfx_PC_footstep_dirt_walk_04" ID="{FF7B207C-ED72-4604-A0E6-73AF2FF414B1}" ShortID="662270401">
+													<ReferenceList>
+														<Reference Name="Conversion">
+															<ObjectRef Name="CS_PC_SFX_Medium" ID="{D643F969-96F4-4A20-B6E9-5D5050A03E05}" WorkUnitID="{1E13664B-E694-4203-95E7-AEB6212579F7}"/>
+														</Reference>
+														<Reference Name="OutputBus">
+															<ObjectRef Name="PlayerMovement" ID="{0ED43A03-EC3C-400E-9488-71428CF9BE37}" WorkUnitID="{6C0969E1-B09C-4693-BC3C-B2E7116B2AEE}"/>
+														</Reference>
+													</ReferenceList>
+													<ChildrenList>
+														<AudioFileSource Name="sfx_PC_footstep_dirt_walk_04" ID="{DD9E1A20-25E0-48CE-80C4-B7F0AEC265B1}">
+															<Language>SFX</Language>
+															<AudioFile>Player\Movement\sfx_PC_footstep_dirt_walk_04.wav</AudioFile>
+															<MediaIDList>
+																<MediaID ID="576704163"/>
+															</MediaIDList>
+														</AudioFileSource>
+													</ChildrenList>
+													<ActiveSourceList>
+														<ActiveSource Name="sfx_PC_footstep_dirt_walk_04" ID="{DD9E1A20-25E0-48CE-80C4-B7F0AEC265B1}" Platform="Linked"/>
+													</ActiveSourceList>
+												</Sound>
+												<Sound Name="sfx_PC_footstep_dirt_walk_05" ID="{D80E0C3B-6A5E-4393-9CD1-9C962F8CCD6C}" ShortID="897094793">
+													<ReferenceList>
+														<Reference Name="Conversion">
+															<ObjectRef Name="CS_PC_SFX_Medium" ID="{D643F969-96F4-4A20-B6E9-5D5050A03E05}" WorkUnitID="{1E13664B-E694-4203-95E7-AEB6212579F7}"/>
+														</Reference>
+														<Reference Name="OutputBus">
+															<ObjectRef Name="PlayerMovement" ID="{0ED43A03-EC3C-400E-9488-71428CF9BE37}" WorkUnitID="{6C0969E1-B09C-4693-BC3C-B2E7116B2AEE}"/>
+														</Reference>
+													</ReferenceList>
+													<ChildrenList>
+														<AudioFileSource Name="sfx_PC_footstep_dirt_walk_05" ID="{A483D507-301D-4F66-B939-F19153808EF9}">
+															<Language>SFX</Language>
+															<AudioFile>Player\Movement\sfx_PC_footstep_dirt_walk_05.wav</AudioFile>
+															<MediaIDList>
+																<MediaID ID="651200784"/>
+															</MediaIDList>
+														</AudioFileSource>
+													</ChildrenList>
+													<ActiveSourceList>
+														<ActiveSource Name="sfx_PC_footstep_dirt_walk_05" ID="{A483D507-301D-4F66-B939-F19153808EF9}" Platform="Linked"/>
+													</ActiveSourceList>
+												</Sound>
+												<Sound Name="sfx_PC_footstep_dirt_walk_06" ID="{8D8EA38E-71B0-4D89-808B-9B8C5693FE63}" ShortID="549139411">
+													<ReferenceList>
+														<Reference Name="Conversion">
+															<ObjectRef Name="CS_PC_SFX_Medium" ID="{D643F969-96F4-4A20-B6E9-5D5050A03E05}" WorkUnitID="{1E13664B-E694-4203-95E7-AEB6212579F7}"/>
+														</Reference>
+														<Reference Name="OutputBus">
+															<ObjectRef Name="PlayerMovement" ID="{0ED43A03-EC3C-400E-9488-71428CF9BE37}" WorkUnitID="{6C0969E1-B09C-4693-BC3C-B2E7116B2AEE}"/>
+														</Reference>
+													</ReferenceList>
+													<ChildrenList>
+														<AudioFileSource Name="sfx_PC_footstep_dirt_walk_06" ID="{FA5E1256-B802-44AC-A699-799474F61032}">
+															<Language>SFX</Language>
+															<AudioFile>Player\Movement\sfx_PC_footstep_dirt_walk_06.wav</AudioFile>
+															<MediaIDList>
+																<MediaID ID="875047030"/>
+															</MediaIDList>
+														</AudioFileSource>
+													</ChildrenList>
+													<ActiveSourceList>
+														<ActiveSource Name="sfx_PC_footstep_dirt_walk_06" ID="{FA5E1256-B802-44AC-A699-799474F61032}" Platform="Linked"/>
+													</ActiveSourceList>
+												</Sound>
+												<Sound Name="sfx_PC_footstep_dirt_walk_07" ID="{DED74B23-C74E-412B-B3A7-CAF193D17108}" ShortID="100645498">
+													<ReferenceList>
+														<Reference Name="Conversion">
+															<ObjectRef Name="CS_PC_SFX_Medium" ID="{D643F969-96F4-4A20-B6E9-5D5050A03E05}" WorkUnitID="{1E13664B-E694-4203-95E7-AEB6212579F7}"/>
+														</Reference>
+														<Reference Name="OutputBus">
+															<ObjectRef Name="PlayerMovement" ID="{0ED43A03-EC3C-400E-9488-71428CF9BE37}" WorkUnitID="{6C0969E1-B09C-4693-BC3C-B2E7116B2AEE}"/>
+														</Reference>
+													</ReferenceList>
+													<ChildrenList>
+														<AudioFileSource Name="sfx_PC_footstep_dirt_walk_07" ID="{13E4E6E4-6FC1-4497-9D26-8B747116621B}">
+															<Language>SFX</Language>
+															<AudioFile>Player\Movement\sfx_PC_footstep_dirt_walk_07.wav</AudioFile>
+															<MediaIDList>
+																<MediaID ID="572824961"/>
+															</MediaIDList>
+														</AudioFileSource>
+													</ChildrenList>
+													<ActiveSourceList>
+														<ActiveSource Name="sfx_PC_footstep_dirt_walk_07" ID="{13E4E6E4-6FC1-4497-9D26-8B747116621B}" Platform="Linked"/>
+													</ActiveSourceList>
+												</Sound>
+												<Sound Name="sfx_PC_footstep_dirt_walk_08" ID="{CD0928C7-50DF-4E76-B731-31473194C2D0}" ShortID="966984347">
+													<ReferenceList>
+														<Reference Name="Conversion">
+															<ObjectRef Name="CS_PC_SFX_Medium" ID="{D643F969-96F4-4A20-B6E9-5D5050A03E05}" WorkUnitID="{1E13664B-E694-4203-95E7-AEB6212579F7}"/>
+														</Reference>
+														<Reference Name="OutputBus">
+															<ObjectRef Name="PlayerMovement" ID="{0ED43A03-EC3C-400E-9488-71428CF9BE37}" WorkUnitID="{6C0969E1-B09C-4693-BC3C-B2E7116B2AEE}"/>
+														</Reference>
+													</ReferenceList>
+													<ChildrenList>
+														<AudioFileSource Name="sfx_PC_footstep_dirt_walk_08" ID="{51784BB8-E91D-4BEC-A622-817A29108B01}">
+															<Language>SFX</Language>
+															<AudioFile>Player\Movement\sfx_PC_footstep_dirt_walk_08.wav</AudioFile>
+															<MediaIDList>
+																<MediaID ID="453183434"/>
+															</MediaIDList>
+														</AudioFileSource>
+													</ChildrenList>
+													<ActiveSourceList>
+														<ActiveSource Name="sfx_PC_footstep_dirt_walk_08" ID="{51784BB8-E91D-4BEC-A622-817A29108B01}" Platform="Linked"/>
+													</ActiveSourceList>
+												</Sound>
+												<Sound Name="sfx_PC_footstep_dirt_walk_09" ID="{A93909D8-211B-4D54-86C7-65AAC77DD3D8}" ShortID="1036289225">
+													<ReferenceList>
+														<Reference Name="Conversion">
+															<ObjectRef Name="CS_PC_SFX_Medium" ID="{D643F969-96F4-4A20-B6E9-5D5050A03E05}" WorkUnitID="{1E13664B-E694-4203-95E7-AEB6212579F7}"/>
+														</Reference>
+														<Reference Name="OutputBus">
+															<ObjectRef Name="PlayerMovement" ID="{0ED43A03-EC3C-400E-9488-71428CF9BE37}" WorkUnitID="{6C0969E1-B09C-4693-BC3C-B2E7116B2AEE}"/>
+														</Reference>
+													</ReferenceList>
+													<ChildrenList>
+														<AudioFileSource Name="sfx_PC_footstep_dirt_walk_09" ID="{5664DDA5-0B4E-4691-8D3D-4524C322A29B}">
+															<Language>SFX</Language>
+															<AudioFile>Player\Movement\sfx_PC_footstep_dirt_walk_09.wav</AudioFile>
+															<MediaIDList>
+																<MediaID ID="512996575"/>
+															</MediaIDList>
+														</AudioFileSource>
+													</ChildrenList>
+													<ActiveSourceList>
+														<ActiveSource Name="sfx_PC_footstep_dirt_walk_09" ID="{5664DDA5-0B4E-4691-8D3D-4524C322A29B}" Platform="Linked"/>
+													</ActiveSourceList>
+												</Sound>
+												<Sound Name="sfx_PC_footstep_dirt_walk_10" ID="{4FA68843-18F7-4544-B7D7-D0283EA5FE9F}" ShortID="202954049">
+													<ReferenceList>
+														<Reference Name="Conversion">
+															<ObjectRef Name="CS_PC_SFX_Medium" ID="{D643F969-96F4-4A20-B6E9-5D5050A03E05}" WorkUnitID="{1E13664B-E694-4203-95E7-AEB6212579F7}"/>
+														</Reference>
+														<Reference Name="OutputBus">
+															<ObjectRef Name="PlayerMovement" ID="{0ED43A03-EC3C-400E-9488-71428CF9BE37}" WorkUnitID="{6C0969E1-B09C-4693-BC3C-B2E7116B2AEE}"/>
+														</Reference>
+													</ReferenceList>
+													<ChildrenList>
+														<AudioFileSource Name="sfx_PC_footstep_dirt_walk_10" ID="{C3DC2CBA-63FD-4B90-8D53-00F3FA70BFEC}">
+															<Language>SFX</Language>
+															<AudioFile>Player\Movement\sfx_PC_footstep_dirt_walk_10.wav</AudioFile>
+															<MediaIDList>
+																<MediaID ID="1057253365"/>
+															</MediaIDList>
+														</AudioFileSource>
+													</ChildrenList>
+													<ActiveSourceList>
+														<ActiveSource Name="sfx_PC_footstep_dirt_walk_10" ID="{C3DC2CBA-63FD-4B90-8D53-00F3FA70BFEC}" Platform="Linked"/>
+													</ActiveSourceList>
+												</Sound>
+												<Sound Name="sfx_PC_footstep_dirt_walk_11" ID="{B0E5708E-528D-48DE-A803-6D8673DAB8DD}" ShortID="492664402">
+													<ReferenceList>
+														<Reference Name="Conversion">
+															<ObjectRef Name="CS_PC_SFX_Medium" ID="{D643F969-96F4-4A20-B6E9-5D5050A03E05}" WorkUnitID="{1E13664B-E694-4203-95E7-AEB6212579F7}"/>
+														</Reference>
+														<Reference Name="OutputBus">
+															<ObjectRef Name="PlayerMovement" ID="{0ED43A03-EC3C-400E-9488-71428CF9BE37}" WorkUnitID="{6C0969E1-B09C-4693-BC3C-B2E7116B2AEE}"/>
+														</Reference>
+													</ReferenceList>
+													<ChildrenList>
+														<AudioFileSource Name="sfx_PC_footstep_dirt_walk_11" ID="{D16A40C2-E8DE-4355-AD1F-A7234D99FCB0}">
+															<Language>SFX</Language>
+															<AudioFile>Player\Movement\sfx_PC_footstep_dirt_walk_11.wav</AudioFile>
+															<MediaIDList>
+																<MediaID ID="822877011"/>
+															</MediaIDList>
+														</AudioFileSource>
+													</ChildrenList>
+													<ActiveSourceList>
+														<ActiveSource Name="sfx_PC_footstep_dirt_walk_11" ID="{D16A40C2-E8DE-4355-AD1F-A7234D99FCB0}" Platform="Linked"/>
+													</ActiveSourceList>
+												</Sound>
+											</ChildrenList>
+											<ObjectLists>
+												<ObjectList Name="RTPC">
+													<Reference>
+														<Local>
+															<RTPC Name="" ID="{DD485CB1-F7AE-4C3B-8528-862C45180F51}" ShortID="345987111">
+																<PropertyList>
+																	<Property Name="PropertyName" Type="string" Value="PlayMechanismSpecialTransitionsValue"/>
+																</PropertyList>
+																<ReferenceList>
+																	<Reference Name="ControlInput">
+																		<ObjectRef Name="PlayerMovement_RTPC" ID="{5847C79F-C464-4B8B-9C1B-255CACD2DE98}" WorkUnitID="{4BB587C7-F5F5-4FBE-AD3E-2AADCE4707E1}"/>
+																	</Reference>
+																	<Reference Name="Curve">
+																		<Custom>
+																			<Curve Name="" ID="{678F9672-8A5B-428D-90FD-F2DDF6695878}">
+																				<PropertyList>
+																					<Property Name="Flags" Type="int32" Value="1"/>
+																				</PropertyList>
+																				<PointList>
+																					<Point>
+																						<XPos>0</XPos>
+																						<YPos>0</YPos>
+																						<Flags>5</Flags>
+																					</Point>
+																					<Point>
+																						<XPos>70</XPos>
+																						<YPos>0</YPos>
+																						<Flags>0</Flags>
+																					</Point>
+																					<Point>
+																						<XPos>75</XPos>
+																						<YPos>-0.25</YPos>
+																						<Flags>0</Flags>
+																					</Point>
+																					<Point>
+																						<XPos>100</XPos>
+																						<YPos>-0.25</YPos>
+																						<Flags>37</Flags>
+																					</Point>
+																				</PointList>
+																			</Curve>
+																		</Custom>
+																	</Reference>
+																</ReferenceList>
+															</RTPC>
+														</Local>
+													</Reference>
+													<Reference>
+														<Local>
+															<RTPC Name="" ID="{39A0282E-8CBF-4081-86CE-1FAF8D6B7DA0}" ShortID="96919145">
+																<PropertyList>
+																	<Property Name="PropertyName" Type="string" Value="Pitch"/>
+																</PropertyList>
+																<ReferenceList>
+																	<Reference Name="ControlInput">
+																		<ObjectRef Name="PlayerMovement_RTPC" ID="{5847C79F-C464-4B8B-9C1B-255CACD2DE98}" WorkUnitID="{4BB587C7-F5F5-4FBE-AD3E-2AADCE4707E1}"/>
+																	</Reference>
+																	<Reference Name="Curve">
+																		<Custom>
+																			<Curve Name="" ID="{73AD8135-410E-4122-BDF2-87AE8253EC6C}">
+																				<PropertyList>
+																					<Property Name="Flags" Type="int32" Value="65537"/>
+																				</PropertyList>
+																				<PointList>
+																					<Point>
+																						<XPos>0</XPos>
+																						<YPos>0</YPos>
+																						<Flags>5</Flags>
+																					</Point>
+																					<Point>
+																						<XPos>70</XPos>
+																						<YPos>0</YPos>
+																						<Flags>0</Flags>
+																					</Point>
+																					<Point>
+																						<XPos>75</XPos>
+																						<YPos>300</YPos>
+																						<Flags>0</Flags>
+																					</Point>
+																					<Point>
+																						<XPos>100</XPos>
+																						<YPos>300</YPos>
+																						<Flags>37</Flags>
+																					</Point>
+																				</PointList>
+																			</Curve>
+																		</Custom>
+																	</Reference>
+																</ReferenceList>
+															</RTPC>
+														</Local>
+													</Reference>
+												</ObjectList>
+											</ObjectLists>
 										</RandomSequenceContainer>
 										<RandomSequenceContainer Name="PC_footstep_grass" ID="{8F9AA87B-4891-4D9E-869D-59C3BC7A7723}" ShortID="832685785">
+											<PropertyList>
+												<Property Name="Pitch" Type="int32">
+													<ModifierList>
+														<ModifierInfo>
+															<Modifier Name="" ID="{5E840334-5DB4-4192-B6C0-AD05AB4D1108}">
+																<PropertyList>
+																	<Property Name="Enabled" Type="bool" Value="True"/>
+																	<Property Name="Max" Type="Real64" Value="150"/>
+																	<Property Name="Min" Type="Real64" Value="-150"/>
+																</PropertyList>
+															</Modifier>
+														</ModifierInfo>
+													</ModifierList>
+												</Property>
+												<Property Name="PlayMechanismLoop" Type="bool" Value="True"/>
+												<Property Name="PlayMechanismSpecialTransitions" Type="bool" Value="True"/>
+												<Property Name="PlayMechanismSpecialTransitionsType" Type="int16" Value="3"/>
+												<Property Name="PlayMechanismSpecialTransitionsValue" Type="Real64" Value="0.6">
+													<ModifierList>
+														<ModifierInfo>
+															<Modifier Name="" ID="{4525E93E-5D03-47CD-BA81-D78D2D201511}"/>
+														</ModifierInfo>
+													</ModifierList>
+												</Property>
+												<Property Name="PlayMechanismStepOrContinuous" Type="int16" Value="0"/>
+												<Property Name="RandomAvoidRepeatingCount" Type="int32" Value="5"/>
+											</PropertyList>
 											<ReferenceList>
 												<Reference Name="Conversion">
 													<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{1E13664B-E694-4203-95E7-AEB6212579F7}"/>
@@ -91,8 +844,354 @@
 													<ObjectRef Name="MASTER" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{6C0969E1-B09C-4693-BC3C-B2E7116B2AEE}"/>
 												</Reference>
 											</ReferenceList>
+											<ChildrenList>
+												<Sound Name="sfx_PC_footstep_grass_walk_01" ID="{5B050BDE-BF8E-4374-B149-26CDCC8966A8}" ShortID="1035539074">
+													<ReferenceList>
+														<Reference Name="Conversion">
+															<ObjectRef Name="CS_PC_SFX_Medium" ID="{D643F969-96F4-4A20-B6E9-5D5050A03E05}" WorkUnitID="{1E13664B-E694-4203-95E7-AEB6212579F7}"/>
+														</Reference>
+														<Reference Name="OutputBus">
+															<ObjectRef Name="PlayerMovement" ID="{0ED43A03-EC3C-400E-9488-71428CF9BE37}" WorkUnitID="{6C0969E1-B09C-4693-BC3C-B2E7116B2AEE}"/>
+														</Reference>
+													</ReferenceList>
+													<ChildrenList>
+														<AudioFileSource Name="sfx_PC_footstep_grass_walk_01" ID="{B3A3F69D-1E53-4BCB-9ACE-6CBAA63EF45D}">
+															<Language>SFX</Language>
+															<AudioFile>Player\Movement\sfx_PC_footstep_grass_walk_01.wav</AudioFile>
+															<MediaIDList>
+																<MediaID ID="392980322"/>
+															</MediaIDList>
+														</AudioFileSource>
+													</ChildrenList>
+													<ActiveSourceList>
+														<ActiveSource Name="sfx_PC_footstep_grass_walk_01" ID="{B3A3F69D-1E53-4BCB-9ACE-6CBAA63EF45D}" Platform="Linked"/>
+													</ActiveSourceList>
+												</Sound>
+												<Sound Name="sfx_PC_footstep_grass_walk_02" ID="{CDE895A2-C3A1-4B34-8FC3-865F6649587B}" ShortID="62819437">
+													<ReferenceList>
+														<Reference Name="Conversion">
+															<ObjectRef Name="CS_PC_SFX_Medium" ID="{D643F969-96F4-4A20-B6E9-5D5050A03E05}" WorkUnitID="{1E13664B-E694-4203-95E7-AEB6212579F7}"/>
+														</Reference>
+														<Reference Name="OutputBus">
+															<ObjectRef Name="PlayerMovement" ID="{0ED43A03-EC3C-400E-9488-71428CF9BE37}" WorkUnitID="{6C0969E1-B09C-4693-BC3C-B2E7116B2AEE}"/>
+														</Reference>
+													</ReferenceList>
+													<ChildrenList>
+														<AudioFileSource Name="sfx_PC_footstep_grass_walk_02" ID="{43FBF607-8504-4F0B-8D41-B4891BEB0638}">
+															<Language>SFX</Language>
+															<AudioFile>Player\Movement\sfx_PC_footstep_grass_walk_02.wav</AudioFile>
+															<MediaIDList>
+																<MediaID ID="1049968582"/>
+															</MediaIDList>
+														</AudioFileSource>
+													</ChildrenList>
+													<ActiveSourceList>
+														<ActiveSource Name="sfx_PC_footstep_grass_walk_02" ID="{43FBF607-8504-4F0B-8D41-B4891BEB0638}" Platform="Linked"/>
+													</ActiveSourceList>
+												</Sound>
+												<Sound Name="sfx_PC_footstep_grass_walk_03" ID="{BC72B5C0-E734-40B7-B758-115C641411CE}" ShortID="132948194">
+													<PropertyList>
+														<Property Name="OverrideConversion" Type="bool" Value="True"/>
+													</PropertyList>
+													<ReferenceList>
+														<Reference Name="Conversion">
+															<ObjectRef Name="CS_PC_SFX_Medium" ID="{D643F969-96F4-4A20-B6E9-5D5050A03E05}" WorkUnitID="{1E13664B-E694-4203-95E7-AEB6212579F7}"/>
+														</Reference>
+														<Reference Name="OutputBus">
+															<ObjectRef Name="PlayerMovement" ID="{0ED43A03-EC3C-400E-9488-71428CF9BE37}" WorkUnitID="{6C0969E1-B09C-4693-BC3C-B2E7116B2AEE}"/>
+														</Reference>
+													</ReferenceList>
+													<ChildrenList>
+														<AudioFileSource Name="sfx_PC_footstep_grass_walk_03" ID="{CE970F52-527D-4AE3-AE4B-5677B508A987}">
+															<Language>SFX</Language>
+															<AudioFile>Player\Movement\sfx_PC_footstep_grass_walk_03.wav</AudioFile>
+															<MediaIDList>
+																<MediaID ID="274187411"/>
+															</MediaIDList>
+														</AudioFileSource>
+													</ChildrenList>
+													<ActiveSourceList>
+														<ActiveSource Name="sfx_PC_footstep_grass_walk_03" ID="{CE970F52-527D-4AE3-AE4B-5677B508A987}" Platform="Linked"/>
+													</ActiveSourceList>
+												</Sound>
+												<Sound Name="sfx_PC_footstep_grass_walk_04" ID="{50C70B87-DF60-401D-843B-AEE7D8A4C22C}" ShortID="977561701">
+													<ReferenceList>
+														<Reference Name="Conversion">
+															<ObjectRef Name="CS_PC_SFX_Medium" ID="{D643F969-96F4-4A20-B6E9-5D5050A03E05}" WorkUnitID="{1E13664B-E694-4203-95E7-AEB6212579F7}"/>
+														</Reference>
+														<Reference Name="OutputBus">
+															<ObjectRef Name="PlayerMovement" ID="{0ED43A03-EC3C-400E-9488-71428CF9BE37}" WorkUnitID="{6C0969E1-B09C-4693-BC3C-B2E7116B2AEE}"/>
+														</Reference>
+													</ReferenceList>
+													<ChildrenList>
+														<AudioFileSource Name="sfx_PC_footstep_grass_walk_04" ID="{B1C549F5-D1BF-4845-BE8B-9EF257DA45F3}">
+															<Language>SFX</Language>
+															<AudioFile>Player\Movement\sfx_PC_footstep_grass_walk_04.wav</AudioFile>
+															<MediaIDList>
+																<MediaID ID="144992228"/>
+															</MediaIDList>
+														</AudioFileSource>
+													</ChildrenList>
+													<ActiveSourceList>
+														<ActiveSource Name="sfx_PC_footstep_grass_walk_04" ID="{B1C549F5-D1BF-4845-BE8B-9EF257DA45F3}" Platform="Linked"/>
+													</ActiveSourceList>
+												</Sound>
+												<Sound Name="sfx_PC_footstep_grass_walk_05" ID="{7EC382FC-A30A-4B68-93E7-2908EE0BFA16}" ShortID="106722512">
+													<ReferenceList>
+														<Reference Name="Conversion">
+															<ObjectRef Name="CS_PC_SFX_Medium" ID="{D643F969-96F4-4A20-B6E9-5D5050A03E05}" WorkUnitID="{1E13664B-E694-4203-95E7-AEB6212579F7}"/>
+														</Reference>
+														<Reference Name="OutputBus">
+															<ObjectRef Name="PlayerMovement" ID="{0ED43A03-EC3C-400E-9488-71428CF9BE37}" WorkUnitID="{6C0969E1-B09C-4693-BC3C-B2E7116B2AEE}"/>
+														</Reference>
+													</ReferenceList>
+													<ChildrenList>
+														<AudioFileSource Name="sfx_PC_footstep_grass_walk_05" ID="{D57F6ED4-69DD-4D98-A023-07F4BF5B2827}">
+															<Language>SFX</Language>
+															<AudioFile>Player\Movement\sfx_PC_footstep_grass_walk_05.wav</AudioFile>
+															<MediaIDList>
+																<MediaID ID="721694515"/>
+															</MediaIDList>
+														</AudioFileSource>
+													</ChildrenList>
+													<ActiveSourceList>
+														<ActiveSource Name="sfx_PC_footstep_grass_walk_05" ID="{D57F6ED4-69DD-4D98-A023-07F4BF5B2827}" Platform="Linked"/>
+													</ActiveSourceList>
+												</Sound>
+												<Sound Name="sfx_PC_footstep_grass_walk_06" ID="{7D18E7B1-2415-4F16-B327-75FAD8A88282}" ShortID="590627661">
+													<ReferenceList>
+														<Reference Name="Conversion">
+															<ObjectRef Name="CS_PC_SFX_Medium" ID="{D643F969-96F4-4A20-B6E9-5D5050A03E05}" WorkUnitID="{1E13664B-E694-4203-95E7-AEB6212579F7}"/>
+														</Reference>
+														<Reference Name="OutputBus">
+															<ObjectRef Name="PlayerMovement" ID="{0ED43A03-EC3C-400E-9488-71428CF9BE37}" WorkUnitID="{6C0969E1-B09C-4693-BC3C-B2E7116B2AEE}"/>
+														</Reference>
+													</ReferenceList>
+													<ChildrenList>
+														<AudioFileSource Name="sfx_PC_footstep_grass_walk_06" ID="{7CF9010F-1591-44CB-B311-44B469406398}">
+															<Language>SFX</Language>
+															<AudioFile>Player\Movement\sfx_PC_footstep_grass_walk_06.wav</AudioFile>
+															<MediaIDList>
+																<MediaID ID="63247942"/>
+															</MediaIDList>
+														</AudioFileSource>
+													</ChildrenList>
+													<ActiveSourceList>
+														<ActiveSource Name="sfx_PC_footstep_grass_walk_06" ID="{7CF9010F-1591-44CB-B311-44B469406398}" Platform="Linked"/>
+													</ActiveSourceList>
+												</Sound>
+												<Sound Name="sfx_PC_footstep_grass_walk_07" ID="{6A73FAD8-3F8E-4936-B424-5488790C8FBF}" ShortID="1045061038">
+													<ReferenceList>
+														<Reference Name="Conversion">
+															<ObjectRef Name="CS_PC_SFX_Medium" ID="{D643F969-96F4-4A20-B6E9-5D5050A03E05}" WorkUnitID="{1E13664B-E694-4203-95E7-AEB6212579F7}"/>
+														</Reference>
+														<Reference Name="OutputBus">
+															<ObjectRef Name="PlayerMovement" ID="{0ED43A03-EC3C-400E-9488-71428CF9BE37}" WorkUnitID="{6C0969E1-B09C-4693-BC3C-B2E7116B2AEE}"/>
+														</Reference>
+													</ReferenceList>
+													<ChildrenList>
+														<AudioFileSource Name="sfx_PC_footstep_grass_walk_07" ID="{C1AEDD5F-1E2D-44E5-8A23-570F4F7BC11E}">
+															<Language>SFX</Language>
+															<AudioFile>Player\Movement\sfx_PC_footstep_grass_walk_07.wav</AudioFile>
+															<MediaIDList>
+																<MediaID ID="172251344"/>
+															</MediaIDList>
+														</AudioFileSource>
+													</ChildrenList>
+													<ActiveSourceList>
+														<ActiveSource Name="sfx_PC_footstep_grass_walk_07" ID="{C1AEDD5F-1E2D-44E5-8A23-570F4F7BC11E}" Platform="Linked"/>
+													</ActiveSourceList>
+												</Sound>
+												<Sound Name="sfx_PC_footstep_grass_walk_08" ID="{DC1B3A3C-0578-4FA8-822A-CE49BBABE128}" ShortID="774055703">
+													<ReferenceList>
+														<Reference Name="Conversion">
+															<ObjectRef Name="CS_PC_SFX_Medium" ID="{D643F969-96F4-4A20-B6E9-5D5050A03E05}" WorkUnitID="{1E13664B-E694-4203-95E7-AEB6212579F7}"/>
+														</Reference>
+														<Reference Name="OutputBus">
+															<ObjectRef Name="PlayerMovement" ID="{0ED43A03-EC3C-400E-9488-71428CF9BE37}" WorkUnitID="{6C0969E1-B09C-4693-BC3C-B2E7116B2AEE}"/>
+														</Reference>
+													</ReferenceList>
+													<ChildrenList>
+														<AudioFileSource Name="sfx_PC_footstep_grass_walk_08" ID="{4FE58E32-F5E0-4426-BFC1-14E7D5C8B545}">
+															<Language>SFX</Language>
+															<AudioFile>Player\Movement\sfx_PC_footstep_grass_walk_08.wav</AudioFile>
+															<MediaIDList>
+																<MediaID ID="290001960"/>
+															</MediaIDList>
+														</AudioFileSource>
+													</ChildrenList>
+													<ActiveSourceList>
+														<ActiveSource Name="sfx_PC_footstep_grass_walk_08" ID="{4FE58E32-F5E0-4426-BFC1-14E7D5C8B545}" Platform="Linked"/>
+													</ActiveSourceList>
+												</Sound>
+												<Sound Name="sfx_PC_footstep_grass_walk_09" ID="{BD4D6A1E-1AED-4D0D-83EF-C4FB3D32E2EF}" ShortID="268713423">
+													<ReferenceList>
+														<Reference Name="Conversion">
+															<ObjectRef Name="CS_PC_SFX_Medium" ID="{D643F969-96F4-4A20-B6E9-5D5050A03E05}" WorkUnitID="{1E13664B-E694-4203-95E7-AEB6212579F7}"/>
+														</Reference>
+														<Reference Name="OutputBus">
+															<ObjectRef Name="PlayerMovement" ID="{0ED43A03-EC3C-400E-9488-71428CF9BE37}" WorkUnitID="{6C0969E1-B09C-4693-BC3C-B2E7116B2AEE}"/>
+														</Reference>
+													</ReferenceList>
+													<ChildrenList>
+														<AudioFileSource Name="sfx_PC_footstep_grass_walk_09" ID="{BDED567E-10DB-4828-B870-6A33740E666F}">
+															<Language>SFX</Language>
+															<AudioFile>Player\Movement\sfx_PC_footstep_grass_walk_09.wav</AudioFile>
+															<MediaIDList>
+																<MediaID ID="976094080"/>
+															</MediaIDList>
+														</AudioFileSource>
+													</ChildrenList>
+													<ActiveSourceList>
+														<ActiveSource Name="sfx_PC_footstep_grass_walk_09" ID="{BDED567E-10DB-4828-B870-6A33740E666F}" Platform="Linked"/>
+													</ActiveSourceList>
+												</Sound>
+												<Sound Name="sfx_PC_footstep_grass_walk_10" ID="{C4A0C6D2-6508-480A-B67A-32A5630A45B6}" ShortID="987146417">
+													<ReferenceList>
+														<Reference Name="Conversion">
+															<ObjectRef Name="CS_PC_SFX_Medium" ID="{D643F969-96F4-4A20-B6E9-5D5050A03E05}" WorkUnitID="{1E13664B-E694-4203-95E7-AEB6212579F7}"/>
+														</Reference>
+														<Reference Name="OutputBus">
+															<ObjectRef Name="PlayerMovement" ID="{0ED43A03-EC3C-400E-9488-71428CF9BE37}" WorkUnitID="{6C0969E1-B09C-4693-BC3C-B2E7116B2AEE}"/>
+														</Reference>
+													</ReferenceList>
+													<ChildrenList>
+														<AudioFileSource Name="sfx_PC_footstep_grass_walk_10" ID="{457D6F3D-7E50-4C92-AF3C-BA7DB57D2E29}">
+															<Language>SFX</Language>
+															<AudioFile>Player\Movement\sfx_PC_footstep_grass_walk_10.wav</AudioFile>
+															<MediaIDList>
+																<MediaID ID="484746577"/>
+															</MediaIDList>
+														</AudioFileSource>
+													</ChildrenList>
+													<ActiveSourceList>
+														<ActiveSource Name="sfx_PC_footstep_grass_walk_10" ID="{457D6F3D-7E50-4C92-AF3C-BA7DB57D2E29}" Platform="Linked"/>
+													</ActiveSourceList>
+												</Sound>
+											</ChildrenList>
+											<ObjectLists>
+												<ObjectList Name="RTPC">
+													<Reference>
+														<Local>
+															<RTPC Name="" ID="{932271A0-55E7-4F10-BB4F-CE46EF950C01}" ShortID="574128356">
+																<PropertyList>
+																	<Property Name="PropertyName" Type="string" Value="PlayMechanismSpecialTransitionsValue"/>
+																</PropertyList>
+																<ReferenceList>
+																	<Reference Name="ControlInput">
+																		<ObjectRef Name="PlayerMovement_RTPC" ID="{5847C79F-C464-4B8B-9C1B-255CACD2DE98}" WorkUnitID="{4BB587C7-F5F5-4FBE-AD3E-2AADCE4707E1}"/>
+																	</Reference>
+																	<Reference Name="Curve">
+																		<Custom>
+																			<Curve Name="" ID="{312A7A3F-B1A7-469F-9D78-48669CE4CAC2}">
+																				<PropertyList>
+																					<Property Name="Flags" Type="int32" Value="1"/>
+																				</PropertyList>
+																				<PointList>
+																					<Point>
+																						<XPos>0</XPos>
+																						<YPos>0</YPos>
+																						<Flags>5</Flags>
+																					</Point>
+																					<Point>
+																						<XPos>70</XPos>
+																						<YPos>0</YPos>
+																						<Flags>0</Flags>
+																					</Point>
+																					<Point>
+																						<XPos>75</XPos>
+																						<YPos>-0.25</YPos>
+																						<Flags>0</Flags>
+																					</Point>
+																					<Point>
+																						<XPos>100</XPos>
+																						<YPos>-0.25</YPos>
+																						<Flags>37</Flags>
+																					</Point>
+																				</PointList>
+																			</Curve>
+																		</Custom>
+																	</Reference>
+																</ReferenceList>
+															</RTPC>
+														</Local>
+													</Reference>
+													<Reference>
+														<Local>
+															<RTPC Name="" ID="{63BFDFA4-C4E3-488D-B873-ABAB6E379B7F}" ShortID="736570419">
+																<PropertyList>
+																	<Property Name="PropertyName" Type="string" Value="Pitch"/>
+																</PropertyList>
+																<ReferenceList>
+																	<Reference Name="ControlInput">
+																		<ObjectRef Name="PlayerMovement_RTPC" ID="{5847C79F-C464-4B8B-9C1B-255CACD2DE98}" WorkUnitID="{4BB587C7-F5F5-4FBE-AD3E-2AADCE4707E1}"/>
+																	</Reference>
+																	<Reference Name="Curve">
+																		<Custom>
+																			<Curve Name="" ID="{7D1C6167-28A4-4FAE-BEAF-8882B25C4728}">
+																				<PropertyList>
+																					<Property Name="Flags" Type="int32" Value="65537"/>
+																				</PropertyList>
+																				<PointList>
+																					<Point>
+																						<XPos>0</XPos>
+																						<YPos>0</YPos>
+																						<Flags>5</Flags>
+																					</Point>
+																					<Point>
+																						<XPos>70</XPos>
+																						<YPos>0</YPos>
+																						<Flags>0</Flags>
+																					</Point>
+																					<Point>
+																						<XPos>75</XPos>
+																						<YPos>300</YPos>
+																						<Flags>0</Flags>
+																					</Point>
+																					<Point>
+																						<XPos>100</XPos>
+																						<YPos>300</YPos>
+																						<Flags>37</Flags>
+																					</Point>
+																				</PointList>
+																			</Curve>
+																		</Custom>
+																	</Reference>
+																</ReferenceList>
+															</RTPC>
+														</Local>
+													</Reference>
+												</ObjectList>
+											</ObjectLists>
 										</RandomSequenceContainer>
 										<RandomSequenceContainer Name="PC_footstep_pavement" ID="{18076E8D-49E1-4034-BDEC-78522CFB3AC8}" ShortID="459244521">
+											<PropertyList>
+												<Property Name="Pitch" Type="int32">
+													<ModifierList>
+														<ModifierInfo>
+															<Modifier Name="" ID="{DFCA2162-9F9C-4678-B6AC-0AFCEFA4A612}">
+																<PropertyList>
+																	<Property Name="Enabled" Type="bool" Value="True"/>
+																	<Property Name="Max" Type="Real64" Value="150"/>
+																	<Property Name="Min" Type="Real64" Value="-150"/>
+																</PropertyList>
+															</Modifier>
+														</ModifierInfo>
+													</ModifierList>
+												</Property>
+												<Property Name="PlayMechanismLoop" Type="bool" Value="True"/>
+												<Property Name="PlayMechanismSpecialTransitions" Type="bool" Value="True"/>
+												<Property Name="PlayMechanismSpecialTransitionsType" Type="int16" Value="3"/>
+												<Property Name="PlayMechanismSpecialTransitionsValue" Type="Real64" Value="0.6">
+													<ModifierList>
+														<ModifierInfo>
+															<Modifier Name="" ID="{09DD9840-51D5-4B8F-867D-3429125781C6}"/>
+														</ModifierInfo>
+													</ModifierList>
+												</Property>
+												<Property Name="PlayMechanismStepOrContinuous" Type="int16" Value="0"/>
+												<Property Name="RandomAvoidRepeatingCount" Type="int32" Value="5"/>
+											</PropertyList>
 											<ReferenceList>
 												<Reference Name="Conversion">
 													<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{1E13664B-E694-4203-95E7-AEB6212579F7}"/>
@@ -101,8 +1200,351 @@
 													<ObjectRef Name="MASTER" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{6C0969E1-B09C-4693-BC3C-B2E7116B2AEE}"/>
 												</Reference>
 											</ReferenceList>
+											<ChildrenList>
+												<Sound Name="sfx_PC_footstep_pavement_walk_01" ID="{37FCC7EA-45DE-4F9C-A84F-F72A5CF6DB66}" ShortID="640180628">
+													<ReferenceList>
+														<Reference Name="Conversion">
+															<ObjectRef Name="CS_PC_SFX_Medium" ID="{D643F969-96F4-4A20-B6E9-5D5050A03E05}" WorkUnitID="{1E13664B-E694-4203-95E7-AEB6212579F7}"/>
+														</Reference>
+														<Reference Name="OutputBus">
+															<ObjectRef Name="PlayerMovement" ID="{0ED43A03-EC3C-400E-9488-71428CF9BE37}" WorkUnitID="{6C0969E1-B09C-4693-BC3C-B2E7116B2AEE}"/>
+														</Reference>
+													</ReferenceList>
+													<ChildrenList>
+														<AudioFileSource Name="sfx_PC_footstep_pavement_walk_01" ID="{54FFA9D2-9BFD-4AF3-BEF7-48BF573196B4}">
+															<Language>SFX</Language>
+															<AudioFile>Player\Movement\sfx_PC_footstep_pavement_walk_01.wav</AudioFile>
+															<MediaIDList>
+																<MediaID ID="12506772"/>
+															</MediaIDList>
+														</AudioFileSource>
+													</ChildrenList>
+													<ActiveSourceList>
+														<ActiveSource Name="sfx_PC_footstep_pavement_walk_01" ID="{54FFA9D2-9BFD-4AF3-BEF7-48BF573196B4}" Platform="Linked"/>
+													</ActiveSourceList>
+												</Sound>
+												<Sound Name="sfx_PC_footstep_pavement_walk_04" ID="{59D261A4-4A7B-434D-8FBB-51320F62AA8A}" ShortID="774513019">
+													<ReferenceList>
+														<Reference Name="Conversion">
+															<ObjectRef Name="CS_PC_SFX_Medium" ID="{D643F969-96F4-4A20-B6E9-5D5050A03E05}" WorkUnitID="{1E13664B-E694-4203-95E7-AEB6212579F7}"/>
+														</Reference>
+														<Reference Name="OutputBus">
+															<ObjectRef Name="PlayerMovement" ID="{0ED43A03-EC3C-400E-9488-71428CF9BE37}" WorkUnitID="{6C0969E1-B09C-4693-BC3C-B2E7116B2AEE}"/>
+														</Reference>
+													</ReferenceList>
+													<ChildrenList>
+														<AudioFileSource Name="sfx_PC_footstep_pavement_walk_04" ID="{200368D7-A72E-443E-813D-B5391B17EE68}">
+															<Language>SFX</Language>
+															<AudioFile>Player\Movement\sfx_PC_footstep_pavement_walk_04.wav</AudioFile>
+															<MediaIDList>
+																<MediaID ID="944357216"/>
+															</MediaIDList>
+														</AudioFileSource>
+													</ChildrenList>
+													<ActiveSourceList>
+														<ActiveSource Name="sfx_PC_footstep_pavement_walk_04" ID="{200368D7-A72E-443E-813D-B5391B17EE68}" Platform="Linked"/>
+													</ActiveSourceList>
+												</Sound>
+												<Sound Name="sfx_PC_footstep_pavement_walk_02" ID="{3D25562B-24F2-4B84-A62A-9F784E3D9D06}" ShortID="566464063">
+													<ReferenceList>
+														<Reference Name="Conversion">
+															<ObjectRef Name="CS_PC_SFX_Medium" ID="{D643F969-96F4-4A20-B6E9-5D5050A03E05}" WorkUnitID="{1E13664B-E694-4203-95E7-AEB6212579F7}"/>
+														</Reference>
+														<Reference Name="OutputBus">
+															<ObjectRef Name="PlayerMovement" ID="{0ED43A03-EC3C-400E-9488-71428CF9BE37}" WorkUnitID="{6C0969E1-B09C-4693-BC3C-B2E7116B2AEE}"/>
+														</Reference>
+													</ReferenceList>
+													<ChildrenList>
+														<AudioFileSource Name="sfx_PC_footstep_pavement_walk_02" ID="{4C786F2C-155B-49D2-9E76-D51AC65920FD}">
+															<Language>SFX</Language>
+															<AudioFile>Player\Movement\sfx_PC_footstep_pavement_walk_02.wav</AudioFile>
+															<MediaIDList>
+																<MediaID ID="751527121"/>
+															</MediaIDList>
+														</AudioFileSource>
+													</ChildrenList>
+													<ActiveSourceList>
+														<ActiveSource Name="sfx_PC_footstep_pavement_walk_02" ID="{4C786F2C-155B-49D2-9E76-D51AC65920FD}" Platform="Linked"/>
+													</ActiveSourceList>
+												</Sound>
+												<Sound Name="sfx_PC_footstep_pavement_walk_03" ID="{8CAEB2E3-94F5-432A-A363-C9F28AC739D8}" ShortID="83520528">
+													<ReferenceList>
+														<Reference Name="Conversion">
+															<ObjectRef Name="CS_PC_SFX_Medium" ID="{D643F969-96F4-4A20-B6E9-5D5050A03E05}" WorkUnitID="{1E13664B-E694-4203-95E7-AEB6212579F7}"/>
+														</Reference>
+														<Reference Name="OutputBus">
+															<ObjectRef Name="PlayerMovement" ID="{0ED43A03-EC3C-400E-9488-71428CF9BE37}" WorkUnitID="{6C0969E1-B09C-4693-BC3C-B2E7116B2AEE}"/>
+														</Reference>
+													</ReferenceList>
+													<ChildrenList>
+														<AudioFileSource Name="sfx_PC_footstep_pavement_walk_03" ID="{4348928E-81DB-44C2-A65E-04FF34E985EA}">
+															<Language>SFX</Language>
+															<AudioFile>Player\Movement\sfx_PC_footstep_pavement_walk_03.wav</AudioFile>
+															<MediaIDList>
+																<MediaID ID="897267796"/>
+															</MediaIDList>
+														</AudioFileSource>
+													</ChildrenList>
+													<ActiveSourceList>
+														<ActiveSource Name="sfx_PC_footstep_pavement_walk_03" ID="{4348928E-81DB-44C2-A65E-04FF34E985EA}" Platform="Linked"/>
+													</ActiveSourceList>
+												</Sound>
+												<Sound Name="sfx_PC_footstep_pavement_walk_05" ID="{D504E23F-021B-4434-B825-CE23212FAA80}" ShortID="641421348">
+													<ReferenceList>
+														<Reference Name="Conversion">
+															<ObjectRef Name="CS_PC_SFX_Medium" ID="{D643F969-96F4-4A20-B6E9-5D5050A03E05}" WorkUnitID="{1E13664B-E694-4203-95E7-AEB6212579F7}"/>
+														</Reference>
+														<Reference Name="OutputBus">
+															<ObjectRef Name="PlayerMovement" ID="{0ED43A03-EC3C-400E-9488-71428CF9BE37}" WorkUnitID="{6C0969E1-B09C-4693-BC3C-B2E7116B2AEE}"/>
+														</Reference>
+													</ReferenceList>
+													<ChildrenList>
+														<AudioFileSource Name="sfx_PC_footstep_pavement_walk_05" ID="{4A1BEA77-AD09-41FA-BA43-BE3BB1CC8A23}">
+															<Language>SFX</Language>
+															<AudioFile>Player\Movement\sfx_PC_footstep_pavement_walk_05.wav</AudioFile>
+															<MediaIDList>
+																<MediaID ID="459474243"/>
+															</MediaIDList>
+														</AudioFileSource>
+													</ChildrenList>
+													<ActiveSourceList>
+														<ActiveSource Name="sfx_PC_footstep_pavement_walk_05" ID="{4A1BEA77-AD09-41FA-BA43-BE3BB1CC8A23}" Platform="Linked"/>
+													</ActiveSourceList>
+												</Sound>
+												<Sound Name="sfx_PC_footstep_pavement_walk_06" ID="{7C069EFB-7F4E-41EE-95AD-356790E25687}" ShortID="655135988">
+													<ReferenceList>
+														<Reference Name="Conversion">
+															<ObjectRef Name="CS_PC_SFX_Medium" ID="{D643F969-96F4-4A20-B6E9-5D5050A03E05}" WorkUnitID="{1E13664B-E694-4203-95E7-AEB6212579F7}"/>
+														</Reference>
+														<Reference Name="OutputBus">
+															<ObjectRef Name="PlayerMovement" ID="{0ED43A03-EC3C-400E-9488-71428CF9BE37}" WorkUnitID="{6C0969E1-B09C-4693-BC3C-B2E7116B2AEE}"/>
+														</Reference>
+													</ReferenceList>
+													<ChildrenList>
+														<AudioFileSource Name="sfx_PC_footstep_pavement_walk_06" ID="{7C967EC8-40E8-4D5E-97F2-FD281044FC2F}">
+															<Language>SFX</Language>
+															<AudioFile>Player\Movement\sfx_PC_footstep_pavement_walk_06.wav</AudioFile>
+															<MediaIDList>
+																<MediaID ID="535501783"/>
+															</MediaIDList>
+														</AudioFileSource>
+													</ChildrenList>
+													<ActiveSourceList>
+														<ActiveSource Name="sfx_PC_footstep_pavement_walk_06" ID="{7C967EC8-40E8-4D5E-97F2-FD281044FC2F}" Platform="Linked"/>
+													</ActiveSourceList>
+												</Sound>
+												<Sound Name="sfx_PC_footstep_pavement_walk_07" ID="{506FC1EA-25A4-4C9E-AE4F-D78318E4A540}" ShortID="192560728">
+													<ReferenceList>
+														<Reference Name="Conversion">
+															<ObjectRef Name="CS_PC_SFX_Medium" ID="{D643F969-96F4-4A20-B6E9-5D5050A03E05}" WorkUnitID="{1E13664B-E694-4203-95E7-AEB6212579F7}"/>
+														</Reference>
+														<Reference Name="OutputBus">
+															<ObjectRef Name="PlayerMovement" ID="{0ED43A03-EC3C-400E-9488-71428CF9BE37}" WorkUnitID="{6C0969E1-B09C-4693-BC3C-B2E7116B2AEE}"/>
+														</Reference>
+													</ReferenceList>
+													<ChildrenList>
+														<AudioFileSource Name="sfx_PC_footstep_pavement_walk_07" ID="{A364629F-BC57-465B-84C4-F092F2F59E25}">
+															<Language>SFX</Language>
+															<AudioFile>Player\Movement\sfx_PC_footstep_pavement_walk_07.wav</AudioFile>
+															<MediaIDList>
+																<MediaID ID="872887384"/>
+															</MediaIDList>
+														</AudioFileSource>
+													</ChildrenList>
+													<ActiveSourceList>
+														<ActiveSource Name="sfx_PC_footstep_pavement_walk_07" ID="{A364629F-BC57-465B-84C4-F092F2F59E25}" Platform="Linked"/>
+													</ActiveSourceList>
+												</Sound>
+												<Sound Name="sfx_PC_footstep_pavement_walk_08" ID="{FA1935EA-1DCE-452E-A981-0F11EB78D16A}" ShortID="431060333">
+													<ReferenceList>
+														<Reference Name="Conversion">
+															<ObjectRef Name="CS_PC_SFX_Medium" ID="{D643F969-96F4-4A20-B6E9-5D5050A03E05}" WorkUnitID="{1E13664B-E694-4203-95E7-AEB6212579F7}"/>
+														</Reference>
+														<Reference Name="OutputBus">
+															<ObjectRef Name="PlayerMovement" ID="{0ED43A03-EC3C-400E-9488-71428CF9BE37}" WorkUnitID="{6C0969E1-B09C-4693-BC3C-B2E7116B2AEE}"/>
+														</Reference>
+													</ReferenceList>
+													<ChildrenList>
+														<AudioFileSource Name="sfx_PC_footstep_pavement_walk_08" ID="{F460448F-0741-4BD3-B1A5-3EB78E3C4382}">
+															<Language>SFX</Language>
+															<AudioFile>Player\Movement\sfx_PC_footstep_pavement_walk_08.wav</AudioFile>
+															<MediaIDList>
+																<MediaID ID="559122845"/>
+															</MediaIDList>
+														</AudioFileSource>
+													</ChildrenList>
+													<ActiveSourceList>
+														<ActiveSource Name="sfx_PC_footstep_pavement_walk_08" ID="{F460448F-0741-4BD3-B1A5-3EB78E3C4382}" Platform="Linked"/>
+													</ActiveSourceList>
+												</Sound>
+												<Sound Name="sfx_PC_footstep_pavement_walk_09" ID="{D8E1F574-D384-4D73-8792-35E4FF14D248}" ShortID="43699323">
+													<ReferenceList>
+														<Reference Name="Conversion">
+															<ObjectRef Name="CS_PC_SFX_Medium" ID="{D643F969-96F4-4A20-B6E9-5D5050A03E05}" WorkUnitID="{1E13664B-E694-4203-95E7-AEB6212579F7}"/>
+														</Reference>
+														<Reference Name="OutputBus">
+															<ObjectRef Name="PlayerMovement" ID="{0ED43A03-EC3C-400E-9488-71428CF9BE37}" WorkUnitID="{6C0969E1-B09C-4693-BC3C-B2E7116B2AEE}"/>
+														</Reference>
+													</ReferenceList>
+													<ChildrenList>
+														<AudioFileSource Name="sfx_PC_footstep_pavement_walk_09" ID="{C7FA10D5-1BFC-4936-B0B8-BEF82967A9B4}">
+															<Language>SFX</Language>
+															<AudioFile>Player\Movement\sfx_PC_footstep_pavement_walk_09.wav</AudioFile>
+															<MediaIDList>
+																<MediaID ID="273982116"/>
+															</MediaIDList>
+														</AudioFileSource>
+													</ChildrenList>
+													<ActiveSourceList>
+														<ActiveSource Name="sfx_PC_footstep_pavement_walk_09" ID="{C7FA10D5-1BFC-4936-B0B8-BEF82967A9B4}" Platform="Linked"/>
+													</ActiveSourceList>
+												</Sound>
+												<Sound Name="sfx_PC_footstep_pavement_walk_10" ID="{23B5E3C5-87D0-430F-B6A3-45B8AA5540D2}" ShortID="378833697">
+													<ReferenceList>
+														<Reference Name="Conversion">
+															<ObjectRef Name="CS_PC_SFX_Medium" ID="{D643F969-96F4-4A20-B6E9-5D5050A03E05}" WorkUnitID="{1E13664B-E694-4203-95E7-AEB6212579F7}"/>
+														</Reference>
+														<Reference Name="OutputBus">
+															<ObjectRef Name="PlayerMovement" ID="{0ED43A03-EC3C-400E-9488-71428CF9BE37}" WorkUnitID="{6C0969E1-B09C-4693-BC3C-B2E7116B2AEE}"/>
+														</Reference>
+													</ReferenceList>
+													<ChildrenList>
+														<AudioFileSource Name="sfx_PC_footstep_pavement_walk_10" ID="{E5A575BE-91B7-4189-A8FE-BEEA6480001E}">
+															<Language>SFX</Language>
+															<AudioFile>Player\Movement\sfx_PC_footstep_pavement_walk_10.wav</AudioFile>
+															<MediaIDList>
+																<MediaID ID="908685674"/>
+															</MediaIDList>
+														</AudioFileSource>
+													</ChildrenList>
+													<ActiveSourceList>
+														<ActiveSource Name="sfx_PC_footstep_pavement_walk_10" ID="{E5A575BE-91B7-4189-A8FE-BEEA6480001E}" Platform="Linked"/>
+													</ActiveSourceList>
+												</Sound>
+											</ChildrenList>
+											<ObjectLists>
+												<ObjectList Name="RTPC">
+													<Reference>
+														<Local>
+															<RTPC Name="" ID="{5C1CB444-7B74-421E-B286-4C31540A9AC2}" ShortID="863621507">
+																<PropertyList>
+																	<Property Name="PropertyName" Type="string" Value="PlayMechanismSpecialTransitionsValue"/>
+																</PropertyList>
+																<ReferenceList>
+																	<Reference Name="ControlInput">
+																		<ObjectRef Name="PlayerMovement_RTPC" ID="{5847C79F-C464-4B8B-9C1B-255CACD2DE98}" WorkUnitID="{4BB587C7-F5F5-4FBE-AD3E-2AADCE4707E1}"/>
+																	</Reference>
+																	<Reference Name="Curve">
+																		<Custom>
+																			<Curve Name="" ID="{EB764FE3-CE72-4EB0-83D4-AA9727023CB6}">
+																				<PropertyList>
+																					<Property Name="Flags" Type="int32" Value="1"/>
+																				</PropertyList>
+																				<PointList>
+																					<Point>
+																						<XPos>0</XPos>
+																						<YPos>0</YPos>
+																						<Flags>5</Flags>
+																					</Point>
+																					<Point>
+																						<XPos>70</XPos>
+																						<YPos>0</YPos>
+																						<Flags>0</Flags>
+																					</Point>
+																					<Point>
+																						<XPos>75</XPos>
+																						<YPos>-0.25</YPos>
+																						<Flags>0</Flags>
+																					</Point>
+																					<Point>
+																						<XPos>100</XPos>
+																						<YPos>-0.25</YPos>
+																						<Flags>37</Flags>
+																					</Point>
+																				</PointList>
+																			</Curve>
+																		</Custom>
+																	</Reference>
+																</ReferenceList>
+															</RTPC>
+														</Local>
+													</Reference>
+													<Reference>
+														<Local>
+															<RTPC Name="" ID="{FB992886-E4BD-4DC7-97F7-95A8985B10EA}" ShortID="442302089">
+																<PropertyList>
+																	<Property Name="PropertyName" Type="string" Value="Pitch"/>
+																</PropertyList>
+																<ReferenceList>
+																	<Reference Name="ControlInput">
+																		<ObjectRef Name="PlayerMovement_RTPC" ID="{5847C79F-C464-4B8B-9C1B-255CACD2DE98}" WorkUnitID="{4BB587C7-F5F5-4FBE-AD3E-2AADCE4707E1}"/>
+																	</Reference>
+																	<Reference Name="Curve">
+																		<Custom>
+																			<Curve Name="" ID="{7C5F9553-4063-433C-BAE2-5458E3B4E00B}">
+																				<PropertyList>
+																					<Property Name="Flags" Type="int32" Value="65537"/>
+																				</PropertyList>
+																				<PointList>
+																					<Point>
+																						<XPos>0</XPos>
+																						<YPos>0</YPos>
+																						<Flags>5</Flags>
+																					</Point>
+																					<Point>
+																						<XPos>70</XPos>
+																						<YPos>0</YPos>
+																						<Flags>0</Flags>
+																					</Point>
+																					<Point>
+																						<XPos>75</XPos>
+																						<YPos>300</YPos>
+																						<Flags>0</Flags>
+																					</Point>
+																					<Point>
+																						<XPos>100</XPos>
+																						<YPos>300</YPos>
+																						<Flags>37</Flags>
+																					</Point>
+																				</PointList>
+																			</Curve>
+																		</Custom>
+																	</Reference>
+																</ReferenceList>
+															</RTPC>
+														</Local>
+													</Reference>
+												</ObjectList>
+											</ObjectLists>
 										</RandomSequenceContainer>
 										<RandomSequenceContainer Name="PC_footstep_stone" ID="{CCEC4FDE-96B6-49F0-9C64-F87335BDF264}" ShortID="664810853">
+											<PropertyList>
+												<Property Name="Pitch" Type="int32">
+													<ModifierList>
+														<ModifierInfo>
+															<Modifier Name="" ID="{906D8567-0B02-44B6-85D3-107D11F4D4EC}">
+																<PropertyList>
+																	<Property Name="Enabled" Type="bool" Value="True"/>
+																	<Property Name="Max" Type="Real64" Value="150"/>
+																	<Property Name="Min" Type="Real64" Value="-150"/>
+																</PropertyList>
+															</Modifier>
+														</ModifierInfo>
+													</ModifierList>
+												</Property>
+												<Property Name="PlayMechanismLoop" Type="bool" Value="True"/>
+												<Property Name="PlayMechanismSpecialTransitions" Type="bool" Value="True"/>
+												<Property Name="PlayMechanismSpecialTransitionsType" Type="int16" Value="3"/>
+												<Property Name="PlayMechanismSpecialTransitionsValue" Type="Real64" Value="0.6">
+													<ModifierList>
+														<ModifierInfo>
+															<Modifier Name="" ID="{F4D67495-FDA7-4967-8121-B54B2C8CD45E}"/>
+														</ModifierInfo>
+													</ModifierList>
+												</Property>
+												<Property Name="PlayMechanismStepOrContinuous" Type="int16" Value="0"/>
+												<Property Name="RandomAvoidRepeatingCount" Type="int32" Value="5"/>
+											</PropertyList>
 											<ReferenceList>
 												<Reference Name="Conversion">
 													<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{1E13664B-E694-4203-95E7-AEB6212579F7}"/>
@@ -111,8 +1553,351 @@
 													<ObjectRef Name="MASTER" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{6C0969E1-B09C-4693-BC3C-B2E7116B2AEE}"/>
 												</Reference>
 											</ReferenceList>
+											<ChildrenList>
+												<Sound Name="sfx_PC_footstep_stone_walk_01" ID="{2ACC8271-2AA7-4E70-B7E7-88F07C990263}" ShortID="658611484">
+													<ReferenceList>
+														<Reference Name="Conversion">
+															<ObjectRef Name="CS_PC_SFX_Medium" ID="{D643F969-96F4-4A20-B6E9-5D5050A03E05}" WorkUnitID="{1E13664B-E694-4203-95E7-AEB6212579F7}"/>
+														</Reference>
+														<Reference Name="OutputBus">
+															<ObjectRef Name="PlayerMovement" ID="{0ED43A03-EC3C-400E-9488-71428CF9BE37}" WorkUnitID="{6C0969E1-B09C-4693-BC3C-B2E7116B2AEE}"/>
+														</Reference>
+													</ReferenceList>
+													<ChildrenList>
+														<AudioFileSource Name="sfx_PC_footstep_stone_walk_01" ID="{27604828-C6B1-4985-995C-96F8CC25C9AF}">
+															<Language>SFX</Language>
+															<AudioFile>Player\Movement\sfx_PC_footstep_stone_walk_01.wav</AudioFile>
+															<MediaIDList>
+																<MediaID ID="293640749"/>
+															</MediaIDList>
+														</AudioFileSource>
+													</ChildrenList>
+													<ActiveSourceList>
+														<ActiveSource Name="sfx_PC_footstep_stone_walk_01" ID="{27604828-C6B1-4985-995C-96F8CC25C9AF}" Platform="Linked"/>
+													</ActiveSourceList>
+												</Sound>
+												<Sound Name="sfx_PC_footstep_stone_walk_02" ID="{1DC814B4-34DB-49BA-9A33-64218276CCE3}" ShortID="731184616">
+													<ReferenceList>
+														<Reference Name="Conversion">
+															<ObjectRef Name="CS_PC_SFX_Medium" ID="{D643F969-96F4-4A20-B6E9-5D5050A03E05}" WorkUnitID="{1E13664B-E694-4203-95E7-AEB6212579F7}"/>
+														</Reference>
+														<Reference Name="OutputBus">
+															<ObjectRef Name="PlayerMovement" ID="{0ED43A03-EC3C-400E-9488-71428CF9BE37}" WorkUnitID="{6C0969E1-B09C-4693-BC3C-B2E7116B2AEE}"/>
+														</Reference>
+													</ReferenceList>
+													<ChildrenList>
+														<AudioFileSource Name="sfx_PC_footstep_stone_walk_02" ID="{FD18DE27-D6BF-4199-ABBB-58695A18C1F3}">
+															<Language>SFX</Language>
+															<AudioFile>Player\Movement\sfx_PC_footstep_stone_walk_02.wav</AudioFile>
+															<MediaIDList>
+																<MediaID ID="818678881"/>
+															</MediaIDList>
+														</AudioFileSource>
+													</ChildrenList>
+													<ActiveSourceList>
+														<ActiveSource Name="sfx_PC_footstep_stone_walk_02" ID="{FD18DE27-D6BF-4199-ABBB-58695A18C1F3}" Platform="Linked"/>
+													</ActiveSourceList>
+												</Sound>
+												<Sound Name="sfx_PC_footstep_stone_walk_03" ID="{4F4E2F82-907C-460B-B1E4-604D16657E43}" ShortID="692095713">
+													<ReferenceList>
+														<Reference Name="Conversion">
+															<ObjectRef Name="CS_PC_SFX_Medium" ID="{D643F969-96F4-4A20-B6E9-5D5050A03E05}" WorkUnitID="{1E13664B-E694-4203-95E7-AEB6212579F7}"/>
+														</Reference>
+														<Reference Name="OutputBus">
+															<ObjectRef Name="PlayerMovement" ID="{0ED43A03-EC3C-400E-9488-71428CF9BE37}" WorkUnitID="{6C0969E1-B09C-4693-BC3C-B2E7116B2AEE}"/>
+														</Reference>
+													</ReferenceList>
+													<ChildrenList>
+														<AudioFileSource Name="sfx_PC_footstep_stone_walk_03" ID="{34A3F0FA-F11C-4F8A-8569-E65D9DEB7163}">
+															<Language>SFX</Language>
+															<AudioFile>Player\Movement\sfx_PC_footstep_stone_walk_03.wav</AudioFile>
+															<MediaIDList>
+																<MediaID ID="929894901"/>
+															</MediaIDList>
+														</AudioFileSource>
+													</ChildrenList>
+													<ActiveSourceList>
+														<ActiveSource Name="sfx_PC_footstep_stone_walk_03" ID="{34A3F0FA-F11C-4F8A-8569-E65D9DEB7163}" Platform="Linked"/>
+													</ActiveSourceList>
+												</Sound>
+												<Sound Name="sfx_PC_footstep_stone_walk_04" ID="{443AE99C-0A1D-413D-B06D-AAD0E4CB004A}" ShortID="8720891">
+													<ReferenceList>
+														<Reference Name="Conversion">
+															<ObjectRef Name="CS_PC_SFX_Medium" ID="{D643F969-96F4-4A20-B6E9-5D5050A03E05}" WorkUnitID="{1E13664B-E694-4203-95E7-AEB6212579F7}"/>
+														</Reference>
+														<Reference Name="OutputBus">
+															<ObjectRef Name="PlayerMovement" ID="{0ED43A03-EC3C-400E-9488-71428CF9BE37}" WorkUnitID="{6C0969E1-B09C-4693-BC3C-B2E7116B2AEE}"/>
+														</Reference>
+													</ReferenceList>
+													<ChildrenList>
+														<AudioFileSource Name="sfx_PC_footstep_stone_walk_04" ID="{D6310AD2-1074-483F-BE87-BF519CC8A7BB}">
+															<Language>SFX</Language>
+															<AudioFile>Player\Movement\sfx_PC_footstep_stone_walk_04.wav</AudioFile>
+															<MediaIDList>
+																<MediaID ID="613454528"/>
+															</MediaIDList>
+														</AudioFileSource>
+													</ChildrenList>
+													<ActiveSourceList>
+														<ActiveSource Name="sfx_PC_footstep_stone_walk_04" ID="{D6310AD2-1074-483F-BE87-BF519CC8A7BB}" Platform="Linked"/>
+													</ActiveSourceList>
+												</Sound>
+												<Sound Name="sfx_PC_footstep_stone_walk_05" ID="{EEC13338-A30A-48F6-8BF9-D62EC6E4AFF8}" ShortID="784439805">
+													<ReferenceList>
+														<Reference Name="Conversion">
+															<ObjectRef Name="CS_PC_SFX_Medium" ID="{D643F969-96F4-4A20-B6E9-5D5050A03E05}" WorkUnitID="{1E13664B-E694-4203-95E7-AEB6212579F7}"/>
+														</Reference>
+														<Reference Name="OutputBus">
+															<ObjectRef Name="PlayerMovement" ID="{0ED43A03-EC3C-400E-9488-71428CF9BE37}" WorkUnitID="{6C0969E1-B09C-4693-BC3C-B2E7116B2AEE}"/>
+														</Reference>
+													</ReferenceList>
+													<ChildrenList>
+														<AudioFileSource Name="sfx_PC_footstep_stone_walk_05" ID="{D6E8E9B3-DC6C-49B6-A5E7-0AD4113FD065}">
+															<Language>SFX</Language>
+															<AudioFile>Player\Movement\sfx_PC_footstep_stone_walk_05.wav</AudioFile>
+															<MediaIDList>
+																<MediaID ID="681809616"/>
+															</MediaIDList>
+														</AudioFileSource>
+													</ChildrenList>
+													<ActiveSourceList>
+														<ActiveSource Name="sfx_PC_footstep_stone_walk_05" ID="{D6E8E9B3-DC6C-49B6-A5E7-0AD4113FD065}" Platform="Linked"/>
+													</ActiveSourceList>
+												</Sound>
+												<Sound Name="sfx_PC_footstep_stone_walk_06" ID="{3C0093BB-21E7-4531-BEE5-34D71EA94622}" ShortID="154590064">
+													<ReferenceList>
+														<Reference Name="Conversion">
+															<ObjectRef Name="CS_PC_SFX_Medium" ID="{D643F969-96F4-4A20-B6E9-5D5050A03E05}" WorkUnitID="{1E13664B-E694-4203-95E7-AEB6212579F7}"/>
+														</Reference>
+														<Reference Name="OutputBus">
+															<ObjectRef Name="PlayerMovement" ID="{0ED43A03-EC3C-400E-9488-71428CF9BE37}" WorkUnitID="{6C0969E1-B09C-4693-BC3C-B2E7116B2AEE}"/>
+														</Reference>
+													</ReferenceList>
+													<ChildrenList>
+														<AudioFileSource Name="sfx_PC_footstep_stone_walk_06" ID="{67CE9925-146F-45A5-BDBD-D347D38C3F5F}">
+															<Language>SFX</Language>
+															<AudioFile>Player\Movement\sfx_PC_footstep_stone_walk_06.wav</AudioFile>
+															<MediaIDList>
+																<MediaID ID="559506441"/>
+															</MediaIDList>
+														</AudioFileSource>
+													</ChildrenList>
+													<ActiveSourceList>
+														<ActiveSource Name="sfx_PC_footstep_stone_walk_06" ID="{67CE9925-146F-45A5-BDBD-D347D38C3F5F}" Platform="Linked"/>
+													</ActiveSourceList>
+												</Sound>
+												<Sound Name="sfx_PC_footstep_stone_walk_07" ID="{234BB864-8989-4E3E-AC2F-398B17D4182A}" ShortID="3257858">
+													<ReferenceList>
+														<Reference Name="Conversion">
+															<ObjectRef Name="CS_PC_SFX_Medium" ID="{D643F969-96F4-4A20-B6E9-5D5050A03E05}" WorkUnitID="{1E13664B-E694-4203-95E7-AEB6212579F7}"/>
+														</Reference>
+														<Reference Name="OutputBus">
+															<ObjectRef Name="PlayerMovement" ID="{0ED43A03-EC3C-400E-9488-71428CF9BE37}" WorkUnitID="{6C0969E1-B09C-4693-BC3C-B2E7116B2AEE}"/>
+														</Reference>
+													</ReferenceList>
+													<ChildrenList>
+														<AudioFileSource Name="sfx_PC_footstep_stone_walk_07" ID="{CCC11174-406A-4609-9DD5-A7E6A0E4D4E0}">
+															<Language>SFX</Language>
+															<AudioFile>Player\Movement\sfx_PC_footstep_stone_walk_07.wav</AudioFile>
+															<MediaIDList>
+																<MediaID ID="893422512"/>
+															</MediaIDList>
+														</AudioFileSource>
+													</ChildrenList>
+													<ActiveSourceList>
+														<ActiveSource Name="sfx_PC_footstep_stone_walk_07" ID="{CCC11174-406A-4609-9DD5-A7E6A0E4D4E0}" Platform="Linked"/>
+													</ActiveSourceList>
+												</Sound>
+												<Sound Name="sfx_PC_footstep_stone_walk_08" ID="{61626DD6-0593-4DF5-BD26-85E5283908A0}" ShortID="148457445">
+													<ReferenceList>
+														<Reference Name="Conversion">
+															<ObjectRef Name="CS_PC_SFX_Medium" ID="{D643F969-96F4-4A20-B6E9-5D5050A03E05}" WorkUnitID="{1E13664B-E694-4203-95E7-AEB6212579F7}"/>
+														</Reference>
+														<Reference Name="OutputBus">
+															<ObjectRef Name="PlayerMovement" ID="{0ED43A03-EC3C-400E-9488-71428CF9BE37}" WorkUnitID="{6C0969E1-B09C-4693-BC3C-B2E7116B2AEE}"/>
+														</Reference>
+													</ReferenceList>
+													<ChildrenList>
+														<AudioFileSource Name="sfx_PC_footstep_stone_walk_08" ID="{3F497474-1C7C-467A-88C8-D70A8F40BDAD}">
+															<Language>SFX</Language>
+															<AudioFile>Player\Movement\sfx_PC_footstep_stone_walk_08.wav</AudioFile>
+															<MediaIDList>
+																<MediaID ID="205759532"/>
+															</MediaIDList>
+														</AudioFileSource>
+													</ChildrenList>
+													<ActiveSourceList>
+														<ActiveSource Name="sfx_PC_footstep_stone_walk_08" ID="{3F497474-1C7C-467A-88C8-D70A8F40BDAD}" Platform="Linked"/>
+													</ActiveSourceList>
+												</Sound>
+												<Sound Name="sfx_PC_footstep_stone_walk_09" ID="{D9E2DFE8-C38A-4081-A2B6-2ED2C49BD114}" ShortID="58248382">
+													<ReferenceList>
+														<Reference Name="Conversion">
+															<ObjectRef Name="CS_PC_SFX_Medium" ID="{D643F969-96F4-4A20-B6E9-5D5050A03E05}" WorkUnitID="{1E13664B-E694-4203-95E7-AEB6212579F7}"/>
+														</Reference>
+														<Reference Name="OutputBus">
+															<ObjectRef Name="PlayerMovement" ID="{0ED43A03-EC3C-400E-9488-71428CF9BE37}" WorkUnitID="{6C0969E1-B09C-4693-BC3C-B2E7116B2AEE}"/>
+														</Reference>
+													</ReferenceList>
+													<ChildrenList>
+														<AudioFileSource Name="sfx_PC_footstep_stone_walk_09" ID="{2DBA480A-2B85-49EE-8CBB-36B4A3FB9E28}">
+															<Language>SFX</Language>
+															<AudioFile>Player\Movement\sfx_PC_footstep_stone_walk_09.wav</AudioFile>
+															<MediaIDList>
+																<MediaID ID="493183025"/>
+															</MediaIDList>
+														</AudioFileSource>
+													</ChildrenList>
+													<ActiveSourceList>
+														<ActiveSource Name="sfx_PC_footstep_stone_walk_09" ID="{2DBA480A-2B85-49EE-8CBB-36B4A3FB9E28}" Platform="Linked"/>
+													</ActiveSourceList>
+												</Sound>
+												<Sound Name="sfx_PC_footstep_stone_walk_10" ID="{68E9C5EE-D5F4-4EFF-88C3-4336CFE4B30F}" ShortID="195916184">
+													<ReferenceList>
+														<Reference Name="Conversion">
+															<ObjectRef Name="CS_PC_SFX_Medium" ID="{D643F969-96F4-4A20-B6E9-5D5050A03E05}" WorkUnitID="{1E13664B-E694-4203-95E7-AEB6212579F7}"/>
+														</Reference>
+														<Reference Name="OutputBus">
+															<ObjectRef Name="PlayerMovement" ID="{0ED43A03-EC3C-400E-9488-71428CF9BE37}" WorkUnitID="{6C0969E1-B09C-4693-BC3C-B2E7116B2AEE}"/>
+														</Reference>
+													</ReferenceList>
+													<ChildrenList>
+														<AudioFileSource Name="sfx_PC_footstep_stone_walk_10" ID="{EC055F31-FCB1-49CA-A336-B0E8AFE395CE}">
+															<Language>SFX</Language>
+															<AudioFile>Player\Movement\sfx_PC_footstep_stone_walk_10.wav</AudioFile>
+															<MediaIDList>
+																<MediaID ID="459513452"/>
+															</MediaIDList>
+														</AudioFileSource>
+													</ChildrenList>
+													<ActiveSourceList>
+														<ActiveSource Name="sfx_PC_footstep_stone_walk_10" ID="{EC055F31-FCB1-49CA-A336-B0E8AFE395CE}" Platform="Linked"/>
+													</ActiveSourceList>
+												</Sound>
+											</ChildrenList>
+											<ObjectLists>
+												<ObjectList Name="RTPC">
+													<Reference>
+														<Local>
+															<RTPC Name="" ID="{A80FF1D9-F0AB-4DC1-8E9A-1927618332A5}" ShortID="303275807">
+																<PropertyList>
+																	<Property Name="PropertyName" Type="string" Value="PlayMechanismSpecialTransitionsValue"/>
+																</PropertyList>
+																<ReferenceList>
+																	<Reference Name="ControlInput">
+																		<ObjectRef Name="PlayerMovement_RTPC" ID="{5847C79F-C464-4B8B-9C1B-255CACD2DE98}" WorkUnitID="{4BB587C7-F5F5-4FBE-AD3E-2AADCE4707E1}"/>
+																	</Reference>
+																	<Reference Name="Curve">
+																		<Custom>
+																			<Curve Name="" ID="{887BBB1C-AF08-483A-A133-B95F2B6EAAAF}">
+																				<PropertyList>
+																					<Property Name="Flags" Type="int32" Value="1"/>
+																				</PropertyList>
+																				<PointList>
+																					<Point>
+																						<XPos>0</XPos>
+																						<YPos>0</YPos>
+																						<Flags>5</Flags>
+																					</Point>
+																					<Point>
+																						<XPos>70</XPos>
+																						<YPos>0</YPos>
+																						<Flags>0</Flags>
+																					</Point>
+																					<Point>
+																						<XPos>75</XPos>
+																						<YPos>-0.25</YPos>
+																						<Flags>0</Flags>
+																					</Point>
+																					<Point>
+																						<XPos>100</XPos>
+																						<YPos>-0.25</YPos>
+																						<Flags>37</Flags>
+																					</Point>
+																				</PointList>
+																			</Curve>
+																		</Custom>
+																	</Reference>
+																</ReferenceList>
+															</RTPC>
+														</Local>
+													</Reference>
+													<Reference>
+														<Local>
+															<RTPC Name="" ID="{5857CC96-E72A-4E60-8F2D-81A19DBAA535}" ShortID="69555926">
+																<PropertyList>
+																	<Property Name="PropertyName" Type="string" Value="Pitch"/>
+																</PropertyList>
+																<ReferenceList>
+																	<Reference Name="ControlInput">
+																		<ObjectRef Name="PlayerMovement_RTPC" ID="{5847C79F-C464-4B8B-9C1B-255CACD2DE98}" WorkUnitID="{4BB587C7-F5F5-4FBE-AD3E-2AADCE4707E1}"/>
+																	</Reference>
+																	<Reference Name="Curve">
+																		<Custom>
+																			<Curve Name="" ID="{BD161CFE-36AF-4A5F-B421-F494487EAC01}">
+																				<PropertyList>
+																					<Property Name="Flags" Type="int32" Value="65537"/>
+																				</PropertyList>
+																				<PointList>
+																					<Point>
+																						<XPos>0</XPos>
+																						<YPos>0</YPos>
+																						<Flags>5</Flags>
+																					</Point>
+																					<Point>
+																						<XPos>70</XPos>
+																						<YPos>0</YPos>
+																						<Flags>0</Flags>
+																					</Point>
+																					<Point>
+																						<XPos>75</XPos>
+																						<YPos>300</YPos>
+																						<Flags>0</Flags>
+																					</Point>
+																					<Point>
+																						<XPos>100</XPos>
+																						<YPos>300</YPos>
+																						<Flags>37</Flags>
+																					</Point>
+																				</PointList>
+																			</Curve>
+																		</Custom>
+																	</Reference>
+																</ReferenceList>
+															</RTPC>
+														</Local>
+													</Reference>
+												</ObjectList>
+											</ObjectLists>
 										</RandomSequenceContainer>
 										<RandomSequenceContainer Name="PC_footstep_wood" ID="{7F222D01-91EF-4F99-B4F2-1776D3433A44}" ShortID="531707918">
+											<PropertyList>
+												<Property Name="Pitch" Type="int32">
+													<ModifierList>
+														<ModifierInfo>
+															<Modifier Name="" ID="{CD30A7ED-F59E-444E-8B58-0EE9EB2ABE03}">
+																<PropertyList>
+																	<Property Name="Enabled" Type="bool" Value="True"/>
+																	<Property Name="Max" Type="Real64" Value="150"/>
+																	<Property Name="Min" Type="Real64" Value="-150"/>
+																</PropertyList>
+															</Modifier>
+														</ModifierInfo>
+													</ModifierList>
+												</Property>
+												<Property Name="PlayMechanismLoop" Type="bool" Value="True"/>
+												<Property Name="PlayMechanismSpecialTransitions" Type="bool" Value="True"/>
+												<Property Name="PlayMechanismSpecialTransitionsType" Type="int16" Value="3"/>
+												<Property Name="PlayMechanismSpecialTransitionsValue" Type="Real64" Value="0.6">
+													<ModifierList>
+														<ModifierInfo>
+															<Modifier Name="" ID="{B03A674D-7428-4A5D-BB21-970BEE7E02E7}"/>
+														</ModifierInfo>
+													</ModifierList>
+												</Property>
+												<Property Name="PlayMechanismStepOrContinuous" Type="int16" Value="0"/>
+												<Property Name="RandomAvoidRepeatingCount" Type="int32" Value="5"/>
+											</PropertyList>
 											<ReferenceList>
 												<Reference Name="Conversion">
 													<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{1E13664B-E694-4203-95E7-AEB6212579F7}"/>
@@ -121,8 +1906,346 @@
 													<ObjectRef Name="MASTER" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{6C0969E1-B09C-4693-BC3C-B2E7116B2AEE}"/>
 												</Reference>
 											</ReferenceList>
+											<ChildrenList>
+												<Sound Name="sfx_PC_footstep_wood_walk_01" ID="{B34E6E89-8B50-4EA4-A85A-53FEC01EBECA}" ShortID="778856839">
+													<ReferenceList>
+														<Reference Name="Conversion">
+															<ObjectRef Name="CS_PC_SFX_Medium" ID="{D643F969-96F4-4A20-B6E9-5D5050A03E05}" WorkUnitID="{1E13664B-E694-4203-95E7-AEB6212579F7}"/>
+														</Reference>
+														<Reference Name="OutputBus">
+															<ObjectRef Name="PlayerMovement" ID="{0ED43A03-EC3C-400E-9488-71428CF9BE37}" WorkUnitID="{6C0969E1-B09C-4693-BC3C-B2E7116B2AEE}"/>
+														</Reference>
+													</ReferenceList>
+													<ChildrenList>
+														<AudioFileSource Name="sfx_PC_footstep_wood_walk_01" ID="{F4DA20C1-9B10-4ADF-B4CF-086C1B5C1ECA}">
+															<Language>SFX</Language>
+															<AudioFile>Player\Movement\sfx_PC_footstep_wood_walk_01.wav</AudioFile>
+															<MediaIDList>
+																<MediaID ID="561627823"/>
+															</MediaIDList>
+														</AudioFileSource>
+													</ChildrenList>
+													<ActiveSourceList>
+														<ActiveSource Name="sfx_PC_footstep_wood_walk_01" ID="{F4DA20C1-9B10-4ADF-B4CF-086C1B5C1ECA}" Platform="Linked"/>
+													</ActiveSourceList>
+												</Sound>
+												<Sound Name="sfx_PC_footstep_wood_walk_02" ID="{ABDB724F-CDF0-4C65-A888-4E21E26F3DC9}" ShortID="8856894">
+													<ReferenceList>
+														<Reference Name="Conversion">
+															<ObjectRef Name="CS_PC_SFX_Medium" ID="{D643F969-96F4-4A20-B6E9-5D5050A03E05}" WorkUnitID="{1E13664B-E694-4203-95E7-AEB6212579F7}"/>
+														</Reference>
+														<Reference Name="OutputBus">
+															<ObjectRef Name="PlayerMovement" ID="{0ED43A03-EC3C-400E-9488-71428CF9BE37}" WorkUnitID="{6C0969E1-B09C-4693-BC3C-B2E7116B2AEE}"/>
+														</Reference>
+													</ReferenceList>
+													<ChildrenList>
+														<AudioFileSource Name="sfx_PC_footstep_wood_walk_02" ID="{E2B3FF01-1727-431D-8577-8E129AC79089}">
+															<Language>SFX</Language>
+															<AudioFile>Player\Movement\sfx_PC_footstep_wood_walk_02.wav</AudioFile>
+															<MediaIDList>
+																<MediaID ID="491569158"/>
+															</MediaIDList>
+														</AudioFileSource>
+													</ChildrenList>
+													<ActiveSourceList>
+														<ActiveSource Name="sfx_PC_footstep_wood_walk_02" ID="{E2B3FF01-1727-431D-8577-8E129AC79089}" Platform="Linked"/>
+													</ActiveSourceList>
+												</Sound>
+												<Sound Name="sfx_PC_footstep_wood_walk_03" ID="{2E618039-FE24-42F1-8653-4E6F4E73853E}" ShortID="33440403">
+													<ReferenceList>
+														<Reference Name="Conversion">
+															<ObjectRef Name="CS_PC_SFX_Medium" ID="{D643F969-96F4-4A20-B6E9-5D5050A03E05}" WorkUnitID="{1E13664B-E694-4203-95E7-AEB6212579F7}"/>
+														</Reference>
+														<Reference Name="OutputBus">
+															<ObjectRef Name="PlayerMovement" ID="{0ED43A03-EC3C-400E-9488-71428CF9BE37}" WorkUnitID="{6C0969E1-B09C-4693-BC3C-B2E7116B2AEE}"/>
+														</Reference>
+													</ReferenceList>
+													<ChildrenList>
+														<AudioFileSource Name="sfx_PC_footstep_wood_walk_03" ID="{1CD2282F-20E5-45B6-B10C-D8F65068BF2A}">
+															<Language>SFX</Language>
+															<AudioFile>Player\Movement\sfx_PC_footstep_wood_walk_03.wav</AudioFile>
+															<MediaIDList>
+																<MediaID ID="262551551"/>
+															</MediaIDList>
+														</AudioFileSource>
+													</ChildrenList>
+													<ActiveSourceList>
+														<ActiveSource Name="sfx_PC_footstep_wood_walk_03" ID="{1CD2282F-20E5-45B6-B10C-D8F65068BF2A}" Platform="Linked"/>
+													</ActiveSourceList>
+												</Sound>
+												<Sound Name="sfx_PC_footstep_wood_walk_04" ID="{C6E0C56C-40B5-47D2-A8F7-7E071689D440}" ShortID="300687863">
+													<ReferenceList>
+														<Reference Name="Conversion">
+															<ObjectRef Name="CS_PC_SFX_Medium" ID="{D643F969-96F4-4A20-B6E9-5D5050A03E05}" WorkUnitID="{1E13664B-E694-4203-95E7-AEB6212579F7}"/>
+														</Reference>
+														<Reference Name="OutputBus">
+															<ObjectRef Name="PlayerMovement" ID="{0ED43A03-EC3C-400E-9488-71428CF9BE37}" WorkUnitID="{6C0969E1-B09C-4693-BC3C-B2E7116B2AEE}"/>
+														</Reference>
+													</ReferenceList>
+													<ChildrenList>
+														<AudioFileSource Name="sfx_PC_footstep_wood_walk_04" ID="{231E8E43-CE93-4361-B391-82F0C9B78205}">
+															<Language>SFX</Language>
+															<AudioFile>Player\Movement\sfx_PC_footstep_wood_walk_04.wav</AudioFile>
+															<MediaIDList>
+																<MediaID ID="550632686"/>
+															</MediaIDList>
+														</AudioFileSource>
+													</ChildrenList>
+													<ActiveSourceList>
+														<ActiveSource Name="sfx_PC_footstep_wood_walk_04" ID="{231E8E43-CE93-4361-B391-82F0C9B78205}" Platform="Linked"/>
+													</ActiveSourceList>
+												</Sound>
+												<Sound Name="sfx_PC_footstep_wood_walk_05" ID="{38316CB5-B555-4ADE-8DF5-4A30EA093318}" ShortID="781168558">
+													<ReferenceList>
+														<Reference Name="Conversion">
+															<ObjectRef Name="CS_PC_SFX_Medium" ID="{D643F969-96F4-4A20-B6E9-5D5050A03E05}" WorkUnitID="{1E13664B-E694-4203-95E7-AEB6212579F7}"/>
+														</Reference>
+														<Reference Name="OutputBus">
+															<ObjectRef Name="PlayerMovement" ID="{0ED43A03-EC3C-400E-9488-71428CF9BE37}" WorkUnitID="{6C0969E1-B09C-4693-BC3C-B2E7116B2AEE}"/>
+														</Reference>
+													</ReferenceList>
+													<ChildrenList>
+														<AudioFileSource Name="sfx_PC_footstep_wood_walk_05" ID="{6719BC92-3AAE-4082-8A9D-A31A5FE1A2E7}">
+															<Language>SFX</Language>
+															<AudioFile>Player\Movement\sfx_PC_footstep_wood_walk_05.wav</AudioFile>
+															<MediaIDList>
+																<MediaID ID="797452394"/>
+															</MediaIDList>
+														</AudioFileSource>
+													</ChildrenList>
+													<ActiveSourceList>
+														<ActiveSource Name="sfx_PC_footstep_wood_walk_05" ID="{6719BC92-3AAE-4082-8A9D-A31A5FE1A2E7}" Platform="Linked"/>
+													</ActiveSourceList>
+												</Sound>
+												<Sound Name="sfx_PC_footstep_wood_walk_06" ID="{BA71816A-137A-4B79-9915-CCB5973AC5CC}" ShortID="271440727">
+													<ReferenceList>
+														<Reference Name="Conversion">
+															<ObjectRef Name="CS_PC_SFX_Medium" ID="{D643F969-96F4-4A20-B6E9-5D5050A03E05}" WorkUnitID="{1E13664B-E694-4203-95E7-AEB6212579F7}"/>
+														</Reference>
+														<Reference Name="OutputBus">
+															<ObjectRef Name="PlayerMovement" ID="{0ED43A03-EC3C-400E-9488-71428CF9BE37}" WorkUnitID="{6C0969E1-B09C-4693-BC3C-B2E7116B2AEE}"/>
+														</Reference>
+													</ReferenceList>
+													<ChildrenList>
+														<AudioFileSource Name="sfx_PC_footstep_wood_walk_06" ID="{EB60401C-97A4-48C6-97B8-714690DF8C17}">
+															<Language>SFX</Language>
+															<AudioFile>Player\Movement\sfx_PC_footstep_wood_walk_06.wav</AudioFile>
+															<MediaIDList>
+																<MediaID ID="381454456"/>
+															</MediaIDList>
+														</AudioFileSource>
+													</ChildrenList>
+													<ActiveSourceList>
+														<ActiveSource Name="sfx_PC_footstep_wood_walk_06" ID="{EB60401C-97A4-48C6-97B8-714690DF8C17}" Platform="Linked"/>
+													</ActiveSourceList>
+												</Sound>
+												<Sound Name="sfx_PC_footstep_wood_walk_07" ID="{7AA47162-7B4F-4457-A2F2-2A81BD699106}" ShortID="1051282461">
+													<ReferenceList>
+														<Reference Name="Conversion">
+															<ObjectRef Name="CS_PC_SFX_Medium" ID="{D643F969-96F4-4A20-B6E9-5D5050A03E05}" WorkUnitID="{1E13664B-E694-4203-95E7-AEB6212579F7}"/>
+														</Reference>
+														<Reference Name="OutputBus">
+															<ObjectRef Name="PlayerMovement" ID="{0ED43A03-EC3C-400E-9488-71428CF9BE37}" WorkUnitID="{6C0969E1-B09C-4693-BC3C-B2E7116B2AEE}"/>
+														</Reference>
+													</ReferenceList>
+													<ChildrenList>
+														<AudioFileSource Name="sfx_PC_footstep_wood_walk_07" ID="{184D5B75-6D4E-4BE5-A993-433CCB41242D}">
+															<Language>SFX</Language>
+															<AudioFile>Player\Movement\sfx_PC_footstep_wood_walk_07.wav</AudioFile>
+															<MediaIDList>
+																<MediaID ID="557916874"/>
+															</MediaIDList>
+														</AudioFileSource>
+													</ChildrenList>
+													<ActiveSourceList>
+														<ActiveSource Name="sfx_PC_footstep_wood_walk_07" ID="{184D5B75-6D4E-4BE5-A993-433CCB41242D}" Platform="Linked"/>
+													</ActiveSourceList>
+												</Sound>
+												<Sound Name="sfx_PC_footstep_wood_walk_08" ID="{45246ACC-88B0-45FA-9A7D-43A47C66FDD7}" ShortID="331787730">
+													<ReferenceList>
+														<Reference Name="Conversion">
+															<ObjectRef Name="CS_PC_SFX_Medium" ID="{D643F969-96F4-4A20-B6E9-5D5050A03E05}" WorkUnitID="{1E13664B-E694-4203-95E7-AEB6212579F7}"/>
+														</Reference>
+														<Reference Name="OutputBus">
+															<ObjectRef Name="PlayerMovement" ID="{0ED43A03-EC3C-400E-9488-71428CF9BE37}" WorkUnitID="{6C0969E1-B09C-4693-BC3C-B2E7116B2AEE}"/>
+														</Reference>
+													</ReferenceList>
+													<ChildrenList>
+														<AudioFileSource Name="sfx_PC_footstep_wood_walk_08" ID="{06279ED7-546C-4425-A1FD-293FC9818348}">
+															<Language>SFX</Language>
+															<AudioFile>Player\Movement\sfx_PC_footstep_wood_walk_08.wav</AudioFile>
+															<MediaIDList>
+																<MediaID ID="851349484"/>
+															</MediaIDList>
+														</AudioFileSource>
+													</ChildrenList>
+													<ActiveSourceList>
+														<ActiveSource Name="sfx_PC_footstep_wood_walk_08" ID="{06279ED7-546C-4425-A1FD-293FC9818348}" Platform="Linked"/>
+													</ActiveSourceList>
+												</Sound>
+												<Sound Name="sfx_PC_footstep_wood_walk_09" ID="{269118DE-F140-4E8D-8569-AB861600B146}" ShortID="1067041692">
+													<ReferenceList>
+														<Reference Name="Conversion">
+															<ObjectRef Name="CS_PC_SFX_Medium" ID="{D643F969-96F4-4A20-B6E9-5D5050A03E05}" WorkUnitID="{1E13664B-E694-4203-95E7-AEB6212579F7}"/>
+														</Reference>
+														<Reference Name="OutputBus">
+															<ObjectRef Name="PlayerMovement" ID="{0ED43A03-EC3C-400E-9488-71428CF9BE37}" WorkUnitID="{6C0969E1-B09C-4693-BC3C-B2E7116B2AEE}"/>
+														</Reference>
+													</ReferenceList>
+													<ChildrenList>
+														<AudioFileSource Name="sfx_PC_footstep_wood_walk_09" ID="{6982F028-CDD4-48E5-82D0-A5C3A7B52AAE}">
+															<Language>SFX</Language>
+															<AudioFile>Player\Movement\sfx_PC_footstep_wood_walk_09.wav</AudioFile>
+															<MediaIDList>
+																<MediaID ID="360325178"/>
+															</MediaIDList>
+														</AudioFileSource>
+													</ChildrenList>
+													<ActiveSourceList>
+														<ActiveSource Name="sfx_PC_footstep_wood_walk_09" ID="{6982F028-CDD4-48E5-82D0-A5C3A7B52AAE}" Platform="Linked"/>
+													</ActiveSourceList>
+												</Sound>
+											</ChildrenList>
+											<ObjectLists>
+												<ObjectList Name="RTPC">
+													<Reference>
+														<Local>
+															<RTPC Name="" ID="{2049C0B3-C5DC-41CD-B438-1A03F01CFA8B}" ShortID="233477635">
+																<PropertyList>
+																	<Property Name="PropertyName" Type="string" Value="PlayMechanismSpecialTransitionsValue"/>
+																</PropertyList>
+																<ReferenceList>
+																	<Reference Name="ControlInput">
+																		<ObjectRef Name="PlayerMovement_RTPC" ID="{5847C79F-C464-4B8B-9C1B-255CACD2DE98}" WorkUnitID="{4BB587C7-F5F5-4FBE-AD3E-2AADCE4707E1}"/>
+																	</Reference>
+																	<Reference Name="Curve">
+																		<Custom>
+																			<Curve Name="" ID="{4B6FB3CA-1FA3-4D90-9BF7-507784CDA5E6}">
+																				<PropertyList>
+																					<Property Name="Flags" Type="int32" Value="1"/>
+																				</PropertyList>
+																				<PointList>
+																					<Point>
+																						<XPos>0</XPos>
+																						<YPos>0</YPos>
+																						<Flags>5</Flags>
+																					</Point>
+																					<Point>
+																						<XPos>70</XPos>
+																						<YPos>0</YPos>
+																						<Flags>0</Flags>
+																					</Point>
+																					<Point>
+																						<XPos>75</XPos>
+																						<YPos>-0.25</YPos>
+																						<Flags>0</Flags>
+																					</Point>
+																					<Point>
+																						<XPos>100</XPos>
+																						<YPos>-0.25</YPos>
+																						<Flags>37</Flags>
+																					</Point>
+																				</PointList>
+																			</Curve>
+																		</Custom>
+																	</Reference>
+																</ReferenceList>
+															</RTPC>
+														</Local>
+													</Reference>
+													<Reference>
+														<Local>
+															<RTPC Name="" ID="{8564DB84-A213-4E9B-9214-68B4530E6CA6}" ShortID="571193868">
+																<PropertyList>
+																	<Property Name="PropertyName" Type="string" Value="Pitch"/>
+																</PropertyList>
+																<ReferenceList>
+																	<Reference Name="ControlInput">
+																		<ObjectRef Name="PlayerMovement_RTPC" ID="{5847C79F-C464-4B8B-9C1B-255CACD2DE98}" WorkUnitID="{4BB587C7-F5F5-4FBE-AD3E-2AADCE4707E1}"/>
+																	</Reference>
+																	<Reference Name="Curve">
+																		<Custom>
+																			<Curve Name="" ID="{AAC6C916-2D86-42F0-A138-FD05B1B5F5E3}">
+																				<PropertyList>
+																					<Property Name="Flags" Type="int32" Value="65537"/>
+																				</PropertyList>
+																				<PointList>
+																					<Point>
+																						<XPos>0</XPos>
+																						<YPos>0</YPos>
+																						<Flags>5</Flags>
+																					</Point>
+																					<Point>
+																						<XPos>70</XPos>
+																						<YPos>0</YPos>
+																						<Flags>0</Flags>
+																					</Point>
+																					<Point>
+																						<XPos>75</XPos>
+																						<YPos>300</YPos>
+																						<Flags>0</Flags>
+																					</Point>
+																					<Point>
+																						<XPos>100</XPos>
+																						<YPos>300</YPos>
+																						<Flags>37</Flags>
+																					</Point>
+																				</PointList>
+																			</Curve>
+																		</Custom>
+																	</Reference>
+																</ReferenceList>
+															</RTPC>
+														</Local>
+													</Reference>
+												</ObjectList>
+											</ObjectLists>
 										</RandomSequenceContainer>
 									</ChildrenList>
+									<ObjectLists>
+										<ObjectList Name="RTPC">
+											<Reference>
+												<Local>
+													<RTPC Name="" ID="{BB6ADD0A-4662-4A23-878E-3A5AC8EFFB88}" ShortID="633846064">
+														<PropertyList>
+															<Property Name="PropertyName" Type="string" Value="Volume"/>
+														</PropertyList>
+														<ReferenceList>
+															<Reference Name="ControlInput">
+																<ObjectRef Name="PlayerMovement_RTPC" ID="{5847C79F-C464-4B8B-9C1B-255CACD2DE98}" WorkUnitID="{4BB587C7-F5F5-4FBE-AD3E-2AADCE4707E1}"/>
+															</Reference>
+															<Reference Name="Curve">
+																<Custom>
+																	<Curve Name="" ID="{CCA46583-163A-4CE2-B775-C681C6A6F77E}">
+																		<PropertyList>
+																			<Property Name="Flags" Type="int32" Value="3"/>
+																		</PropertyList>
+																		<PointList>
+																			<Point>
+																				<XPos>0</XPos>
+																				<YPos>-200</YPos>
+																				<Flags>5</Flags>
+																			</Point>
+																			<Point>
+																				<XPos>1</XPos>
+																				<YPos>-0</YPos>
+																				<Flags>0</Flags>
+																			</Point>
+																			<Point>
+																				<XPos>100</XPos>
+																				<YPos>0</YPos>
+																				<Flags>37</Flags>
+																			</Point>
+																		</PointList>
+																	</Curve>
+																</Custom>
+															</Reference>
+														</ReferenceList>
+													</RTPC>
+												</Local>
+											</Reference>
+										</ObjectList>
+									</ObjectLists>
 									<GroupingInfo>
 										<GroupingBehaviorList>
 											<GroupingBehavior>
@@ -158,6 +2281,12 @@
 												</ItemList>
 											</Grouping>
 											<Grouping>
+												<SwitchRef Name="Tile" ID="{E3D7CB44-A109-4A40-9996-9505E95EE43D}"/>
+												<ItemList>
+													<ItemRef Name="PC_footstep_pavement" ID="{18076E8D-49E1-4034-BDEC-78522CFB3AC8}"/>
+												</ItemList>
+											</Grouping>
+											<Grouping>
 												<SwitchRef Name="Grass" ID="{ECEB6B52-41C0-41DF-A400-3E572C4138DA}"/>
 												<ItemList>
 													<ItemRef Name="PC_footstep_grass" ID="{8F9AA87B-4891-4D9E-869D-59C3BC7A7723}"/>
@@ -173,6 +2302,12 @@
 												<SwitchRef Name="Dirt" ID="{A3A7D983-41DF-492F-BDD5-466DC98D4759}"/>
 												<ItemList>
 													<ItemRef Name="PC_footstep_dirt" ID="{31D5A2D5-CF63-42D7-AC99-A00C8B330520}"/>
+												</ItemList>
+											</Grouping>
+											<Grouping>
+												<SwitchRef Name="Carpet" ID="{15875E93-AB2F-4D8A-A8C6-6D75363BD696}"/>
+												<ItemList>
+													<ItemRef Name="PC_footstep_grass" ID="{8F9AA87B-4891-4D9E-869D-59C3BC7A7723}"/>
 												</ItemList>
 											</Grouping>
 											<Grouping>

@@ -10,6 +10,10 @@
 							<Position X="0" Y="0"/>
 						</Module>
 						<Module>
+							<ObjectRef Name="PC_footstep_switch" ID="{8AD76273-D280-4050-9EB9-4FC76BC501A3}" WorkUnitID="{8650DAE4-E661-4C4E-8DE4-AAE6BB180626}"/>
+							<Position X="0" Y="1"/>
+						</Module>
+						<Module>
 							<ObjectRef Name="stop_TEST_TestTone_lp_3D" ID="{ABEEB2B7-1680-4A85-8D2D-C308C24EAA97}" WorkUnitID="{AAA74B16-0AA3-4E80-A3C1-B701AD23C503}"/>
 							<Position X="1" Y="0"/>
 						</Module>
@@ -36,6 +40,10 @@
 							<Value>10</Value>
 						</RTPCValue>
 						<RTPCValue>
+							<GameParameterRef Name="PlayerMovement_RTPC" ID="{5847C79F-C464-4B8B-9C1B-255CACD2DE98}"/>
+							<Value>0</Value>
+						</RTPCValue>
+						<RTPCValue>
 							<GameParameterRef Name="MusicVol_RTPC" ID="{69C3C129-89F8-4FD7-B4BD-B74A93C9CAF1}"/>
 							<Value>100</Value>
 						</RTPCValue>
@@ -47,8 +55,9 @@
 					<CurrentSwitchList ShowAll="true">
 						<CurrentSwitchRef Name="Boss" ID="{01607269-4F14-4B7B-AB0E-6C18AB2B6AF4}"/>
 						<CurrentSwitchRef Name="Night" ID="{EE2540A7-8CE8-46A0-9FCA-65279EE0481B}"/>
-						<CurrentSwitchRef Name="Oakshaw" ID="{8A28182E-E263-4240-919A-46E574444914}"/>
+						<CurrentSwitchRef Name="CharacterThemes" ID="{EFBAE0F9-2715-43C6-987D-76168B864C21}"/>
 						<CurrentSwitchRef Name="Lullaby" ID="{F252AAE8-0C51-46F6-82FB-038DB8FF82C7}"/>
+						<CurrentSwitchRef Name="Idle" ID="{919BB0E8-60AB-453F-808C-9BFB5EE331B3}"/>
 						<CurrentSwitchRef Name="Cemetery" ID="{4E545059-0EE6-44C0-8172-34292D586654}"/>
 						<CurrentSwitchRef Name="GlintleysDominic" ID="{E744EAC5-E1D5-4F9F-BFB8-2665F4EDCC1B}"/>
 						<CurrentSwitchRef Name="EtherealRealm" ID="{49861127-878D-415F-AF56-72478D323888}"/>

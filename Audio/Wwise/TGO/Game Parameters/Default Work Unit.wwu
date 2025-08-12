@@ -43,6 +43,7 @@
 						<Property Name="Max" Type="Real64" Value="86400"/>
 					</PropertyList>
 				</GameParameter>
+				<GameParameter Name="PlayerMovement_RTPC" ID="{5847C79F-C464-4B8B-9C1B-255CACD2DE98}"/>
 			</ChildrenList>
 		</WorkUnit>
 	</GameParameters>
