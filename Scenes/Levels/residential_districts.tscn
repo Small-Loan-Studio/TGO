@@ -116,6 +116,7 @@ on_pressed_effects = Array[Resource("res://Scripts/Resources/Effect.gd")]([SubRe
 position = Vector2(-9582.01, 4524.88)
 config = ExtResource("8_cfalv")
 dlg = SubResource("Resource_pcigd")
+id = "NPC-056"
 
 [node name="PS-Cemetery-Exit" type="Marker2D" parent="Markers" index="0"]
 position = Vector2(-8416, 5247)

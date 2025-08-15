@@ -1,4 +1,4 @@
-[gd_scene load_steps=31 format=3 uid="uid://dpy5l43d7v8vk"]
+[gd_scene load_steps=30 format=3 uid="uid://dpy5l43d7v8vk"]
 
 [ext_resource type="PackedScene" uid="uid://dyq8mcdsutnsa" path="res://Scenes/Components/LevelBase.tscn" id="1_3bcgw"]
 [ext_resource type="TileSet" uid="uid://c72m3jled4jfg" path="res://Art/Environment/ext_simple_tileset.tres" id="2_bumtb"]
@@ -17,7 +17,6 @@
 [ext_resource type="Resource" uid="uid://o2eoeu47ik23" path="res://Scripts/Resources/NPCs/NPC-002.tres" id="14_aq5ny"]
 [ext_resource type="Resource" path="res://Dialogue/NPC-002/0_6bHarris.dtl" id="15_q6hk4"]
 [ext_resource type="PackedScene" uid="uid://d1y25semyqxkw" path="res://Scenes/Components/Greyboxing/MoveableBlock.tscn" id="17_f6ges"]
-[ext_resource type="Script" path="res://Scripts/Components/Greyboxing/MoveableBlock.gd" id="18_2o223"]
 
 [sub_resource type="Resource" id="Resource_w2g47"]
 script = ExtResource("5_tgjgd")
@@ -125,21 +124,25 @@ on_pressed_effects = Array[Resource("res://Scripts/Resources/Effect.gd")]([SubRe
 position = Vector2(2399.23, 2492.75)
 config = ExtResource("7_f5wce")
 dlg = SubResource("Resource_iu2hh")
+id = "Cuthbert"
 
 [node name="NPC-033" parent="Objects/Characters" index="1" instance=ExtResource("5_ybl08")]
 position = Vector2(2491.03, 2543.78)
 config = ExtResource("10_hkfnv")
 dlg = SubResource("Resource_wkwyd")
+id = "NPC-033"
 
 [node name="NPC-021" parent="Objects/Characters" index="2" instance=ExtResource("5_ybl08")]
 position = Vector2(2595.81, 2586.5)
 config = ExtResource("12_405jp")
 dlg = SubResource("Resource_gmyho")
+id = "NPC-021"
 
 [node name="NPC-002" parent="Objects/Characters" index="3" instance=ExtResource("5_ybl08")]
 position = Vector2(2230, 2388.65)
 config = ExtResource("14_aq5ny")
 dlg = SubResource("Resource_epg6a")
+id = "NPC-002"
 
 [node name="JOURNAL" parent="Objects/Items" index="0" instance=ExtResource("5_eckgw")]
 position = Vector2(-468, 2320)
@@ -148,39 +151,33 @@ quantity = 1
 
 [node name="Boxes" type="Node" parent="Objects" index="4"]
 
-[node name="PushableBlock" type="CharacterBody2D" parent="Objects/Boxes" index="0" groups=["NodesWithID"] instance=ExtResource("17_f6ges")]
+[node name="PushableBlock" parent="Objects/Boxes" index="0" instance=ExtResource("17_f6ges")]
 modulate = Color(0, 1, 1, 1)
-position = Vector2(208, 2160)
-collision_layer = 5
-script = ExtResource("18_2o223")
+position = Vector2(209, 2161)
+tile_size = 30
 
-[node name="PushableBlock_2" type="CharacterBody2D" parent="Objects/Boxes" index="1" groups=["NodesWithID"] instance=ExtResource("17_f6ges")]
+[node name="PushableBlock_2" parent="Objects/Boxes" index="1" instance=ExtResource("17_f6ges")]
 modulate = Color(0, 1, 1, 1)
 position = Vector2(16, 2416)
-collision_layer = 5
-script = ExtResource("18_2o223")
+tile_size = 30
 
-[node name="PushableBlock_3" type="CharacterBody2D" parent="Objects/Boxes" index="2" groups=["NodesWithID"] instance=ExtResource("17_f6ges")]
+[node name="PushableBlock_3" parent="Objects/Boxes" index="2" instance=ExtResource("17_f6ges")]
 position = Vector2(-481, 2672)
-collision_layer = 5
-script = ExtResource("18_2o223")
+tile_size = 30
 width = 2
 
-[node name="PushableBlock_4" type="CharacterBody2D" parent="Objects/Boxes" index="3" groups=["NodesWithID"] instance=ExtResource("17_f6ges")]
-position = Vector2(-32, 2257)
-collision_layer = 5
-script = ExtResource("18_2o223")
+[node name="PushableBlock_4" parent="Objects/Boxes" index="3" instance=ExtResource("17_f6ges")]
+position = Vector2(-32, 2256)
+tile_size = 30
 width = 2
 
-[node name="PushableBlock_5" type="CharacterBody2D" parent="Objects/Boxes" index="4" groups=["NodesWithID"] instance=ExtResource("17_f6ges")]
+[node name="PushableBlock_5" parent="Objects/Boxes" index="4" instance=ExtResource("17_f6ges")]
 position = Vector2(-399, 2288)
-collision_layer = 5
-script = ExtResource("18_2o223")
+tile_size = 30
 
-[node name="PushableBlock_6" type="CharacterBody2D" parent="Objects/Boxes" index="5" groups=["NodesWithID"] instance=ExtResource("17_f6ges")]
+[node name="PushableBlock_6" parent="Objects/Boxes" index="5" instance=ExtResource("17_f6ges")]
 position = Vector2(-319, 2478)
-collision_layer = 5
-script = ExtResource("18_2o223")
+tile_size = 30
 width = 2
 height = 3
 
