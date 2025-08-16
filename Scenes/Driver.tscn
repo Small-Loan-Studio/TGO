@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=3 uid="uid://d4cnh54npmjiv"]
+[gd_scene load_steps=23 format=3 uid="uid://d4cnh54npmjiv"]
 
 [ext_resource type="Script" path="res://Scripts/Driver.gd" id="1_agcjs"]
 [ext_resource type="PackedScene" uid="uid://tw1hy0j67l4g" path="res://Scenes/Audio/AudioManager.tscn" id="2_efjl6"]
@@ -19,6 +19,7 @@
 [ext_resource type="Script" path="res://Scenes/UI/Debug/DevinStateReport.gd" id="13_gfaub"]
 [ext_resource type="Script" path="res://Scenes/UI/Debug/StatLabel.gd" id="14_feb7v"]
 [ext_resource type="PackedScene" uid="uid://20yvv6ntvs65" path="res://Scenes/Menu/menus.tscn" id="15_rsyak"]
+[ext_resource type="PackedScene" uid="uid://07u6uw7p4vlw" path="res://ZZ_Scratch/Inventory/UITest.tscn" id="16_wfc1j"]
 [ext_resource type="PackedScene" uid="uid://cm0r3afwqt28t" path="res://Scenes/UI/Debug/wwise_debug.tscn" id="17_5yu8a"]
 [ext_resource type="Script" path="res://Scripts/RegionStateManager.gd" id="19_dn3w1"]
 
@@ -211,6 +212,8 @@ custom_minimum_size = Vector2(400, 0)
 layout_mode = 2
 
 [node name="Menus" parent="OverlayManager" instance=ExtResource("15_rsyak")]
+
+[node name="UITest" parent="OverlayManager" instance=ExtResource("16_wfc1j")]
 
 [node name="SerializationManager" type="Node" parent="."]
 script = ExtResource("11_e6bsk")

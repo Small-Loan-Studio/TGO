@@ -1,0 +1,25 @@
+[gd_scene load_steps=13 format=3 uid="uid://07u6uw7p4vlw"]
+
+[ext_resource type="Script" path="res://ZZ_Scratch/Inventory/InventoryUITest.gd" id="1_htsi0"]
+[ext_resource type="PackedScene" uid="uid://btrnj41gi473c" path="res://Scenes/Menu/InventoryContainer.tscn" id="1_ptwt8"]
+[ext_resource type="Resource" uid="uid://76bi0g1ps1s3" path="res://Scripts/Resources/Items/FlameTorch.tres" id="2_4r84q"]
+[ext_resource type="Script" path="res://Scripts/Components/CharacterControl/InputController.gd" id="2_hh85r"]
+[ext_resource type="Resource" uid="uid://tb26fixj3gin" path="res://Scripts/Resources/Items/TinderLighter.tres" id="3_tvr3l"]
+[ext_resource type="Resource" path="res://Scripts/Resources/Items/BagOfHardtack.tres" id="4_ydbc1"]
+[ext_resource type="Resource" uid="uid://c68ipc5iki3cr" path="res://Scripts/Resources/Items/Journal.tres" id="5_nt45y"]
+[ext_resource type="Resource" uid="uid://djcg0x5p8m34q" path="res://Scripts/Resources/Items/Laudanum.tres" id="6_5el1u"]
+[ext_resource type="Resource" uid="uid://bdru104ygsgt2" path="res://Scripts/Resources/Items/StudyKey.tres" id="7_41wxf"]
+[ext_resource type="Resource" path="res://Scripts/Resources/Items/ScrapOfPaper.tres" id="8_f1olx"]
+[ext_resource type="Resource" uid="uid://b7w2axnxl0fkt" path="res://Scripts/Resources/Items/Key.tres" id="9_0n28u"]
+[ext_resource type="Resource" path="res://Scripts/Resources/Items/EmptyBottle.tres" id="10_lbtxc"]
+
+[node name="UITest" type="Node2D"]
+script = ExtResource("1_htsi0")
+_items = Array[Resource("res://Scripts/Components/Inventory/Item.gd")]([ExtResource("2_4r84q"), ExtResource("3_tvr3l"), ExtResource("4_ydbc1"), ExtResource("5_nt45y"), ExtResource("6_5el1u"), ExtResource("7_41wxf"), ExtResource("8_f1olx"), ExtResource("9_0n28u"), ExtResource("10_lbtxc"), ExtResource("2_4r84q")])
+
+[node name="InventoryContainer" parent="." instance=ExtResource("1_ptwt8")]
+unique_name_in_owner = true
+
+[node name="Input" type="Node" parent="."]
+unique_name_in_owner = true
+script = ExtResource("2_hh85r")

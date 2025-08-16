@@ -95,7 +95,7 @@ func _post_ready() -> void:
 ## so probably some tooling to make it work for "quit to main" interactions
 func _show_title_menu() -> void:
 	_hud.hide()
-	var title_menu := menus.present_nonblocking(Menus.MenuKind.TITLE)
+	var title_menu := menus.present(Menus.MenuKind.TITLE)
 	title_menu.dismiss.connect(_title_hide, ConnectFlags.CONNECT_ONE_SHOT)
 	await _curtain.fade_out(1, false)
 	await title_menu.dismiss

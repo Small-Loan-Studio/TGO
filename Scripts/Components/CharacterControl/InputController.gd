@@ -53,7 +53,7 @@ func setup(
 
 
 func _ready() -> void:
-	pass
+	print("InputController.ready")
 
 
 func _unhandled_input(event: InputEvent) -> void:

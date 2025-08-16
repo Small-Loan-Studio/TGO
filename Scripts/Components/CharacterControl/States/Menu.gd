@@ -22,7 +22,7 @@ func run_tick(_delta: float) -> StateChange:
 
 	_waiting = true
 	_done_waiting = false
-	await Driver.instance().menus.present(Menus.MenuKind.PAUSE)
+	await Driver.instance().menus.present_async(Menus.MenuKind.PAUSE)
 	_done_waiting = true
 	return null
 

@@ -1,7 +1,7 @@
 class_name Menus
 extends Control
 
-enum MenuKind { DEBUG, PAUSE, TITLE }
+enum MenuKind { PAUSE, TITLE }
 
 const PauseMenuScene: PackedScene = preload("res://Scenes/Menu/pause_menu.tscn")
 const TitleMenuScene: PackedScene = preload("res://Scenes/Menu/title_menu.tscn")
@@ -19,14 +19,12 @@ func dismiss() -> void:
 	hide()
 
 
-## presents a menu and returns immediately; in order to block until
-## the menu is closed await on returned Menu.dismiss
-func present_nonblocking(kind: MenuKind) -> Menu:
+## presents a menu and returns immediately; see `present_async` for a version
+## that awaits on a menu dismissal
+func present(kind: MenuKind) -> Menu:
 	show()
 	var menu: Menu = null
 	match kind:
-		MenuKind.DEBUG:
-			pass
 		MenuKind.PAUSE:
 			menu = PauseMenuScene.instantiate()
 		MenuKind.TITLE:
@@ -35,8 +33,9 @@ func present_nonblocking(kind: MenuKind) -> Menu:
 	return menu
 
 
-func present(kind: MenuKind) -> void:
-	await present_nonblocking(kind).dismiss
+## presents a menu and awaits for the menu to emit .dismiss
+func present_async(kind: MenuKind) -> void:
+	await present(kind).dismiss
 
 
 ## Private
