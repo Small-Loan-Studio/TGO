@@ -33,6 +33,7 @@ func setup(x: int, y: int, ctrl: ControllerBase, items_for_display: Array[Item])
 	self.columns = x
 	self._ctrl = ctrl
 	self._item_res = items_for_display
+	print("Items (%d): %s" % [len(items_for_display), items_for_display])
 	has_setup = true
 
 	print("InventoryContainer.setup(%d, %d, ...)" % [x, y])
@@ -75,33 +76,30 @@ func _process(_delta: float) -> void:
 	if !_process_input():
 		return
 	
-	print("selected idx: %d: %s" % [_from_xy(_cursor_pos), _cursor_pos])
+	print("selected idx: %d: %s" % [_selected_idx, _cursor_pos])
 
 
 func _process_input() -> bool:
 	var max_idx := len(_item_res) - 1
 	var idx := _selected_idx
-	var old_idx := idx
+	var single_col := columns == 1
+
 	if _ctrl.just_pressed(Enums.InputAction.UP):
-		print("UP")
 		if idx == 0:
 			idx = max_idx
 		else:
 			idx -= columns
 	elif _ctrl.just_pressed(Enums.InputAction.DOWN):
-		print("DOWN")
 		if idx == max_idx:
 			idx = 0
 		else:
 			idx += columns
-	elif _ctrl.just_pressed(Enums.InputAction.LEFT):
-		print("LEFT")
+	elif !single_col && _ctrl.just_pressed(Enums.InputAction.LEFT):
 		if idx == 0:
 			idx = max_idx
 		else:
 			idx -= 1
-	elif _ctrl.just_pressed(Enums.InputAction.RIGHT):
-		print("RIGHT")
+	elif !single_col && _ctrl.just_pressed(Enums.InputAction.RIGHT):
 		if idx == max_idx:
 			idx = 0
 		else:
@@ -109,16 +107,24 @@ func _process_input() -> bool:
 	else:
 		return false
 
-	var mid_idx := idx
-
 	if idx < 0:
 		idx = 0
-	if idx > len(_item_res) - 1:
-		idx = len(_item_res) - 1
+	if idx > max_idx:
+		idx = max_idx
 	_selected_idx = idx
 
-	var old_pos := _cursor_pos
-	_cursor_pos = _to_xy(idx)
-	print("%d -> %d -> %d :: %s -> %s" % [old_idx, mid_idx, idx, old_pos, _cursor_pos])
+	# var old_pos := _cursor_pos
+	var new_pos := _to_xy(idx)
+	_cursor_pos = new_pos
+	new_pos.y = new_pos.y - _y_offset
+	if new_pos.y < 0:
+		_y_offset -= new_pos.y as int
+		new_pos.y = 0
+	else:
+		var overflow := new_pos.y - _max_height
+		if overflow > 0:
+			_y_offset += overflow
+
+	# print("%d -> %d -> %d :: %s -> %s" % [old_idx, mid_idx, idx, old_pos, _cursor_pos])
 
 	return true
