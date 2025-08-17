@@ -29,3 +29,6 @@ text = "Right"
 
 [node name="RightOption" type="OptionButton" parent="."]
 layout_mode = 2
+
+[connection signal="item_selected" from="LeftOption" to="." method="_equip_change" binds= ["left"]]
+[connection signal="item_selected" from="RightOption" to="." method="_equip_change" binds= ["right"]]
