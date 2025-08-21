@@ -8,3 +8,7 @@ script = ExtResource("1_yrvog")
 character_id = "OIWP_Charles"
 sprite_sheet = ExtResource("2_u68m0")
 valid_timelines = Array[String](["res://Scripts/Resources/NPCs/DialogicCharacters/OIWP/OIWP_03a.dtl"])
+examine_text = ""
+examine_effects = Array[Resource("res://Scripts/Resources/Effect.gd")]([])
+show_item_effects = Array[Resource("res://Scripts/Resources/Effect.gd")]([])
+give_item_effects = Array[Resource("res://Scripts/Resources/Effect.gd")]([])

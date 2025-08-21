@@ -8,3 +8,7 @@ script = ExtResource("1_hug5j")
 character_id = "Silas"
 sprite_sheet = ExtResource("2_sbw03")
 valid_timelines = Array[String](["res://Dialogue/Silas/Silas0-5a.dtl"])
+examine_text = ""
+examine_effects = Array[Resource("res://Scripts/Resources/Effect.gd")]([])
+show_item_effects = Array[Resource("res://Scripts/Resources/Effect.gd")]([])
+give_item_effects = Array[Resource("res://Scripts/Resources/Effect.gd")]([])

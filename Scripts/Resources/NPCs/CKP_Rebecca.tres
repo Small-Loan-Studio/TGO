@@ -8,3 +8,7 @@ script = ExtResource("1_12v5o")
 character_id = "CKP_Rebecca"
 sprite_sheet = ExtResource("2_cm4pf")
 valid_timelines = Array[String](["res://Dialogue/CKP/CKP05bi.dtl"])
+examine_text = ""
+examine_effects = Array[Resource("res://Scripts/Resources/Effect.gd")]([])
+show_item_effects = Array[Resource("res://Scripts/Resources/Effect.gd")]([])
+give_item_effects = Array[Resource("res://Scripts/Resources/Effect.gd")]([])

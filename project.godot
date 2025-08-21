@@ -30,7 +30,6 @@ config/icon="res://icon.svg"
 [autoload]
 
 TGO="*res://Scripts/DialogicAdapter.gd"
-WwiseRuntimeManager="*res://addons/Wwise/runtime/wwise_runtime_manager.gd"
 Dialogic="*res://addons/dialogic/Core/DialogicGameHandler.gd"
 
 [debug]
@@ -65,6 +64,8 @@ directories/dch_directory={
 "NPC-021": "res://Dialogue/MiscellaneousDialogue/NPC-021.dch",
 "NPC-033": "res://Dialogue/MiscellaneousDialogue/NPC-033.dch",
 "NPC-056": "res://Dialogue/MiscellaneousDialogue/NPC-056.dch",
+"NPC-057": "res://Dialogue/MiscellaneousDialogue/NPC-057.dch",
+"NPC-058": "res://Dialogue/MiscellaneousDialogue/NPC-058.dch",
 "OIWP_Charles": "res://Scripts/Resources/NPCs/DialogicCharacters/OIWP/OIWP_Charles.dch",
 "OIWP_Christopher": "res://Scripts/Resources/NPCs/DialogicCharacters/OIWP/OIWP_Christopher.dch",
 "OIWP_Ratty": "res://Scripts/Resources/NPCs/DialogicCharacters/OIWP/OIWP_Ratty.dch",
@@ -76,6 +77,7 @@ directories/dch_directory={
 }
 directories/dtl_directory={
 "0_3bWilliam": "res://Dialogue/MiscellaneousDialogue/0_3bWilliam.dtl",
+"0_3cAdelaide": "res://Dialogue/MiscellaneousDialogue/0_3cAdelaide.dtl",
 "0_6bHarris": "res://Dialogue/NPC-002/0_6bHarris.dtl",
 "10b4": "res://Dialogue/NPC-021/10b4.dtl",
 "7b2": "res://Dialogue/Philippa/7b2.dtl",
@@ -129,6 +131,7 @@ directories/dtl_directory={
 "WoodenStake": "res://Dialogue/Examinations/WoodenStake.dtl",
 "debugging_timeline": "res://ZZ_Scratch/DialogicValidation/debugging_timeline.dtl",
 "examine": "res://Dialogue/Other/examine.dtl",
+"gen_template": "res://Dialogue/MiscellaneousDialogue/gen_template.dtl",
 "juniper_bush_full": "res://Dialogue/PlaceableInteractive/juniper_bush_full.dtl",
 "npc_test_dialogue": "res://ZZ_Scratch/NPCDialogue/npc_test_dialogue.dtl",
 "select_item": "res://Dialogue/Other/select_item.dtl",
@@ -224,6 +227,7 @@ variables={
 "CuthbertBarkNum": 0.0,
 "NPC-021BarkNum": 0.0,
 "NPC-033BarkNum": 0.0,
+"NPC-058HasSpoken": false,
 "PerryHasSpoken": false
 },
 "OIWP": {
