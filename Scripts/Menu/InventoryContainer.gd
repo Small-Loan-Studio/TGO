@@ -16,7 +16,7 @@ var _y_offset := 0
 
 # cursor position within the grid; constrained to the grid size and doesn't
 # take into account the full array size or need for offset/scrolling
-var _cursor_pos: Vector2 = Vector2.ZERO
+var _cursor_pos: Vector2i = Vector2i.ZERO
 
 const Scene: PackedScene = preload("res://Scenes/Menu/InventoryContainer.tscn")
 
@@ -57,14 +57,11 @@ func _exit_tree() -> void:
 
 # convert cursor position to the item index within the array; this accounts
 # for offset/any scrolling thas has been done
-func _from_xy(xy: Vector2) -> int:
+func _from_xy(xy: Vector2i) -> int:
 	return (_y_offset * columns) + xy.y + xy.x
 
 
-# convert an index to an x, y position based on the grid's column width;
-# does not adjust y for the max height so additional work is needed to
-# find/update offset
-func _to_xy(idx: int) -> Vector2:
+func _to_xy_raw(idx: int) -> Vector2i:
 	var y := (idx / columns) as int
 	var x := idx - (y * columns)
 	return Vector2(x, y)
@@ -76,7 +73,8 @@ func _process(_delta: float) -> void:
 	if !_process_input():
 		return
 	
-	print("selected idx: %d: %s" % [_selected_idx, _cursor_pos])
+	_debug_print()
+	# print("selected idx: %d: %s : %d" % [_selected_idx, _cursor_pos, _y_offset])
 
 
 func _process_input() -> bool:
@@ -109,22 +107,39 @@ func _process_input() -> bool:
 
 	if idx < 0:
 		idx = 0
+		_y_offset = 0
 	if idx > max_idx:
 		idx = max_idx
 	_selected_idx = idx
 
 	# var old_pos := _cursor_pos
-	var new_pos := _to_xy(idx)
-	_cursor_pos = new_pos
-	new_pos.y = new_pos.y - _y_offset
-	if new_pos.y < 0:
-		_y_offset -= new_pos.y as int
-		new_pos.y = 0
-	else:
-		var overflow := new_pos.y - _max_height
-		if overflow > 0:
-			_y_offset += overflow
+	var new_pos := _to_xy_raw(idx)
+	# var aoeu := "%s -> %s" % [_cursor_pos, new_pos]
 
+	_cursor_pos = new_pos
 	# print("%d -> %d -> %d :: %s -> %s" % [old_idx, mid_idx, idx, old_pos, _cursor_pos])
 
 	return true
+
+func _debug_print() -> void:
+	var cx := _cursor_pos.x
+	var cy := _cursor_pos.y
+
+	print("idx: %d, y_offset: %d, cur_pos: %s, cur_pos + offset %s" % [_selected_idx, _y_offset, _cursor_pos, Vector2i(cx, cy + _y_offset)])
+	for y in range(_max_height):
+		var line: String
+		if y == 0:
+			line = "     "
+			for x in range(columns):
+				line += "  %d  " % [x]
+			print(line)
+
+		line = "%d    " % [y + _y_offset]
+		for x in range(columns):
+			if cx == x && cy == y:
+				line += " [X] "
+			else:
+				line += " [ ] "
+		print(line)
+	
+	print("")
