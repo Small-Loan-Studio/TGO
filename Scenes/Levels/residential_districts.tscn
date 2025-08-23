@@ -1,4 +1,4 @@
-[gd_scene load_steps=31 format=3 uid="uid://bpqy2l0t41kaa"]
+[gd_scene load_steps=39 format=3 uid="uid://bpqy2l0t41kaa"]
 
 [ext_resource type="PackedScene" uid="uid://dyq8mcdsutnsa" path="res://Scenes/Components/LevelBase.tscn" id="1_oacxt"]
 [ext_resource type="TileSet" uid="uid://c72m3jled4jfg" path="res://Art/Environment/ext_simple_tileset.tres" id="2_jud3x"]
@@ -17,7 +17,12 @@
 [ext_resource type="Script" path="res://Scripts/Components/NPC.gd" id="15_1fyy0"]
 [ext_resource type="Resource" uid="uid://qityf1bmimbu" path="res://Scripts/Resources/NPCs/NPC-058.tres" id="16_ub1ye"]
 [ext_resource type="Resource" path="res://Dialogue/MiscellaneousDialogue/0_3cAdelaide.dtl" id="17_x0orr"]
+[ext_resource type="Resource" path="res://Dialogue/MiscellaneousDialogue/0_3dBenjamin.dtl" id="18_6nex5"]
 [ext_resource type="Resource" uid="uid://biq2blb6v7ng" path="res://Scripts/Resources/NPCs/NPC-057.tres" id="18_kwov6"]
+[ext_resource type="Resource" uid="uid://bv1mixrohn6c2" path="res://Scripts/Resources/NPCs/NPC-060.tres" id="20_lqbmt"]
+[ext_resource type="Resource" path="res://Dialogue/MiscellaneousDialogue/0_3eHumphrey.dtl" id="21_86nkv"]
+[ext_resource type="Resource" uid="uid://df717gcq1h2gt" path="res://Scripts/Resources/NPCs/NPC-059.tres" id="22_abfvk"]
+[ext_resource type="Resource" path="res://Dialogue/MiscellaneousDialogue/0_3fLucas.dtl" id="23_tspue"]
 
 [sub_resource type="Resource" id="Resource_74kmu"]
 script = ExtResource("6_7wqhn")
@@ -73,6 +78,18 @@ timeline = ExtResource("7_ss4wd")
 [sub_resource type="Resource" id="Resource_ucnri"]
 script = ExtResource("9_20kkv")
 timeline = ExtResource("17_x0orr")
+
+[sub_resource type="Resource" id="Resource_var2j"]
+script = ExtResource("9_20kkv")
+timeline = ExtResource("18_6nex5")
+
+[sub_resource type="Resource" id="Resource_xvwxt"]
+script = ExtResource("9_20kkv")
+timeline = ExtResource("21_86nkv")
+
+[sub_resource type="Resource" id="Resource_ia7nq"]
+script = ExtResource("9_20kkv")
+timeline = ExtResource("23_tspue")
 
 [node name="LevelBase" instance=ExtResource("1_oacxt")]
 
@@ -171,23 +188,36 @@ position = Vector2(-7902, 3229)
 config = ExtResource("14_8ifww")
 id = "OIWP_Robert"
 
-[node name="NPC-058" type="CharacterBody2D" parent="Objects/Characters" index="5" groups=["NodesWithID"] instance=ExtResource("6_ux3kt")]
+[node name="NPC-058" parent="Objects/Characters" index="5" instance=ExtResource("6_ux3kt")]
 position = Vector2(-7463, 3305)
-collision_layer = 5
-motion_mode = 1
-script = ExtResource("15_1fyy0")
 config = ExtResource("16_ub1ye")
 dlg = SubResource("Resource_ucnri")
 id = "NPC-058"
-activate_external_sensors = false
 
-[node name="NPC-057" type="CharacterBody2D" parent="Objects/Characters" index="6" groups=["NodesWithID"] instance=ExtResource("6_ux3kt")]
-position = Vector2(-7420, 3297)
+[node name="NPC-057" parent="Objects/Characters" index="6" instance=ExtResource("6_ux3kt")]
+position = Vector2(-7383, 3295)
+config = ExtResource("18_kwov6")
+dlg = SubResource("Resource_var2j")
+id = "NPC-057"
+
+[node name="NPC-060" type="CharacterBody2D" parent="Objects/Characters" index="7" groups=["NodesWithID"] instance=ExtResource("6_ux3kt")]
+position = Vector2(-10089.1, 3432.93)
 collision_layer = 5
 motion_mode = 1
 script = ExtResource("15_1fyy0")
-config = ExtResource("18_kwov6")
-id = "NPC-057"
+config = ExtResource("20_lqbmt")
+dlg = SubResource("Resource_xvwxt")
+id = "NPC-060"
+activate_external_sensors = false
+
+[node name="NPC-059" type="CharacterBody2D" parent="Objects/Characters" index="8" groups=["NodesWithID"] instance=ExtResource("6_ux3kt")]
+position = Vector2(-10177, 4534)
+collision_layer = 5
+motion_mode = 1
+script = ExtResource("15_1fyy0")
+config = ExtResource("22_abfvk")
+dlg = SubResource("Resource_ia7nq")
+id = "NPC-059"
 activate_external_sensors = false
 
 [node name="PS-Cemetery-Exit" type="Marker2D" parent="Markers" index="0"]

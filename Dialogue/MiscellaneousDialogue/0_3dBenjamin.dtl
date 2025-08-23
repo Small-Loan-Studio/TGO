@@ -1,0 +1,15 @@
+if {TGO.quest("QIQ-008").is_completed()} == false:
+	if {MiscellaneousCharacters.NPC-057HasSpoken} == false:
+		NPC-057: Why are you bothering me?
+	else:
+		NPC-057: What do you need?
+if {TGO.quest("QIQ-008").is_completed()} == false:
+	label Questions
+	- What is this place like?
+		Devin: What can you tell me about Oakshaw?
+		NPC-057: Quiet. That is until you appeared from the shadows.
+		jump Questions
+	- I should be going.
+		Devin: I need to go.
+		NPC-057: Good. No time for idle chatter.
+set {MiscellaneousCharacters.NPC-057HasSpoken} = true

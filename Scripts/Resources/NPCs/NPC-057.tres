@@ -7,7 +7,7 @@
 script = ExtResource("1_2fd1d")
 character_id = "NPC-057"
 sprite_sheet = ExtResource("2_digtw")
-valid_timelines = Array[String]([])
+valid_timelines = Array[String](["res://Dialogue/MiscellaneousDialogue/0_3dBenjamin.dtl"])
 examine_text = ""
 examine_effects = Array[Resource("res://Scripts/Resources/Effect.gd")]([])
 show_item_effects = Array[Resource("res://Scripts/Resources/Effect.gd")]([])

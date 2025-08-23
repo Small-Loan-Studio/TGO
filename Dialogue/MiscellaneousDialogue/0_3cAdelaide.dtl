@@ -3,3 +3,4 @@ if {TGO.quest("QIQ-008").is_completed()} == false:
 		NPC-058: Goodness, me! You gave me quite the fright with that wretched mask.
 	else:
 		NPC-058: Oh! Tis only you. Leave me be, lest you darken my doorway.
+set {MiscellaneousCharacters.NPC-058HasSpoken} = true

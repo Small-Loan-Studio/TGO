@@ -1,0 +1,17 @@
+if {TGO.quest("QIQ-008").is_completed()} == false:
+	if {MiscellaneousCharacters.NPC-060HasSpoken} == false:
+		NPC-060: Jupiter’s spot! It’s you — that mask-wearing hunter.
+		set {MiscellaneousCharacters.NPC-060HasSpoken} = true
+	else:
+		NPC-060: Pray tell, hunter, what can I help you with?
+if {TGO.quest("QIQ-008").is_completed()} == false:
+	label Questions
+	- What can you tell me about Oakshaw?
+		Devin: What can you tell me about this place?
+		NPC-060: Small enough that we all know each other. Broad enough that we can keep out of each other’s way.
+		Devin: Any spirits — even strange occurrences that I should know about?
+		NPC-060: None that I’ve come across, I must say. Apart from the gin.
+		jump Questions
+	- I should be going.
+		Devin: I must leave.
+		NPC-060: Yes, well, do make sure you behave appropriately. We don’t want any more troublemakers.

@@ -66,6 +66,8 @@ directories/dch_directory={
 "NPC-056": "res://Dialogue/MiscellaneousDialogue/NPC-056.dch",
 "NPC-057": "res://Dialogue/MiscellaneousDialogue/NPC-057.dch",
 "NPC-058": "res://Dialogue/MiscellaneousDialogue/NPC-058.dch",
+"NPC-059": "res://Dialogue/MiscellaneousDialogue/NPC-059.dch",
+"NPC-060": "res://Dialogue/MiscellaneousDialogue/NPC-060.dch",
 "OIWP_Charles": "res://Scripts/Resources/NPCs/DialogicCharacters/OIWP/OIWP_Charles.dch",
 "OIWP_Christopher": "res://Scripts/Resources/NPCs/DialogicCharacters/OIWP/OIWP_Christopher.dch",
 "OIWP_Ratty": "res://Scripts/Resources/NPCs/DialogicCharacters/OIWP/OIWP_Ratty.dch",
@@ -78,6 +80,9 @@ directories/dch_directory={
 directories/dtl_directory={
 "0_3bWilliam": "res://Dialogue/MiscellaneousDialogue/0_3bWilliam.dtl",
 "0_3cAdelaide": "res://Dialogue/MiscellaneousDialogue/0_3cAdelaide.dtl",
+"0_3dBenjamin": "res://Dialogue/MiscellaneousDialogue/0_3dBenjamin.dtl",
+"0_3eHumphrey": "res://Dialogue/MiscellaneousDialogue/0_3eHumphrey.dtl",
+"0_3fLucas": "res://Dialogue/MiscellaneousDialogue/0_3fLucas.dtl",
 "0_6bHarris": "res://Dialogue/NPC-002/0_6bHarris.dtl",
 "10b4": "res://Dialogue/NPC-021/10b4.dtl",
 "7b2": "res://Dialogue/Philippa/7b2.dtl",
@@ -227,7 +232,10 @@ variables={
 "CuthbertBarkNum": 0.0,
 "NPC-021BarkNum": 0.0,
 "NPC-033BarkNum": 0.0,
+"NPC-057HasSpoken": false,
 "NPC-058HasSpoken": false,
+"NPC-059HasSpoken": false,
+"NPC-060HasSpoken": false,
 "PerryHasSpoken": false
 },
 "OIWP": {

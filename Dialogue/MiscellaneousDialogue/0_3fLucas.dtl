@@ -1,0 +1,15 @@
+if {TGO.quest("QIQ-008").is_completed()} == false:
+	if {MiscellaneousCharacters.NPC-059HasSpoken} == false:
+		NPC-059: Blimey, lad. Quite the mask you’ve got.
+		set {MiscellaneousCharacters.NPC-059HasSpoken} = true
+	else:
+		NPC-059: On your way to somewhere in particular, masked one?
+if {TGO.quest("QIQ-008").is_completed()} == false:
+	label Questions
+	- What can you tell me about Oakshaw?
+		Devin: What can you tell me about this place?
+		NPC-059: Nothing that you won’t find out for yourself in good time.
+		jump Questions
+	- I should be going.
+		Devin: I must go.
+		NPC-059: Be careful. Danger lurks everywhere.
