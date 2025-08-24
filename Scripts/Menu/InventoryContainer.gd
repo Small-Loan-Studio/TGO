@@ -58,13 +58,16 @@ func _exit_tree() -> void:
 # convert cursor position to the item index within the array; this accounts
 # for offset/any scrolling thas has been done
 func _from_xy(xy: Vector2i) -> int:
-	return (_y_offset * columns) + xy.y + xy.x
+	return ((xy.y + _y_offset) * columns) + xy.x
 
 
 func _to_xy_raw(idx: int) -> Vector2i:
 	var y := (idx / columns) as int
 	var x := idx - (y * columns)
 	return Vector2(x, y)
+
+func _adjusted_pos() -> Vector2i:
+	return Vector2i(_cursor_pos.x, _cursor_pos.y - _y_offset)
 	
 func _process(_delta: float) -> void:
 	if !has_setup:
@@ -74,7 +77,6 @@ func _process(_delta: float) -> void:
 		return
 	
 	_debug_print()
-	# print("selected idx: %d: %s : %d" % [_selected_idx, _cursor_pos, _y_offset])
 
 
 func _process_input() -> bool:
@@ -112,20 +114,20 @@ func _process_input() -> bool:
 		idx = max_idx
 	_selected_idx = idx
 
-	# var old_pos := _cursor_pos
-	var new_pos := _to_xy_raw(idx)
-	# var aoeu := "%s -> %s" % [_cursor_pos, new_pos]
+	_cursor_pos = _to_xy_raw(idx)
+	var adjusted := _adjusted_pos()
 
-	_cursor_pos = new_pos
-	# print("%d -> %d -> %d :: %s -> %s" % [old_idx, mid_idx, idx, old_pos, _cursor_pos])
-
+	if adjusted.y < 0:
+		_y_offset = _cursor_pos.y
+	elif adjusted.y > (_max_height - 1):
+		_y_offset = _y_offset + adjusted.y - (_max_height - 1)
 	return true
 
 func _debug_print() -> void:
-	var cx := _cursor_pos.x
-	var cy := _cursor_pos.y
+	var apos := _adjusted_pos()
+	var ax := apos.x
+	var ay := apos.y
 
-	print("idx: %d, y_offset: %d, cur_pos: %s, cur_pos + offset %s" % [_selected_idx, _y_offset, _cursor_pos, Vector2i(cx, cy + _y_offset)])
 	for y in range(_max_height):
 		var line: String
 		if y == 0:
@@ -136,10 +138,14 @@ func _debug_print() -> void:
 
 		line = "%d    " % [y + _y_offset]
 		for x in range(columns):
-			if cx == x && cy == y:
-				line += " [X] "
+			var cur_idx := _from_xy(Vector2i(x, y))
+			if cur_idx >= len(_item_res):
+				pass
 			else:
-				line += " [ ] "
+				if ax == x && ay == y:
+					line += " [%2d] " % [cur_idx]
+				else:
+					line += "  %2d  " % [cur_idx]
 		print(line)
 	
 	print("")

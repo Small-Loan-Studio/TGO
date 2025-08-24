@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://07u6uw7p4vlw"]
+[gd_scene load_steps=17 format=3 uid="uid://07u6uw7p4vlw"]
 
 [ext_resource type="Script" path="res://ZZ_Scratch/Inventory/InventoryUITest.gd" id="1_htsi0"]
 [ext_resource type="PackedScene" uid="uid://btrnj41gi473c" path="res://Scenes/Menu/InventoryContainer.tscn" id="1_ptwt8"]
@@ -12,10 +12,14 @@
 [ext_resource type="Resource" path="res://Scripts/Resources/Items/ScrapOfPaper.tres" id="8_f1olx"]
 [ext_resource type="Resource" uid="uid://b7w2axnxl0fkt" path="res://Scripts/Resources/Items/Key.tres" id="9_0n28u"]
 [ext_resource type="Resource" path="res://Scripts/Resources/Items/EmptyBottle.tres" id="10_lbtxc"]
+[ext_resource type="Resource" path="res://Scripts/Resources/Items/CryptKey.tres" id="11_5ycn6"]
+[ext_resource type="Resource" uid="uid://bjjqkmtq6eybl" path="res://Scripts/Resources/Items/Satchel.tres" id="12_7kc7x"]
+[ext_resource type="Resource" uid="uid://bxc244asgqgoi" path="res://Scripts/Resources/Items/Collectible.tres" id="13_1nn6h"]
+[ext_resource type="Resource" path="res://Scripts/Resources/Items/OldBatteredKey.tres" id="14_3wvgo"]
 
 [node name="UITest" type="Node2D"]
 script = ExtResource("1_htsi0")
-_items = Array[Resource("res://Scripts/Components/Inventory/Item.gd")]([ExtResource("2_4r84q"), ExtResource("3_tvr3l"), ExtResource("4_ydbc1"), ExtResource("5_nt45y"), ExtResource("6_5el1u"), ExtResource("7_41wxf"), ExtResource("8_f1olx"), ExtResource("9_0n28u"), ExtResource("10_lbtxc"), ExtResource("2_4r84q")])
+_items = Array[Resource("res://Scripts/Components/Inventory/Item.gd")]([ExtResource("2_4r84q"), ExtResource("3_tvr3l"), ExtResource("4_ydbc1"), ExtResource("5_nt45y"), ExtResource("6_5el1u"), ExtResource("7_41wxf"), ExtResource("8_f1olx"), ExtResource("9_0n28u"), ExtResource("10_lbtxc"), ExtResource("2_4r84q"), ExtResource("11_5ycn6"), ExtResource("12_7kc7x"), ExtResource("10_lbtxc"), ExtResource("8_f1olx"), ExtResource("13_1nn6h"), ExtResource("4_ydbc1"), ExtResource("14_3wvgo")])
 
 [node name="InventoryContainer" parent="." instance=ExtResource("1_ptwt8")]
 unique_name_in_owner = true

@@ -32,4 +32,4 @@ func _setup() -> void:
 		Enums.InputAction.RIGHT_ITEM,
 	])
 
-	_ui.setup(3, 2, _controller, _items)
+	_ui.setup(3, 4, _controller, _items)
