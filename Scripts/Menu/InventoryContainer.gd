@@ -6,13 +6,14 @@ var _mgr: InventoryManager
 
 var _ctrl: ControllerBase
 var _item_res: Array[Item] = []
-var _hold_scenes: Array[ItemDisplayRect] = []
+var _hold_scenes: Array[Array[ItemDisplayRect]] = []
 
 # which index is currently selected
 var _selected_idx := 0
 
 # how many rows have scrolled off the top
 var _y_offset := 0
+var _last_drawn_y_offset := -1
 
 # cursor position within the grid; constrained to the grid size and doesn't
 # take into account the full array size or need for offset/scrolling
@@ -33,26 +34,32 @@ func setup(x: int, y: int, ctrl: ControllerBase, items_for_display: Array[Item])
 	self.columns = x
 	self._ctrl = ctrl
 	self._item_res = items_for_display
-	print("Items (%d): %s" % [len(items_for_display), items_for_display])
 	has_setup = true
-
-	print("InventoryContainer.setup(%d, %d, ...)" % [x, y])
 
 	if y > 0:
 		_max_height = y
 
-	for idx in range(x * y):
-		var scn := ItemDisplayRect.mk(idx)
-		if idx < len(items_for_display) - 1:
-			scn.set_item(items_for_display[idx])
-		_hold_scenes.append(scn)
-		add_child(scn)
+	for idx_x in range(columns):
+		_hold_scenes.append([])
+		for idx_y in range(_max_height):
+			_hold_scenes[idx_y].append(scn)
+			var scn := ItemDisplayRect.mk(idx)
+			var idx := (idx_y * columns) + idx_x
+			if idx < len(items_for_display):
+				scn[idx_x][idx_y].set_item(items_for_display[idx])
+			add_child(scn)
 
 
 func _exit_tree() -> void:
 	for scn in _hold_scenes:
 		scn.queue_free()
 	_hold_scenes.clear()
+
+
+func current_item() -> Item:
+	if len(_item_res) == 0:
+		return null
+	return _item_res[_selected_idx]
 
 
 # convert cursor position to the item index within the array; this accounts
@@ -68,7 +75,8 @@ func _to_xy_raw(idx: int) -> Vector2i:
 
 func _adjusted_pos() -> Vector2i:
 	return Vector2i(_cursor_pos.x, _cursor_pos.y - _y_offset)
-	
+
+
 func _process(_delta: float) -> void:
 	if !has_setup:
 		return
@@ -76,7 +84,15 @@ func _process(_delta: float) -> void:
 	if !_process_input():
 		return
 	
-	_debug_print()
+	# _debug_print()
+	if _last_drawn_y_offset == _y_offset:
+		return
+	
+	_last_drawn_y_offset = _y_offset
+
+	for x in range(columns):
+		for y in range(_max_height):
+			var idx := _from_xy(Vector2x(x, y))
 
 
 func _process_input() -> bool:
