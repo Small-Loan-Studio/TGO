@@ -214,6 +214,7 @@ layout_mode = 2
 [node name="Menus" parent="OverlayManager" instance=ExtResource("15_rsyak")]
 
 [node name="UITest" parent="OverlayManager" instance=ExtResource("16_wfc1j")]
+position = Vector2(214, 214)
 
 [node name="SerializationManager" type="Node" parent="."]
 script = ExtResource("11_e6bsk")

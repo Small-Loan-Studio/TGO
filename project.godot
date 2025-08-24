@@ -277,6 +277,15 @@ export/convert_text_resources_to_binary=false
 
 enabled=PackedStringArray("res://addons/Wwise/plugin.cfg", "res://addons/dialogic/plugin.cfg", "res://addons/resources_spreadsheet_view/plugin.cfg", "res://addons/tgo_greyboxing/plugin.cfg")
 
+[file_customization]
+
+folder_colors={
+"res://Art/": "red",
+"res://Scenes/": "yellow",
+"res://Scripts/": "green",
+"res://Scripts/Resources/": "purple"
+}
+
 [gui]
 
 theme/custom_font="res://Art/fonts/EBGaramond-VariableFont_wght.ttf"
