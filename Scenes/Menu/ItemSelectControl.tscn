@@ -1,0 +1,53 @@
+[gd_scene load_steps=5 format=3 uid="uid://dyqilh6xlan1r"]
+
+[ext_resource type="Script" path="res://Scripts/Menu/ItemSelectControl.gd" id="1_mvc8l"]
+[ext_resource type="PackedScene" uid="uid://btrnj41gi473c" path="res://Scenes/Menu/InventoryContainer.tscn" id="2_b4d47"]
+[ext_resource type="PackedScene" uid="uid://ck4tg2lpx6m6c" path="res://Scenes/Menu/ItemSelectBar.tscn" id="3_vdolf"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_raohg"]
+content_margin_left = 15.0
+content_margin_top = 15.0
+content_margin_right = 15.0
+content_margin_bottom = 15.0
+bg_color = Color(0, 0, 0, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
+
+[node name="ItemSelectControl" type="PanelContainer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 1.0
+offset_top = -1.0
+offset_right = -849.0
+offset_bottom = -451.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_raohg")
+script = ExtResource("1_mvc8l")
+item_width = null
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[node name="AspectRatioContainer" type="AspectRatioContainer" parent="VBoxContainer"]
+layout_mode = 2
+ratio = 4.0
+stretch_mode = 1
+
+[node name="ItemGrid" parent="VBoxContainer/AspectRatioContainer" instance=ExtResource("2_b4d47")]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(400, 200)
+layout_mode = 2
+
+[node name="ItemSelectBar" parent="VBoxContainer" instance=ExtResource("3_vdolf")]
+unique_name_in_owner = true
+layout_mode = 2

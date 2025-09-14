@@ -1,20 +1,17 @@
-[gd_scene load_steps=10 format=3 uid="uid://cf8dser3bm7sj"]
+[gd_scene load_steps=9 format=3 uid="uid://cf8dser3bm7sj"]
 
 [ext_resource type="Script" path="res://Scenes/Components/interacting/interact_option.gd" id="1_vt6dm"]
 [ext_resource type="Texture2D" uid="uid://b6ara32t33lwm" path="res://Art/interacting/raw_edge_right.png" id="2_a40ri"]
 [ext_resource type="Texture2D" uid="uid://dlp5vrsdmtfda" path="res://Art/interacting/curved_edge_left.png" id="2_k4ufr"]
 [ext_resource type="FontFile" uid="uid://8lfpcborndbe" path="res://Art/fonts/EBGaramond-Bold.ttf" id="3_ahwx5"]
 [ext_resource type="Texture2D" uid="uid://dw8a5ces4vkbd" path="res://Art/interacting/arrow_down.png" id="3_m7adq"]
-[ext_resource type="Texture2D" uid="uid://cckcndbc1e8ai" path="res://Art/interacting/button.png" id="4_ooui1"]
 [ext_resource type="Texture2D" uid="uid://c5pll2coliscq" path="res://Art/interacting/selection_right.png" id="6_g7ro6"]
+[ext_resource type="StyleBox" uid="uid://dntmepk37nx1c" path="res://Scenes/Components/interacting/InteractPanel.tres" id="7_005v6"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_u3sqe"]
 resource_local_to_scene = true
 bg_color = Color(0, 0, 0, 1)
 border_color = Color(1, 1, 1, 1)
-
-[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_xqupb"]
-texture = ExtResource("4_ooui1")
 
 [node name="InteractOption" type="Control"]
 custom_minimum_size = Vector2(145, 35)
@@ -165,7 +162,7 @@ offset_left = -21.0
 offset_top = -3.5
 offset_right = -124.0
 offset_bottom = 3.5
-theme_override_styles/panel = SubResource("StyleBoxTexture_xqupb")
+theme_override_styles/panel = ExtResource("7_005v6")
 
 [node name="Symbol" type="TextureRect" parent="SymbolContainer"]
 custom_minimum_size = Vector2(18.48, 18.48)

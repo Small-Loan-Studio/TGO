@@ -7,6 +7,7 @@ var _mgr: InventoryManager
 var _ctrl: ControllerBase
 var _item_res: Array[Item] = []
 var _hold_scenes: Array[ItemDisplayRect] = []
+var _acceptable_directions: Array[Enums.InputAction] = []
 
 # which index is currently selected
 var _selected_idx := 0
@@ -26,7 +27,12 @@ const Scene: PackedScene = preload("res://Scenes/Menu/InventoryContainer.tscn")
 
 static func mk(x: int, y: int, ctrl: ControllerBase, items: Array[Item]) -> InventoryContainer:
 	var scn := InventoryContainer.Scene.instantiate() as InventoryContainer
-	scn.setup(x, y, ctrl, items)
+	scn.setup(x, y, ctrl, items, [
+			Enums.InputAction.LEFT,
+			Enums.InputAction.RIGHT,
+			Enums.InputAction.UP,
+			Enums.InputAction.DOWN,
+	])
 	return scn
 
 
@@ -38,12 +44,18 @@ func _set_scene(x: int, y: int, scn: ItemDisplayRect) -> void:
 
 
 var has_setup: bool = false
-func setup(x: int, y: int, ctrl: ControllerBase, items_for_display: Array[Item]) -> void:
+func setup(
+	x: int, y: int,
+	ctrl: ControllerBase,
+	items_for_display: Array[Item],
+	monitored: Array[Enums.InputAction],
+) -> void:
+	print("InventoryContainer.setup(%d, %d, ...)" % [x, y])
 	self._mgr = Driver.instance().inventory_mgr
 	self.columns = x
 	self._ctrl = ctrl
 	self._item_res = items_for_display
-	has_setup = true
+	self._acceptable_directions = monitored
 
 	if y > 0:
 		_max_height = y
@@ -61,6 +73,15 @@ func setup(x: int, y: int, ctrl: ControllerBase, items_for_display: Array[Item])
 	
 	_selected_idx = 0
 	_get_scene(0, 0).focus()
+	print("InventoryContainer.has_setup = true")
+	has_setup = true
+
+
+func _enter_tree() -> void:
+	print("InventoryContainer._enter_tree - %s" % [has_setup])
+
+func _ready() -> void:
+	print("InventoryContainer._ready - %s" % [has_setup])
 
 
 func _exit_tree() -> void:
@@ -71,6 +92,9 @@ func _exit_tree() -> void:
 
 func current_item() -> Item:
 	if len(_item_res) == 0:
+		return null
+	if _selected_idx < 0 || _selected_idx >= len(_item_res):
+		printerr("selected_idx %d out of range" % [_selected_idx])
 		return null
 	return _item_res[_selected_idx]
 
@@ -119,26 +143,31 @@ func _process(_delta: float) -> void:
 
 
 func _process_input() -> bool:
+	print(_ctrl.get_just_pressed())
 	var max_idx := len(_item_res) - 1
 	var idx := _selected_idx
 	var single_col := columns == 1
+	var can_up := Enums.InputAction.UP in _acceptable_directions
+	var can_down := Enums.InputAction.DOWN in _acceptable_directions
+	var can_left := Enums.InputAction.LEFT in _acceptable_directions
+	var can_right := Enums.InputAction.RIGHT in _acceptable_directions
 
-	if _ctrl.just_pressed(Enums.InputAction.UP):
+	if can_up && _ctrl.just_pressed(Enums.InputAction.UP):
 		if idx == 0:
 			idx = max_idx
 		else:
 			idx -= columns
-	elif _ctrl.just_pressed(Enums.InputAction.DOWN):
+	elif can_down  &&  _ctrl.just_pressed(Enums.InputAction.DOWN):
 		if idx == max_idx:
 			idx = 0
 		else:
 			idx += columns
-	elif !single_col && _ctrl.just_pressed(Enums.InputAction.LEFT):
+	elif can_left && !single_col && _ctrl.just_pressed(Enums.InputAction.LEFT):
 		if idx == 0:
 			idx = max_idx
 		else:
 			idx -= 1
-	elif !single_col && _ctrl.just_pressed(Enums.InputAction.RIGHT):
+	elif can_right &&  !single_col && _ctrl.just_pressed(Enums.InputAction.RIGHT):
 		if idx == max_idx:
 			idx = 0
 		else:

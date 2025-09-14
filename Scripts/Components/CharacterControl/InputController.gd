@@ -123,12 +123,24 @@ func get_vector() -> Vector2:
 	return _dir_vector
 
 
+##### NOTES ON just_{pressed|released}
+# god fucking damn it. This fully breaks the abstraction but i didn't
+# have it in me to fight with input coming in out of sync with the
+# render frame which it occasionally did and breaking my just pressed
+# hack. At the same time i need just pressed to work so here we go.
+# Will revisit this whole pile of shit in the event I ever clean
+# up the TGO code base at large. There is a solution here but finding
+# it means learning|thinking about the poll cycle 
+
+
 func get_just_pressed() -> Array[Enums.InputAction]:
 	var r: Array[Enums.InputAction] = []
 	for action_name in _actions:
 		var state: ActionState = _action_states[action_name]
-		if state.just_pressed() && state.entered_state == _frame_count:
+		if Input.is_action_just_pressed(action_name):
 			r.append(state.action)
+		# if state.just_pressed() && state.entered_state == _frame_count:
+		# 	r.append(state.action)
 	return r
 
 
@@ -145,8 +157,10 @@ func get_just_released() -> Array[Enums.InputAction]:
 	var r: Array[Enums.InputAction] = []
 	for action_name in _actions:
 		var state: ActionState = _action_states[action_name]
-		if state.just_released() && state.entered_state == _frame_count:
+		if Input.is_action_just_released(action_name):
 			r.append(state.action)
+		# if state.just_released() && state.entered_state == _frame_count:
+		# 	r.append(state.action)
 	return r
 
 

@@ -2,7 +2,8 @@ class_name InventoryUITest
 extends Node2D
 
 @onready var _controller: InputController = %Input
-@onready var _ui: InventoryContainer = %InventoryContainer
+@onready var _inv_control: ItemSelectControl = %ItemSelectControl
+
 @export var _items: Array[Item] = []
 
 func _ready() -> void:
@@ -32,15 +33,8 @@ func _setup() -> void:
 		Enums.InputAction.RIGHT_ITEM,
 	])
 
-	_ui.setup(3, 4, _controller, _items)
+	_inv_control.setup(4, 1, _controller, _items, [Enums.InputAction.LEFT, Enums.InputAction.RIGHT])
 
-
-var _last_item: Item = null
 
 func _process(_delta: float) -> void:
-	var item := _ui.current_item()
-	if _last_item == item:
-		return
-	
-	_last_item = item
-	print("Current: %s" % [item])
+	pass

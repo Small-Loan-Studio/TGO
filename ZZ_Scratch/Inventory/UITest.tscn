@@ -1,7 +1,6 @@
 [gd_scene load_steps=17 format=3 uid="uid://07u6uw7p4vlw"]
 
 [ext_resource type="Script" path="res://ZZ_Scratch/Inventory/InventoryUITest.gd" id="1_htsi0"]
-[ext_resource type="PackedScene" uid="uid://btrnj41gi473c" path="res://Scenes/Menu/InventoryContainer.tscn" id="1_ptwt8"]
 [ext_resource type="Resource" uid="uid://76bi0g1ps1s3" path="res://Scripts/Resources/Items/FlameTorch.tres" id="2_4r84q"]
 [ext_resource type="Script" path="res://Scripts/Components/CharacterControl/InputController.gd" id="2_hh85r"]
 [ext_resource type="Resource" path="res://Scripts/Resources/Items/BagOfHardtack.tres" id="4_ydbc1"]
@@ -16,19 +15,18 @@
 [ext_resource type="Resource" uid="uid://bxc244asgqgoi" path="res://Scripts/Resources/Items/Collectible.tres" id="13_1nn6h"]
 [ext_resource type="Resource" path="res://Scripts/Resources/Items/OldBatteredKey.tres" id="14_3wvgo"]
 [ext_resource type="Resource" uid="uid://x0jx2mol86p8" path="res://Scripts/Resources/Items/WoodenStake.tres" id="14_ev2jc"]
+[ext_resource type="PackedScene" uid="uid://dyqilh6xlan1r" path="res://Scenes/Menu/ItemSelectControl.tscn" id="17_ybt1n"]
 
 [node name="UITest" type="Node2D"]
 script = ExtResource("1_htsi0")
 _items = Array[Resource("res://Scripts/Components/Inventory/Item.gd")]([ExtResource("2_4r84q"), ExtResource("4_ydbc1"), ExtResource("5_nt45y"), ExtResource("6_5el1u"), ExtResource("7_41wxf"), ExtResource("8_f1olx"), ExtResource("9_0n28u"), ExtResource("10_lbtxc"), ExtResource("2_4r84q"), ExtResource("11_5ycn6"), ExtResource("12_7kc7x"), ExtResource("10_lbtxc"), ExtResource("8_f1olx"), ExtResource("13_1nn6h"), ExtResource("4_ydbc1"), ExtResource("14_3wvgo"), ExtResource("14_ev2jc")])
 
-[node name="InventoryContainer" parent="." instance=ExtResource("1_ptwt8")]
-unique_name_in_owner = true
-custom_minimum_size = Vector2(200, 200)
-offset_right = 200.0
-offset_bottom = 200.0
-size_flags_horizontal = 3
-size_flags_vertical = 3
-
 [node name="Input" type="Node" parent="."]
 unique_name_in_owner = true
 script = ExtResource("2_hh85r")
+
+[node name="ItemSelectControl" parent="." instance=ExtResource("17_ybt1n")]
+unique_name_in_owner = true
+offset_right = 431.0
+offset_bottom = 269.0
+item_width = 20
